@@ -23,6 +23,7 @@ import { CompanionDossier, StopDossier, StopScript } from "./shapes.ts";
 import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
 import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
+import { applyWrittenHotspots, applyWrittenScript, loadWritten } from "./stages/written.ts";
 import { ALL_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
 import { applyPolish, polishStop, PolishedStop } from "./stages/polish.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
@@ -147,6 +148,15 @@ async function main(): Promise<void> {
     scripts.push(s);
   }
 
+  // 3b. A hand-written script, if this tour has one, speaks for itself: it
+  // replaces the generated words before anything is recorded, and it turns the
+  // polish pass off, since polish exists to rewrite the model's own prose.
+  const written = await loadWritten(env.contentDir, recipe.id);
+  if (written) {
+    for (let i = 0; i < scripts.length; i++) scripts[i] = applyWrittenScript(scripts[i], written.stops[scripts[i].stopId]);
+    log(`written script: ${Object.keys(written.stops).length} stop(s) spoken verbatim`);
+  }
+
   // 4. Character sheet (asset-cached, so this is free after the first run).
   // Her face is identity: the first portraitPrompt is locked per companion so
   // re-researching the dossier can never quietly change what she looks like.
@@ -163,7 +173,7 @@ async function main(): Promise<void> {
   // 4b. Grounding polish: her lines rewritten against the actual stills, in the
   // narrator-host voice. Visuals stay cached; only words (and their audio and
   // faces) change. Vision needs real images, so the mock provider skips this.
-  if (provider.name === "fal") {
+  if (provider.name === "fal" && !written) {
     for (let i = 0; i < scripts.length; i++) {
       const f = path.join(work, `polished.${scripts[i].stopId}.json`);
       let pol = await readJson<unknown>(f).then((x) => (x ? PolishedStop.parse(x) : undefined));
@@ -252,6 +262,9 @@ async function main(): Promise<void> {
         }
         await writeJson(f, h);
       } else log(`hotspots ${script.stopId} (cached)`);
+      // The locator found where each point sits; the written script says what she
+      // says there. Positions are never rewritten, so the cache stays pristine.
+      if (written) h = await applyWrittenHotspots(h, written.stops[script.stopId], recipe, provider);
       hotspots.push(h);
     }
   }
