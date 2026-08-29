@@ -97,6 +97,15 @@ async function labelContrast(page) {
   };
   const neutralTap = () => neutralTapOn(page);
 
+  // The API must serve exactly what the pipeline wrote: a stale process with an
+  // older schema silently strips new fields (it has bitten twice).
+  {
+    const served = await (await fetch(`${BASE.replace("5173", "4100").replace("https", "http")}/v1/tours/${TOUR}`, { headers: { Authorization: "Bearer dev" } })).json();
+    const file = JSON.parse(fs.readFileSync(`/Applications/MAMP/htdocs/timetravel/content/tours/${TOUR}/manifest.json`, "utf8"));
+    const same = JSON.stringify(served) === JSON.stringify(file);
+    check("API serves the manifest verbatim (no stale-schema stripping)", same, same ? "" : "served differs from file - restart the API");
+  }
+
   await page.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
   await page.waitForSelector(".player .idle");
   await page.screenshot({ path: `${S}/v-00-cover.png` });
@@ -182,7 +191,7 @@ async function labelContrast(page) {
 
   // Spotlight sweep: activate the first point on every dotted screen in the tour.
   let sweep = 0, belowSeen = false, worstRatio = Infinity, dimOk = true, zoomOk = true, geomOk = true;
-  for (let step = 0; step < 40; step++) {
+  for (let step = 0; step < 70; step++) {
     if (await page.$(".done-view")) break;
     const dots = await page.$$(".poi");
     if (dots.length >= 2) {

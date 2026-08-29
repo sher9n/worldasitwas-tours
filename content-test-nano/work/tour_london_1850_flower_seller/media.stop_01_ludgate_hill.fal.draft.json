@@ -1,0 +1,24 @@
+{
+  "stopId": "stop_01_ludgate_hill",
+  "hero": {
+    "remoteUrl": "https://v3b.fal.media/files/b/0aa84702/TmSqYndJY_J4LSGKds_7v_So2Y9760.jpg",
+    "mime": "image/jpeg",
+    "width": 768,
+    "height": 1376,
+    "localPath": "content-test-nano/work/tour_london_1850_flower_seller/assets/087b5ac11891c216.jpg"
+  },
+  "cards": [
+    {
+      "id": "stop_01_ludgate_hill_c1"
+    },
+    {
+      "id": "stop_01_ludgate_hill_c2"
+    },
+    {
+      "id": "stop_01_ludgate_hill_c3"
+    },
+    {
+      "id": "stop_01_ludgate_hill_c4"
+    }
+  ]
+}

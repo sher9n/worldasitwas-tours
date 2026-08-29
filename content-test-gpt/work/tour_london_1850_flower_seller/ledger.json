@@ -1,0 +1,20 @@
+{
+  "totalUsd": 0,
+  "byProvider": {},
+  "entries": [
+    {
+      "stage": "character",
+      "provider": "fal",
+      "endpoint": "openai/gpt-image-2",
+      "note": "portrait of Nell Baker",
+      "estimated": true,
+      "ms": 2720,
+      "units": 0,
+      "unitType": "none",
+      "rateUsd": 0,
+      "costUsd": 0,
+      "error": "Forbidden",
+      "ts": "2026-08-29T11:43:36.019Z"
+    }
+  ]
+}

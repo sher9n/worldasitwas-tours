@@ -1,0 +1,32 @@
+{
+  "stopId": "stop_01_ludgate_hill",
+  "nowPhoto": {
+    "title": "St. Paul's Cathedral from Ludgate Hill.jpg",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:St._Paul%27s_Cathedral_from_Ludgate_Hill.jpg",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/St._Paul%27s_Cathedral_from_Ludgate_Hill.jpg",
+    "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/St._Paul%27s_Cathedral_from_Ludgate_Hill.jpg/1280px-St._Paul%27s_Cathedral_from_Ludgate_Hill.jpg",
+    "width": 3800,
+    "height": 5538,
+    "mime": "image/jpeg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "artist": "Tristan Surtel",
+    "description": "West facade of St. Paul's Cathedral, seen from Ludgate Hill, London.",
+    "dateOriginal": "2018-04-25 16:23:19"
+  },
+  "archive": {
+    "title": "Belle Savage yard and coach.jpg",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Belle_Savage_yard_and_coach.jpg",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Belle_Savage_yard_and_coach.jpg",
+    "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Belle_Savage_yard_and_coach.jpg",
+    "width": 526,
+    "height": 370,
+    "mime": "image/jpeg",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "artist": "Engraving after James Pollard (1792-1867)",
+    "description": "Coach emerging from the Belle Sauvage yard into Ludgate Hill.",
+    "dateOriginal": "19th century, about 1850",
+    "caption": "That's the Belle Sauvage yard, where the coaches come out. A real picture, mind, not one of your conjurings."
+  }
+}

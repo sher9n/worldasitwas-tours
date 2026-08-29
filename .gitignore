@@ -7,3 +7,5 @@ content/media/
 content/work/
 *.log
 .DS_Store
+
+content/tours/

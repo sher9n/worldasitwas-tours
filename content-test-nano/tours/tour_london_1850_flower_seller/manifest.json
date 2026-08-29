@@ -1,7 +1,7 @@
 {
   "schema": "tour/1",
   "id": "tour_london_1850_flower_seller",
-  "version": "2026-08-29.1931",
+  "version": "2026-08-29.4720",
   "city": "london",
   "year": 1850,
   "yearRange": [
@@ -13,18 +13,15 @@
   "summary": "Six stops from Ludgate Hill down to the river with Nell Baker, who sells violets and watercress outside St Paul's. London in the spring of 1850: the busiest city on earth, the Crystal Palace rising in Hyde Park for next year's Great Exhibition, cholera two summers behind them and coming back, the new railways, the old river.",
   "durationMin": 3,
   "cover": {
-    "image": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_hero.svg",
-    "video": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_arrival.mp4"
+    "image": "http://localhost:4100/media/tour_london_1850_flower_seller/companion_portrait.jpg"
   },
   "companion": {
     "name": "Nell Baker",
     "role": "Flower seller, Covent Garden and Ludgate Hill",
     "bio": "Nell Baker is thirty-one, born in Clerkenwell to a journeyman printer who drank the trade away. She married a costermonger at nineteen and was widowed two years ago when a cart wheel went over him in Farringdon Street. She keeps two children, Tom (nine) and Sal (six), in one room off Shoe Lane. She buys violets, wallflowers and watercress at Covent Garden before six and sells them from a shallow basket on Ludgate Hill and by the cathedral steps, wet or fine. She reads a little, cannot write, and has never been further than Greenwich by penny steamer and Kensington on foot. She is sharp, quick, funny, and protective of the children who sell near her; she knows the prices of everything to the farthing and the constables by name.",
-    "portrait": "http://localhost:4100/media/tour_london_1850_flower_seller/companion_portrait.svg",
+    "portrait": "http://localhost:4100/media/tour_london_1850_flower_seller/companion_portrait.jpg",
     "greeting": {
-      "text": "Mind the mud, love. You're on Ludgate Hill, and it's the spring of eighteen fifty. Stand by me and keep your purse on the inside.",
-      "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/companion_greeting.m4a",
-      "durationSec": 9
+      "text": "Mind the mud, love. You're on Ludgate Hill, and it's the spring of eighteen fifty. Stand by me and keep your purse on the inside."
     },
     "voice": {
       "provider": "openai-realtime",
@@ -42,29 +39,8 @@
         "bearing": 78
       },
       "arrival": {
-        "livingScene": {
-          "video": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_arrival.mp4",
-          "poster": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_hero.svg",
-          "durationSec": 4,
-          "hasAudio": true,
-          "origin": "reconstruction"
-        },
-        "talkingPortrait": {
-          "video": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_talking.mp4",
-          "poster": "http://localhost:4100/media/tour_london_1850_flower_seller/companion_portrait.svg",
-          "durationSec": 6,
-          "hasAudio": true,
-          "origin": "reconstruction"
-        },
         "line": {
-          "text": "Mind the mud, love. You're on Ludgate Hill, and it's the spring of eighteen fifty. See the dome up top? Stand by me and keep your purse on the inside.",
-          "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_arrival_line.m4a",
-          "durationSec": 10
-        },
-        "ambience": {
-          "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_ambience.m4a",
-          "loop": true,
-          "gainDb": -14
+          "text": "Mind the mud, love. You're on Ludgate Hill, and it's the spring of eighteen fifty. See the dome up top? Stand by me and keep your purse on the inside."
         }
       },
       "cards": [
@@ -72,9 +48,7 @@
           "id": "stop_01_ludgate_hill_c1",
           "caption": "The busiest hill in the City. Omnibuses, drays and a hundred hand-carts, all going up at the pace of a tired horse.",
           "narration": {
-            "text": "Everything that comes into the City from the west comes up this hill. Sixpence on the 'bus, which I never take. I'd sooner walk to Kensington and back.",
-            "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c1_narration.m4a",
-            "durationSec": 10
+            "text": "Everything that comes into the City from the west comes up this hill. Sixpence on the 'bus, which I never take. I'd sooner walk to Kensington and back."
           },
           "claims": [
             {
@@ -84,24 +58,16 @@
             }
           ],
           "companionContext": {
-            "text": "a reconstruction of the roadway of Ludgate Hill in 1850, packed with omnibuses, a dray and hand-carts, the cathedral dome at the top of the street.",
-            "image": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c1.svg"
+            "text": "a reconstruction of the roadway of Ludgate Hill in 1850, packed with omnibuses, a dray and hand-carts, the cathedral dome at the top of the street."
           },
-          "kind": "image",
-          "media": {
-            "image": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c1.svg",
-            "origin": "reconstruction",
-            "width": 1080,
-            "height": 1920
-          }
+          "kind": "text",
+          "text": "The busiest hill in the City. Omnibuses, drays and a hundred hand-carts, all going up at the pace of a tired horse."
         },
         {
           "id": "stop_01_ludgate_hill_c2",
           "caption": "Same spot, then and now. Nothing crosses the street above the traffic yet; the railway bridge that will cut across this view comes in 1865.",
           "narration": {
-            "text": "Look up the hill. Clear sky all the way to the Church. The clerks say a railway will come through here one day. I'll believe it when I see it.",
-            "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c2_narration.m4a",
-            "durationSec": 9
+            "text": "Look up the hill. Clear sky all the way to the Church. The clerks say a railway will come through here one day. I'll believe it when I see it."
           },
           "claims": [
             {
@@ -116,34 +82,16 @@
             }
           ],
           "companionContext": {
-            "text": "a then-and-now slider: Ludgate Hill in 1850 against the same view today, the cathedral in both.",
-            "image": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c2_then.svg"
+            "text": "a then-and-now slider: Ludgate Hill in 1850 against the same view today, the cathedral in both."
           },
-          "kind": "thenNow",
-          "then": {
-            "image": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c2_then.svg",
-            "origin": "reconstruction",
-            "width": 1080,
-            "height": 1920
-          },
-          "now": {
-            "image": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c2_now.jpg",
-            "origin": "photograph",
-            "credit": {
-              "title": "St. Paul's Cathedral from Ludgate Hill.jpg",
-              "holder": "Wikimedia Commons, Tristan Surtel",
-              "license": "CC BY-SA 4.0",
-              "url": "https://commons.wikimedia.org/wiki/File:St._Paul%27s_Cathedral_from_Ludgate_Hill.jpg"
-            }
-          }
+          "kind": "text",
+          "text": "Same spot, then and now. Nothing crosses the street above the traffic yet; the railway bridge that will cut across this view comes in 1865."
         },
         {
           "id": "stop_01_ludgate_hill_c3",
           "caption": "This one is real, a picture made in my own time. Look at the boy with the broom.",
           "narration": {
-            "text": "Now that's a real picture, not one of your conjurings. See the crossing boy? A ha'penny for a clean path, and he earns every one.",
-            "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c3_narration.m4a",
-            "durationSec": 9
+            "text": "Now that's a real picture, not one of your conjurings. See the crossing boy? A ha'penny for a clean path, and he earns every one."
           },
           "claims": [
             {
@@ -163,13 +111,6 @@
             "width": 526,
             "height": 370
           },
-          "animated": {
-            "video": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c3_alive.mp4",
-            "poster": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c3_archive.jpg",
-            "durationSec": 4,
-            "hasAudio": true,
-            "origin": "reconstruction"
-          },
           "credit": {
             "title": "Belle Savage yard and coach.jpg",
             "holder": "Wikimedia Commons, Engraving after James Pollard (1792-1867)",
@@ -181,9 +122,7 @@
           "id": "stop_01_ludgate_hill_c4",
           "caption": "What a penny buys on this hill.",
           "narration": {
-            "text": "A penny a bunch, and they were fresh at five this morning. A penny for the coffee-stall man, a ha'penny for the boy. Pennies are the whole of my arithmetic.",
-            "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_c4_narration.m4a",
-            "durationSec": 10
+            "text": "A penny a bunch, and they were fresh at five this morning. A penny for the coffee-stall man, a ha'penny for the boy. Pennies are the whole of my arithmetic."
           },
           "claims": [
             {
@@ -205,9 +144,7 @@
         }
       ],
       "transitionOut": {
-        "text": "Come on up to the Church steps. That's my pitch, and the clerks will be out for their dinner soon.",
-        "audio": "http://localhost:4100/media/tour_london_1850_flower_seller/s01_transition.m4a",
-        "durationSec": 7
+        "text": "Come on up to the Church steps. That's my pitch, and the clerks will be out for their dinner soon."
       }
     }
   ],
@@ -268,14 +205,12 @@
     }
   ],
   "provenance": {
-    "generatedAt": "2026-08-29T11:12:11.458Z",
+    "generatedAt": "2026-08-29T11:58:40.615Z",
     "reviewedBy": "none",
     "models": [
-      "mock.image",
-      "mock.tts",
-      "mock.video",
-      "mock.sfx"
+      "fal-ai/gemini-3-pro-image-preview",
+      "cache:image"
     ],
-    "costUsd": 0
+    "costUsd": 0.3
   }
 }

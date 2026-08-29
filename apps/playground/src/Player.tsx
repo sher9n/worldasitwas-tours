@@ -497,10 +497,10 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
                 Continue to {nextStop.title} →
               </button>
             ) : (
-              <div className="walk-dots">
-                <span />
-                <span />
-                <span />
+              <div className="walk-dots" aria-label={`Stop ${beat.stopIndex + 2} of ${tour.stops.length}`}>
+                {tour.stops.map((s, i) => (
+                  <span key={s.id} className={i === beat.stopIndex + 1 ? "on" : ""} />
+                ))}
               </div>
             )}
           </div>
@@ -555,11 +555,12 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {spots.map((h) => {
             const active = hotspot?.id === h.id;
             const below = h.y < 0.28; // a high point gets its label underneath, clear of the HUD
-            const edge = h.x < 0.22 ? "edge-l" : h.x > 0.78 ? "edge-r" : "";
+            const low = h.y > 0.68; // a low point lifts its label clear of the controls and her circle
+            const edge = h.x < 0.22 ? "edge-l" : h.x > 0.78 || (low && h.x > 0.5) ? "edge-r" : "";
             return (
               <button
                 key={h.id}
-                className={`poi ${gated ? "beckon" : ""} ${active ? "active" : ""} ${hotspot && !active ? "dim" : ""} ${below ? "below" : ""} ${edge}`}
+                className={`poi ${gated ? "beckon" : ""} ${active ? "active" : ""} ${hotspot && !active ? "dim" : ""} ${below ? "below" : ""} ${low ? "low" : ""} ${edge}`}
                 style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%` }}
                 data-noadvance
                 onClick={() => openHotspot(h)}

@@ -1,0 +1,64 @@
+{
+  "stopId": "stop_01_ludgate_hill",
+  "arrivalLine": "Mind the mud, love. You're on Ludgate Hill, and it's the spring of eighteen fifty. See the dome up top? Stand by me and keep your purse on the inside.",
+  "heroImagePrompt": "Ludgate Hill, London, 1850, seen from the pavement halfway up the hill looking east to the west front and dome of St Paul's Cathedral filling the top of the street. A jam of horse-drawn omnibuses with painted names, a brewer's dray, hackney cabs and hand-carts; men in top hats and caps, women in shawls and bonnets; drapers' and booksellers' shops with painted signboards and bow windows on both sides; a boy with a broom at a muddy crossing; wet granite setts; grey overcast morning light with coal smoke haze.",
+  "heroMotionPrompt": "Slow, steady view from the pavement: omnibuses and carts roll up the hill at walking pace, horses nod and steam, pedestrians cross between the wheels, a boy sweeps the crossing, smoke drifts over the rooftops toward the dome. Sound of iron wheels and hooves on stone, a conductor calling a destination, a distant church bell.",
+  "ambiencePrompt": "Busy Victorian London street: iron-shod cart wheels and horse hooves on granite setts, harness jingling, distant shouts of street sellers and omnibus conductors, footsteps, a church bell striking in the distance, light wind, no engines",
+  "cards": [
+    {
+      "id": "stop_01_ludgate_hill_c1",
+      "kind": "image",
+      "caption": "The busiest hill in the City. Omnibuses, drays and a hundred hand-carts, all going up at the pace of a tired horse.",
+      "narration": "Everything that comes into the City from the west comes up this hill. Sixpence on the 'bus, which I never take. I'd sooner walk to Kensington and back.",
+      "imagePrompt": "Close view on the roadway of Ludgate Hill, 1850: a green horse-drawn omnibus with passengers on the knifeboard roof and a conductor on the step shouting, a brewer's dray with chained barrels alongside, a hackney cab behind, pedestrians threading between the wheels, wet granite setts, shop fronts with painted lettering, the cathedral dome hazy above the rooftops at the top of the street, grey daylight.",
+      "textBody": "",
+      "includesCompanion": false,
+      "claims": [
+        { "text": "Ordinary omnibus fares were sixpence, with some short stages at threepence.", "confidence": "likely", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" }
+      ],
+      "companionContextText": "a reconstruction of the roadway of Ludgate Hill in 1850, packed with omnibuses, a dray and hand-carts, the cathedral dome at the top of the street."
+    },
+    {
+      "id": "stop_01_ludgate_hill_c2",
+      "kind": "thenNow",
+      "caption": "Same spot, then and now. Nothing crosses the street above the traffic yet; the railway bridge that will cut across this view comes in 1865.",
+      "narration": "Look up the hill. Clear sky all the way to the Church. The clerks say a railway will come through here one day. I'll believe it when I see it.",
+      "imagePrompt": "Ludgate Hill looking east to St Paul's Cathedral in 1850: the same street and cathedral, but the roadway is granite setts with horse-drawn omnibuses and carts, the shops have painted signboards and bow windows, gas lamps on brackets, men in top hats and women in shawls and bonnets, no railway bridge, no motor vehicles, no modern signage, grey overcast light.",
+      "textBody": "",
+      "includesCompanion": false,
+      "claims": [
+        { "text": "The railway viaduct across Ludgate Hill was built in 1865; in 1850 the view to the cathedral was unobstructed.", "confidence": "known", "sourceTitle": "Ludgate Hill, Wikipedia" },
+        { "text": "St Paul's Cathedral was declared complete in 1711.", "confidence": "known", "sourceTitle": "St Paul's Cathedral, Wikipedia" }
+      ],
+      "companionContextText": "a then-and-now slider: Ludgate Hill in 1850 against the same view today, the cathedral in both."
+    },
+    {
+      "id": "stop_01_ludgate_hill_c3",
+      "kind": "archive",
+      "caption": "This one is real, a picture made in my own time. Look at the boy with the broom.",
+      "narration": "Now that's a real picture, not one of your conjurings. See the crossing boy? A ha'penny for a clean path, and he earns every one.",
+      "imagePrompt": "",
+      "textBody": "",
+      "includesCompanion": false,
+      "claims": [
+        { "text": "Crossing-sweepers lived on halfpennies from passers-by, earning perhaps sixpence to a shilling on a good day.", "confidence": "likely", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" }
+      ],
+      "companionContextText": "a genuine nineteenth-century picture of Ludgate Hill with the cathedral, shown in a frame."
+    },
+    {
+      "id": "stop_01_ludgate_hill_c4",
+      "kind": "text",
+      "caption": "What a penny buys on this hill.",
+      "narration": "A penny a bunch, and they were fresh at five this morning. A penny for the coffee-stall man, a ha'penny for the boy. Pennies are the whole of my arithmetic.",
+      "imagePrompt": "",
+      "textBody": "One penny: a bunch of violets. One penny: a cup of coffee at the stall. One penny: a bunch of watercress. A halfpenny: the crossing boy. Sixpence: the omnibus, if you are a lord.",
+      "includesCompanion": false,
+      "claims": [
+        { "text": "A cup of coffee at a street stall cost a penny.", "confidence": "known", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" },
+        { "text": "Flower girls sold violets and other flowers bought early at Covent Garden.", "confidence": "known", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" }
+      ],
+      "companionContextText": "a text card listing what a penny buys on Ludgate Hill in 1850: violets, coffee, watercress, the crossing boy."
+    }
+  ],
+  "transitionLine": "Come on up to the Church steps. That's my pitch, and the clerks will be out for their dinner soon."
+}

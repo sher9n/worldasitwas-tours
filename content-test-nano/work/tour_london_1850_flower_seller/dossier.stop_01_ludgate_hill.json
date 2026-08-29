@@ -1,0 +1,49 @@
+{
+  "stopId": "stop_01_ludgate_hill",
+  "setting": "Ludgate Hill in the spring of 1850 is the main road into the City from the west, a short steep street climbing from Ludgate Circus (then the junction with Fleet Street and the Fleet valley) east to the cathedral. It is one of the most crowded streets in London: omnibuses, brewers' drays, hackney cabs, carriers' carts and hand-barrows move up and down the hill at walking pace, and the pavements are lined with drapers, hosiers, booksellers and print shops with painted signboards and bow windows. At the top the west front and dome of St Paul's fill the view; nothing yet crosses the street above the traffic, because the railway viaduct that will carry the London, Chatham and Dover line over Ludgate Hill is not built until 1865.\n\nStreet sellers work the pavements and the churchyard railings: flower girls with shallow baskets of violets, wallflowers and primroses bought before six at Covent Garden, watercress sellers, orange sellers, and boys selling penny papers. Crossing-sweepers keep a path through the mud at the corners and expect a halfpenny. The road surface is granite setts and macadam churned with horse dung and rain; the smell is horse, coal smoke and, from the Fleet valley below, the sewers. The city is in the middle of enormous change: the Great Exhibition building is going up in Hyde Park this year, the railways have reached the edges of the City, and cholera killed some fourteen thousand Londoners in 1849, the summer before last.",
+  "senses": {
+    "sight": "The dome and two western towers of St Paul's closing the top of the street; a jam of omnibuses with names painted on the sides and passengers on the roof; women in shawls and bonnets, men in top hats and caps; painted shop signs, bow windows, a boy with a broom at the crossing.",
+    "sound": "Iron-shod wheels and hooves on granite setts, omnibus conductors shouting destinations, street sellers crying their goods, the cathedral bell on the hour.",
+    "smell": "Horse dung and wet straw, coal smoke, hot coffee from a stall, and on a warm day the drains of the Fleet valley below."
+  },
+  "facts": [
+    { "text": "Flower girls bought their stock at Covent Garden market early in the morning and sold violets, wallflowers and primroses from shallow baskets in the streets.", "confidence": "known", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)", "sourceUrl": "https://archive.org/details/londonlabourlond01mayh" },
+    { "text": "A cup of coffee at a London street coffee-stall cost a penny, and a half-cup a halfpenny.", "confidence": "known", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)", "sourceUrl": "https://archive.org/details/londonlabourlond01mayh" },
+    { "text": "Ordinary omnibus fares in London were sixpence for most journeys, with some short stages at threepence.", "confidence": "likely", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)", "sourceUrl": "https://archive.org/details/londonlabourlond01mayh" },
+    { "text": "Crossing-sweepers cleared a path through the mud at busy corners and lived on halfpennies from passers-by, earning perhaps sixpence to a shilling on a good day.", "confidence": "likely", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)", "sourceUrl": "https://archive.org/details/londonlabourlond01mayh" },
+    { "text": "St Paul's Cathedral, designed by Christopher Wren, was declared complete in 1711.", "confidence": "known", "sourceTitle": "St Paul's Cathedral, Wikipedia", "sourceUrl": "https://en.wikipedia.org/wiki/St_Paul%27s_Cathedral" },
+    { "text": "The railway viaduct across Ludgate Hill (London, Chatham and Dover Railway) was built in 1865; in 1850 the view up the hill to the cathedral was unobstructed.", "confidence": "known", "sourceTitle": "Ludgate Hill, Wikipedia", "sourceUrl": "https://en.wikipedia.org/wiki/Ludgate_Hill" },
+    { "text": "The 1851 census counted about 2.36 million people in London, the largest city in the world.", "confidence": "known", "sourceTitle": "Demography of London, Wikipedia", "sourceUrl": "https://en.wikipedia.org/wiki/Demography_of_London" },
+    { "text": "Construction of the Crystal Palace in Hyde Park for the Great Exhibition began in the summer of 1850; the Exhibition opened on 1 May 1851.", "confidence": "known", "sourceTitle": "The Crystal Palace, Wikipedia", "sourceUrl": "https://en.wikipedia.org/wiki/The_Crystal_Palace" },
+    { "text": "The cholera epidemic of 1848 to 1849 killed roughly fourteen thousand people in London.", "confidence": "known", "sourceTitle": "1846 to 1860 cholera pandemic, Wikipedia", "sourceUrl": "https://en.wikipedia.org/wiki/1846%E2%80%931860_cholera_pandemic" },
+    { "text": "Street sellers interviewed by Mayhew often could read a little but not write, and had rarely travelled beyond walking distance of the streets they worked.", "confidence": "likely", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)", "sourceUrl": "https://archive.org/details/londonlabourlond01mayh" }
+  ],
+  "prices": [
+    { "item": "Cup of coffee at a street stall", "price": "1d", "note": "half a cup for a halfpenny", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" },
+    { "item": "Omnibus fare, ordinary stage", "price": "6d", "note": "some short stages 3d", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" },
+    { "item": "Bunch of violets from a flower girl", "price": "1d", "note": "bought at market for much less; the margin is the living", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" },
+    { "item": "Bunch of watercress", "price": "1d", "note": "sold in the morning for breakfast tables", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" },
+    { "item": "Crossing-sweeper's tip", "price": "1/2d", "note": "a halfpenny for a clean path", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" },
+    { "item": "Penny paper or ballad sheet", "price": "1d", "note": "read aloud in lodging houses and public houses", "sourceTitle": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)" }
+  ],
+  "people": [
+    { "who": "Omnibus conductors", "doing": "standing on the step calling out destinations and fares" },
+    { "who": "Clerks and shopmen", "doing": "hurrying up the hill to counting-houses and warehouses" },
+    { "who": "A crossing-sweeper boy", "doing": "keeping a clean path through the mud at the corner for halfpennies" },
+    { "who": "Flower girls and watercress sellers", "doing": "working the pavement and the churchyard railings with shallow baskets" },
+    { "who": "Draymen", "doing": "walking beside brewers' horses with barrels chained on the dray" }
+  ],
+  "events": [
+    { "what": "The Crystal Palace is being built in Hyde Park for next year's Great Exhibition", "when": "summer 1850", "sourceTitle": "The Crystal Palace, Wikipedia" },
+    { "what": "Cholera killed thousands across London", "when": "summer 1849", "sourceTitle": "1846 to 1860 cholera pandemic, Wikipedia" }
+  ],
+  "anachronismsToAvoid": [
+    "the railway bridge across Ludgate Hill (1865)",
+    "Ludgate Circus as a formal circus (laid out 1860s)",
+    "electric light, telegraph poles in the street, bicycles, pillar boxes (first London pillar boxes 1855)",
+    "Tower Bridge (1894)",
+    "photographs as an everyday thing for the poor",
+    "the modern railway bridge or the Victoria Embankment (1860s to 1870)"
+  ],
+  "nowPhotoQuery": "Ludgate Hill St Paul's Cathedral"
+}

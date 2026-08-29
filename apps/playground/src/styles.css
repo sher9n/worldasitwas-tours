@@ -75,12 +75,10 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .walk-body { position: absolute; left: 24px; right: 24px; bottom: 200px; z-index: 4; text-shadow: 0 1px 12px rgba(0,0,0,.8); }
 .walk-body small { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
 .walk-body h2 { font-family: "Fraunces", Georgia, serif; font-size: 34px; margin: 6px 0 14px; }
-/* Static marks: three footsteps, not a spinner. */
+/* Stop indicator: one circle per stop; the one you are walking to is lit. */
 .walk-dots { display: flex; gap: 10px; }
-.walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: #fff; }
-.walk-dots span:nth-child(1) { opacity: .9; }
-.walk-dots span:nth-child(2) { opacity: .55; }
-.walk-dots span:nth-child(3) { opacity: .3; }
+.walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.35); }
+.walk-dots span.on { background: #fff; }
 .continue { font: 700 14px "Source Sans 3", sans-serif; letter-spacing: .06em; color: #fff; background: var(--accent); border: none; border-radius: 12px; padding: 14px 20px; cursor: pointer; animation: continuein .4s ease-out both; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
 @keyframes continuein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
@@ -256,3 +254,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .sheet-body .idle-companion img { border-color: var(--accent); }
 .sheet-body .idle-companion span { color: var(--muted); }
 .player.paused .caption::after { content: "paused"; position: absolute; right: 0; top: -22px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
+
+/* low points lift their label well clear of the bottom HUD and her circle */
+.poi.low em { top: -34px; }
+.poi.low.active::before { top: -32px; height: 30px; }

@@ -11,8 +11,13 @@ const { chromium } = require("/Applications/MAMP/htdocs/document-capture-service
   for (let i = 0; i < 10 && !onWalk; i++) { await neutralTap(); await page.waitForTimeout(600); onWalk = Boolean(await page.$(".walk-dots")); }
   if (!onWalk) { console.log("[p1] FAIL never reached walk dots"); process.exit(1); }
   const anims = await page.$$eval(".walk-dots span", (els) => els.map((e) => getComputedStyle(e).animationName));
-  const ok = anims.every((a) => a === "none");
-  console.log(`[p1] ${ok ? "PASS" : "FAIL"} walk dots static · animations: ${anims.join(",")}`);
+  const info = await page.evaluate(() => {
+    const dots = [...document.querySelectorAll(".walk-dots span")];
+    const stops = Number((document.querySelector(".walk-dots").getAttribute("aria-label") || "of 0").split("of ")[1]);
+    return { count: dots.length, stops, onIndex: dots.findIndex((d) => d.classList.contains("on")) };
+  });
+  const ok = anims.every((a) => a === "none") && info.count === info.stops && info.onIndex >= 1;
+  console.log(`[p1] ${ok ? "PASS" : "FAIL"} stop-indicator dots · animations:${anims.join(",")} · ${JSON.stringify(info)}`);
   await page.screenshot({ path: "/Users/sherancorera/.claude/jobs/83f0d0aa/tmp/shots/p1-walk-dots.png" });
   await browser.close();
   if (!ok) process.exit(1);
