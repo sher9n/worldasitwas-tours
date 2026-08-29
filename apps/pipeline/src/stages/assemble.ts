@@ -5,16 +5,13 @@
  */
 import fs from "node:fs/promises";
 import path from "node:path";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 import { parseTour, type Card, type Recipe, type Source, type Stop, type Tour } from "@timetravel/schema";
+import { probeDuration } from "../ffmpeg.ts";
 import type { Asset } from "../providers/types.ts";
 import type { CompanionDossier, StopDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
 import type { CharacterSheet, StopMedia } from "./media.ts";
 import type { Ledger } from "../ledger.ts";
-
-const run = promisify(execFile);
 
 const EXT: Record<string, string> = {
   "image/jpeg": "jpg",
@@ -39,16 +36,6 @@ export interface AssembleInput {
   publicBaseUrl: string;
   toursDir: string;
   companionMarkdown: string;
-}
-
-async function probeDuration(file: string): Promise<number | undefined> {
-  try {
-    const { stdout } = await run("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", file]);
-    const n = Number(stdout.trim());
-    return Number.isFinite(n) && n > 0 ? Math.round(n * 10) / 10 : undefined;
-  } catch {
-    return undefined;
-  }
 }
 
 class Materializer {

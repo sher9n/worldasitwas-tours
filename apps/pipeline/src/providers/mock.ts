@@ -6,21 +6,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 import type { Ledger } from "../ledger.ts";
+import { ffmpeg, ffmpegAvailable } from "../ffmpeg.ts";
 import type { Asset, MediaProvider } from "./types.ts";
-
-const run = promisify(execFile);
-
-async function hasFfmpeg(): Promise<boolean> {
-  try {
-    await run("ffmpeg", ["-version"]);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 const DIMS: Record<string, [number, number]> = { "9:16": [1080, 1920], "1:1": [1080, 1080], "16:9": [1920, 1080] };
 
@@ -51,7 +39,7 @@ export class MockProvider implements MediaProvider {
     private workDir: string,
     private ledger: Ledger,
   ) {
-    this.ffmpeg = hasFfmpeg();
+    this.ffmpeg = ffmpegAvailable();
   }
 
   private async file(ext: string): Promise<string> {
@@ -96,7 +84,7 @@ ${body}
     const args = ["-y", "-f", "lavfi", "-i", `color=c=0x2b3a44:s=480x864:d=${dur}:r=24`];
     if (o.audio) args.push("-f", "lavfi", "-i", `sine=frequency=110:duration=${dur}`, "-c:a", "aac", "-shortest");
     args.push("-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", p);
-    await run("ffmpeg", args);
+    await ffmpeg(args);
     await this.ledger.add({ stage: o.stage, provider: "mock", endpoint: "mock.video", note: o.note, units: dur, unitType: "seconds", rateUsd: 0, estimated: false, ms: 1, output: p });
     return { localPath: p, mime: "video/mp4", durationSec: dur };
   }
@@ -111,7 +99,7 @@ ${body}
       return { mime: "audio/mp4", durationSec: dur };
     }
     const p = await this.file("m4a");
-    await run("ffmpeg", ["-y", "-f", "lavfi", "-i", `sine=frequency=${freq}:duration=${dur}`, "-af", "volume=0.15", "-c:a", "aac", p]);
+    await ffmpeg(["-y", "-f", "lavfi", "-i", `sine=frequency=${freq}:duration=${dur}`, "-af", "volume=0.15", "-c:a", "aac", p]);
     await this.ledger.add({ stage, provider: "mock", endpoint, note, units: dur, unitType: "seconds", rateUsd: 0, estimated: false, ms: 1, output: p });
     return { localPath: p, mime: "audio/mp4", durationSec: dur };
   }
