@@ -35,6 +35,82 @@ async function imageToDataUrl(url: string, maxSide = 640): Promise<string | unde
   }
 }
 
+/**
+ * Speaks her live answers in her own recorded voice: sentences stream in as
+ * text and come back as audio from the tour API, scheduled gaplessly.
+ */
+class SentenceSpeaker {
+  private ctx?: AudioContext;
+  private nextTime = 0;
+  private sources: AudioBufferSourceNode[] = [];
+  private queue: string[] = [];
+  private working = false;
+  private cancelled = false;
+  playing = 0;
+
+  constructor(
+    private say: (text: string) => Promise<ArrayBuffer>,
+    private onFirstAudio: () => void,
+    private onDrained: () => void,
+  ) {}
+
+  enqueue(sentence: string): void {
+    const s = sentence.trim();
+    if (!s) return;
+    this.cancelled = false;
+    this.queue.push(s);
+    void this.work();
+  }
+
+  private async work(): Promise<void> {
+    if (this.working) return;
+    this.working = true;
+    while (this.queue.length && !this.cancelled) {
+      const text = this.queue.shift()!;
+      try {
+        const bytes = await this.say(text);
+        if (this.cancelled) break;
+        this.ctx = this.ctx ?? new AudioContext();
+        await this.ctx.resume().catch(() => undefined);
+        const buf = await this.ctx.decodeAudioData(bytes.slice(0));
+        const src = this.ctx.createBufferSource();
+        src.buffer = buf;
+        src.connect(this.ctx.destination);
+        this.nextTime = Math.max(this.ctx.currentTime + 0.06, this.nextTime);
+        src.start(this.nextTime);
+        this.nextTime += buf.duration;
+        this.playing++;
+        if (this.playing === 1) this.onFirstAudio();
+        this.sources.push(src);
+        src.onended = () => {
+          this.playing--;
+          this.sources = this.sources.filter((x) => x !== src);
+          if (this.playing === 0 && this.queue.length === 0) this.onDrained();
+        };
+      } catch {
+        // A failed sentence is skipped; the next one still plays.
+      }
+    }
+    this.working = false;
+    if (this.playing === 0 && this.queue.length === 0) this.onDrained();
+  }
+
+  cancel(): void {
+    this.cancelled = true;
+    this.queue = [];
+    for (const s of this.sources) {
+      try {
+        s.stop();
+      } catch {
+        // already stopped
+      }
+    }
+    this.sources = [];
+    this.playing = 0;
+    this.nextTime = 0;
+  }
+}
+
 export class CompanionSession {
   private pc?: RTCPeerConnection;
   private dc?: RTCDataChannel;
@@ -43,6 +119,10 @@ export class CompanionSession {
   private pendingContext?: CompanionContext;
   private turns = 0;
   private startedAt = 0;
+  private textBuf = "";
+  private answerText = "";
+  private responseActive = false;
+  private speaker: SentenceSpeaker;
   state: CompanionState = "idle";
   sessionId = "";
 
@@ -53,6 +133,21 @@ export class CompanionSession {
     this.audioEl = document.createElement("audio");
     this.audioEl.autoplay = true;
     document.body.appendChild(this.audioEl);
+    this.speaker = new SentenceSpeaker(
+      async (text) => {
+        const res = await fetch(`/v1/tours/${encodeURIComponent(this.tourId)}/companion/say`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("tt.key") || "dev"}` },
+          body: JSON.stringify({ text }),
+        });
+        if (!res.ok) throw new Error(`say ${res.status}`);
+        return res.arrayBuffer();
+      },
+      () => this.setState("speaking"),
+      () => {
+        if (!this.responseActive && (this.state === "speaking" || this.state === "thinking")) this.setState("ready");
+      },
+    );
   }
 
   private setState(s: CompanionState, detail?: string) {
@@ -123,7 +218,9 @@ export class CompanionSession {
   pttStart(): void {
     if (this.state !== "ready" && this.state !== "speaking") return;
     // Cut her off only if she is actually mid-sentence, then open the mic.
-    if (this.state === "speaking") this.send({ type: "response.cancel" });
+    if (this.responseActive) this.send({ type: "response.cancel" });
+    this.speaker.cancel();
+    this.textBuf = "";
     this.send({ type: "input_audio_buffer.clear" });
     const track = this.mic?.getAudioTracks()[0];
     if (track) track.enabled = true;
@@ -132,10 +229,10 @@ export class CompanionSession {
 
   /** Stop a live answer mid-sentence (used by the tour's pause). */
   stopSpeaking(): void {
-    if (this.state === "speaking") {
-      this.send({ type: "response.cancel" });
-      this.setState("ready");
-    }
+    if (this.responseActive) this.send({ type: "response.cancel" });
+    this.speaker.cancel();
+    this.textBuf = "";
+    if (this.state === "speaking" || this.state === "thinking") this.setState("ready");
   }
 
   pttEnd(): void {
@@ -148,8 +245,27 @@ export class CompanionSession {
     this.setState("thinking");
   }
 
+  /** Completed sentences peel off the streaming text and go to her voice. */
+  private feedText(delta: string): void {
+    this.textBuf += delta;
+    this.answerText += delta;
+    let m: RegExpMatchArray | null;
+    while ((m = this.textBuf.match(/^[\s\S]*?[.!?…]+(?=\s|$)/))) {
+      this.speaker.enqueue(m[0]);
+      this.textBuf = this.textBuf.slice(m[0].length).replace(/^\s+/, "");
+    }
+  }
+
   private handle(ev: { type: string } & Record<string, unknown>): void {
     switch (ev.type) {
+      case "response.created":
+        this.responseActive = true;
+        this.answerText = "";
+        break;
+      case "response.output_text.delta":
+        this.feedText(String(ev.delta ?? ""));
+        this.ev.onTranscript("companion", String(ev.delta ?? ""), false);
+        break;
       case "response.output_audio.delta":
         if (this.state !== "speaking") this.setState("speaking");
         break;
@@ -175,9 +291,16 @@ export class CompanionSession {
         if (name !== "end_conversation") this.send({ type: "response.create" });
         break;
       }
-      case "response.done":
-        if (this.state === "speaking" || this.state === "thinking") this.setState("ready");
+      case "response.done": {
+        this.responseActive = false;
+        if (this.textBuf.trim()) {
+          this.speaker.enqueue(this.textBuf);
+          this.textBuf = "";
+        }
+        if (this.answerText.trim()) this.ev.onTranscript("companion", this.answerText.trim(), true);
+        if (this.speaker.playing === 0 && this.state !== "speaking") this.setState("ready");
         break;
+      }
       case "error": {
         // Housekeeping notices, not failures: cancelling nothing, committing silence.
         const code = (ev.error as { code?: string } | undefined)?.code ?? "";
@@ -203,6 +326,7 @@ export class CompanionSession {
   }
 
   close(): void {
+    this.speaker.cancel();
     const seconds = this.startedAt ? Math.round((Date.now() - this.startedAt) / 1000) : 0;
     if (this.startedAt) this.ev.onEvent?.("ask_session_ended", { sessionId: this.sessionId, turns: this.turns, seconds });
     this.dc?.close();

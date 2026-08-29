@@ -22,6 +22,7 @@ export const config = {
     .map((k) => k.trim())
     .filter(Boolean),
   openaiApiKey: process.env.OPENAI_API_KEY || "",
+  falKey: process.env.FAL_KEY || "",
   realtimeModel: process.env.REALTIME_MODEL || "gpt-realtime-2",
   /** Dev mode exposes unauthenticated helper routes for the playground. */
   dev: process.env.NODE_ENV !== "production",

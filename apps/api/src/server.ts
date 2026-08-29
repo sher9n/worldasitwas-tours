@@ -5,6 +5,7 @@ const app = await buildApp({
   toursDir: config.toursDir,
   platformKeys: config.platformKeys,
   openaiApiKey: config.openaiApiKey,
+  falKey: config.falKey,
   realtimeModel: config.realtimeModel,
   dev: config.dev,
   logger: true,

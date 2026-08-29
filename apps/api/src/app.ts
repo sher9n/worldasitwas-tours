@@ -11,10 +11,16 @@ export interface AppOptions {
   toursDir: string;
   platformKeys: string[];
   openaiApiKey: string;
+  falKey?: string;
   realtimeModel: string;
   dev: boolean;
   logger?: boolean;
 }
+
+const TtsBody = z.object({
+  text: z.string().min(1).max(600),
+  voice: z.string().min(1).max(40).default("Alice"),
+});
 
 const SessionBody = z.object({
   travellerId: z.string().min(1).max(128),
@@ -120,6 +126,34 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     } catch (err) {
       req.log.error(err);
       return sendError(reply, 503, "companion_unavailable", "Voice provider is not reachable right now");
+    }
+  });
+
+  // Live speech in her own voice: the player sends each sentence of a live
+  // answer here; we synthesize via fal's ElevenLabs endpoint (key stays
+  // server-side) and stream the audio bytes back.
+  app.post<{ Params: { tourId: string } }>("/v1/tours/:tourId/companion/say", { preHandler: requireKey }, async (req, reply) => {
+    const stored = await store.get(req.params.tourId);
+    if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
+    const body = TtsBody.safeParse(req.body ?? {});
+    if (!body.success) return sendError(reply, 400, "bad_request", "text (<=600 chars) is required");
+    if (!opts.falKey) return sendError(reply, 503, "companion_unavailable", "Speech synthesis not configured");
+    try {
+      const res = await fetch("https://fal.run/fal-ai/elevenlabs/tts/turbo-v2.5", {
+        method: "POST",
+        headers: { Authorization: `Key ${opts.falKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ text: body.data.text, voice: body.data.voice, stability: 0.5 }),
+      });
+      if (!res.ok) throw new Error(`fal tts ${res.status}: ${(await res.text()).slice(0, 200)}`);
+      const json = (await res.json()) as { audio: { url: string } };
+      const audio = await fetch(json.audio.url);
+      if (!audio.ok) throw new Error(`fal tts fetch ${audio.status}`);
+      reply.header("Content-Type", "audio/mpeg");
+      reply.header("Cache-Control", "no-store");
+      return reply.send(Buffer.from(await audio.arrayBuffer()));
+    } catch (err) {
+      req.log.error(err);
+      return sendError(reply, 503, "companion_unavailable", "Speech synthesis failed");
     }
   });
 

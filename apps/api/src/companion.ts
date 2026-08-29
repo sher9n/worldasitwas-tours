@@ -114,7 +114,8 @@ export async function mintSession(opts: {
       type: "realtime",
       model: opts.model,
       instructions,
-      output_modalities: ["audio"],
+      // She answers in text; the player speaks it in her own ElevenLabs voice.
+      output_modalities: ["text"],
       audio: {
         input: {
           // Push-to-talk: the client commits turns; no server voice activity detection.
