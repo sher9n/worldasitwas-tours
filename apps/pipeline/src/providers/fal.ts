@@ -18,15 +18,22 @@ const ASPECT_TO_GPT_SIZE: Record<string, string> = {
   "16:9": "landscape_16_9",
 };
 
+export type ImageModel = "gpt-image-2" | "nano-banana-pro";
+
 export class FalProvider implements MediaProvider {
   readonly name = "fal" as const;
+  readonly variant: string;
+  private imageModel: ImageModel;
 
   constructor(
     key: string,
     private ledger: Ledger,
+    opts: { imageModel?: ImageModel } = {},
   ) {
     if (!key) throw new Error("FAL_KEY is not set");
     fal.config({ credentials: key });
+    this.imageModel = opts.imageModel ?? "gpt-image-2";
+    this.variant = `fal:${this.imageModel}`;
   }
 
   private async run<T>(endpoint: string, input: Record<string, unknown>): Promise<T> {
@@ -34,7 +41,27 @@ export class FalProvider implements MediaProvider {
     return res.data as T;
   }
 
+  /** Nano Banana Pro text-to-image (and reference-guided edit when refs are given). */
+  private async nanoImage(o: { prompt: string; refs?: string[]; aspect: string; quality: string; stage: string; note: string }): Promise<Asset> {
+    const resolution = o.quality === "final" ? "2K" : "1K";
+    const endpoint = o.refs?.length ? "fal-ai/gemini-3-pro-image-preview/edit" : "fal-ai/gemini-3-pro-image-preview";
+    return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint, note: o.note }, async () => {
+      const input: Record<string, unknown> = { prompt: o.prompt, resolution, aspect_ratio: o.aspect, output_format: "jpeg", num_images: 1 };
+      if (o.refs?.length) input.image_urls = o.refs.slice(0, 14);
+      const data = await this.run<{ images: FalImage[] }>(endpoint, input);
+      const img = data.images[0];
+      return {
+        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width, height: img.height },
+        units: 1,
+        unitType: "image",
+        rateUsd: RATES.nanoBananaPro[resolution],
+        output: img.url,
+      };
+    });
+  }
+
   async image(o: { prompt: string; aspect: string; quality: string; stage: string; note: string }): Promise<Asset> {
+    if (this.imageModel === "nano-banana-pro") return this.nanoImage(o);
     const q = o.quality === "final" ? "high" : "low";
     return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint: "openai/gpt-image-2", note: o.note }, async () => {
       const data = await this.run<{ images: FalImage[] }>("openai/gpt-image-2", {
@@ -57,6 +84,7 @@ export class FalProvider implements MediaProvider {
   }
 
   async imageWithRefs(o: { prompt: string; refs: string[]; aspect: string; quality: string; stage: string; note: string }): Promise<Asset> {
+    if (this.imageModel === "nano-banana-pro") return this.nanoImage(o);
     const q = o.quality === "final" ? "high" : "low";
     return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint: "openai/gpt-image-2/edit", note: o.note }, async () => {
       const data = await this.run<{ images: FalImage[] }>("openai/gpt-image-2/edit", {

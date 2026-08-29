@@ -49,6 +49,19 @@ export class Ledger {
     return full;
   }
 
+  /** Re-read entries written by other processes sharing this file, keeping ours. */
+  private async merge(): Promise<void> {
+    if (!this.file) return;
+    try {
+      const onDisk = (JSON.parse(await fs.readFile(this.file, "utf8")) as { entries?: LedgerEntry[] }).entries ?? [];
+      const seen = new Set(this.entries.map((e) => e.ts + e.endpoint + e.note));
+      for (const e of onDisk) if (!seen.has(e.ts + e.endpoint + e.note)) this.entries.push(e);
+      this.entries.sort((a, b) => a.ts.localeCompare(b.ts));
+    } catch {
+      // no file yet
+    }
+  }
+
   total(): number {
     return round(this.entries.reduce((s, e) => s + (e.error ? 0 : e.costUsd), 0));
   }
@@ -65,6 +78,7 @@ export class Ledger {
 
   async save(): Promise<void> {
     if (!this.file) return;
+    await this.merge();
     await fs.writeFile(this.file, JSON.stringify({ totalUsd: this.total(), byProvider: this.byProvider(), entries: this.entries }, null, 2));
   }
 }

@@ -1,9 +1,13 @@
 /**
- * pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--no-portrait] [--fresh]
+ * pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock]
+ *                            [--image-model gpt-image-2|nano-banana-pro] [--steps hero,video,...]
+ *                            [--no-portrait] [--fresh]
  *
  * Stages: research -> archive -> script -> character -> media -> assemble.
- * Intermediate results live in content/work/<tourId>/ and are reused on re-runs
- * unless --fresh is given, so a failed media stage does not repeat the research.
+ * Research, archive picks and scripts are cached in content/work/<tourId>/ and
+ * reused on re-runs unless --fresh is given. Media goes through an asset cache
+ * keyed on the exact request, so re-running (or widening --steps) only pays for
+ * assets that do not exist yet.
  */
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -11,13 +15,14 @@ import { parseRecipe, type Recipe } from "@timetravel/schema";
 import { dirs, env, type ProviderName, type Quality } from "./env.ts";
 import { Ledger } from "./ledger.ts";
 import { Llm } from "./llm.ts";
-import { FalProvider } from "./providers/fal.ts";
+import { CachedProvider } from "./providers/cached.ts";
+import { FalProvider, type ImageModel } from "./providers/fal.ts";
 import { MockProvider } from "./providers/mock.ts";
 import type { MediaProvider } from "./providers/types.ts";
 import { CompanionDossier, StopDossier, StopScript } from "./shapes.ts";
 import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
-import { makeCharacter, makeStopMedia, type CharacterSheet, type StopMedia } from "./stages/media.ts";
+import { ALL_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
 import { scriptStop } from "./stages/script.ts";
 
@@ -27,20 +32,28 @@ interface Args {
   stops?: number;
   quality: Quality;
   provider: ProviderName;
+  imageModel: ImageModel;
+  steps?: Set<MediaStep>;
   portrait: boolean;
   fresh: boolean;
 }
 
 function parseArgs(argv: string[]): Args {
   const [cmd, recipe, ...rest] = argv;
-  const a: Args = { cmd, recipe, quality: env.quality, provider: env.mediaProvider, portrait: true, fresh: false };
+  const a: Args = { cmd, recipe, quality: env.quality, provider: env.mediaProvider, imageModel: "gpt-image-2", portrait: true, fresh: false };
   for (let i = 0; i < rest.length; i++) {
     const k = rest[i];
     if (k === "--stops") a.stops = Number(rest[++i]);
     else if (k === "--quality") a.quality = rest[++i] as Quality;
     else if (k === "--provider") a.provider = rest[++i] as ProviderName;
-    else if (k === "--no-portrait") a.portrait = false;
+    else if (k === "--image-model") a.imageModel = rest[++i] as ImageModel;
+    else if (k === "--steps") {
+      const list = rest[++i].split(",").map((s) => s.trim()) as MediaStep[];
+      for (const s of list) if (!ALL_STEPS.includes(s)) throw new Error(`unknown step "${s}"; valid: ${ALL_STEPS.join(", ")}`);
+      a.steps = new Set(list);
+    } else if (k === "--no-portrait") a.portrait = false;
     else if (k === "--fresh") a.fresh = true;
+    else throw new Error(`unknown argument ${k}`);
   }
   return a;
 }
@@ -63,7 +76,7 @@ function log(msg: string): void {
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
   if (args.cmd !== "run" || !args.recipe) {
-    console.log("usage: pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--no-portrait] [--fresh]");
+    console.log("usage: pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--image-model gpt-image-2|nano-banana-pro] [--steps a,b] [--no-portrait] [--fresh]");
     process.exit(1);
   }
   const recipePath = path.isAbsolute(args.recipe) ? args.recipe : path.resolve(process.cwd(), args.recipe);
@@ -71,14 +84,18 @@ async function main(): Promise<void> {
   const recipe: Recipe = args.stops ? { ...recipeFull, stops: recipeFull.stops.slice(0, args.stops) } : recipeFull;
 
   const work = path.join(dirs.work, recipe.id);
+  if (args.fresh) await fs.rm(work, { recursive: true, force: true });
   await fs.mkdir(work, { recursive: true });
   await fs.mkdir(dirs.tours, { recursive: true });
-  if (args.fresh) await fs.rm(work, { recursive: true, force: true }).then(() => fs.mkdir(work, { recursive: true }));
 
   const ledger = await Ledger.load(path.join(work, "ledger.json"));
   const llm = new Llm(env.openaiApiKey, env.researchModel, ledger);
-  const provider: MediaProvider = args.provider === "mock" ? new MockProvider(path.join(work, "mock"), ledger) : new FalProvider(env.falKey, ledger);
-  log(`tour ${recipe.id}: ${recipe.stops.length} stop(s), quality=${args.quality}, provider=${provider.name}, talking portrait=${args.portrait}`);
+  const inner: MediaProvider = args.provider === "mock" ? new MockProvider(path.join(work, "mock"), ledger) : new FalProvider(env.falKey, ledger, { imageModel: args.imageModel });
+  const provider = new CachedProvider(inner, path.join(work, "assets"), ledger);
+  const startCost = ledger.total();
+  log(
+    `tour ${recipe.id}: ${recipe.stops.length} stop(s), quality=${args.quality}, provider=${provider.name}${provider.name === "fal" ? ` (${args.imageModel})` : ""}, steps=${args.steps ? [...args.steps].join(",") : "all"}, talking portrait=${args.portrait}`,
+  );
 
   // 1. Research
   const dossiers: StopDossier[] = [];
@@ -128,27 +145,20 @@ async function main(): Promise<void> {
     scripts.push(s);
   }
 
-  // 4. Character sheet
-  const charFile = path.join(work, `character.${provider.name}.${args.quality}.json`);
-  let character = await readJson<CharacterSheet>(charFile);
-  if (!character) {
-    log("character portrait");
-    character = await makeCharacter(recipe, companion, provider, args.quality);
-    await writeJson(charFile, character);
-  } else log("character portrait (cached)");
+  // 4. Character sheet (asset-cached, so this is free after the first run)
+  log("character portrait");
+  const character: CharacterSheet = await makeCharacter(recipe, companion, provider, args.quality, { greeting: !args.steps || args.steps.has("line") });
+  await writeJson(path.join(work, `character.${provider.name}.${args.imageModel}.${args.quality}.json`), character);
 
-  // 5. Media per stop
+  // 5. Media per stop (always runs; the asset cache makes repeats free)
   const media: StopMedia[] = [];
   for (const script of scripts) {
-    const f = path.join(work, `media.${script.stopId}.${provider.name}.${args.quality}.json`);
-    let m = await readJson<StopMedia>(f);
-    if (!m) {
-      log(`media ${script.stopId}`);
-      m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait });
-      await writeJson(f, m);
-    } else log(`media ${script.stopId} (cached)`);
+    log(`media ${script.stopId}`);
+    const m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait, steps: args.steps });
+    await writeJson(path.join(work, `media.${script.stopId}.${provider.name}.${args.quality}.json`), m);
     media.push(m);
   }
+  log(`assets: ${provider.hits} cached, ${provider.misses} generated`);
 
   // 6. Assemble and publish
   log("assemble");
@@ -166,7 +176,9 @@ async function main(): Promise<void> {
     companionMarkdown: companionMarkdown(recipe, companion, dossiers),
   });
   log(`published ${tour.id} v${tour.version} -> ${dir}`);
-  log(`stops=${tour.stops.length} cards=${tour.stops.reduce((n, s) => n + s.cards.length, 0)} sources=${tour.sources.length} cost=$${ledger.total().toFixed(2)} ${JSON.stringify(ledger.byProvider())}`);
+  log(
+    `stops=${tour.stops.length} cards=${tour.stops.reduce((n, s) => n + s.cards.length, 0)} sources=${tour.sources.length} | this run $${(ledger.total() - startCost).toFixed(2)}, tour total $${ledger.total().toFixed(2)} ${JSON.stringify(ledger.byProvider())}`,
+  );
 }
 
 main().catch((err) => {

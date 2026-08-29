@@ -14,6 +14,8 @@ export type Aspect = "9:16" | "1:1" | "16:9";
 
 export interface MediaProvider {
   readonly name: "fal" | "mock";
+  /** Distinguishes configurations of the same provider (e.g. the image model) for caching. */
+  readonly variant?: string;
   /** Text to image. */
   image(opts: { prompt: string; aspect: Aspect; quality: Quality; stage: string; note: string }): Promise<Asset>;
   /** Image guided by reference images (character consistency). */
