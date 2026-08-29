@@ -256,7 +256,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               </div>
             </div>
             <div className="idle-meta">
-              {tour.stops.length} stops · about {tour.durationMin} min
+              {tour.stops.length} {tour.stops.length === 1 ? "stop" : "stops"} · about {tour.durationMin} min
             </div>
             <button className="travel" data-noadvance onClick={start}>
               Travel
