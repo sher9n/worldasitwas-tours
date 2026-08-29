@@ -24,6 +24,7 @@ import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
 import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
 import { ALL_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
+import { applyPolish, polishStop, PolishedStop } from "./stages/polish.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
 import { scriptStop } from "./stages/script.ts";
 
@@ -150,6 +151,26 @@ async function main(): Promise<void> {
   log("character portrait");
   const character: CharacterSheet = await makeCharacter(recipe, companion, provider, args.quality, { greeting: !args.steps || args.steps.has("line") });
   await writeJson(path.join(work, `character.${provider.name}.${args.imageModel}.${args.quality}.json`), character);
+
+  // 4b. Grounding polish: her lines rewritten against the actual stills, in the
+  // narrator-host voice. Visuals stay cached; only words (and their audio and
+  // faces) change. Vision needs real images, so the mock provider skips this.
+  if (provider.name === "fal") {
+    for (let i = 0; i < scripts.length; i++) {
+      const f = path.join(work, `polished.${scripts[i].stopId}.json`);
+      let pol = await readJson<unknown>(f).then((x) => (x ? PolishedStop.parse(x) : undefined));
+      if (!pol) {
+        log(`polish ${scripts[i].stopId}`);
+        const stills = await makeStopMedia(recipe, scripts[i], archives.find((a) => a.stopId === scripts[i].stopId), character, provider, args.quality, {
+          talkingPortrait: false,
+          steps: new Set(["hero", "cards"]),
+        });
+        pol = await polishStop(recipe, scripts[i], dossiers[i], companion, stills, llm, { stopIndex: i, stopCount: recipeFull.stops.length });
+        await writeJson(f, pol);
+      } else log(`polish ${scripts[i].stopId} (cached)`);
+      scripts[i] = applyPolish(scripts[i], pol);
+    }
+  }
 
   // 5. Media per stop (always runs; the asset cache makes repeats free)
   const media: StopMedia[] = [];

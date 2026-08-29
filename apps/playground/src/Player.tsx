@@ -64,6 +64,8 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const [speakingUi, setSpeakingUi] = useState(false);
   const [gated, setGated] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [sideFlash, setSideFlash] = useState<{ side: "left" | "right"; n: number } | null>(null);
+  const flash = (side: "left" | "right") => setSideFlash((f) => ({ side, n: (f?.n ?? 0) + 1 }));
 
   const engine = useRef<AudioEngine | null>(null);
   const prevCState = useRef<CompanionState>("idle");
@@ -81,6 +83,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   });
   const interacting = useRef(false);
   const askingRef = useRef(false);
+  const [holdingAsk, setHoldingAsk] = useState(false);
   const hotspotRef = useRef<{ stop: () => void } | null>(null);
 
   const beat: Beat | undefined = beats[bi];
@@ -345,8 +348,13 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     if (moved.current || phase !== "playing") return;
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
-    if (x < 0.28) goTo(bi - 1, "tap_back");
-    else goTo(bi + 1, "tap_skip");
+    if (x < 0.28) {
+      flash("left");
+      goTo(bi - 1, "tap_back");
+    } else {
+      flash("right");
+      goTo(bi + 1, "tap_skip");
+    }
   };
 
   const openHotspot = (h: Hotspot) => {
@@ -377,6 +385,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const askDown = async (e: React.PointerEvent) => {
     e.stopPropagation();
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    setHoldingAsk(true);
     engine.current?.pauseVoice();
     hotspotRef.current?.stop();
     if (cState === "idle" || cState === "closed" || cState === "error") {
@@ -391,6 +400,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   };
   const askUp = (e: React.PointerEvent) => {
     e.stopPropagation();
+    setHoldingAsk(false);
     companion.pttEnd();
   };
 
@@ -509,13 +519,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
         <div className="slide">
           {img && (
             <div className={`zoomer ${hotspot ? "focus" : ""}`} style={hotspot ? { transformOrigin: `${hotspot.x * 100}% ${hotspot.y * 100}%` } : undefined}>
-              {beat?.kind === "arrival" && stop.arrival.livingScene?.video ? (
-                <>
-                  {img && <img className="bg" src={img} alt="" />}
-                  {/* Plays once, then holds its final frame as a still. */}
-                  <video ref={bgVideo} className="bg seamless" src={stop.arrival.livingScene.video} poster={img} muted autoPlay playsInline />
-                </>
-              ) : cardMotion ? (
+              {cardMotion ? (
                 <>
                   {img && <img className="bg" src={img} alt="" />}
                   <video ref={bgVideo} key={beat!.key} className="bg seamless" src={cardMotion.video} poster={img} muted autoPlay playsInline />
@@ -542,11 +546,11 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {gated && beat?.kind === "card" && (
             <>
               {bi > 0 && (
-                <button className="edge-strip left" data-noadvance onClick={() => goTo(bi - 1, "edge_back")} aria-label="Back">
+                <button className="side-pane left" data-noadvance onClick={() => { flash("left"); goTo(bi - 1, "pane_back"); }} aria-label="Back">
                   <span>‹</span>
                 </button>
               )}
-              <button className="edge-strip right" data-noadvance onClick={() => goTo(bi + 1, "edge_next")} aria-label="Continue">
+              <button className="side-pane right" data-noadvance onClick={() => { flash("right"); goTo(bi + 1, "pane_next"); }} aria-label="Continue">
                 <span>›</span>
               </button>
               {showHint && <div className="gate-hint">tap the right side to continue</div>}
@@ -576,13 +580,17 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
 
       {fadeImg && <img className="fade-layer" src={fadeImg} alt="" />}
 
-      {/* her, talking: the large circle that makes the voice a person */}
-      {(speakingUi || cState === "speaking") && talkingLoop && (
-        <div className="voice-circle" data-noadvance>
-          {/* Plays once per beat; when the clip is shorter than her line it rests on its last frame. */}
-          <video ref={circleVideo} key={`${talkingLoop}:${bi}`} src={talkingLoop} muted autoPlay playsInline />
+      {sideFlash && (
+        <div key={sideFlash.n} className={`side-flash ${sideFlash.side}`} onAnimationEnd={() => setSideFlash(null)}>
+          <span>{sideFlash.side === "right" ? "›" : "‹"}</span>
         </div>
       )}
+
+      {/* her, talking: the large circle that makes the voice a person */}
+      <div className="voice-circle" data-noadvance>
+        {/* She stays with you: the clip plays once per line, then her still frame holds. */}
+        {talkingLoop ? <video ref={circleVideo} key={`${talkingLoop}:${bi}`} src={talkingLoop} muted autoPlay playsInline /> : <img src={tour.companion.portrait} alt="" />}
+      </div>
 
       {/* bottom shade so the controls always read over any image */}
       <div className="hud-shade" />
@@ -591,7 +599,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {paused ? "▶" : "❚❚"}
         </button>
         <button className={`ask ${cState}`} data-noadvance onPointerDown={askDown} onPointerUp={askUp} onPointerCancel={askUp} aria-label="Hold to ask">
-          {cState === "connecting" || cState === "thinking" ? (
+          {cState === "thinking" || (cState === "connecting" && holdingAsk) ? (
             <span className="tdots"><i /><i /><i /></span>
           ) : cState === "listening" ? (
             "Listening"
@@ -606,7 +614,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
         </button>
       </div>
 
-      {(cState === "listening" || cState === "thinking" || cState === "connecting") && (
+      {(cState === "listening" || cState === "thinking" || (cState === "connecting" && holdingAsk)) && (
         <div className="ask-state" data-noadvance>
           {cState === "listening" ? (
             "Listening…"

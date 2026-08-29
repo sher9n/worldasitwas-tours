@@ -6,7 +6,16 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   await page.goto("http://localhost:5173/?tour=tour_london_1850_flower_seller&play=1", { waitUntil: "networkidle" });
   await page.waitForSelector(".player .idle");
   await page.click("button.travel");
-  await page.waitForTimeout(4000); // preconnect
+  // The opening must be silent: background preconnect shows no pill, no dots.
+  let quietOpen = true;
+  for (let t = 0; t < 3500; t += 350) {
+    if (await page.$(".ask-state")) quietOpen = false;
+    const label = await page.$eval(".ask", (el) => el.textContent.trim());
+    if (label !== "Hold to ask") quietOpen = false;
+    await page.waitForTimeout(350);
+  }
+  ok("background preconnect is invisible", quietOpen) || process.exitCode;
+  await page.waitForTimeout(500); // preconnect settles
   const ask = await page.$(".ask");
   const box = await ask.boundingBox();
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
@@ -21,7 +30,7 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   // Sample the state machine and the circle through the answer.
   const timeline = [];
   let dotsSeen = null;
-  for (let t = 0; t < 26000; t += 150) {
+  for (let t = 0; t < 48000; t += 150) {
     const s = await page.evaluate(() => ({
       cls: document.querySelector(".ask").className.replace("ask", "").trim() || "ready",
       circle: (() => { const v = document.querySelector(".voice-circle video"); return v ? !v.paused : null; })(),

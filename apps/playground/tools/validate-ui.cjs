@@ -119,8 +119,7 @@ async function labelContrast(page) {
   check("no RECONSTRUCTION badge", !(await page.$(".badge")));
   check("no caption text block", !(await page.$(".caption")));
   check("stop title card shown", Boolean(await page.$(".titlecard")));
-  const bgVid = await page.$eval(".slide video.bg", (v) => ({ playing: !v.paused, muted: v.muted, t: v.currentTime })).catch(() => null);
-  check("arrival background is a muted living scene", Boolean(bgVid && bgVid.playing && bgVid.muted), JSON.stringify(bgVid));
+  check("arrival background is a still (no video)", !(await page.$(".slide video.bg")));
   await page.screenshot({ path: `${S}/v-01-arrival.png` });
 
   // Bottom row geometry
@@ -134,9 +133,13 @@ async function labelContrast(page) {
   check("side controls equal and symmetric", geo.sides.length === 2 && Math.abs(geo.sides[0].w - geo.sides[1].w) < 1 && Math.abs(geo.sides[0].left - geo.sides[1].right) < 2);
   check("exactly three bottom controls", (await page.$$(".hud-bottom > *")).length === 3);
 
-  // Pause must mean silence and stillness, even mid-aside.
+  // Card motion: the first card's clip plays muted, and the circle persists.
   await neutralTap();
   await page.waitForTimeout(900);
+  const cm = await page.$eval(".slide video.bg.seamless", (v) => ({ playing: !v.paused, muted: v.muted })).catch(() => null);
+  check("card motion clip plays muted", Boolean(cm && cm.playing && cm.muted), JSON.stringify(cm));
+  check("her circle persists on card screens", Boolean(await page.$(".voice-circle")));
+
   const firstDots = await page.$$(".poi");
   if (firstDots.length) {
     await firstDots[0].click();

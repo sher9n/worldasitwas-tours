@@ -8,9 +8,14 @@ const ok = (n, c, d = "") => console.log(`[p6] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await page.click("button.travel");
   await page.waitForTimeout(2000);
   let pass = true;
+  pass = ok("arrival is a still (no video)", !(await page.$("video.bg.seamless"))) && pass;
+  // move to the first card, which carries the motion clip
+  const pt = await page.evaluate(() => { const b=(el)=>Boolean(el&&el.closest("[data-noadvance]")); for (const y of [620,560,500]) for (const x of [340,300]) if (!b(document.elementFromPoint(x,y))) return {x,y}; return {x:340,y:620}; });
+  await page.mouse.click(pt.x, pt.y);
+  await page.waitForTimeout(1200);
   const vid = () => page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); return v ? { paused: v.paused, t: v.currentTime, opacity: getComputedStyle(v).opacity } : null; });
   const v0 = await vid();
-  pass = ok("living scene playing on arrival", Boolean(v0 && !v0.paused), JSON.stringify(v0)) && pass;
+  pass = ok("card motion playing", Boolean(v0 && !v0.paused), JSON.stringify(v0)) && pass;
   // Pause freezes the background scene too.
   await page.click(".side-ctl >> nth=0");
   await page.waitForTimeout(350);
