@@ -8,39 +8,45 @@ const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await page.waitForSelector(".player .idle");
   await page.click("button.travel");
   let pass = true;
-  // Arrival (no dots) must auto-advance to card 1 with no tap.
-  let autoAdvanced = false;
-  for (let i = 0; i < 30; i++) { await page.waitForTimeout(600); if (await page.$(".poi")) { autoAdvanced = true; break; } }
-  pass = ok("arrival auto-advances without a tap", autoAdvanced) && pass;
-  // Dotted card gates: chevron + first-time hint appear, no advance while we wait.
+  // Gradual reveal: while she is still early in her arrival line, no dots yet.
+  await page.waitForTimeout(2000);
+  pass = ok("dots hidden at the start of her line", !(await page.$(".poi"))) && pass;
+  // The arrival gates once her line ends: chevron flashes, dots are out by then.
   let chevron = null;
-  for (let i = 0; i < 40 && !chevron; i++) { await page.waitForTimeout(500); chevron = await page.$(".side-pane.right"); }
-  pass = ok("explore gate opens (right chevron)", Boolean(chevron)) && pass;
+  for (let i = 0; i < 90 && !chevron; i++) { await page.waitForTimeout(500); chevron = await page.$(".side-pane.right"); }
+  pass = ok("arrival gates (right chevron)", Boolean(chevron)) && pass;
+  pass = ok("dots revealed by gate time", Boolean(await page.$(".poi"))) && pass;
   pass = ok("first-time hint shown", Boolean(await page.$(".gate-hint"))) && pass;
   const imgBefore = await page.$eval(".slide img.bg, .slide video.bg", (el) => (el.currentSrc || "").split("/").pop());
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(4200);
   const imgAfter = await page.$eval(".slide img.bg, .slide video.bg", (el) => (el.currentSrc || "").split("/").pop());
-  pass = ok("gate holds the card", imgBefore === imgAfter, `${imgBefore}`) && pass;
+  pass = ok("gate holds the screen", imgBefore === imgAfter, `${imgBefore}`) && pass;
+  pass = ok("panes flash and go (gone after ~3s)", !(await page.$(".side-pane"))) && pass;
   const beckon = await page.$eval(".poi", (el) => el.className.includes("beckon"));
   pass = ok("dots beckon while gated", beckon) && pass;
   const parked = await page.$eval(".progress span.cur i", (el) => parseFloat(el.style.width));
   pass = ok("progress parks short of full", parked < 100, `${parked}%`) && pass;
   await page.screenshot({ path: "/Users/sherancorera/.claude/jobs/83f0d0aa/tmp/shots/p2-gate.png" });
-  // Chevron advances; the next dotted card must NOT show the hint again.
-  await chevron.click();
+  // Advance by edge tap (panes may already be gone); the next screen must gate
+  // too (dotted card), and the hint must not repeat.
+  const neutral = () => page.evaluate(() => {
+    const blocked = (el) => Boolean(el && el.closest("[data-noadvance]"));
+    for (const y of [500, 560, 440, 380]) for (const x of [330, 300, 350, 280]) if (!blocked(document.elementFromPoint(x, y))) return { x, y };
+    return { x: 330, y: 500 };
+  });
+  {
+    const pt = await neutral();
+    await page.mouse.click(pt.x, pt.y);
+  }
   await page.waitForTimeout(1000);
   let chevron2 = null;
-  for (let i = 0; i < 40 && !chevron2; i++) { await page.waitForTimeout(500); chevron2 = await page.$(".side-pane.right"); }
-  pass = ok("next dotted card gates too", Boolean(chevron2)) && pass;
+  for (let i = 0; i < 90 && !chevron2; i++) { await page.waitForTimeout(500); chevron2 = await page.$(".side-pane.right"); }
+  pass = ok("next screen gates too", Boolean(chevron2)) && pass;
   pass = ok("hint shows only once", !(await page.$(".gate-hint"))) && pass;
-  pass = ok("back chevron present past the first card", Boolean(await page.$(".side-pane.left"))) && pass;
+  pass = ok("back pane flashes past the first screen", Boolean(await page.$(".side-pane.left"))) && pass;
   // Tap feedback: a side tap flashes its pane like a reel.
   {
-    const pt = await page.evaluate(() => {
-      const blocked = (el) => Boolean(el && el.closest("[data-noadvance]"));
-      for (const y of [500, 560, 440, 380]) for (const x of [300, 280, 320, 260]) if (!blocked(document.elementFromPoint(x, y))) return { x, y };
-      return { x: 300, y: 500 };
-    });
+    const pt = await neutral();
     await page.mouse.click(pt.x, pt.y);
   }
   await page.waitForTimeout(120);

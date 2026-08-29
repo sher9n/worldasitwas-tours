@@ -104,6 +104,7 @@ async function labelContrast(page) {
     const file = JSON.parse(fs.readFileSync(`/Applications/MAMP/htdocs/timetravel/content/tours/${TOUR}/manifest.json`, "utf8"));
     const same = JSON.stringify(served) === JSON.stringify(file);
     check("API serves the manifest verbatim (no stale-schema stripping)", same, same ? "" : "served differs from file - restart the API");
+    check("companion has a talking reel", (served.companion.faceReel || []).length >= 3, `${(served.companion.faceReel || []).length} clips`);
   }
 
   await page.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
@@ -114,7 +115,7 @@ async function labelContrast(page) {
   await page.waitForTimeout(1600);
 
   // Arrival basics
-  const vc = await page.$eval(".voice-circle video", (v) => ({ playing: !v.paused, t: v.currentTime })).catch(() => null);
+  const vc = await page.$eval(".voice-circle video.on", (v) => ({ playing: !v.paused, t: v.currentTime })).catch(() => null);
   check("talking circle visible and playing during arrival line", Boolean(vc && vc.playing && vc.t > 0), JSON.stringify(vc));
   check("no RECONSTRUCTION badge", !(await page.$(".badge")));
   check("no caption text block", !(await page.$(".caption")));
@@ -133,14 +134,23 @@ async function labelContrast(page) {
   check("side controls equal and symmetric", geo.sides.length === 2 && Math.abs(geo.sides[0].w - geo.sides[1].w) < 1 && Math.abs(geo.sides[0].left - geo.sides[1].right) < 2);
   check("exactly three bottom controls", (await page.$$(".hud-bottom > *")).length === 3);
 
-  // Card motion: the first card's clip plays muted, and the circle persists.
+  // Every screen is a still that drifts; no video ever sits behind the story.
   await neutralTap();
   await page.waitForTimeout(900);
-  const cm = await page.$eval(".slide video.bg.seamless", (v) => ({ playing: !v.paused, muted: v.muted })).catch(() => null);
-  check("card motion clip plays muted", Boolean(cm && cm.playing && cm.muted), JSON.stringify(cm));
+  const drift = await page.$eval(".slide img.bg", (el) => {
+    const cs = getComputedStyle(el);
+    return { name: cs.animationName, state: cs.animationPlayState, iter: cs.animationIterationCount, fill: cs.animationFillMode };
+  }).catch(() => null);
+  check("card screens are stills with parallax drift", Boolean(drift && /kb-/.test(drift.name) && drift.state === "running"), JSON.stringify(drift));
+  check("drift plays once and holds", Boolean(drift && drift.iter === "1" && drift.fill === "forwards"));
+  check("no video behind any card", !(await page.$(".slide video.bg")));
   check("her circle persists on card screens", Boolean(await page.$(".voice-circle")));
 
-  const firstDots = await page.$$(".poi");
+  // Gradual reveal: dots stay hidden early in her line, then fade in near its end.
+  const dotsEarly = await page.$$(".poi");
+  let firstDots = [];
+  for (let i = 0; i < 90 && !firstDots.length; i++) { await page.waitForTimeout(500); firstDots = await page.$$(".poi"); }
+  check("dots hold back, then reveal as her line winds down", dotsEarly.length === 0 && firstDots.length > 0, `early ${dotsEarly.length}, later ${firstDots.length}`);
   if (firstDots.length) {
     await firstDots[0].click();
     await page.waitForTimeout(600);
@@ -148,7 +158,7 @@ async function labelContrast(page) {
     await page.waitForTimeout(400);
     const quiet = await page.evaluate(() => {
       const voice = document.querySelector('audio[data-channel="voice"]');
-      const circle = document.querySelector(".voice-circle video");
+      const circle = document.querySelector(".voice-circle video.on");
       return { voicePaused: !voice || voice.paused, circlePaused: !circle || circle.paused };
     });
     check("pause silences her mid-aside", quiet.voicePaused, JSON.stringify(quiet));
@@ -196,7 +206,17 @@ async function labelContrast(page) {
   let sweep = 0, belowSeen = false, worstRatio = Infinity, dimOk = true, zoomOk = true, geomOk = true;
   for (let step = 0; step < 70; step++) {
     if (await page.$(".done-view")) break;
-    const dots = await page.$$(".poi");
+    if (await page.$(".walk")) {
+      let cont = null;
+      for (let i = 0; i < 60 && !cont; i++) { await page.waitForTimeout(500); cont = await page.$(".continue"); if (await page.$(".done-view")) break; }
+      if (cont) { await cont.click(); await page.waitForTimeout(800); continue; }
+    }
+    let dots = await page.$$(".poi");
+    for (let i = 0; i < 90 && dots.length < 2; i++) {
+      await page.waitForTimeout(500);
+      if (await page.$(".done-view") || await page.$(".walk")) break;
+      dots = await page.$$(".poi");
+    }
     if (dots.length >= 2) {
       await dots[0].click();
       await page.waitForTimeout(750);
@@ -231,8 +251,8 @@ async function labelContrast(page) {
   await p2.click("button.travel");
   await p2.waitForTimeout(1500);
   await neutralTapOn(p2);
-  await p2.waitForTimeout(900);
-  const dots2 = await p2.$$(".poi");
+  let dots2 = [];
+  for (let i = 0; i < 90 && !dots2.length; i++) { await p2.waitForTimeout(500); dots2 = await p2.$$(".poi"); }
   if (dots2.length) {
     await dots2[0].click();
     await p2.waitForTimeout(600);

@@ -9,3 +9,6 @@ content/work/
 .DS_Store
 
 content/tours/
+
+# generated talking clips: regenerate from the locked portrait, do not version
+content/companions/*/reel/

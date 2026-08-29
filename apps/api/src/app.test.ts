@@ -26,6 +26,7 @@ const tour: Tour = {
     portrait: "http://x/nell.webp",
     greeting: { text: "Mind the mud." },
     voice: { provider: "openai-realtime", voice: "marin" },
+    faceReel: [],
   },
   stops: [
     {
@@ -33,7 +34,7 @@ const tour: Tour = {
       order: 1,
       title: "Ludgate Hill",
       geo: { lat: 51.5139, lng: -0.1015 },
-      arrival: { line: { text: "See the dome?" } },
+      arrival: { line: { text: "See the dome?" }, hotspots: [] },
       cards: [
         { id: "s01c01", kind: "image", media: { image: "http://x/a.webp", origin: "reconstruction" }, caption: "Busy.", claims: [{ text: "Fare 6d", confidence: "known", sourceId: "src1" }], hotspots: [] },
       ],

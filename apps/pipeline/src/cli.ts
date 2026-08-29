@@ -147,7 +147,15 @@ async function main(): Promise<void> {
     scripts.push(s);
   }
 
-  // 4. Character sheet (asset-cached, so this is free after the first run)
+  // 4. Character sheet (asset-cached, so this is free after the first run).
+  // Her face is identity: the first portraitPrompt is locked per companion so
+  // re-researching the dossier can never quietly change what she looks like.
+  const lockDir = path.join(env.contentDir, "companions", recipe.companion.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+  await fs.mkdir(lockDir, { recursive: true });
+  const lockFile = path.join(lockDir, "portrait.lock.json");
+  const lock = await readJson<{ portraitPrompt: string }>(lockFile);
+  if (lock) companion = { ...companion, portraitPrompt: lock.portraitPrompt };
+  else await writeJson(lockFile, { portraitPrompt: companion.portraitPrompt });
   log("character portrait");
   const character: CharacterSheet = await makeCharacter(recipe, companion, provider, args.quality, { greeting: !args.steps || args.steps.has("line") });
   await writeJson(path.join(work, `character.${provider.name}.${args.imageModel}.${args.quality}.json`), character);
@@ -181,6 +189,40 @@ async function main(): Promise<void> {
     media.push(m);
   }
   log(`assets: ${provider.hits} cached, ${provider.misses} generated`);
+
+  // 5b. Her talking reel: reusable clips the player rotates through while any
+  // of her audio plays. Reuses salvaged clips when present; otherwise makes
+  // three generic ones (the only talking-portrait spend a tour ever needs).
+  // The reel belongs to the CHARACTER: any tour with the same companion reuses
+  // it for free. content/companions/<slug>/reel is the shared home; a tour's
+  // work dir may seed it (salvaged clips) but never duplicates the spend.
+  const companionSlug = recipe.companion.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const reelDir = path.join(env.contentDir, "companions", companionSlug, "reel");
+  await fs.mkdir(reelDir, { recursive: true });
+  const seedDir = path.join(work, "reel");
+  try {
+    for (const f of (await fs.readdir(seedDir)).filter((x) => x.endsWith(".mp4"))) {
+      await fs.copyFile(path.join(seedDir, f), path.join(reelDir, f)).catch(() => undefined);
+    }
+  } catch {
+    // no seed dir; fine
+  }
+  let reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
+  if (reelClips.length === 0 && provider.name === "fal") {
+    log("reel: generating 3 generic talking clips");
+    const audios = [character.greetingAudio, media[0]?.arrivalAudio, media[0]?.transitionAudio].filter(Boolean);
+    for (const [ri, audio] of audios.slice(0, 3).entries()) {
+      try {
+        const audioUrl = audio!.remoteUrl ?? (await provider.publish(audio!.localPath!, audio!.mime));
+        const clip = await provider.talkingPortrait({ imageUrl: character.portraitUrl, audioUrl, prompt: "A woman speaks warmly to the viewer, small natural head movements, street background.", quality: args.quality, stage: "reel", note: `reel ${ri + 1}` });
+        if (clip.localPath) await fs.copyFile(clip.localPath, path.join(reelDir, `reel_0${ri + 1}.mp4`));
+      } catch (err) {
+        console.warn(`[reel] clip ${ri + 1} failed: ${(err as Error).message}`);
+      }
+    }
+    reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
+  }
+  log(`reel: ${reelClips.length} clips`);
 
   // 6. Points of interest inside the finished stills
   const hotspots: StopHotspots[] = [];
@@ -224,6 +266,7 @@ async function main(): Promise<void> {
     archives,
     character,
     media,
+    reelClips,
     hotspots,
     ledger,
     publicBaseUrl: env.publicBaseUrl,

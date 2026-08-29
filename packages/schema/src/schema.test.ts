@@ -22,6 +22,7 @@ function minimalTour(): Tour {
       portrait: "https://cdn/nell.webp",
       greeting: { text: "Hello." },
       voice: { provider: "openai-realtime", voice: "marin" },
+      faceReel: [],
     },
     stops: [
       {
@@ -29,7 +30,7 @@ function minimalTour(): Tour {
         order: 1,
         title: "Ludgate Hill",
         geo: { lat: 51.5139, lng: -0.1015, bearing: 78 },
-        arrival: { line: { text: "Look up." } },
+        arrival: { line: { text: "Look up." }, hotspots: [] },
         cards: [
           {
             id: "c1",

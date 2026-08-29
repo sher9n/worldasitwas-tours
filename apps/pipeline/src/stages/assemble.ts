@@ -3,6 +3,7 @@
  * asset into content/tours/<id>/ with a stable name, rewrites URLs to the public
  * base, validates against the schema and writes manifest.json + companion.md.
  */
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseTour, type Card, type Hotspot, type Recipe, type Source, type Stop, type Tour } from "@timetravel/schema";
@@ -33,6 +34,8 @@ export interface AssembleInput {
   archives: StopArchive[];
   character: CharacterSheet;
   media: StopMedia[];
+  /** Reusable talking clips for her circle (local file paths). */
+  reelClips?: string[];
   hotspots?: StopHotspots[];
   ledger: Ledger;
   publicBaseUrl: string;
@@ -75,7 +78,11 @@ class Materializer {
       await download(asset.remoteUrl, target);
     }
     const durationSec = /^(video|audio)\//.test(asset.mime) ? (await probeDuration(target)) ?? asset.durationSec : undefined;
-    return { url: `${this.baseUrl}/media/${path.basename(this.dir)}/${file}`, durationSec, width: asset.width, height: asset.height };
+    // File names are stable across publishes but their contents are not, and the
+    // media route is served immutable for a year. Without a content stamp in the
+    // URL a browser keeps playing the narration it downloaded before a rewrite.
+    const stamp = createHash("sha1").update(await fs.readFile(target)).digest("hex").slice(0, 10);
+    return { url: `${this.baseUrl}/media/${path.basename(this.dir)}/${file}?v=${stamp}`, durationSec, width: asset.width ?? undefined, height: asset.height ?? undefined };
   }
 
   async putRemote(url: string, name: string, mime: string): Promise<string> {
@@ -122,6 +129,11 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
 
   const portrait = await m.put(input.character.portrait, "companion_portrait");
   const greeting = await m.put(input.character.greetingAudio, "companion_greeting");
+  const faceReel = [];
+  for (const [ri, clip] of (input.reelClips ?? []).entries()) {
+    const f = await m.put({ localPath: clip, mime: "video/mp4" }, `companion_reel_${ri + 1}`);
+    if (f) faceReel.push({ video: f.url, poster: portrait?.url, durationSec: f.durationSec ?? 8, hasAudio: false, origin: "reconstruction" as const });
+  }
 
   const stops: Stop[] = [];
   for (let i = 0; i < input.scripts.length; i++) {
@@ -135,24 +147,22 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
     const hero = await m.put(media.hero, `s${n}_hero`);
     const living = await m.put(media.livingScene, `s${n}_arrival`);
     const arrivalAudio = await m.put(media.arrivalAudio, `s${n}_arrival_line`);
-    const arrivalFace = await m.put(media.arrivalFace, `s${n}_line_face`);
     const talking = await m.put(media.talkingPortrait, `s${n}_talking`);
     const ambience = await m.put(media.ambience, `s${n}_ambience`);
     const transitionAudio = await m.put(media.transitionAudio, `s${n}_transition`);
-    const transitionFace = await m.put(media.transitionFace, `s${n}_transition_face`);
-    const asFace = (f: { url: string; durationSec?: number } | undefined, poster: string | undefined) =>
-      f ? { video: f.url, poster, durationSec: f.durationSec ?? 8, hasAudio: false, origin: "reconstruction" as const } : undefined;
 
     const stopHot = input.hotspots?.find((h) => h.stopId === script.stopId);
+    const arrivalHotspots: Hotspot[] = [];
+    for (const [pi, pt] of (stopHot?.arrival ?? []).entries()) {
+      const audioFile = await m.put(pt.audio, `s${n}_arr_poi${pi + 1}`);
+      arrivalHotspots.push({ id: pt.id, x: pt.x, y: pt.y, label: pt.label, line: { text: pt.text, audio: audioFile?.url, durationSec: audioFile?.durationSec } });
+    }
     const cards: Card[] = [];
     for (let c = 0; c < script.cards.length; c++) {
       const sc = script.cards[c];
       const cm = media.cards.find((x) => x.id === sc.id);
       const narrationFile = await m.put(cm?.narration, `s${n}_c${c + 1}_narration`);
-      const narrationFaceFile = await m.put(cm?.narrationFace, `s${n}_c${c + 1}_face`);
-      const narration = sc.narration.trim()
-        ? { text: sc.narration.trim(), audio: narrationFile?.url, durationSec: narrationFile?.durationSec, face: asFace(narrationFaceFile, portrait?.url) }
-        : undefined;
+      const narration = sc.narration.trim() ? { text: sc.narration.trim(), audio: narrationFile?.url, durationSec: narrationFile?.durationSec } : undefined;
       const claims = sc.claims
         .map((k) => ({ text: k.text, confidence: k.confidence, sourceId: resolveSource(k.sourceTitle) }))
         .filter((k): k is { text: string; confidence: "known" | "likely" | "interpretation"; sourceId: string } => Boolean(k.sourceId));
@@ -166,11 +176,9 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       if (sc.kind === "thenNow" && cm?.then && archive?.nowPhoto) {
         const then = await m.put(cm.then, `s${n}_c${c + 1}_then`);
         const now = await m.putRemote(archive.nowPhoto.thumbUrl, `s${n}_c${c + 1}_now`, archive.nowPhoto.mime);
-        const tnMotion = await m.put(cm?.motion, `s${n}_c${c + 1}_motion`);
         cards.push({
           ...base,
           kind: "thenNow",
-          motion: tnMotion ? { video: tnMotion.url, poster: then!.url, durationSec: tnMotion.durationSec ?? 5, hasAudio: false, origin: "reconstruction" } : undefined,
           then: { image: then!.url, origin: "reconstruction", width: then!.width, height: then!.height },
           now: {
             image: now,
@@ -200,12 +208,10 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
           cards.push({ ...base, kind: "text", text: (sc.textBody || sc.caption || sc.narration).slice(0, 320), companionContext: { text: sc.companionContextText } });
           continue;
         }
-        const imgMotion = await m.put(cm?.motion, `s${n}_c${c + 1}_motion`);
         cards.push({
           ...base,
           kind: "image",
           media: { image: img.url, origin: "reconstruction", width: img.width, height: img.height },
-          motion: imgMotion ? { video: imgMotion.url, poster: img.url, durationSec: imgMotion.durationSec ?? 5, hasAudio: false, origin: "reconstruction" } : undefined,
           companionContext: { text: sc.companionContextText, image: img.url },
         });
       }
@@ -219,13 +225,12 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       arrival: {
         livingScene: living ? { video: living.url, poster: hero?.url, durationSec: living.durationSec ?? 4, hasAudio: true, origin: "reconstruction" } : undefined,
         talkingPortrait: talking ? { video: talking.url, poster: portrait?.url, durationSec: talking.durationSec ?? 8, hasAudio: true, origin: "reconstruction" } : undefined,
-        line: { text: script.arrivalLine, audio: arrivalAudio?.url, durationSec: arrivalAudio?.durationSec, face: asFace(arrivalFace, portrait?.url) },
+        line: { text: script.arrivalLine, audio: arrivalAudio?.url, durationSec: arrivalAudio?.durationSec },
         ambience: ambience ? { audio: ambience.url, loop: true, gainDb: -14 } : undefined,
+        hotspots: arrivalHotspots,
       },
       cards,
-      transitionOut: script.transitionLine.trim()
-        ? { text: script.transitionLine.trim(), audio: transitionAudio?.url, durationSec: transitionAudio?.durationSec, face: asFace(transitionFace, portrait?.url) }
-        : undefined,
+      transitionOut: script.transitionLine.trim() ? { text: script.transitionLine.trim(), audio: transitionAudio?.url, durationSec: transitionAudio?.durationSec } : undefined,
     });
   }
 
@@ -254,6 +259,7 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       portrait: portrait?.url ?? firstHero,
       greeting: { text: input.companion.greeting, audio: greeting?.url, durationSec: greeting?.durationSec },
       voice: { provider: "openai-realtime", voice: recipe.companion.voice },
+      faceReel,
     },
     stops,
     sources,

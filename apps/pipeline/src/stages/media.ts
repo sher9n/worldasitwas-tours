@@ -15,14 +15,15 @@ import type { CompanionDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
 
 export type MediaStep = "hero" | "video" | "line" | "ambience" | "portrait" | "cards" | "cardmotion" | "narration" | "faces" | "transition";
-export const ALL_STEPS: MediaStep[] = ["hero", "video", "line", "ambience", "portrait", "cards", "cardmotion", "narration", "faces", "transition"];
+/** Card motion is deliberately absent: every screen is a still that drifts.
+ * The step survives for a deliberate opt-in via --steps, never by default. */
+export const ALL_STEPS: MediaStep[] = ["hero", "video", "line", "ambience", "portrait", "cards", "narration", "faces", "transition"];
 
 export interface CardMedia {
   id: string;
   image?: Asset;
   then?: Asset;
   narration?: Asset;
-  narrationFace?: Asset;
   animated?: Asset;
   motion?: Asset;
 }
@@ -32,12 +33,10 @@ export interface StopMedia {
   hero?: Asset;
   livingScene?: Asset;
   arrivalAudio?: Asset;
-  arrivalFace?: Asset;
   talkingPortrait?: Asset;
   ambience?: Asset;
   cards: CardMedia[];
   transitionAudio?: Asset;
-  transitionFace?: Asset;
 }
 
 export interface CharacterSheet {
@@ -106,26 +105,6 @@ export async function makeStopMedia(
     want("line") ? provider.tts({ text: script.arrivalLine, voice, stage, note: "arrival line" }).catch(warn("arrival tts")) : Promise.resolve(undefined),
     want("ambience") ? provider.sfx({ text: script.ambiencePrompt, durationSec: d.sfx, loop: true, stage, note: "ambience" }).catch(warn("ambience")) : Promise.resolve(undefined),
   ]);
-
-  // Her face saying a specific recorded line, for perfect lip-sync in the circle.
-  const faceFor = async (audio: Asset, note: string): Promise<Asset | undefined> => {
-    try {
-      const audioUrl = await urlOf(provider, audio);
-      return await provider.talkingPortrait({
-        imageUrl: character.portraitUrl,
-        audioUrl,
-        prompt: "A woman speaks warmly and directly to the viewer, small natural head movements, street background.",
-        quality,
-        stage,
-        note,
-      });
-    } catch (err) {
-      warn(note)(err);
-      return undefined;
-    }
-  };
-
-  const arrivalFacePromise = want("faces") && arrivalAudio ? faceFor(arrivalAudio, "arrival face") : Promise.resolve(undefined);
 
   let talkingPortrait: Asset | undefined;
   if (opts.talkingPortrait && want("portrait") && arrivalAudio) {
@@ -203,7 +182,6 @@ export async function makeStopMedia(
         }
       }
       out.narration = await narrationP;
-      if (want("faces") && out.narration) out.narrationFace = await faceFor(out.narration, `face ${card.id}`);
       return out;
     }),
   );
@@ -212,8 +190,5 @@ export async function makeStopMedia(
     want("transition") && script.transitionLine.trim()
       ? await provider.tts({ text: script.transitionLine, voice, stage, note: "transition line" }).catch(warn("transition tts"))
       : undefined;
-  const transitionFace = want("faces") && transitionAudio ? await faceFor(transitionAudio, "transition face") : undefined;
-  const arrivalFace = await arrivalFacePromise;
-
-  return { stopId: script.stopId, hero, livingScene, arrivalAudio, arrivalFace, talkingPortrait, ambience, cards, transitionAudio, transitionFace };
+  return { stopId: script.stopId, hero, livingScene, arrivalAudio, talkingPortrait, ambience, cards, transitionAudio };
 }

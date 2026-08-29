@@ -66,6 +66,18 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const [showHint, setShowHint] = useState(false);
   const [sideFlash, setSideFlash] = useState<{ side: "left" | "right"; n: number } | null>(null);
   const flash = (side: "left" | "right") => setSideFlash((f) => ({ side, n: (f?.n ?? 0) + 1 }));
+  // The wayfinding panes are a moment, not furniture: they show for ~3s when a
+  // gate opens, then leave; the edges stay tappable throughout.
+  const [showPanes, setShowPanes] = useState(false);
+  useEffect(() => {
+    if (!gated) {
+      setShowPanes(false);
+      return;
+    }
+    setShowPanes(true);
+    const t = window.setTimeout(() => setShowPanes(false), 3200);
+    return () => window.clearTimeout(t);
+  }, [gated]);
 
   const engine = useRef<AudioEngine | null>(null);
   const prevCState = useRef<CompanionState>("idle");
@@ -243,7 +255,9 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       if (bs.voiceDone && active >= expected) {
         // Gates, not conveyor belts: the walk waits for Continue, and a card
         // with points of interest waits so they can actually be explored.
-        const explorable = beat.kind === "card" && cardHotspots(beat.card).length > 0;
+        const explorable =
+          (beat.kind === "card" && cardHotspots(beat.card).length > 0) ||
+          (beat.kind === "arrival" && (tour.stops[beat.stopIndex].arrival.hotspots?.length ?? 0) > 0);
         if (beat.kind === "walk" || explorable) {
           setGated((g) => {
             if (!g && explorable && !localStorage.getItem("tt.hintExplore")) {
@@ -280,36 +294,91 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
 
   // Pause means silence and stillness, whatever was talking: her narration,
   // an aside about a tapped point, or a live answer, and her circle freezes too.
+  // The scene itself is a still that drifts, and the drift halts with the CSS
+  // hold class, so pause only has her voice and her circle to quieten.
   const circleVideo = useRef<HTMLVideoElement | null>(null);
-  const bgVideo = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     if (phase !== "playing") return;
     if (paused) {
       engine.current?.pauseVoice();
       companionRef.current?.stopSpeaking();
       circleVideo.current?.pause();
-      bgVideo.current?.pause();
     } else {
       engine.current?.resumeVoice();
-      bgVideo.current?.play().catch(() => undefined);
     }
   }, [paused, phase]);
 
-  // Her mouth moves only while sound actually comes out, and never while she
-  // is listening to the visitor: the loop is gated to real audio playback.
+  // Her mouth moves only while sound actually comes out - narration, an aside,
+  // or a live answer - and freezes in silence. When a reel clip runs out
+  // mid-speech, the next clip takes over.
+  const reel = tour.companion.faceReel?.length ? tour.companion.faceReel : stop.arrival.talkingPortrait ? [stop.arrival.talkingPortrait] : [];
+  // Two players, never rebuilt: one on screen, one quietly loading the clip that
+  // follows. Swapping a src on a single element blanks it to black while the new
+  // clip decodes, so the handover happens between two ready elements instead.
+  const slotA = useRef<HTMLVideoElement | null>(null);
+  const slotB = useRef<HTMLVideoElement | null>(null);
+  const [active, setActive] = useState<0 | 1>(0);
+  const [srcs, setSrcs] = useState<[string, string]>(() => [reel[0]?.video ?? "", reel[1 % Math.max(reel.length, 1)]?.video ?? ""]);
+  const reelIdx = useRef(0);
+  const talkingRef = useRef(false);
+  const swapping = useRef(false);
+
+  const visible = () => (active === 0 ? slotA.current : slotB.current);
+  const hidden = () => (active === 0 ? slotB.current : slotA.current);
+  // The circle's pause control acts on whichever player is on screen.
+  circleVideo.current = visible();
+
+  /** Hand over to the clip already loaded in the other player, then queue the next. */
+  const handOver = () => {
+    if (swapping.current || reel.length < 2) return;
+    const inc = hidden();
+    if (!inc) return;
+    swapping.current = true;
+    try {
+      inc.currentTime = 0;
+    } catch {
+      // not seekable yet; it will start from the beginning anyway
+    }
+    void inc.play().catch(() => undefined);
+    const nextIdx = (reelIdx.current + 1) % reel.length;
+    const afterIdx = (nextIdx + 1) % reel.length;
+    reelIdx.current = nextIdx;
+    setActive((a) => (a === 0 ? 1 : 0));
+    // Load the clip after next into the player that just left the screen, once
+    // it is safely out of sight.
+    window.setTimeout(() => {
+      const out = active === 0 ? slotA.current : slotB.current;
+      if (out) out.pause();
+      setSrcs((cur) => {
+        const copy: [string, string] = [...cur];
+        copy[active] = reel[afterIdx].video;
+        return copy;
+      });
+      swapping.current = false;
+    }, 220);
+  };
+
   useEffect(() => {
     if (phase !== "playing") return;
     const id = window.setInterval(() => {
-      const v = circleVideo.current;
+      const v = visible();
       if (!v) return;
       const live = Boolean(companionRef.current?.isSpeakingAudio());
       const talking = ((Boolean(engine.current?.isVoicePlaying()) && !askingRef.current) || live) && !paused;
-      // Never restart a finished clip: once ended it behaves as a still.
+      talkingRef.current = talking;
+      // Hand over a beat BEFORE the clip runs out, so the swap lands on a moving
+      // frame rather than on a stopped one.
+      const nearEnd = v.duration > 0 && v.duration - v.currentTime < 0.25;
+      if (talking && (v.ended || nearEnd)) {
+        handOver();
+        return;
+      }
       if (talking && v.paused && !v.ended) v.play().catch(() => undefined);
       if (!talking && !v.paused) v.pause();
     }, 120);
     return () => window.clearInterval(id);
-  }, [phase, paused]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, paused, reel.length, active]);
 
   const holdTimer = useRef<number | null>(null);
   const downAt = useRef<{ x: number; y: number } | null>(null);
@@ -358,8 +427,9 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   };
 
   const openHotspot = (h: Hotspot) => {
-    if (!beat?.card) return;
-    emit("hotspot_opened", { cardId: beat.card.id, hotspotId: h.id, label: h.label });
+    // Arrival screens carry points too, and they have no card behind them.
+    if (!beat) return;
+    emit("hotspot_opened", { cardId: beat.card?.id ?? `${stop.id}_arrival`, hotspotId: h.id, label: h.label });
     beatState.current.voiceStop();
     hotspotRef.current?.stop();
     setHotspot(h);
@@ -462,14 +532,13 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   }
 
   const img = beat ? beatImage(tour, beat) : undefined;
-  const spots = beat?.kind === "card" ? cardHotspots(beat.card) : [];
+  const spots = beat?.kind === "card" ? cardHotspots(beat.card) : beat?.kind === "arrival" ? (stop.arrival.hotspots ?? []) : [];
+  // Dots arrive as her line winds down, not the moment the screen appears.
+  const spotsRevealed = gated || beatFrac > 0.62;
   const nextStop = beat?.kind === "walk" ? tour.stops[beat.stopIndex + 1] : undefined;
-  // Her circle prefers the lip-synced face for this exact line.
-  const talkingLoop = beat?.voiceVideoUrl ?? stop.arrival.talkingPortrait?.video;
-  const cardMotion = beat?.kind === "card" && beat.card && (beat.card.kind === "image" || beat.card.kind === "thenNow") ? beat.card.motion : undefined;
 
   return (
-    <div className={`player ${paused ? "paused" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
+    <div className={`player ${paused ? "paused" : ""} ${beat?.kind === "walk" ? "walking" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
       {/* progress: one segment per stop, filling beat by beat as she speaks */}
       <div className="progress">
         {tour.stops.map((s, i) => {
@@ -519,14 +588,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
         <div className="slide">
           {img && (
             <div className={`zoomer ${hotspot ? "focus" : ""}`} style={hotspot ? { transformOrigin: `${hotspot.x * 100}% ${hotspot.y * 100}%` } : undefined}>
-              {cardMotion ? (
-                <>
-                  {img && <img className="bg" src={img} alt="" />}
-                  <video ref={bgVideo} key={beat!.key} className="bg seamless" src={cardMotion.video} poster={img} muted autoPlay playsInline />
-                </>
-              ) : (
-                <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
-              )}
+              <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
             </div>
           )}
           {hotspot && (
@@ -543,7 +605,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               <h2>{stop.title}</h2>
             </div>
           )}
-          {gated && beat?.kind === "card" && (
+          {gated && showPanes && (
             <>
               {bi > 0 && (
                 <button className="side-pane left" data-noadvance onClick={() => { flash("left"); goTo(bi - 1, "pane_back"); }} aria-label="Back">
@@ -556,7 +618,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               {showHint && <div className="gate-hint">tap the right side to continue</div>}
             </>
           )}
-          {spots.map((h) => {
+          {spotsRevealed && spots.map((h) => {
             const active = hotspot?.id === h.id;
             const below = h.y < 0.28; // a high point gets its label underneath, clear of the HUD
             const low = h.y > 0.68; // a low point lifts its label clear of the controls and her circle
@@ -588,8 +650,16 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
 
       {/* her, talking: the large circle that makes the voice a person */}
       <div className="voice-circle" data-noadvance>
-        {/* She stays with you: the clip plays once per line, then her still frame holds. */}
-        {talkingLoop ? <video ref={circleVideo} key={`${talkingLoop}:${bi}`} src={talkingLoop} muted autoPlay playsInline /> : <img src={tour.companion.portrait} alt="" />}
+        {/* Her reel: reusable talking clips rotate while any of her audio plays
+            (recorded or live) and freeze the instant it stops. */}
+        {reel.length ? (
+          <>
+            <video ref={slotA} className={active === 0 ? "on" : ""} src={srcs[0]} muted autoPlay playsInline preload="auto" />
+            <video ref={slotB} className={active === 1 ? "on" : ""} src={srcs[1]} muted playsInline preload="auto" />
+          </>
+        ) : (
+          <img src={tour.companion.portrait} alt="" />
+        )}
       </div>
 
       {/* bottom shade so the controls always read over any image */}

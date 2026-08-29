@@ -29,19 +29,27 @@ const SessionBody = z.object({
   locale: z.string().optional(),
 });
 
-/** Simple per-traveller session limiter: 6 sessions per 10 minutes. */
+/**
+ * Per-traveller limiter on minting realtime credentials. A minted secret that
+ * is never connected costs nothing (the conversation is what costs, and each
+ * session carries its own minute and turn caps), while the player mints one on
+ * every page load so the first hold listens instantly. The budget is therefore
+ * set for a person reloading and exploring, not for a metered resource.
+ */
+const SESSION_WINDOW_MS = 10 * 60_000;
+const SESSION_BUDGET = 30;
 class SessionLimiter {
   private hits = new Map<string, number[]>();
-  allow(id: string, now = Date.now()): boolean {
-    const windowMs = 10 * 60_000;
-    const arr = (this.hits.get(id) ?? []).filter((t) => now - t < windowMs);
-    if (arr.length >= 6) {
+  /** Returns how many seconds until a mint is allowed again, or 0 when allowed now. */
+  retryAfter(id: string, now = Date.now()): number {
+    const arr = (this.hits.get(id) ?? []).filter((t) => now - t < SESSION_WINDOW_MS);
+    if (arr.length >= SESSION_BUDGET) {
       this.hits.set(id, arr);
-      return false;
+      return Math.max(1, Math.ceil((SESSION_WINDOW_MS - (now - arr[0])) / 1000));
     }
     arr.push(now);
     this.hits.set(id, arr);
-    return true;
+    return 0;
   }
 }
 
@@ -77,7 +85,7 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
 
   app.get("/v1/catalog", { preHandler: requireKey }, async (_req, reply) => {
     const catalog = await store.catalog();
-    reply.header("Cache-Control", "public, max-age=300");
+    reply.header("Cache-Control", "no-cache");
     return catalog;
   });
 
@@ -91,7 +99,7 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
       return sendError(reply, 404, "city_not_found", `Unknown city "${q.data.city}"; use ids from /v1/catalog`);
     }
     const { matches, nearest } = await store.forCityYear(q.data.city, q.data.year, q.data.lang);
-    reply.header("Cache-Control", "public, max-age=300");
+    reply.header("Cache-Control", "no-cache");
     return { city: q.data.city, year: q.data.year, matches, nearest };
   });
 
@@ -100,7 +108,10 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
     if (req.headers["if-none-match"] === stored.etag) return reply.code(304).send();
     reply.header("ETag", stored.etag);
-    reply.header("Cache-Control", "public, max-age=3600");
+    // A republish must reach a player that already has the tour open. The ETag
+    // makes revalidation free (304, no body); a max-age would hand back a stale
+    // manifest, narration and all, for as long as it lasted.
+    reply.header("Cache-Control", "no-cache");
     return stored.tour;
   });
 
@@ -109,9 +120,10 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
     const body = SessionBody.safeParse(req.body ?? {});
     if (!body.success) return sendError(reply, 400, "bad_request", "travellerId is required");
-    if (!limiter.allow(body.data.travellerId)) {
-      reply.header("Retry-After", "600");
-      return sendError(reply, 429, "session_limit", "Too many companion sessions for this traveller");
+    const wait = limiter.retryAfter(body.data.travellerId);
+    if (wait > 0) {
+      reply.header("Retry-After", String(wait));
+      return sendError(reply, 429, "session_limit", `Her voice is resting; try again in ${wait} second${wait === 1 ? "" : "s"}`);
     }
     if (!opts.openaiApiKey) return sendError(reply, 503, "companion_unavailable", "Voice provider not configured");
     try {

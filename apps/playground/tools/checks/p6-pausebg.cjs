@@ -8,32 +8,42 @@ const ok = (n, c, d = "") => console.log(`[p6] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await page.click("button.travel");
   await page.waitForTimeout(2000);
   let pass = true;
-  pass = ok("arrival is a still (no video)", !(await page.$("video.bg.seamless"))) && pass;
-  // move to the first card, which carries the motion clip
+  // Every scene in the tour is a still that drifts: no video ever sits behind the story.
+  pass = ok("arrival is a still (no video)", !(await page.$(".slide video.bg"))) && pass;
+  const drift = () => page.evaluate(() => {
+    const el = document.querySelector(".slide img.bg");
+    if (!el) return null;
+    const cs = getComputedStyle(el);
+    return { name: cs.animationName, state: cs.animationPlayState, fill: cs.animationFillMode, iter: cs.animationIterationCount, transform: cs.transform };
+  });
+  const d0 = await drift();
+  pass = ok("arrival still drifts (parallax running)", Boolean(d0 && /kb-/.test(d0.name) && d0.state === "running"), JSON.stringify(d0)) && pass;
+  pass = ok("drift runs once and holds its last frame", Boolean(d0 && d0.iter === "1" && d0.fill === "forwards")) && pass;
+  // Move on: the next screen is a still too, and it drifts the other way.
   const pt = await page.evaluate(() => { const b=(el)=>Boolean(el&&el.closest("[data-noadvance]")); for (const y of [620,560,500]) for (const x of [340,300]) if (!b(document.elementFromPoint(x,y))) return {x,y}; return {x:340,y:620}; });
   await page.mouse.click(pt.x, pt.y);
   await page.waitForTimeout(1200);
-  const vid = () => page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); return v ? { paused: v.paused, t: v.currentTime, opacity: getComputedStyle(v).opacity } : null; });
-  const v0 = await vid();
-  pass = ok("card motion playing", Boolean(v0 && !v0.paused), JSON.stringify(v0)) && pass;
-  // Pause freezes the background scene too.
+  const d1 = await drift();
+  pass = ok("next screen is a drifting still", Boolean(d1 && /kb-/.test(d1.name) && d1.state === "running"), JSON.stringify(d1)) && pass;
+  pass = ok("neighbouring screens drift in opposite directions", Boolean(d0 && d1 && d0.name !== d1.name), `${d0?.name} then ${d1?.name}`) && pass;
+  // The image actually moves: sample the transform twice.
+  const t0 = (await drift()).transform;
+  await page.waitForTimeout(900);
+  const t1 = (await drift()).transform;
+  pass = ok("the scene visibly moves", t0 !== t1, `${t0} -> ${t1}`) && pass;
+  // Pause stops the drift dead, resume continues it.
   await page.click(".side-ctl >> nth=0");
   await page.waitForTimeout(350);
-  const v1 = await vid();
-  pass = ok("pause freezes the background video", Boolean(v1 && v1.paused)) && pass;
+  const dp = await drift();
+  pass = ok("pause freezes the drift", dp.state === "paused", dp.state) && pass;
+  const p0 = dp.transform;
+  await page.waitForTimeout(900);
+  const p1 = (await drift()).transform;
+  pass = ok("nothing moves while paused", p0 === p1) && pass;
   await page.click(".side-ctl >> nth=0");
-  await page.waitForTimeout(350);
-  const v2 = await vid();
-  pass = ok("resume restarts the background video", Boolean(v2 && !v2.paused)) && pass;
-  // Play once: at the end the scene rests as a still, never wrapping.
-  await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); v.currentTime = v.duration - 0.2; });
-  await page.waitForTimeout(1500);
-  const endState = await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); return { ended: v.ended, t: v.currentTime, d: v.duration }; });
-  pass = ok("scene plays once and rests at its last frame", endState.ended && Math.abs(endState.t - endState.d) < 0.3, JSON.stringify(endState)) && pass;
-  await page.waitForTimeout(1500);
-  const stillState = await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); return { ended: v.ended, t: v.currentTime }; });
-  pass = ok("no restart after resting", stillState.ended && Math.abs(stillState.t - endState.t) < 0.05, JSON.stringify(stillState)) && pass;
-
+  await page.waitForTimeout(400);
+  const dr = await drift();
+  pass = ok("resume continues the drift", dr.state === "running", dr.state) && pass;
   await browser.close();
   if (!pass) process.exit(1);
 })().catch((e) => { console.error("[p6] FAIL", e.message); process.exit(1); });

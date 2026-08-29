@@ -85,7 +85,7 @@ export class FalProvider implements MediaProvider {
       const data = await this.run<{ images: FalImage[] }>(endpoint, input);
       const img = data.images[0];
       return {
-        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width, height: img.height },
+        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width ?? undefined, height: img.height ?? undefined },
         units: 1,
         unitType: "image",
         rateUsd: RATES.nanoBananaPro[resolution],
@@ -108,7 +108,7 @@ export class FalProvider implements MediaProvider {
       const img = data.images[0];
       const mult = o.aspect === "1:1" ? 1 : 1.5;
       return {
-        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width, height: img.height },
+        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width ?? undefined, height: img.height ?? undefined },
         units: 1,
         unitType: "image",
         rateUsd: RATES.gptImage2[q] * mult,
@@ -134,7 +134,7 @@ export class FalProvider implements MediaProvider {
       const inputSurcharge = 0.008 * o.refs.length;
       const mult = o.aspect === "1:1" ? 1 : 1.5;
       return {
-        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width, height: img.height },
+        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width ?? undefined, height: img.height ?? undefined },
         units: 1,
         unitType: "image",
         rateUsd: RATES.gptImage2[q] * mult + inputSurcharge,
@@ -156,7 +156,7 @@ export class FalProvider implements MediaProvider {
       });
       const img = data.images[0];
       return {
-        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width, height: img.height },
+        result: { remoteUrl: img.url, mime: img.content_type ?? "image/jpeg", width: img.width ?? undefined, height: img.height ?? undefined },
         units: 1,
         unitType: "image",
         rateUsd: RATES.nanoBananaPro[resolution],

@@ -143,6 +143,8 @@ export const Arrival = z.object({
   talkingPortrait: VideoAsset.optional(),
   line: SpokenLine,
   ambience: Ambience.optional(),
+  /** Points on the arrival view; they fade in as her line winds down. */
+  hotspots: z.array(Hotspot).default([]),
 });
 export type Arrival = z.infer<typeof Arrival>;
 
@@ -179,6 +181,9 @@ export const Companion = z.object({
   portrait: url,
   greeting: SpokenLine,
   voice: Voice,
+  /** Reusable clips of her talking; the player rotates through them while any
+   * of her audio plays and freezes her in silence. Works for live answers. */
+  faceReel: z.array(VideoAsset).default([]),
 });
 export type Companion = z.infer<typeof Companion>;
 

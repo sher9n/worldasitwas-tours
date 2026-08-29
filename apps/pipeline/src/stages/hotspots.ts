@@ -15,6 +15,7 @@ import type { StopMedia } from "./media.ts";
 
 export interface StopHotspots {
   stopId: string;
+  arrival?: Array<{ id: string; x: number; y: number; label: string; text: string; audio?: Asset }>;
   cards: Array<{
     cardId: string;
     points: Array<{ id: string; x: number; y: number; label: string; text: string; audio?: Asset }>;
@@ -40,15 +41,22 @@ export async function makeStopHotspots(
   quality: Quality,
 ): Promise<StopHotspots> {
   const out: StopHotspots = { stopId: script.stopId, cards: [] };
+  // Points for the visuals of this stop: the arrival hero first, then the cards.
+  const targets: Array<{ id: string; kind: "arrival" | "card"; narration: string; still: Asset | undefined }> = [
+    { id: "arrival", kind: "arrival", narration: script.arrivalLine, still: media.hero },
+  ];
   for (const sc of script.cards) {
     // Both plain image screens and the year-view of a then/now pair are
     // full-bleed stills in the player, so both get points of interest.
     if (sc.kind !== "image" && sc.kind !== "thenNow") continue;
     const cm = media.cards.find((c) => c.id === sc.id);
-    const still = sc.kind === "thenNow" ? cm?.then : cm?.image;
-    if (!still) continue;
-    const imageUrl = await toDataUrl(still);
+    targets.push({ id: sc.id, kind: "card", narration: sc.narration, still: sc.kind === "thenNow" ? cm?.then : cm?.image });
+  }
+  for (const target of targets) {
+    if (!target.still) continue;
+    const imageUrl = await toDataUrl(target.still);
     if (!imageUrl) continue;
+    const sc = { id: target.id, narration: target.narration };
 
     let plan: HotspotPlan;
     try {
@@ -93,7 +101,7 @@ Return two or three points for this image.`,
         console.warn(`[hotspots] tts ${sc.id}/${p.label} failed: ${(err as Error).message}`);
       }
       cardOut.points.push({
-        id: `${sc.id}_p${i + 1}`,
+        id: `${script.stopId}_${sc.id}_p${i + 1}`,
         // Clamp toward the frame so a marker never sits under the HUD edges.
         x: Math.min(0.94, Math.max(0.06, p.x)),
         y: Math.min(0.86, Math.max(0.12, p.y)),
@@ -102,7 +110,10 @@ Return two or three points for this image.`,
         audio,
       });
     }
-    if (cardOut.points.length) out.cards.push(cardOut);
+    if (cardOut.points.length) {
+      if (target.kind === "arrival") out.arrival = cardOut.points;
+      else out.cards.push(cardOut);
+    }
     void quality;
   }
   return out;

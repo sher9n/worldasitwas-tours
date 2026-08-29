@@ -116,6 +116,8 @@ class SentenceSpeaker {
   }
 }
 
+type SessionInfo = Awaited<ReturnType<typeof api.session>>;
+
 export class CompanionSession {
   private pc?: RTCPeerConnection;
   private dc?: RTCDataChannel;
@@ -130,6 +132,8 @@ export class CompanionSession {
   private speaker: SentenceSpeaker;
   state: CompanionState = "idle";
   sessionId = "";
+  /** A minted credential that no call has consumed yet, kept for the next attempt. */
+  private spare: { session: SessionInfo; expiresAt: number } | null = null;
 
   constructor(
     private tourId: string,
@@ -168,7 +172,12 @@ export class CompanionSession {
     if (this.pc) return;
     this.setState("connecting");
     try {
-      const session = await api.session(this.tourId, { travellerId: travellerId(), stopId, cardId, locale: navigator.language });
+      // Reuse an unconsumed credential rather than minting another: a reload or a
+      // torn-down preconnect otherwise spends one every time, and the traveller
+      // runs out of them without ever having spoken.
+      const spare = this.spare && this.spare.expiresAt - Date.now() > 60_000 ? this.spare.session : null;
+      const session = spare ?? (await this.mint(stopId, cardId));
+      this.spare = { session, expiresAt: Date.parse(session.expiresAt) || Date.now() + 600_000 };
       this.sessionId = session.sessionId;
       const pc = new RTCPeerConnection();
       this.pc = pc;
@@ -197,6 +206,7 @@ export class CompanionSession {
         dc.onopen = () => ok();
         setTimeout(() => bad(new Error("data channel timeout")), 10000);
       });
+      this.spare = null; // consumed by this call
       this.startedAt = Date.now();
       this.setState("ready");
       this.ev.onEvent?.("ask_session_started", { sessionId: this.sessionId, model: session.realtime.model, voice: session.realtime.voice });
@@ -204,6 +214,22 @@ export class CompanionSession {
     } catch (err) {
       this.setState("error", (err as Error).message);
       this.close();
+      throw err;
+    }
+  }
+
+  /** Mints a realtime credential, waiting once if the budget asks us to. */
+  private async mint(stopId?: string, cardId?: string): Promise<SessionInfo> {
+    const ask = () => api.session(this.tourId, { travellerId: travellerId(), stopId, cardId, locale: navigator.language });
+    try {
+      return await ask();
+    } catch (err) {
+      const e = err as Error & { status?: number; retryAfterSec?: number };
+      // A short wait is worth sitting through silently; a long one is honest to surface.
+      if (e.status === 429 && e.retryAfterSec && e.retryAfterSec <= 20) {
+        await new Promise((ok) => setTimeout(ok, e.retryAfterSec! * 1000 + 250));
+        return await ask();
+      }
       throw err;
     }
   }

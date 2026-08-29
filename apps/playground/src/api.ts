@@ -25,7 +25,11 @@ export const api = {
     });
     if (!res.ok) {
       const j = await res.json().catch(() => ({}));
-      throw new Error(j?.error?.message || `session ${res.status}`);
+      const err = new Error(j?.error?.message || `session ${res.status}`) as Error & { status?: number; retryAfterSec?: number };
+      err.status = res.status;
+      const ra = Number(res.headers.get("Retry-After"));
+      if (Number.isFinite(ra) && ra > 0) err.retryAfterSec = ra;
+      throw err;
     }
     return res.json() as Promise<{
       sessionId: string;

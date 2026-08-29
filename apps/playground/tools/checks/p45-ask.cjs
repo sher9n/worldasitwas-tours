@@ -23,7 +23,7 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   await page.waitForTimeout(500);
   const midHold = await page.evaluate(() => ({
     cls: document.querySelector(".ask").className,
-    circle: (() => { const v = document.querySelector(".voice-circle video"); return v ? !v.paused : null; })(),
+    circle: (() => { const v = document.querySelector(".voice-circle video.on"); return v ? !v.paused : null; })(),
   }));
   await page.waitForTimeout(1800);
   await page.mouse.up();
@@ -33,7 +33,7 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   for (let t = 0; t < 48000; t += 150) {
     const s = await page.evaluate(() => ({
       cls: document.querySelector(".ask").className.replace("ask", "").trim() || "ready",
-      circle: (() => { const v = document.querySelector(".voice-circle video"); return v ? !v.paused : null; })(),
+      circle: (() => { const v = document.querySelector(".voice-circle video.on"); return v ? !v.paused : null; })(),
     }));
     timeline.push(s);
     if (s.cls === "thinking" && dotsSeen === null) {
