@@ -1,39 +1,87 @@
+/**
+ * Image-driven guided player: she walks, you look around.
+ *
+ * Every screen is a full-bleed still. Her voice drives the timeline and the
+ * screens change beneath it; her small circle up top comes alive with her
+ * talking footage while she speaks. Taps skip or revisit, points of interest
+ * turn her attention, the Pause button (or a long press) holds the walk, and
+ * the Ask button interrupts her live. No text on the glass beyond the stop
+ * titles and the labels of tapped points.
+ */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { Card, Claim, Stop, Tour } from "@timetravel/schema";
+import type { Card, Tour } from "@timetravel/schema";
+import { AudioEngine } from "./audio.ts";
+import { buildBeats, type Beat } from "./beats.ts";
 import { CompanionSession, type CompanionState } from "./companion.ts";
 
 export type EventSink = (name: string, payload: Record<string, unknown>) => void;
 
-type Phase = "idle" | "arrival" | "cards" | "transition" | "done";
+type Phase = "cover" | "playing" | "done";
 
-const HOLD_MS = 220;
+const BREATH_MS = 900;
+const HOLD_MS = 300;
+const TICK_MS = 150;
 
-function dbToGain(db: number): number {
-  return Math.max(0, Math.min(1, Math.pow(10, db / 20)));
+interface Hotspot {
+  id: string;
+  x: number;
+  y: number;
+  label: string;
+  line: { text: string; audio?: string; durationSec?: number };
+}
+
+function cardHotspots(card: Card | undefined): Hotspot[] {
+  if (!card) return [];
+  const h = (card as { hotspots?: Hotspot[] }).hotspots;
+  return Array.isArray(h) ? h : [];
+}
+
+/** The still that stands for a beat. Everything renders full-bleed. */
+function beatImage(tour: Tour, beat: Beat): string | undefined {
+  const stop = tour.stops[beat.stopIndex];
+  if (beat.kind === "arrival") return stop.arrival.livingScene?.poster ?? tour.cover.image;
+  if (beat.kind === "walk") {
+    const next = tour.stops[beat.stopIndex + 1];
+    return next?.arrival.livingScene?.poster ?? tour.cover.image;
+  }
+  const card = beat.card!;
+  if (card.kind === "image") return card.media.image;
+  if (card.kind === "thenNow") return card.then.image;
+  if (card.kind === "archive") return card.media.image;
+  return undefined;
 }
 
 export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: EventSink; onCompanion?: (s: CompanionState, transcript: { who: string; text: string }[]) => void }) {
-  const [phase, setPhase] = useState<Phase>("idle");
-  const [si, setSi] = useState(0);
-  const [ci, setCi] = useState(0);
+  const beats = useMemo(() => buildBeats(tour), [tour]);
+  const [phase, setPhase] = useState<Phase>("cover");
+  const [bi, setBi] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [captions, setCaptions] = useState(true);
-  const [sheet, setSheet] = useState<"none" | "sources" | "companion">("none");
-  const [claim, setClaim] = useState<Claim | null>(null);
+  const [sheet, setSheet] = useState(false);
+  const [hotspot, setHotspot] = useState<Hotspot | null>(null);
   const [cState, setCState] = useState<CompanionState>("idle");
   const [cDetail, setCDetail] = useState("");
-  const [live, setLive] = useState("");
+  const [beatFrac, setBeatFrac] = useState(0);
+  const [speakingUi, setSpeakingUi] = useState(false);
+
+  const engine = useRef<AudioEngine | null>(null);
   const transcriptRef = useRef<{ who: string; text: string }[]>([]);
   const companionRef = useRef<CompanionSession | null>(null);
-  const ambienceRef = useRef<HTMLAudioElement | null>(null);
-  const narrationRef = useRef<HTMLAudioElement | null>(null);
-  const cardEnteredAt = useRef(Date.now());
-  const holdTimer = useRef<number | null>(null);
-  const holding = useRef(false);
   const startedAt = useRef(0);
+  const beatState = useRef({
+    enteredAt: 0,
+    pausedAccum: 0,
+    pausedSince: 0,
+    voiceDone: false,
+    voiceStop: () => {},
+    bonusMs: 0,
+    expectedMs: 5000,
+  });
+  const interacting = useRef(false);
+  const askingRef = useRef(false);
+  const hotspotRef = useRef<{ stop: () => void } | null>(null);
 
-  const stop: Stop = tour.stops[si];
-  const card: Card | undefined = stop?.cards[ci];
+  const beat: Beat | undefined = beats[bi];
+  const stop = beat ? tour.stops[beat.stopIndex] : tour.stops[0];
 
   const emit = useCallback((name: string, payload: Record<string, unknown> = {}) => onEvent(name, { tourId: tour.id, ...payload }), [onEvent, tour.id]);
 
@@ -42,29 +90,20 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       onState: (s, d) => {
         setCState(s);
         setCDetail(d ?? "");
+        askingRef.current = s === "connecting" || s === "listening" || s === "thinking" || s === "speaking";
+        if (askingRef.current) engine.current?.pauseVoice();
         onCompanion?.(s, transcriptRef.current);
-        if (s === "speaking") narrationRef.current?.pause();
       },
       onTranscript: (who, text, final) => {
-        if (!final) {
-          setLive((l) => (who === "companion" ? l + text : l));
-          return;
-        }
+        if (!final) return;
         transcriptRef.current = [...transcriptRef.current, { who, text }];
-        if (who === "companion") setLive("");
         onCompanion?.(companionRef.current?.state ?? "idle", transcriptRef.current);
       },
       onTool: (name, args) => {
         emit("companion_tool", { name, ...args });
         if (name === "show_card" && typeof args.cardId === "string") {
-          const target = args.cardId;
-          const sIdx = tour.stops.findIndex((s) => s.cards.some((c) => c.id === target));
-          if (sIdx >= 0) {
-            const cIdx = tour.stops[sIdx].cards.findIndex((c) => c.id === target);
-            setPhase("cards");
-            setSi(sIdx);
-            setCi(cIdx);
-          }
+          const idx = beats.findIndex((b) => b.card?.id === args.cardId);
+          if (idx >= 0) goTo(idx, "companion");
         }
         if (name === "end_conversation") setTimeout(() => companionRef.current?.close(), 1500);
       },
@@ -72,111 +111,144 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     });
     companionRef.current = c;
     return c;
-  }, [tour, emit, onCompanion]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tour.id]);
 
-  useEffect(() => () => companion.close(), [companion]);
+  useEffect(
+    () => () => {
+      companion.close();
+      engine.current?.stop();
+    },
+    [companion],
+  );
 
-  // Ambience per stop.
-  useEffect(() => {
-    const a = ambienceRef.current;
-    if (!a) return;
-    const amb = stop?.arrival.ambience;
-    if (phase === "idle" || phase === "done" || !amb) {
-      a.pause();
-      return;
-    }
-    if (a.src !== amb.audio) {
-      a.src = amb.audio;
-      a.loop = amb.loop;
-    }
-    a.volume = dbToGain(amb.gainDb);
-    a.play().catch(() => undefined);
-  }, [phase, si, stop]);
+  /* ------------------------------- flow core ------------------------------ */
 
-  // Narration and context per card.
-  useEffect(() => {
-    if (phase !== "cards" || !card) return;
-    cardEnteredAt.current = Date.now();
-    emit("card_viewed_start", { stopId: stop.id, cardId: card.id, kind: card.kind });
-    const n = narrationRef.current;
-    if (n) {
-      n.pause();
-      if (card.narration?.audio) {
-        n.src = card.narration.audio;
-        n.currentTime = 0;
-        n.play().catch(() => undefined);
+  const clearBeatAudio = useCallback(() => {
+    beatState.current.voiceStop();
+    hotspotRef.current?.stop();
+    hotspotRef.current = null;
+    setHotspot(null);
+  }, []);
+
+  const goTo = useCallback(
+    (index: number, cause: string) => {
+      clearBeatAudio();
+      if (index >= beats.length) {
+        setPhase("done");
+        engine.current?.stop();
+        emit("tour_completed", { stopId: beats[beats.length - 1]?.stopIndex, elapsedSec: Math.round((Date.now() - startedAt.current) / 1000) });
+        return;
       }
-    }
-    if (card.companionContext) void companion.sendContext(card.companionContext);
-    return () => {
-      emit("card_viewed", { stopId: stop.id, cardId: card.id, kind: card.kind, dwellMs: Date.now() - cardEnteredAt.current });
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, si, ci]);
+      if (index < 0) index = 0;
+      const prev = beats[bi];
+      if (prev?.kind === "card" && prev.card) {
+        emit("card_viewed", { stopId: stop.id, cardId: prev.card.id, kind: prev.card.kind, dwellMs: Date.now() - beatState.current.enteredAt, cause });
+      }
+      setBi(index);
+      setPaused(false);
+    },
+    [beats, bi, clearBeatAudio, emit, stop],
+  );
+  const goToRef = useRef(goTo);
+  goToRef.current = goTo;
 
+  // Enter a beat: start her line, set the expected length, tell the companion.
   useEffect(() => {
-    if (phase === "arrival") emit("stop_entered", { stopId: stop.id, order: stop.order });
+    if (phase !== "playing" || !beat) return;
+    const bs = beatState.current;
+    bs.enteredAt = Date.now();
+    bs.pausedAccum = 0;
+    bs.pausedSince = 0;
+    bs.voiceDone = !beat.audioUrl;
+    bs.bonusMs = 0;
+    bs.expectedMs = beat.estSec * 1000;
+    setBeatFrac(0);
+    setSpeakingUi(Boolean(beat.audioUrl));
+
+    if (beat.kind === "arrival") emit("stop_entered", { stopId: stop.id, order: stop.order });
+    const amb = stop.arrival.ambience;
+    engine.current?.setAmbience(amb?.audio, amb?.gainDb ?? -14);
+
+    if (beat.audioUrl && engine.current) {
+      const v = engine.current.playVoice(beat.audioUrl);
+      bs.voiceStop = v.stop;
+      const enteredAt = bs.enteredAt;
+      v.done.then((result) => {
+        if (beatState.current.enteredAt !== enteredAt) return; // stale
+        beatState.current.voiceDone = true;
+        setSpeakingUi(false);
+        if (result === "ended") {
+          beatState.current.expectedMs = Math.max(Date.now() - enteredAt + BREATH_MS, beat.estSec * 1000 * 0.4);
+        }
+      });
+    } else {
+      bs.voiceStop = () => {};
+    }
+
+    if (beat.card?.companionContext) void companion.sendContext(beat.card.companionContext);
+    else if (beat.kind === "arrival") void companion.sendContext({ text: `The visitor has just arrived at ${stop.title}. ${stop.arrival.line.text}` });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, si]);
+  }, [phase, bi]);
+
+  // The clock: advance when her line is done, the dwell is served and nothing holds us.
+  useEffect(() => {
+    if (phase !== "playing") return;
+    const id = window.setInterval(() => {
+      const bs = beatState.current;
+      if (!beat) return;
+      if (paused || askingRef.current || interacting.current || hotspotRef.current) {
+        if (!bs.pausedSince) bs.pausedSince = Date.now();
+        return;
+      }
+      if (bs.pausedSince) {
+        bs.pausedAccum += Date.now() - bs.pausedSince;
+        bs.pausedSince = 0;
+      }
+      const active = Date.now() - bs.enteredAt - bs.pausedAccum;
+      const expected = Math.max(bs.expectedMs + bs.bonusMs, beat.kind === "card" ? 4000 : 3500);
+      setBeatFrac(Math.min(1, active / expected));
+      if (bs.voiceDone && active >= expected) goToRef.current(bi + 1, "auto");
+    }, TICK_MS);
+    return () => window.clearInterval(id);
+  }, [phase, bi, paused, beat]);
+
+  /* ------------------------------ interactions ---------------------------- */
 
   const start = () => {
+    engine.current = engine.current ?? new AudioEngine();
+    engine.current.unlock(); // inside the tap
     startedAt.current = Date.now();
     emit("tour_started", { version: tour.version });
-    setSi(0);
-    setCi(0);
-    setPhase("arrival");
+    setPhase("playing");
+    setBi(0);
   };
 
-  const next = useCallback(() => {
-    if (phase === "arrival") {
-      setPhase("cards");
-      setCi(0);
-      return;
+  const togglePause = () => {
+    if (paused) {
+      setPaused(false);
+      engine.current?.resumeVoice();
+    } else {
+      setPaused(true);
+      engine.current?.pauseVoice();
     }
-    if (phase === "cards") {
-      if (ci + 1 < stop.cards.length) setCi(ci + 1);
-      else if (stop.transitionOut && si + 1 < tour.stops.length) setPhase("transition");
-      else if (si + 1 < tour.stops.length) {
-        setSi(si + 1);
-        setCi(0);
-        setPhase("arrival");
-      } else {
-        setPhase("done");
-        emit("tour_completed", { stopId: stop.id, cardId: card?.id, elapsedSec: Math.round((Date.now() - startedAt.current) / 1000) });
-      }
-      return;
-    }
-    if (phase === "transition") {
-      if (si + 1 < tour.stops.length) {
-        setSi(si + 1);
-        setCi(0);
-        setPhase("arrival");
-      } else setPhase("done");
-    }
-  }, [phase, ci, si, stop, tour, emit, card]);
+  };
 
-  const prev = useCallback(() => {
-    if (phase === "cards" && ci > 0) setCi(ci - 1);
-    else if (phase === "cards" && si > 0) {
-      setSi(si - 1);
-      setCi(tour.stops[si - 1].cards.length - 1);
-    } else if (phase === "transition") setPhase("cards");
-  }, [phase, ci, si, tour]);
-
-  // Tap zones and hold-to-pause. A pointer that travels more than a few pixels
-  // is a drag (the then/now slider), never a tap, so it neither advances nor pauses.
+  const holdTimer = useRef<number | null>(null);
   const downAt = useRef<{ x: number; y: number } | null>(null);
   const moved = useRef(false);
+  const holding = useRef(false);
+
   const onPointerDown = (e: React.PointerEvent) => {
     if ((e.target as HTMLElement).closest("[data-noadvance]")) return;
-    holding.current = false;
     moved.current = false;
+    holding.current = false;
     downAt.current = { x: e.clientX, y: e.clientY };
     holdTimer.current = window.setTimeout(() => {
       if (moved.current) return;
       holding.current = true;
       setPaused(true);
-      narrationRef.current?.pause();
+      engine.current?.pauseVoice();
     }, HOLD_MS);
   };
   const onPointerMove = (e: React.PointerEvent) => {
@@ -191,28 +263,52 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     if (holdTimer.current) window.clearTimeout(holdTimer.current);
     downAt.current = null;
     if (holding.current) {
-      setPaused(false);
-      narrationRef.current?.play().catch(() => undefined);
       holding.current = false;
+      setPaused(false);
+      engine.current?.resumeVoice();
       return;
     }
-    if (moved.current) return;
+    if (moved.current || phase !== "playing") return;
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
-    if (phase === "idle") return;
-    if (x < 0.3) prev();
-    else next();
+    if (x < 0.28) goTo(bi - 1, "tap_back");
+    else goTo(bi + 1, "tap_skip");
   };
 
-  // Ask button.
+  const openHotspot = (h: Hotspot) => {
+    if (!beat?.card) return;
+    emit("hotspot_opened", { cardId: beat.card.id, hotspotId: h.id, label: h.label });
+    beatState.current.voiceStop();
+    hotspotRef.current?.stop();
+    setHotspot(h);
+    setSpeakingUi(true);
+    beatState.current.voiceDone = true;
+    beatState.current.bonusMs += 1500;
+    const finish = () => {
+      hotspotRef.current = null;
+      setHotspot(null);
+      setSpeakingUi(false);
+    };
+    if (h.line.audio && engine.current) {
+      const v = engine.current.playVoice(h.line.audio);
+      hotspotRef.current = { stop: v.stop };
+      v.done.then(finish);
+    } else {
+      const ms = (h.line.durationSec ?? Math.max(3, h.line.text.length / 14)) * 1000;
+      const t = window.setTimeout(finish, ms);
+      hotspotRef.current = { stop: () => window.clearTimeout(t) };
+    }
+  };
+
   const askDown = async (e: React.PointerEvent) => {
     e.stopPropagation();
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    narrationRef.current?.pause();
+    engine.current?.pauseVoice();
+    hotspotRef.current?.stop();
     if (cState === "idle" || cState === "closed" || cState === "error") {
       try {
-        emit("ask_started", { stopId: stop.id, cardId: card?.id });
-        await companion.connect(stop.id, card?.id);
+        emit("ask_started", { stopId: stop.id, cardId: beat?.card?.id });
+        await companion.connect(stop.id, beat?.card?.id);
       } catch {
         return;
       }
@@ -225,23 +321,17 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   };
 
   const leave = () => {
-    emit("tour_left", { stopId: stop?.id, cardId: card?.id, elapsedSec: Math.round((Date.now() - startedAt.current) / 1000) });
+    emit("tour_left", { stopId: stop?.id, cardId: beat?.card?.id, elapsedSec: Math.round((Date.now() - startedAt.current) / 1000) });
     companion.close();
-    setPhase("idle");
+    engine.current?.stop();
+    setPhase("cover");
   };
 
-  const sourcesForStop = useMemo(() => {
-    if (!stop) return [];
-    const ids = new Set(stop.cards.flatMap((c) => c.claims.map((k) => k.sourceId)));
-    return tour.sources.filter((s) => ids.has(s.id));
-  }, [stop, tour]);
+  /* --------------------------------- render -------------------------------- */
 
-  return (
-    <div className={`player ${paused ? "paused" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
-      <audio ref={ambienceRef} />
-      <audio ref={narrationRef} />
-
-      {phase === "idle" && (
+  if (phase === "cover") {
+    return (
+      <div className="player">
         <div className="idle" style={{ backgroundImage: `url(${tour.cover.image})` }}>
           <div className="idle-shade" />
           <div className="idle-body">
@@ -256,139 +346,124 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               </div>
             </div>
             <div className="idle-meta">
-              {tour.stops.length} {tour.stops.length === 1 ? "stop" : "stops"} · about {tour.durationMin} min
+              {tour.stops.length} {tour.stops.length === 1 ? "stop" : "stops"} · about {tour.durationMin} min · she talks, you can interrupt
             </div>
             <button className="travel" data-noadvance onClick={start}>
               Travel
             </button>
           </div>
         </div>
-      )}
+      </div>
+    );
+  }
 
-      {phase !== "idle" && phase !== "done" && (
-        <>
-          <div className="progress">
-            {tour.stops.map((s, i) => (
-              <span key={s.id} className={i < si ? "done" : i === si ? "cur" : ""}>
-                {i === si && <i style={{ width: `${phase === "cards" ? ((ci + 1) / s.cards.length) * 100 : phase === "transition" ? 100 : 8}%` }} />}
-              </span>
-            ))}
-          </div>
-          <div className="hud-top">
-            <button className="companion-chip" data-noadvance onClick={() => setSheet(sheet === "companion" ? "none" : "companion")}>
-              <img src={tour.companion.portrait} alt="" />
-              <span>
-                <b>{tour.companion.name}</b>
-                <small>{tour.companion.role}</small>
-              </span>
-            </button>
-            <div className="year">{tour.year}</div>
-          </div>
-          <div className="stop-title">{stop.title}</div>
-        </>
-      )}
-
-      {phase === "arrival" && <ArrivalView stop={stop} tour={tour} onDone={next} />}
-
-      {phase === "cards" && card && <CardView key={card.id} card={card} tour={tour} paused={paused} onClaim={setClaim} onThenNow={(pos) => emit("then_now_used", { cardId: card.id, maxPosition: pos })} />}
-
-      {phase === "transition" && stop.transitionOut && <TransitionView stop={stop} nextStop={tour.stops[si + 1]} onDone={next} />}
-
-      {phase === "done" && (
+  if (phase === "done") {
+    return (
+      <div className="player">
         <div className="idle done-view" style={{ backgroundImage: `url(${tour.companion.portrait})` }}>
           <div className="idle-shade" />
           <div className="idle-body">
             <div className="idle-year">{tour.year}</div>
             <h1>You walked with {tour.companion.name}.</h1>
-            <p>{tour.stops.length} stops, {tour.sources.length} sources, every picture labelled for what it is.</p>
-            <button className="travel" data-noadvance onClick={() => setPhase("idle")}>
+            <p>
+              {tour.stops.length} stops, {tour.sources.length} sources, every picture labelled for what it is.
+            </p>
+            <button className="travel" data-noadvance onClick={() => setPhase("cover")}>
               Back to the start
             </button>
           </div>
         </div>
-      )}
+      </div>
+    );
+  }
 
-      {phase !== "idle" && phase !== "done" && (
-        <div className="hud-bottom">
-          <button className={`round ${captions ? "on" : ""}`} data-noadvance onClick={() => setCaptions(!captions)} aria-label="Captions">
-            CC
-          </button>
-          <button className={`ask ${cState}`} data-noadvance onPointerDown={askDown} onPointerUp={askUp} onPointerCancel={askUp} aria-label="Hold to ask">
-            {cState === "connecting" ? "…" : cState === "listening" ? "Listening" : cState === "thinking" ? "…" : cState === "speaking" ? "Speaking" : "Hold to ask"}
-          </button>
-          <button className="round" data-noadvance onClick={() => setSheet(sheet === "sources" ? "none" : "sources")} aria-label="Sources">
-            ≡
-          </button>
-          <button className="leave" data-noadvance onClick={leave} aria-label="Leave">
-            ×
-          </button>
-        </div>
-      )}
+  const img = beat ? beatImage(tour, beat) : undefined;
+  const spots = beat?.kind === "card" ? cardHotspots(beat.card) : [];
+  const nextStop = beat?.kind === "walk" ? tour.stops[beat.stopIndex + 1] : undefined;
+  const talkingLoop = stop.arrival.talkingPortrait?.video;
 
-      {captions && phase !== "idle" && (live || cState === "listening" || cState === "thinking") && (
-        <div className="live-caption" data-noadvance>
-          {cState === "listening" ? "Listening…" : cState === "thinking" && !live ? `${tour.companion.name} is thinking…` : live}
-        </div>
-      )}
-      {cState === "error" && <div className="live-caption error">Voice unavailable: {cDetail}</div>}
+  return (
+    <div className={`player ${paused ? "paused" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
+      {/* progress: one segment per stop, filling beat by beat as she speaks */}
+      <div className="progress">
+        {tour.stops.map((s, i) => {
+          const fill = !beat ? 0 : i < beat.stopIndex ? 1 : i > beat.stopIndex ? 0 : (beat.indexInStop + beatFrac) / beat.beatsInStop;
+          return (
+            <span key={s.id} className={fill >= 1 ? "done" : fill > 0 ? "cur" : ""}>
+              <i style={{ width: `${Math.min(100, fill * 100)}%` }} />
+            </span>
+          );
+        })}
+      </div>
 
-      {claim && (
-        <div className="sheet" data-noadvance onClick={() => setClaim(null)}>
-          <div className="sheet-body">
-            <span className={`pill ${claim.confidence}`}>{claim.confidence}</span>
-            <p className="claim-text">{claim.text}</p>
-            {(() => {
-              const s = tour.sources.find((x) => x.id === claim.sourceId);
-              return s ? (
-                <a href={s.url} target="_blank" rel="noreferrer">
-                  {s.title} <small>({s.license})</small>
-                </a>
-              ) : null;
-            })()}
+      <div className="hud-top">
+        <button className={`companion-chip ${speakingUi ? "speaking" : ""}`} data-noadvance onClick={() => setSheet(!sheet)}>
+          {speakingUi && talkingLoop ? <video src={talkingLoop} muted autoPlay loop playsInline /> : <img src={tour.companion.portrait} alt="" />}
+          <span>
+            <b>{tour.companion.name}</b>
+            <small>{stop.title}</small>
+          </span>
+        </button>
+        <div className="year">{tour.year}</div>
+      </div>
+
+      {/* ------------------------------ the screen ----------------------------- */}
+      {beat?.kind === "walk" && nextStop ? (
+        <div className="walk">
+          <div className="bg fill blur" style={{ backgroundImage: `url(${img})` }} />
+          <div className="walk-body">
+            <small>Walking on</small>
+            <h2>{nextStop.title}</h2>
+            <div className="walk-dots">
+              <span />
+              <span />
+              <span />
+            </div>
           </div>
         </div>
-      )}
-
-      {sheet === "sources" && (
-        <div className="sheet" data-noadvance onClick={() => setSheet("none")}>
-          <div className="sheet-body" onClick={(e) => e.stopPropagation()}>
-            <h3>Sources at this stop</h3>
-            {sourcesForStop.length === 0 && <p className="muted">No claims cited on these cards.</p>}
-            <ul>
-              {sourcesForStop.map((s) => (
-                <li key={s.id}>
-                  <a href={s.url} target="_blank" rel="noreferrer">
-                    {s.title}
-                  </a>{" "}
-                  <small>({s.license})</small>
-                </li>
-              ))}
-            </ul>
-            <h3>Pictures</h3>
-            <ul>
-              {stop.cards.map((c) =>
-                c.kind === "archive" ? (
-                  <li key={c.id}>
-                    Real item: {c.credit.title}, {c.credit.holder}, {c.credit.license}
-                  </li>
-                ) : c.kind === "thenNow" && c.now.credit ? (
-                  <li key={c.id}>
-                    Today photograph: {c.now.credit.title}, {c.now.credit.holder}, {c.now.credit.license}
-                  </li>
-                ) : null,
-              )}
-              <li className="muted">Everything marked Reconstruction was generated for this tour.</li>
-            </ul>
-            <h3>Provenance</h3>
-            <p className="muted mono">
-              {tour.provenance.models.join(", ")} · ${tour.provenance.costUsd.toFixed(2)} · {tour.provenance.reviewedBy === "human" ? "reviewed" : "not yet reviewed"}
-            </p>
-          </div>
+      ) : (
+        <div className="slide">
+          {img && <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused ? "hold" : ""}`} src={img} alt="" />}
+          {beat?.kind === "arrival" && (
+            <div className="titlecard" key={beat.key}>
+              <small>
+                Stop {stop.order} of {tour.stops.length}
+              </small>
+              <h2>{stop.title}</h2>
+            </div>
+          )}
+          {spots.map((h) => (
+            <button key={h.id} className={`poi ${hotspot?.id === h.id ? "active" : ""}`} style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%` }} data-noadvance onClick={() => openHotspot(h)} aria-label={h.label}>
+              <i />
+              {hotspot?.id === h.id && <em>{h.label}</em>}
+            </button>
+          ))}
         </div>
       )}
 
-      {sheet === "companion" && (
-        <div className="sheet" data-noadvance onClick={() => setSheet("none")}>
+      {/* bottom shade so the controls always read over any image */}
+      <div className="hud-shade" />
+      <div className="hud-bottom">
+        <button className={`ctl ${paused ? "on" : ""}`} data-noadvance onClick={togglePause}>
+          {paused ? "Resume" : "Pause tour"}
+        </button>
+        <button className={`ask ${cState}`} data-noadvance onPointerDown={askDown} onPointerUp={askUp} onPointerCancel={askUp} aria-label="Hold to ask">
+          {cState === "connecting" ? "…" : cState === "listening" ? "Listening" : cState === "thinking" ? "…" : cState === "speaking" ? "Speaking" : "Hold to ask"}
+        </button>
+        <button className="leave" data-noadvance onClick={leave} aria-label="Leave">
+          ×
+        </button>
+      </div>
+
+      {(cState === "listening" || cState === "thinking" || cState === "connecting") && (
+        <div className="ask-state" data-noadvance>
+          {cState === "listening" ? "Listening…" : `${tour.companion.name} is thinking…`}
+        </div>
+      )}
+      {cState === "error" && <div className="ask-state error">Voice unavailable: {cDetail}</div>}
+
+      {sheet && (
+        <div className="sheet" data-noadvance onClick={() => setSheet(false)}>
           <div className="sheet-body" onClick={(e) => e.stopPropagation()}>
             <div className="idle-companion">
               <img src={tour.companion.portrait} alt="" />
@@ -399,176 +474,11 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
             </div>
             <p>{tour.companion.bio}</p>
             <p className="muted">
-              {tour.companion.name} is not a real historical person. She is built from the records of people like her, and she knows nothing after {tour.yearRange[1]}.
+              {tour.companion.name} is not a real historical person. She is built from the records of people like her, and she knows nothing after {tour.yearRange[1]}. Everything you see is a reconstruction; sources travel with the tour's data.
             </p>
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function ArrivalView({ stop, tour, onDone }: { stop: Stop; tour: Tour; onDone: () => void }) {
-  const [canSkip, setCanSkip] = useState(false);
-  const lineRef = useRef<HTMLAudioElement | null>(null);
-  const a = stop.arrival;
-  useEffect(() => {
-    const t = window.setTimeout(() => setCanSkip(true), 2000);
-    if (!a.talkingPortrait && a.line.audio && lineRef.current) {
-      lineRef.current.src = a.line.audio;
-      lineRef.current.play().catch(() => undefined);
-    }
-    const total = Math.max(a.talkingPortrait?.durationSec ?? 0, a.line.durationSec ?? 0, a.livingScene?.durationSec ?? 0, 4) * 1000 + 800;
-    const done = window.setTimeout(onDone, total);
-    return () => {
-      window.clearTimeout(t);
-      window.clearTimeout(done);
-    };
-  }, [a, onDone]);
-  return (
-    <div className="arrival">
-      <audio ref={lineRef} />
-      {a.livingScene ? (
-        <video className="bg" src={a.livingScene.video} poster={a.livingScene.poster} autoPlay playsInline loop={!a.talkingPortrait} />
-      ) : (
-        <div className="bg fill" style={{ backgroundImage: `url(${tour.cover.image})` }} />
-      )}
-      <span className="badge">Reconstruction</span>
-      {a.talkingPortrait && (
-        <div className="portrait-inset">
-          <video src={a.talkingPortrait.video} poster={a.talkingPortrait.poster} autoPlay playsInline />
-        </div>
-      )}
-      <div className="caption arrival-caption">
-        <p className="spoken">“{a.line.text}”</p>
-        <small className="muted">{canSkip ? "Tap to continue" : ""}</small>
-      </div>
-    </div>
-  );
-}
-
-function CardView({ card, tour, paused, onClaim, onThenNow }: { card: Card; tour: Tour; paused: boolean; onClaim: (c: Claim) => void; onThenNow: (pos: number) => void }) {
-  return (
-    <div className={`card kind-${card.kind}`}>
-      {card.kind === "image" && (
-        <>
-          <img className={`bg drift ${paused ? "hold" : ""}`} src={card.media.image} alt={card.media.alt ?? ""} />
-          <span className="badge">{card.media.origin === "reconstruction" ? "Reconstruction" : card.media.origin}</span>
-        </>
-      )}
-      {card.kind === "video" && (
-        <>
-          <video className="bg" src={card.media.video} poster={card.media.poster} autoPlay playsInline loop muted={false} />
-          <span className="badge">Reconstruction</span>
-        </>
-      )}
-      {card.kind === "thenNow" && <ThenNow thenSrc={card.then.image} nowSrc={card.now.image} year={tour.year} onUsed={onThenNow} />}
-      {card.kind === "archive" && <ArchiveView card={card} />}
-      {card.kind === "text" && (
-        <div className="text-card">
-          <p>{card.text}</p>
-        </div>
-      )}
-      {(card.caption || card.claims.length > 0) && (
-        <div className="caption">
-          {card.caption && <p>{card.caption}</p>}
-          {card.claims.length > 0 && (
-            <div className="chips" data-noadvance>
-              {card.claims.map((k, i) => (
-                <button key={i} className={`pill ${k.confidence}`} onClick={() => onClaim(k)}>
-                  {k.confidence}
-                </button>
-              ))}
-              <span className="pill src">
-                {new Set(card.claims.map((k) => k.sourceId)).size} source{new Set(card.claims.map((k) => k.sourceId)).size === 1 ? "" : "s"}
-              </span>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ThenNow({ thenSrc, nowSrc, year, onUsed }: { thenSrc: string; nowSrc: string; year: number; onUsed: (pos: number) => void }) {
-  const [pos, setPos] = useState(0.15);
-  const max = useRef(0.15);
-  const dragging = useRef(false);
-  const ref = useRef<HTMLDivElement | null>(null);
-  const update = (clientX: number) => {
-    const r = ref.current!.getBoundingClientRect();
-    const p = Math.max(0.02, Math.min(0.98, (clientX - r.left) / r.width));
-    setPos(p);
-    if (p > max.current) max.current = p;
-  };
-  return (
-    <div
-      ref={ref}
-      className="thennow"
-      onPointerDown={(e) => {
-        dragging.current = true;
-        (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-      }}
-      onPointerMove={(e) => dragging.current && update(e.clientX)}
-      onPointerUp={() => {
-        if (!dragging.current) return;
-        dragging.current = false;
-        if (max.current > 0.16) onUsed(Math.round(max.current * 100));
-      }}
-    >
-      <img className="bg" src={thenSrc} alt={`${year}`} />
-      <img className="bg now" src={nowSrc} alt="Today" style={{ clipPath: `inset(0 0 0 ${pos * 100}%)` }} />
-      <span className="badge">Reconstruction</span>
-      <span className="tn-label left">{year}</span>
-      <span className="tn-label right">Today</span>
-      <div className="tn-handle" style={{ left: `${pos * 100}%` }}>
-        <span>◂ ▸</span>
-      </div>
-    </div>
-  );
-}
-
-function ArchiveView({ card }: { card: Extract<Card, { kind: "archive" }> }) {
-  const [alive, setAlive] = useState(false);
-  useEffect(() => {
-    if (!card.animated) return;
-    const t = window.setTimeout(() => setAlive(true), 2000);
-    return () => window.clearTimeout(t);
-  }, [card]);
-  return (
-    <div className="archive">
-      <div className="frame">
-        <img src={card.media.image} alt={card.credit.title} />
-        {card.animated && <video className={alive ? "show" : ""} src={card.animated.video} poster={card.animated.poster} autoPlay playsInline loop />}
-      </div>
-      <span className="badge real">{alive ? "Real picture, animated" : "Real picture"}</span>
-      <div className="credit">
-        {card.credit.title} · {card.credit.holder} · {card.credit.license}
-      </div>
-    </div>
-  );
-}
-
-function TransitionView({ stop, nextStop, onDone }: { stop: Stop; nextStop?: Stop; onDone: () => void }) {
-  const ref = useRef<HTMLAudioElement | null>(null);
-  const t = stop.transitionOut!;
-  useEffect(() => {
-    if (t.audio && ref.current) {
-      ref.current.src = t.audio;
-      ref.current.play().catch(() => undefined);
-    }
-    const done = window.setTimeout(onDone, ((t.durationSec ?? 5) + 1) * 1000);
-    return () => window.clearTimeout(done);
-  }, [t, onDone]);
-  const bg = nextStop?.arrival.livingScene?.poster;
-  return (
-    <div className="transition">
-      <audio ref={ref} />
-      {bg && <div className="bg fill blur" style={{ backgroundImage: `url(${bg})` }} />}
-      <div className="transition-body">
-        <small className="muted">Walking on{nextStop ? ` to ${nextStop.title}` : ""}</small>
-        <p className="spoken">“{t.text}”</p>
-      </div>
     </div>
   );
 }

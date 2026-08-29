@@ -22,6 +22,7 @@ import type { MediaProvider } from "./providers/types.ts";
 import { CompanionDossier, StopDossier, StopScript } from "./shapes.ts";
 import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
+import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
 import { ALL_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
 import { scriptStop } from "./stages/script.ts";
@@ -160,7 +161,39 @@ async function main(): Promise<void> {
   }
   log(`assets: ${provider.hits} cached, ${provider.misses} generated`);
 
-  // 6. Assemble and publish
+  // 6. Points of interest inside the finished stills
+  const hotspots: StopHotspots[] = [];
+  const wantCards = !args.steps || args.steps.has("cards");
+  if (wantCards) {
+    for (const script of scripts) {
+      const f = path.join(work, `hotspots.${script.stopId}.${provider.name}.${args.quality}.json`);
+      let h = await readJson<StopHotspots>(f);
+      if (!h) {
+        log(`hotspots ${script.stopId}`);
+        const m = media.find((x) => x.stopId === script.stopId)!;
+        if (provider.name === "mock") {
+          // Offline stand-in: two fixed points per image card, spoken via the mock voice.
+          h = { stopId: script.stopId, cards: [] };
+          for (const sc of script.cards) {
+            if (sc.kind !== "image" || !m.cards.find((c) => c.id === sc.id)?.image) continue;
+            const points = [];
+            for (const [i, spot] of [{ x: 0.32, y: 0.55, label: "a passer-by" }, { x: 0.7, y: 0.42, label: "a shopfront" }].entries()) {
+              const text = `Look there, love: ${spot.label}.`;
+              const audio = await provider.tts({ text, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `mock poi ${sc.id}/${i + 1}` }).catch(() => undefined);
+              points.push({ id: `${sc.id}_p${i + 1}`, ...spot, text, audio });
+            }
+            h.cards.push({ cardId: sc.id, points });
+          }
+        } else {
+          h = await makeStopHotspots(recipe, script, dossiers.find((d) => d.stopId === script.stopId)!, companion, m, llm, provider, args.quality);
+        }
+        await writeJson(f, h);
+      } else log(`hotspots ${script.stopId} (cached)`);
+      hotspots.push(h);
+    }
+  }
+
+  // 7. Assemble and publish
   log("assemble");
   const { tour, dir } = await assemble({
     recipe,
@@ -170,6 +203,7 @@ async function main(): Promise<void> {
     archives,
     character,
     media,
+    hotspots,
     ledger,
     publicBaseUrl: env.publicBaseUrl,
     toursDir: dirs.tours,

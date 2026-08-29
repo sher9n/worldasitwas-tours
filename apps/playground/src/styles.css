@@ -53,10 +53,46 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .player .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .player .bg.fill { background-size: cover; background-position: center; }
 .player .bg.blur { filter: blur(14px) brightness(.5); transform: scale(1.1); }
-.player .drift { animation: drift 24s ease-in-out infinite alternate; }
-.player .drift.hold { animation-play-state: paused; }
-@keyframes drift { from { transform: scale(1); } to { transform: scale(1.06); } }
-@media (prefers-reduced-motion: reduce) { .player .drift { animation: none; } }
+.slide, .walk { position: absolute; inset: 0; }
+/* A visible, cinematic push. Two directions alternate so consecutive slides breathe differently. */
+.kenburns { will-change: transform; }
+.kenburns.kb-a { animation: kb-a 16s ease-out forwards; }
+.kenburns.kb-b { animation: kb-b 16s ease-out forwards; }
+.kenburns.hold { animation-play-state: paused; }
+@keyframes kb-a { from { transform: scale(1) translate(0, 0); } to { transform: scale(1.14) translate(-2.2%, -1.6%); } }
+@keyframes kb-b { from { transform: scale(1.14) translate(2%, 1.4%); } to { transform: scale(1.02) translate(0, 0); } }
+@media (prefers-reduced-motion: reduce) { .kenburns { animation: none; } }
+
+/* stop title over the arrival still */
+.titlecard { position: absolute; left: 22px; right: 22px; top: 34%; z-index: 4; text-shadow: 0 2px 18px rgba(0,0,0,.8); animation: titlein 1s ease-out both, titleout 1s ease-in 3.4s both; }
+.titlecard small { display: block; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; opacity: .85; margin-bottom: 8px; }
+.titlecard h2 { font-family: "Fraunces", Georgia, serif; font-size: 40px; line-height: 1.05; margin: 0; }
+@keyframes titlein { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes titleout { from { opacity: 1; } to { opacity: 0; } }
+
+/* walking transition */
+.walk-body { position: absolute; left: 24px; right: 24px; bottom: 200px; z-index: 4; text-shadow: 0 1px 12px rgba(0,0,0,.8); }
+.walk-body small { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+.walk-body h2 { font-family: "Fraunces", Georgia, serif; font-size: 34px; margin: 6px 0 14px; }
+.walk-dots { display: flex; gap: 10px; }
+.walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: #fff; opacity: .25; animation: stepdot 1.4s ease-in-out infinite; }
+.walk-dots span:nth-child(2) { animation-delay: .45s; }
+.walk-dots span:nth-child(3) { animation-delay: .9s; }
+@keyframes stepdot { 0%, 100% { opacity: .25; transform: none; } 50% { opacity: 1; transform: translateY(-4px); } }
+
+/* points of interest */
+.poi { position: absolute; z-index: 5; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; padding: 14px; }
+.poi i { display: block; width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.95); box-shadow: 0 0 0 3px rgba(0,0,0,.35); animation: poipulse 2s ease-out infinite; }
+.poi.active i { background: var(--accent); animation: none; box-shadow: 0 0 0 4px rgba(255,255,255,.8); }
+.poi em { position: absolute; left: 50%; top: -8px; transform: translate(-50%, -100%); font-style: normal; font-size: 12px; font-weight: 600; white-space: nowrap; background: rgba(0,0,0,.7); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.4); }
+@keyframes poipulse { 0% { box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 0 0 0 rgba(255,255,255,.7); } 70% { box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 0 0 16px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 0 0 0 rgba(255,255,255,0); } }
+
+/* speaking ring on her chip, paused chip */
+.companion-chip.speaking img { animation: speakring 1.6s ease-in-out infinite; }
+@keyframes speakring { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.0); } 50% { box-shadow: 0 0 0 5px rgba(255,255,255,.35); } }
+.paused-chip { position: absolute; top: 108px; right: 14px; z-index: 6; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.4); padding: 4px 10px; border-radius: 999px; }
+.tn-handle.nudge { animation: nudge 2.2s ease-in-out 1s 2; }
+@keyframes nudge { 0%, 100% { transform: translateX(-50%); } 40% { transform: translateX(calc(-50% + 34px)); } }
 
 .progress { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; gap: 4px; z-index: 5; }
 .progress span { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.3); overflow: hidden; }
@@ -83,7 +119,14 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .pill.interpretation { background: var(--interp); }
 .pill.src { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.4); }
 
+/* soft shade over the lowest tenth so controls read on any image */
+.hud-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 16%; z-index: 5; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.55)); }
 .hud-bottom { position: absolute; left: 0; right: 0; bottom: 22px; display: flex; justify-content: center; align-items: center; gap: 18px; z-index: 6; }
+.ctl { font: 600 12px "Source Sans 3", sans-serif; letter-spacing: .04em; color: #fff; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: 10px 16px; cursor: pointer; }
+.ctl.on { background: #fff; color: #1b2230; }
+.companion-chip video { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+.ask-state { position: absolute; left: 50%; transform: translateX(-50%); bottom: 108px; z-index: 7; background: rgba(0,0,0,.6); border-radius: 999px; padding: 6px 14px; font-size: 13px; }
+.ask-state.error { background: rgba(122,31,31,.85); border-radius: 10px; }
 .round { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.4); color: #fff; font: 700 12px "Source Sans 3", sans-serif; cursor: pointer; }
 .round.on { background: #fff; color: #1b2230; }
 .leave { position: absolute; right: 18px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.4); color: #fff; font-size: 18px; cursor: pointer; }

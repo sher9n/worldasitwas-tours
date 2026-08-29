@@ -168,6 +168,43 @@ export const STOP_SCRIPT_SCHEMA = {
   },
 } as const;
 
+/** What the picture researcher finds inside one generated still. */
+export const HotspotPlan = z.object({
+  points: z.array(
+    z.object({
+      label: z.string(),
+      x: z.number(),
+      y: z.number(),
+      line: z.string(),
+      confidence: z.enum(["high", "medium", "low"]),
+    }),
+  ),
+});
+export type HotspotPlan = z.infer<typeof HotspotPlan>;
+
+export const HOTSPOT_PLAN_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["points"],
+  properties: {
+    points: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["label", "x", "y", "line", "confidence"],
+        properties: {
+          label: { type: "string", description: "Two or three words naming the thing, e.g. 'the crossing boy'." },
+          x: { type: "number", description: "Horizontal centre of the thing in the image, 0 (left) to 1 (right)." },
+          y: { type: "number", description: "Vertical centre of the thing in the image, 0 (top) to 1 (bottom)." },
+          line: { type: "string", description: "What she says about it when tapped: one or two spoken sentences in her voice, under 35 words, grounded in the dossier." },
+          confidence: { type: "string", enum: ["high", "medium", "low"], description: "How sure you are that the thing is at that position." },
+        },
+      },
+    },
+  },
+} as const;
+
 export const ArchivePick = z.object({
   nowPhotoIndex: z.number().int(),
   archiveIndex: z.number().int(),

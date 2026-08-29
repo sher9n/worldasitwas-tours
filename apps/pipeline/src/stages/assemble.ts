@@ -5,11 +5,12 @@
  */
 import fs from "node:fs/promises";
 import path from "node:path";
-import { parseTour, type Card, type Recipe, type Source, type Stop, type Tour } from "@timetravel/schema";
+import { parseTour, type Card, type Hotspot, type Recipe, type Source, type Stop, type Tour } from "@timetravel/schema";
 import { probeDuration } from "../ffmpeg.ts";
 import type { Asset } from "../providers/types.ts";
 import type { CompanionDossier, StopDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
+import type { StopHotspots } from "./hotspots.ts";
 import type { CharacterSheet, StopMedia } from "./media.ts";
 import type { Ledger } from "../ledger.ts";
 
@@ -32,6 +33,7 @@ export interface AssembleInput {
   archives: StopArchive[];
   character: CharacterSheet;
   media: StopMedia[];
+  hotspots?: StopHotspots[];
   ledger: Ledger;
   publicBaseUrl: string;
   toursDir: string;
@@ -137,6 +139,7 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
     const ambience = await m.put(media.ambience, `s${n}_ambience`);
     const transitionAudio = await m.put(media.transitionAudio, `s${n}_transition`);
 
+    const stopHot = input.hotspots?.find((h) => h.stopId === script.stopId);
     const cards: Card[] = [];
     for (let c = 0; c < script.cards.length; c++) {
       const sc = script.cards[c];
@@ -146,7 +149,12 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       const claims = sc.claims
         .map((k) => ({ text: k.text, confidence: k.confidence, sourceId: resolveSource(k.sourceTitle) }))
         .filter((k): k is { text: string; confidence: "known" | "likely" | "interpretation"; sourceId: string } => Boolean(k.sourceId));
-      const base = { id: sc.id, caption: sc.caption.slice(0, 280) || undefined, narration, claims };
+      const hotspots: Hotspot[] = [];
+      for (const [pi, p] of (stopHot?.cards.find((x) => x.cardId === sc.id)?.points ?? []).entries()) {
+        const audioFile = await m.put(p.audio, `s${n}_c${c + 1}_poi${pi + 1}`);
+        hotspots.push({ id: p.id, x: p.x, y: p.y, label: p.label, line: { text: p.text, audio: audioFile?.url, durationSec: audioFile?.durationSec } });
+      }
+      const base = { id: sc.id, caption: sc.caption.slice(0, 280) || undefined, narration, claims, hotspots };
 
       if (sc.kind === "thenNow" && cm?.then && archive?.nowPhoto) {
         const then = await m.put(cm.then, `s${n}_c${c + 1}_then`);

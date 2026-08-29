@@ -15,6 +15,8 @@ export interface StructuredCall<T> {
   zod: ZodSchema<T>;
   system: string;
   user: string;
+  /** Data URLs or https URLs shown to the model alongside the user text. */
+  images?: string[];
   webSearch?: boolean;
   effort?: "low" | "medium" | "high";
   stage: string;
@@ -36,11 +38,14 @@ export class Llm {
   async structured<T>(call: StructuredCall<T>): Promise<T> {
     return metered(this.ledger, { stage: call.stage, provider: "openai", endpoint: this.model, note: call.note }, async () => {
       const tools = call.webSearch ? [{ type: "web_search" as const }] : undefined;
+      const userContent: unknown = call.images?.length
+        ? [{ type: "input_text", text: call.user }, ...call.images.map((u) => ({ type: "input_image", image_url: u }))]
+        : call.user;
       const req: Record<string, unknown> = {
         model: this.model,
         input: [
           { role: "system", content: call.system },
-          { role: "user", content: call.user },
+          { role: "user", content: userContent },
         ],
         text: { format: { type: "json_schema", name: call.name, schema: call.jsonSchema, strict: true } },
         reasoning: { effort: call.effort ?? "medium" },

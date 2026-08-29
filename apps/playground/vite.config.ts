@@ -2,10 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 
-// HTTPS so a phone on the same network can use its microphone (getUserMedia
-// needs a secure context). The API is proxied so the player is same-origin.
+// Plain HTTP by default: http://localhost is a secure context, so the mic works
+// on this machine with no certificate warning. Set PLAYGROUND_HTTPS=1 when a
+// phone on the network needs to connect (getUserMedia needs HTTPS off-localhost).
+const https = process.env.PLAYGROUND_HTTPS === "1";
 export default defineConfig({
-  plugins: [react(), basicSsl()],
+  plugins: https ? [react(), basicSsl()] : [react()],
   server: {
     host: true,
     port: 5173,

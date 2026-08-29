@@ -37,6 +37,7 @@ function minimalTour(): Tour {
             media: { image: "https://cdn/c1.webp", origin: "reconstruction" },
             caption: "A street.",
             claims: [{ text: "Fare is 6d", confidence: "known", sourceId: "src1" }],
+            hotspots: [],
           },
         ],
       },
@@ -65,6 +66,7 @@ test("thenNow now image cannot be a reconstruction", () => {
     then: { image: "https://cdn/then.webp", origin: "reconstruction" },
     now: { image: "https://cdn/now.webp", origin: "reconstruction" },
     claims: [],
+    hotspots: [],
   });
   assert.throws(() => parseTour(t), /photograph or archive/);
 });

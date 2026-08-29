@@ -35,7 +35,7 @@ const tour: Tour = {
       geo: { lat: 51.5139, lng: -0.1015 },
       arrival: { line: { text: "See the dome?" } },
       cards: [
-        { id: "s01c01", kind: "image", media: { image: "http://x/a.webp", origin: "reconstruction" }, caption: "Busy.", claims: [{ text: "Fare 6d", confidence: "known", sourceId: "src1" }] },
+        { id: "s01c01", kind: "image", media: { image: "http://x/a.webp", origin: "reconstruction" }, caption: "Busy.", claims: [{ text: "Fare 6d", confidence: "known", sourceId: "src1" }], hotspots: [] },
       ],
     },
   ],

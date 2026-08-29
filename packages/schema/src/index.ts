@@ -83,12 +83,24 @@ export const CompanionContext = z.object({
 });
 export type CompanionContext = z.infer<typeof CompanionContext>;
 
+/** A tappable point of interest inside a still: she turns her voice to it. */
+export const Hotspot = z.object({
+  id: z.string().min(1),
+  /** Position in the image, 0..1 from the top-left. */
+  x: z.number().min(0).max(1),
+  y: z.number().min(0).max(1),
+  label: z.string().min(1).max(40),
+  line: SpokenLine,
+});
+export type Hotspot = z.infer<typeof Hotspot>;
+
 const CardBase = z.object({
   id: z.string().min(1),
   caption: z.string().max(280).optional(),
   narration: SpokenLine.optional(),
   claims: z.array(Claim).default([]),
   companionContext: CompanionContext.optional(),
+  hotspots: z.array(Hotspot).default([]),
 });
 
 export const ImageCard = CardBase.extend({
