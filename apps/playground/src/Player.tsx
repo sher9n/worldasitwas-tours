@@ -398,7 +398,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
 
       <div className="hud-top">
         <button className={`companion-chip ${speakingUi ? "speaking" : ""}`} data-noadvance onClick={() => setSheet(!sheet)}>
-          {speakingUi && talkingLoop ? <video src={talkingLoop} muted autoPlay loop playsInline /> : <img src={tour.companion.portrait} alt="" />}
+          <img src={tour.companion.portrait} alt="" />
           <span>
             <b>{tour.companion.name}</b>
             <small>{stop.title}</small>
@@ -441,16 +441,23 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
         </div>
       )}
 
+      {/* her, talking: the large circle that makes the voice a person */}
+      {speakingUi && talkingLoop && (
+        <div className="voice-circle" data-noadvance>
+          <video key={talkingLoop} src={talkingLoop} muted autoPlay loop playsInline />
+        </div>
+      )}
+
       {/* bottom shade so the controls always read over any image */}
       <div className="hud-shade" />
       <div className="hud-bottom">
-        <button className={`ctl ${paused ? "on" : ""}`} data-noadvance onClick={togglePause}>
-          {paused ? "Resume" : "Pause tour"}
+        <button className={`side-ctl ${paused ? "on" : ""}`} data-noadvance onClick={togglePause} aria-label={paused ? "Resume tour" : "Pause tour"}>
+          {paused ? "▶" : "❚❚"}
         </button>
         <button className={`ask ${cState}`} data-noadvance onPointerDown={askDown} onPointerUp={askUp} onPointerCancel={askUp} aria-label="Hold to ask">
           {cState === "connecting" ? "…" : cState === "listening" ? "Listening" : cState === "thinking" ? "…" : cState === "speaking" ? "Speaking" : "Hold to ask"}
         </button>
-        <button className="leave" data-noadvance onClick={leave} aria-label="Leave">
+        <button className="side-ctl" data-noadvance onClick={leave} aria-label="Leave the tour">
           ×
         </button>
       </div>

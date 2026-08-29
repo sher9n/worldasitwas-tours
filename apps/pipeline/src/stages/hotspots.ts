@@ -41,10 +41,13 @@ export async function makeStopHotspots(
 ): Promise<StopHotspots> {
   const out: StopHotspots = { stopId: script.stopId, cards: [] };
   for (const sc of script.cards) {
-    if (sc.kind !== "image") continue;
+    // Both plain image screens and the year-view of a then/now pair are
+    // full-bleed stills in the player, so both get points of interest.
+    if (sc.kind !== "image" && sc.kind !== "thenNow") continue;
     const cm = media.cards.find((c) => c.id === sc.id);
-    if (!cm?.image) continue;
-    const imageUrl = await toDataUrl(cm.image);
+    const still = sc.kind === "thenNow" ? cm?.then : cm?.image;
+    if (!still) continue;
+    const imageUrl = await toDataUrl(still);
     if (!imageUrl) continue;
 
     let plan: HotspotPlan;
