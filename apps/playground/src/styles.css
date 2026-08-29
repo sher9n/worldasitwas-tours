@@ -80,12 +80,42 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .walk-dots span:nth-child(3) { animation-delay: .9s; }
 @keyframes stepdot { 0%, 100% { opacity: .25; transform: none; } 50% { opacity: 1; transform: translateY(-4px); } }
 
-/* points of interest */
-.poi { position: absolute; z-index: 5; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; padding: 8px; }
-.poi i { display: block; width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.95); box-shadow: 0 0 0 3px rgba(0,0,0,.35); animation: poipulse 2s ease-out infinite; }
-.poi.active i { background: var(--accent); animation: none; box-shadow: 0 0 0 4px rgba(255,255,255,.8); }
-.poi em { position: absolute; left: 50%; top: -8px; transform: translate(-50%, -100%); font-style: normal; font-size: 12px; font-weight: 600; white-space: nowrap; background: rgba(0,0,0,.7); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.4); }
-@keyframes poipulse { 0% { box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 0 0 0 rgba(255,255,255,.7); } 70% { box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 0 0 16px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 0 0 0 rgba(255,255,255,0); } }
+/* spotlight: the image leans toward a tapped point, the rest dims */
+.zoomer { position: absolute; inset: 0; transition: transform 1.4s cubic-bezier(.2, .7, .2, 1); will-change: transform; }
+.zoomer.focus { transform: scale(1.07); }
+.vignette { position: absolute; inset: 0; z-index: 2; pointer-events: none; animation: vin .6s ease-out both; }
+@keyframes vin { from { opacity: 0; } to { opacity: 1; } }
+
+/* points of interest: fine invitations idle, a blooming ring when she looks */
+.poi { position: absolute; z-index: 5; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; padding: 8px; color: #fff; transition: opacity .4s; }
+.poi i { position: relative; display: block; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.95); box-shadow: 0 0 0 1.5px rgba(0,0,0,.3), 0 0 0 5px rgba(255,255,255,.16); animation: poishimmer 2.6s ease-in-out infinite; }
+.poi.dim { opacity: .15; }
+.poi.active i { background: var(--accent); box-shadow: 0 0 0 2px rgba(255,255,255,.95); animation: none; }
+.poi.active i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85); transform: translate(-50%, -50%); animation: ringbreathe 2.4s ease-in-out infinite; }
+/* hairline connector between ring and label */
+.poi.active::before { content: ""; position: absolute; left: 50%; top: -16px; width: 1px; height: 16px; background: rgba(255,255,255,.6); }
+.poi.active.below::before { top: auto; bottom: -16px; }
+/* the label: frosted glass, legible over smoke or sky */
+.poi em {
+  position: absolute; left: 50%; top: -18px; transform: translate(-50%, -100%);
+  font-style: normal; font: 600 11px "Source Sans 3", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #fff; white-space: nowrap;
+  background: rgba(12, 14, 18, .55); -webkit-backdrop-filter: blur(10px) saturate(1.3); backdrop-filter: blur(10px) saturate(1.3);
+  border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 7px 13px; box-shadow: 0 4px 16px rgba(0,0,0,.35);
+  animation: chipin .3s ease-out both;
+}
+.poi.below em { top: auto; bottom: -18px; transform: translate(-50%, 100%); }
+.poi.edge-l em { left: -8px; transform: translate(0, -100%); }
+.poi.edge-l.below em { transform: translate(0, 100%); }
+.poi.edge-r em { left: auto; right: -8px; transform: translate(0, -100%); }
+.poi.edge-r.below em { transform: translate(0, 100%); }
+@keyframes chipin { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+@keyframes poishimmer { 0%, 100% { box-shadow: 0 0 0 1.5px rgba(0,0,0,.3), 0 0 0 5px rgba(255,255,255,.16); } 50% { box-shadow: 0 0 0 1.5px rgba(0,0,0,.3), 0 0 0 9px rgba(255,255,255,.05); } }
+@keyframes ringbreathe { 0%, 100% { width: 44px; height: 44px; opacity: .85; } 50% { width: 52px; height: 52px; opacity: .55; } }
+@media (prefers-reduced-motion: reduce) {
+  .zoomer { transition: none; }
+  .zoomer.focus { transform: none; }
+  .poi i, .poi.active i::after { animation: none; }
+}
 
 /* speaking ring on her chip, paused chip */
 .companion-chip.speaking img { animation: speakring 1.6s ease-in-out infinite; }

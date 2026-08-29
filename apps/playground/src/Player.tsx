@@ -423,7 +423,17 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
         </div>
       ) : (
         <div className="slide">
-          {img && <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused ? "hold" : ""}`} src={img} alt="" />}
+          {img && (
+            <div className={`zoomer ${hotspot ? "focus" : ""}`} style={hotspot ? { transformOrigin: `${hotspot.x * 100}% ${hotspot.y * 100}%` } : undefined}>
+              <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
+            </div>
+          )}
+          {hotspot && (
+            <div
+              className="vignette"
+              style={{ background: `radial-gradient(circle at ${hotspot.x * 100}% ${hotspot.y * 100}%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,.52) 55%)` }}
+            />
+          )}
           {beat?.kind === "arrival" && (
             <div className="titlecard" key={beat.key}>
               <small>
@@ -432,12 +442,24 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               <h2>{stop.title}</h2>
             </div>
           )}
-          {spots.map((h) => (
-            <button key={h.id} className={`poi ${hotspot?.id === h.id ? "active" : ""}`} style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%` }} data-noadvance onClick={() => openHotspot(h)} aria-label={h.label}>
-              <i />
-              {hotspot?.id === h.id && <em>{h.label}</em>}
-            </button>
-          ))}
+          {spots.map((h) => {
+            const active = hotspot?.id === h.id;
+            const below = h.y < 0.28; // a high point gets its label underneath, clear of the HUD
+            const edge = h.x < 0.22 ? "edge-l" : h.x > 0.78 ? "edge-r" : "";
+            return (
+              <button
+                key={h.id}
+                className={`poi ${active ? "active" : ""} ${hotspot && !active ? "dim" : ""} ${below ? "below" : ""} ${edge}`}
+                style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%` }}
+                data-noadvance
+                onClick={() => openHotspot(h)}
+                aria-label={h.label}
+              >
+                <i />
+                {active && <em>{h.label}</em>}
+              </button>
+            );
+          })}
         </div>
       )}
 
