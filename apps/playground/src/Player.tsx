@@ -163,25 +163,40 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     } else if (phase === "transition") setPhase("cards");
   }, [phase, ci, si, tour]);
 
-  // Tap zones and hold-to-pause.
+  // Tap zones and hold-to-pause. A pointer that travels more than a few pixels
+  // is a drag (the then/now slider), never a tap, so it neither advances nor pauses.
+  const downAt = useRef<{ x: number; y: number } | null>(null);
+  const moved = useRef(false);
   const onPointerDown = (e: React.PointerEvent) => {
     if ((e.target as HTMLElement).closest("[data-noadvance]")) return;
     holding.current = false;
+    moved.current = false;
+    downAt.current = { x: e.clientX, y: e.clientY };
     holdTimer.current = window.setTimeout(() => {
+      if (moved.current) return;
       holding.current = true;
       setPaused(true);
       narrationRef.current?.pause();
     }, HOLD_MS);
   };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!downAt.current || moved.current) return;
+    if (Math.hypot(e.clientX - downAt.current.x, e.clientY - downAt.current.y) > 10) {
+      moved.current = true;
+      if (holdTimer.current) window.clearTimeout(holdTimer.current);
+    }
+  };
   const onPointerUp = (e: React.PointerEvent) => {
     if ((e.target as HTMLElement).closest("[data-noadvance]")) return;
     if (holdTimer.current) window.clearTimeout(holdTimer.current);
+    downAt.current = null;
     if (holding.current) {
       setPaused(false);
       narrationRef.current?.play().catch(() => undefined);
       holding.current = false;
       return;
     }
+    if (moved.current) return;
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     if (phase === "idle") return;
@@ -222,7 +237,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   }, [stop, tour]);
 
   return (
-    <div className={`player ${paused ? "paused" : ""}`} onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
+    <div className={`player ${paused ? "paused" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
       <audio ref={ambienceRef} />
       <audio ref={narrationRef} />
 
@@ -490,16 +505,15 @@ function ThenNow({ thenSrc, nowSrc, year, onUsed }: { thenSrc: string; nowSrc: s
     <div
       ref={ref}
       className="thennow"
-      data-noadvance
       onPointerDown={(e) => {
         dragging.current = true;
         (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-        update(e.clientX);
       }}
       onPointerMove={(e) => dragging.current && update(e.clientX)}
       onPointerUp={() => {
+        if (!dragging.current) return;
         dragging.current = false;
-        onUsed(Math.round(max.current * 100));
+        if (max.current > 0.16) onUsed(Math.round(max.current * 100));
       }}
     >
       <img className="bg" src={thenSrc} alt={`${year}`} />
