@@ -83,6 +83,23 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const beat: Beat | undefined = beats[bi];
   const stop = beat ? tour.stops[beat.stopIndex] : tour.stops[0];
 
+  // Cross-dissolve: the outgoing image lingers above the incoming one and fades,
+  // so a slide change reads as the camera moving on, not a picture swap.
+  const [fadeImg, setFadeImg] = useState<string | null>(null);
+  const lastImgRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (phase !== "playing" || !beat) return;
+    const current = beatImage(tour, beat);
+    const previous = lastImgRef.current;
+    lastImgRef.current = current;
+    if (previous && previous !== current) {
+      setFadeImg(previous);
+      const t = window.setTimeout(() => setFadeImg(null), 800);
+      return () => window.clearTimeout(t);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, bi]);
+
   const emit = useCallback((name: string, payload: Record<string, unknown> = {}) => onEvent(name, { tourId: tour.id, ...payload }), [onEvent, tour.id]);
 
   const companion = useMemo(() => {
@@ -125,7 +142,8 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   /* ------------------------------- flow core ------------------------------ */
 
   const clearBeatAudio = useCallback(() => {
-    beatState.current.voiceStop();
+    engine.current?.fadeStopVoice();
+    beatState.current.voiceStop = () => {};
     hotspotRef.current?.stop();
     hotspotRef.current = null;
     setHotspot(null);
@@ -224,15 +242,22 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     setBi(0);
   };
 
-  const togglePause = () => {
+  const togglePause = () => setPaused((p) => !p);
+
+  // Pause means silence and stillness, whatever was talking: her narration,
+  // an aside about a tapped point, or a live answer, and her circle freezes too.
+  const circleVideo = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    if (phase !== "playing") return;
     if (paused) {
-      setPaused(false);
-      engine.current?.resumeVoice();
-    } else {
-      setPaused(true);
       engine.current?.pauseVoice();
+      companionRef.current?.stopSpeaking();
+      circleVideo.current?.pause();
+    } else {
+      engine.current?.resumeVoice();
+      circleVideo.current?.play().catch(() => undefined);
     }
-  };
+  }, [paused, phase]);
 
   const holdTimer = useRef<number | null>(null);
   const downAt = useRef<{ x: number; y: number } | null>(null);
@@ -463,10 +488,12 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
         </div>
       )}
 
+      {fadeImg && <img className="fade-layer" src={fadeImg} alt="" />}
+
       {/* her, talking: the large circle that makes the voice a person */}
       {speakingUi && talkingLoop && (
         <div className="voice-circle" data-noadvance>
-          <video key={talkingLoop} src={talkingLoop} muted autoPlay loop playsInline />
+          <video ref={circleVideo} key={talkingLoop} src={talkingLoop} muted autoPlay loop playsInline />
         </div>
       )}
 
@@ -489,7 +516,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {cState === "listening" ? "Listening…" : `${tour.companion.name} is thinking…`}
         </div>
       )}
-      {cState === "error" && <div className="ask-state error">Voice unavailable: {cDetail}</div>}
+      {cState === "error" && <div className="ask-state error">Voice hiccup, hold to try again{cDetail ? ` (${cDetail.slice(0, 60)})` : ""}</div>}
 
       {sheet && (
         <div className="sheet" data-noadvance onClick={() => setSheet(false)}>

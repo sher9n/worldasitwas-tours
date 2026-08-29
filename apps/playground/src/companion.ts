@@ -122,12 +122,20 @@ export class CompanionSession {
 
   pttStart(): void {
     if (this.state !== "ready" && this.state !== "speaking") return;
-    // Cut her off if she is mid-sentence, then open the mic.
-    this.send({ type: "response.cancel" });
+    // Cut her off only if she is actually mid-sentence, then open the mic.
+    if (this.state === "speaking") this.send({ type: "response.cancel" });
     this.send({ type: "input_audio_buffer.clear" });
     const track = this.mic?.getAudioTracks()[0];
     if (track) track.enabled = true;
     this.setState("listening");
+  }
+
+  /** Stop a live answer mid-sentence (used by the tour's pause). */
+  stopSpeaking(): void {
+    if (this.state === "speaking") {
+      this.send({ type: "response.cancel" });
+      this.setState("ready");
+    }
   }
 
   pttEnd(): void {
@@ -170,12 +178,28 @@ export class CompanionSession {
       case "response.done":
         if (this.state === "speaking" || this.state === "thinking") this.setState("ready");
         break;
-      case "error":
-        this.setState("error", JSON.stringify(ev.error).slice(0, 200));
+      case "error": {
+        // Housekeeping notices, not failures: cancelling nothing, committing silence.
+        const code = (ev.error as { code?: string } | undefined)?.code ?? "";
+        if (/response_cancel_not_active|input_audio_buffer_commit_empty|conversation_already_has_active_response/.test(code)) {
+          this.ev.onEvent?.("ask_notice", { code });
+          if (this.state === "thinking") this.setState("ready");
+          break;
+        }
+        const msg = (ev.error as { message?: string } | undefined)?.message ?? code;
+        this.setState("error", String(msg).slice(0, 80));
+        // Tear down so the next hold reconnects cleanly instead of hitting a dead session.
+        this.close();
         break;
+      }
       default:
         break;
     }
+  }
+
+  /** Mute or unmute her live audio without ending the session. */
+  setMuted(on: boolean): void {
+    this.audioEl.muted = on;
   }
 
   close(): void {

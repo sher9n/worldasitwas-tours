@@ -80,6 +80,12 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .walk-dots span:nth-child(3) { animation-delay: .9s; }
 @keyframes stepdot { 0%, 100% { opacity: .25; transform: none; } 50% { opacity: 1; transform: translateY(-4px); } }
 
+/* cross-dissolve between slides: the old image floats above and melts away */
+.fade-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 3; pointer-events: none; animation: dissolve .75s ease-out both; }
+@keyframes dissolve { from { opacity: 1; transform: scale(1.03); } to { opacity: 0; transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { .fade-layer { animation: dissolve-rm .25s ease-out both; } }
+@keyframes dissolve-rm { from { opacity: 1; } to { opacity: 0; } }
+
 /* spotlight: the image leans toward a tapped point, the rest dims */
 .zoomer { position: absolute; inset: 0; transition: transform 1.4s cubic-bezier(.2, .7, .2, 1); will-change: transform; }
 .zoomer.focus { transform: scale(1.07); }

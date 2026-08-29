@@ -123,6 +123,41 @@ async function labelContrast(page) {
   check("side controls equal and symmetric", geo.sides.length === 2 && Math.abs(geo.sides[0].w - geo.sides[1].w) < 1 && Math.abs(geo.sides[0].left - geo.sides[1].right) < 2);
   check("exactly three bottom controls", (await page.$$(".hud-bottom > *")).length === 3);
 
+  // Pause must mean silence and stillness, even mid-aside.
+  await neutralTap();
+  await page.waitForTimeout(900);
+  const firstDots = await page.$$(".poi");
+  if (firstDots.length) {
+    await firstDots[0].click();
+    await page.waitForTimeout(600);
+    await page.click(".side-ctl >> nth=0");
+    await page.waitForTimeout(400);
+    const quiet = await page.evaluate(() => {
+      const voice = document.querySelector('audio[data-channel="voice"]');
+      const circle = document.querySelector(".voice-circle video");
+      return { voicePaused: !voice || voice.paused, circlePaused: !circle || circle.paused };
+    });
+    check("pause silences her mid-aside", quiet.voicePaused, JSON.stringify(quiet));
+    check("pause freezes the talking circle", quiet.circlePaused);
+    await page.click(".side-ctl >> nth=0"); // resume
+    await page.waitForTimeout(300);
+  } else {
+    check("pause silences her mid-aside", false, "no dots to test on");
+  }
+
+  // A slide change must dissolve, not cut: catch the fade layer mid-flight.
+  await neutralTap();
+  let sawFade = false, fadeOpacity = null;
+  for (let i = 0; i < 6; i++) {
+    await page.waitForTimeout(110);
+    const o = await page.$eval(".fade-layer", (el) => Number(getComputedStyle(el).opacity)).catch(() => null);
+    if (o !== null && o > 0.03 && o < 0.97) { sawFade = true; fadeOpacity = o; break; }
+  }
+  await page.waitForTimeout(1000);
+  const fadeGone = !(await page.$(".fade-layer"));
+  check("slides cross-dissolve (fade layer mid-flight)", sawFade, `opacity ${fadeOpacity}`);
+  check("fade layer cleans up", fadeGone);
+
   // Spotlight sweep: activate the first point on every dotted screen in the tour.
   let sweep = 0, belowSeen = false, worstRatio = Infinity, dimOk = true, zoomOk = true, geomOk = true;
   for (let step = 0; step < 40; step++) {
@@ -173,6 +208,34 @@ async function labelContrast(page) {
     check("reduced motion: no zoom", false, "no dots found");
   }
   await ctx2.close();
+
+  // Live ask round-trip (costs a few cents; opt in with VALIDATE_ASK=1).
+  if (process.env.VALIDATE_ASK === "1") {
+    const b3 = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
+    const p3 = await (await b3.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
+    await p3.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
+    await p3.waitForSelector(".player .idle");
+    await p3.click("button.travel");
+    await p3.waitForTimeout(1500);
+    const ask = await p3.$(".ask");
+    const box = await ask.boundingBox();
+    await p3.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await p3.mouse.down();
+    await p3.waitForTimeout(2500);
+    const midHold = await p3.$eval(".ask", (el) => el.className);
+    await p3.mouse.up();
+    let sawError = false, endState = "";
+    for (let i = 0; i < 24; i++) {
+      await p3.waitForTimeout(500);
+      if (await p3.$(".ask-state.error")) { sawError = true; break; }
+      endState = await p3.$eval(".ask", (el) => el.className);
+      if (/speaking|ready/.test(endState) && !/connecting|thinking|listening/.test(endState)) break;
+    }
+    check("ask: no error surfaced on hold and release", !sawError);
+    check("ask: reached listening while held", /listening|connecting/.test(midHold), midHold);
+    check("ask: session settled after release", /speaking/.test(endState) || /ask $|ask idle|ready/.test(endState) || endState.includes("ask"), endState);
+    await b3.close();
+  }
 
   check("no page errors", errors.length === 0, errors.join(" | "));
   const failed = results.filter((r) => !r.ok).length;

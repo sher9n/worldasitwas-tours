@@ -79,6 +79,28 @@ export class AudioEngine {
   pauseVoice(): void {
     if (!this.voice.paused) this.voice.pause();
   }
+
+  /** Skip gracefully: her line fades over ~180ms instead of chopping. */
+  fadeStopVoice(): void {
+    const el = this.voice;
+    if (el.paused) return;
+    const token = ++this.voiceToken;
+    el.onended = null;
+    el.onerror = null;
+    this.duck(false);
+    const start = el.volume;
+    const t0 = performance.now();
+    const step = () => {
+      if (token !== this.voiceToken) return;
+      const k = Math.min(1, (performance.now() - t0) / 180);
+      el.volume = start * (1 - k);
+      if (k >= 1) {
+        el.pause();
+        el.volume = start;
+      } else requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
   resumeVoice(): void {
     if (this.voice.paused && this.voice.src && !this.voice.ended) this.voice.play().catch(() => undefined);
   }
