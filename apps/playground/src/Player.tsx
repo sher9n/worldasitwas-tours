@@ -301,7 +301,8 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       if (!v) return;
       const live = Boolean(companionRef.current?.isSpeakingAudio());
       const talking = ((Boolean(engine.current?.isVoicePlaying()) && !askingRef.current) || live) && !paused;
-      if (talking && v.paused) v.play().catch(() => undefined);
+      // Never restart a finished clip: once ended it behaves as a still.
+      if (talking && v.paused && !v.ended) v.play().catch(() => undefined);
       if (!talking && !v.paused) v.pause();
     }, 120);
     return () => window.clearInterval(id);
@@ -453,7 +454,9 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const img = beat ? beatImage(tour, beat) : undefined;
   const spots = beat?.kind === "card" ? cardHotspots(beat.card) : [];
   const nextStop = beat?.kind === "walk" ? tour.stops[beat.stopIndex + 1] : undefined;
-  const talkingLoop = stop.arrival.talkingPortrait?.video;
+  // Her circle prefers the lip-synced face for this exact line.
+  const talkingLoop = beat?.voiceVideoUrl ?? stop.arrival.talkingPortrait?.video;
+  const cardMotion = beat?.kind === "card" && beat.card && (beat.card.kind === "image" || beat.card.kind === "thenNow") ? beat.card.motion : undefined;
 
   return (
     <div className={`player ${paused ? "paused" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={() => holdTimer.current && window.clearTimeout(holdTimer.current)}>
@@ -509,21 +512,13 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               {beat?.kind === "arrival" && stop.arrival.livingScene?.video ? (
                 <>
                   {img && <img className="bg" src={img} alt="" />}
-                  <video
-                    ref={bgVideo}
-                    className="bg seamless"
-                    src={stop.arrival.livingScene.video}
-                    poster={img}
-                    muted
-                    autoPlay
-                    loop
-                    playsInline
-                    onTimeUpdate={(e) => {
-                      // The loop seam dissolves through the identical first-frame still beneath.
-                      const v = e.currentTarget;
-                      if (v.duration) v.style.opacity = v.currentTime > v.duration - 0.7 ? "0" : "1";
-                    }}
-                  />
+                  {/* Plays once, then holds its final frame as a still. */}
+                  <video ref={bgVideo} className="bg seamless" src={stop.arrival.livingScene.video} poster={img} muted autoPlay playsInline />
+                </>
+              ) : cardMotion ? (
+                <>
+                  {img && <img className="bg" src={img} alt="" />}
+                  <video ref={bgVideo} key={beat!.key} className="bg seamless" src={cardMotion.video} poster={img} muted autoPlay playsInline />
                 </>
               ) : (
                 <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
@@ -547,12 +542,12 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {gated && beat?.kind === "card" && (
             <>
               {bi > 0 && (
-                <button className="edge-chevron left" data-noadvance onClick={() => goTo(bi - 1, "chevron_back")} aria-label="Back">
-                  ‹
+                <button className="edge-strip left" data-noadvance onClick={() => goTo(bi - 1, "edge_back")} aria-label="Back">
+                  <span>‹</span>
                 </button>
               )}
-              <button className="edge-chevron right" data-noadvance onClick={() => goTo(bi + 1, "chevron_next")} aria-label="Continue">
-                ›
+              <button className="edge-strip right" data-noadvance onClick={() => goTo(bi + 1, "edge_next")} aria-label="Continue">
+                <span>›</span>
               </button>
               {showHint && <div className="gate-hint">tap the right side to continue</div>}
             </>
@@ -583,7 +578,8 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       {/* her, talking: the large circle that makes the voice a person */}
       {(speakingUi || cState === "speaking") && talkingLoop && (
         <div className="voice-circle" data-noadvance>
-          <video ref={circleVideo} key={talkingLoop} src={talkingLoop} muted autoPlay loop playsInline />
+          {/* Plays once per beat; when the clip is shorter than her line it rests on its last frame. */}
+          <video ref={circleVideo} key={`${talkingLoop}:${bi}`} src={talkingLoop} muted autoPlay playsInline />
         </div>
       )}
 
@@ -594,7 +590,15 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {paused ? "▶" : "❚❚"}
         </button>
         <button className={`ask ${cState}`} data-noadvance onPointerDown={askDown} onPointerUp={askUp} onPointerCancel={askUp} aria-label="Hold to ask">
-          {cState === "connecting" ? "…" : cState === "listening" ? "Listening" : cState === "thinking" ? "…" : cState === "speaking" ? "Speaking" : "Hold to ask"}
+          {cState === "connecting" || cState === "thinking" ? (
+            <span className="tdots"><i /><i /><i /></span>
+          ) : cState === "listening" ? (
+            "Listening"
+          ) : cState === "speaking" ? (
+            "Speaking"
+          ) : (
+            "Hold to ask"
+          )}
         </button>
         <button className="side-ctl" data-noadvance onClick={leave} aria-label="Leave the tour">
           ×
@@ -603,7 +607,14 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
 
       {(cState === "listening" || cState === "thinking" || cState === "connecting") && (
         <div className="ask-state" data-noadvance>
-          {cState === "listening" ? "Listening…" : `${tour.companion.name} is thinking…`}
+          {cState === "listening" ? (
+            "Listening…"
+          ) : (
+            <>
+              {tour.companion.name} is thinking
+              <span className="tdots"><i /><i /><i /></span>
+            </>
+          )}
         </div>
       )}
       {cState === "error" && <div className="ask-state error">Voice hiccup, hold to try again{cDetail ? ` (${cDetail.slice(0, 60)})` : ""}</div>}

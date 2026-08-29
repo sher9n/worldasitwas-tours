@@ -14,7 +14,7 @@ const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   pass = ok("arrival auto-advances without a tap", autoAdvanced) && pass;
   // Dotted card gates: chevron + first-time hint appear, no advance while we wait.
   let chevron = null;
-  for (let i = 0; i < 40 && !chevron; i++) { await page.waitForTimeout(500); chevron = await page.$(".edge-chevron.right"); }
+  for (let i = 0; i < 40 && !chevron; i++) { await page.waitForTimeout(500); chevron = await page.$(".edge-strip.right"); }
   pass = ok("explore gate opens (right chevron)", Boolean(chevron)) && pass;
   pass = ok("first-time hint shown", Boolean(await page.$(".gate-hint"))) && pass;
   const imgBefore = await page.$eval(".slide img.bg, .slide video.bg", (el) => (el.currentSrc || "").split("/").pop());
@@ -30,10 +30,10 @@ const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await chevron.click();
   await page.waitForTimeout(1000);
   let chevron2 = null;
-  for (let i = 0; i < 40 && !chevron2; i++) { await page.waitForTimeout(500); chevron2 = await page.$(".edge-chevron.right"); }
+  for (let i = 0; i < 40 && !chevron2; i++) { await page.waitForTimeout(500); chevron2 = await page.$(".edge-strip.right"); }
   pass = ok("next dotted card gates too", Boolean(chevron2)) && pass;
   pass = ok("hint shows only once", !(await page.$(".gate-hint"))) && pass;
-  pass = ok("back chevron present past the first card", Boolean(await page.$(".edge-chevron.left"))) && pass;
+  pass = ok("back chevron present past the first card", Boolean(await page.$(".edge-strip.left"))) && pass;
   await browser.close();
   if (!pass) process.exit(1);
 })().catch((e) => { console.error("[p2] FAIL", e.message); process.exit(1); });

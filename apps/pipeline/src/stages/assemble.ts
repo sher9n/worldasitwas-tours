@@ -135,9 +135,13 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
     const hero = await m.put(media.hero, `s${n}_hero`);
     const living = await m.put(media.livingScene, `s${n}_arrival`);
     const arrivalAudio = await m.put(media.arrivalAudio, `s${n}_arrival_line`);
+    const arrivalFace = await m.put(media.arrivalFace, `s${n}_line_face`);
     const talking = await m.put(media.talkingPortrait, `s${n}_talking`);
     const ambience = await m.put(media.ambience, `s${n}_ambience`);
     const transitionAudio = await m.put(media.transitionAudio, `s${n}_transition`);
+    const transitionFace = await m.put(media.transitionFace, `s${n}_transition_face`);
+    const asFace = (f: { url: string; durationSec?: number } | undefined, poster: string | undefined) =>
+      f ? { video: f.url, poster, durationSec: f.durationSec ?? 8, hasAudio: false, origin: "reconstruction" as const } : undefined;
 
     const stopHot = input.hotspots?.find((h) => h.stopId === script.stopId);
     const cards: Card[] = [];
@@ -145,7 +149,10 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       const sc = script.cards[c];
       const cm = media.cards.find((x) => x.id === sc.id);
       const narrationFile = await m.put(cm?.narration, `s${n}_c${c + 1}_narration`);
-      const narration = sc.narration.trim() ? { text: sc.narration.trim(), audio: narrationFile?.url, durationSec: narrationFile?.durationSec } : undefined;
+      const narrationFaceFile = await m.put(cm?.narrationFace, `s${n}_c${c + 1}_face`);
+      const narration = sc.narration.trim()
+        ? { text: sc.narration.trim(), audio: narrationFile?.url, durationSec: narrationFile?.durationSec, face: asFace(narrationFaceFile, portrait?.url) }
+        : undefined;
       const claims = sc.claims
         .map((k) => ({ text: k.text, confidence: k.confidence, sourceId: resolveSource(k.sourceTitle) }))
         .filter((k): k is { text: string; confidence: "known" | "likely" | "interpretation"; sourceId: string } => Boolean(k.sourceId));
@@ -159,9 +166,11 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       if (sc.kind === "thenNow" && cm?.then && archive?.nowPhoto) {
         const then = await m.put(cm.then, `s${n}_c${c + 1}_then`);
         const now = await m.putRemote(archive.nowPhoto.thumbUrl, `s${n}_c${c + 1}_now`, archive.nowPhoto.mime);
+        const tnMotion = await m.put(cm?.motion, `s${n}_c${c + 1}_motion`);
         cards.push({
           ...base,
           kind: "thenNow",
+          motion: tnMotion ? { video: tnMotion.url, poster: then!.url, durationSec: tnMotion.durationSec ?? 5, hasAudio: false, origin: "reconstruction" } : undefined,
           then: { image: then!.url, origin: "reconstruction", width: then!.width, height: then!.height },
           now: {
             image: now,
@@ -191,10 +200,12 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
           cards.push({ ...base, kind: "text", text: (sc.textBody || sc.caption || sc.narration).slice(0, 320), companionContext: { text: sc.companionContextText } });
           continue;
         }
+        const imgMotion = await m.put(cm?.motion, `s${n}_c${c + 1}_motion`);
         cards.push({
           ...base,
           kind: "image",
           media: { image: img.url, origin: "reconstruction", width: img.width, height: img.height },
+          motion: imgMotion ? { video: imgMotion.url, poster: img.url, durationSec: imgMotion.durationSec ?? 5, hasAudio: false, origin: "reconstruction" } : undefined,
           companionContext: { text: sc.companionContextText, image: img.url },
         });
       }
@@ -208,11 +219,13 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       arrival: {
         livingScene: living ? { video: living.url, poster: hero?.url, durationSec: living.durationSec ?? 4, hasAudio: true, origin: "reconstruction" } : undefined,
         talkingPortrait: talking ? { video: talking.url, poster: portrait?.url, durationSec: talking.durationSec ?? 8, hasAudio: true, origin: "reconstruction" } : undefined,
-        line: { text: script.arrivalLine, audio: arrivalAudio?.url, durationSec: arrivalAudio?.durationSec },
+        line: { text: script.arrivalLine, audio: arrivalAudio?.url, durationSec: arrivalAudio?.durationSec, face: asFace(arrivalFace, portrait?.url) },
         ambience: ambience ? { audio: ambience.url, loop: true, gainDb: -14 } : undefined,
       },
       cards,
-      transitionOut: script.transitionLine.trim() ? { text: script.transitionLine.trim(), audio: transitionAudio?.url, durationSec: transitionAudio?.durationSec } : undefined,
+      transitionOut: script.transitionLine.trim()
+        ? { text: script.transitionLine.trim(), audio: transitionAudio?.url, durationSec: transitionAudio?.durationSec, face: asFace(transitionFace, portrait?.url) }
+        : undefined,
     });
   }
 

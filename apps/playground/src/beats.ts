@@ -57,7 +57,7 @@ export function buildBeats(tour: Tour): Beat[] {
       // Every video plays muted; her line always comes through the voice channel.
       // The portrait was lip-synced to this same recording, so starting both
       // together keeps her mouth and her voice aligned.
-      voiceVideoUrl: portrait?.video,
+      voiceVideoUrl: stop.arrival.line.face?.video ?? portrait?.video,
       audioUrl: stop.arrival.line.audio,
       text: stop.arrival.line.text,
       estSec: Math.max(portrait?.durationSec ?? stop.arrival.line.durationSec ?? estimateSec(stop.arrival.line.text), minHold("arrival")),
@@ -75,6 +75,7 @@ export function buildBeats(tour: Tour): Beat[] {
         indexInStop: 0,
         beatsInStop: 0,
         card,
+        voiceVideoUrl: card.narration?.face?.video,
         audioUrl: card.narration?.audio,
         text: spoken,
         estSec: Math.max(card.narration?.durationSec ?? estimateSec(spoken), minHold("card", card)),
@@ -88,6 +89,7 @@ export function buildBeats(tour: Tour): Beat[] {
         stopIndex: si,
         indexInStop: 0,
         beatsInStop: 0,
+        voiceVideoUrl: stop.transitionOut.face?.video,
         audioUrl: stop.transitionOut.audio,
         text: stop.transitionOut.text,
         estSec: Math.max(stop.transitionOut.durationSec ?? estimateSec(stop.transitionOut.text), minHold("walk")),

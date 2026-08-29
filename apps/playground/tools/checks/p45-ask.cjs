@@ -20,12 +20,16 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   await page.mouse.up();
   // Sample the state machine and the circle through the answer.
   const timeline = [];
-  for (let t = 0; t < 16000; t += 150) {
+  let dotsSeen = null;
+  for (let t = 0; t < 26000; t += 150) {
     const s = await page.evaluate(() => ({
       cls: document.querySelector(".ask").className.replace("ask", "").trim() || "ready",
       circle: (() => { const v = document.querySelector(".voice-circle video"); return v ? !v.paused : null; })(),
     }));
     timeline.push(s);
+    if (s.cls === "thinking" && dotsSeen === null) {
+      dotsSeen = await page.evaluate(() => { const i = document.querySelector(".ask-state .tdots i, .ask .tdots i"); return i ? getComputedStyle(i).animationName : "missing"; });
+    }
     await page.waitForTimeout(150);
     if (timeline.length > 20 && s.cls === "ready") break;
   }
@@ -34,12 +38,14 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   let pass = true;
   pass = ok("listening while held, circle still", /listening/.test(midHold.cls) && midHold.circle !== true, JSON.stringify(midHold)) && pass;
   pass = ok("thinking immediately after release", states[0] === "thinking" || states[0] === "listening", states.slice(0, 3).join(",")) && pass;
+  pass = ok("thinking shows animated dots", dotsSeen === "tdot", String(dotsSeen)) && pass;
   if (firstSpeak >= 0) {
     const before = states.slice(0, firstSpeak);
     pass = ok("no ready inside the synthesis gap", !before.includes("ready"), `pre-speak: ${[...new Set(before)].join(",")}`) && pass;
     const speakSamples = timeline.filter((x) => x.cls === "speaking");
     const moving = speakSamples.filter((x) => x.circle === true).length;
-    pass = ok("circle appears and moves during live answer", moving >= Math.max(1, speakSamples.length * 0.5), `${moving}/${speakSamples.length} samples moving`) && pass;
+    // Play-once: the clip may finish before a long answer does and rest as a still.
+    pass = ok("circle appears during live answer (plays once)", moving >= Math.max(1, speakSamples.length * 0.25), `${moving}/${speakSamples.length} samples moving`) && pass;
     const after = states.slice(firstSpeak);
     pass = ok("settles to ready after the answer", after.includes("ready")) && pass;
   } else {

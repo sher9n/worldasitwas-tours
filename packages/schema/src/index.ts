@@ -58,6 +58,8 @@ export const SpokenLine = z.object({
   text: z.string().min(1),
   audio: url.optional(),
   durationSec: z.number().positive().optional(),
+  /** Her face saying exactly this line (lip-synced talking portrait). */
+  face: VideoAsset.optional(),
 });
 export type SpokenLine = z.infer<typeof SpokenLine>;
 
@@ -106,6 +108,8 @@ const CardBase = z.object({
 export const ImageCard = CardBase.extend({
   kind: z.literal("image"),
   media: ImageAsset,
+  /** One clip of this scene, played once then resting on its final frame. */
+  motion: VideoAsset.optional(),
 });
 export const VideoCard = CardBase.extend({
   kind: z.literal("video"),
@@ -115,6 +119,8 @@ export const ThenNowCard = CardBase.extend({
   kind: z.literal("thenNow"),
   then: ImageAsset,
   now: ImageAsset,
+  /** One clip of the year-view, played once then resting on its final frame. */
+  motion: VideoAsset.optional(),
 });
 export const ArchiveCard = CardBase.extend({
   kind: z.literal("archive"),
@@ -145,6 +151,8 @@ export const Transition = z.object({
   video: url.optional(),
   audio: url.optional(),
   durationSec: z.number().positive().optional(),
+  /** Her face saying the walking line. */
+  face: VideoAsset.optional(),
 });
 export type Transition = z.infer<typeof Transition>;
 

@@ -20,16 +20,15 @@ const ok = (n, c, d = "") => console.log(`[p6] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await page.waitForTimeout(350);
   const v2 = await vid();
   pass = ok("resume restarts the background video", Boolean(v2 && !v2.paused)) && pass;
-  // Loop seam: near the end the video dissolves to its first-frame still, then back.
-  await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); v.currentTime = v.duration - 0.65; });
-  let minOpacity = 1;
-  for (let i = 0; i < 10; i++) { await page.waitForTimeout(80); const s2 = await vid(); if (s2) minOpacity = Math.min(minOpacity, Number(s2.opacity)); }
-  pass = ok("seam dissolves out near the end", minOpacity < 0.35, `min opacity ${minOpacity.toFixed(2)}`) && pass;
-  await page.waitForTimeout(1200);
-  const wrapped = await vid();
-  pass = ok("dissolves back in after the wrap", wrapped && !wrapped.paused && Number(wrapped.opacity) > 0.7, JSON.stringify(wrapped)) && pass;
-  const still = await page.$eval(".zoomer img.bg", (el) => Boolean(el));
-  pass = ok("first-frame still sits beneath the video", still) && pass;
+  // Play once: at the end the scene rests as a still, never wrapping.
+  await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); v.currentTime = v.duration - 0.2; });
+  await page.waitForTimeout(1500);
+  const endState = await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); return { ended: v.ended, t: v.currentTime, d: v.duration }; });
+  pass = ok("scene plays once and rests at its last frame", endState.ended && Math.abs(endState.t - endState.d) < 0.3, JSON.stringify(endState)) && pass;
+  await page.waitForTimeout(1500);
+  const stillState = await page.evaluate(() => { const v = document.querySelector("video.bg.seamless"); return { ended: v.ended, t: v.currentTime }; });
+  pass = ok("no restart after resting", stillState.ended && Math.abs(stillState.t - endState.t) < 0.05, JSON.stringify(stillState)) && pass;
+
   await browser.close();
   if (!pass) process.exit(1);
 })().catch((e) => { console.error("[p6] FAIL", e.message); process.exit(1); });
