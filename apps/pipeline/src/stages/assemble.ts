@@ -38,6 +38,23 @@ export interface AssembleInput {
   companionMarkdown: string;
 }
 
+/** Polite download: identifies itself and backs off on 429 or transient errors. */
+async function download(url: string, target: string, tries = 4): Promise<void> {
+  for (let i = 0; i < tries; i++) {
+    const res = await fetch(url, { headers: { "User-Agent": "TimeTravelTours/0.1 (tour engine prototype) node-fetch" } });
+    if (res.ok) {
+      await fs.writeFile(target, Buffer.from(await res.arrayBuffer()));
+      return;
+    }
+    if ((res.status === 429 || res.status >= 500) && i < tries - 1) {
+      const retryAfter = Number(res.headers.get("retry-after")) || 0;
+      await new Promise((ok) => setTimeout(ok, Math.max(retryAfter * 1000, 2000 * (i + 1))));
+      continue;
+    }
+    throw new Error(`download ${url}: ${res.status}`);
+  }
+}
+
 class Materializer {
   constructor(
     private dir: string,
@@ -53,9 +70,7 @@ class Materializer {
     if (asset.localPath) {
       await fs.copyFile(asset.localPath, target);
     } else if (asset.remoteUrl) {
-      const res = await fetch(asset.remoteUrl);
-      if (!res.ok) throw new Error(`download ${asset.remoteUrl}: ${res.status}`);
-      await fs.writeFile(target, Buffer.from(await res.arrayBuffer()));
+      await download(asset.remoteUrl, target);
     }
     const durationSec = /^(video|audio)\//.test(asset.mime) ? (await probeDuration(target)) ?? asset.durationSec : undefined;
     return { url: `${this.baseUrl}/media/${path.basename(this.dir)}/${file}`, durationSec, width: asset.width, height: asset.height };

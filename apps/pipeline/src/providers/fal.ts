@@ -37,8 +37,15 @@ export class FalProvider implements MediaProvider {
   }
 
   private async run<T>(endpoint: string, input: Record<string, unknown>): Promise<T> {
-    const res = await fal.subscribe(endpoint, { input, logs: false });
-    return res.data as T;
+    try {
+      const res = await fal.subscribe(endpoint, { input, logs: false });
+      return res.data as T;
+    } catch (err) {
+      // fal's ApiError carries the validation detail in body; surface it so the ledger says why.
+      const e = err as Error & { status?: number; body?: unknown };
+      const detail = e.body ? JSON.stringify(e.body).slice(0, 400) : "";
+      throw new Error(`${endpoint} ${e.status ?? ""} ${e.message}${detail ? ": " + detail : ""}`.trim());
+    }
   }
 
   /** Nano Banana Pro text-to-image (and reference-guided edit when refs are given). */
