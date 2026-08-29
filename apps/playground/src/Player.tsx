@@ -63,6 +63,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const [beatFrac, setBeatFrac] = useState(0);
   const [speakingUi, setSpeakingUi] = useState(false);
   const [gated, setGated] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
   const engine = useRef<AudioEngine | null>(null);
   const prevCState = useRef<CompanionState>("idle");
@@ -174,6 +175,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       setBi(index);
       setPaused(false);
       setGated(false);
+      setShowHint(false);
     },
     [beats, bi, clearBeatAudio, emit, stop],
   );
@@ -236,10 +238,22 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       const expected = Math.max(bs.expectedMs + bs.bonusMs, beat.kind === "card" ? 4000 : 3500);
       setBeatFrac(Math.min(1, active / expected));
       if (bs.voiceDone && active >= expected) {
-        // She introduces the next stop, then waits for the visitor: the walk
-        // is a gate, not a conveyor belt.
-        if (beat.kind === "walk") setGated(true);
-        else goToRef.current(bi + 1, "auto");
+        // Gates, not conveyor belts: the walk waits for Continue, and a card
+        // with points of interest waits so they can actually be explored.
+        const explorable = beat.kind === "card" && cardHotspots(beat.card).length > 0;
+        if (beat.kind === "walk" || explorable) {
+          setGated((g) => {
+            if (!g && explorable && !localStorage.getItem("tt.hintExplore")) {
+              try {
+                localStorage.setItem("tt.hintExplore", "1");
+              } catch {
+                // storage unavailable; the hint just shows again next time
+              }
+              setShowHint(true);
+            }
+            return true;
+          });
+        } else goToRef.current(bi + 1, "auto");
       }
     }, TICK_MS);
     return () => window.clearInterval(id);
@@ -264,14 +278,17 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   // Pause means silence and stillness, whatever was talking: her narration,
   // an aside about a tapped point, or a live answer, and her circle freezes too.
   const circleVideo = useRef<HTMLVideoElement | null>(null);
+  const bgVideo = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     if (phase !== "playing") return;
     if (paused) {
       engine.current?.pauseVoice();
       companionRef.current?.stopSpeaking();
       circleVideo.current?.pause();
+      bgVideo.current?.pause();
     } else {
       engine.current?.resumeVoice();
+      bgVideo.current?.play().catch(() => undefined);
     }
   }, [paused, phase]);
 
@@ -282,7 +299,8 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     const id = window.setInterval(() => {
       const v = circleVideo.current;
       if (!v) return;
-      const talking = Boolean(engine.current?.isVoicePlaying()) && !askingRef.current && !paused;
+      const live = Boolean(companionRef.current?.isSpeakingAudio());
+      const talking = ((Boolean(engine.current?.isVoicePlaying()) && !askingRef.current) || live) && !paused;
       if (talking && v.paused) v.play().catch(() => undefined);
       if (!talking && !v.paused) v.pause();
     }, 120);
@@ -442,7 +460,9 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       {/* progress: one segment per stop, filling beat by beat as she speaks */}
       <div className="progress">
         {tour.stops.map((s, i) => {
-          const fill = !beat ? 0 : i < beat.stopIndex ? 1 : i > beat.stopIndex ? 0 : (beat.indexInStop + beatFrac) / beat.beatsInStop;
+          // A gated beat parks its fill just short, so the wait is visible.
+          const frac = gated ? Math.min(beatFrac, 0.9) : beatFrac;
+          const fill = !beat ? 0 : i < beat.stopIndex ? 1 : i > beat.stopIndex ? 0 : (beat.indexInStop + frac) / beat.beatsInStop;
           return (
             <span key={s.id} className={fill >= 1 ? "done" : fill > 0 ? "cur" : ""}>
               <i style={{ width: `${Math.min(100, fill * 100)}%` }} />
@@ -487,7 +507,24 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           {img && (
             <div className={`zoomer ${hotspot ? "focus" : ""}`} style={hotspot ? { transformOrigin: `${hotspot.x * 100}% ${hotspot.y * 100}%` } : undefined}>
               {beat?.kind === "arrival" && stop.arrival.livingScene?.video ? (
-                <video className="bg" src={stop.arrival.livingScene.video} poster={img} muted autoPlay loop playsInline />
+                <>
+                  {img && <img className="bg" src={img} alt="" />}
+                  <video
+                    ref={bgVideo}
+                    className="bg seamless"
+                    src={stop.arrival.livingScene.video}
+                    poster={img}
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    onTimeUpdate={(e) => {
+                      // The loop seam dissolves through the identical first-frame still beneath.
+                      const v = e.currentTarget;
+                      if (v.duration) v.style.opacity = v.currentTime > v.duration - 0.7 ? "0" : "1";
+                    }}
+                  />
+                </>
               ) : (
                 <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
               )}
@@ -507,6 +544,19 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
               <h2>{stop.title}</h2>
             </div>
           )}
+          {gated && beat?.kind === "card" && (
+            <>
+              {bi > 0 && (
+                <button className="edge-chevron left" data-noadvance onClick={() => goTo(bi - 1, "chevron_back")} aria-label="Back">
+                  ‹
+                </button>
+              )}
+              <button className="edge-chevron right" data-noadvance onClick={() => goTo(bi + 1, "chevron_next")} aria-label="Continue">
+                ›
+              </button>
+              {showHint && <div className="gate-hint">tap the right side to continue</div>}
+            </>
+          )}
           {spots.map((h) => {
             const active = hotspot?.id === h.id;
             const below = h.y < 0.28; // a high point gets its label underneath, clear of the HUD
@@ -514,7 +564,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
             return (
               <button
                 key={h.id}
-                className={`poi ${active ? "active" : ""} ${hotspot && !active ? "dim" : ""} ${below ? "below" : ""} ${edge}`}
+                className={`poi ${gated ? "beckon" : ""} ${active ? "active" : ""} ${hotspot && !active ? "dim" : ""} ${below ? "below" : ""} ${edge}`}
                 style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%` }}
                 data-noadvance
                 onClick={() => openHotspot(h)}
@@ -531,7 +581,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       {fadeImg && <img className="fade-layer" src={fadeImg} alt="" />}
 
       {/* her, talking: the large circle that makes the voice a person */}
-      {speakingUi && talkingLoop && (
+      {(speakingUi || cState === "speaking") && talkingLoop && (
         <div className="voice-circle" data-noadvance>
           <video ref={circleVideo} key={talkingLoop} src={talkingLoop} muted autoPlay loop playsInline />
         </div>

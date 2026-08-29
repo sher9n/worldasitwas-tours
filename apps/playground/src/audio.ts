@@ -23,8 +23,22 @@ export class AudioEngine {
   private voiceToken = 0;
   unlocked = false;
 
+  private ambiencePlays = 0;
+  private ambienceDone = false;
+
   constructor() {
-    this.ambience.loop = true;
+    // The street plays through at most twice per stop, then rests: a bed that
+    // loops forever stops being scenery and starts being noticeable.
+    this.ambience.loop = false;
+    this.ambience.addEventListener("ended", () => {
+      this.ambiencePlays++;
+      if (this.ambiencePlays < 2) {
+        this.ambience.currentTime = 0;
+        this.ambience.play().catch(() => undefined);
+      } else {
+        this.ambienceDone = true;
+      }
+    });
     this.voice.preload = "auto";
     // Attached (hidden) so devtools and tests can observe playback state.
     for (const [el, name] of [[this.voice, "voice"], [this.ambience, "ambience"]] as const) {
@@ -118,10 +132,13 @@ export class AudioEngine {
       return;
     }
     const absolute = new URL(url, location.href).href;
-    if (this.ambience.src === absolute && !this.ambience.paused) {
-      this.applyBed();
+    if (this.ambience.src === absolute) {
+      // Same stop: keep whatever state it is in; a finished bed stays finished.
+      if (!this.ambienceDone && !this.ambience.paused) this.applyBed();
       return;
     }
+    this.ambiencePlays = 0;
+    this.ambienceDone = false;
     this.ambience.src = absolute;
     this.ambience.volume = 0;
     this.ambience.play().catch(() => undefined);

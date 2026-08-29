@@ -51,6 +51,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 /* player */
 .player { position: relative; width: 100%; height: 100%; background: #10151b; color: #fff; overflow: hidden; user-select: none; -webkit-user-select: none; touch-action: manipulation; font-size: 15px; }
 .player .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.player video.bg.seamless { transition: opacity .35s ease; }
 .player .bg.fill { background-size: cover; background-position: center; }
 .player .bg.blur { filter: blur(14px) brightness(.5); transform: scale(1.1); }
 .slide, .walk { position: absolute; inset: 0; }
@@ -74,13 +75,24 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .walk-body { position: absolute; left: 24px; right: 24px; bottom: 200px; z-index: 4; text-shadow: 0 1px 12px rgba(0,0,0,.8); }
 .walk-body small { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
 .walk-body h2 { font-family: "Fraunces", Georgia, serif; font-size: 34px; margin: 6px 0 14px; }
+/* Static marks: three footsteps, not a spinner. */
 .walk-dots { display: flex; gap: 10px; }
-.walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: #fff; opacity: .25; animation: stepdot 1.4s ease-in-out infinite; }
-.walk-dots span:nth-child(2) { animation-delay: .45s; }
-.walk-dots span:nth-child(3) { animation-delay: .9s; }
+.walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+.walk-dots span:nth-child(1) { opacity: .9; }
+.walk-dots span:nth-child(2) { opacity: .55; }
+.walk-dots span:nth-child(3) { opacity: .3; }
 .continue { font: 700 14px "Source Sans 3", sans-serif; letter-spacing: .06em; color: #fff; background: var(--accent); border: none; border-radius: 12px; padding: 14px 20px; cursor: pointer; animation: continuein .4s ease-out both; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
 @keyframes continuein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-@keyframes stepdot { 0%, 100% { opacity: .25; transform: none; } 50% { opacity: 1; transform: translateY(-4px); } }
+
+/* explore gate: the tour waits; chevrons show the way on */
+.edge-chevron { position: absolute; top: 50%; transform: translateY(-50%); z-index: 6; width: 40px; height: 56px; display: grid; place-items: center; font: 400 26px "Source Sans 3", sans-serif; color: #fff; background: rgba(12,14,18,.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.3); cursor: pointer; animation: continuein .35s ease-out both; }
+.edge-chevron.right { right: 0; border-radius: 14px 0 0 14px; border-right: none; }
+.edge-chevron.left { left: 0; border-radius: 0 14px 14px 0; border-left: none; opacity: .8; }
+.gate-hint { position: absolute; right: 52px; top: 50%; transform: translateY(-50%); z-index: 6; font: 600 12px "Source Sans 3", sans-serif; letter-spacing: .04em; color: #fff; background: rgba(12,14,18,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 8px 14px; animation: hintfade 3.6s ease-in-out both; pointer-events: none; }
+@keyframes hintfade { 0% { opacity: 0; transform: translate(6px, -50%); } 12%, 78% { opacity: 1; transform: translate(0, -50%); } 100% { opacity: 0; transform: translate(0, -50%); } }
+.poi.beckon i { animation: poibeckon 1.3s ease-in-out 2; }
+@keyframes poibeckon { 0%, 100% { box-shadow: 0 0 0 1.5px rgba(0,0,0,.3), 0 0 0 5px rgba(255,255,255,.16); } 50% { box-shadow: 0 0 0 1.5px rgba(0,0,0,.3), 0 0 0 12px rgba(255,255,255,.28); } }
+
 
 /* cross-dissolve between slides: the old image floats above and melts away */
 .fade-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 3; pointer-events: none; animation: dissolve .75s ease-out both; }

@@ -48,6 +48,11 @@ class SentenceSpeaker {
   private cancelled = false;
   playing = 0;
 
+  /** Anything still to be heard: queued, being synthesized, or playing. */
+  busy(): boolean {
+    return this.queue.length > 0 || this.working || this.playing > 0;
+  }
+
   constructor(
     private say: (text: string) => Promise<ArrayBuffer>,
     private onFirstAudio: () => void,
@@ -145,7 +150,7 @@ export class CompanionSession {
       },
       () => this.setState("speaking"),
       () => {
-        if (!this.responseActive && (this.state === "speaking" || this.state === "thinking")) this.setState("ready");
+        if (!this.responseActive && !this.speaker.busy() && (this.state === "speaking" || this.state === "thinking")) this.setState("ready");
       },
     );
   }
@@ -298,7 +303,9 @@ export class CompanionSession {
           this.textBuf = "";
         }
         if (this.answerText.trim()) this.ev.onTranscript("companion", this.answerText.trim(), true);
-        if (this.speaker.playing === 0 && this.state !== "speaking") this.setState("ready");
+        // Thinking holds until her first audio actually plays; only a truly
+        // empty answer goes straight back to ready.
+        if (!this.speaker.busy() && this.state !== "speaking") this.setState("ready");
         break;
       }
       case "error": {
@@ -323,6 +330,11 @@ export class CompanionSession {
   /** Mute or unmute her live audio without ending the session. */
   setMuted(on: boolean): void {
     this.audioEl.muted = on;
+  }
+
+  /** Is her live answer audibly playing right now? Drives her on-screen mouth. */
+  isSpeakingAudio(): boolean {
+    return this.speaker.playing > 0;
   }
 
   close(): void {
