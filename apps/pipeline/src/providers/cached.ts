@@ -95,4 +95,26 @@ export class CachedProvider implements MediaProvider {
   publish(localPath: string, mime: string) {
     return this.inner.publish(localPath, mime);
   }
+
+  /** Download an external image (politely) and re-host it with the provider, once. */
+  async mirrorUrl(url: string, mime = "image/jpeg"): Promise<string> {
+    const key = crypto.createHash("sha1").update(this.inner.name + ":mirror:" + url).digest("hex").slice(0, 16);
+    await fs.mkdir(this.dir, { recursive: true });
+    const metaFile = path.join(this.dir, `${key}.json`);
+    try {
+      const cached = JSON.parse(await fs.readFile(metaFile, "utf8")) as Asset;
+      if (cached.remoteUrl) return cached.remoteUrl;
+    } catch {
+      // miss
+    }
+    const res = await fetch(url, { headers: { "User-Agent": "TimeTravelTours/0.1 (tour engine prototype) node-fetch" } });
+    if (!res.ok) throw new Error(`mirror download ${url}: ${res.status}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    const ext = EXT[mime] ?? "jpg";
+    const local = path.join(this.dir, `${key}.${ext}`);
+    await fs.writeFile(local, buf);
+    const remote = await this.inner.publish(local, mime);
+    await fs.writeFile(metaFile, JSON.stringify({ remoteUrl: remote, localPath: local, mime }));
+    return remote;
+  }
 }

@@ -125,30 +125,39 @@ export async function makeStopMedia(
           ? provider.tts({ text: card.narration, voice, stage, note: `narration ${card.id}` }).catch(warn(`narration ${card.id}`))
           : Promise.resolve(undefined);
       if (want("cards")) {
-        if (card.kind === "image") {
-          const prompt = styled(recipe, card.imagePrompt);
-          out.image = card.includesCompanion
-            ? await provider.imageWithRefs({ prompt: `${prompt} The flower seller in this scene must be the woman in the reference image, same face and dress.`, refs: [character.portraitUrl], aspect: "9:16", quality, stage, note: `image ${card.id}` })
-            : await provider.image({ prompt, aspect: "9:16", quality, stage, note: `image ${card.id}` });
-        } else if (card.kind === "thenNow") {
-          if (archive?.nowPhoto) {
-            const prompt = `Re-imagine this exact viewpoint as it looked in ${recipe.year}. Keep the camera position, the street width, the horizon line and the outline of any building that already stood in ${recipe.year} exactly where they are. Replace everything modern with what stood there in ${recipe.year}: ${card.imagePrompt} ${recipe.style.look} Portrait 9:16 crop. Avoid: ${recipe.style.avoid}`;
-            out.then = await provider.editImage({ prompt, source: archive.nowPhoto.thumbUrl, aspect: "9:16", quality, stage, note: `then ${card.id}` });
-          } else {
-            out.image = await provider.image({ prompt: styled(recipe, card.imagePrompt), aspect: "9:16", quality, stage, note: `image (no now photo) ${card.id}` });
+        // A refused or failed picture must never sink the stop; assemble falls
+        // back per card (thenNow without a then, archive without animation).
+        try {
+          const mirror = (u: string, m?: string) => (provider.mirrorUrl ? provider.mirrorUrl(u, m) : Promise.resolve(u));
+          if (card.kind === "image") {
+            const prompt = styled(recipe, card.imagePrompt);
+            out.image = card.includesCompanion
+              ? await provider.imageWithRefs({ prompt: `${prompt} The flower seller in this scene must be the woman in the reference image, same face and dress.`, refs: [character.portraitUrl], aspect: "9:16", quality, stage, note: `image ${card.id}` })
+              : await provider.image({ prompt, aspect: "9:16", quality, stage, note: `image ${card.id}` });
+          } else if (card.kind === "thenNow") {
+            if (archive?.nowPhoto) {
+              const source = await mirror(archive.nowPhoto.thumbUrl, archive.nowPhoto.mime);
+              const prompt = `Depict this same scene in the year ${recipe.year}. ${card.imagePrompt} Keep the camera position, the street width, the horizon and every building that already stood in ${recipe.year} exactly where they are. ${recipe.style.look} Portrait 9:16 crop. Avoid: ${recipe.style.avoid}`;
+              out.then = await provider.editImage({ prompt, source, aspect: "9:16", quality, stage, note: `then ${card.id}` });
+            } else {
+              out.image = await provider.image({ prompt: styled(recipe, card.imagePrompt), aspect: "9:16", quality, stage, note: `image (no now photo) ${card.id}` });
+            }
+          } else if (card.kind === "archive" && archive?.archive && want("video")) {
+            const source = await mirror(archive.archive.thumbUrl, archive.archive.mime);
+            out.animated = await provider
+              .video({
+                prompt: "Bring this historical picture gently to life: the people shift their weight and turn their heads, horses step, smoke drifts, cloth moves in the wind. Keep the composition, palette and drawing style exactly as they are. Subtle, slow, documentary.",
+                imageUrl: source,
+                durationSec: d.archive,
+                quality,
+                audio: true,
+                stage,
+                note: `animated archive ${card.id}`,
+              })
+              .catch(warn(`animated archive ${card.id}`));
           }
-        } else if (card.kind === "archive" && archive?.archive && want("video")) {
-          out.animated = await provider
-            .video({
-              prompt: "Bring this historical picture gently to life: the people shift their weight and turn their heads, horses step, smoke drifts, cloth moves in the wind. Keep the composition, palette and drawing style exactly as they are. Subtle, slow, documentary.",
-              imageUrl: archive.archive.thumbUrl,
-              durationSec: d.archive,
-              quality,
-              audio: true,
-              stage,
-              note: `animated archive ${card.id}`,
-            })
-            .catch(warn(`animated archive ${card.id}`));
+        } catch (err) {
+          warn(`card ${card.id}`)(err);
         }
       }
       out.narration = await narrationP;

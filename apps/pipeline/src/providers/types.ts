@@ -41,4 +41,10 @@ export interface MediaProvider {
   sfx(opts: { text: string; durationSec: number; loop: boolean; stage: string; note: string }): Promise<Asset>;
   /** Make a local file reachable by the provider (returns a URL the provider accepts). */
   publish(localPath: string, mime: string): Promise<string>;
+  /**
+   * Re-host an external image where the provider can reliably fetch it.
+   * Wikimedia and many archives block model providers' downloaders, which
+   * surfaces as bogus generation errors. Optional; identity when absent.
+   */
+  mirrorUrl?(url: string, mime?: string): Promise<string>;
 }
