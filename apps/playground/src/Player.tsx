@@ -39,10 +39,10 @@ function cardHotspots(card: Card | undefined): Hotspot[] {
 /** The still that stands for a beat. Everything renders full-bleed. */
 function beatImage(tour: Tour, beat: Beat): string | undefined {
   const stop = tour.stops[beat.stopIndex];
-  if (beat.kind === "arrival") return stop.arrival.livingScene?.poster ?? tour.cover.image;
+  if (beat.kind === "arrival") return stop.arrival.still?.image ?? stop.arrival.livingScene?.poster ?? tour.cover.image;
   if (beat.kind === "walk") {
     const next = tour.stops[beat.stopIndex + 1];
-    return next?.arrival.livingScene?.poster ?? tour.cover.image;
+    return next?.arrival.still?.image ?? next?.arrival.livingScene?.poster ?? tour.cover.image;
   }
   const card = beat.card!;
   if (card.kind === "image") return card.media.image;

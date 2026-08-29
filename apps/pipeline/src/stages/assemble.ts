@@ -223,6 +223,7 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       title: recipeStop.title,
       geo: recipeStop.geo,
       arrival: {
+        still: hero ? { image: hero.url, width: hero.width ?? undefined, height: hero.height ?? undefined, origin: "reconstruction" } : undefined,
         livingScene: living ? { video: living.url, poster: hero?.url, durationSec: living.durationSec ?? 4, hasAudio: true, origin: "reconstruction" } : undefined,
         talkingPortrait: talking ? { video: talking.url, poster: portrait?.url, durationSec: talking.durationSec ?? 8, hasAudio: true, origin: "reconstruction" } : undefined,
         line: { text: script.arrivalLine, audio: arrivalAudio?.url, durationSec: arrivalAudio?.durationSec },
@@ -234,7 +235,7 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
     });
   }
 
-  const firstHero = stops[0]?.arrival.livingScene?.poster ?? portrait?.url ?? "";
+  const firstHero = stops[0]?.arrival.still?.image ?? stops[0]?.arrival.livingScene?.poster ?? portrait?.url ?? "";
   const totalNarrationSec = stops.reduce(
     (s, st) => s + (st.arrival.line.durationSec ?? 8) + st.cards.reduce((a, c) => a + (c.narration?.durationSec ?? 8) + 6, 0) + (st.transitionOut?.durationSec ?? 5),
     0,

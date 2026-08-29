@@ -10,7 +10,9 @@ import type { Recipe } from "@timetravel/schema";
 import type { Quality } from "../env.ts";
 import type { Llm } from "../llm.ts";
 import type { MediaProvider, Asset } from "../providers/types.ts";
-import { HOTSPOT_PLAN_SCHEMA, HotspotPlan, type CompanionDossier, type StopDossier, type StopScript } from "../shapes.ts";
+import { HOTSPOT_FIND_SCHEMA, HOTSPOT_PLAN_SCHEMA, HotspotFind, HotspotPlan, type CompanionDossier, type StopDossier, type StopScript } from "../shapes.ts";
+import type { WrittenPoint, WrittenStop } from "./written.ts";
+import { writtenPoints } from "./written.ts";
 import type { StopMedia } from "./media.ts";
 
 export interface StopHotspots {
@@ -39,6 +41,7 @@ export async function makeStopHotspots(
   llm: Llm,
   provider: MediaProvider,
   quality: Quality,
+  written?: WrittenStop,
 ): Promise<StopHotspots> {
   const out: StopHotspots = { stopId: script.stopId, cards: [] };
   // Points for the visuals of this stop: the arrival hero first, then the cards.
@@ -57,6 +60,18 @@ export async function makeStopHotspots(
     const imageUrl = await toDataUrl(target.still);
     if (!imageUrl) continue;
     const sc = { id: target.id, narration: target.narration };
+
+    // When the script names the points, the model is not asked to invent any: it
+    // is asked only where each named thing sits in the picture it is looking at.
+    const declared = writtenPoints(written, target.id);
+    if (declared) {
+      const points = await findDeclared(declared, imageUrl, target.id, recipe, llm, provider, script.stopId);
+      if (points.length) {
+        if (target.kind === "arrival") out.arrival = points;
+        else out.cards.push({ cardId: target.id, points });
+      }
+      continue;
+    }
 
     let plan: HotspotPlan;
     try {
@@ -117,4 +132,63 @@ Return two or three points for this image.`,
     void quality;
   }
   return out;
+}
+
+/**
+ * Locates the points the script declares, and records their written lines. A
+ * point the picture genuinely does not contain is dropped rather than guessed
+ * at, so a marker never sits on nothing.
+ */
+async function findDeclared(
+  declared: WrittenPoint[],
+  imageUrl: string,
+  screenId: string,
+  recipe: Recipe,
+  llm: Llm,
+  provider: MediaProvider,
+  stopId: string,
+): Promise<StopHotspots["cards"][number]["points"]> {
+  let found: HotspotFind;
+  try {
+    found = await llm.structured({
+      name: "hotspot_find",
+      jsonSchema: HOTSPOT_FIND_SCHEMA as unknown as Record<string, unknown>,
+      zod: HotspotFind,
+      system:
+        "You are shown one picture and a list of things that are meant to be in it. For each one, give the centre of that thing as fractions of the image width and height. Copy each label back exactly as given. Be precise: the position is used to place a marker the visitor taps, so it must sit on the thing itself. If a thing genuinely is not in the picture, mark it not visible rather than guessing.",
+      user: `The picture is a reconstruction of ${recipe.cityName} in ${recipe.year}.\nFind these:\n${declared.map((p, i) => `${i + 1}. ${p.label}`).join("\n")}`,
+      images: [imageUrl],
+      webSearch: false,
+      effort: "low",
+      stage: "hotspots",
+      note: `find ${screenId}`,
+    });
+  } catch (err) {
+    console.warn(`[hotspots] find ${screenId} failed: ${(err as Error).message}`);
+    return [];
+  }
+
+  const points: StopHotspots["cards"][number]["points"] = [];
+  for (const [i, want] of declared.entries()) {
+    const hit = found.points.find((p) => p.label.trim().toLowerCase() === want.label.trim().toLowerCase()) ?? found.points[i];
+    if (!hit || hit.visible === false || !Number.isFinite(hit.x) || !Number.isFinite(hit.y)) {
+      console.warn(`[hotspots] ${screenId}: "${want.label}" is not in the picture; dropping that point`);
+      continue;
+    }
+    let audio;
+    try {
+      audio = await provider.tts({ text: want.line, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `poi ${screenId} ${want.label}` });
+    } catch (err) {
+      console.warn(`[hotspots] tts ${screenId}/${want.label} failed: ${(err as Error).message}`);
+    }
+    points.push({
+      id: `${stopId}_${screenId}_p${i + 1}`,
+      x: Math.min(0.94, Math.max(0.06, hit.x)),
+      y: Math.min(0.86, Math.max(0.12, hit.y)),
+      label: want.label,
+      text: want.line,
+      audio,
+    });
+  }
+  return points;
 }

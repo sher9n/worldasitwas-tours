@@ -9,6 +9,7 @@
  * keyed on the exact request, so re-running (or widening --steps) only pays for
  * assets that do not exist yet.
  */
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseRecipe, type Recipe } from "@timetravel/schema";
@@ -24,8 +25,8 @@ import { CompanionDossier, StopDossier, StopScript } from "./shapes.ts";
 import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
 import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
-import { applyWrittenHotspots, applyWrittenScript, loadWritten } from "./stages/written.ts";
-import { ALL_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
+import { applyWrittenScript, loadWritten } from "./stages/written.ts";
+import { KNOWN_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
 import { applyPolish, polishStop, PolishedStop } from "./stages/polish.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
 import { scriptStop } from "./stages/script.ts";
@@ -57,7 +58,7 @@ function parseArgs(argv: string[]): Args {
     else if (k === "--image-model") a.imageModel = rest[++i] as ImageModel;
     else if (k === "--steps") {
       const list = rest[++i].split(",").map((s) => s.trim()) as MediaStep[];
-      for (const s of list) if (!ALL_STEPS.includes(s)) throw new Error(`unknown step "${s}"; valid: ${ALL_STEPS.join(", ")}`);
+      for (const s of list) if (!KNOWN_STEPS.includes(s)) throw new Error(`unknown step "${s}"; valid: ${KNOWN_STEPS.join(", ")}`);
       a.steps = new Set(list);
     } else if (k === "--only") a.only = new Set(rest[++i].split(",").map((x) => x.trim()));
     else if (k === "--voice-provider") a.voiceProvider = rest[++i] as "eleven" | "openai";
@@ -263,7 +264,15 @@ async function main(): Promise<void> {
   const wantCards = !args.steps || args.steps.has("cards");
   if (wantCards) {
     for (const script of scripts) {
-      const f = path.join(work, `hotspots.${script.stopId}.${provider.name}.${args.quality}.json`);
+      // Points are positions inside particular pictures, so a new picture must
+      // mean a new search: the cache is keyed on the images it was found in.
+      const m0 = media.find((x) => x.stopId === script.stopId)!;
+      const shot = createHash("sha1")
+        .update([m0.hero, ...m0.cards.map((c) => c.image ?? c.then)].map((a) => a?.localPath ?? a?.remoteUrl ?? "-").join("|"))
+        .update(JSON.stringify(written?.stops[script.stopId] ?? {}))
+        .digest("hex")
+        .slice(0, 8);
+      const f = path.join(work, `hotspots.${script.stopId}.${provider.name}.${args.quality}.${shot}.json`);
       let h = await readJson<StopHotspots>(f);
       if (!h) {
         log(`hotspots ${script.stopId}`);
@@ -282,16 +291,10 @@ async function main(): Promise<void> {
             h.cards.push({ cardId: sc.id, points });
           }
         } else {
-          h = await makeStopHotspots(recipe, script, dossiers.find((d) => d.stopId === script.stopId)!, companion, m, llm, provider, args.quality);
+          h = await makeStopHotspots(recipe, script, dossiers.find((d) => d.stopId === script.stopId)!, companion, m, llm, provider, args.quality, written?.stops[script.stopId]);
         }
         await writeJson(f, h);
       } else log(`hotspots ${script.stopId} (cached)`);
-      // The locator found where each point sits; the written script says what she
-      // says there. Positions are never rewritten, so the cache stays pristine.
-      // This runs for every stop even under --only: skipping it would publish the
-      // words the model wrote instead of the words that were written for her, and
-      // it costs nothing when the text has not changed.
-      if (written) h = await applyWrittenHotspots(h, written.stops[script.stopId], recipe, provider);
       hotspots.push(h);
     }
   }

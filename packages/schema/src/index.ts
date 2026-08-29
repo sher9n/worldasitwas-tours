@@ -139,6 +139,8 @@ export type Card = z.infer<typeof Card>;
 export type CardKind = Card["kind"];
 
 export const Arrival = z.object({
+  /** The scene the visitor arrives on. Every screen in the tour is a still. */
+  still: ImageAsset.optional(),
   livingScene: VideoAsset.optional(),
   talkingPortrait: VideoAsset.optional(),
   line: SpokenLine,

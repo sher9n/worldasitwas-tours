@@ -15,9 +15,12 @@ import type { CompanionDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
 
 export type MediaStep = "hero" | "video" | "line" | "ambience" | "portrait" | "cards" | "cardmotion" | "narration" | "faces" | "transition";
-/** Card motion is deliberately absent: every screen is a still that drifts.
- * The step survives for a deliberate opt-in via --steps, never by default. */
-export const ALL_STEPS: MediaStep[] = ["hero", "video", "line", "ambience", "portrait", "cards", "narration", "faces", "transition"];
+/** Every step that exists, including the ones a tour no longer uses. */
+export const KNOWN_STEPS: MediaStep[] = ["hero", "video", "line", "ambience", "portrait", "cards", "cardmotion", "narration", "faces", "transition"];
+/** Neither card motion nor the arrival clip is part of a tour any more: every
+ * screen is a still that drifts. Both steps survive for a deliberate opt-in via
+ * --steps, and neither costs anything unless asked for. */
+export const ALL_STEPS: MediaStep[] = ["hero", "line", "ambience", "portrait", "cards", "narration", "faces", "transition"];
 
 export interface CardMedia {
   id: string;
@@ -92,7 +95,9 @@ export async function makeStopMedia(
   const d = DURATIONS[quality];
   const stage = `media:${script.stopId}`;
   const voice = recipe.companion.narrationVoice;
-  const want = (s: MediaStep) => !opts.steps || opts.steps.has(s);
+  // No steps asked for means the steps a tour actually uses, which is not every
+  // step that exists: moving pictures are opt-in and cost money.
+  const want = (s: MediaStep) => (opts.steps ?? new Set(ALL_STEPS)).has(s);
 
   // Arrival: hero still, then animate it, then her line, then the talking portrait.
   const hero = want("hero") ? await provider.image({ prompt: styled(recipe, script.heroImagePrompt), aspect: "9:16", quality, stage, note: "hero still" }) : undefined;

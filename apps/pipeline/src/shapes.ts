@@ -182,6 +182,41 @@ export const HotspotPlan = z.object({
 });
 export type HotspotPlan = z.infer<typeof HotspotPlan>;
 
+/** Where named things sit in a finished picture. Used when the script names them. */
+export const HotspotFind = z.object({
+  points: z.array(
+    z.object({
+      label: z.string(),
+      x: z.number(),
+      y: z.number(),
+      visible: z.boolean(),
+    }),
+  ),
+});
+export type HotspotFind = z.infer<typeof HotspotFind>;
+
+export const HOTSPOT_FIND_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["points"],
+  properties: {
+    points: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["label", "x", "y", "visible"],
+        properties: {
+          label: { type: "string", description: "Exactly the label you were asked to find, copied verbatim." },
+          x: { type: "number", description: "Horizontal centre of that thing, 0 (left) to 1 (right)." },
+          y: { type: "number", description: "Vertical centre of that thing, 0 (top) to 1 (bottom)." },
+          visible: { type: "boolean", description: "False if the thing genuinely is not in this picture; then x and y are ignored." },
+        },
+      },
+    },
+  },
+} as const;
+
 export const HOTSPOT_PLAN_SCHEMA = {
   type: "object",
   additionalProperties: false,
