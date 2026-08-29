@@ -62,8 +62,10 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const [cDetail, setCDetail] = useState("");
   const [beatFrac, setBeatFrac] = useState(0);
   const [speakingUi, setSpeakingUi] = useState(false);
+  const [gated, setGated] = useState(false);
 
   const engine = useRef<AudioEngine | null>(null);
+  const prevCState = useRef<CompanionState>("idle");
   const transcriptRef = useRef<{ who: string; text: string }[]>([]);
   const companionRef = useRef<CompanionSession | null>(null);
   const startedAt = useRef(0);
@@ -105,10 +107,16 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
   const companion = useMemo(() => {
     const c = new CompanionSession(tour.id, {
       onState: (s, d) => {
+        const prev = prevCState.current;
+        prevCState.current = s;
         setCState(s);
         setCDetail(d ?? "");
-        askingRef.current = s === "connecting" || s === "listening" || s === "thinking" || s === "speaking";
+        // Connecting in the background is not asking: only a live exchange
+        // holds the tour. askDown pauses narration itself when the hold begins.
+        askingRef.current = s === "listening" || s === "thinking" || s === "speaking";
         if (askingRef.current) engine.current?.pauseVoice();
+        // Her live answer ended: the recorded walk picks back up.
+        if (s === "ready" && (prev === "speaking" || prev === "thinking")) engine.current?.resumeVoice();
         onCompanion?.(s, transcriptRef.current);
       },
       onTranscript: (who, text, final) => {
@@ -165,6 +173,7 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       }
       setBi(index);
       setPaused(false);
+      setGated(false);
     },
     [beats, bi, clearBeatAudio, emit, stop],
   );
@@ -226,7 +235,12 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       const active = Date.now() - bs.enteredAt - bs.pausedAccum;
       const expected = Math.max(bs.expectedMs + bs.bonusMs, beat.kind === "card" ? 4000 : 3500);
       setBeatFrac(Math.min(1, active / expected));
-      if (bs.voiceDone && active >= expected) goToRef.current(bi + 1, "auto");
+      if (bs.voiceDone && active >= expected) {
+        // She introduces the next stop, then waits for the visitor: the walk
+        // is a gate, not a conveyor belt.
+        if (beat.kind === "walk") setGated(true);
+        else goToRef.current(bi + 1, "auto");
+      }
     }, TICK_MS);
     return () => window.clearInterval(id);
   }, [phase, bi, paused, beat]);
@@ -240,6 +254,9 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     emit("tour_started", { version: tour.version });
     setPhase("playing");
     setBi(0);
+    // Pre-connect her ears so the first hold listens instantly; mic stays off
+    // until held. A failure here is silent - holding will simply retry.
+    void companion.connect(tour.stops[0].id).catch(() => undefined);
   };
 
   const togglePause = () => setPaused((p) => !p);
@@ -255,9 +272,22 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       circleVideo.current?.pause();
     } else {
       engine.current?.resumeVoice();
-      circleVideo.current?.play().catch(() => undefined);
     }
   }, [paused, phase]);
+
+  // Her mouth moves only while sound actually comes out, and never while she
+  // is listening to the visitor: the loop is gated to real audio playback.
+  useEffect(() => {
+    if (phase !== "playing") return;
+    const id = window.setInterval(() => {
+      const v = circleVideo.current;
+      if (!v) return;
+      const talking = Boolean(engine.current?.isVoicePlaying()) && !askingRef.current && !paused;
+      if (talking && v.paused) v.play().catch(() => undefined);
+      if (!talking && !v.paused) v.pause();
+    }, 120);
+    return () => window.clearInterval(id);
+  }, [phase, paused]);
 
   const holdTimer = useRef<number | null>(null);
   const downAt = useRef<{ x: number; y: number } | null>(null);
@@ -439,18 +469,28 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
           <div className="walk-body">
             <small>Walking on</small>
             <h2>{nextStop.title}</h2>
-            <div className="walk-dots">
-              <span />
-              <span />
-              <span />
-            </div>
+            {gated ? (
+              <button className="continue" data-noadvance onClick={() => goTo(bi + 1, "continue")}>
+                Continue to {nextStop.title} →
+              </button>
+            ) : (
+              <div className="walk-dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            )}
           </div>
         </div>
       ) : (
         <div className="slide">
           {img && (
             <div className={`zoomer ${hotspot ? "focus" : ""}`} style={hotspot ? { transformOrigin: `${hotspot.x * 100}% ${hotspot.y * 100}%` } : undefined}>
-              <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
+              {beat?.kind === "arrival" && stop.arrival.livingScene?.video ? (
+                <video className="bg" src={stop.arrival.livingScene.video} poster={img} muted autoPlay loop playsInline />
+              ) : (
+                <img className={`bg kenburns ${bi % 2 ? "kb-b" : "kb-a"} ${paused || hotspot ? "hold" : ""}`} src={img} alt="" />
+              )}
             </div>
           )}
           {hotspot && (

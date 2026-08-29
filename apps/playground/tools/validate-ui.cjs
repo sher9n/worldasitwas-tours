@@ -82,7 +82,7 @@ async function labelContrast(page) {
 }
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, deviceScaleFactor: 2 })).newPage();
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message.slice(0, 120)));
@@ -110,6 +110,8 @@ async function labelContrast(page) {
   check("no RECONSTRUCTION badge", !(await page.$(".badge")));
   check("no caption text block", !(await page.$(".caption")));
   check("stop title card shown", Boolean(await page.$(".titlecard")));
+  const bgVid = await page.$eval(".slide video.bg", (v) => ({ playing: !v.paused, muted: v.muted, t: v.currentTime })).catch(() => null);
+  check("arrival background is a muted living scene", Boolean(bgVid && bgVid.playing && bgVid.muted), JSON.stringify(bgVid));
   await page.screenshot({ path: `${S}/v-01-arrival.png` });
 
   // Bottom row geometry
@@ -157,6 +159,26 @@ async function labelContrast(page) {
   const fadeGone = !(await page.$(".fade-layer"));
   check("slides cross-dissolve (fade layer mid-flight)", sawFade, `opacity ${fadeOpacity}`);
   check("fade layer cleans up", fadeGone);
+
+  // Walk gate: after her walking line, the tour waits for a tap on Continue.
+  {
+    let onWalk = false;
+    for (let i = 0; i < 8 && !onWalk; i++) { await neutralTap(); await page.waitForTimeout(600); onWalk = Boolean(await page.$(".walk")); }
+    if (onWalk) {
+      let cont = null;
+      for (let i = 0; i < 30 && !cont; i++) { await page.waitForTimeout(500); cont = await page.$(".continue"); }
+      check("walk gates on Continue", Boolean(cont));
+      if (cont) {
+        await page.waitForTimeout(2500);
+        check("gate holds until tapped", Boolean(await page.$(".walk")));
+        await cont.click();
+        await page.waitForTimeout(800);
+        check("Continue advances to the next stop", Boolean(await page.$(".titlecard")) || !(await page.$(".walk")));
+      }
+    } else {
+      check("walk gates on Continue", false, "never reached a walk screen");
+    }
+  }
 
   // Spotlight sweep: activate the first point on every dotted screen in the tour.
   let sweep = 0, belowSeen = false, worstRatio = Infinity, dimOk = true, zoomOk = true, geomOk = true;
@@ -219,9 +241,17 @@ async function labelContrast(page) {
     await p3.waitForTimeout(1500);
     const ask = await p3.$(".ask");
     const box = await ask.boundingBox();
+    await p3.waitForTimeout(4000); // let the Travel-time preconnect finish
     await p3.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await p3.mouse.down();
-    await p3.waitForTimeout(2500);
+    let listenMs = -1;
+    for (let t = 0; t <= 800; t += 50) {
+      const cls = await p3.$eval(".ask", (el) => el.className);
+      if (/listening/.test(cls)) { listenMs = t; break; }
+      await p3.waitForTimeout(50);
+    }
+    check("ask: listening within 400ms of hold", listenMs >= 0 && listenMs <= 400, `${listenMs}ms`);
+    await p3.waitForTimeout(1800);
     const midHold = await p3.$eval(".ask", (el) => el.className);
     await p3.mouse.up();
     let sawError = false, endState = "";

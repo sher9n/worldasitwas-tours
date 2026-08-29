@@ -78,6 +78,8 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: #fff; opacity: .25; animation: stepdot 1.4s ease-in-out infinite; }
 .walk-dots span:nth-child(2) { animation-delay: .45s; }
 .walk-dots span:nth-child(3) { animation-delay: .9s; }
+.continue { font: 700 14px "Source Sans 3", sans-serif; letter-spacing: .06em; color: #fff; background: var(--accent); border: none; border-radius: 12px; padding: 14px 20px; cursor: pointer; animation: continuein .4s ease-out both; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+@keyframes continuein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes stepdot { 0%, 100% { opacity: .25; transform: none; } 50% { opacity: 1; transform: translateY(-4px); } }
 
 /* cross-dissolve between slides: the old image floats above and melts away */

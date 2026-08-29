@@ -80,6 +80,11 @@ export class AudioEngine {
     if (!this.voice.paused) this.voice.pause();
   }
 
+  /** Is her recorded voice audibly playing right now? */
+  isVoicePlaying(): boolean {
+    return !this.voice.paused && !this.voice.ended && this.voice.currentTime > 0;
+  }
+
   /** Skip gracefully: her line fades over ~180ms instead of chopping. */
   fadeStopVoice(): void {
     const el = this.voice;
