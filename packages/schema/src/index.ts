@@ -1,0 +1,347 @@
+/**
+ * Tour manifest schema, version "tour/1".
+ *
+ * This is the contract between the batch pipeline (which writes manifests),
+ * the API (which serves them) and any player (which renders them). The shapes
+ * here mirror the integration brief shared with the platform team.
+ */
+import { z } from "zod";
+
+export const SCHEMA_VERSION = "tour/1" as const;
+
+/** How sure we are about a claim. Rendered as a chip on the card. */
+export const Confidence = z.enum(["known", "likely", "interpretation"]);
+export type Confidence = z.infer<typeof Confidence>;
+
+/** Where a picture comes from. Reconstructions must carry a visible badge. */
+export const Origin = z.enum(["reconstruction", "archive", "photograph"]);
+export type Origin = z.infer<typeof Origin>;
+
+const url = z.string().min(1);
+
+export const GeoPoint = z.object({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+  bearing: z.number().min(0).max(360).optional(),
+});
+export type GeoPoint = z.infer<typeof GeoPoint>;
+
+export const Credit = z.object({
+  title: z.string().min(1),
+  holder: z.string().min(1),
+  license: z.string().min(1),
+  url: url,
+});
+export type Credit = z.infer<typeof Credit>;
+
+export const ImageAsset = z.object({
+  image: url,
+  origin: Origin,
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
+  alt: z.string().optional(),
+  /** Required in practice for archive items and licensed photographs. */
+  credit: Credit.optional(),
+});
+export type ImageAsset = z.infer<typeof ImageAsset>;
+
+export const VideoAsset = z.object({
+  video: url,
+  poster: url.optional(),
+  durationSec: z.number().positive(),
+  hasAudio: z.boolean().default(false),
+  origin: Origin.optional(),
+});
+export type VideoAsset = z.infer<typeof VideoAsset>;
+
+export const SpokenLine = z.object({
+  text: z.string().min(1),
+  audio: url.optional(),
+  durationSec: z.number().positive().optional(),
+});
+export type SpokenLine = z.infer<typeof SpokenLine>;
+
+export const Ambience = z.object({
+  audio: url,
+  loop: z.boolean().default(true),
+  /** How far under narration the loop sits. Negative decibels. */
+  gainDb: z.number().max(0).default(-14),
+});
+export type Ambience = z.infer<typeof Ambience>;
+
+export const Claim = z.object({
+  text: z.string().min(1),
+  confidence: Confidence,
+  sourceId: z.string().min(1),
+});
+export type Claim = z.infer<typeof Claim>;
+
+/** What the live companion is told when this card is on screen. Sent verbatim. */
+export const CompanionContext = z.object({
+  text: z.string().min(1),
+  image: url.optional(),
+});
+export type CompanionContext = z.infer<typeof CompanionContext>;
+
+const CardBase = z.object({
+  id: z.string().min(1),
+  caption: z.string().max(280).optional(),
+  narration: SpokenLine.optional(),
+  claims: z.array(Claim).default([]),
+  companionContext: CompanionContext.optional(),
+});
+
+export const ImageCard = CardBase.extend({
+  kind: z.literal("image"),
+  media: ImageAsset,
+});
+export const VideoCard = CardBase.extend({
+  kind: z.literal("video"),
+  media: VideoAsset,
+});
+export const ThenNowCard = CardBase.extend({
+  kind: z.literal("thenNow"),
+  then: ImageAsset,
+  now: ImageAsset,
+});
+export const ArchiveCard = CardBase.extend({
+  kind: z.literal("archive"),
+  media: ImageAsset,
+  /** The real picture, brought to life. Optional. */
+  animated: VideoAsset.optional(),
+  credit: Credit,
+});
+export const TextCard = CardBase.extend({
+  kind: z.literal("text"),
+  text: z.string().min(1).max(320),
+});
+
+export const Card = z.discriminatedUnion("kind", [ImageCard, VideoCard, ThenNowCard, ArchiveCard, TextCard]);
+export type Card = z.infer<typeof Card>;
+export type CardKind = Card["kind"];
+
+export const Arrival = z.object({
+  livingScene: VideoAsset.optional(),
+  talkingPortrait: VideoAsset.optional(),
+  line: SpokenLine,
+  ambience: Ambience.optional(),
+});
+export type Arrival = z.infer<typeof Arrival>;
+
+export const Transition = z.object({
+  text: z.string().min(1),
+  video: url.optional(),
+  audio: url.optional(),
+  durationSec: z.number().positive().optional(),
+});
+export type Transition = z.infer<typeof Transition>;
+
+export const Stop = z.object({
+  id: z.string().min(1),
+  order: z.number().int().positive(),
+  title: z.string().min(1),
+  geo: GeoPoint,
+  arrival: Arrival,
+  cards: z.array(Card).min(1),
+  transitionOut: Transition.optional(),
+});
+export type Stop = z.infer<typeof Stop>;
+
+export const Voice = z.object({
+  provider: z.literal("openai-realtime"),
+  voice: z.string().min(1),
+});
+
+export const Companion = z.object({
+  name: z.string().min(1),
+  role: z.string().min(1),
+  bio: z.string().min(1),
+  portrait: url,
+  greeting: SpokenLine,
+  voice: Voice,
+});
+export type Companion = z.infer<typeof Companion>;
+
+export const Source = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  url: url,
+  license: z.string().min(1),
+});
+export type Source = z.infer<typeof Source>;
+
+export const Provenance = z.object({
+  generatedAt: z.string().datetime(),
+  reviewedBy: z.enum(["human", "none"]).default("none"),
+  models: z.array(z.string()),
+  costUsd: z.number().min(0),
+});
+export type Provenance = z.infer<typeof Provenance>;
+
+export const Cover = z.object({
+  image: url,
+  video: url.optional(),
+});
+
+export const Tour = z
+  .object({
+    schema: z.literal(SCHEMA_VERSION),
+    id: z.string().regex(/^tour_[a-z0-9_]+$/),
+    version: z.string().min(1),
+    city: z.string().regex(/^[a-z][a-z0-9-]*$/),
+    year: z.number().int(),
+    yearRange: z.tuple([z.number().int(), z.number().int()]),
+    lang: z.string().min(2).max(5).default("en"),
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    durationMin: z.number().positive(),
+    cover: Cover,
+    companion: Companion,
+    stops: z.array(Stop).min(1),
+    sources: z.array(Source),
+    provenance: Provenance,
+  })
+  .superRefine((tour, ctx) => {
+    if (tour.yearRange[0] > tour.year || tour.yearRange[1] < tour.year) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: "yearRange must contain year", path: ["yearRange"] });
+    }
+    const sourceIds = new Set(tour.sources.map((s) => s.id));
+    const orders = new Set<number>();
+    tour.stops.forEach((stop, si) => {
+      if (orders.has(stop.order)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate stop order ${stop.order}`, path: ["stops", si, "order"] });
+      }
+      orders.add(stop.order);
+      stop.cards.forEach((card, ci) => {
+        card.claims.forEach((claim, ki) => {
+          if (!sourceIds.has(claim.sourceId)) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: `claim references unknown source "${claim.sourceId}"`,
+              path: ["stops", si, "cards", ci, "claims", ki, "sourceId"],
+            });
+          }
+        });
+        if (card.kind === "archive" && card.media.origin !== "archive") {
+          ctx.addIssue({ code: z.ZodIssueCode.custom, message: "archive card media must have origin archive", path: ["stops", si, "cards", ci, "media", "origin"] });
+        }
+        if (card.kind === "thenNow" && card.now.origin === "reconstruction") {
+          ctx.addIssue({ code: z.ZodIssueCode.custom, message: "the now image of a thenNow card must be a photograph or archive item", path: ["stops", si, "cards", ci, "now", "origin"] });
+        }
+      });
+    });
+  });
+export type Tour = z.infer<typeof Tour>;
+
+/** What GET /v1/tours returns per tour. Derived from a manifest. */
+export const TourSummary = z.object({
+  id: z.string(),
+  version: z.string(),
+  title: z.string(),
+  summary: z.string(),
+  city: z.string(),
+  year: z.number().int(),
+  yearRange: z.tuple([z.number().int(), z.number().int()]),
+  lang: z.string(),
+  durationMin: z.number(),
+  stopCount: z.number().int(),
+  companion: z.object({ name: z.string(), role: z.string(), portrait: z.string() }),
+  cover: Cover,
+  start: GeoPoint,
+  distanceYears: z.number().int(),
+});
+export type TourSummary = z.infer<typeof TourSummary>;
+
+export const CatalogCity = z.object({
+  id: z.string(),
+  name: z.string(),
+  country: z.string(),
+  anchor: GeoPoint,
+  years: z.array(z.number().int()),
+  tourCount: z.number().int(),
+});
+export const Catalog = z.object({
+  cities: z.array(CatalogCity),
+  updatedAt: z.string().datetime(),
+});
+export type Catalog = z.infer<typeof Catalog>;
+
+export function summarize(tour: Tour, forYear?: number): TourSummary {
+  const y = forYear ?? tour.year;
+  const [a, b] = tour.yearRange;
+  const distanceYears = y >= a && y <= b ? 0 : y < a ? a - y : y - b;
+  return {
+    id: tour.id,
+    version: tour.version,
+    title: tour.title,
+    summary: tour.summary,
+    city: tour.city,
+    year: tour.year,
+    yearRange: tour.yearRange,
+    lang: tour.lang,
+    durationMin: tour.durationMin,
+    stopCount: tour.stops.length,
+    companion: { name: tour.companion.name, role: tour.companion.role, portrait: tour.companion.portrait },
+    cover: tour.cover,
+    start: tour.stops[0].geo,
+    distanceYears,
+  };
+}
+
+/** Parse and validate a manifest. Throws a ZodError with paths on failure. */
+export function parseTour(input: unknown): Tour {
+  return Tour.parse(input);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Recipe: the input to the batch pipeline. One recipe becomes one tour.     */
+/* ------------------------------------------------------------------------ */
+
+export const RecipeStop = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  geo: GeoPoint,
+  /** What this stop is about, in a sentence or two. The researcher expands it. */
+  brief: z.string().min(1),
+  /** Things the script must cover here. */
+  mustCover: z.array(z.string()).default([]),
+  /** Search phrases for finding a present-day photograph and archive items. */
+  archiveQueries: z.array(z.string()).default([]),
+});
+
+export const Recipe = z.object({
+  id: z.string().regex(/^tour_[a-z0-9_]+$/),
+  city: z.string().regex(/^[a-z][a-z0-9-]*$/),
+  cityName: z.string().min(1),
+  country: z.string().length(2),
+  year: z.number().int(),
+  yearRange: z.tuple([z.number().int(), z.number().int()]),
+  lang: z.string().default("en"),
+  title: z.string().min(1),
+  theme: z.string().min(1),
+  companion: z.object({
+    name: z.string().min(1),
+    role: z.string().min(1),
+    /** Who she is, where her voice comes from, what she cares about. */
+    brief: z.string().min(1),
+    voice: z.string().default("marin"),
+    /** ElevenLabs voice name used for pre-recorded narration. */
+    narrationVoice: z.string().default("Alice"),
+  }),
+  /** Visual direction applied to every reconstruction prompt. */
+  style: z.object({
+    look: z.string().min(1),
+    avoid: z.string().default(""),
+  }),
+  stops: z.array(RecipeStop).min(1),
+  /** Primary sources the researcher should start from. */
+  seedSources: z
+    .array(z.object({ title: z.string(), url: z.string(), license: z.string(), note: z.string().optional() }))
+    .default([]),
+});
+export type Recipe = z.infer<typeof Recipe>;
+export type RecipeStop = z.infer<typeof RecipeStop>;
+
+export function parseRecipe(input: unknown): Recipe {
+  return Recipe.parse(input);
+}

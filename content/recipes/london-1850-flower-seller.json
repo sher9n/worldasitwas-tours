@@ -1,0 +1,78 @@
+{
+  "id": "tour_london_1850_flower_seller",
+  "city": "london",
+  "cityName": "London",
+  "country": "GB",
+  "year": 1850,
+  "yearRange": [1848, 1852],
+  "lang": "en",
+  "title": "A Walk with a Flower Seller",
+  "theme": "Six stops from Ludgate Hill down to the river with Nell Baker, who sells violets and watercress outside St Paul's. London in the spring of 1850: the busiest city on earth, the Crystal Palace rising in Hyde Park for next year's Great Exhibition, cholera two summers behind them and coming back, the new railways, the old river. Told from the pavement, not the palace.",
+  "companion": {
+    "name": "Nell Baker",
+    "role": "Flower seller, Covent Garden and Ludgate Hill",
+    "brief": "Thirty-one, widowed two years, two children (Tom, nine, and Sal, six). Buys violets, wallflowers and watercress at Covent Garden before six and sells from a shallow basket on Ludgate Hill and by the cathedral steps. Born in Clerkenwell. Reads a little, cannot write. Sharp, warm, funny, quick to size up a stranger, protective of the children who sell near her. Knows prices to the farthing, knows the police by name, knows which coffee-stalls give a second cup. Her manner of speaking, her worries and her jokes come from the street sellers interviewed in Henry Mayhew's London Labour and the London Poor (1851). She knows nothing after spring 1850. She has never been further than Greenwich by boat and Kensington on foot.",
+    "voice": "marin",
+    "narrationVoice": "Alice"
+  },
+  "style": {
+    "look": "Photographic realism as if a large-format camera had been on the spot in 1850, natural overcast London light, wet cobbles, coal smoke haze, period-correct clothing (women in shawls and bonnets, men in top hats or caps, no bare heads), horse traffic only, gas lamps, painted shop signs. Portrait 9:16 framing, eye level from the pavement. Muted colour, not sepia. No text overlays, no watermarks.",
+    "avoid": "no modern vehicles, no electric lights, no railway bridge across Ludgate Hill (built 1865), no Tower Bridge (1894), no modern clothing, no bicycles, no cartoon or painterly styles, no faces of real named historical figures"
+  },
+  "stops": [
+    {
+      "id": "stop_01_ludgate_hill",
+      "title": "Ludgate Hill",
+      "geo": { "lat": 51.5139, "lng": -0.1015, "bearing": 78 },
+      "brief": "The busiest street in the City, climbing east to St Paul's. Omnibuses, drays, hand-carts, crossing-sweepers, the cathedral dome filling the end of the street. Nell's pitch is on the north pavement near the churchyard railings.",
+      "mustCover": ["what an omnibus ride costs", "who is in the street at this hour", "the dome and what it means to her", "the mud and the crossing-sweepers"],
+      "archiveQueries": ["Ludgate Hill St Paul's 1850 engraving", "Ludgate Hill 19th century photograph", "Ludgate Hill St Paul's Cathedral"]
+    },
+    {
+      "id": "stop_02_st_pauls_churchyard",
+      "title": "St Paul's Churchyard",
+      "geo": { "lat": 51.5138, "lng": -0.0984, "bearing": 20 },
+      "brief": "The steps and the churchyard: booksellers of Paternoster Row behind, the drapers and warehouses, the cathedral itself. Where Nell does her best trade with clerks and visitors. Money, prices, what a day earns.",
+      "mustCover": ["what she pays at Covent Garden and what she sells for", "a day's takings in good and bad weather", "what a loaf and a pint cost", "the clerks and the shopmen"],
+      "archiveQueries": ["St Paul's Churchyard 1850", "St Paul's Cathedral west front 19th century", "Paternoster Row engraving"]
+    },
+    {
+      "id": "stop_03_paternoster_row",
+      "title": "Paternoster Row",
+      "geo": { "lat": 51.5150, "lng": -0.0998, "bearing": 270 },
+      "brief": "The narrow street of booksellers and publishers north of the cathedral. Cheap print, penny papers, ballad sheets. Reading and not reading. News of the day: the Exhibition being built, the Queen, the price of bread.",
+      "mustCover": ["the penny press and what people read aloud", "news of 1850 as a street seller hears it", "the Great Exhibition being built in Hyde Park"],
+      "archiveQueries": ["Paternoster Row 19th century", "Paternoster Row booksellers"]
+    },
+    {
+      "id": "stop_04_fleet_street",
+      "title": "Fleet Street and the Fleet Ditch",
+      "geo": { "lat": 51.5142, "lng": -0.1060, "bearing": 265 },
+      "brief": "Down the hill: newspaper offices, taverns, Temple Bar ahead. Under the road runs the buried Fleet river, a sewer. Smell, cholera, water. Where the coffee-stalls are.",
+      "mustCover": ["the smell and the buried river", "cholera of 1849 and fear of its return", "coffee-stall prices and who drinks there", "Temple Bar"],
+      "archiveQueries": ["Fleet Street Temple Bar 1850", "Fleet Street 19th century photograph", "Temple Bar London engraving"]
+    },
+    {
+      "id": "stop_05_blackfriars",
+      "title": "Blackfriars Bridge",
+      "geo": { "lat": 51.5115, "lng": -0.1040, "bearing": 180 },
+      "brief": "South to the river. The old stone Blackfriars Bridge (replaced 1869), the tide, the wherries and steamers, the smell of the Thames, the mudlarks on the foreshore at low water.",
+      "mustCover": ["the river as a road: penny steamers and wherries", "mudlarks and what they find", "the Thames as the city's drain"],
+      "archiveQueries": ["Blackfriars Bridge 1850", "old Blackfriars Bridge engraving", "Thames mudlarks 19th century"]
+    },
+    {
+      "id": "stop_06_thames_foreshore",
+      "title": "The foreshore at low tide",
+      "geo": { "lat": 51.5108, "lng": -0.1005, "bearing": 90 },
+      "brief": "Down on the stones at low water below the wharves. Looking back up at the dome above the warehouses. Where Nell says goodbye: what she hopes for Tom and Sal, and what the city will do next.",
+      "mustCover": ["what she hopes for her children", "how far she has travelled in her life", "one thing she wants the visitor to remember"],
+      "archiveQueries": ["Thames foreshore St Paul's 19th century", "St Paul's from the river 1850 engraving", "Thames wharves London 1850"]
+    }
+  ],
+  "seedSources": [
+    { "title": "Henry Mayhew, London Labour and the London Poor, vol. 1 (1851)", "url": "https://archive.org/details/londonlabourlond01mayh", "license": "public-domain", "note": "Interviews with street sellers including flower girls and watercress sellers; prices and takings." },
+    { "title": "Charles Dickens (ed.), Household Words (1850)", "url": "https://www.djo.org.uk/household-words.html", "license": "public-domain", "note": "Weekly journal begun March 1850; London life and the Exhibition." },
+    { "title": "Old Bailey Proceedings Online, 1850", "url": "https://www.oldbaileyonline.org/", "license": "CC-BY-NC", "note": "Trial accounts naming streets, prices and trades. Non-commercial licence; cite, do not reproduce at length." },
+    { "title": "Wikimedia Commons, Category: Ludgate Hill", "url": "https://commons.wikimedia.org/wiki/Category:Ludgate_Hill", "license": "varies; check per file", "note": "Present-day photographs and 19th century engravings." }
+  ]
+}

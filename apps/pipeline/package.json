@@ -1,0 +1,17 @@
+{
+  "name": "@timetravel/pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "tsx src/cli.ts",
+    "test": "tsx --test src/**/*.test.ts src/*.test.ts"
+  },
+  "dependencies": {
+    "@fal-ai/client": "^1.2.3",
+    "@timetravel/schema": "*",
+    "dotenv": "^16.4.7",
+    "openai": "^4.77.0",
+    "zod": "^3.23.8"
+  }
+}

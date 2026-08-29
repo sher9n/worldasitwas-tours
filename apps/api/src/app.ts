@@ -1,0 +1,141 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from "fastify";
+import cors from "@fastify/cors";
+import fastifyStatic from "@fastify/static";
+import { z } from "zod";
+import { TourStore } from "./store.ts";
+import { mintSession } from "./companion.ts";
+
+export interface AppOptions {
+  toursDir: string;
+  platformKeys: string[];
+  openaiApiKey: string;
+  realtimeModel: string;
+  dev: boolean;
+  logger?: boolean;
+}
+
+const SessionBody = z.object({
+  travellerId: z.string().min(1).max(128),
+  stopId: z.string().optional(),
+  cardId: z.string().optional(),
+  locale: z.string().optional(),
+});
+
+/** Simple per-traveller session limiter: 6 sessions per 10 minutes. */
+class SessionLimiter {
+  private hits = new Map<string, number[]>();
+  allow(id: string, now = Date.now()): boolean {
+    const windowMs = 10 * 60_000;
+    const arr = (this.hits.get(id) ?? []).filter((t) => now - t < windowMs);
+    if (arr.length >= 6) {
+      this.hits.set(id, arr);
+      return false;
+    }
+    arr.push(now);
+    this.hits.set(id, arr);
+    return true;
+  }
+}
+
+export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
+  const app = Fastify({ logger: opts.logger ?? false });
+  const store = new TourStore(opts.toursDir);
+  const limiter = new SessionLimiter();
+
+  await app.register(cors, { origin: true });
+  await fs.mkdir(opts.toursDir, { recursive: true });
+  await app.register(fastifyStatic, {
+    root: opts.toursDir,
+    prefix: "/media/",
+    decorateReply: false,
+    cacheControl: true,
+    maxAge: "365d",
+    immutable: true,
+  });
+
+  const sendError = (reply: FastifyReply, status: number, code: string, message: string, extra: Record<string, unknown> = {}) =>
+    reply.code(status).send({ error: { code, message, ...extra } });
+
+  const requireKey = async (req: FastifyRequest, reply: FastifyReply) => {
+    if (opts.platformKeys.length === 0) return; // dev: allow all
+    const header = req.headers.authorization || "";
+    const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
+    if (!token || !opts.platformKeys.includes(token)) {
+      return sendError(reply, 401, "unauthorized", "Missing or invalid platform key");
+    }
+  };
+
+  app.get("/health", async () => ({ ok: true, time: new Date().toISOString() }));
+
+  app.get("/v1/catalog", { preHandler: requireKey }, async (_req, reply) => {
+    const catalog = await store.catalog();
+    reply.header("Cache-Control", "public, max-age=300");
+    return catalog;
+  });
+
+  app.get("/v1/tours", { preHandler: requireKey }, async (req, reply) => {
+    const q = z
+      .object({ city: z.string().min(1), year: z.coerce.number().int(), lang: z.string().optional() })
+      .safeParse(req.query);
+    if (!q.success) return sendError(reply, 400, "bad_request", "city and integer year are required");
+    const catalog = await store.catalog();
+    if (!catalog.cities.some((c) => c.id === q.data.city)) {
+      return sendError(reply, 404, "city_not_found", `Unknown city "${q.data.city}"; use ids from /v1/catalog`);
+    }
+    const { matches, nearest } = await store.forCityYear(q.data.city, q.data.year, q.data.lang);
+    reply.header("Cache-Control", "public, max-age=300");
+    return { city: q.data.city, year: q.data.year, matches, nearest };
+  });
+
+  app.get<{ Params: { tourId: string } }>("/v1/tours/:tourId", { preHandler: requireKey }, async (req, reply) => {
+    const stored = await store.get(req.params.tourId);
+    if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
+    if (req.headers["if-none-match"] === stored.etag) return reply.code(304).send();
+    reply.header("ETag", stored.etag);
+    reply.header("Cache-Control", "public, max-age=3600");
+    return stored.tour;
+  });
+
+  app.post<{ Params: { tourId: string } }>("/v1/tours/:tourId/companion/session", { preHandler: requireKey }, async (req, reply) => {
+    const stored = await store.get(req.params.tourId);
+    if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
+    const body = SessionBody.safeParse(req.body ?? {});
+    if (!body.success) return sendError(reply, 400, "bad_request", "travellerId is required");
+    if (!limiter.allow(body.data.travellerId)) {
+      reply.header("Retry-After", "600");
+      return sendError(reply, 429, "session_limit", "Too many companion sessions for this traveller");
+    }
+    if (!opts.openaiApiKey) return sendError(reply, 503, "companion_unavailable", "Voice provider not configured");
+    try {
+      const session = await mintSession({
+        apiKey: opts.openaiApiKey,
+        model: opts.realtimeModel,
+        tour: stored.tour,
+        companionNotes: stored.companionNotes,
+        request: body.data,
+      });
+      return session;
+    } catch (err) {
+      req.log.error(err);
+      return sendError(reply, 503, "companion_unavailable", "Voice provider is not reachable right now");
+    }
+  });
+
+  if (opts.dev) {
+    // Playground helpers: not part of the platform contract.
+    app.get<{ Params: { tourId: string } }>("/dev/tours/:tourId/ledger", async (req, reply) => {
+      const stored = await store.get(req.params.tourId);
+      if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown tour");
+      try {
+        const raw = await fs.readFile(path.join(stored.dir, "ledger.json"), "utf8");
+        return JSON.parse(raw);
+      } catch {
+        return { entries: [], totalUsd: 0 };
+      }
+    });
+  }
+
+  return app;
+}
