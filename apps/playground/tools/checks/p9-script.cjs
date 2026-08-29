@@ -29,7 +29,8 @@ pass = ok("she says what the walk is", /walk you|from here to the river|six stop
 const touchAt = first.toLowerCase().indexOf("touch it");
 const nameAt = first.toLowerCase().indexOf(name);
 pass = ok("how to look is explained after she introduces herself", touchAt > nameAt && touchAt > 0, `name at ${nameAt}, instructions at ${touchAt}`) && pass;
-pass = ok("the interface is explained once in the whole tour", (JSON.stringify(m).match(/green disc/gi) || []).length === 1) && pass;
+const invites = (JSON.stringify(m).match(/green (disc|button)/gi) || []).length;
+pass = ok("the interface is explained once in the whole tour", invites === 1, `${invites} mentions`) && pass;
 // 3. She closes the walk.
 pass = ok("she says goodbye at the end", /thank you|farewell|walking with me/i.test(last), last.slice(-60)) && pass;
 

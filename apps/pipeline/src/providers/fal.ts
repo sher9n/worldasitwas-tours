@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import { fal } from "@fal-ai/client";
 import type { Ledger } from "../ledger.ts";
@@ -243,12 +244,34 @@ export class FalProvider implements MediaProvider {
     });
   }
 
+  /**
+   * How each kind of line is performed. The v3 voice acts on these tags rather
+   * than reading them, which is the only way to direct delivery on this model.
+   */
+  private static readonly DIRECTION: Record<string, string> = {
+    arrival: "[warmly]",
+    narration: "[warmly]",
+    hotspots: "[confiding]",
+    transition: "[gently]",
+    character: "[warmly]",
+  };
+  /** Freedom to vary: enough to act the direction, not enough to overplay it. */
+  private static readonly STABILITY = 0.3;
+
+  /** Identity of these recordings: the model, its freedom, and the direction. */
+  get voiceVariant(): string {
+    const scheme = Object.entries(FalProvider.DIRECTION).map(([k, v]) => `${k}${v}`).join("");
+    return `fal:eleven-v3:${FalProvider.STABILITY}:${createHash("sha1").update(scheme).digest("hex").slice(0, 8)}`;
+  }
+
   async tts(o: { text: string; voice: string; stage: string; note: string }): Promise<Asset> {
+    const direction = FalProvider.DIRECTION[o.stage] ?? "[warmly]";
+    const text = /^\s*\[/.test(o.text) ? o.text : `${direction} ${o.text}`;
     return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint: "fal-ai/elevenlabs/tts/eleven-v3", note: o.note }, async () => {
       const data = await this.run<{ audio: { url: string; content_type?: string; duration?: number } }>("fal-ai/elevenlabs/tts/eleven-v3", {
-        text: o.text,
+        text,
         voice: o.voice,
-        stability: 0.5,
+        stability: FalProvider.STABILITY,
         language_code: "en",
       });
       return {

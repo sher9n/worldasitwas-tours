@@ -1,0 +1,26 @@
+{
+  "tourId": "tour_london_1850_flower_seller",
+  "status": "DRAFT, not loaded by the pipeline (only *.script.json is)",
+  "register": "warm and friendly, joined-up sentences, easy to follow",
+  "stops": {
+    "stop_01_ludgate_hill": {
+      "arrival": "Hello, and good morning. My name's Nell Baker, and I sell flowers here at the top of Ludgate Hill, violets mostly, and watercress when the season's right. I've been doing it for nine years now, so I know this street better than I know my own front door. What I'd like to do is walk you all the way down it, from here to the river, and tell you about the place as we go. There are six stops along the way, and we'll take them slowly. If you see something you're curious about, just touch it and I'll tell you what it is, and if you'd rather simply ask me, hold the green button and talk, and I'll answer you as best I can. So, here we are. It's the spring of 1850, and this is Ludgate Hill.",
+      "cards": {
+        "stop_01_ludgate_hill_c1": "By seven in the morning this hill is as busy as it ever gets, and I have to say I love it. Every cart and cab and omnibus you can see is carrying something that has to be sold before dark, and everyone driving them knows it. I come up through the middle of all this twice a day with my basket on my hip, and you do learn to step lively, because nobody here waits for anybody.",
+        "stop_01_ludgate_hill_c2": "Stop for a moment and look at what the whole street is pointing towards. You see how the roofs step down on either side, lower and lower as they go? That leaves the church standing there with the sky all to itself. There's nothing built across it and nothing built over it, not so much as a railway bridge. People walk up this hill every day of their lives and never once look up. I still do."
+      },
+      "hotspots": {
+        "stop_01_ludgate_hill_arrival_p1": "That's St Paul's up there, and that's where we're headed. It's the tallest thing in London by a long way, so if you ever find yourself turned around on this side of the river, just look up and you'll know where you are.",
+        "stop_01_ludgate_hill_arrival_p2": "You could ride that if you had sixpence to spare, but I never do. My money is stock money and it all goes on flowers, so I walk instead and put the difference towards tomorrow's market.",
+        "stop_01_ludgate_hill_arrival_p3": "That boy there is the reason your boots are still worth looking at. There's no drain in this road, so everything the horses leave behind just sits where it falls, and he sweeps a clean path across it for anyone who wants to cross. He'll be at that until the light goes.",
+        "stop_01_ludgate_hill_stop_01_ludgate_hill_c1_p1": "Look how black the stone has gone on that side of the church. That's coal smoke. Every house in London burns coal, all day and all winter, and the church just quietly wears the soot like an old coat.",
+        "stop_01_ludgate_hill_stop_01_ludgate_hill_c1_p2": "That's how the clerks get to work in the morning, and you can always tell the ones who couldn't afford to be late, because they're sitting up on the roof in the wind rather than paying for a seat inside.",
+        "stop_01_ludgate_hill_stop_01_ludgate_hill_c1_p3": "Those are brewers' drays, and they go at their own pace and ask nobody's permission. Everything on this hill is either pulling a load or getting out of the way of something that is.",
+        "stop_01_ludgate_hill_stop_01_ludgate_hill_c2_p1": "A man named Christopher Wren built that church, and it took him the best part of his life. It was finished in 1711, which means people were born, learned a trade and were buried again while it was still going up.",
+        "stop_01_ludgate_hill_stop_01_ludgate_hill_c2_p2": "That's a coffee house, and there'll be a stall out on the pavement beside it before five in the morning. A good many trades round here start work long before there's any light to see by.",
+        "stop_01_ludgate_hill_stop_01_ludgate_hill_c2_p3": "Watch how it takes the middle of the road and dares anyone to argue. The hill is steep enough that the horses have to walk it, which means everything behind them walks it too."
+      },
+      "transitionOut": "Come along with me now, up past the booksellers' windows. I want to show you what stands at the top of this hill, and what's grown up right against its walls."
+    }
+  }
+}

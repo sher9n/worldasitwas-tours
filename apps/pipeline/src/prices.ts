@@ -13,6 +13,8 @@ export const RATES = {
   omnihumanPerSec: 0.16,
   /** fal fal-ai/elevenlabs/tts/eleven-v3, per character (estimate from ElevenLabs API rates). */
   elevenTtsPerChar: 0.0001,
+  /** OpenAI gpt-4o-mini-tts, per character of input (about $0.015 a minute of speech). */
+  openaiTtsPerChar: 0.000015,
   /** fal fal-ai/elevenlabs/sound-effects/v2, per second. */
   elevenSfxPerSec: 0.002,
   /** OpenAI gpt-5.4 via Responses API, per token. Estimate; billed by OpenAI directly. */

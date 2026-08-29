@@ -38,8 +38,13 @@ export class CachedProvider implements MediaProvider {
 
   private async through<A extends Args>(method: string, args: A, fn: (a: A) => Promise<Asset>): Promise<Asset> {
     const { stage, note, ...rest } = args as Args & { stage?: string; note?: string };
-    // Image methods depend on which image model is configured; video, speech and sound do not.
-    const scope = /^(image|imageWithRefs|editImage)$/.test(method) ? this.inner.variant ?? this.inner.name : this.inner.name;
+    // Pictures depend on the image model; speech depends on the voice and how it
+    // was told to deliver the line, so a changed delivery note is a new recording.
+    const scope = /^(image|imageWithRefs|editImage)$/.test(method)
+      ? this.inner.variant ?? this.inner.name
+      : method === "tts"
+        ? this.inner.voiceVariant ?? this.inner.name
+        : this.inner.name;
     const key = crypto.createHash("sha1").update(scope + ":" + method + ":" + stable(rest)).digest("hex").slice(0, 16);
     await fs.mkdir(this.dir, { recursive: true });
     const metaFile = path.join(this.dir, `${key}.json`);

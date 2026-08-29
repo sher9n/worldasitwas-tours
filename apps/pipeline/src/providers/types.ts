@@ -36,6 +36,8 @@ export interface MediaProvider {
   /** Lip-synced talking portrait from one image and one audio file. */
   talkingPortrait(opts: { imageUrl: string; audioUrl: string; prompt?: string; quality: Quality; stage: string; note: string }): Promise<Asset>;
   /** Pre-recorded speech. */
+  /** Identity of the speaking voice: model plus delivery note. Recordings are cached against it. */
+  readonly voiceVariant?: string;
   tts(opts: { text: string; voice: string; stage: string; note: string }): Promise<Asset>;
   /** Seamless ambience loop. */
   sfx(opts: { text: string; durationSec: number; loop: boolean; stage: string; note: string }): Promise<Asset>;

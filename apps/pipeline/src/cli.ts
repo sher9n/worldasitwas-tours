@@ -16,6 +16,7 @@ import { dirs, env, type ProviderName, type Quality } from "./env.ts";
 import { Ledger } from "./ledger.ts";
 import { Llm } from "./llm.ts";
 import { CachedProvider } from "./providers/cached.ts";
+import { OpenAiVoice, withVoice } from "./providers/voice.ts";
 import { FalProvider, type ImageModel } from "./providers/fal.ts";
 import { MockProvider } from "./providers/mock.ts";
 import type { MediaProvider } from "./providers/types.ts";
@@ -39,6 +40,10 @@ interface Args {
   steps?: Set<MediaStep>;
   portrait: boolean;
   fresh: boolean;
+  /** Rebuild only these stops; every other stop keeps the media it already has. */
+  only?: Set<string>;
+  /** Where her recorded voice comes from: the tour's ElevenLabs voice, or the live call's. */
+  voiceProvider?: "eleven" | "openai";
 }
 
 function parseArgs(argv: string[]): Args {
@@ -54,7 +59,9 @@ function parseArgs(argv: string[]): Args {
       const list = rest[++i].split(",").map((s) => s.trim()) as MediaStep[];
       for (const s of list) if (!ALL_STEPS.includes(s)) throw new Error(`unknown step "${s}"; valid: ${ALL_STEPS.join(", ")}`);
       a.steps = new Set(list);
-    } else if (k === "--no-portrait") a.portrait = false;
+    } else if (k === "--only") a.only = new Set(rest[++i].split(",").map((x) => x.trim()));
+    else if (k === "--voice-provider") a.voiceProvider = rest[++i] as "eleven" | "openai";
+    else if (k === "--no-portrait") a.portrait = false;
     else if (k === "--fresh") a.fresh = true;
     else throw new Error(`unknown argument ${k}`);
   }
@@ -79,7 +86,7 @@ function log(msg: string): void {
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
   if (args.cmd !== "run" || !args.recipe) {
-    console.log("usage: pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--image-model gpt-image-2|nano-banana-pro] [--steps a,b] [--no-portrait] [--fresh]");
+    console.log("usage: pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--image-model gpt-image-2|nano-banana-pro] [--steps a,b] [--only stopId,stopId] [--no-portrait] [--fresh]");
     process.exit(1);
   }
   const recipePath = path.isAbsolute(args.recipe) ? args.recipe : path.resolve(process.cwd(), args.recipe);
@@ -93,7 +100,13 @@ async function main(): Promise<void> {
 
   const ledger = await Ledger.load(path.join(work, "ledger.json"));
   const llm = new Llm(env.openaiApiKey, env.researchModel, ledger);
-  const inner: MediaProvider = args.provider === "mock" ? new MockProvider(path.join(work, "mock"), ledger) : new FalProvider(env.falKey, ledger, { imageModel: args.imageModel });
+  const base: MediaProvider = args.provider === "mock" ? new MockProvider(path.join(work, "mock"), ledger) : new FalProvider(env.falKey, ledger, { imageModel: args.imageModel });
+  // Her recorded voice is the tour's own, from ElevenLabs through fal;
+  // --voice-provider openai swaps it for the voice the live call answers in.
+  const inner: MediaProvider =
+    args.provider === "mock" || args.voiceProvider !== "openai" || !env.openaiApiKey
+      ? base
+      : withVoice(base, new OpenAiVoice(env.openaiApiKey, ledger));
   const provider = new CachedProvider(inner, path.join(work, "assets"), ledger);
   const startCost = ledger.total();
   log(
@@ -193,9 +206,20 @@ async function main(): Promise<void> {
   // 5. Media per stop (always runs; the asset cache makes repeats free)
   const media: StopMedia[] = [];
   for (const script of scripts) {
+    const f = path.join(work, `media.${script.stopId}.${provider.name}.${args.quality}.json`);
+    // --only keeps the recordings a stop already has; it never changes what she
+    // says, only whether these particular lines are recorded again.
+    if (args.only && !args.only.has(script.stopId)) {
+      const kept = await readJson<StopMedia>(f);
+      if (kept) {
+        log(`media ${script.stopId} (kept)`);
+        media.push(kept);
+        continue;
+      }
+    }
     log(`media ${script.stopId}`);
     const m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait, steps: args.steps });
-    await writeJson(path.join(work, `media.${script.stopId}.${provider.name}.${args.quality}.json`), m);
+    await writeJson(f, m);
     media.push(m);
   }
   log(`assets: ${provider.hits} cached, ${provider.misses} generated`);
@@ -264,6 +288,9 @@ async function main(): Promise<void> {
       } else log(`hotspots ${script.stopId} (cached)`);
       // The locator found where each point sits; the written script says what she
       // says there. Positions are never rewritten, so the cache stays pristine.
+      // This runs for every stop even under --only: skipping it would publish the
+      // words the model wrote instead of the words that were written for her, and
+      // it costs nothing when the text has not changed.
       if (written) h = await applyWrittenHotspots(h, written.stops[script.stopId], recipe, provider);
       hotspots.push(h);
     }
