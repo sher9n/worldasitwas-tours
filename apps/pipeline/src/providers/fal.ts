@@ -36,16 +36,43 @@ export class FalProvider implements MediaProvider {
     this.variant = `fal:${this.imageModel}`;
   }
 
-  private async run<T>(endpoint: string, input: Record<string, unknown>): Promise<T> {
+  /** At most three calls in flight: fal re-checks the balance threshold per request,
+   * and a burst can trip its TOP_UP lock transiently. */
+  private inFlight = 0;
+  private waiters: Array<() => void> = [];
+  private async slot<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.inFlight >= 3) await new Promise<void>((ok) => this.waiters.push(ok));
+    this.inFlight++;
     try {
-      const res = await fal.subscribe(endpoint, { input, logs: false });
-      return res.data as T;
-    } catch (err) {
-      // fal's ApiError carries the validation detail in body; surface it so the ledger says why.
-      const e = err as Error & { status?: number; body?: unknown };
-      const detail = e.body ? JSON.stringify(e.body).slice(0, 400) : "";
-      throw new Error(`${endpoint} ${e.status ?? ""} ${e.message}${detail ? ": " + detail : ""}`.trim());
+      return await fn();
+    } finally {
+      this.inFlight--;
+      this.waiters.shift()?.();
     }
+  }
+
+  private async run<T>(endpoint: string, input: Record<string, unknown>): Promise<T> {
+    let lastErr: Error | undefined;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        return await this.slot(async () => {
+          const res = await fal.subscribe(endpoint, { input, logs: false });
+          return res.data as T;
+        });
+      } catch (err) {
+        // fal's ApiError carries the validation detail in body; surface it so the ledger says why.
+        const e = err as Error & { status?: number; body?: unknown };
+        const detail = e.body ? JSON.stringify(e.body).slice(0, 400) : "";
+        lastErr = new Error(`${endpoint} ${e.status ?? ""} ${e.message}${detail ? ": " + detail : ""}`.trim());
+        const transient = e.status === 429 || (e.status ?? 0) >= 500 || (e.status === 403 && /TOP_UP/.test(detail));
+        if (transient && attempt < 3) {
+          await new Promise((ok) => setTimeout(ok, 5000 * (attempt + 1)));
+          continue;
+        }
+        throw lastErr;
+      }
+    }
+    throw lastErr;
   }
 
   /** Nano Banana Pro text-to-image (and reference-guided edit when refs are given). */
@@ -139,6 +166,19 @@ export class FalProvider implements MediaProvider {
   }
 
   async video(o: { prompt: string; imageUrl: string; endImageUrl?: string; durationSec: number; quality: string; audio: boolean; stage: string; note: string }): Promise<Asset> {
+    // Seedance 2.5 first (the chosen video model). Its partner policy refuses
+    // photoreal images containing recognisable people, which most of our street
+    // scenes are, so a policy rejection falls back to Kling 3.0 standard.
+    try {
+      return await this.seedanceVideo(o);
+    } catch (err) {
+      if (!/content_policy_violation|partner_validation/i.test((err as Error).message)) throw err;
+      console.warn(`[fal] seedance refused ${o.note} (people likeness policy); using kling 3.0`);
+      return this.klingVideo(o);
+    }
+  }
+
+  private async seedanceVideo(o: { prompt: string; imageUrl: string; endImageUrl?: string; durationSec: number; quality: string; audio: boolean; stage: string; note: string }): Promise<Asset> {
     const resolution = o.quality === "final" ? "720p" : "480p";
     const duration = Math.min(30, Math.max(4, Math.round(o.durationSec)));
     return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint: "bytedance/seedance-2.5/image-to-video", note: o.note }, async () => {
@@ -158,6 +198,26 @@ export class FalProvider implements MediaProvider {
         unitType: "video-tokens",
         rateUsd: RATES.seedanceTokenUsdPer1k / 1000,
         costUsd: cost.usd,
+        output: data.video.url,
+      };
+    });
+  }
+
+  private async klingVideo(o: { prompt: string; imageUrl: string; durationSec: number; quality: string; stage: string; note: string }): Promise<Asset> {
+    // Kling v3 standard accepts 5 or 10 second durations, no native audio at this tier.
+    const duration = o.durationSec > 7 ? "10" : "5";
+    return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint: "fal-ai/kling-video/v3/standard/image-to-video", note: o.note }, async () => {
+      const data = await this.run<{ video: { url: string; content_type?: string } }>("fal-ai/kling-video/v3/standard/image-to-video", {
+        prompt: o.prompt,
+        image_url: o.imageUrl,
+        duration,
+      });
+      const secs = Number(duration);
+      return {
+        result: { remoteUrl: data.video.url, mime: data.video.content_type ?? "video/mp4", durationSec: secs },
+        units: secs,
+        unitType: "seconds",
+        rateUsd: 0.084,
         output: data.video.url,
       };
     });
