@@ -60,6 +60,44 @@ failed media stage does not repeat the research. `--fresh` clears the cache.
 Every paid call is written to the ledger (`ledger.json`) with units, rate and an
 estimated cost; the manifest's `provenance.costUsd` is the total.
 
+## Deploying, and publishing walks to it
+
+The service runs on Railway at <https://tours.worldasitwas.com>. Pushing to `main`
+builds and deploys it; `railway.json` holds the build and the health gate.
+
+Walks do **not** travel with the code. A walk is about 55 MB of stills, narration
+and lip-synced clips against a 100 KB manifest, and generated media has no business
+in a git history that keeps every version of it forever. They live on a Railway
+volume mounted at `/data`, and the service reads that volume on every request — so a
+walk you upload is live immediately, with no redeploy, no restart and no app release.
+
+```
+RAILWAY_TOKEN=<project token> tools/publish-tours.sh              # every published walk
+RAILWAY_TOKEN=<project token> tools/publish-tours.sh tour_rome_1600_herb_seller
+```
+
+Re-running replaces what is there, which is what you want after rewriting a walk.
+
+Media is served by the service from that volume and cached by Railway's CDN at the
+edge nearest each traveller. A cache hit never reaches the service, so it costs no
+egress and no compute — which is what makes serving a gigabyte of audio from one
+container reasonable. Manifests are not cached: they carry an `Authorization`
+header, which bypasses the edge by design, and they are small and must be current.
+
+### The variables that matter
+
+| | |
+|---|---|
+| `PLATFORM_KEYS` | Comma-separated. Server-to-server callers present one as `Authorization: Bearer`. Unset means **every request is allowed** — never in production. |
+| `PLAYER_TOKEN_SECRET` | Signs the short-lived token in a player URL. Whoever builds player URLs needs the same value. |
+| `PUBLIC_BASE_URL` | The service's own origin. Media URLs are re-pointed onto it as manifests are read. |
+| `CONTENT_DIR` | `/data` in production — the volume. Defaults to `./content` locally. |
+| `OPENAI_API_KEY` | Only the live companion needs it. Everything else works without. |
+| `ENABLE_DEV_ROUTES` | `1` locally for the console's cost tab. Never set it on a public deployment. |
+
+`PLAYER_DIR` and the media base are worked out on their own; do not set `NODE_ENV`,
+which would make npm skip the devDependencies the build is made of.
+
 ## Tests
 
 ```
