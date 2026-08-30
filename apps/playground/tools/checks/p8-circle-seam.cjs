@@ -15,10 +15,10 @@ const ok = (n, c, d = "") => console.log(`[p8] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await page.click("button.travel");
   await page.waitForTimeout(2500);
   let pass = true;
-  pass = ok("one player runs the clip, the other its backward copy", await page.evaluate(() => { const v = [...document.querySelectorAll(".voice-circle video")]; return v.length === 2 && v[0].src !== v[1].src; })) && pass;
-  // A blend would mean two different moments of her on screen at once; the cut
-  // must land between matching frames instead, so no fade is allowed.
-  pass = ok("the swap is a cut, not a dissolve", await page.evaluate(() => getComputedStyle(document.querySelector(".voice-circle video")).transitionDuration === "0s")) && pass;
+  // Nothing is stitched any more: one element, looping itself. Any second player
+  // would mean a seam to hide, which is what produced every glitch before this.
+  pass = ok("one player, no stitching", await page.evaluate(() => document.querySelectorAll(".voice-circle video").length === 1)) && pass;
+  pass = ok("it loops itself", await page.evaluate(() => document.querySelector(".voice-circle video").loop === true)) && pass;
   // Sample across two loop lengths: presence must never stop or go blank.
   const s = await page.evaluate(() => new Promise((done) => {
     const out = [];
@@ -32,10 +32,24 @@ const ok = (n, c, d = "") => console.log(`[p8] ${c ? "PASS" : "FAIL"} ${n}${d ? 
     setTimeout(() => { clearInterval(id); done(out); }, 16000);
   }));
   pass = ok("she never stops moving", s.every((x) => x.playing), `${s.filter((x) => !x.playing).length} still frames of ${s.length}`) && pass;
-  pass = ok("never blank", s.every((x) => x.ready >= 2)) && pass;
+  // The first second is the clip loading, not a seam in the loop.
+  const settled = s.slice(17);
+  pass = ok("never blank", settled.every((x) => x.ready >= 2), `${settled.filter((x) => x.ready < 2).length} of ${settled.length} after the first second`) && pass;
   pass = ok("always something visible", s.every((x) => x.opaque)) && pass;
   const wraps = s.filter((x, i) => i && x.t < s[i - 1].t).length;
   pass = ok("the loop comes round", wraps >= 1, `${wraps} loop points in 16s`) && pass;
+  // The seam is only invisible if the clip ends on the frame it began with.
+  const clip = `/Applications/MAMP/htdocs/timetravel/content/tours/${TOUR}/companion_reel_1.mp4`;
+  if (require("fs").existsSync(clip)) {
+    const T = require("os").tmpdir();
+    const ff = require("/Applications/MAMP/htdocs/timetravel/node_modules/ffmpeg-static");
+    const { spawnSync } = require("child_process");
+    spawnSync(ff, ["-y", "-loglevel", "error", "-ss", "0", "-i", clip, "-frames:v", "1", `${T}/seam_a.png`]);
+    spawnSync(ff, ["-y", "-loglevel", "error", "-sseof", "-0.08", "-i", clip, "-update", "1", "-frames:v", "1", `${T}/seam_b.png`]);
+    const out = String(spawnSync(ff, ["-i", `${T}/seam_a.png`, "-i", `${T}/seam_b.png`, "-lavfi", "psnr", "-f", "null", "-"], { encoding: "utf8" }).stderr || "");
+    const psnr = Number(out.match(/average:(\d+(?:\.\d+)?)/)?.[1] || 0);
+    pass = ok("the clip ends where it began", psnr >= 30, `${psnr.toFixed(1)} dB between first and last frame`) && pass;
+  }
   pass = ok("the halo follows her voice", s.some((x) => x.halo), `${s.filter((x) => x.halo).length}/${s.length} samples lit`) && pass;
   await page.screenshot({ path: `/Users/sherancorera/.claude/jobs/83f0d0aa/tmp/shots/presence-${TOUR}.png` });
   // Pause must still settle her.

@@ -351,65 +351,20 @@ export function Player({
 
   /* --------------------------- her presence ------------------------------ */
 
-  // She is not lip-synced and never pretends to be. The circle carries presence:
-  // one short clip of her simply being there, looped without a seam by
-  // crossfading between two players, running the whole time so she never freezes
-  // into a photograph. What tells you she is speaking is the halo, which follows
-  // her actual voice, so it reads the same for a recorded line and a live answer.
+  // One clip that begins and ends on the same frame, looping natively. Every
+  // seam we tried before came from stitching: cutting between clips snapped her
+  // back to the starting pose, dissolving showed the same woman twice, and
+  // reversing walked the crowd behind her backwards. With the loop closed there
+  // is nothing to stitch, so the player is a single element that never stops.
   const reel = tour.companion.faceReel?.length ? tour.companion.faceReel : stop.arrival.talkingPortrait ? [stop.arrival.talkingPortrait] : [];
-  // Forward and backward copies of the same clip. Played one after the other the
-  // motion turns around rather than jumping, and there is nothing to blend: the
-  // last frame of one is the first frame of the other.
-  // The publisher renames the files, so the order is what identifies them: the
-  // clip first, its backward copy second.
-  const forward = reel[0]?.video;
-  const backward = reel[1]?.video ?? forward;
-  const clip = forward;
-  const slotA = useRef<HTMLVideoElement | null>(null);
-  const slotB = useRef<HTMLVideoElement | null>(null);
-  const [active, setActive] = useState<0 | 1>(0);
-  const swapping = useRef(false);
+  const clip = reel[0]?.video;
   const [speaking, setSpeaking] = useState(false);
-
-  const visible = () => (active === 0 ? slotA.current : slotB.current);
-  const hidden = () => (active === 0 ? slotB.current : slotA.current);
-  // The pause control acts on whichever player is on screen.
-  circleVideo.current = visible();
-
-  /** Turn the motion around at the exact frame it ends on. */
-  const loopOver = () => {
-    if (swapping.current) return;
-    const inc = hidden();
-    if (!inc || inc.readyState < 2) return;
-    swapping.current = true;
-    // The incoming clip starts on the frame the outgoing one is ending on, so
-    // both are shown for a moment and the cut lands between identical frames.
-    try {
-      inc.currentTime = 0;
-    } catch {
-      // not seekable yet; it starts at the beginning anyway
-    }
-    void inc.play().catch(() => undefined);
-    setActive((a) => (a === 0 ? 1 : 0));
-    window.setTimeout(() => {
-      const out = active === 0 ? slotA.current : slotB.current;
-      if (out) {
-        out.pause();
-        try {
-          out.currentTime = 0;
-        } catch {
-          // it will be rewound when its turn comes round
-        }
-      }
-      swapping.current = false;
-    }, 400);
-  };
 
   useEffect(() => {
     if (phase !== "playing") return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const id = window.setInterval(() => {
-      const v = visible();
+      const v = circleVideo.current;
       if (!v) return;
       const live = Boolean(companionRef.current?.isSpeakingAudio());
       setSpeaking(((Boolean(engine.current?.isVoicePlaying()) && !askingRef.current) || live) && !paused);
@@ -417,16 +372,11 @@ export function Player({
         if (!v.paused) v.pause();
         return;
       }
-      // Cross into the other player half a second before this one ends.
-      if (v.duration > 0 && v.duration - v.currentTime < 0.12) {
-        loopOver();
-        return;
-      }
       if (v.paused) v.play().catch(() => undefined);
-    }, 120);
+    }, 150);
     return () => window.clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, paused, active, clip]);
+  }, [phase, paused, clip]);
 
   const holdTimer = useRef<number | null>(null);
   const downAt = useRef<{ x: number; y: number } | null>(null);
@@ -587,7 +537,7 @@ export function Player({
               </div>
             </div>
             <div className="idle-meta">
-              {tour.stops.length} {tour.stops.length === 1 ? "stop" : "stops"} · about {tour.durationMin} min · she talks, you can interrupt
+              {tour.stops.length} {tour.stops.length === 1 ? "stop" : "stops"} · about {tour.durationMin} min · {tour.companion.name.split(" ")[0]} talks, you can interrupt
             </div>
             <button className="travel" data-noadvance onClick={start}>
               Travel
@@ -747,10 +697,7 @@ export function Player({
         {/* Her reel: reusable talking clips rotate while any of her audio plays
             (recorded or live) and freeze the instant it stops. */}
         {clip ? (
-          <>
-            <video ref={slotA} className={active === 0 ? "on" : ""} src={forward} muted autoPlay playsInline preload="auto" />
-            <video ref={slotB} className={active === 1 ? "on" : ""} src={backward} muted playsInline preload="auto" />
-          </>
+          <video ref={circleVideo} className="on" src={clip} muted autoPlay loop playsInline preload="auto" />
         ) : (
           <img src={tour.companion.portrait} alt="" />
         )}
@@ -804,7 +751,7 @@ export function Player({
             </div>
             <p>{tour.companion.bio}</p>
             <p className="muted">
-              {tour.companion.name} is not a real historical person. She is built from the records of people like her, and she knows nothing after {tour.yearRange[1]}. Everything you see is a reconstruction; sources travel with the tour's data.
+              {tour.companion.name} is not a real historical person, but is built from the records of people who did this work, and knows nothing after {tour.yearRange[1]}. Everything you see is a reconstruction; sources travel with the tour's data.
             </p>
           </div>
         </div>

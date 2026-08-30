@@ -23,6 +23,11 @@ export async function scriptStop(
       ? `Card 3: kind "archive". A real period picture will be shown; write the caption in her voice reacting to it, and narration. No imagePrompt.`
       : `Card 3: kind "text". A short price list or a quote from a source, in textBody, under 40 words.`,
     `Card 4: kind "image" or "text": the human moment, what she thinks or hopes, tied to the mustCover items not yet covered.`,
+    // Short beats need more screens, or the visitor stares at one picture for a
+    // minute. These three are closer looks at things she actually names.
+    `Card 5: kind "image". A closer look at one thing in this place she can point at: a face, a load, a sign, a tool, a doorway. Not the wide view again.`,
+    `Card 6: kind "image". A second closer look, at something different in kind from card 5: if that was a person, make this an object or a surface.`,
+    `Card 7: kind "image". The detail a visitor would miss: what is underfoot, what is written up, what is worn out, what is being carried past.`,
   ].join("\n");
   const user = `Tour: ${recipe.title} (${recipe.cityName}, ${recipe.year}). Theme: ${recipe.theme}
 Companion: ${recipe.companion.name}, ${recipe.companion.role}.
@@ -50,7 +55,7 @@ WRITE
 - arrivalLine: her first words on arriving here. ${opts.stopIndex === 0 ? "This is the first stop: she has just met the visitor; use or adapt this greeting: " + companion.greeting : "The visitor has just walked here with her."}
 - heroImagePrompt and heroMotionPrompt for the arrival scene.
 - ambiencePrompt: the continuous sound here.
-- cards, exactly four, following this plan:
+- cards, exactly seven, following this plan:
 ${cardPlan}
 Card ids must be "${stop.id}_c1" to "${stop.id}_c4".
 - transitionLine: ${opts.stopIndex === opts.stopCount - 1 ? "her goodbye, under 30 words." : "what she says as you walk to the next stop, under 25 words."}

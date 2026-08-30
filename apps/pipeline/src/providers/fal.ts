@@ -204,15 +204,15 @@ export class FalProvider implements MediaProvider {
     });
   }
 
-  private async klingVideo(o: { prompt: string; imageUrl: string; durationSec: number; quality: string; stage: string; note: string }): Promise<Asset> {
-    // Kling v3 standard accepts 5 or 10 second durations, no native audio at this tier.
+  private async klingVideo(o: { prompt: string; imageUrl: string; endImageUrl?: string; durationSec: number; quality: string; stage: string; note: string }): Promise<Asset> {
+    // Kling v3 standard accepts 5 or 10 second durations, no native audio at this
+    // tier, and takes an end frame as well as a start frame. Giving it the same
+    // picture for both is what makes a clip that can loop without a seam.
     const duration = o.durationSec > 7 ? "10" : "5";
     return metered(this.ledger, { stage: o.stage, provider: "fal", endpoint: "fal-ai/kling-video/v3/standard/image-to-video", note: o.note }, async () => {
-      const data = await this.run<{ video: { url: string; content_type?: string } }>("fal-ai/kling-video/v3/standard/image-to-video", {
-        prompt: o.prompt,
-        image_url: o.imageUrl,
-        duration,
-      });
+      const input: Record<string, unknown> = { prompt: o.prompt, start_image_url: o.imageUrl, image_url: o.imageUrl, duration };
+      if (o.endImageUrl) input.end_image_url = o.endImageUrl;
+      const data = await this.run<{ video: { url: string; content_type?: string } }>("fal-ai/kling-video/v3/standard/image-to-video", input);
       const secs = Number(duration);
       return {
         result: { remoteUrl: data.video.url, mime: data.video.content_type ?? "video/mp4", durationSec: secs },

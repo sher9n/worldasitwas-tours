@@ -273,57 +273,49 @@ async function main(): Promise<void> {
     // costs about $1.50 and ten minutes each for a mouth nobody can hear; a
     // plain image-to-video clip of the same person talking costs a fraction of
     // that and looks identical behind a muted circle.
-    // One clip of the guide simply being there: breathing, blinking, looking at
-    // you, with the world moving a little behind them. Not speech. A mouth
-    // moving out of time with the words is worse than a mouth that never
-    // pretends, so the circle carries presence and the voice carries the talking.
+    // One clip that begins and ends on the same picture. Every other approach
+    // leaves a seam: cutting between clips snaps her back to the starting pose,
+    // dissolving puts the same woman on screen twice, and reversing makes the
+    // people behind her walk backwards. Given the same frame at both ends, the
+    // model brings her back to where she started, so the clip simply loops.
     const PRESENCE =
       `${recipe.companion.name} stands where they work and looks calmly toward the viewer, as though listening to someone they like. ` +
-      "Very small movements only: they breathe, blink twice, shift their weight slightly, and turn the head a little before settling back. " +
-      "A faint smile comes and goes. The mouth stays closed and relaxed; they are not speaking. " +
-      "Behind them the world moves gently: people passing at a distance, smoke or dust drifting, cloth stirring. " +
-      "The camera is locked off and does not move or zoom. Nothing enters or leaves the frame.";
+      "They breathe, blink, shift their weight and turn the head a little, and by the end they have settled back into exactly the posture and expression they began in. " +
+      "The mouth stays closed and relaxed; they are not speaking. " +
+      "Behind them the world moves gently and always forwards: people walking past at a distance, smoke or dust drifting. " +
+      "The camera is locked off and does not move or zoom.";
     try {
       const clip = await provider.video({
         prompt: PRESENCE,
         imageUrl: character.portraitUrl,
-        durationSec: 5,
+        endImageUrl: character.portraitUrl,
+        durationSec: 10,
         quality: args.quality,
         audio: false,
         stage: "reel",
         note: "presence",
       });
       if (clip.localPath) {
-        const forward = path.join(reelDir, "presence.mp4");
-        await fs.copyFile(clip.localPath, forward);
-        // A loop that dissolves back to its own beginning shows two different
-        // moments of the same person at once, which reads as a glitch. Played
-        // forward and then backward there is nothing to blend: the last frame of
-        // one is the first frame of the other, so the motion simply reverses and
-        // the stream never breaks.
-        const reversed = path.join(reelDir, "presence_reverse.mp4");
+        // Re-encoded locally with a keyframe every second and the index at the
+        // front. Looping means seeking back to zero, and on a clip whose only
+        // keyframe is at the start that seek can drop a frame, which is seen as
+        // a hiccup once every time round.
+        const out = path.join(reelDir, "presence.mp4");
         await new Promise<void>((ok, bad) => {
-          execFile(FFMPEG, ["-y", "-i", forward, "-vf", "reverse", "-an", reversed], (err) => (err ? bad(err) : ok()));
-        }).catch((err) => console.warn(`[reel] could not reverse the presence clip: ${(err as Error).message}`));
+          execFile(
+            FFMPEG,
+            ["-y", "-i", clip.localPath as string, "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-g", "24", "-keyint_min", "24", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out],
+            (err) => (err ? bad(err) : ok()),
+          );
+        }).catch(async (err) => {
+          console.warn(`[reel] could not re-encode the presence clip: ${(err as Error).message}`);
+          await fs.copyFile(clip.localPath as string, out);
+        });
       }
     } catch (err) {
       console.warn(`[reel] presence clip failed: ${(err as Error).message}`);
     }
     reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
-  }
-  // The backward copy is made locally and costs nothing, so it is kept in step
-  // with the clip itself rather than only being written when the clip is new.
-  const forwardClip = reelClips.find((f) => f.endsWith("presence.mp4"));
-  if (forwardClip) {
-    const reversed = path.join(reelDir, "presence_reverse.mp4");
-    const haveReverse = await fs.access(reversed).then(() => true, () => false);
-    if (!haveReverse) {
-      log("reel: writing the backward copy so the loop has no seam");
-      await new Promise<void>((ok, bad) => {
-        execFile(FFMPEG, ["-y", "-i", forwardClip, "-vf", "reverse", "-an", reversed], (err) => (err ? bad(err) : ok()));
-      }).catch((err) => console.warn(`[reel] could not reverse the presence clip: ${(err as Error).message}`));
-      reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
-    }
   }
   log(`reel: ${reelClips.length} clips`);
 
