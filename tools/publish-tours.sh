@@ -25,13 +25,18 @@
 # endpoint starts refusing sessions when they are opened back to back, and the
 # failure is again a timeout rather than anything that names the real cause.
 #
-# And the reason each walk is deleted before it is sent: uploading a directory
-# onto a directory that already exists does NOT replace it, --overwrite or not.
-# The flag governs individual files; the destination itself is treated as a
-# parent, so the walk lands at /tours/<id>/<id> and the service, looking for
-# /tours/<id>/manifest.json, goes on reporting the walk as missing while every
-# upload says "ok". Clearing the target first is what makes a re-publish mean
-# what it says.
+# And the reason each walk is renamed out of the way before it is sent:
+# uploading a directory onto a directory that already exists does NOT replace
+# it, --overwrite or not. The flag governs individual files; the destination is
+# treated as a parent, so the walk lands at /tours/<id>/<id> and the service,
+# looking for /tours/<id>/manifest.json, goes on reporting it missing while
+# every upload prints "ok".
+#
+# Freeing the path has to be done with `rename`. `railway volume files delete`
+# is documented as deleting a FILE and silently does nothing to a directory, so
+# an attempt to clear the way looks like it worked and changes nothing. The old
+# copy is parked at /broken_<id>.<timestamp>, outside /tours where the service
+# will not look at it. Those cost volume space; clear them out occasionally.
 set -u
 
 VOLUME="${VOLUME:-worldasitwas-tours-volume}"
@@ -91,14 +96,20 @@ for t in $TOURS; do
   [ -f "$src/manifest.json" ] || { echo "  skip $t (no manifest.json)"; continue; }
   printf "  %-42s %6s ... " "$t" "$(du -sh "$src" | cut -f1 | tr -d ' ')"
 
-  # See the note at the top: an upload onto an existing directory nests.
-  railway volume files --volume "$VOLUME" delete "/tours/$t" --yes >/dev/null 2>&1
-  sleep 2
+  # See the note at the top: an upload onto an existing directory nests, and
+  # only rename can get it out of the way.
+  if railway volume files --volume "$VOLUME" list "/tours/$t" >/dev/null 2>&1; then
+    railway volume files --volume "$VOLUME" rename "/tours/$t" "/broken_$t.$(date +%s)" >/dev/null 2>&1
+    sleep 5
+  fi
 
   n=0
   while [ $n -lt 4 ]; do
     n=$((n + 1))
-    if out=$(railway volume files --volume "$VOLUME" upload "$src" "/tours/$t" --overwrite 2>&1); then
+    # Exit status is not enough: the CLI has returned zero having transferred
+    # only part of a walk. The word it prints on a real success is checked too.
+    out=$(railway volume files --volume "$VOLUME" upload "$src" "/tours/$t" --concurrency 8 2>&1)
+    if printf '%s' "$out" | grep -q "Uploaded"; then
       echo "ok"; ok=$((ok + 1)); break
     fi
     if [ $n -eq 4 ]; then
