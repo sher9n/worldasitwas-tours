@@ -93,9 +93,34 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     );
   };
 
+  /**
+   * A browsing pass, for opening the catalogue on a phone without carrying a
+   * platform key. /bypass sets it; it is signed with the same secret as a player
+   * token, HttpOnly so no script can read it back out, and it grants only what a
+   * platform key grants on read routes. It is a convenience for whoever runs the
+   * service, not a way to hand the whole catalogue to the internet: anyone who
+   * knows the path can browse, so treat it as public if you enable it.
+   */
+  const BYPASS_COOKIE = "tt_pass";
+  const bypassValue = (): string =>
+    opts.playerTokenSecret ? crypto.createHmac("sha256", opts.playerTokenSecret).update("browse").digest("base64url") : "";
+  const hasBypass = (req: FastifyRequest): boolean => {
+    const want = bypassValue();
+    if (!want) return false;
+    const raw = req.headers.cookie || "";
+    const got = raw
+      .split(";")
+      .map((c) => c.trim())
+      .find((c) => c.startsWith(`${BYPASS_COOKIE}=`))
+      ?.slice(BYPASS_COOKIE.length + 1);
+    if (!got || got.length !== want.length) return false;
+    return crypto.timingSafeEqual(Buffer.from(got), Buffer.from(want));
+  };
+
   const requireKey = async (req: FastifyRequest, reply: FastifyReply) => {
     if (opts.platformKeys.length === 0) return; // dev: allow all
-    if (!hasPlatformKey(req)) return sendError(reply, 401, "unauthorized", "Missing or invalid platform key");
+    if (hasPlatformKey(req) || hasBypass(req)) return;
+    return sendError(reply, 401, "unauthorized", "Missing or invalid platform key");
   };
 
   /**
@@ -137,13 +162,22 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
   const requireKeyOrPlayerToken = async (req: FastifyRequest, reply: FastifyReply) => {
     if (opts.platformKeys.length === 0) return; // dev: allow all
     const tourId = (req.params as { tourId?: string })?.tourId ?? "";
-    if (hasPlatformKey(req) || playerTokenGrants(req, tourId)) return;
+    if (hasPlatformKey(req) || hasBypass(req) || playerTokenGrants(req, tourId)) return;
     return sendError(reply, 401, "unauthorized", "Missing or invalid platform key or player token");
   };
 
   // Railway gates a new deployment on this before routing traffic to it, so it
   // must answer only once the catalogue is actually readable — a container that
   // says ok with no tours mounted would take the old one down and serve nothing.
+  // Open the player with a browsing pass in place, so nothing has to be typed
+  // or pasted and no key ends up in a URL, a history or a screenshot.
+  app.get("/bypass", async (_req, reply) => {
+    const value = bypassValue();
+    if (!value) return sendError(reply, 503, "unavailable", "This service has no player secret configured");
+    reply.header("Set-Cookie", `${BYPASS_COOKIE}=${value}; Path=/; Max-Age=${60 * 60 * 24 * 30}; HttpOnly; Secure; SameSite=Lax`);
+    return reply.redirect("/");
+  });
+
   app.get("/health", async (_req, reply) => {
     try {
       const catalog = await store.catalog();

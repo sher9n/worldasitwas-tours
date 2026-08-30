@@ -24,7 +24,7 @@ function authHeader(): Record<string, string> {
 const headers = authHeader();
 
 async function get<T>(url: string): Promise<T> {
-  const res = await fetch(url, { headers });
+  const res = await fetch(url, { headers, credentials: "same-origin" });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     throw new Error(body?.error?.message || `${res.status} ${url}`);
@@ -53,6 +53,7 @@ export const api = {
   session: async (tourId: string, body: { travellerId: string; stopId?: string; cardId?: string; locale?: string }) => {
     const res = await fetch(`/v1/tours/${encodeURIComponent(tourId)}/companion/session`, {
       method: "POST",
+      credentials: "same-origin",
       headers: { ...headers, "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });

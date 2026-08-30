@@ -25,18 +25,17 @@
 # endpoint starts refusing sessions when they are opened back to back, and the
 # failure is again a timeout rather than anything that names the real cause.
 #
-# And the reason each walk is renamed out of the way before it is sent:
-# uploading a directory onto a directory that already exists does NOT replace
-# it, --overwrite or not. The flag governs individual files; the destination is
-# treated as a parent, so the walk lands at /tours/<id>/<id> and the service,
-# looking for /tours/<id>/manifest.json, goes on reporting it missing while
-# every upload prints "ok".
+# And the one that cost an afternoon: send the walk to the directory it lives
+# IN, not to its own path. The destination is treated as a parent, so uploading
+# to /tours/<id> buries the walk at /tours/<id>/<id> while every line prints
+# "ok" and the service goes on serving the old one. Uploading to /tours with
+# --overwrite puts the files exactly where the service reads them.
 #
-# Freeing the path has to be done with `rename`. `railway volume files delete`
-# is documented as deleting a FILE and silently does nothing to a directory, so
-# an attempt to clear the way looks like it worked and changes nothing. The old
-# copy is parked at /broken_<id>.<timestamp>, outside /tours where the service
-# will not look at it. Those cost volume space; clear them out occasionally.
+# There used to be a rename dance here to clear the old walk first. It is gone:
+# it was working around the wrong destination, and it failed silently often
+# enough on Railway's SFTP endpoint that walks reported success for uploads
+# nobody ever saw. If you find old /broken_<id>.<timestamp> directories on the
+# volume, they are from that era and can be deleted.
 set -u
 
 VOLUME="${VOLUME:-worldasitwas-tours-volume}"
@@ -96,19 +95,18 @@ for t in $TOURS; do
   [ -f "$src/manifest.json" ] || { echo "  skip $t (no manifest.json)"; continue; }
   printf "  %-42s %6s ... " "$t" "$(du -sh "$src" | cut -f1 | tr -d ' ')"
 
-  # See the note at the top: an upload onto an existing directory nests, and
-  # only rename can get it out of the way.
-  if railway volume files --volume "$VOLUME" list "/tours/$t" >/dev/null 2>&1; then
-    railway volume files --volume "$VOLUME" rename "/tours/$t" "/broken_$t.$(date +%s)" >/dev/null 2>&1
-    sleep 5
-  fi
-
+  # Send the walk to the directory it lives IN, not to its own path. Given its
+  # own path the CLI treats that as a parent and buries the walk at
+  # /tours/<id>/<id>, which is what the rename dance here used to be working
+  # around, badly: the rename failed silently often enough that walks reported
+  # "ok" for an upload the service never saw. With the parent as the target and
+  # --overwrite, the files land exactly where the service reads them.
   n=0
   while [ $n -lt 4 ]; do
     n=$((n + 1))
     # Exit status is not enough: the CLI has returned zero having transferred
     # only part of a walk. The word it prints on a real success is checked too.
-    out=$(railway volume files --volume "$VOLUME" upload "$src" "/tours/$t" --concurrency 8 2>&1)
+    out=$(railway volume files --volume "$VOLUME" upload "$src" "/tours" --overwrite --concurrency 8 2>&1)
     if printf '%s' "$out" | grep -q "Uploaded"; then
       echo "ok"; ok=$((ok + 1)); break
     fi

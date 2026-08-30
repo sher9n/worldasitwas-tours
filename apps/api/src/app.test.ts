@@ -324,6 +324,29 @@ test("feed media is re-pointed the same way a manifest is", async () => {
   assert.ok(t.companion.portrait.startsWith("https://media.example.com/"), t.companion.portrait);
 });
 
+
+test("a browsing pass opens the catalogue, and only when it is genuine", async () => {
+  const app = await buildApp({ toursDir: dir, mediaBaseUrl: "https://media.example.com", playerTokenSecret: SECRET, platformKeys: ["k1"], openaiApiKey: "", realtimeModel: "gpt-realtime-2", dev: true });
+  await app.ready();
+
+  const locked = await app.inject({ method: "GET", url: "/v1/catalog" });
+  assert.equal(locked.statusCode, 401);
+
+  const pass = await app.inject({ method: "GET", url: "/bypass" });
+  assert.equal(pass.statusCode, 302);
+  const cookie = String(pass.headers["set-cookie"]);
+  assert.match(cookie, /HttpOnly/);
+  assert.match(cookie, /SameSite=Lax/);
+
+  const value = cookie.split(";")[0];
+  const opened = await app.inject({ method: "GET", url: "/v1/catalog", headers: { cookie: value } });
+  assert.equal(opened.statusCode, 200);
+
+  const forged = await app.inject({ method: "GET", url: "/v1/catalog", headers: { cookie: "tt_pass=not-the-signature" } });
+  assert.equal(forged.statusCode, 401);
+  await app.close();
+});
+
 test("the feed is ETagged over its walks, not over the time it was asked for", async () => {
   const first = await app.inject({ method: "GET", url: "/v1/feed", headers: { authorization: "Bearer k1" } });
   const etag = first.headers.etag as string;

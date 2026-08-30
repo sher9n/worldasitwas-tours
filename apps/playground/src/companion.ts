@@ -182,6 +182,7 @@ export class CompanionSession {
         try {
           const res = await fetch(`/v1/tours/${encodeURIComponent(this.tourId)}/companion/say`, {
             method: "POST",
+            credentials: "same-origin",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("tt.key") || "dev"}` },
             body: JSON.stringify({ text }),
           });
