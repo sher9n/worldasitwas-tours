@@ -175,6 +175,13 @@ export class FalProvider implements MediaProvider {
     // Seedance 2.5 first (the chosen video model). Its partner policy refuses
     // photoreal images containing recognisable people, which most of our street
     // scenes are, so a policy rejection falls back to Kling 3.0 standard.
+    //
+    // A presence clip is always a close portrait of one person, so that refusal
+    // is certain: asking anyway costs a round trip per segment and nothing else.
+    // The test is on the stage rather than a new argument deliberately, because
+    // stage is not part of the asset cache key and a new argument would be,
+    // which would orphan every segment already generated.
+    if (o.stage === "reel") return this.klingVideo(o);
     try {
       return await this.seedanceVideo(o);
     } catch (err) {
