@@ -38,7 +38,7 @@
   }
 
   header {
-    max-width: 760px; margin: 0 auto; padding: 56px 22px 34px; text-align: center;
+    max-width: 780px; margin: 0 auto; padding: 56px 22px 34px; text-align: center;
     display: flex; flex-direction: column; gap: 18px; align-items: center;
   }
   header h1 {
@@ -46,34 +46,34 @@
     margin: 0; text-wrap: balance; letter-spacing: -.01em;
   }
   header h1 em { font-style: italic; color: var(--gilt); }
-  header p { margin: 0; max-width: 54ch; color: var(--muted); text-wrap: pretty; }
+  header p { margin: 0; max-width: 56ch; color: var(--muted); text-wrap: pretty; }
 
-  .rule { width: 100%; max-width: 760px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--hair) 22%, var(--hair) 78%, transparent); }
+  .rule { width: 100%; max-width: 780px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--hair) 22%, var(--hair) 78%, transparent); }
 
-  .tools {
-    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-    padding: 24px 22px 8px;
-  }
+  .tools { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 24px 22px 8px; }
   button {
     font: 600 12px/1 "Source Sans 3", sans-serif; letter-spacing: .1em; text-transform: uppercase;
     color: var(--bone); background: var(--panel); border: 1px solid var(--hair);
     padding: 12px 18px; border-radius: 999px; cursor: pointer;
-    transition: border-color .18s ease, color .18s ease, background .18s ease;
+    transition: border-color .18s ease, color .18s ease;
   }
   button:hover { border-color: var(--gilt); color: var(--gilt); }
   button:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
 
   .wall {
     max-width: 1180px; margin: 0 auto; padding: 30px 22px 0;
-    display: grid; gap: 40px 30px;
-    grid-template-columns: 1fr;
+    display: grid; gap: 44px 30px; grid-template-columns: 1fr;
   }
   @media (min-width: 720px)  { .wall { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1080px) { .wall { grid-template-columns: repeat(3, 1fr); } }
 
-  .hang { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  /* Cards stretch to the tallest in the row so the true-size circles and tags
+     line up across the wall, however long a description runs. */
+  .hang { display: flex; flex-direction: column; align-items: center; height: 100%; }
+  .hang.baseline { opacity: .72; }
+  .hang.baseline:hover, .hang.baseline.picked { opacity: 1; }
 
-  /* The frame: a gilt ring on the wall, lit from above like a hung picture. */
+  /* The frame: a gilt ring on the wall, lit like a hung picture. */
   .frame {
     position: relative; width: min(300px, 78vw); aspect-ratio: 1;
     border-radius: 50%; padding: 0; border: none; background: none; cursor: pointer;
@@ -82,9 +82,9 @@
   .frame::after {
     content: ""; position: absolute; inset: -9px; border-radius: 50%;
     border: 1px solid var(--gilt-d);
-    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    transition: border-color .2s ease, box-shadow .2s ease;
   }
-  .frame video, .frame img {
+  .frame video {
     width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;
     background: #0B0906;
     box-shadow: 0 26px 60px rgba(0,0,0,.7), inset 0 0 0 3px rgba(239,231,217,.9);
@@ -98,19 +98,19 @@
   }
 
   /* The plaque under the picture, as a gallery would have it. */
-  .plaque { text-align: center; padding: 22px 6px 0; max-width: 320px; }
-  .plaque .no {
-    font: 500 10px/1 "JetBrains Mono", monospace; letter-spacing: .2em; color: var(--gilt-d);
-  }
+  .plaque { text-align: center; padding: 22px 6px 0; max-width: 330px; flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .plaque .no { font: 500 10px/1 "JetBrains Mono", monospace; letter-spacing: .2em; color: var(--gilt-d); }
   .hang.picked .plaque .no { color: var(--gilt); }
-  .plaque h2 {
-    font: 500 25px/1.15 "Cormorant Garamond", Georgia, serif; margin: 9px 0 8px; letter-spacing: .01em;
-  }
+  .plaque h2 { font: 500 25px/1.15 "Cormorant Garamond", Georgia, serif; margin: 9px 0 8px; }
   .plaque p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+  .meta {
+    margin-top: 12px; font: 500 9px/1.5 "JetBrains Mono", monospace;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--gilt-d);
+  }
 
   /* True size: exactly how she sits in the walk (132px circle, 3px white ring). */
   .truesize {
-    display: flex; align-items: center; gap: 13px; margin-top: 20px;
+    display: flex; align-items: center; gap: 13px; margin-top: auto;
     padding: 13px 16px 13px 13px; background: var(--wall);
     border: 1px solid var(--hair); border-radius: 14px;
   }
@@ -134,7 +134,7 @@
   /* The pick rail: what you tell me once you have chosen. */
   .rail {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 9;
-    background: rgba(16,14,11,.93); backdrop-filter: blur(14px);
+    background: rgba(16,14,11,.94); backdrop-filter: blur(14px);
     border-top: 1px solid var(--hair);
     padding: 16px 22px calc(16px + env(safe-area-inset-bottom));
     display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
@@ -149,17 +149,17 @@
     border-radius: 7px; padding: 6px 10px; margin-left: 8px; display: inline-block;
   }
 
-  footer { max-width: 700px; margin: 60px auto 0; padding: 0 22px; text-align: center; color: var(--muted); font-size: 13px; }
+  footer { max-width: 720px; margin: 64px auto 0; padding: 0 22px; text-align: center; color: var(--muted); font-size: 13px; text-wrap: pretty; }
 
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
 
 <header>
   <span class="eyebrow">Caterina Ruspoli &middot; Rome, 1600</span>
-  <h1>Which way should she <em>live</em> in her frame?</h1>
-  <p>Six directions for the guide's portrait, all from the same picture, all looping so they never jump. Watch each one for a few seconds, then pick the one that feels like she is really there with you.</p>
+  <h1>Pick how she should <em>live</em> in her frame</h1>
+  <p>Six performances from the same photograph. She looks up, catches your eye, smiles, talks, gestures. Each one loops without a seam, so she can carry on indefinitely. Watch a few, then choose the one that feels like a person rather than a picture.</p>
 </header>
 <div class="rule"></div>
 
@@ -170,18 +170,30 @@
 
 <main class="wall" id="wall"></main>
 
-<footer>Every clip is five seconds and ends exactly where it starts, so the loop is invisible. Whichever you choose becomes the house style for all twelve guides.</footer>
+<footer>
+  The one you pick becomes the house style for all twelve guides. Every clip is her real
+  performance start to finish; the loop is joined afterwards in code by dissolving the last
+  moment back into the first, which is why nothing here has to hold still.
+</footer>
 
 <div class="rail" id="rail"><span class="none">Tap a portrait to choose it.</span></div>
 
 <script>
 const PORTRAITS = [
-  { tag: "current",         name: "As it is now",     blurb: "What is live today. She moves through the frame rather than holding it, which is why she can drift out of her own picture." },
-  { tag: "still-and-alive", name: "Still and alive",  blurb: "She holds your eye the whole time. Breath, two blinks, a small smile that arrives and settles. Nothing else moves." },
-  { tag: "notices-you",     name: "She notices you",  blurb: "Busy with her herbs, then she feels you watching, looks up to meet your eyes, smiles, and goes back to work." },
-  { tag: "greets-you",      name: "A greeting",       blurb: "She was expecting you. A tilt of the head, a warm smile, her weight settling as she turns to you." },
-  { tag: "world-behind",    name: "The world behind", blurb: "She is the still point: calm and watching, while the market carries on moving somewhere behind her." },
-  { tag: "amused",          name: "Amused",           blurb: "She studies you, an eyebrow goes up, and she breaks into a brief quiet laugh that fades into a knowing smile." }
+  { tag: "meets-you", name: "She meets your eye", meta: "Kling v3 &middot; 9s",
+    blurb: "Head down over her herbs, then she looks up and finds you. Her eyebrows go up, a broad smile spreads, she laughs and brushes a strand of hair back, and keeps watching you." },
+  { tag: "meets-you-pro", name: "The same, finer", meta: "Kling v3 Pro &middot; 9s",
+    blurb: "The identical performance from the better engine, rendered at higher resolution. Worth comparing closely: the difference is in the skin and the hands, not the acting." },
+  { tag: "talks-to-you", name: "She talks to you", meta: "Kling v3 &middot; 9s",
+    blurb: "Caught mid-sentence. Her lips move, her eyebrows work with what she is saying, she makes a point with one hand, nods, smiles, carries on. The closest to a portrait that speaks." },
+  { tag: "offers-herbs", name: "She offers you herbs", meta: "Kling v3 &middot; 9s",
+    blurb: "She stoops to her basket, then lifts a fistful of greens right up to you, laughing, turning them so the leaves catch the light, before setting them down again." },
+  { tag: "restless", name: "Restless", meta: "Kling v3 &middot; 9s",
+    blurb: "Her attention wanders. She glances off into the market at something you cannot see, turns back, tucks her hair away, and settles on you with a small private smile." },
+  { tag: "minimax-live", name: "Warm and steady", meta: "MiniMax Live &middot; 5s",
+    blurb: "A different engine altogether, gentler and less theatrical. She smiles at you throughout, glances down, tucks her hair back, and returns. Shorter, so it comes round sooner." },
+  { tag: "current", name: "As it is now", meta: "Live today &middot; 5s", baseline: true,
+    blurb: "What is on the site at the moment, kept here for contrast. She drifts through the frame instead of holding it, and never really does anything." }
 ];
 
 const wall = document.getElementById("wall");
@@ -193,7 +205,7 @@ const vids = [];
 
 PORTRAITS.forEach((p, i) => {
   const hang = document.createElement("div");
-  hang.className = "hang";
+  hang.className = "hang" + (p.baseline ? " baseline" : "");
   hang.dataset.tag = p.tag;
   hang.innerHTML =
     '<button class="frame" aria-label="Choose ' + p.name + '">' +
@@ -203,6 +215,7 @@ PORTRAITS.forEach((p, i) => {
       '<div class="no">' + String(i + 1).padStart(2, "0") + '</div>' +
       '<h2>' + p.name + '</h2>' +
       '<p>' + p.blurb + '</p>' +
+      '<div class="meta">' + p.meta + '</div>' +
       '<div class="truesize">' +
         '<div class="dot"><video muted loop playsinline preload="metadata" poster="portrait.jpg" src="portrait-' + p.tag + '.mp4"></video></div>' +
         '<span>Actual size<br>in the walk</span>' +
@@ -211,10 +224,7 @@ PORTRAITS.forEach((p, i) => {
     '</div>';
   wall.appendChild(hang);
 
-  const big = hang.querySelector(".frame video");
-  const dot = hang.querySelector(".dot video");
-  vids.push(big, dot);
-
+  vids.push(hang.querySelector(".frame video"), hang.querySelector(".dot video"));
   hang.querySelector(".frame").addEventListener("click", () => choose(p.tag));
   if (picked === p.tag) hang.classList.add("picked");
 });
@@ -238,18 +248,18 @@ paint();
 // Phones cap how many videos decode at once, so only what you can see plays.
 // It is also the better way to judge one: you look at a single portrait at a time.
 let paused = false;
-const seen = new WeakSet();
+const loaded = new WeakSet();
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
     const v = e.target;
     if (e.isIntersecting) {
-      if (!seen.has(v)) { v.preload = "auto"; v.load(); seen.add(v); }
+      if (!loaded.has(v)) { v.preload = "auto"; v.load(); loaded.add(v); }
       if (!paused) v.play().catch(() => {});
     } else {
       v.pause();
     }
   });
-}, { rootMargin: "120px 0px", threshold: 0.15 });
+}, { rootMargin: "150px 0px", threshold: 0.15 });
 vids.forEach((v) => io.observe(v));
 
 document.getElementById("sync").addEventListener("click", () => {
