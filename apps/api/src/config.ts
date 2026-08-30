@@ -91,6 +91,16 @@ export const config = {
   openaiApiKey: process.env.OPENAI_API_KEY || "",
   falKey: process.env.FAL_KEY || "",
   realtimeModel: process.env.REALTIME_MODEL || "gpt-realtime-2",
-  /** Dev mode exposes unauthenticated helper routes for the playground. */
-  dev: process.env.NODE_ENV !== "production",
+  /**
+   * Unauthenticated helper routes for the playground — today, the cost ledger
+   * for a tour. Off unless asked for.
+   *
+   * This used to key off NODE_ENV, which was wrong in both directions. Leave
+   * NODE_ENV unset on a host and the ledger is public, publishing what every
+   * walk cost to make. Set it to "production" and the build itself breaks,
+   * because npm then skips the devDependencies the build is made of. Neither
+   * failure looks like the setting that caused it, so the setting is gone:
+   * this is its own flag, and it defaults to closed.
+   */
+  dev: process.env.ENABLE_DEV_ROUTES === "1",
 };
