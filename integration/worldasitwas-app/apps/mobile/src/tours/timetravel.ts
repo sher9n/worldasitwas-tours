@@ -428,8 +428,20 @@ export interface FindOptions {
  */
 export const PLAYER_TOKEN_PARAM = "tk" as const;
 
-/** Six hours: long enough to finish a walk and answer the companion. */
-export const PLAYER_TOKEN_TTL_SEC = 6 * 60 * 60;
+/**
+ * One hour. A walk runs about fifteen minutes, so this covers a long pause and
+ * a change of mind without leaving a working credential lying around in
+ * someone's browser history for an afternoon.
+ *
+ * Expiry stops two things: fetching the manifest, and minting a companion
+ * session. A walk already on screen keeps playing, because its manifest and
+ * media are loaded — so a token running out mid-pause degrades to "the Ask
+ * button stops working", not to a broken walk. Opening the tour again asks the
+ * app's own backend for a fresh URL, so nothing needs to be long-lived.
+ *
+ * Pass `ttlSec` to override for a specific case.
+ */
+export const PLAYER_TOKEN_TTL_SEC = 60 * 60;
 
 function b64url(bytes: ArrayBuffer): string {
   const bin = String.fromCharCode(...new Uint8Array(bytes));

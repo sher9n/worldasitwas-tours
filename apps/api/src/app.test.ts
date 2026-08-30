@@ -219,6 +219,18 @@ test("a token never opens the catalogue or a search", async () => {
   }
 });
 
+test("a token is short-lived by default, not open-ended", async () => {
+  // The default is the whole of the exposure window for a URL that ends up in
+  // a browser history and a WebView. An hour covers a fifteen-minute walk and
+  // a long pause; a day would not be a credential, it would be a key.
+  const { PLAYER_TOKEN_TTL_SEC } = await import("@timetravel/client");
+  assert.ok(PLAYER_TOKEN_TTL_SEC <= 3600, `default ttl is ${PLAYER_TOKEN_TTL_SEC}s`);
+  const token = await signPlayerToken(SECRET, tour.id, "t_traveller");
+  const claimedExpiry = Number(token.split(".")[0]);
+  const seconds = claimedExpiry - Math.floor(Date.now() / 1000);
+  assert.ok(seconds > 0 && seconds <= 3600, `token lives ${seconds}s`);
+});
+
 test("an expired token is refused", async () => {
   const token = await signPlayerToken(SECRET, tour.id, "t_traveller", -60);
   const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(token) });
