@@ -1,11 +1,11 @@
 {
   "tourId": "tour_stockholm_1755_tavern",
-  "companion": "Brita Lindqvist",
+  "companion": "Britta Lindqvist",
   "note": "Written by the screenplay stage, then spoken verbatim.",
   "stops": {
     "stop_01_stortorget": {
       "arrival": {
-        "line": "Good day to you. I'm Brita Lindqvist, forty-one now, and I keep a tavern here on Stortorget. I'm a widow, born in Stockholm, and I've been at this work long enough to know how the city sounds when it's thirsty. My door takes in clerks from the rådhus, sailors with harbour mud on their boots, market women, and little gentlemen with big opinions. We'll make five stops together, from my square outward, and I'll show you how trade, print, taxes, and debt all get stirred into the same cup here. My stairs hear harbour news, riksdag talk, and court business in one climb, so I hear the city reckon itself every day. Touch anything in the picture and I'll tell you more about it. Hold the green button and you may ask me what you like. Start with the door and the water queue.",
+        "line": "Good day to you. I'm Britta Lindqvist, forty-one now, and I keep a tavern here on Stortorget. I'm a widow, born in Stockholm, and I've been at this work long enough to know how the city sounds when it's thirsty. My door takes in clerks from the rådhus, sailors with harbour mud on their boots, market women, and little gentlemen with big opinions. We'll make five stops together, from my square outward, and I'll show you how trade, print, taxes, and debt all get stirred into the same cup here. My stairs hear harbour news, riksdag talk, and court business in one climb, so I hear the city reckon itself every day. Touch anything in the picture and I'll tell you more about it. Hold the green button and you may ask me what you like. Start with the door and the water queue.",
         "scene": "We stand just inside a tavern doorway looking out over Stortorget. Uneven cobbles fill the foreground, with the open tavern door and a worn bench set against the wall by the stair on the left. In the middle distance a queue of women and servants waits at the square well with buckets and small casks. Beyond them carts, stalls, and steep-roofed merchant houses ring the square, and the large old rådhus closes the north side beneath a pale sky.",
         "points": [
           {
@@ -324,7 +324,7 @@
           ]
         }
       },
-      "transitionOut": "So that's the walk done, and you've seen my city as I know it: a palace newly in use, Chinese cups on the table, pamphlets passing from hand to hand, and debts crouching behind half the talk. Splendour and shortage are the same story here, only dressed for different company. I'm Brita Lindqvist of Stortorget. Come back my way if you fancy a beer or coffee, and goodbye to you - politics may wait a little, but a score never rubs itself out."
+      "transitionOut": "So that's the walk done, and you've seen my city as I know it: a palace newly in use, Chinese cups on the table, pamphlets passing from hand to hand, and debts crouching behind half the talk. Splendour and shortage are the same story here, only dressed for different company. I'm Britta Lindqvist of Stortorget. Come back my way if you fancy a beer or coffee, and goodbye to you - politics may wait a little, but a score never rubs itself out."
     }
   }
 }
