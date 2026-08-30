@@ -24,6 +24,14 @@
 # Do not run several of these at once, and leave the pauses in. Railway's SFTP
 # endpoint starts refusing sessions when they are opened back to back, and the
 # failure is again a timeout rather than anything that names the real cause.
+#
+# And the reason each walk is deleted before it is sent: uploading a directory
+# onto a directory that already exists does NOT replace it, --overwrite or not.
+# The flag governs individual files; the destination itself is treated as a
+# parent, so the walk lands at /tours/<id>/<id> and the service, looking for
+# /tours/<id>/manifest.json, goes on reporting the walk as missing while every
+# upload says "ok". Clearing the target first is what makes a re-publish mean
+# what it says.
 set -u
 
 VOLUME="${VOLUME:-worldasitwas-tours-volume}"
@@ -36,9 +44,10 @@ TOURS_DIR="$ROOT/content/tours"
 local_tours() { (cd "$TOURS_DIR" && ls -d tour_* 2>/dev/null); }
 local_count() { find "$TOURS_DIR/$1" -type f | wc -l | tr -d ' '; }
 
-# One listing of the whole /tours directory, then one per walk. Counting files
-# per walk any other way means an SFTP session per walk, which is the thing
-# the endpoint dislikes.
+# NOTE: this listing is NOT trustworthy and is kept only for a rough look. A
+# timed-out listing is indistinguishable from an empty directory, so it reports
+# zero for walks the service is demonstrably serving. Anything that has to be
+# right uses tools/verify-tours.sh, which asks the service.
 remote_count() {
   n=$(railway volume files --volume "$VOLUME" list "/tours/$1" 2>/dev/null | tr ' ' '\n' | grep -c '[^[:space:]]') || n=0
   echo "${n:-0}"
@@ -70,11 +79,9 @@ fi
 if [ $# -gt 0 ]; then
   TOURS="$*"
 else
-  echo "Checking what is already on the volume:"
-  reconcile
-  TOURS="$short"
-  echo
-  [ -n "$TOURS" ] || { echo "Nothing to send."; exit 0; }
+  echo "Which walks are missing (asking the service):"
+  TOURS=$("$(dirname "$0")/verify-tours.sh" 2>/dev/null | sed -n 's/^incomplete://p')
+  [ -n "$TOURS" ] || { echo "Nothing to send — every walk is live."; exit 0; }
   echo "Sending:$TOURS"
 fi
 
@@ -83,6 +90,10 @@ for t in $TOURS; do
   src="$TOURS_DIR/$t"
   [ -f "$src/manifest.json" ] || { echo "  skip $t (no manifest.json)"; continue; }
   printf "  %-42s %6s ... " "$t" "$(du -sh "$src" | cut -f1 | tr -d ' ')"
+
+  # See the note at the top: an upload onto an existing directory nests.
+  railway volume files --volume "$VOLUME" delete "/tours/$t" --yes >/dev/null 2>&1
+  sleep 2
 
   n=0
   while [ $n -lt 4 ]; do
@@ -101,10 +112,7 @@ done
 
 echo
 echo "$ok walk(s) sent."
-echo "Verifying against the volume:"
-reconcile
-BASE="${PUBLIC_BASE_URL:-https://tours.worldasitwas.com}"
 echo
-echo "service reports: $(curl -s "$BASE/health")"
-[ -z "$short" ] || { echo "still incomplete:$short — re-run" >&2; exit 1; }
-[ -z "$failed" ] || { echo "failed:$failed" >&2; exit 1; }
+# Ask the service, not the volume: an upload can exit 0 having transferred only
+# part of a walk, and only the service can say whether one is actually usable.
+exec "$(dirname "$0")/verify-tours.sh"
