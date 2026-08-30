@@ -118,17 +118,20 @@ async function main(): Promise<void> {
   );
 
   // 1. Research
-  const dossiers: StopDossier[] = [];
-  for (const stop of recipe.stops) {
-    const f = path.join(work, `dossier.${stop.id}.json`);
-    let d = await readJson<unknown>(f).then((x) => (x ? StopDossier.parse(x) : undefined));
-    if (!d) {
+  const dossiers: StopDossier[] = await Promise.all(
+    recipe.stops.map(async (stop) => {
+      const f = path.join(work, `dossier.${stop.id}.json`);
+      const cached = await readJson<unknown>(f).then((x) => (x ? StopDossier.parse(x) : undefined));
+      if (cached) {
+        log(`research ${stop.id} (cached)`);
+        return cached;
+      }
       log(`research ${stop.id}`);
-      d = await researchStop(recipe, stop, llm);
+      const d = await researchStop(recipe, stop, llm);
       await writeJson(f, d);
-    } else log(`research ${stop.id} (cached)`);
-    dossiers.push(d);
-  }
+      return d;
+    }),
+  );
   let companion = await readJson<unknown>(path.join(work, "companion.json")).then((x) => (x ? CompanionDossier.parse(x) : undefined));
   if (!companion) {
     log("research companion");
@@ -359,16 +362,29 @@ async function main(): Promise<void> {
       // A cached result written while the voice provider was down has points
       // with no recording. Trusting that cache ships a tour where tapping a
       // point does nothing, so any gap is filled in before the tour is built.
-      const silent = [...(h.arrival ?? []), ...h.cards.flatMap((c) => c.points)].filter((pt) => !pt.audio);
+      // A point counts as silent if it has no recording, and also if the
+      // recording it names is gone: clearing a walk's audio to re-record it
+      // leaves these pointing at files that no longer exist, and a cached
+      // result must never be trusted further than the disk backs it up.
+      const stillThere = async (pt: { audio?: { localPath?: string; remoteUrl?: string } }): Promise<boolean> => {
+        if (!pt.audio) return false;
+        if (!pt.audio.localPath) return Boolean(pt.audio.remoteUrl);
+        return fs.access(pt.audio.localPath).then(() => true, () => false);
+      };
+      const everyPoint = [...(h.arrival ?? []), ...h.cards.flatMap((c) => c.points)];
+      const silent: typeof everyPoint = [];
+      for (const pt of everyPoint) if (!(await stillThere(pt))) silent.push(pt);
       if (silent.length) {
         log(`hotspots ${script.stopId}: recording ${silent.length} line(s) that have no audio`);
-        for (const pt of silent) {
-          try {
-            pt.audio = await provider.tts({ text: pt.text, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `poi ${pt.id}` });
-          } catch (err) {
-            console.warn(`[hotspots] tts ${pt.id} failed: ${(err as Error).message}`);
-          }
-        }
+        await Promise.all(
+          silent.map(async (pt) => {
+            try {
+              pt.audio = await provider.tts({ text: pt.text, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `poi ${pt.id}` });
+            } catch (err) {
+              console.warn(`[hotspots] tts ${pt.id} failed: ${(err as Error).message}`);
+            }
+          }),
+        );
         await writeJson(f, h);
       }
       hotspots.push(h);

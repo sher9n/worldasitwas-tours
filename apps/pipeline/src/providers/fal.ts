@@ -37,12 +37,17 @@ export class FalProvider implements MediaProvider {
     this.variant = `fal:${this.imageModel}`;
   }
 
-  /** At most three calls in flight: fal re-checks the balance threshold per request,
-   * and a burst can trip its TOP_UP lock transiently. */
+  /**
+   * How many calls may be in flight. The old limit of three was set when fal's
+   * balance lock flickered under bursts; with speech now the whole cost of a
+   * rebuild, waiting one call at a time is the difference between a two minute
+   * job and a ten minute one. Retries still cover a transient lock.
+   */
+  private static readonly IN_FLIGHT = 8;
   private inFlight = 0;
   private waiters: Array<() => void> = [];
   private async slot<T>(fn: () => Promise<T>): Promise<T> {
-    if (this.inFlight >= 3) await new Promise<void>((ok) => this.waiters.push(ok));
+    if (this.inFlight >= FalProvider.IN_FLIGHT) await new Promise<void>((ok) => this.waiters.push(ok));
     this.inFlight++;
     try {
       return await fn();

@@ -2,6 +2,8 @@ import type { Quality } from "../env.ts";
 
 /** A generated or fetched file. Exactly one of remoteUrl or localPath is set. */
 export interface Asset {
+  /** A recording already brought to the tour's loudness; publishing leaves it alone. */
+  levelled?: boolean;
   remoteUrl?: string;
   localPath?: string;
   mime: string;

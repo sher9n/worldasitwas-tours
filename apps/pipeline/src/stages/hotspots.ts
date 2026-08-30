@@ -107,14 +107,21 @@ Return two or three points for this image.`,
       .filter((p) => p.confidence !== "low" && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1)
       .slice(0, 3);
     const cardOut: StopHotspots["cards"][number] = { cardId: sc.id, points: [] };
+    // Recorded together: these lines have nothing to do with each other, and
+    // waiting for each in turn is most of the time a rebuild takes.
+    const spoken = await Promise.all(
+      points.map((p, i) =>
+        provider
+          .tts({ text: p.line, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `poi ${sc.id}/${i + 1} ${p.label}` })
+          .catch((err) => {
+            console.warn(`[hotspots] tts ${sc.id}/${p.label} failed: ${(err as Error).message}`);
+            return undefined;
+          }),
+      ),
+    );
     for (let i = 0; i < points.length; i++) {
       const p = points[i];
-      let audio: Asset | undefined;
-      try {
-        audio = await provider.tts({ text: p.line, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `poi ${sc.id}/${i + 1} ${p.label}` });
-      } catch (err) {
-        console.warn(`[hotspots] tts ${sc.id}/${p.label} failed: ${(err as Error).message}`);
-      }
+      const audio: Asset | undefined = spoken[i];
       cardOut.points.push({
         id: `${script.stopId}_${sc.id}_p${i + 1}`,
         // Clamp toward the frame so a marker never sits under the HUD edges.

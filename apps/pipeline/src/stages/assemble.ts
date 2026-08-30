@@ -8,7 +8,7 @@ import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseTour, type Card, type Hotspot, type Recipe, type Source, type Stop, type Tour } from "@timetravel/schema";
-import { FFMPEG, probeDuration } from "../ffmpeg.ts";
+import { levelAudio, probeDuration } from "../ffmpeg.ts";
 import type { Asset } from "../providers/types.ts";
 import type { CompanionDossier, StopDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
@@ -50,35 +50,6 @@ export interface AssembleInput {
  * it, and the true peak is held under -1.5 dB so a phone's amplifier never
  * clips, which is what turns a quiet crackle into a loud one.
  */
-async function levelOut(file: string, targetLufs: number): Promise<void> {
-  const tmp = file.replace(/\.(\w+)$/, ".level.$1");
-  const run = (args: string[]): Promise<string> =>
-    new Promise((ok, bad) => {
-      execFile(FFMPEG, args, (err, _out, stderr) => (err ? bad(err) : ok(String(stderr))));
-    });
-  const shaped = file.replace(/\.(\w+)$/, ".shaped.$1");
-  try {
-    // Compress first, because it changes the loudness; then measure what came
-    // out; then apply exactly the gain that brings THAT to the target. Measuring
-    // before compressing computes the gain for a signal that no longer exists,
-    // and lines land two decibels apart, which on a phone is heard as the voice
-    // rising and falling between sentences for no reason.
-    // Light compression evens a line out on a phone speaker; the limiter holds
-    // the peak below clipping, which is what turns a crackle into a bang.
-    await run(["-y", "-i", file, "-af", "acompressor=threshold=-18dB:ratio=3:attack=5:release=120", "-ar", "44100", "-b:a", "128k", shaped]);
-    const report = await run(["-i", shaped, "-af", "ebur128=framelog=quiet", "-f", "null", "-"]);
-    const measured = Number(report.match(/I:\s+(-?\d+(?:\.\d+)?) LUFS/)?.[1]);
-    if (!Number.isFinite(measured)) throw new Error("could not measure loudness");
-    await run(["-y", "-i", shaped, "-af", `volume=${(targetLufs - measured).toFixed(2)}dB,alimiter=limit=0.9`, "-ar", "44100", "-b:a", "128k", tmp]);
-    await fs.rm(shaped, { force: true });
-    await fs.rename(tmp, file);
-  } catch (err) {
-    await fs.rm(shaped, { force: true });
-    await fs.rm(tmp, { force: true });
-    console.warn(`[assemble] could not level ${path.basename(file)}: ${(err as Error).message}`);
-  }
-}
-
 /** One archive request at a time, with a gap: several tours building at once
  * will otherwise trip Wikimedia's rate limit and lose a whole assemble. */
 let archiveQueue: Promise<unknown> = Promise.resolve();
@@ -129,7 +100,9 @@ class Materializer {
     // Every recording lands at the same loudness. The provider returns lines
     // that differ by a few decibels, which on a phone is heard as her voice
     // rising and falling between sentences for no reason.
-    if (asset.mime.startsWith("audio/")) await levelOut(target, name.includes("ambience") ? -26 : -16);
+    // Recordings are levelled once, where they are made. Anything older than
+    // that, or brought in from elsewhere, is levelled here instead.
+    if (asset.mime.startsWith("audio/") && !asset.levelled) await levelAudio(target, name.includes("ambience") ? -26 : -16);
     const durationSec = /^(video|audio)\//.test(asset.mime) ? (await probeDuration(target)) ?? asset.durationSec : undefined;
     // File names are stable across publishes but their contents are not, and the
     // media route is served immutable for a year. Without a content stamp in the

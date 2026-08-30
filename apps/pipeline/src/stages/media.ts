@@ -13,6 +13,7 @@ import type { Quality } from "../env.ts";
 import type { Asset, MediaProvider } from "../providers/types.ts";
 import type { CompanionDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
+import { trimBorder } from "../ffmpeg.ts";
 
 export type MediaStep = "hero" | "video" | "line" | "ambience" | "portrait" | "cards" | "cardmotion" | "narration" | "faces" | "transition";
 /** Every step that exists, including the ones a tour no longer uses. */
@@ -75,6 +76,16 @@ const CARD_MOTION_PROMPT =
 export async function makeCharacter(recipe: Recipe, companion: CompanionDossier, provider: MediaProvider, quality: Quality, opts: { greeting?: boolean } = {}): Promise<CharacterSheet> {
   const prompt = `Photographic portrait, ${companion.portraitPrompt} ${recipe.style.look} Square framing, head and shoulders, looking at the camera, plain background of a soot-darkened brick wall. Avoid: ${recipe.style.avoid}`;
   const portrait = await provider.image({ prompt, aspect: "1:1", quality, stage: "character", note: `portrait of ${recipe.companion.name}` });
+  // The image model sometimes composes a tall photograph on a square canvas and
+  // pads the sides with white. In a round frame that reads as a cut-out with
+  // white bars beside her, and the presence clip made from it inherits them, so
+  // the padding is cut off before anything else uses the picture.
+  if (portrait.localPath && (await trimBorder(portrait.localPath))) {
+    // The hosted copy is still the padded one, and it is what every later call
+    // is given: the clip of her, and any scene she appears in. Dropping it makes
+    // the trimmed picture the one that gets published and used.
+    portrait.remoteUrl = undefined;
+  }
   const portraitUrl = await urlOf(provider, portrait);
   let greetingAudio: Asset | undefined;
   if (opts.greeting !== false) {

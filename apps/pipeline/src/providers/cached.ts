@@ -8,6 +8,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { levelAudio, probeDuration } from "../ffmpeg.ts";
 import type { Ledger } from "../ledger.ts";
 import type { Asset, MediaProvider } from "./types.ts";
 
@@ -70,6 +71,19 @@ export class CachedProvider implements MediaProvider {
         }
       } catch {
         // keep the remote URL only
+      }
+    }
+    // A recording is brought to the tour's loudness once, here, where it is
+    // made. Doing it at publishing time instead meant re-levelling every line of
+    // every walk on every publish, which was most of what a rebuild spent its
+    // time on and produced exactly the same bytes each time.
+    if (method === "tts" && asset.localPath && asset.mime.startsWith("audio/") && !asset.levelled) {
+      try {
+        await levelAudio(asset.localPath, -16);
+        asset.levelled = true;
+        asset.durationSec = (await probeDuration(asset.localPath)) ?? asset.durationSec;
+      } catch {
+        // an unlevelled recording is still a recording
       }
     }
     if (asset.localPath || asset.remoteUrl) await fs.writeFile(metaFile, JSON.stringify(asset));
