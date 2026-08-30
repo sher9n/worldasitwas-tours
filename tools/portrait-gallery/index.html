@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Portrait Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=JetBrains+Mono:wght@500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --room:   #100E0B;
+    --wall:   #17130E;
+    --panel:  #1E1913;
+    --gilt:   #C9A24A;
+    --gilt-d: #6E5828;
+    --bone:   #EFE7D9;
+    --muted:  #9A8C77;
+    --hair:   rgba(201,162,74,.20);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(120% 70% at 50% -10%, #241D14 0%, rgba(36,29,20,0) 62%),
+      var(--room);
+    color: var(--bone);
+    font: 400 16px/1.6 "Source Sans 3", system-ui, -apple-system, sans-serif;
+    padding: 0 0 128px;
+    min-height: 100vh;
+  }
+
+  .eyebrow {
+    font: 500 10px/1 "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--gilt);
+  }
+
+  header {
+    max-width: 760px; margin: 0 auto; padding: 56px 22px 34px; text-align: center;
+    display: flex; flex-direction: column; gap: 18px; align-items: center;
+  }
+  header h1 {
+    font: 300 clamp(38px, 9vw, 62px)/1.02 "Cormorant Garamond", Georgia, serif;
+    margin: 0; text-wrap: balance; letter-spacing: -.01em;
+  }
+  header h1 em { font-style: italic; color: var(--gilt); }
+  header p { margin: 0; max-width: 54ch; color: var(--muted); text-wrap: pretty; }
+
+  .rule { width: 100%; max-width: 760px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--hair) 22%, var(--hair) 78%, transparent); }
+
+  .tools {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    padding: 24px 22px 8px;
+  }
+  button {
+    font: 600 12px/1 "Source Sans 3", sans-serif; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--bone); background: var(--panel); border: 1px solid var(--hair);
+    padding: 12px 18px; border-radius: 999px; cursor: pointer;
+    transition: border-color .18s ease, color .18s ease, background .18s ease;
+  }
+  button:hover { border-color: var(--gilt); color: var(--gilt); }
+  button:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+
+  .wall {
+    max-width: 1180px; margin: 0 auto; padding: 30px 22px 0;
+    display: grid; gap: 40px 30px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px)  { .wall { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1080px) { .wall { grid-template-columns: repeat(3, 1fr); } }
+
+  .hang { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+  /* The frame: a gilt ring on the wall, lit from above like a hung picture. */
+  .frame {
+    position: relative; width: min(300px, 78vw); aspect-ratio: 1;
+    border-radius: 50%; padding: 0; border: none; background: none; cursor: pointer;
+    display: grid; place-items: center;
+  }
+  .frame::after {
+    content: ""; position: absolute; inset: -9px; border-radius: 50%;
+    border: 1px solid var(--gilt-d);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  .frame video, .frame img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;
+    background: #0B0906;
+    box-shadow: 0 26px 60px rgba(0,0,0,.7), inset 0 0 0 3px rgba(239,231,217,.9);
+  }
+  .frame:hover::after { border-color: var(--gilt); }
+  .frame:focus-visible { outline: none; }
+  .frame:focus-visible::after { border-color: var(--gilt); box-shadow: 0 0 0 3px rgba(201,162,74,.35); }
+  .hang.picked .frame::after {
+    border-color: var(--gilt); border-width: 2px;
+    box-shadow: 0 0 34px rgba(201,162,74,.30), inset 0 0 22px rgba(201,162,74,.12);
+  }
+
+  /* The plaque under the picture, as a gallery would have it. */
+  .plaque { text-align: center; padding: 22px 6px 0; max-width: 320px; }
+  .plaque .no {
+    font: 500 10px/1 "JetBrains Mono", monospace; letter-spacing: .2em; color: var(--gilt-d);
+  }
+  .hang.picked .plaque .no { color: var(--gilt); }
+  .plaque h2 {
+    font: 500 25px/1.15 "Cormorant Garamond", Georgia, serif; margin: 9px 0 8px; letter-spacing: .01em;
+  }
+  .plaque p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+
+  /* True size: exactly how she sits in the walk (132px circle, 3px white ring). */
+  .truesize {
+    display: flex; align-items: center; gap: 13px; margin-top: 20px;
+    padding: 13px 16px 13px 13px; background: var(--wall);
+    border: 1px solid var(--hair); border-radius: 14px;
+  }
+  .truesize .dot {
+    width: 132px; height: 132px; flex: none; border-radius: 50%; overflow: hidden;
+    border: 3px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  }
+  .truesize .dot video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .truesize span {
+    font: 500 9px/1.5 "JetBrains Mono", monospace; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  .tag {
+    display: inline-block; margin-top: 14px;
+    font: 500 10px/1 "JetBrains Mono", monospace; letter-spacing: .1em;
+    color: var(--gilt-d); background: rgba(201,162,74,.07);
+    border: 1px solid var(--hair); border-radius: 6px; padding: 6px 9px;
+  }
+
+  /* The pick rail: what you tell me once you have chosen. */
+  .rail {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9;
+    background: rgba(16,14,11,.93); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--hair);
+    padding: 16px 22px calc(16px + env(safe-area-inset-bottom));
+    display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+    text-align: center;
+  }
+  .rail .none { color: var(--muted); font-size: 14px; }
+  .rail .said { font-size: 15px; }
+  .rail .said b { color: var(--bone); font-weight: 600; }
+  .rail code {
+    font: 500 13px "JetBrains Mono", monospace; color: var(--gilt);
+    background: rgba(201,162,74,.09); border: 1px solid var(--hair);
+    border-radius: 7px; padding: 6px 10px; margin-left: 8px; display: inline-block;
+  }
+
+  footer { max-width: 700px; margin: 60px auto 0; padding: 0 22px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">Caterina Ruspoli &middot; Rome, 1600</span>
+  <h1>Which way should she <em>live</em> in her frame?</h1>
+  <p>Six directions for the guide's portrait, all from the same picture, all looping so they never jump. Watch each one for a few seconds, then pick the one that feels like she is really there with you.</p>
+</header>
+<div class="rule"></div>
+
+<div class="tools">
+  <button id="sync">Replay all together</button>
+  <button id="toggle">Pause all</button>
+</div>
+
+<main class="wall" id="wall"></main>
+
+<footer>Every clip is five seconds and ends exactly where it starts, so the loop is invisible. Whichever you choose becomes the house style for all twelve guides.</footer>
+
+<div class="rail" id="rail"><span class="none">Tap a portrait to choose it.</span></div>
+
+<script>
+const PORTRAITS = [
+  { tag: "current",         name: "As it is now",     blurb: "What is live today. She moves through the frame rather than holding it, which is why she can drift out of her own picture." },
+  { tag: "still-and-alive", name: "Still and alive",  blurb: "She holds your eye the whole time. Breath, two blinks, a small smile that arrives and settles. Nothing else moves." },
+  { tag: "notices-you",     name: "She notices you",  blurb: "Busy with her herbs, then she feels you watching, looks up to meet your eyes, smiles, and goes back to work." },
+  { tag: "greets-you",      name: "A greeting",       blurb: "She was expecting you. A tilt of the head, a warm smile, her weight settling as she turns to you." },
+  { tag: "world-behind",    name: "The world behind", blurb: "She is the still point: calm and watching, while the market carries on moving somewhere behind her." },
+  { tag: "amused",          name: "Amused",           blurb: "She studies you, an eyebrow goes up, and she breaks into a brief quiet laugh that fades into a knowing smile." }
+];
+
+const wall = document.getElementById("wall");
+const rail = document.getElementById("rail");
+let picked = null;
+try { picked = localStorage.getItem("tt_portrait_pick"); } catch (e) { picked = null; }
+
+const vids = [];
+
+PORTRAITS.forEach((p, i) => {
+  const hang = document.createElement("div");
+  hang.className = "hang";
+  hang.dataset.tag = p.tag;
+  hang.innerHTML =
+    '<button class="frame" aria-label="Choose ' + p.name + '">' +
+      '<video muted loop playsinline preload="metadata" poster="portrait.jpg" src="portrait-' + p.tag + '.mp4"></video>' +
+    '</button>' +
+    '<div class="plaque">' +
+      '<div class="no">' + String(i + 1).padStart(2, "0") + '</div>' +
+      '<h2>' + p.name + '</h2>' +
+      '<p>' + p.blurb + '</p>' +
+      '<div class="truesize">' +
+        '<div class="dot"><video muted loop playsinline preload="metadata" poster="portrait.jpg" src="portrait-' + p.tag + '.mp4"></video></div>' +
+        '<span>Actual size<br>in the walk</span>' +
+      '</div>' +
+      '<span class="tag">' + p.tag + '</span>' +
+    '</div>';
+  wall.appendChild(hang);
+
+  const big = hang.querySelector(".frame video");
+  const dot = hang.querySelector(".dot video");
+  vids.push(big, dot);
+
+  hang.querySelector(".frame").addEventListener("click", () => choose(p.tag));
+  if (picked === p.tag) hang.classList.add("picked");
+});
+
+function choose(tag) {
+  picked = tag;
+  try { localStorage.setItem("tt_portrait_pick", tag); } catch (e) {}
+  document.querySelectorAll(".hang").forEach((h) => h.classList.toggle("picked", h.dataset.tag === tag));
+  paint();
+}
+
+function paint() {
+  const p = PORTRAITS.find((x) => x.tag === picked);
+  if (!p) { rail.innerHTML = '<span class="none">Tap a portrait to choose it.</span>'; return; }
+  const n = PORTRAITS.indexOf(p) + 1;
+  rail.innerHTML = '<span class="said">Your pick is <b>' + String(n).padStart(2, "0") + " &middot; " + p.name +
+    '</b>. Tell me:<code>use ' + p.tag + '</code></span>';
+}
+paint();
+
+// Phones cap how many videos decode at once, so only what you can see plays.
+// It is also the better way to judge one: you look at a single portrait at a time.
+let paused = false;
+const seen = new WeakSet();
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) {
+      if (!seen.has(v)) { v.preload = "auto"; v.load(); seen.add(v); }
+      if (!paused) v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  });
+}, { rootMargin: "120px 0px", threshold: 0.15 });
+vids.forEach((v) => io.observe(v));
+
+document.getElementById("sync").addEventListener("click", () => {
+  paused = false;
+  document.getElementById("toggle").textContent = "Pause all";
+  vids.forEach((v) => { try { v.currentTime = 0; v.play().catch(() => {}); } catch (e) {} });
+});
+
+document.getElementById("toggle").addEventListener("click", (ev) => {
+  paused = !paused;
+  ev.target.textContent = paused ? "Play all" : "Pause all";
+  vids.forEach((v) => { if (paused) v.pause(); else v.play().catch(() => {}); });
+});
+</script>
+</body>
+</html>
