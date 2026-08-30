@@ -9,16 +9,24 @@ Integration brief for the platform team: see the shared artifact (API contract,
 manifest schema, experience spec). The schema in `packages/schema` is the
 source of truth for the manifest shape.
 
+**Integrating a walk into an app** starts in the playground: the **Integrate**
+tab is the code, per platform, built from whichever walk is selected; the
+**Embed** tab is the player running in a real frame with the event bridge live,
+so you can watch `stop_entered` arrive and send `pause` back. Copy-in files for
+World As It Was are in `integration/worldasitwas-app/`.
+
 ## Layout
 
 ```
 packages/schema     tour/1 manifest schema (zod) + recipe schema + tests
+packages/client     dependency-free client for the API and the hosted player
 apps/api            Fastify API: /v1/catalog, /v1/tours, /v1/tours/:id, companion session, /media
 apps/pipeline       recipe -> research -> archive -> script -> character -> media -> manifest
 apps/playground     Vite + React: phone-frame player, WebRTC companion, events, cost, QR
 content/recipes     one JSON recipe per tour (the input)
 content/tours       published tours: manifest.json + media + companion.md + ledger.json
 content/work        intermediate stage outputs and logs (gitignored)
+integration/        copy-in files for the apps that embed a walk
 ```
 
 ## Setup
@@ -56,8 +64,15 @@ estimated cost; the manifest's `provenance.costUsd` is the total.
 
 ```
 npm test
+npm run check:integration                   # the Integrate and Embed tabs, and the bridge, in a real browser
 npm run smoke:realtime -w @timetravel/api   # mints a companion session and talks to it over a websocket
 ```
+
+`npm test` includes `tools/check-vendored-client.cjs`, which fails if the copies
+of the client under `integration/` have drifted from `packages/client/src/index.ts`.
+That file is written to be pasted into an app, so it has no dependencies and is
+duplicated rather than imported; the check is what stops two copies of a contract
+becoming two contracts.
 
 ## Accounts
 

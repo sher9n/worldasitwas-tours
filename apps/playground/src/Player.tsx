@@ -51,7 +51,32 @@ function beatImage(tour: Tour, beat: Beat): string | undefined {
   return undefined;
 }
 
-export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: EventSink; onCompanion?: (s: CompanionState, transcript: { who: string; text: string }[]) => void }) {
+/**
+ * What a host can do to a running walk from outside the player: quieten it when
+ * the app goes to the background, and close it when a hardware back button is
+ * pressed. Handed out once, on mount, through `onControls`.
+ */
+export interface PlayerControls {
+  pause(): void;
+  resume(): void;
+  /** Ends the walk and returns to the cover, emitting tour_left. */
+  leave(): void;
+}
+
+export function Player({
+  tour,
+  onEvent,
+  onCompanion,
+  startStopId,
+  onControls,
+}: {
+  tour: Tour;
+  onEvent: EventSink;
+  onCompanion?: (s: CompanionState, transcript: { who: string; text: string }[]) => void;
+  /** Begin at this stop instead of the first. Unknown ids fall back to the start. */
+  startStopId?: string;
+  onControls?: (controls: PlayerControls) => void;
+}) {
   const beats = useMemo(() => buildBeats(tour), [tour]);
   const [phase, setPhase] = useState<Phase>("cover");
   const [bi, setBi] = useState(0);
@@ -278,16 +303,30 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
 
   /* ------------------------------ interactions ---------------------------- */
 
+  /**
+   * Where `start` begins. A host that stored the stopId from a tour_left event
+   * can hand it back to resume the walk; a stop that no longer exists (the tour
+   * was republished with different stops) quietly starts from the beginning
+   * rather than showing nothing.
+   */
+  const startBeat = useMemo(() => {
+    if (!startStopId) return 0;
+    const stopIndex = tour.stops.findIndex((s) => s.id === startStopId);
+    if (stopIndex < 0) return 0;
+    const at = beats.findIndex((b) => b.stopIndex === stopIndex);
+    return at < 0 ? 0 : at;
+  }, [beats, startStopId, tour.stops]);
+
   const start = () => {
     engine.current = engine.current ?? new AudioEngine();
     engine.current.unlock(); // inside the tap
     startedAt.current = Date.now();
-    emit("tour_started", { version: tour.version });
+    emit("tour_started", { version: tour.version, startStopId: startBeat > 0 ? startStopId : undefined });
     setPhase("playing");
-    setBi(0);
+    setBi(startBeat);
     // Pre-connect her ears so the first hold listens instantly; mic stays off
     // until held. A failure here is silent - holding will simply retry.
-    void companion.connect(tour.stops[0].id).catch(() => undefined);
+    void companion.connect(tour.stops[beats[startBeat]?.stopIndex ?? 0].id).catch(() => undefined);
   };
 
   const togglePause = () => setPaused((p) => !p);
@@ -350,6 +389,9 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
       const out = active === 0 ? slotA.current : slotB.current;
       if (out) out.pause();
       setSrcs((cur) => {
+        // Reassigning the same clip reloads it, and a reloading player has no
+        // frame to show. Leave it alone unless the clip actually changes.
+        if (cur[active] === reel[afterIdx].video) return cur;
         const copy: [string, string] = [...cur];
         copy[active] = reel[afterIdx].video;
         return copy;
@@ -480,6 +522,19 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
     engine.current?.stop();
     setPhase("cover");
   };
+
+  // Held in a ref because `leave` closes over the current beat and is rebuilt on
+  // every render, while the controls object must stay the one the host was
+  // handed on mount.
+  const leaveRef = useRef(leave);
+  leaveRef.current = leave;
+  useEffect(() => {
+    onControls?.({
+      pause: () => setPaused(true),
+      resume: () => setPaused(false),
+      leave: () => leaveRef.current(),
+    });
+  }, [onControls]);
 
   /* --------------------------------- render -------------------------------- */
 

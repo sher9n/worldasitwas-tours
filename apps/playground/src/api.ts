@@ -52,6 +52,16 @@ export const api = {
 };
 
 export function travellerId(): string {
+  // A host embedding the player owns the identity: it knows the signed-in
+  // traveller across devices, and the companion's rate limit counts per
+  // traveller, so a WebView minting a fresh localStorage id on every install
+  // would hand the same person a new budget each time.
+  try {
+    const fromHost = new URLSearchParams(location.search).get("traveller");
+    if (fromHost) return fromHost;
+  } catch {
+    // no location (SSR, a worker); fall through to the local id
+  }
   try {
     let id = localStorage.getItem("tt.travellerId");
     if (!id) {

@@ -9,6 +9,7 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
+    "@timetravel/client": "*",
     "@timetravel/schema": "*",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",

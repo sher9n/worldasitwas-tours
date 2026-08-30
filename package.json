@@ -11,8 +11,9 @@
     "api": "npm run dev -w @timetravel/api",
     "playground": "npm run dev -w @timetravel/playground",
     "pipeline": "npm run cli -w @timetravel/pipeline --",
-    "typecheck": "tsc -b packages/schema apps/api apps/pipeline apps/playground",
-    "test": "npm run test -w @timetravel/schema && npm run test -w @timetravel/api && npm run test -w @timetravel/pipeline"
+    "typecheck": "tsc -b packages/schema packages/client apps/api apps/pipeline apps/playground",
+    "test": "node tools/check-vendored-client.cjs && npm run test -w @timetravel/schema && npm run test -w @timetravel/client && npm run test -w @timetravel/api && npm run test -w @timetravel/pipeline",
+    "check:integration": "node apps/playground/tools/checks/p10-integration.cjs"
   },
   "devDependencies": {
     "typescript": "^5.6.3",
