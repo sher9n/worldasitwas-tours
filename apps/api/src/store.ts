@@ -8,7 +8,8 @@
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { parseTour, summarize, type Catalog, type Tour, type TourSummary } from "@timetravel/schema";
+import { feedTour, parseTour, summarize, type Catalog, type Feed, type Tour, type TourSummary } from "@timetravel/schema";
+import { FEED_VERSION } from "@timetravel/schema";
 
 export interface StoredTour {
   tour: Tour;
@@ -146,6 +147,43 @@ export class TourStore {
       };
     });
     return { cities, updatedAt: new Date().toISOString() };
+  }
+
+  /**
+   * Every published walk, flattened for plotting on somebody else's map.
+   *
+   * One request rather than a catalogue call plus a lookup per city per year:
+   * a host drawing our walks wants the whole set at once, and there are tens of
+   * them, not thousands. When that stops being true this grows a cursor.
+   */
+  async feed(): Promise<Feed> {
+    const stored = await this.list();
+    const catalog = await this.catalog();
+    const byId = new Map(catalog.cities.map((c) => [c.id, c]));
+    return {
+      schema: FEED_VERSION,
+      updatedAt: new Date().toISOString(),
+      cities: catalog.cities,
+      tours: stored.map(({ tour }) => {
+        const city = byId.get(tour.city);
+        return feedTour(tour, { name: city?.name ?? tour.city, country: city?.country ?? "" });
+      }),
+    };
+  }
+
+  /**
+   * A tag over what the feed actually contains. Every manifest's id and version,
+   * plus the media base, which is baked into the image URLs the feed hands out.
+   *
+   * Deliberately not the timestamp: `updatedAt` changes on every call, so tagging
+   * the serialised body would defeat its own purpose and re-send the feed to a
+   * host that already has it.
+   */
+  async feedEtag(): Promise<string> {
+    const stored = await this.list();
+    const parts = stored.map((s) => `${s.tour.id}@${s.tour.version}`).join(",");
+    const hash = crypto.createHash("sha1").update(`${parts}|${this.mediaBaseUrl}`).digest("base64url").slice(0, 16);
+    return `"feed:${hash}"`;
   }
 
   /** Tours for a city and year: exact range matches, else the nearest three. */

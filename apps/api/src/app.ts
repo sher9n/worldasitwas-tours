@@ -157,6 +157,23 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     return catalog;
   });
 
+  /**
+   * Everything we have, flattened for a map. Platform key only, like the
+   * catalogue: it is a server-to-server read, and a host serves it on to its own
+   * clients from its own origin rather than shipping our key to a browser.
+   *
+   * ETagged over the manifests it contains rather than over the response body,
+   * which carries a timestamp and would therefore never match twice. A host can
+   * poll this every few minutes for the cost of a 304.
+   */
+  app.get("/v1/feed", { preHandler: requireKey }, async (req, reply) => {
+    const etag = await store.feedEtag();
+    if (req.headers["if-none-match"] === etag) return reply.code(304).send();
+    reply.header("ETag", etag);
+    reply.header("Cache-Control", "no-cache");
+    return store.feed();
+  });
+
   app.get("/v1/tours", { preHandler: requireKey }, async (req, reply) => {
     const q = z
       .object({ city: z.string().min(1), year: z.coerce.number().int(), lang: z.string().optional() })

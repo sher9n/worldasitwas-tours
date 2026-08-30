@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import QRCode from "qrcode";
 import type { Catalog, Tour, TourSummary } from "@timetravel/schema";
 import { api } from "./api.ts";
@@ -7,6 +7,12 @@ import type { CompanionState } from "./companion.ts";
 import { hasHost, onHostCommand, postToHost } from "./host.ts";
 import { Integrate } from "./integration/Integrate.tsx";
 import { Embed } from "./integration/Embed.tsx";
+/**
+ * Split out, because it pulls MapLibre in behind it and this bundle is also the
+ * player. A traveller opening a walk on a phone must not download a map library
+ * to look at a photograph, and the Atlas is a console tab they will never see.
+ */
+const Atlas = lazy(() => import("./integration/Atlas.tsx").then((m) => ({ default: m.Atlas })));
 
 interface Ev {
   t: string;
@@ -14,7 +20,7 @@ interface Ev {
   payload: Record<string, unknown>;
 }
 
-const TABS = ["events", "manifest", "cost", "companion", "integrate", "embed"] as const;
+const TABS = ["events", "manifest", "cost", "companion", "atlas", "integrate", "embed"] as const;
 type Tab = (typeof TABS)[number];
 
 /** What each tab is called and what it is for, above the panel. */
@@ -23,6 +29,7 @@ const TAB_LABEL: Record<Tab, string> = {
   manifest: "Manifest",
   cost: "Cost",
   companion: "Companion",
+  atlas: "Atlas",
   integrate: "Integrate",
   embed: "Embed",
 };
@@ -269,6 +276,13 @@ export function App() {
                 <p className="muted">No ledger for this tour.</p>
               )}
             </div>
+          )}
+          {/* Opening from the Atlas loads the walk into the console the same way the
+              gallery does, so the Events tab keeps working on whatever was picked. */}
+          {tab === "atlas" && (
+            <Suspense fallback={<p className="atlas-error">Loading the map…</p>}>
+              <Atlas onOpen={setTourId} />
+            </Suspense>
           )}
           {tab === "integrate" && <Integrate tour={tour} summary={gallery?.find((t) => t.id === tourId) ?? null} />}
           {tab === "embed" && <Embed tour={tour} />}

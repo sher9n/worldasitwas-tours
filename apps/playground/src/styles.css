@@ -427,6 +427,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .idle-companion span { font-size: 13px; opacity: .8; }
 .idle-meta { font-size: 13px; opacity: .8; }
 .travel { font: 700 16px "Source Sans 3", sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 16px; border-radius: 14px; border: none; background: var(--amber); color: var(--on-amber); cursor: pointer; }
+.travel-quiet { font: 600 13px "Source Sans 3", sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 12px; border-radius: 12px; border: 1px solid rgba(244,236,216,.24); background: transparent; color: rgba(244,236,216,.86); cursor: pointer; }
 
 .arrival, .card, .transition { position: absolute; inset: 0; }
 .portrait-inset { position: absolute; right: 16px; bottom: 210px; width: 132px; height: 132px; border-radius: 50%; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,.5); z-index: 4; }
@@ -593,3 +594,62 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .ledger-total span { font-size: 12px; color: var(--dim); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ── atlas: the feed on a map ──────────────────────────────────────────────
+   Its own vocabulary, disjoint from the player's, which owns every class in
+   the section above. See tools/check-css-collisions.cjs. */
+.atlas { display: flex; flex-direction: column; gap: 14px; height: 100%; min-height: 0; }
+.atlas-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+.atlas-head h3 { margin: 0 0 4px; font: 500 15px "Source Sans 3", sans-serif; color: var(--paper); }
+.atlas-head p { margin: 0; font-size: 12.5px; color: var(--dim); max-width: 62ch; line-height: 1.55; }
+.atlas-count { font: 500 11px "JetBrains Mono", monospace; color: var(--amber); white-space: nowrap; }
+.atlas-error { margin: 0; font-size: 12.5px; color: #e8886a; }
+
+.atlas-stage { position: relative; flex: 1; min-height: 420px; border-radius: 14px; overflow: hidden; border: 1px solid var(--hair); }
+/* Two classes deep on purpose. MapLibre's stylesheet is imported by the Atlas
+   module and therefore lands after this file, and its own `.maplibregl-map`
+   sets position: relative at the same weight. At equal specificity the later
+   rule won, the container collapsed to zero height, and the map rendered as a
+   black rectangle with its markers stacked in one corner. */
+.atlas-stage .atlas-map { position: absolute; inset: 0; }
+
+/* Pins. A button, so it is reachable by keyboard and announces itself. */
+.atlas-pin { appearance: none; cursor: pointer; font: 500 12px "Source Sans 3", sans-serif; color: var(--paper);
+  background: rgba(11,14,20,.86); border: 1px solid rgba(232,184,106,.28); border-radius: 7px; padding: 3px 9px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.5); transition: transform 90ms ease-out; }
+.atlas-pin:hover, .atlas-pin:focus-visible { transform: scale(1.06); outline: none; border-color: var(--amber); }
+.atlas-pin--city { font-weight: 600; }
+.atlas-pin--stop { width: 26px; height: 26px; padding: 0; border-radius: 50%; display: grid; place-items: center;
+  font: 600 11px "JetBrains Mono", monospace; background: var(--amber); color: #11151c; border-color: transparent; }
+.atlas-pin--stop.is-on { box-shadow: 0 0 0 4px rgba(232,184,106,.28); transform: scale(1.14); }
+
+.atlas-hint { position: absolute; left: 14px; bottom: 14px; margin: 0; padding: 7px 12px; border-radius: 9px;
+  background: rgba(11,14,20,.86); border: 1px solid var(--hair); font-size: 12px; color: var(--dim); }
+
+/* Bounded on a wide panel so the route it is describing stays on screen beside
+   it. Full width only where there is no room to sit alongside. */
+.atlas-card { position: absolute; left: 12px; right: 12px; bottom: 12px; max-width: 430px; max-height: 72%; overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+.atlas-back { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border: none; background: none;
+  color: var(--dim); font-size: 19px; cursor: pointer; }
+.atlas-card-top { display: flex; gap: 13px; align-items: flex-start; padding-right: 30px; }
+.atlas-cover { width: 76px; height: 96px; object-fit: cover; border-radius: 9px; flex: none; background: var(--sunk); }
+.atlas-eyebrow { margin: 0; font: 500 10px "JetBrains Mono", monospace; letter-spacing: .13em; text-transform: uppercase; color: var(--amber); }
+.atlas-card-top h4 { margin: 3px 0 5px; font: 400 20px "Source Sans 3", sans-serif; color: var(--paper); }
+.atlas-meta { margin: 0; font-size: 12px; color: var(--dim); }
+.atlas-summary { margin: 11px 0; font-size: 13px; line-height: 1.55; color: var(--grey); }
+.atlas-open { width: 100%; padding: 11px; border: none; border-radius: 10px; background: var(--amber); color: #11151c;
+  font: 600 13px "Source Sans 3", sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+
+.atlas-stops { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.atlas-stops button { display: flex; gap: 11px; width: 100%; text-align: left; padding: 9px 10px; border-radius: 9px;
+  background: var(--sunk); border: 1px solid transparent; color: var(--paper); cursor: pointer; }
+.atlas-stops button:hover, .atlas-stops button:focus-visible { border-color: rgba(232,184,106,.4); outline: none; }
+.atlas-stops button.is-on { border-color: var(--amber); }
+.atlas-order { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--amber); color: #11151c; font: 600 11px "JetBrains Mono", monospace; }
+.atlas-stop-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.atlas-stop-body strong { font: 500 13.5px "Source Sans 3", sans-serif; }
+.atlas-stop-body em { font-style: normal; font-size: 12px; color: var(--dim); line-height: 1.5; }
+.atlas-stop-body code { font: 400 10.5px "JetBrains Mono", monospace; color: var(--dim); opacity: .75; }

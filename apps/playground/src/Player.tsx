@@ -13,6 +13,8 @@ import type { Card, Tour } from "@timetravel/schema";
 import { AudioEngine } from "./audio.ts";
 import { buildBeats, type Beat } from "./beats.ts";
 import { CompanionSession, type CompanionState } from "./companion.ts";
+import { hasHost } from "./host.ts";
+import { returnUrl } from "./returnTo.ts";
 
 export type EventSink = (name: string, payload: Record<string, unknown>) => void;
 
@@ -520,11 +522,37 @@ export function Player({
     companion.pttEnd();
   };
 
+  /**
+   * Closing the walk, from the side button or from a host's `exit` command.
+   *
+   * Hosted, this stops at the cover and the host pops its own screen off the
+   * `tour_left` it was just sent. Standalone, the player IS the page, so there
+   * is nothing to pop and it hands the visitor back to the map they came from.
+   * Resting on our own cover, which is what it used to do, is a dead end: no
+   * back button, no other walks, nowhere to go.
+   */
   const leave = () => {
     emit("tour_left", { stopId: stop?.id, cardId: beat?.card?.id, elapsedSec: Math.round((Date.now() - startedAt.current) / 1000) });
     companion.close();
     engine.current?.stop();
-    setPhase("cover");
+    if (hasHost()) {
+      setPhase("cover");
+      return;
+    }
+    window.location.href = returnUrl();
+  };
+
+  /**
+   * The end of the walk. Same rule, but `tour_completed` has already gone out,
+   * so a host that pops on completion has left long before this is pressed;
+   * `tour_left` is sent for one that waits to be told.
+   */
+  const onwards = () => {
+    if (hasHost()) {
+      emit("tour_left", { stopId: stop?.id, elapsedSec: Math.round((Date.now() - startedAt.current) / 1000), after: "completed" });
+      return;
+    }
+    window.location.href = returnUrl();
   };
 
   // Held in a ref because `leave` closes over the current beat and is rebuilt on
@@ -581,8 +609,11 @@ export function Player({
             <p>
               {tour.stops.length} stops, {tour.sources.length} sources, every picture labelled for what it is.
             </p>
-            <button className="travel" data-noadvance onClick={() => setPhase("cover")}>
-              Back to the start
+            <button className="travel" data-noadvance onClick={onwards}>
+              Explore other walks
+            </button>
+            <button className="travel-quiet" data-noadvance onClick={() => setPhase("cover")}>
+              Walk it again
             </button>
           </div>
         </div>

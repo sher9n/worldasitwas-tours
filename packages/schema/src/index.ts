@@ -164,6 +164,12 @@ export const Stop = z.object({
   id: z.string().min(1),
   order: z.number().int().positive(),
   title: z.string().min(1),
+  /**
+   * One line about this place, for a map pin or a list. Optional, and every
+   * manifest published before it existed is still valid: `stopDescription`
+   * falls back to what the stop already says for itself.
+   */
+  blurb: z.string().max(280).optional(),
   geo: GeoPoint,
   arrival: Arrival,
   cards: z.array(Card).min(1),
@@ -292,6 +298,114 @@ export const Catalog = z.object({
   updatedAt: z.string().datetime(),
 });
 export type Catalog = z.infer<typeof Catalog>;
+
+/* ------------------------------------------------------------------------ */
+/* The feed: everything needed to draw our walks on somebody else's map.      */
+/* ------------------------------------------------------------------------ */
+
+export const FEED_VERSION = "feed/1" as const;
+
+/** One place the walk stops at, as a map pin rather than as a screenplay. */
+export const FeedStop = z.object({
+  id: z.string(),
+  /** 1-based, and already sorted. Joining them in this order draws the route. */
+  order: z.number().int().positive(),
+  name: z.string(),
+  /** One line. Derived when the manifest carries no blurb of its own. */
+  description: z.string(),
+  lat: z.number(),
+  lng: z.number(),
+  /** Which way she is facing, where the manifest says. Degrees from north. */
+  bearing: z.number().optional(),
+});
+export type FeedStop = z.infer<typeof FeedStop>;
+
+/**
+ * One walk, flattened for plotting.
+ *
+ * `companion` is the guide: the person who walks you round. It keeps the name it
+ * has everywhere else in this API rather than gaining a second one here.
+ */
+export const FeedTour = z.object({
+  id: z.string(),
+  version: z.string(),
+  title: z.string(),
+  summary: z.string(),
+  city: z.object({ id: z.string(), name: z.string(), country: z.string() }),
+  year: z.number().int(),
+  yearRange: z.tuple([z.number().int(), z.number().int()]),
+  lang: z.string(),
+  durationMin: z.number(),
+  stopCount: z.number().int(),
+  companion: z.object({ name: z.string(), role: z.string(), portrait: z.string() }),
+  cover: Cover,
+  /** The first stop. Where to drop the pin for the walk as a whole. */
+  start: z.object({ lat: z.number(), lng: z.number() }),
+  stops: z.array(FeedStop),
+});
+export type FeedTour = z.infer<typeof FeedTour>;
+
+export const Feed = z.object({
+  schema: z.literal(FEED_VERSION),
+  updatedAt: z.string().datetime(),
+  cities: z.array(CatalogCity),
+  tours: z.array(FeedTour),
+});
+export type Feed = z.infer<typeof Feed>;
+
+/**
+ * A sentence about a stop, whatever the manifest happens to carry.
+ *
+ * Preference order is deliberate: an explicit blurb was written for exactly this
+ * job; a card caption was written to sit under a picture and reads well alone; her
+ * arrival line was written to be spoken, so it is the last resort and gets cut at a
+ * sentence rather than mid-clause.
+ */
+export function stopDescription(stop: Stop): string {
+  if (stop.blurb) return stop.blurb;
+  const caption = stop.cards.find((c) => c.caption)?.caption;
+  if (caption) return caption;
+  const spoken = stop.arrival.line.text.trim();
+  if (spoken.length <= 200) return spoken;
+  // Cut at the last sentence end inside the budget, so it never stops mid-clause.
+  const cut = spoken.slice(0, 200);
+  const stopAt = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
+  return stopAt > 60 ? cut.slice(0, stopAt + 1) : `${cut.trimEnd()}...`;
+}
+
+export interface FeedCityMeta {
+  name: string;
+  country: string;
+}
+
+/** Flatten one manifest for the feed. */
+export function feedTour(tour: Tour, city: FeedCityMeta): FeedTour {
+  const stops = [...tour.stops].sort((a, b) => a.order - b.order);
+  return {
+    id: tour.id,
+    version: tour.version,
+    title: tour.title,
+    summary: tour.summary,
+    city: { id: tour.city, name: city.name, country: city.country },
+    year: tour.year,
+    yearRange: tour.yearRange,
+    lang: tour.lang,
+    durationMin: tour.durationMin,
+    stopCount: tour.stops.length,
+    companion: { name: tour.companion.name, role: tour.companion.role, portrait: tour.companion.portrait },
+    cover: tour.cover,
+    start: { lat: stops[0].geo.lat, lng: stops[0].geo.lng },
+    stops: stops.map((s) => ({
+      id: s.id,
+      order: s.order,
+      name: s.title,
+      description: stopDescription(s),
+      lat: s.geo.lat,
+      lng: s.geo.lng,
+      ...(s.geo.bearing === undefined ? {} : { bearing: s.geo.bearing }),
+    })),
+  };
+}
 
 export function summarize(tour: Tour, forYear?: number): TourSummary {
   const y = forYear ?? tour.year;

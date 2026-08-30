@@ -379,3 +379,138 @@ export const EVENT_DOCS: EventDoc[] = [
   { name: "tour_left", when: "They closed the walk early.", payload: "tourId, stopId, cardId, elapsedSec", act: "Pop the screen. Keep stopId." },
   { name: "error", when: "The walk could not be shown.", payload: "message", act: "Show your own failure state." },
 ];
+
+/* ─────────────────────────── the feed ─────────────────────────── */
+
+export const feedCurl = (c: SnippetContext) => `# Every published walk with its stops, in one document. This is what you plot.
+curl -s -H "Authorization: Bearer $TOURS_PLATFORM_KEY" \\
+  ${c.playerOrigin}/v1/feed | jq '.tours[0] | {title, year, start, stops: [.stops[] | {order, name, lat, lng}]}'
+
+# It is ETagged over the walks it contains, not over the time you asked, so
+# polling an unchanged catalogue costs a 304 and no body.
+curl -s -D- -o/dev/null -H "Authorization: Bearer $TOURS_PLATFORM_KEY" \\
+  -H 'If-None-Match: "feed:xxxxxxxx"' ${c.playerOrigin}/v1/feed`;
+
+export const feedProxy = `// Your API, not ours. The platform key is a server-side secret: a browser that
+// holds it has published it. Serve the feed on from your own origin instead.
+//
+// Cache it. The feed changes when we publish a walk, which is rarely, and the
+// ETag makes a check nearly free.
+import { createClient } from "@timetravel/client";
+
+const tours = createClient({
+  baseUrl: process.env.TOURS_API_URL!,
+  apiKey: process.env.TOURS_PLATFORM_KEY!,   // server-side only
+});
+
+let cached: { at: number; feed: Awaited<ReturnType<typeof tours.feed>> } | null = null;
+const TTL_MS = 5 * 60_000;
+
+app.get("/tours/feed", async (_req, reply) => {
+  if (!cached || Date.now() - cached.at > TTL_MS) {
+    cached = { at: Date.now(), feed: await tours.feed() };
+  }
+  reply.header("Cache-Control", "public, max-age=300");
+  return cached.feed;
+});`;
+
+export const feedMapLibre = `// MapLibre, which is what World As It Was draws its web map with.
+//
+// Two things go on the map: where each walk begins, and — once you are close
+// enough for it to mean anything — every stop, joined in walking order.
+import maplibregl from "maplibre-gl";
+import type { Feed, FeedTour } from "@timetravel/client";
+
+const feed: Feed = await fetch("/tours/feed").then((r) => r.json());
+
+// The route is one GeoJSON source for every walk; which of them is drawn is a
+// filter, so selecting a walk never rebuilds the source.
+map.addSource("tours", {
+  type: "geojson",
+  data: {
+    type: "FeatureCollection",
+    features: feed.tours.map((t: FeedTour) => ({
+      type: "Feature",
+      properties: { tourId: t.id, title: t.title, year: t.year },
+      geometry: { type: "LineString", coordinates: t.stops.map((s) => [s.lng, s.lat]) },
+    })),
+  },
+});
+map.addLayer({
+  id: "tour-routes",
+  type: "line",
+  source: "tours",
+  layout: { "line-cap": "round", "line-join": "round" },
+  paint: { "line-color": "#e8b86a", "line-width": 2, "line-dasharray": [2, 1.4] },
+});
+
+// The stops themselves. Markers rather than a symbol layer because the Archive
+// style ships no glyphs, and a numbered chip reads better than a dot anyway.
+for (const tour of feed.tours) {
+  for (const stop of tour.stops) {
+    const el = document.createElement("button");
+    el.className = "stop-pin";
+    el.textContent = String(stop.order);
+    el.title = \`\${stop.name} — \${stop.description}\`;
+    el.onclick = () => openWalk(tour.id);
+    new maplibregl.Marker({ element: el }).setLngLat([stop.lng, stop.lat]).addTo(map);
+  }
+}`;
+
+export const feedNativeMap = `// react-native-maps, which is what the app uses on iOS and Android.
+// Same feed, same two things drawn: the route, then the stops on it.
+import MapView, { Marker, Polyline } from "react-native-maps";
+import type { Feed } from "@timetravel/client";
+
+export function WalksOnTheMap({ feed }: { feed: Feed }) {
+  return (
+    <MapView style={{ flex: 1 }}>
+      {feed.tours.map((tour) => (
+        <React.Fragment key={tour.id}>
+          <Polyline
+            coordinates={tour.stops.map((s) => ({ latitude: s.lat, longitude: s.lng }))}
+            strokeColor="#e8b86a"
+            strokeWidth={2}
+          />
+          {tour.stops.map((stop) => (
+            <Marker
+              key={stop.id}
+              coordinate={{ latitude: stop.lat, longitude: stop.lng }}
+              title={stop.name}
+              description={stop.description}
+              onCalloutPress={() => openWalk(tour.id)}
+            />
+          ))}
+        </React.Fragment>
+      ))}
+    </MapView>
+  );
+}`;
+
+export const feedShape = `// What one walk looks like in the feed. Everything a card and a route need,
+// and nothing a player needs — the manifest is still where the walk itself is.
+{
+  "id": "tour_london_1850_flower_seller",
+  "version": "2026-08-30.1",
+  "title": "The flower seller's London",
+  "summary": "Violets, fog and the Fleet, with a girl who sells them.",
+  "city": { "id": "london", "name": "London", "country": "GB" },
+  "year": 1850,
+  "yearRange": [1848, 1852],
+  "lang": "en",
+  "durationMin": 14,
+  "stopCount": 6,
+  "companion": { "name": "Nell Baker", "role": "Flower seller", "portrait": "https://…/nell.webp" },
+  "cover": { "image": "https://…/cover.webp" },
+  "start": { "lat": 51.5139, "lng": -0.1015 },
+  "stops": [
+    {
+      "id": "stop_01",
+      "order": 1,
+      "name": "Ludgate Hill",
+      "description": "Where the flower girls stood, under the dome and the smoke.",
+      "lat": 51.5139,
+      "lng": -0.1015
+    }
+  ]
+}`;

@@ -140,6 +140,8 @@ export interface Stop {
   id: string;
   order: number;
   title: string;
+  /** One line about this place, for a map pin or a list. Often absent. */
+  blurb?: string;
   geo: GeoPoint;
   arrival: Arrival;
   cards: Card[];
@@ -225,6 +227,59 @@ export interface CatalogCity {
 export interface Catalog {
   cities: CatalogCity[];
   updatedAt: string;
+}
+
+/* ─────────────────────────── the feed ─────────────────────────── */
+
+/**
+ * One stop, as a map pin rather than as a screenplay. This is the shape to draw
+ * a route from: the array is already in walking order.
+ */
+export interface FeedStop {
+  id: string;
+  /** 1-based, already sorted. Joining them in this order draws the route. */
+  order: number;
+  name: string;
+  /** One line. Derived when the manifest carries no blurb of its own. */
+  description: string;
+  lat: number;
+  lng: number;
+  /** Which way she is facing, where we know. Degrees from north. */
+  bearing?: number;
+}
+
+/**
+ * One walk, flattened for plotting. `companion` is the guide who walks you
+ * round; it keeps the name it has everywhere else rather than gaining a second.
+ */
+export interface FeedTour {
+  id: string;
+  version: string;
+  title: string;
+  summary: string;
+  city: { id: string; name: string; country: string };
+  year: number;
+  yearRange: [number, number];
+  lang: string;
+  durationMin: number;
+  stopCount: number;
+  companion: { name: string; role: string; portrait: string };
+  cover: Cover;
+  /** The first stop. Where to drop the pin for the walk as a whole. */
+  start: { lat: number; lng: number };
+  stops: FeedStop[];
+}
+
+/**
+ * Every published walk in one document, for a host that draws our walks on its
+ * own map. Poll it: it is ETagged over the manifests it contains, so an
+ * unchanged catalogue costs a 304 and no body.
+ */
+export interface Feed {
+  schema: "feed/1";
+  updatedAt: string;
+  cities: CatalogCity[];
+  tours: FeedTour[];
 }
 
 export interface TourMatches {
@@ -406,6 +461,42 @@ export interface FindOptions {
   lang?: string;
 }
 
+/* ─────────────────────── where a walk hands back ─────────────────────── */
+
+/**
+ * Where the player sends someone who closes a walk, or reaches the end of one,
+ * when nothing is hosting it. A WebView or an iframe is told `tour_left` /
+ * `tour_completed` and pops its own screen instead.
+ */
+export const DEFAULT_RETURN_URL = "https://app.worldasitwas.com";
+
+/**
+ * Whether the player will actually hand a visitor to this address.
+ *
+ * `?return=` on a player URL is an open redirect unless something bounds it:
+ * our domain would forward anyone anywhere a link author chose, which is worth
+ * money to a phishing campaign and costs us the domain's reputation. So the
+ * player only honours addresses on worldasitwas.com, and plain http only on a
+ * developer machine.
+ *
+ * Exported because a host should be able to check a value before putting it in
+ * a URL, rather than discovering it was dropped when someone lands on the
+ * wrong page.
+ */
+export function isReturnUrlAllowed(raw: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(raw);
+  } catch {
+    return false;
+  }
+  const host = url.hostname.toLowerCase();
+  const local = host === "localhost" || host === "127.0.0.1" || host === "[::1]";
+  if (url.protocol === "http:") return local;
+  if (url.protocol !== "https:") return false;
+  return host === "worldasitwas.com" || host.endsWith(".worldasitwas.com") || local;
+}
+
 /* ─────────────────────── the signed player token ─────────────────────── */
 
 /**
@@ -493,6 +584,18 @@ export interface PlayerUrlOptions {
   /** Start at a stop rather than the cover. */
   stopId?: string;
   lang?: string;
+  /**
+   * Where to send someone who closes the walk or reaches the end of it.
+   *
+   * Only used when the player is the whole page, which is what happens when a
+   * web app navigates to it. Inside a WebView or an iframe the host is told
+   * `tour_left` / `tour_completed` instead and pops its own screen, because it
+   * owns the navigation and we must not fight it.
+   *
+   * The player only honours a URL on a host it recognises, so this cannot be
+   * used to bounce someone off our domain to anywhere at all.
+   */
+  returnUrl?: string;
 }
 
 export interface CompanionSessionOptions {
@@ -506,6 +609,12 @@ export interface CompanionSessionOptions {
 export interface TimeTravelClient {
   /** Every city we have walks for, and which years. */
   catalog(): Promise<Catalog>;
+  /**
+   * Every published walk with its stops, ready to plot. Use this to draw our
+   * walks on your own map; use `find`/`resolve` to answer "what can I open
+   * here, this year".
+   */
+  feed(): Promise<Feed>;
   /** Tours for a city and year, with near misses when there is no exact match. */
   find(opts: FindOptions): Promise<TourMatches>;
   /**
@@ -596,6 +705,8 @@ export function createClient(options: TimeTravelOptions): TimeTravelClient {
   return {
     catalog: () => call<Catalog>("/v1/catalog"),
 
+    feed: () => call<Feed>("/v1/feed"),
+
     find: ({ city, year, lang }) => call<TourMatches>(`/v1/tours?${qs({ city, year, lang })}`),
 
     async resolve(opts) {
@@ -615,7 +726,7 @@ export function createClient(options: TimeTravelOptions): TimeTravelClient {
     tour: (tourId) => call<Tour>(`/v1/tours/${encodeURIComponent(tourId)}`),
 
     playerUrl(tourId, opts = {}) {
-      return `${playerBase}/?${qs({ tour: tourId, play: 1, traveller: opts.travellerId, stop: opts.stopId, lang: opts.lang })}`;
+      return `${playerBase}/?${qs({ tour: tourId, play: 1, traveller: opts.travellerId, stop: opts.stopId, lang: opts.lang, return: opts.returnUrl })}`;
     },
 
     async signedPlayerUrl(tourId, opts) {
@@ -629,6 +740,7 @@ export function createClient(options: TimeTravelOptions): TimeTravelClient {
         traveller: opts.travellerId,
         stop: opts.stopId,
         lang: opts.lang,
+        return: opts.returnUrl,
         [PLAYER_TOKEN_PARAM]: token,
       })}`;
     },
