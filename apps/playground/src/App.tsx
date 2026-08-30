@@ -48,6 +48,8 @@ export function App() {
   const [gallery, setGallery] = useState<TourSummary[] | null>(null);
   const [cState, setCState] = useState<CompanionState>("idle");
   const [transcript, setTranscript] = useState<{ who: string; text: string }[]>([]);
+  const [filter, setFilter] = useState("");
+  const [showQr, setShowQr] = useState(false);
 
   useEffect(() => {
     api
@@ -92,6 +94,21 @@ export function App() {
     setTranscript([...t]);
   }, []);
 
+  // Grouped for the rail, and filtered as one list first so a city whose every
+  // walk is filtered out disappears with its heading rather than leaving an
+  // empty label behind.
+  const cityName = (id: string) => catalog?.cities.find((c) => c.id === id)?.name ?? id;
+  const needle = filter.trim().toLowerCase();
+  const shown = (gallery ?? []).filter(
+    (t) =>
+      !needle ||
+      [t.title, t.companion.name, String(t.year), cityName(t.city)].some((v) => v.toLowerCase().includes(needle)),
+  );
+  const byCity = shown.reduce<Record<string, TourSummary[]>>((acc, t) => {
+    (acc[t.city] ??= []).push(t);
+    return acc;
+  }, {});
+
   if (playOnly) {
     return <HostedPlayer tour={tour} error={error} startStopId={q.get("stop") ?? undefined} onEvent={onEvent} onCompanion={onCompanion} />;
   }
@@ -100,61 +117,91 @@ export function App() {
   return (
     <div className="pg">
       <header className="pg-head">
-        <div>
-          <div className="eyebrow">Time Travel · playground</div>
+        <div className="brand">
+          <span className="eyebrow">Time Travel</span>
           <h1>Tour engine</h1>
         </div>
-        <div className="pg-count">{gallery ? `${gallery.length} walks in ${new Set(gallery.map((t) => t.city)).size} cities` : "loading walks…"}</div>
+        <div className="pg-stats">
+          <span className="pg-count">
+            {gallery ? `${gallery.length} walks · ${new Set(gallery.map((t) => t.city)).size} cities` : "loading walks"}
+          </span>
+          {tour && <span className="pg-version" title="Manifest version">{tour.version}</span>}
+          <span className={`pg-live ${catalog ? "up" : ""}`}>{catalog ? "engine up" : "no engine"}</span>
+        </div>
       </header>
       {error && <div className="pg-error">{error}</div>}
 
-      {gallery && gallery.length > 0 && (
-        <nav className="tourcards" aria-label="Choose a walk">
-          {Object.entries(
-            gallery.reduce<Record<string, TourSummary[]>>((acc, t) => {
-              (acc[t.city] ??= []).push(t);
-              return acc;
-            }, {}),
-          ).map(([cityId, tours]) => (
-            <div className="tourcard-city" key={cityId}>
-              <h3>{catalog?.cities.find((c) => c.id === cityId)?.name ?? cityId}</h3>
-              <div className="tourcard-row">
-                {tours.map((t) => (
-                  <button
-                    key={t.id}
-                    className={`tourcard ${t.id === tourId ? "on" : ""}`}
-                    onClick={() => {
-                      setTourId(t.id);
-                      setCity(t.city);
-                      setYear(t.year);
-                    }}
-                  >
-                    <img src={t.cover.image} alt="" loading="lazy" />
-                    <span className="tourcard-year">{t.year}</span>
-                    <span className="tourcard-title">{t.title}</span>
-                    <span className="tourcard-who">
-                      {t.companion.name} · {t.stopCount} stops
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-        </nav>
-      )}
-
-      <main className="pg-main">
-        <section className="pg-phone">
-          <div className="phone">
-            <div className="screen">{tour ? <Player key={tour.id + tour.version} tour={tour} onEvent={onEvent} onCompanion={onCompanion} /> : <div className="loading">{list && !tourId ? "No tours published yet. Run the pipeline." : "Loading…"}</div>}</div>
+      <div className="pg-body">
+        <aside className="rail">
+          <div className="rail-head">
+            <input
+              type="search"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              placeholder="Filter by city, year, guide"
+              aria-label="Filter walks"
+            />
+            <span className="rail-note">
+              {shown.length === (gallery?.length ?? 0) ? "Every published walk" : `${shown.length} of ${gallery?.length ?? 0}`}
+            </span>
           </div>
-          <div className="qr">
-            {qr && <img src={qr} alt="QR to open on a phone" />}
-            <small>
-              Open on a phone on this network. Accept the local certificate once; the microphone needs HTTPS.
-              <br />
-              <code>{tourId ? `${location.origin}/?tour=${tourId}&play=1` : ""}</code>
-            </small>
+          <nav className="rail-list" aria-label="Choose a walk">
+            {Object.entries(byCity).map(([cityId, tours]) => (
+              <section className="rail-city" key={cityId}>
+                <h3>{cityName(cityId)}</h3>
+                <div className="rail-city-choices">
+                  {tours.map((t) => (
+                    <button
+                      key={t.id}
+                      className={`choice ${t.id === tourId ? "on" : ""}`}
+                      aria-current={t.id === tourId}
+                      onClick={() => {
+                        setTourId(t.id);
+                        setCity(t.city);
+                        setYear(t.year);
+                      }}
+                    >
+                      <img className="choice-thumb" src={t.cover.image} alt="" loading="lazy" />
+                      <span className="choice-year">{t.year}</span>
+                      <span className="choice-title">{t.title}</span>
+                      <span className="choice-meta">
+                        {t.companion.name} · {t.stopCount} stops · {Math.round(t.durationMin)} min
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            ))}
+            {gallery && shown.length === 0 && (
+              <p className="rail-empty">No walk matches “{filter}”. Try a city, a year or a guide's name.</p>
+            )}
+            {!gallery && <p className="rail-empty">Reading the catalogue…</p>}
+          </nav>
+        </aside>
+
+        <section className="stage">
+          <div className="phone">
+            <div className="screen">
+              {tour ? (
+                <Player key={tour.id + tour.version} tour={tour} onEvent={onEvent} onCompanion={onCompanion} />
+              ) : (
+                <div className="loading">{list && !tourId ? "No walks published yet. Run the pipeline." : "Loading…"}</div>
+              )}
+            </div>
+          </div>
+          <div className={`handoff ${showQr ? "open" : ""}`}>
+            <button onClick={() => setShowQr((v) => !v)} aria-expanded={showQr}>
+              {showQr ? "Hide the phone link" : "Open on a phone"}
+            </button>
+            {showQr && (
+              <div className="qr">
+                {qr && <img src={qr} alt="QR code to open this walk on a phone" />}
+                <small>
+                  Same network. Accept the local certificate once — the microphone needs HTTPS.
+                  <code>{tourId ? `${location.origin}/?tour=${tourId}&play=1` : ""}</code>
+                </small>
+              </div>
+            )}
           </div>
         </section>
 
@@ -169,7 +216,17 @@ export function App() {
           </nav>
           {tab === "events" && (
             <div className="panel">
-              {events.length === 0 && <p className="muted">Events the player emits appear here (tour_started, stop_entered, card_viewed, then_now_used, ask_started…).</p>}
+              {events.length === 0 && (
+                <div className="empty">
+                  <h4>Nothing yet</h4>
+                  <p>Press Travel on the phone. Everything the walk emits lands here, and a host app receives exactly the same stream.</p>
+                  <div className="keys">
+                    {["tour_started", "stop_entered", "card_viewed", "hotspot_opened", "ask_started", "tour_left"].map((k) => (
+                      <span key={k}>{k}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
               <ul className="events">
                 {events.map((e, i) => (
                   <li key={i}>
@@ -188,12 +245,15 @@ export function App() {
             <div className="panel">
               {ledger ? (
                 <>
-                  <p>
-                    <b>${ledger.totalUsd.toFixed(2)}</b> total ·{" "}
-                    {Object.entries(ledger.byProvider)
-                      .map(([k, v]) => `${k} $${v.toFixed(2)}`)
-                      .join(" · ")}
-                  </p>
+                  <div className="ledger-total">
+                    <b>${ledger.totalUsd.toFixed(2)}</b>
+                    <span>
+                      to make this walk ·{" "}
+                      {Object.entries(ledger.byProvider)
+                        .map(([k, v]) => `${k} $${v.toFixed(2)}`)
+                        .join(" · ")}
+                    </span>
+                  </div>
                   <pre>{JSON.stringify(ledger.entries, null, 1)}</pre>
                 </>
               ) : (
@@ -215,11 +275,16 @@ export function App() {
                   </li>
                 ))}
               </ul>
-              {transcript.length === 0 && <p className="muted">Hold the Ask button on the phone and speak. The transcript appears here.</p>}
+              {transcript.length === 0 && (
+                <div className="empty">
+                  <h4>She is listening</h4>
+                  <p>Hold the Ask button on the phone and speak. She stops mid-sentence, answers, and picks the walk back up.</p>
+                </div>
+              )}
             </div>
           )}
         </section>
-      </main>
+      </div>
     </div>
   );
 }

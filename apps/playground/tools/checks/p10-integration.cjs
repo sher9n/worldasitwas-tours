@@ -35,7 +35,36 @@ const tabNamed = (page, label) => page.locator(".tabs button", { hasText: new Re
   page.on("pageerror", (e) => pageErrors.push(e.message));
 
   await page.goto(BASE, { waitUntil: "networkidle" });
-  await page.waitForSelector(".tourcard", { timeout: 30_000 });
+  await page.waitForSelector(".choice", { timeout: 30_000 });
+
+  /* ── the console holds together ─────────────────────────────────────── */
+  // The gallery used to be a screen of cards above everything, which pushed
+  // the player below the fold. The console must fit without scrolling.
+  const fits = await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight + 2);
+  check("the whole console fits the viewport without scrolling", fits);
+
+  // A shell class that collides with one of the player's absolutely positioned
+  // full-bleed layers turns the console black and throws nothing. It happened
+  // once; this is what noticing it looks like.
+  const oversized = await page.evaluate(() => {
+    const vw = window.innerWidth;
+    return [...document.querySelectorAll(".rail *, .pg-head *, .stage > *")]
+      .filter((el) => el.getBoundingClientRect().width > vw * 0.9)
+      .map((el) => `${el.tagName}.${el.className}`.slice(0, 50));
+  });
+  check("no chooser or header element is stretched full-bleed", oversized.length === 0, oversized.slice(0, 3).join(" | "));
+
+  const railRows = await page.$$eval(".choice", (els) => els.length);
+  check("every published walk is one tap away in the rail", railRows >= 8, `${railRows} walks`);
+
+  // Filtering is what keeps the rail usable as the catalogue grows.
+  await page.fill(".rail-head input", "rome");
+  await page.waitForTimeout(200);
+  const filtered = await page.$$eval(".choice", (els) => els.length);
+  const cities = await page.$$eval(".rail-city h3", (els) => els.map((e) => e.textContent.trim()));
+  check("filtering narrows the rail and drops empty cities", filtered > 0 && filtered < railRows && cities.join() === "Rome", `${filtered} walks · ${cities.join()}`);
+  await page.fill(".rail-head input", "");
+  await page.waitForTimeout(200);
 
   /* ── the tabs exist, in the right place ─────────────────────────────── */
   const tabs = await page.$$eval(".tabs button", (els) => els.map((e) => e.textContent.trim().split(" ·")[0]));
@@ -45,7 +74,7 @@ const tabNamed = (page, label) => page.locator(".tabs button", { hasText: new Re
   await tabNamed(page, "Integrate").click();
   await page.waitForSelector(".doc .code");
 
-  const selectedTour = await page.$eval(".tourcard.on", (el) => el.querySelector(".tourcard-title").textContent.trim()).catch(() => null);
+  const selectedTour = await page.$eval(".choice.on", (el) => el.querySelector(".choice-title").textContent.trim()).catch(() => null);
   const allCode = await page.$$eval(".code pre", (els) => els.map((e) => e.textContent).join("\n"));
   check("the snippets name the selected walk, not a placeholder", /tour_[a-z0-9_]+/.test(allCode) && !/your-tour-id|YOUR_TOUR/.test(allCode), `selected: ${selectedTour}`);
 
