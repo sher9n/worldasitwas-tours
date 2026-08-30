@@ -14,6 +14,30 @@ const app = await buildApp({
 });
 
 await app.listen({ port: config.port, host: "0.0.0.0" });
+
+/**
+ * Shut down on the platform's signal instead of being killed by it.
+ *
+ * Railway sends SIGTERM when it replaces a container. Without this the process
+ * dies mid-request — a traveller streaming her narration gets a truncated
+ * file — and the deployment is recorded as a crash rather than a replacement,
+ * which makes the deploy history useless for spotting a real one.
+ */
+for (const signal of ["SIGTERM", "SIGINT"] as const) {
+  process.once(signal, () => {
+    console.log(`[api] ${signal} received, finishing in-flight requests`);
+    app
+      .close()
+      .then(() => {
+        console.log("[api] closed");
+        process.exit(0);
+      })
+      .catch((err) => {
+        console.error("[api] close failed", err);
+        process.exit(1);
+      });
+  });
+}
 console.log(`[api] listening on ${config.publicBaseUrl}`);
 console.log(`[api] tours ${config.toursDir}  media ${config.mediaBaseUrl}  player ${config.playerDir || "(served by vite in dev)"}`);
 console.log(`[api] platform keys ${config.platformKeys.length ? `${config.platformKeys.length} configured` : "NONE — every request is allowed"}`);
