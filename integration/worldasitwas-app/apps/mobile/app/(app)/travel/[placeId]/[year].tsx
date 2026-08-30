@@ -183,7 +183,7 @@ export default function Travel() {
           borderRadius: radius.pill,
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: material.androidFallback,
+          backgroundColor: material.fill,
         }}
       >
         <Text style={[type.buttonQuiet, { color: color.paper }]}>Close</Text>
