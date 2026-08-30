@@ -47,6 +47,8 @@ export function registerTourRoutes(
       baseUrl: process.env.TOURS_API_URL ?? "https://tours.worldasitwas.com",
       apiKey: process.env.TOURS_PLATFORM_KEY ?? "",
       playerUrl: process.env.TOURS_PLAYER_URL ?? process.env.TOURS_API_URL ?? "https://tours.worldasitwas.com",
+      // Signs the short-lived token the player presents instead of a key.
+      playerSecret: process.env.TOURS_PLAYER_SECRET ?? "",
     });
 
   app.get<{ Params: { id: string; year: string } }>(
@@ -90,7 +92,7 @@ export function registerTourRoutes(
         // Our own opaque user id, never the Auth0 sub and never an email: it
         // leaves our system, and all the tour service needs it for is counting
         // companion sessions per traveller.
-        playerUrl: tours.playerUrl(found.id, { travellerId: String(user.id) }),
+        playerUrl: await tours.signedPlayerUrl(found.id, { travellerId: String(user.id) }),
       };
     },
   );

@@ -44,6 +44,8 @@ function stubClient(over: Partial<TimeTravelClient> = {}): TimeTravelClient {
     resolve: vi.fn(async () => WALK),
     tour: vi.fn(),
     playerUrl: (id, opts) => `https://tours.worldasitwas.com/?tour=${id}&play=1&traveller=${opts?.travellerId ?? ""}`,
+    signedPlayerUrl: async (id, opts) =>
+      `https://tours.worldasitwas.com/?tour=${id}&play=1&traveller=${opts.travellerId}&tk=1799999999.${opts.travellerId}.sig`,
     companionSession: vi.fn(),
     ...over,
   } as TimeTravelClient;
@@ -86,7 +88,9 @@ describe("GET /places/:id/eras/:year/tour", () => {
     expect(body.playerUrl).not.toMatch(/key|secret|bearer/i);
     // And the traveller id is our own opaque user id, never the Auth0 subject.
     expect(body.playerUrl).not.toContain("auth0|");
-    expect(body.playerUrl).toMatch(/traveller=\d+$/);
+    expect(body.playerUrl).toMatch(/traveller=\d+&tk=/);
+    // And it is signed, so the page can read its own manifest without a key.
+    expect(body.playerUrl).toContain("&tk=");
 
     await app.close();
   });

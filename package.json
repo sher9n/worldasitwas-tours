@@ -13,11 +13,16 @@
     "pipeline": "npm run cli -w @timetravel/pipeline --",
     "typecheck": "tsc -b packages/schema packages/client apps/api apps/pipeline apps/playground",
     "test": "node tools/check-vendored-client.cjs && node tools/check-css-collisions.cjs && npm run test -w @timetravel/schema && npm run test -w @timetravel/client && npm run test -w @timetravel/api && npm run test -w @timetravel/pipeline",
-    "check:integration": "node apps/playground/tools/checks/p10-integration.cjs"
+    "check:integration": "node apps/playground/tools/checks/p10-integration.cjs",
+    "build": "npm run build:player && npm run build:api",
+    "build:api": "node tools/build-api.mjs",
+    "build:player": "npm run build -w @timetravel/playground",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
-    "typescript": "^5.6.3",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.24.2",
     "tsx": "^4.19.2",
-    "@types/node": "^22.10.2"
+    "typescript": "^5.6.3"
   }
 }

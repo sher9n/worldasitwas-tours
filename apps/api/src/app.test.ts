@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { signPlayerToken } from "@timetravel/client";
 import { buildApp } from "./app.ts";
 import { buildInstructions, mintSession } from "./companion.ts";
 import type { Tour } from "@timetravel/schema";
@@ -18,12 +19,12 @@ const tour: Tour = {
   title: "Test walk",
   summary: "A test.",
   durationMin: 12,
-  cover: { image: "http://x/cover.webp" },
+  cover: { image: "http://localhost:4100/media/tour_london_1850_test/cover.jpg?v=aaaa111122" },
   companion: {
     name: "Nell Baker",
     role: "Flower seller",
     bio: "Sells violets.",
-    portrait: "http://x/nell.webp",
+    portrait: "http://localhost:4100/media/tour_london_1850_test/nell.jpg?v=bbbb222233",
     greeting: { text: "Mind the mud." },
     voice: { provider: "openai-realtime", voice: "marin" },
     faceReel: [],
@@ -34,9 +35,13 @@ const tour: Tour = {
       order: 1,
       title: "Ludgate Hill",
       geo: { lat: 51.5139, lng: -0.1015 },
-      arrival: { line: { text: "See the dome?" }, hotspots: [] },
+      arrival: {
+        still: { image: "http://localhost:4100/media/tour_london_1850_test/s01_hero.jpg?v=cccc333344", origin: "reconstruction" },
+        line: { text: "See the dome?", audio: "http://localhost:4100/media/tour_london_1850_test/s01_arrival.mp3?v=dddd444455" },
+        hotspots: [],
+      },
       cards: [
-        { id: "s01c01", kind: "image", media: { image: "http://x/a.webp", origin: "reconstruction" }, caption: "Busy.", claims: [{ text: "Fare 6d", confidence: "known", sourceId: "src1" }], hotspots: [] },
+        { id: "s01c01", kind: "image", media: { image: "http://localhost:4100/media/tour_london_1850_test/s01_c1.jpg?v=eeee555566", origin: "reconstruction" }, caption: "Busy.", claims: [{ text: "Fare 6d", confidence: "known", sourceId: "src1" }], hotspots: [] },
       ],
     },
   ],
@@ -44,6 +49,7 @@ const tour: Tour = {
   provenance: { generatedAt: "2026-08-29T10:00:00.000Z", reviewedBy: "none", models: ["mock"], costUsd: 0 },
 };
 
+const SECRET = "player-secret-for-tests";
 let dir: string;
 let app: Awaited<ReturnType<typeof buildApp>>;
 
@@ -52,7 +58,7 @@ before(async () => {
   await fs.mkdir(path.join(dir, tour.id), { recursive: true });
   await fs.writeFile(path.join(dir, tour.id, "manifest.json"), JSON.stringify(tour));
   await fs.writeFile(path.join(dir, tour.id, "hello.txt"), "media");
-  app = await buildApp({ toursDir: dir, platformKeys: ["k1"], openaiApiKey: "", realtimeModel: "gpt-realtime-2", dev: true });
+  app = await buildApp({ toursDir: dir, mediaBaseUrl: "https://media.example.com", playerTokenSecret: SECRET, platformKeys: ["k1"], openaiApiKey: "", realtimeModel: "gpt-realtime-2", dev: true });
 });
 after(async () => {
   await app.close();
@@ -134,4 +140,123 @@ test("mintSession sends push-to-talk config and maps the response", async () => 
   assert.equal(body.session.audio.input.turn_detection, null);
   assert.equal(body.session.audio.output.voice, "marin");
   assert.equal(body.session.tools.length, 2);
+});
+
+test("media is re-pointed at wherever this deployment actually serves it", async () => {
+  // The fixture manifest was published against http://localhost:4100, the way
+  // every real one is. A deployed service must not hand a player links to the
+  // laptop that made the tour.
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: { authorization: "Bearer k1" } });
+  assert.equal(res.statusCode, 200);
+  const body = res.json() as typeof tour;
+  const urls = JSON.stringify(body).match(/https?:\/\/[^"]+/g) ?? [];
+  const media = urls.filter((u) => /\.(jpg|png|mp3|m4a|mp4)/.test(u));
+  assert.ok(media.length > 0, "fixture should contain media urls");
+  for (const u of media) {
+    assert.ok(u.startsWith("https://media.example.com/"), `not re-pointed: ${u}`);
+    assert.ok(!u.includes("localhost"), `still points at the publishing machine: ${u}`);
+  }
+});
+
+test("a source citation is not media and is left alone", async () => {
+  // The rebasing is keyed on the /media/ path, not on "looks like a URL". A
+  // link to Mayhew is a fact about the world, not an asset we host.
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: { authorization: "Bearer k1" } });
+  assert.equal((res.json() as typeof tour).sources[0].url, "http://x/m");
+});
+
+test("the content hash survives the re-pointing", async () => {
+  // Losing ?v=… would make every deploy serve stale audio from a browser cache
+  // under a filename that never changes.
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: { authorization: "Bearer k1" } });
+  const hashed = (JSON.stringify(res.json()).match(/https?:\/\/[^"]+\?v=[0-9a-f]+/g) ?? []).length;
+  assert.ok(hashed > 0, "expected at least one hashed media url to come through");
+});
+
+test("moving the media changes the ETag", async () => {
+  // A player holding a manifest full of old links must be told it is stale.
+  const other = await buildApp({ toursDir: dir, mediaBaseUrl: "https://cdn.example.net", platformKeys: ["k1"], openaiApiKey: "", realtimeModel: "gpt-realtime-2", dev: true });
+  const a = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: { authorization: "Bearer k1" } });
+  const b = await other.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: { authorization: "Bearer k1" } });
+  assert.notEqual(a.headers.etag, b.headers.etag);
+  await other.close();
+});
+
+test("health reports what is actually mounted", async () => {
+  const res = await app.inject({ method: "GET", url: "/health" });
+  assert.equal(res.statusCode, 200);
+  const body = res.json() as { ok: boolean; tours: number; cities: number };
+  assert.equal(body.ok, true);
+  assert.equal(body.tours, 1);
+});
+
+/* ── the player's own credential ──────────────────────────────────────────
+   The hosted player runs in a browser, so it cannot hold the platform key.
+   What it holds instead must open exactly one walk and nothing else. */
+
+const player = (token: string) => ({ authorization: `Player ${token}` });
+
+test("a signed token opens the walk it was issued for", async () => {
+  const token = await signPlayerToken(SECRET, tour.id, "t_traveller");
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(token) });
+  assert.equal(res.statusCode, 200);
+  assert.equal((res.json() as typeof tour).id, tour.id);
+});
+
+test("a token for one walk does not open another", async () => {
+  // The whole point. A token is not a key: holding one must not turn into
+  // holding the catalogue.
+  const token = await signPlayerToken(SECRET, "tour_some_other_walk", "t_traveller");
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(token) });
+  assert.equal(res.statusCode, 401);
+});
+
+test("a token never opens the catalogue or a search", async () => {
+  const token = await signPlayerToken(SECRET, tour.id, "t_traveller");
+  for (const url of ["/v1/catalog", "/v1/tours?city=london&year=1850"]) {
+    const res = await app.inject({ method: "GET", url, headers: player(token) });
+    assert.equal(res.statusCode, 401, `${url} should stay platform-key only`);
+  }
+});
+
+test("an expired token is refused", async () => {
+  const token = await signPlayerToken(SECRET, tour.id, "t_traveller", -60);
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(token) });
+  assert.equal(res.statusCode, 401);
+});
+
+test("a tampered expiry does not extend a token", async () => {
+  // Pushing the clock forward is the obvious attack, and the signature covers
+  // the expiry precisely so that it fails.
+  const token = await signPlayerToken(SECRET, tour.id, "t_traveller", -60);
+  const [, traveller, sig] = token.split(".");
+  const forged = `${Math.floor(Date.now() / 1000) + 3600}.${traveller}.${sig}`;
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(forged) });
+  assert.equal(res.statusCode, 401);
+});
+
+test("a token signed with the wrong secret is refused", async () => {
+  const token = await signPlayerToken("not-the-secret", tour.id, "t_traveller");
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(token) });
+  assert.equal(res.statusCode, 401);
+});
+
+test("rubbish in the Player header is refused, not crashed on", async () => {
+  for (const bad of ["", "...", "abc", "1.2", "9999999999.t.", `${Math.floor(Date.now()/1000)+60}.t.zzzz`]) {
+    const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(bad) });
+    assert.equal(res.statusCode, 401, `should refuse ${JSON.stringify(bad)}`);
+  }
+});
+
+test("the platform key still works on the player routes", async () => {
+  const res = await app.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: { authorization: "Bearer k1" } });
+  assert.equal(res.statusCode, 200);
+});
+
+test("with no secret configured, a token opens nothing", async () => {
+  const other = await buildApp({ toursDir: dir, mediaBaseUrl: "https://m.example.com", platformKeys: ["k1"], openaiApiKey: "", realtimeModel: "gpt-realtime-2", dev: true });
+  const token = await signPlayerToken(SECRET, tour.id, "t_traveller");
+  const res = await other.inject({ method: "GET", url: `/v1/tours/${tour.id}`, headers: player(token) });
+  assert.equal(res.statusCode, 401);
+  await other.close();
 });

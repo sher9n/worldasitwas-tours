@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from "fastify";
@@ -9,6 +10,15 @@ import { mintSession } from "./companion.ts";
 
 export interface AppOptions {
   toursDir: string;
+  /**
+   * Secret for player tokens. Empty means the player has no way to prove
+   * itself, and the tour and companion routes then accept only a platform key.
+   */
+  playerTokenSecret?: string;
+  /** Where media is served from. See config.mediaBaseUrl. */
+  mediaBaseUrl: string;
+  /** Built player to serve at the root. Empty means do not serve one. */
+  playerDir?: string;
   platformKeys: string[];
   openaiApiKey: string;
   realtimeModel: string;
@@ -49,7 +59,7 @@ class SessionLimiter {
 
 export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
   const app = Fastify({ logger: opts.logger ?? false });
-  const store = new TourStore(opts.toursDir);
+  const store = new TourStore(opts.toursDir, opts.mediaBaseUrl);
   const limiter = new SessionLimiter();
 
   await app.register(cors, { origin: true });
@@ -63,19 +73,83 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     immutable: true,
   });
 
+  // Read once at boot: a per-request read of the same file on every deep link
+  // is a syscall for nothing, and a missing file should fail loudly at start
+  // rather than quietly on the first traveller.
+  const indexHtml = opts.playerDir ? await fs.readFile(path.join(opts.playerDir, "index.html"), "utf8") : "";
+
   const sendError = (reply: FastifyReply, status: number, code: string, message: string, extra: Record<string, unknown> = {}) =>
     reply.code(status).send({ error: { code, message, ...extra } });
 
-  const requireKey = async (req: FastifyRequest, reply: FastifyReply) => {
-    if (opts.platformKeys.length === 0) return; // dev: allow all
+  const hasPlatformKey = (req: FastifyRequest): boolean => {
     const header = req.headers.authorization || "";
-    const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
-    if (!token || !opts.platformKeys.includes(token)) {
-      return sendError(reply, 401, "unauthorized", "Missing or invalid platform key");
-    }
+    if (!header.startsWith("Bearer ")) return false;
+    const token = header.slice(7).trim();
+    // Constant-time, so a wrong key cannot be found one character at a time.
+    return opts.platformKeys.some(
+      (k) => k.length === token.length && crypto.timingSafeEqual(Buffer.from(k), Buffer.from(token)),
+    );
   };
 
-  app.get("/health", async () => ({ ok: true, time: new Date().toISOString() }));
+  const requireKey = async (req: FastifyRequest, reply: FastifyReply) => {
+    if (opts.platformKeys.length === 0) return; // dev: allow all
+    if (!hasPlatformKey(req)) return sendError(reply, 401, "unauthorized", "Missing or invalid platform key");
+  };
+
+  /**
+   * A player token: `<expiresAt>.<travellerId>.<signature>`, presented as
+   * `Authorization: Player …`.
+   *
+   * It authorises one tour for one traveller until it expires, and nothing
+   * else — not the catalogue, not a search, not another walk. That is what
+   * lets the hosted player run in a browser without holding the platform key,
+   * which anyone who opens the page could read straight out of it.
+   */
+  const playerTokenGrants = (req: FastifyRequest, tourId: string): boolean => {
+    if (!opts.playerTokenSecret) return false;
+    const header = req.headers.authorization || "";
+    if (!header.startsWith("Player ")) return false;
+
+    const raw = header.slice(7).trim();
+    const dot = raw.indexOf(".");
+    const lastDot = raw.lastIndexOf(".");
+    if (dot < 1 || lastDot <= dot) return false;
+
+    const expiresAt = Number(raw.slice(0, dot));
+    const travellerId = decodeURIComponent(raw.slice(dot + 1, lastDot));
+    const provided = raw.slice(lastDot + 1);
+    if (!Number.isFinite(expiresAt) || expiresAt * 1000 < Date.now()) return false;
+
+    const expected = crypto
+      .createHmac("sha256", opts.playerTokenSecret)
+      .update(`${tourId}\n${travellerId}\n${expiresAt}`)
+      .digest("base64url");
+    if (expected.length !== provided.length) return false;
+    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(provided));
+  };
+
+  /**
+   * The two routes a player itself needs. Either credential opens them: a
+   * platform key for server-to-server, or a token for this exact walk.
+   */
+  const requireKeyOrPlayerToken = async (req: FastifyRequest, reply: FastifyReply) => {
+    if (opts.platformKeys.length === 0) return; // dev: allow all
+    const tourId = (req.params as { tourId?: string })?.tourId ?? "";
+    if (hasPlatformKey(req) || playerTokenGrants(req, tourId)) return;
+    return sendError(reply, 401, "unauthorized", "Missing or invalid platform key or player token");
+  };
+
+  // Railway gates a new deployment on this before routing traffic to it, so it
+  // must answer only once the catalogue is actually readable — a container that
+  // says ok with no tours mounted would take the old one down and serve nothing.
+  app.get("/health", async (_req, reply) => {
+    try {
+      const catalog = await store.catalog();
+      return { ok: true, tours: catalog.cities.reduce((n, c) => n + c.tourCount, 0), cities: catalog.cities.length, time: new Date().toISOString() };
+    } catch (err) {
+      return sendError(reply, 503, "not_ready", (err as Error).message);
+    }
+  });
 
   app.get("/v1/catalog", { preHandler: requireKey }, async (_req, reply) => {
     const catalog = await store.catalog();
@@ -97,7 +171,7 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     return { city: q.data.city, year: q.data.year, matches, nearest };
   });
 
-  app.get<{ Params: { tourId: string } }>("/v1/tours/:tourId", { preHandler: requireKey }, async (req, reply) => {
+  app.get<{ Params: { tourId: string } }>("/v1/tours/:tourId", { preHandler: requireKeyOrPlayerToken }, async (req, reply) => {
     const stored = await store.get(req.params.tourId);
     if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
     if (req.headers["if-none-match"] === stored.etag) return reply.code(304).send();
@@ -109,7 +183,7 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     return stored.tour;
   });
 
-  app.post<{ Params: { tourId: string } }>("/v1/tours/:tourId/companion/session", { preHandler: requireKey }, async (req, reply) => {
+  app.post<{ Params: { tourId: string } }>("/v1/tours/:tourId/companion/session", { preHandler: requireKeyOrPlayerToken }, async (req, reply) => {
     const stored = await store.get(req.params.tourId);
     if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
     const body = SessionBody.safeParse(req.body ?? {});
@@ -134,6 +208,44 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
       return sendError(reply, 503, "companion_unavailable", "Voice provider is not reachable right now");
     }
   });
+
+  /**
+   * The player, served from the same origin as the API.
+   *
+   * One origin means one domain to point a WebView at, no CORS between the
+   * page and the manifest it is rendering, and no second deployment to keep in
+   * step with this one. The hashed asset filenames Vite emits are immutable;
+   * index.html must not be, or a deploy never reaches a browser that has been
+   * here before.
+   */
+  if (opts.playerDir) {
+    await app.register(fastifyStatic, {
+      root: opts.playerDir,
+      prefix: "/",
+      decorateReply: false,
+      index: ["index.html"],
+      // Off, so setHeaders below is the only thing writing this header. Left on,
+      // @fastify/static's own default wins and every fingerprinted asset comes
+      // back as max-age=0 — a full re-download of the player on every open.
+      cacheControl: false,
+      // Vite fingerprints everything under /assets; index.html is the one file
+      // whose name never changes, so it revalidates on every load.
+      setHeaders: (res, filePath) => {
+        const immutable = filePath.includes(`${path.sep}assets${path.sep}`);
+        res.setHeader("Cache-Control", immutable ? "public, max-age=31536000, immutable" : "no-cache");
+      },
+    });
+
+    // The player is a single page: a deep link like /?tour=…&play=1 is already
+    // the root, but anything else that is not an API route still has to land on
+    // it rather than on a 404 from Fastify.
+    app.setNotFoundHandler((req, reply) => {
+      if (req.method !== "GET" || req.url.startsWith("/v1/") || req.url.startsWith("/media/") || req.url.startsWith("/dev/")) {
+        return sendError(reply, 404, "not_found", `No route for ${req.method} ${req.url}`);
+      }
+      return reply.type("text/html").header("Cache-Control", "no-cache").send(indexHtml);
+    });
+  }
 
   if (opts.dev) {
     // Playground helpers: not part of the platform contract.

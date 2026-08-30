@@ -52,6 +52,10 @@ export function App() {
   const [showQr, setShowQr] = useState(false);
 
   useEffect(() => {
+    // Console data. A hosted player is opened with a token that authorises one
+    // walk and nothing else, so asking for the catalogue there is a guaranteed
+    // 401 on every single open — and the gallery it feeds is not on screen.
+    if (playOnly) return;
     api
       .catalog()
       .then((c) => {
@@ -60,7 +64,8 @@ export function App() {
         api.allTours(c.cities.map((x) => ({ id: x.id, years: x.years }))).then(setGallery).catch(() => setGallery([]));
       })
       .catch((e) => setError(e.message));
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playOnly]);
 
   useEffect(() => {
     if (!catalog) return;
@@ -81,10 +86,14 @@ export function App() {
     if (!tourId) return;
     setTour(null);
     api.tour(tourId).then(setTour).catch((e) => setError(e.message));
+    // The ledger is a dev-only route and the QR is console furniture; neither
+    // exists or is wanted on the page a traveller actually opens.
+    if (playOnly) return;
     api.ledger(tourId).then(setLedger).catch(() => setLedger(null));
     const url = `${location.origin}/?tour=${encodeURIComponent(tourId)}&play=1`;
     QRCode.toDataURL(url, { margin: 1, width: 160, color: { dark: "#1B2230", light: "#ffffff" } }).then(setQr).catch(() => setQr(""));
-  }, [tourId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tourId, playOnly]);
 
   const onEvent = useCallback((name: string, payload: Record<string, unknown>) => {
     setEvents((ev) => [{ t: new Date().toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata" }) + " IST", name, payload }, ...ev].slice(0, 200));

@@ -15,3 +15,4 @@ content/companions/*/reel/
 
 # tsc -b build fingerprints
 *.tsbuildinfo
+dist/

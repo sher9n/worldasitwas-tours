@@ -1,7 +1,27 @@
 import type { Catalog, Tour, TourSummary } from "@timetravel/schema";
 
-const KEY = import.meta.env.VITE_PLATFORM_KEY || "dev";
-const headers = { Authorization: `Bearer ${KEY}` };
+/**
+ * How this page proves it may read the walk it was opened on.
+ *
+ * In production the URL carries a short-lived token (`?tk=`) that authorises
+ * exactly this tour for exactly this traveller. That is the only credential a
+ * browser should ever hold: a platform key baked into the bundle is a platform
+ * key published to everyone who opens the page.
+ *
+ * Locally there is no token and no keys are configured, so the Bearer below is
+ * a placeholder the dev API ignores.
+ */
+function authHeader(): Record<string, string> {
+  try {
+    const tk = new URLSearchParams(location.search).get("tk");
+    if (tk) return { Authorization: `Player ${tk}` };
+  } catch {
+    // no location; fall through to the dev key
+  }
+  return { Authorization: `Bearer ${import.meta.env.VITE_PLATFORM_KEY || "dev"}` };
+}
+
+const headers = authHeader();
 
 async function get<T>(url: string): Promise<T> {
   const res = await fetch(url, { headers });

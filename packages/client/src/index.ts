@@ -386,9 +386,15 @@ export interface TimeTravelOptions {
   apiKey?: string;
   /**
    * Where the hosted player is served, when it is not the same origin as the
-   * API. Only `playerUrl()` uses it.
+   * API. Only the player-URL builders use it.
    */
   playerUrl?: string;
+  /**
+   * Shared secret for signing player tokens. Server-side only; it is the whole
+   * of the player's authority, so treat it exactly like the platform key.
+   * Must match PLAYER_TOKEN_SECRET on the tour service.
+   */
+  playerSecret?: string;
   /** Swap in your own fetch (tests, a proxy, a timeout wrapper). */
   fetch?: typeof fetch;
 }
@@ -400,6 +406,69 @@ export interface FindOptions {
   lang?: string;
 }
 
+/* ─────────────────────── the signed player token ─────────────────────── */
+
+/**
+ * A player URL is opened by a browser, and a browser cannot be trusted with a
+ * platform key: whatever the page holds, its viewer holds. But the page still
+ * has to fetch its own manifest and mint a companion session, so it needs some
+ * authority of its own.
+ *
+ * That authority is a short-lived token, signed by whoever built the URL,
+ * naming exactly one tour and one traveller. It cannot be used to browse the
+ * catalogue, to reach a different walk, or to do anything at all once it
+ * expires. It is safe in a URL, in a WebView, and in someone's browser
+ * history, which a platform key is not.
+ *
+ * Signing happens wherever the URL is built — a server, holding the secret.
+ * WebCrypto is used rather than node:crypto so this file keeps importing
+ * nothing and can still be pasted into an app; React Native has no
+ * `crypto.subtle`, but a mobile app never signs, it only receives the finished
+ * URL from its own backend.
+ */
+export const PLAYER_TOKEN_PARAM = "tk" as const;
+
+/** Six hours: long enough to finish a walk and answer the companion. */
+export const PLAYER_TOKEN_TTL_SEC = 6 * 60 * 60;
+
+function b64url(bytes: ArrayBuffer): string {
+  const bin = String.fromCharCode(...new Uint8Array(bytes));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+/** What the signature covers. Order and separator are part of the contract. */
+export function playerTokenPayload(tourId: string, travellerId: string, expiresAt: number): string {
+  return `${tourId}\n${travellerId}\n${expiresAt}`;
+}
+
+async function hmac(secret: string, payload: string): Promise<string> {
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle) {
+    throw new TimeTravelError(
+      "no_webcrypto",
+      "Signing needs WebCrypto (Node 18+, or a browser). A mobile app should never sign — ask your backend for the finished player URL.",
+    );
+  }
+  const enc = new TextEncoder();
+  const key = await subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  return b64url(await subtle.sign("HMAC", key, enc.encode(payload)));
+}
+
+/**
+ * Build the token a player presents. Server-side only: it needs the secret.
+ * Shape is `<expiresAt>.<travellerId>.<signature>`, all URL-safe.
+ */
+export async function signPlayerToken(
+  secret: string,
+  tourId: string,
+  travellerId: string,
+  ttlSec: number = PLAYER_TOKEN_TTL_SEC,
+): Promise<string> {
+  const expiresAt = Math.floor(Date.now() / 1000) + ttlSec;
+  const sig = await hmac(secret, playerTokenPayload(tourId, travellerId, expiresAt));
+  return `${expiresAt}.${encodeURIComponent(travellerId)}.${sig}`;
+}
+
 export interface PlayerUrlOptions {
   /**
    * A stable id for this traveller. It is what the companion's rate limit
@@ -407,6 +476,8 @@ export interface PlayerUrlOptions {
    * name, an email or anything else that identifies a person.
    */
   travellerId?: string;
+  /** Seconds the signed URL stays valid. Ignored unless a secret is set. */
+  ttlSec?: number;
   /** Start at a stop rather than the cover. */
   stopId?: string;
   lang?: string;
@@ -433,8 +504,22 @@ export interface TimeTravelClient {
   resolve(opts: FindOptions): Promise<TourSummary | null>;
   /** The whole manifest. Only needed if you are drawing the walk yourself. */
   tour(tourId: string): Promise<Tour>;
-  /** The URL to put in a WebView or an iframe. No key travels in it. */
+  /**
+   * The URL to put in a WebView or an iframe. No key travels in it.
+   *
+   * Unsigned. Use it only where the API has no platform keys configured — a
+   * local playground, a demo. Anywhere real, use `signedPlayerUrl`.
+   */
   playerUrl(tourId: string, opts?: PlayerUrlOptions): string;
+  /**
+   * The same URL with a short-lived token that authorises exactly this walk
+   * for exactly this traveller, so the page can fetch its own manifest and
+   * talk to the companion without ever holding the platform key.
+   *
+   * Server-side only — it needs `playerSecret`. Call it when you build the URL
+   * to hand back to an app.
+   */
+  signedPlayerUrl(tourId: string, opts: PlayerUrlOptions & { travellerId: string }): Promise<string>;
   /** Mint a short-lived credential for the live companion. */
   companionSession(tourId: string, opts: CompanionSessionOptions): Promise<CompanionSession>;
 }
@@ -519,6 +604,21 @@ export function createClient(options: TimeTravelOptions): TimeTravelClient {
 
     playerUrl(tourId, opts = {}) {
       return `${playerBase}/?${qs({ tour: tourId, play: 1, traveller: opts.travellerId, stop: opts.stopId, lang: opts.lang })}`;
+    },
+
+    async signedPlayerUrl(tourId, opts) {
+      if (!options.playerSecret) {
+        throw new TimeTravelError("no_player_secret", "signedPlayerUrl needs playerSecret; see TimeTravelOptions");
+      }
+      const token = await signPlayerToken(options.playerSecret, tourId, opts.travellerId, opts.ttlSec);
+      return `${playerBase}/?${qs({
+        tour: tourId,
+        play: 1,
+        traveller: opts.travellerId,
+        stop: opts.stopId,
+        lang: opts.lang,
+        [PLAYER_TOKEN_PARAM]: token,
+      })}`;
     },
 
     companionSession: (tourId, body) =>

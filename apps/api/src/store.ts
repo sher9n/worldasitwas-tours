@@ -5,6 +5,7 @@
  * re-read a file when its mtime changes. That keeps the API fast without a
  * database, which is all a batch-published catalogue needs.
  */
+import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseTour, summarize, type Catalog, type Tour, type TourSummary } from "@timetravel/schema";
@@ -25,10 +26,49 @@ const CITY_META: Record<string, { name: string; country: string; anchor: { lat: 
   colombo: { name: "Colombo", country: "LK", anchor: { lat: 6.9337, lng: 79.8425 } },
 };
 
+/**
+ * Media URLs are absolute in a manifest, and they are written at publish time
+ * by whichever machine ran the pipeline — in practice `http://localhost:4100`.
+ * A tour published on a laptop would therefore serve a deployed player a set
+ * of links to that laptop.
+ *
+ * Rather than rewrite history or republish ten walks every time the media
+ * moves, the store re-points them as it loads: anything ending up under
+ * `/media/` is re-based onto whatever this deployment actually serves media
+ * from. The content hash on the query string is part of the path and survives
+ * untouched, so caching still works.
+ *
+ * The pipeline stays as it is, the files on disk stay as they are, and the
+ * same tour is correct in dev, in staging and behind a CDN.
+ */
+const MEDIA_PATH = /^https?:\/\/[^/]+\/media\/(.+)$/;
+
+function rebaseMedia<T>(node: T, mediaBaseUrl: string): T {
+  if (typeof node === "string") {
+    const m = MEDIA_PATH.exec(node);
+    return (m ? `${mediaBaseUrl}/${m[1]}` : node) as unknown as T;
+  }
+  if (Array.isArray(node)) return node.map((v) => rebaseMedia(v, mediaBaseUrl)) as unknown as T;
+  if (node && typeof node === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(node)) out[k] = rebaseMedia(v, mediaBaseUrl);
+    return out as T;
+  }
+  return node;
+}
+
 export class TourStore {
   private cache = new Map<string, StoredTour>();
 
-  constructor(private toursDir: string) {}
+  /**
+   * @param mediaBaseUrl where this deployment serves media from, no trailing
+   *   slash. Locally that is the API's own /media mount; in production it is
+   *   the bucket or CDN in front of it.
+   */
+  constructor(
+    private toursDir: string,
+    private mediaBaseUrl: string,
+  ) {}
 
   async list(): Promise<StoredTour[]> {
     let entries: string[] = [];
@@ -64,7 +104,7 @@ export class TourStore {
     const raw = await fs.readFile(file, "utf8");
     let tour: Tour;
     try {
-      tour = parseTour(JSON.parse(raw));
+      tour = rebaseMedia(parseTour(JSON.parse(raw)), this.mediaBaseUrl);
     } catch (err) {
       // A broken manifest must not take the catalogue down; skip it loudly.
       console.error(`[store] skipping ${file}: ${(err as Error).message.split("\n")[0]}`);
@@ -76,7 +116,12 @@ export class TourStore {
     } catch {
       companionNotes = undefined;
     }
-    const stored: StoredTour = { tour, etag: `"${tour.id}:${tour.version}"`, mtimeMs: stat.mtimeMs, dir, companionNotes };
+    // The media base is part of what is served, so it belongs in the ETag: moving
+    // media to a CDN must invalidate a manifest a player already holds. Hashed,
+    // not truncated — every candidate base starts "https://", so the first
+    // characters of its encoding are identical and would tag them all the same.
+    const baseTag = crypto.createHash("sha1").update(this.mediaBaseUrl).digest("base64url").slice(0, 8);
+    const stored: StoredTour = { tour, etag: `"${tour.id}:${tour.version}:${baseTag}"`, mtimeMs: stat.mtimeMs, dir, companionNotes };
     this.cache.set(tourId, stored);
     return stored;
   }
