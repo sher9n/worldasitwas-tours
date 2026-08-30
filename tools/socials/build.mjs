@@ -27,7 +27,11 @@ const OUT = path.join(root, "content/tours/_socials");
 const WORK = path.join(root, "content/work/socials");
 const SHOTS = path.join(WORK, "shots");
 const CLIPS = path.join(WORK, "clips");
-const MEDIA = path.join(OUT, "media");
+// Flat, not a media/ subfolder. The volume ended up with a FILE called
+// "media" at this path (a single-file upload addressed to a directory that did
+// not exist yet creates the file under that name), and every later folder
+// upload then failed with "not a directory". Flat has no such trap.
+const MEDIA = OUT;
 
 const ff = (args) =>
   new Promise((ok, bad) => execFile("ffmpeg", ["-v", "error", "-y", ...args], (e) => (e ? bad(e) : ok())));
@@ -129,15 +133,15 @@ const posts = [];
 
 for (const p of copy.posts) {
   const media = [];
-  if (p.media.includes("montage-guides.jpg")) media.push({ src: "media/montage-guides.jpg", kind: "img", label: "All twelve guides" });
-  if (p.media.includes("montage-cities.jpg")) media.push({ src: "media/montage-cities.jpg", kind: "img", label: "Six of the cities" });
-  if (p.media.includes("portrait-caterina.mp4")) media.push({ src: "media/portrait-caterina.mp4", kind: "vid", label: "Caterina's portrait, 39s loop" });
+  if (p.media.includes("montage-guides.jpg")) media.push({ src: "montage-guides.jpg", kind: "img", label: "All twelve guides" });
+  if (p.media.includes("montage-cities.jpg")) media.push({ src: "montage-cities.jpg", kind: "img", label: "Six of the cities" });
+  if (p.media.includes("portrait-caterina.mp4")) media.push({ src: "portrait-caterina.mp4", kind: "vid", label: "Caterina's portrait, 39s loop" });
   for (const m of p.media.filter((x) => x.startsWith("clip-"))) {
     const id = m.replace("clip-", "").replace(".mp4", "");
-    if (made.includes(id)) media.push({ src: `media/${id}-clip.mp4`, kind: "vid", label: `${id.replace("tour_", "").replace(/_/g, " ")}, 22s` });
+    if (made.includes(id)) media.push({ src: `${id}-clip.mp4`, kind: "vid", label: `${id.replace("tour_", "").replace(/_/g, " ")}, 22s` });
   }
-  if (p.media.includes("shot-ask.jpg")) media.push({ src: `media/${tours[0].id}-story.jpg`, kind: "img", label: "In the walk" });
-  if (p.media.includes("shot-sources.jpg")) media.push({ src: `media/${tours[4].id}-portrait.jpg`, kind: "img", label: "In the walk" });
+  if (p.media.includes("shot-ask.jpg")) media.push({ src: `${tours[0].id}-story.jpg`, kind: "img", label: "In the walk" });
+  if (p.media.includes("shot-sources.jpg")) media.push({ src: `${tours[4].id}-portrait.jpg`, kind: "img", label: "In the walk" });
   posts.push({ ...p, media });
 }
 
@@ -150,10 +154,10 @@ for (const t of tours) {
     linkedin: c.linkedin, instagram: c.instagram, twitter: c.twitter, snapchat: c.snapchat,
     hashtags: `#history #${t.city.toLowerCase()} #storytelling #travel #ai`,
     media: [
-      { src: `media/${t.id}-portrait.jpg`, kind: "img", label: "Instagram feed, 4:5" },
-      { src: `media/${t.id}-square.jpg`, kind: "img", label: "Square, 1:1" },
-      { src: `media/${t.id}-story.jpg`, kind: "img", label: "Story, 9:16" },
-      ...(t.hasClip ? [{ src: `media/${t.id}-clip.mp4`, kind: "vid", label: "Video, 22s, sound on" }] : []),
+      { src: `${t.id}-portrait.jpg`, kind: "img", label: "Instagram feed, 4:5" },
+      { src: `${t.id}-square.jpg`, kind: "img", label: "Square, 1:1" },
+      { src: `${t.id}-story.jpg`, kind: "img", label: "Story, 9:16" },
+      ...(t.hasClip ? [{ src: `${t.id}-clip.mp4`, kind: "vid", label: "Video, 22s, sound on" }] : []),
     ],
   });
 }
