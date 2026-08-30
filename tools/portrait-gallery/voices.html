@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Voice for Assunta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=JetBrains+Mono:wght@500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --room: #100E0B; --wall: #17130E; --panel: #1E1913;
+    --gilt: #C9A24A; --gilt-d: #6E5828; --bone: #EFE7D9; --muted: #9A8C77;
+    --hair: rgba(201,162,74,.20);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(120% 70% at 50% -10%, #241D14 0%, rgba(36,29,20,0) 62%), var(--room);
+    color: var(--bone); font: 400 16px/1.6 "Source Sans 3", system-ui, -apple-system, sans-serif;
+    padding: 0 0 120px; min-height: 100vh;
+  }
+  header { max-width: 720px; margin: 0 auto; padding: 54px 22px 30px; text-align: center; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+  .eyebrow { font: 500 10px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .22em; text-transform: uppercase; color: var(--gilt); }
+  h1 { font: 300 clamp(36px, 8vw, 56px)/1.03 "Cormorant Garamond", Georgia, serif; margin: 0; text-wrap: balance; }
+  h1 em { font-style: italic; color: var(--gilt); }
+  header p { margin: 0; max-width: 56ch; color: var(--muted); text-wrap: pretty; }
+
+  /* The line they are all reading, so the comparison is like for like. */
+  .script {
+    max-width: 720px; margin: 8px auto 0; padding: 20px 24px;
+    background: var(--wall); border: 1px solid var(--hair); border-radius: 14px;
+    font: 300 italic 19px/1.6 "Cormorant Garamond", Georgia, serif; color: var(--bone);
+    text-align: center;
+  }
+  .script small { display: block; margin-top: 12px; font: 500 9px/1.5 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--gilt-d); font-style: normal; }
+
+  .list { max-width: 720px; margin: 30px auto 0; padding: 0 22px; display: flex; flex-direction: column; gap: 14px; }
+  .voice {
+    display: flex; align-items: center; gap: 16px; padding: 18px 20px;
+    background: var(--panel); border: 1px solid var(--hair); border-radius: 16px;
+    transition: border-color .18s ease;
+  }
+  .voice.chosen { border-color: var(--gilt); box-shadow: 0 0 26px rgba(201,162,74,.18); }
+  .voice .who { flex: 1; min-width: 0; }
+  .voice h2 { margin: 0 0 3px; font: 500 22px/1.2 "Cormorant Garamond", Georgia, serif; }
+  .voice p { margin: 0; font-size: 13px; color: var(--muted); }
+  .badge {
+    display: inline-block; margin-left: 9px; vertical-align: 2px;
+    font: 500 9px/1 "JetBrains Mono", monospace; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gilt); background: rgba(201,162,74,.1); border: 1px solid var(--hair);
+    border-radius: 5px; padding: 5px 7px;
+  }
+  audio { width: 240px; max-width: 42vw; height: 38px; }
+  .tag { font: 500 10px "JetBrains Mono", monospace; color: var(--gilt-d); }
+
+  .rail {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9;
+    background: rgba(16,14,11,.94); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--hair); padding: 16px 22px calc(16px + env(safe-area-inset-bottom));
+    text-align: center; font-size: 15px;
+  }
+  .rail code { font: 500 13px "JetBrains Mono", monospace; color: var(--gilt); background: rgba(201,162,74,.09); border: 1px solid var(--hair); border-radius: 7px; padding: 6px 10px; margin-left: 8px; display: inline-block; }
+  footer { max-width: 700px; margin: 42px auto 0; padding: 0 22px; text-align: center; color: var(--muted); font-size: 13px; text-wrap: pretty; }
+  @media (max-width: 560px) {
+    .voice { flex-wrap: wrap; }
+    audio { width: 100%; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">Assunta Belli &middot; Seamstress &middot; Rome, 1870</span>
+  <h1>Which of these should <em>she</em> be?</h1>
+  <p>Six Italian women, none of them a voice any other guide uses. She was reading in a stock English voice, which is why she sounded British. All six read the same opening line so you can compare like for like.</p>
+</header>
+
+<div class="script">
+  &ldquo;Morning to you. I'm Assunta Belli, twenty-nine, a seamstress from Regola, and I sew out of a room near the river for shops and private houses both. I cross these streets with bundles on my arm from one opinion to the other, so I talk piano in public. Still, I saw the breach at Porta Pia.&rdquo;
+  <small>Her own words &middot; the Italian in them is what exposes a false accent</small>
+</div>
+
+<div class="list" id="list"></div>
+
+<footer>Violetta is recorded and live now. If you prefer one of the others, tell me and I will re-record her whole walk in it; it takes about a minute and costs around a dollar.</footer>
+
+<div class="rail"><span>Live now: <b>Violetta</b>. To change her, tell me:<code>use sara</code></span></div>
+
+<script>
+const VOICES = [
+  { tag: "violetta",  name: "Violetta",    note: "Warm, clear, engaging. A storyteller's voice. The most widely used of the six.", chosen: true },
+  { tag: "sara",      name: "Sara",        note: "Young, warm and clear. The most unhurried read, which suits a woman who talks piano in public." },
+  { tag: "valentina", name: "Valentina",   note: "Young and fresh. The closest in age to her twenty-nine years." },
+  { tag: "manuela",   name: "Manuela",     note: "A professional actress reading. Warm and versatile, and the briskest of the six." },
+  { tag: "samanta",   name: "Samanta",     note: "Warm and deep, reassuring. Reads a little older than she is." },
+  { tag: "lindafiore",name: "Linda Fiore", note: "Young, dynamic, cheerful. Bright, though she is a careful person by nature." }
+];
+
+document.getElementById("list").innerHTML = VOICES.map((v) => `
+  <div class="voice${v.chosen ? " chosen" : ""}">
+    <div class="who">
+      <h2>${v.name}${v.chosen ? '<span class="badge">live now</span>' : ""}</h2>
+      <p>${v.note}</p>
+      <span class="tag">${v.tag}</span>
+    </div>
+    <audio controls preload="none" src="voice-${v.tag}.mp3"></audio>
+  </div>`).join("");
+
+// One at a time, so two voices never talk over each other.
+document.addEventListener("play", (e) => {
+  document.querySelectorAll("audio").forEach((a) => { if (a !== e.target) a.pause(); });
+}, true);
+</script>
+</body>
+</html>
