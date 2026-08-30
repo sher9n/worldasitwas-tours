@@ -1,0 +1,340 @@
+{
+  "tourId": "tour_london_1908_conductor",
+  "companion": "Ernie Marsh",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_piccadilly_circus": {
+      "arrival": {
+        "line": "Evening to you. I'm Ernie Marsh, twenty-nine, conductor on a motor omnibus. I've been on the road six years now, and three of those were on horse buses before the motors shoved in. I'm Bermondsey born, married, with one little boy, and I belong on a platform because a conductor lives by exact fares, stages, crush-loads and short cuts. If I don't know who wants inside or top, whole way or one stage, I soon hear about it. So this walk's London as I know it from the back step, not from an office or a club. We've five stops, and they show you a town changing in the open, with the old way still rubbing against the new. Touch anything in the picture and I'll talk about it. Hold the green button and ask me anything. Now, start with those lights on the Monico frontage, because that's the bit London's busiest admiring and grumbling at together.",
+        "scene": "A wide evening view looking north-east across wet, shining Piccadilly Circus: the mouth of Shaftesbury Avenue opens under the Monico frontage, where yellow-white lighted letters glow high against the smoky dusk; the Shaftesbury Memorial Fountain stands in the middle on its island of stone; a black Tube stair rail drops at the pavement edge; and the wet crossing below is packed with reflections, wheels, hooves and scattered pedestrians.",
+        "points": [
+          {
+            "label": "lighted letters",
+            "line": "That's the new brag of the place. The first electric advertising bills on the Monico frontage went up this year; the first one that stayed was Perrier, and Bovril was among the next, all picked out in ordinary incandescent bulbs."
+          },
+          {
+            "label": "stair rail",
+            "line": "Those Tube stairs are still new enough for folk to remark on them. The Baker Street and Waterloo Railway side opened first in March 1906, and the Piccadilly line platforms followed that December, so this corner's been learning fresh habits in a hurry."
+          },
+          {
+            "label": "wet crossing",
+            "line": "The County Council doesn't fancy these lights at all. It had byelaws back in 1900 against flash lights visible from the street, on the sensible ground that a bright trick can upset traffic, and Piccadilly has enough temper already."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_piccadilly_circus_c1": {
+          "narration": "You can put figures on it if you like: on 2 July this year London had 1,046 motor omnibuses licensed for hire and 2,281 horse buses, so the horses still outnumber us. But stand here five minutes and you'd swear the motors had grabbed the town already. A Board of Trade report lumps it all together - more motor buses, fewer horse traffic, and Piccadilly widened as part of the same turn in how London moves.",
+          "scene": "Street level at the kerb, looking across the churn of traffic: a horse bus lumbers through the left of the frame, a motor omnibus noses in from the right with its route board over the driver, a hansom and a private motor are caught between them, a policeman stands half turned in the middle, and the wet setts shine under hooves, tyres and boots.",
+          "points": [
+            {
+              "label": "horse bus",
+              "line": "A horse bus in Piccadilly used to have more company of its own kind. By January 1907, motorbus competition had cut the London General's horse service between Clapham Junction and here from twenty-four vehicles to twelve. That's how the old stock gets edged aside - quietly, by halves."
+            },
+            {
+              "label": "route board",
+              "line": "That board matters more than the paintwork. The service that now counts as the 19 runs through here from Highbury Barn by Hyde Park Corner, Sloane Square and Battersea Bridge to Clapham Junction, and this year is when it takes that number."
+            }
+          ]
+        },
+        "stop_01_piccadilly_circus_c2": {
+          "narration": "This is the hour when London changes coats without going home. Clerks, shop assistants, errand boys and late shoppers are still about, and in among them come diners, theatre folk and visitors staring upward instead of where they're stepping. White City pulls hard at the west end just now. The Franco-British Exhibition has been running since 14 May and goes on to 31 October, and they reckon it will draw about eight million visits, with the Olympic season helping keep everyone in a spectacle mood.",
+          "scene": "From the pavement near the Tube entrance, a mixed evening crowd fills the frame under hazy shopfront light: clerks in dark coats, shop assistants, an errand boy, a man in an evening coat beside a woman in a hat, and an out-of-town visitor holding a paper guide. Behind them the stair mouth drops away, while the roadway beyond is blurred with lamps and moving traffic.",
+          "points": [
+            {
+              "label": "paper guide",
+              "line": "Plenty of country visitors buy the official Exhibition guide and carry it about like orders from headquarters. It costs a shilling, which is no trifle, so they mean to get a full day out of White City once they've paid for it."
+            },
+            {
+              "label": "evening coat",
+              "line": "The evening crowd isn't all money and cabs. A fair number ride a stage or two, meet friends under the lights, then peel off toward the theatres or supper rooms, because the Circus lets them leave the choice of route till the last minute."
+            }
+          ]
+        },
+        "stop_01_piccadilly_circus_c4": {
+          "narration": "From my platform, this isn't just a bright corner. It's a sorting place. Every face coming through has a different stage in mind, and I've got to know in a blink who's for the Strand, who's changing for the Tube, and who's only riding a short bit to get out of the crush. Piccadilly looks like amusement, which is half the trick, but it works because fares, timings and quick decisions keep the whole glitter from sticking fast.",
+          "scene": "Close behind the rear platform of a stopped motor omnibus at the kerb: the conductor stands on the step with a ticket punch in hand, the destination board is fixed above the driver's seat at the front, a small queue waits beside the bus, and beyond them the Circus glitters with lamps, wet roadway and the dark shape of the fountain.",
+          "points": [
+            {
+              "label": "ticket punch",
+              "line": "From Piccadilly Circus to Ludgate Circus on a motor bus is a penny, which is why I tell people not to waste a cab unless they're in grand style. A penny gets you a good long lift eastward if you don't mind the stops."
+            },
+            {
+              "label": "destination board",
+              "line": "Routes bend when the traffic bends. On 20 July this year the motor bus from Upton Park to Oxford Circus was sent this way by Strand, Charing Cross and Piccadilly instead of coming by Holborn and Oxford Street. That's London following the crowd."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along and let's get clear of this racket. Piccadilly does the boasting for modern London, but the next bit shows you the working side of it, where time, waiting and getting a place matter more than the lights."
+    },
+    "stop_02_covent_garden_market": {
+      "arrival": {
+        "line": "Last stop was all lamps and show. Come here before six and you get the other end of the same town. The wagons have been rumbling half the night, the light traps are rattling in now, and the place smells of crushed greens, wet wood, horse dung and violets all at once. By six it's full cry already, carts jammed wheel to wheel, and every dinner table and buttonhole in London seems to start here, lifted into place by hand.",
+        "scene": "You are standing at the eastern mouth of the market in the grey before sunrise. Wet cobbles shine under wagon wheels and are furred with cabbage leaves. In the near middle a basket porter strides across with two round wicker baskets nested on his head. At the left, two flower girls sit on a step sorting roses and violet bunches into smaller handfuls. Beyond them carts, donkey-barrows and piled crates clog the lane, and at the back the glazed roof of the flower hall catches the first thin light.",
+        "points": [
+          {
+            "label": "basket porter",
+            "line": "That way of carrying isn't a turn put on for strangers. There's a photograph from 1901 showing the same thing here, men with baskets and produce on their heads, so when I say this market runs on necks and balance, I'm not making it fancy."
+          },
+          {
+            "label": "flower girls",
+            "line": "Those girls are breaking big lots into little saleable bunches. In summer plenty of the blooms are English, grown only some twenty miles out, but in winter a great many come in from abroad, and Nice sends a fair share."
+          },
+          {
+            "label": "glazed roof",
+            "line": "That newer hall was put up for the foreign flower trade, with roof-lights on cast-iron trusses, which tells its own tale. Even at dawn the building is saying London wants flowers from farther off than the next county."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_covent_garden_market_c1": {
+          "narration": "If you want Covent Garden at work proper, six o'clock is the mark. A guide tells visitors to come then, and it's right enough: heavy wagons rumble in through the dark, then between five and six the greengrocers' light traps rattle up till every street round here is choked with carts. After eight it eases again. So the town's breakfast noise is over almost before pleasure London has got its boots on.",
+          "scene": "The frame looks straight down a crowded market street. A clock hangs above the opening in the middle distance, while light traps, high wagons and a donkey-barrow jam the road from side to side. At the far right edge the blunt nose of a motorbus has just come into view between carts. On the left, iron railings and a stair mouth drop below the street.",
+          "points": [
+            {
+              "label": "motorbus nose",
+              "line": "By July a Union Jack motorbus was running Putney to Shoreditch by Charing Cross, the Strand and the Bank, near enough that the first one of the day could be heard while these carts were still jolting into place. New noise, old work."
+            },
+            {
+              "label": "tube stairs",
+              "line": "Those stairs are younger than plenty of the porters here. The Covent Garden station below opened only last year, on 11 April 1907, so you've got electric railway at the doorstep of a market that still shifts half its loads by head and shoulder."
+            }
+          ]
+        },
+        "stop_02_covent_garden_market_c2": {
+          "narration": "Stand where the rows open and the market looks built, not piled. Cabbages, cauliflowers and turnips rise almost like a wall, near twelve feet in places, and beside them sit winter fruit from all over: oranges, sacks of nuts, Hamburg grapes, French winter pears, bright American apples in barrels. Then the flower side cuts across it, with violets coming by steamer from the Scilly Isles, the Channel Isles and even the South of France. London thinks breakfast just appears. It doesn't.",
+          "scene": "Inside the market, stacks of cabbages, cauliflowers and turnips rise in squared ranks at the left nearly to the awning. In the center stand fruit boxes and barrels, with several men gathered around them as if waiting for a bid. At the right, two women sit low beside pea baskets, shelling into their laps, and behind them lie small heaps of violets and roses on a stall.",
+          "points": [
+            {
+              "label": "fruit boxes",
+              "line": "An Edwardian view from inside Floral Hall shows much the same business, men gathered by fruit boxes for auction, and a sign up for a special sale of pears, plums and apples. Nothing dainty about it once money starts talking."
+            },
+            {
+              "label": "pea women",
+              "line": "A moving picture taken a few years back catches women here shelling peas while the porters hurry past. That's Covent Garden for you: the heavy carrying and the fine finger work going on side by side before most Londoners have stirred."
+            }
+          ]
+        },
+        "stop_02_covent_garden_market_c4": {
+          "narration": "The carrying has its own pecking order. Some men are regular hands on a shop or stall, some are odd-men taking work job by job, and the flower side wants them ready before five. It looks like rough lifting, but it's timed to the minute: a nod, a load up, a turn through the jam, back again. In a busy week an odd-man can make up to £2 10s., and if that sounds decent, try earning it with wet boards underfoot and baskets pressing your skull.",
+          "scene": "At the edge of the flower market a line of waiting men stands against a post and wall, caps on and hands in pockets, while two regular porters hurry past with laden baskets. In the foreground a tall stack of empty round wicker baskets leans beside a puddle. Far down the lane, between a cart shaft and a horse's flank, a motorbus passes the opening with a destination board across its front.",
+          "points": [
+            {
+              "label": "waiting men",
+              "line": "Those fellows off the load aren't loafing. In the flower trade some are regular hands on a stall, and some are odd-men after a commission, and a man has to hold the market ticket from the estate superintendent before he's allowed to ply here at all."
+            },
+            {
+              "label": "basket stack",
+              "line": "A bushel basket isn't free to smash up and forget. One of those costs 8½d., and a porter will use more than one at a time, so even the plain wicker has money tied up in it before a leaf's shifted."
+            },
+            {
+              "label": "motorbus board",
+              "line": "Since White City opened in May, omnibus services have been revised all over town, and some buses even carry special Exhibition boards. Funny thing is, the grand outing west begins with men like these up before dawn getting flowers and fruit into motion."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away now. Once the loads are sorted and the carts roll, this muck turns into tidy public London again, and that's what I want to show you next: the polished bit that sits on top of all this shoving."
+    },
+    "stop_03_embankment": {
+      "arrival": {
+        "line": "So after Covent Garden's loads and shouting, this stretch can fool you. It feels as if London always had a clean stone edge here, lamps over the road and room to breathe, but it didn't. This is made ground, put in to do several jobs at once: carry the great sewer, ease the crush on the streets above, roof the railway, and tidy the river besides. That's improvement in London - handsome on top, hard work underneath.",
+        "scene": "A photographic view along Victoria Embankment faces east from the riverside footway. Twin tram rails run down the middle of the broad roadway, with tall standards carrying lamp wires overhead. To the right, a granite parapet borders the Thames and a flight of granite stairs drops to the water. To the left, mottled plane trunks stand along the pavement with benches beneath the leaves, and heavy stone buildings show through behind them.",
+        "points": [
+          {
+            "label": "granite stairs",
+            "line": "Those steps and the river wall went up with the main engineering works between 1864 and 1870, and they weren't put here for prettiness. They're part of the same job as the hidden interceptor sewer, all meant to make London's drainage behave."
+          },
+          {
+            "label": "lamp wires",
+            "line": "This stretch showed off electric street lighting early. They put sixty electric lights here back in 1878, and these slung fittings came in around 1900, so even the lampposts are doing a bit of boasting for the place."
+          },
+          {
+            "label": "plane trunks",
+            "line": "The planes were planted round about 1870, and people liked the look of them enough that tree-lined roads started turning up elsewhere. London copies anything that makes its improvements seem gentler than they really are."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_embankment_c1": {
+          "narration": "What's odd is how thoroughly this place has covered its own tracks. Before it, you'd have had a ragged bank here with muddy foreshore at low water, tumble-down wharves, old stairs, and the backs of riverside places hanging over it. They got their Act in 1862 and started in 1864, clearing a deal away so one straight piece of work could hide the big sewer, ease the Strand and Whitehall, carry the District under, and give the river a fairer run.",
+          "scene": "The frame is taken from near the parapet on a bright day, looking along the Embankment so the breadth of the place shows. The open roadway and footway stretch away in a straight line. On the left sits a narrow garden strip with shrubs and iron edging beneath the trees. On the right, the stone parapet runs above the river, and the whole new edge looks level and deliberate.",
+          "points": [
+            {
+              "label": "open roadway",
+              "line": "It's bigger than it first appears: about two kilometres of new edge made here, with some fifteen hectares won from the river altogether. A good half of that went to carriageway and footways, which tells you what the planners reckoned mattered most."
+            },
+            {
+              "label": "garden strip",
+              "line": "They didn't give all the gained ground to traffic. Some was kept as public garden, and some went to neighbouring owners, so even an improvement scheme has its little bargains tucked inside it."
+            }
+          ]
+        },
+        "stop_03_embankment_c2": {
+          "narration": "This is where the above-ground fight shows plain. Since 1906 the electric trams have been running along here, quiet for their size until the wheels bite, and they can carry a heap of people for very little. We bus men answer with quicker turns and freer routes, because rails can't dodge a block or nip round a delay. So the public gets modern London in duplicate, each side trying to prove it's the handier bargain.",
+          "scene": "A street-level view catches traffic on the Embankment. An electric tram car is coming toward the camera on the shining rails in the centre of the road. A motor bus runs nearby in the same broad corridor, and farther off a horse bus is still at work among the rest of the traffic. Overhead wires hang from the lamp standards, with the river parapet on one side and the tree line on the other.",
+          "points": [
+            {
+              "label": "tram car",
+              "line": "Only two years ago they were still laying this electrified track along the Embankment, and now it's part of the day's traffic. The tram's real edge is fare: a short stage can be had for a halfpenny, which makes plenty of folk forgive the fixed rails."
+            },
+            {
+              "label": "motor bus",
+              "line": "Public motor buses only began on London streets in 1899, and there was plenty of breakdown and swearing before they settled. Now nobody thinks it odd to trust a timetable to petrol."
+            },
+            {
+              "label": "horse bus",
+              "line": "And the horses aren't gone yet, whatever anyone boasts. You'll still find horse buses at work in London this year, which is why the road sounds half future and half yesterday."
+            }
+          ]
+        },
+        "stop_03_embankment_c4": {
+          "narration": "And then the shine turns awkward. Before midnight you'll have sweethearts and clerks taking the air, but later the benches fill with people who've no door to shut. Not only lone tramps neither. You hear of dockers broke down, sailors stranded, old hands worn out of regular work, and sometimes couples bedding down together. The Embankment stays grand to look at, and hard to sleep on, which is about as London as anything I know.",
+          "scene": "A night photograph shows a pool of electric light under the trees beside the river. In the foreground, a man and woman are slumped together on a bench under the plane leaves. Farther along the pavement, a knot of waiting men stands in a loose line near the wall. Beyond them the granite parapet catches the light, and the Thames lies black beyond it.",
+          "points": [
+            {
+              "label": "bench couple",
+              "line": "A writer who went slumming here a few years back found a man and woman dozing on a bench much like that, and the man said he was a broken-down docker who'd spent a week on the Embankment."
+            },
+            {
+              "label": "waiting men",
+              "line": "John Burns said this year he'd stood in the nightly queue here among a hundred and more men and taken the same help they did - a quart of soup and a pound of bread. That's not hearsay from a warm room."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away from the river now. Out here the change looks broad and handsome, with lamps over it and room to breathe. At the next stop I'll show you the same city under a tighter strain, where movement, waiting and money press closer together."
+    },
+    "stop_04_tower_bridge": {
+      "arrival": {
+        "line": "So after the Embankment's neat stone, here's the bargain in plain sight. Up here you've got carts, cabs, horse buses and motors all wanting the same strip of road, and under your elbow the river wants it more. This bridge doesn't argue with the Thames. It gives way. That's what it was built to do. And while people stop to watch the lift, the real work lies east of us in the Pool, where cargo comes in from half the world and men wait at the gates to be picked for handling it.",
+        "scene": "A photograph from the footway on Tower Bridge looking east along the opening span: the two roadway leaves are lifting between the great stone towers, with ironwork showing under the raised deck. Below, the Thames is busy with a black-funnelled steamer, a tug and several low lighters among masts, derricks and warehouse fronts. On the north bank at the right edge, beside a gateway in the warehouse line, a knot of men in caps and rough coats waits by the wall.",
+        "points": [
+          {
+            "label": "raised roadway",
+            "line": "It isn't one flap, but two bascules, one each side, so the road parts in the middle and lifts clear for vessels bound farther up. That's the trick of the place: keep the street joined when shut, and the upper Pool open when wanted."
+          },
+          {
+            "label": "black funnel",
+            "line": "A ship has the right of way here, and it pays nothing for the favour. That's why all the hoofs and motors above must stand still when a vessel wants through. The river comes first, and the road can grumble after."
+          },
+          {
+            "label": "men by gate",
+            "line": "If one of those chaps gets taken on, ordinary time is 6d. an hour, and overtime 8d. He's glad enough of either. The sore point isn't only the money. It's the waiting about to find out whether he'll earn any at all."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_tower_bridge_c1": {
+          "narration": "A lift looks sudden from the road, but it runs like shop work done properly. Steam engines pump water into accumulators, then when the order comes that pressure is let loose into drive engines, and pistons turn cogs that work the bridge. The actual upward movement is only about a minute and a half, though you've first got to stop traffic, clear the deck and draw the bolts. And it isn't a rare performance either. In its first year the bridge opened 6,194 times, about seventeen times a day.",
+          "scene": "A close photograph of Tower Bridge during a lift, taken from one side of the roadway: one bascule stands steeply raised in the foreground, the stone pier beside it holding a small glazed cabin, while the other raised leaf and the far tower frame the gap over the river. At the bottom left, carts and a horse cab wait behind the cleared roadway as the deck stands open.",
+          "points": [
+            {
+              "label": "pier cabin",
+              "line": "The men in that cabin work the business by interlocked levers, much like a railway signal box. That's to keep each step in its proper order, because with road and river both in play, one wrong move would make a fine muddle."
+            },
+            {
+              "label": "raised leaf",
+              "line": "What helps the bridge move so briskly is balance. Each leaf is matched by counterpoises of lead and iron, so the machinery isn't simply heaving up dead weight all the while. It's mostly dealing with the start of the motion, and with the wind."
+            }
+          ]
+        },
+        "stop_04_tower_bridge_c2": {
+          "narration": "East of the bridge the river turns into a tally sheet. Timber, grain, tea, sugar, wool, meat and wine all come this way, and not from next door either. Tea comes in from India, wool from Australia, and frozen mutton and lamb from Australia, New Zealand and the River Plate trade. London likes to eat, wear, burn and sell the world, and this reach is where a good deal of it first bumps against the wharf.",
+          "scene": "A wide photograph looking east down the Pool of London from the bridge: the water is crowded with steamers, sailing craft, tugs and low lighters, with black and buff funnels rising through a thicket of masts and derricks. On one bank stand long warehouse walls and cranes, and near the foreground a high stack of timber sits by the riverside works.",
+          "points": [
+            {
+              "label": "timber stack",
+              "line": "A lot of that wood goes into the Surrey Commercial Docks, where they've acres of sheds for timber. The stuff comes from the Baltic and from Canada, and once it's ashore the smell of fresh-cut boards hangs about the river stronger than you'd think in a city this size."
+            },
+            {
+              "label": "low lighter",
+              "line": "Those flat craft are the handiest drudges on the water. When a bigger vessel can't sit exactly where its cargo's wanted, a lighter noses in and shifts the load bit by bit. Not much glory in it, but the Pool would choke without them."
+            }
+          ]
+        },
+        "stop_04_tower_bridge_c4": {
+          "narration": "The bridge is the smart machine, but the gate is the old London way still hanging on. Men come here for the foreman's call and wait to be chosen for a spell of work or sent off empty. That's why Parliament's talking now about labour exchanges, waiting-rooms and proper registers for dock labour. If the system were decent, men wouldn't need to stand in the street each morning selling their strength by the look of them.",
+          "scene": "A photograph at a dock-side gateway on the north bank near the Pool: a line and knot of men in caps, mufflers and rough coats waits outside high gates in a brick wall, some with hands in pockets and some turned toward the entrance. Beyond the bars are cranes and a strip of quay, while the warehouse frontage runs away on either side.",
+          "points": [
+            {
+              "label": "waiting men",
+              "line": "The crowd isn't a dozen unfortunates, either. Many 13,500 men may gather at the dock gates for the morning call, and many of them won't get taken on. That's enough to make a whole district live by hoping its name gets called."
+            },
+            {
+              "label": "rough coats",
+              "line": "They may look one lump from a distance, but the river employs all sorts round about: lightermen, stevedores, carmen, warehouse porters, tally clerks and customs men. The trouble is that the casual docker, outside the gate, is still waiting for his turn in the oldest and roughest market of the lot."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away from the bridge now. You've seen the clever part and the cruel part in one glance, which is London's favourite arrangement. Our last stop keeps that thought with us, because the town's bright new systems always leave somebody standing off to one side."
+    },
+    "stop_05_white_city": {
+      "arrival": {
+        "line": "So after the dock gates and the men waiting for a foreman's nod, here's London making a gate people are glad to queue for. This is White City, and it shows the trick of 1908 better than anything I know. The Franco-British Exhibition of Science, Arts and Industries turns the new friendliness between Britain and France into a day's entertainment, and even before you're inside you can feel the place has been built as much for moving crowds as for astonishing them.",
+        "scene": "Viewed from the east side of Wood Lane, the station entrance fills the near right, people spilling from the doors and climbing the bridge-like raised way that crosses the road in the centre. At the kerb below it stands a motor omnibus with a small Union Jack and a Tricolour on its front, while to the left a stall with postcards and programmes is hemmed in by ladies with parasols and men in straw boaters. Beyond the bridge, white plaster fronts and fluttering flags crowd the entrance to the exhibition.",
+        "points": [
+          {
+            "label": "white fronts",
+            "line": "That's why everyone calls it White City. The name comes straight from the paint, because the exhibition buildings were all done white, so the whole place shows up pale and bright even through London soot and drizzle."
+          },
+          {
+            "label": "flag bus",
+            "line": "Road Car dressed some exhibition buses with the French Tricolour as well as the usual little Union Jack, just so nobody missed the point of the place. Better still, a conductor could sell your exhibition admission on board and save you one bit of queuing."
+          },
+          {
+            "label": "bridge way",
+            "line": "This station was built for the opening rush, and that raised way carries the crowd straight over the road into the grounds. They had 123,000 through the turnstiles the first day, so you can see why nobody left the approach to luck."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_white_city_c1": {
+          "narration": "Once you're through, it isn't a little fair tucked in a field. The place spreads over 140 acres, with about 120 buildings and 20 pavilions, and they've laid in a bandstand, gardens and the great stadium besides. Most attractions run from nine in the morning till eleven at night, so the outing can be worked like a whole day shift, and the daily programme changes the music and entertainments, fireworks and all, to keep the crowd moving and coming back.",
+          "scene": "From the top of the raised approach, the camera looks west down a broad white avenue with white halls on both sides. A booklet rack and seller stand at the near right, people stream away under parasols and boaters, a strip of water and planting opens to the left, and farther off a bandstand lifts above the crowd.",
+          "points": [
+            {
+              "label": "booklet rack",
+              "line": "If you like having your day laid out for you, there was a map-and-plans pamphlet showing not only the site itself but the railway and Tube links as well. They've no wish to lose you between the station and the palaces."
+            },
+            {
+              "label": "broad walk",
+              "line": "A pictorial guide makes a point of showing the place as broad avenues, gardens and lakes, not a cramped old fairground. That's deliberate. They want it to feel roomy, civilised, and worth dressing for."
+            }
+          ]
+        },
+        "stop_05_white_city_c2": {
+          "narration": "The clever part is that White City doesn't sit and wait for people. It reaches out and fetches them. You've got main-line and Tube by Shepherd's Bush and Uxbridge Road, and once this show opened the omnibus companies started revising services at once. One new route came all the way from Seven Kings in Ilford through Stratford, Bow, Aldgate, Benk, Charing Cross, Marble Arch and Notting Hill to the Exhibition, and another ran in from Liverpool Street by Holborn, Oxford Street and Bayswater Road.",
+          "scene": "At road level beneath the raised walkway, tram rails shine in the road, a motor omnibus stands loading with the conductor holding a fan of tickets at the step, and farther along a horse bus edges through the same stream of hats and parasols toward the exhibition gate.",
+          "points": [
+            {
+              "label": "ticket bundle",
+              "line": "London Road Car even had ticket sets for an ordinary route that included exhibition admission, so the ride and the outing were sold together like one article. That's modern trade for you: don't just carry the crowd, sell the day to them as well."
+            },
+            {
+              "label": "tram rails",
+              "line": "It isn't motors only. People can come along Uxbridge Road by tram, horse bus or motor omnibus, which means the newest traffic and the old stuff are all feeding the same gate and fouling the same road when it gets busy."
+            }
+          ]
+        },
+        "stop_05_white_city_c4": {
+          "narration": "And then, tucked into the pleasure grounds, you've got the biggest sporting stage in London. White City Stadium is the main Olympic ground this year, with room for over 60,000, and the King opened the Games there on 13 July. Mind, the gates are kept separate. Your exhibition shilling doesn't carry you into the stadium. That's another turnstile, and east-side standing is 6d., which is London all over: one outing, two reckonings.",
+          "scene": "Beyond an opening between white buildings, the great oval of the stadium rises in the distance, its packed stands ringing the top. In the foreground a line of turnstiles holds a knot of waiting spectators, and through the entrance gap a narrow strip of track can just be seen inside.",
+          "points": [
+            {
+              "label": "oval stands",
+              "line": "It's not one or two athletic turns put on for effect. The official reckoning for these London Games runs to 24 sports, 109 events, 22 national teams and 2,024 competitors, so that bowl has been swallowing the world by the thousand."
+            },
+            {
+              "label": "track strip",
+              "line": "The marathon finishes here, and the measured run to the line in front of the Royal Box comes to 26 miles 385 yards. That's an awkward-looking number, but after this summer plenty of people will know it by heart."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's my round done. You've seen the same London I work through every day: quicker to cross, brighter to sell itself, and handier if you've got the fare and catch the right connection, but still run on pennies, timings, sore legs and men and women doing the lifting. I'm Ernie Marsh. Thanks for keeping me company. Right away then, mind your step, and goodbye."
+    }
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "tourId": "tour_stockholm_1900_tram",
+  "companion": "Gustav Ek",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_gustav_adolfs_torg": {
+      "arrival": {
+        "line": "God day, and welcome. I'm Gustav Ek, thirty-three, conductor on the horse trams, and I've been at it nine years now. I was born in Värmland, but I've been in Stockholm long enough to know its turns better than many a native, and I live on Södermalm with my wife and our three children, all of us packed into two rooms. This walk has five stops, and I'll show you the city the way I work it: taking ten-öre fares, minding horses, and keeping count of who crosses from square to quay, bridge to tram, and city to boat. Touch something in the picture and I'll tell you about it. Hold the green button and you can ask me anything. Now then, start with these stones and rails, because here at Gustav Adolfs torg the whole town seems to meet itself in a hurry.",
+        "scene": "A daylight view from the opera side of Gustaf Adolfs torg looking north toward Norrbro and the Palace. Granite setts fill the foreground, cut by shining tram rails. A horse tram car stands in the middle of the square, its end platform and body clear to see. Beside it rises an electric lamp post. On the right edge the pale stone front of the Opera with its steps and tall windows catches the light; on the left cabs wait along the curb and the hotel façades face the bridge.",
+        "points": [
+          {
+            "label": "tram car",
+            "line": "That's one of ours, and a useful one too. The Ring line sets off from this square and comes back here again after circling much of the inner city, so if you've patience and a seat, you can make half Stockholm pass your window before you're back where you started."
+          },
+          {
+            "label": "lamp post",
+            "line": "This bridge side has been a show place for lighting a long while. The first gas lanterns in Stockholm were lit out on Norrbro in 1853, so folk here have had years of standing about and saying the city grows brighter whether they asked for it or not."
+          },
+          {
+            "label": "opera front",
+            "line": "That opera house is still new enough to feel fresh in the weather. The King opened it in September 1898, so when people dress up for an evening there, they're not going to some ancient relic, only to the city's latest grand room."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_gustav_adolfs_torg_c1": {
+          "narration": "What keeps this square busy isn't ceremony, though there's plenty of that. It's the way the streets and bridge all feed into one patch of granite. You're right in front of Norrbro here, and Strömgatan runs from the Opera across the square toward Rosenbad, so nobody just comes to stand and admire. They pass through, cut across, change cars, hail a cab, and keep moving.",
+          "scene": "A street-level frame from near the centre of the square. A horse tram is angled across the rails, and its line sign is mounted above the end platform. Behind it on the left, the doorway and lower frontage of a grand hotel open straight onto the square, with cab traffic passing in front. Norrbro leads away in the background, and the Opera's wall closes the right side of the picture.",
+          "points": [
+            {
+              "label": "line sign",
+              "line": "From this part of town you can get yourself onward to Djurgården, out toward Haga Park, across Norrmalm and Östermalm, and over to Kungsholmen too, if you know your connections. That's why strangers stop me every few steps with the same question in three different words."
+            },
+            {
+              "label": "hotel doorway",
+              "line": "Hotel Rydberg stands facing Norrbro and the Palace, and both tram-car and omnibus pass right in front of it. Even the finest guests have to arrive through hoof noise, wheel rattle, and the smell of wet harness, same as the rest of us."
+            }
+          ]
+        },
+        "stop_01_gustav_adolfs_torg_c2": {
+          "narration": "When evening comes, the lamps make this place feel newer than the stone underfoot. Electric light is whiter than gas and much less forgiving. It picks out the rails, the splashes, the policemen's buttons, and the tired shine on a horse's flank. That's what still catches people. Plenty of grown folk standing here can remember when the city changed its night from gas to electricity, so the brightness still feels recent in their bones.",
+          "scene": "An evening view of the square after rain. An electric lamp post with several bright globes burns above the roadway, throwing white light onto the wet granite. Below it the tram rails shine like narrow ribbons, and a horse tram and two cabs move through the frame while the pale front of the Opera glows in the background.",
+          "points": [
+            {
+              "label": "lamp globes",
+              "line": "The first public electric light folk saw in Stockholm was tried not far from here at Blanch's in Kungsträdgården in 1878, and then the first incandescent bulbs came on at Strömparterren in 1881. So this glare isn't old custom, it's something people still talk about as a beginning."
+            },
+            {
+              "label": "shining rails",
+              "line": "For a conductor, this light means the workday stretches longer in plain sight. You can read a face, spot a dropped coin, and watch the crossing rails before a wheel climbs wrong. Det var inte värt doing any of that by guess if you can help it."
+            }
+          ]
+        },
+        "stop_01_gustav_adolfs_torg_c4": {
+          "narration": "The people on this square change by the hour as neatly as a timetable. Early on it's servants, porters, newspaper men, cabmen, and clerks cutting across for work. Around noon you get soldiers mixed with strollers, and toward evening the opera side fills with better coats, white shirt-fronts, cloaks, and hired carriages. Same stones every time, only the crowd tells you what part of the day the city thinks it's in.",
+          "scene": "A late-morning frame across one side of the square. A small cluster of uniformed soldiers crosses the open stones near the middle. To one side a pair of men in black coats and hats head toward Norrbro. Along the ground floor behind them, a news window with papers and ticket notices faces the pavement, while cabs wait at the curb and passers-by drift between the shopfront and the open square.",
+          "points": [
+            {
+              "label": "soldiers",
+              "line": "Every day at noon the Guard Parade comes down Arsenalsgatan toward the Palace, and on Sundays the walkers from Kungsträdgården spill over to watch the soldiers, the equipages, and one another. Half the amusement is being seen while you're pretending only to look."
+            },
+            {
+              "label": "black coats",
+              "line": "Tuesday forenoon brings another current through here, because the King holds a public reception at the Palace then. Officials, petitioners, and plain curious watchers all drift the same way, and you can tell who's come on business by how hard he looks at his gloves."
+            },
+            {
+              "label": "news window",
+              "line": "If a man wants news or tickets as well as a ride, this square serves for that too. Stockholms-Tidningen has a branch here, Svenska Dagbladet keeps a depesch office here, and Södra Teatern tickets are sold on the square, so even gossip gets a frontage."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now. A square like this sorts people out, but Stockholm never lets wheels have the whole job. Just ahead the water begins to pull traffic its own way, and you'll feel the city change as soon as we leave the stones."
+    },
+    "stop_02_gamla_stan": {
+      "arrival": {
+        "line": "Now then, off the bright bridge side and into older stone. Don't let anybody tell you this quarter's only something to stare at, because people still live hard in these houses. Better-off Stockholm has been climbing away to the newer districts, while here rooms get sliced smaller, lodgers are taken in, and the same old walls have put on bigger shop windows to catch modern trade. So Gamla Stan has to do two jobs at once: live upstairs and sell downstairs.",
+        "scene": "From just off the cobbles of Stortorget, the frame looks across the square toward the eastern side: a broad stone-paved open space in front, the large dark mass of the stock exchange building rising on one side, and opposite it a row of tall old houses with patched plaster, stepped roofs, and enlarged ground-floor shop windows. Near the corner, Köpmangatan opens away downhill between the houses. A few people cross the square, and barrels and handcarts stand close to the façades.",
+        "points": [
+          {
+            "label": "the big hall",
+            "line": "That's Börshuset, and it rules the square the way a fat alderman rules a room, by sheer bulk. This is the Stortorget people know in our day, with that building taking your eye before the rest has a fair chance."
+          },
+          {
+            "label": "the corner house",
+            "line": "That house on the eastern side is Grillska huset. Old Town streets are like that, one known house pressed tight against the next, so whatever dignity they have comes crowded, not spread out for display."
+          },
+          {
+            "label": "the street downhill",
+            "line": "Köpmangatan runs from this square straight down toward the eastern harbour at Saltsjön, which is why Stortorget never quite turns into a parlour. Goods, errands, and quay business keep tugging it seaward."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_gamla_stan_c1": {
+          "narration": "Who lives here now? Not the families that boast of their new address, no. This parish was at its fullest back in 1879, with 13,539 inhabitants, and though the fashion has moved on, the squeeze hasn't. Stockholm has swollen from about 90,000 people in 1850 to about 300,000 now, so old rooms don't stand empty long. They get used again and again till one house may hold more life than its frontage admits.",
+          "scene": "A narrow old-town street fills the frame, with a four-storey house front close enough to touch: a large plate-glass shop window at street level, a dark open doorway into the stair, and above that rows of uneven windows, some ajar, some curtained, with a little washing hung out on a line. Two women and a child are near the threshold, and a man is coming down from the stair. The plaster is worn and patched around the stone doorway.",
+          "points": [
+            {
+              "label": "the dark doorway",
+              "line": "A good many single men lodge in rough private hostels in this quarter, so a doorway like that may take in more sleepers than you'd guess. Not much comfort in it either, only a bed space and a roof if a man can pay."
+            },
+            {
+              "label": "the washing line",
+              "line": "Whatever fine talk people make about old houses, the daily work is plain enough: washing, cooking, mending, carrying things up and down. Whole family lives have to be tucked into buildings that were never meant for such crowding."
+            }
+          ]
+        },
+        "stop_02_gamla_stan_c2": {
+          "narration": "For work, this quarter's a nuisance and a necessity together. The old street plan still holds, with Stortorget at the middle and the long streets throwing off gränder like fish bones from a spine. You step from open square into shade in two paces, and if you've got a handcart, a crate, or a child underfoot, the lane is full at once. Det gällde att sno sig here, because nothing wider than a street could force its way through.",
+          "scene": "The camera stands on a long, narrow street in Gamla Stan. House walls rise high on both sides, and on the right a gas lantern juts from the wall above a vaulted alley mouth. The archway opens into a much tighter lane beyond. In the roadway a handcart waits beside two barrels, and a porter with a bundle squeezes past while pedestrians file along the edges of the stones.",
+          "points": [
+            {
+              "label": "the gas lantern",
+              "line": "Out here they still make do with gas in places, which tells you enough about the quarter. Newer main streets elsewhere are getting the sharp electric blaze, but Gamla Stan often keeps the older, dimmer sort of light."
+            },
+            {
+              "label": "the arched lane",
+              "line": "Those vaulted mouths off Österlånggatan are the very devil when traffic meets itself. A porter, a basket woman, a child, a parcel boy, and that's enough to stop the lane. Everything has to funnel through the same dark opening."
+            },
+            {
+              "label": "the handcart",
+              "line": "That sort of cart is why the stones never truly rest. Goods come off the waterfront, into the long streets, and then by hand the last bit of the way, with wheels rattling, barrels thumping, and somebody always shouting for room."
+            }
+          ]
+        },
+        "stop_02_gamla_stan_c4": {
+          "narration": "Now the city's started poking its nose into housing in earnest, counting rooms, rents, lodgers, and standards, and the summary says a large share of Stockholm lives badly. Folk have got it into their heads that housing lies under half the city's troubles, so quarters like this come under the lamp. And that's where Gamla Stan stands awkwardly: one scheme would cut it open and rebuild it, while another feeling, newer but stubborn, says the old heart ought to be kept.",
+          "scene": "On a tight street-edge at Slussplan, a narrow shopfront sits under an older plaster house: the ground floor has a neat display window with watches and spectacles arranged behind the glass, while above it two plain lodging windows stare out from worn masonry. The wall is cracked and patched, the doorway beside the shop is narrow and dark, and pedestrians brush past close to the curb.",
+          "points": [
+            {
+              "label": "the clock window",
+              "line": "Even here you get specialist trade. At Slussplan there's an optical and watch shop, C.F. Laurin & Söner, which tells you the old town isn't all cheap lodging and worn boots. A place can be shabby and still sell precision."
+            },
+            {
+              "label": "the upstairs windows",
+              "line": "A room advertised in Stockholm runs to 247 kronor for the year, and that goes farther on paper than in a real household. Det gick åt rysligt med slantar once coal, food, and everything else had taken their bite."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now, we'll leave these close walls and go where the city opens again by the water. After dark stairwells and stone alleys, the next turn will feel like a lungful of air."
+    },
+    "stop_03_slussen": {
+      "arrival": {
+        "line": "Now then, out of the old lanes and down to the city's throat. Here Mälaren runs east toward Saltsjön, and because the lake usually stands higher, they can't leave the waters to settle matters by themselves. So there's a sluice and lock here to pass boats, hold the lake in order, and keep salt from shoving back in. That's why Slussen never rests. Street traffic bunches on the cobbles while the water takes its turn through the middle of town.",
+        "scene": "A wide view from the quay at Slussen, with the lock water in the middle and the iron lattice of the lift tower rising high on the right, its long bridge stretching out toward the height above. Along the near lock wall, a marked water gauge is fixed to the masonry. In the foreground and left, carts, cabs, a tramcar and pedestrians are bunched up at the edge of the bridge approach, with a knot of waiting people facing the water.",
+        "points": [
+          {
+            "label": "wall gauge",
+            "line": "They've been watching the levels here a long while, since 1774 in fact, because somebody had to know just how Mälaren stood against Saltsjön. By my time that's already an old habit, and a sensible one too, with half the city depending on the answer."
+          },
+          {
+            "label": "waiting crowd",
+            "line": "Nobody stands idle here for nothing. The folk gathered at the rail are really keeping count of their own delay, because every gate movement and every passing hull decides when the carts, cabs, and walkers get their turn again."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_slussen_c1": {
+          "narration": "That chamber and those gates are Nils Ericson's sluss, finished in 1850, and the trick is plain enough once you've seen it worked. A vessel comes into the lock, the gates shut, and the water inside is let up or down till it matches the other side. Then the far gates open and away she goes. It sounds tidy when I say it fast. In practice it's iron, shouting, and a queue on land while the boat is served first.",
+          "scene": "A closer view straight onto the lock chamber, with heavy timber gates across the water and iron chain gear mounted beside them. A small steamer sits low in the chamber, its black smoke funnel rising above the lock wall. On the cobbles at the near edge, a dray horse stands harnessed to a loaded cart, waiting with its head turned slightly toward the water.",
+          "points": [
+            {
+              "label": "gate chains",
+              "line": "You hear those before you see much else. Once the chain gear starts clanking, drivers begin making faces and pedestrians stop short, because everybody knows the place is about to belong to the watermen for another little while."
+            },
+            {
+              "label": "dray horse",
+              "line": "A working horse hates this sort of stoppage more than hard pulling. Standing still on wet stones, all harnessed up with nothing to do, makes them fretful, and then the drivers have twice the job when the way opens again."
+            }
+          ]
+        },
+        "stop_03_slussen_c2": {
+          "narration": "And up above is the handiest machine on Söder if you've parcels, tired legs, or no wish to crawl uphill. The first Katarinahissen opened in March 1883 with two cages, and a conductor rides each trip, just as if it were any other public conveyance. From eight in the morning till eleven at night it takes people between quay and height in about forty-five seconds, so it isn't some fairground toy. It's daily bread for half the hill.",
+          "scene": "The frame looks upward from near the base of Katarinahissen. The iron tower fills the right side, one lift cage waiting at the lower landing and the long bridge walkway running out from the tower high across the picture. At the foot of the cage stands a small cluster of waiting passengers in coats and hats, and above them the dark bridge line cuts across the sky toward the upper streets.",
+          "points": [
+            {
+              "label": "lower cage",
+              "line": "Up costs 5 öre and down 3, which tells you plainly enough which half of the journey people think worth paying for. If you've been on your feet since morning, those few coins can feel very well spent."
+            },
+            {
+              "label": "bridge walkway",
+              "line": "Mosebacke and Katarinaberget rise about 35 metres above Slussen, so this contraption saves more than a short set of steps. It spares a real climb, the sort that makes your calves complain if you're carrying anything at all."
+            },
+            {
+              "label": "waiting passengers",
+              "line": "It carries crowds, not just curious folk. They say it took 1.67 million passengers in 1885, about 4,570 a day on the average, which is enough to make it part of ordinary traffic, same as any bridge or boat."
+            }
+          ]
+        },
+        "stop_03_slussen_c4": {
+          "narration": "What makes this place such a misery isn't one kind of movement but all of them together. By these late years it's grown so crowded on land and water that, when the bridge opens for a vessel, the whole business backs up and people call it Sluss-eländet. Ferries, passenger steamers, barges, service boats, every sort of hull comes through the middle of Stockholm as boldly as if the city had been laid out round a working canal and not round streets.",
+          "scene": "A broad busy frame across the bridge approach at Slussen, with a ferry landing and low steamer at the water's edge to the left, the lock water beyond, and lines of carts and cabs halted nose to tail across the foreground. To the right stands a tramcar with a small stack visible above its roof, while pedestrians fill the gaps and stare toward the water where the next vessel is passing through.",
+          "points": [
+            {
+              "label": "ferry landing",
+              "line": "That Djurgården ferry traffic is fairly new. The service began in the summer of 1897, put on by Stockholms Ångslups AB to cope with the expected crush for the great General Art and Industry Exhibition out on Djurgården."
+            },
+            {
+              "label": "tram stack",
+              "line": "Steam trams have been running from Slussen toward Hornsgatan since 1887, so this place really is a hinge. Horse, steam, boat traffic, all of it meets here already, and now folk keep talking of electricity besides."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now. We've stood at the city's hinge long enough, with water below and iron above, and next I'll show you what happens when all this pushing and transferring turns into something a bit more showy."
+    },
+    "stop_04_djurgarden_skansen": {
+      "arrival": {
+        "line": "And after all that clanking at Slussen, here's the queerest outing on my side of the traffic. Skansen takes the life people left behind in village and pasture, tidies it up, and sells it back to them on Djurgården. An adult pays 50 öre, a child under twelve 25, and in they come all the same: clerks, maids, families, foreigners, and old country folk too, each deciding whether the place feels homelike, backward, beautiful, or simply worth the Sunday money.",
+        "scene": "From just inside Skansen's entrance, the camera looks uphill along a pale gravel path crowded with Sunday visitors. At the lower left stands a small ticket window with people queued in front of it; to the right, the little hill car of the bergbana climbs beside a fence. Up the slope, between tar-black timber buildings and a red farmhouse, rises a tall lookout tower above pines, with a strip of Stockholm water and masts glinting beyond.",
+        "points": [
+          {
+            "label": "ticket window",
+            "line": "For plenty of folk this isn't a light whim, kan veta. A clerk counts his coins, a maidservant saves for the outing, and a family measures the gate against the rest of Sunday, because pleasure still has to answer to the purse."
+          },
+          {
+            "label": "hill car",
+            "line": "That little car goes up by the electric bergbana, put in 1897 and described already as the first of its kind in Sweden. Funny business, that old Sweden should fetch you uphill by current and wire."
+          },
+          {
+            "label": "tall tower",
+            "line": "The ground grew by bites. Hazelius first got the inner Skansen area, then the neighbouring park with the former Belvedere tower, renamed Bredablick, in 1892; later came the lower stretch toward Lejonslätten in 1896 and Sevilla in 1898."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_djurgarden_skansen_c1": {
+          "narration": "Artur Hazelius opened Skansen to the public on 11 October 1891, and he meant it as more than a yard of saved lumber. He gathered buildings, plants, and animals from around Sweden so people could see how work and home looked in different parts of the country. He liked to say, in effect, know yourself. Nordiska museet keeps the indoor belongings; Skansen brings the whole business outside under the open sky, with weather on it.",
+          "scene": "The frame sits halfway up a gravel lane. A tar-black log house with a steep roof fills the left side, and a goat pen with rough fencing fills the right. Near the middle, a fiddle player in dark clothes stands playing while families and a few people in bright folk dress pause beside him, with more red-painted outbuildings and turf behind.",
+          "points": [
+            {
+              "label": "log house",
+              "line": "That isn't some stage carpenter's copy. By the end of the 1890s Skansen already held moved cottages from Mora, Bollnäs, Laxbro, and Blekinge, and the Oktorp farm came with its outbuildings too, as if a whole yard had shifted province."
+            },
+            {
+              "label": "goat pen",
+              "line": "The animal side is no small add-on. Around 1899 they reckoned about 1,000 individual creatures here from roughly 170 Scandinavian species, wild and domestic together, so children can stare at half the country before dinner."
+            },
+            {
+              "label": "fiddle player",
+              "line": "On a good day you don't just get silence and old walls. There are fiddlers, nyckelharpa and kantele players, dialect speakers, storytellers, and older dances and games in national dress, so the place keeps making noise like a fair."
+            }
+          ]
+        },
+        "stop_04_djurgarden_skansen_c2": {
+          "narration": "What makes the place really new is that memory here gets served as an outing. By now high and low, young and old, Swede and foreigner all feel they ought to come once, and from the same lane one person takes patriotism, another a homesick lump in the throat, and another only a pleasant show. An early visitor called it dreamlike, especially for folk raised in the country. All the while Skansen's own electric installation keeps lamps lit, the hill railway moving, and water fresh in the ponds.",
+          "scene": "On a green slope beside a pond, a mixed holiday crowd moves along a curving gravel path. At the left, reindeer stand inside a fenced enclosure near a skin tent and two figures; along the path in the foreground lie ordered flower beds; to the right a cluster of people in folk dress gather as if for a performance. Behind them a lamp post and the line of the hill railway cut across the rise, and beyond the trees you catch bright water and quays.",
+          "points": [
+            {
+              "label": "the reindeer",
+              "line": "Skansen doesn't only move houses. The place includes a Sámi camp with living Sámi people, dogs, and reindeer, which tells you it was planned as a living exhibit, not merely a store of old buildings."
+            },
+            {
+              "label": "flower beds",
+              "line": "Those beds matter as much as the buildings. Skansen's botanical garden is meant to hold a large share of the Nordic region's wild and cultivated plants, so the ground itself teaches, not only the rooms and sheds."
+            },
+            {
+              "label": "costume group",
+              "line": "When the place turns patriotic, it does so in full sight of everybody. The 6 June observances bring historical processions and costumed scenes up here, so memory becomes a public celebration as well as a lesson."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along from the tarred logs now, because Djurgården doesn't stop at memory. Just beyond this careful old Sweden, the city shows its next face more openly, and that's where I'll take you."
+    },
+    "stop_05_stromkajen": {
+      "arrival": {
+        "line": "So after Skansen's old cottages and goats, come down here and get a lungful of coal smoke. In my day this waterfront is Södra Blasieholmshamnen, though later folk call the same stretch Strömkajen. It's no strolling edge first of all. The gangways are wet, the hawsers slap, and boats keep nosing out for the skärgård. This is where Stockholm loosens its collar, opens to the water, and sends half its summer away.",
+        "scene": "A summer view along the quay at the waterfront, seen from standing height on the stone edge. A steamer lies alongside with a damp gangplank down to the quay, black funnel rising above her deck. In the foreground sit stacked fish baskets beside coils of rope. Around the gangway a waiting crowd fills the frame in light summer clothes, with hats, parasols, canes, parcels, and children. Across the water the broad mass of the Palace stands opposite, and along the same waterfront stretch the heavy stone fronts of Nationalmuseum and the Grand Hôtel frame the basin.",
+        "points": [
+          {
+            "label": "fish baskets",
+            "line": "Those baskets matter as much as the parasols. Steamers have made it possible to get fresh fish and other island goods into Stockholm quicker and more reliably, so what's breakfast in town tomorrow may still smell of the outer water when it's unloaded here today."
+          },
+          {
+            "label": "summer crowd",
+            "line": "A quay like this never carries one class only, whatever the better coats may fancy. In high summer you've island folk moving goods, servants and tradesmen on errands, and then the bathers, villa families, and Sunday excursionists all jostling into the same whistle."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_stromkajen_c1": {
+          "narration": "Watch the boarding and you'll see the routes written in people's clothes. These boats spread through the archipelago, to bathing places, fort towns, outer stations, and little landings between, so one gangway takes all sorts. A servant with a parcel, a tradesman on business, a family bound for baths, some visitor hunting scenery — they all step over the same wet plank, only with different hopes in their heads.",
+          "scene": "A close view of a steamer loading at the quay. The black funnel fills the upper part of the frame. At center a child in a hat is being urged up the gangway by an older hand, while a deckhand waits at the rail. To one side a parcel porter bends under luggage and wrapped bundles near the foot of the plank. Behind them stand ladies with parasols and men in summer coats, and the wet stone quay glistens underfoot.",
+          "points": [
+            {
+              "label": "black funnel",
+              "line": "That Vaxholm traffic is no trifle now. In 1897 Waxholms Ångfartygs AB was described as owning nine steamers, and they keep lively movement between Stockholm, the town of Vaxholm, and the stops between, so the water works almost like a street."
+            },
+            {
+              "label": "gangway child",
+              "line": "Vaxholm isn't only forts and channels to folk in town. A guidebook calls it a favourite summer resort for Stockholmers, and a pleasant excursion besides, so even a child being hauled aboard may think the whole archipelago begins there."
+            },
+            {
+              "label": "parcel porter",
+              "line": "Some runs are farther and some prettier. You can go direct to Dalarö from Stockholm, and Saltsjöbaden is sold as a charming trip through Skurusund and Baggensstaket. Folk speak of Furusund, Saltsjöbaden, and Dalarö as the finest watering places, which is how a porter earns his back."
+            }
+          ]
+        },
+        "stop_05_stromkajen_c2": {
+          "narration": "When the weather turns kind, det går att se at once what steam has done to people's Sundays. The quay swells with hatboxes, canes, parasols, baskets, and children being tugged along before the whistle goes. But pleasure answers to the purse. A grown person's fare from Stadsgården to Saltsjöbaden is 75 öre, so an outing to the baths still sits easier on some households than on others.",
+          "scene": "A crowded high-summer frame from the quay, packed shoulder to shoulder near departure time. A small boy clutches the rail by the water's edge while adults bunch around him. Beyond him stand bright white villa-like fronts across the channel in the distance, seen between masts and funnel smoke. In the foreground a man with a market basket waits among women with parasols, hatboxes, and rolled wraps, all pressing toward the boarding place.",
+          "points": [
+            {
+              "label": "small boy",
+              "line": "A child's fare on that same Saltsjöbaden run is 25 öre, and families know their arithmetic, kan veta. Count mother, father, two children, and the sea air begins costing real money before you've even thought of coffee or bathing."
+            },
+            {
+              "label": "white villa fronts",
+              "line": "Out along the fairway past Vaxholm, and south by Skurusundet and Lännerstasundet, summer villas have been put up facing the water. That's no accident. The first proper sight of the season is meant to be taken from the deck, with shutters open toward the channel."
+            },
+            {
+              "label": "market basket",
+              "line": "The summer guests don't only change the boats; they change the islands. Year-round people often put up rooms for rent or alter older houses to suit them, so a village that worked one way in winter may wear quite another face once the steamer season begins."
+            }
+          ]
+        },
+        "stop_05_stromkajen_c4": {
+          "narration": "And once the ropes are cast off, Stockholm turns stage-like in the best way. Across Strömmen the Palace stands full and square, and on this waterfront the long stone fronts of Nationalmuseum and the Grand Hôtel hold the line while funnels, flags, and wake keep cutting across it. From deck height the capital reads plainly: a grand face to show the world, and busy water underneath doing the real work.",
+          "scene": "The view is from the deck of a departing steamer looking back toward the quay. White wake spreads across the dark water in the foreground. Ahead and slightly left stands the Palace across Strömmen, broad and heavy above the waterline. Along the right-hand waterfront run the stone front of the museum and the long hotel facade. Farther out a distant funnel heads toward the outer fairway beneath scattered flags and mastheads.",
+          "points": [
+            {
+              "label": "white wake",
+              "line": "Pleasure traffic had an early start here. The first steamboat excursion in the archipelago was the Amphitrite run from Stockholm to Vaxholm in 1819, so this business of townsfolk going out to the islands for the day is older than many imagine."
+            },
+            {
+              "label": "distant funnel",
+              "line": "Regular archipelago traffic began in 1838 with the steamer Ellida on the Stockholm, Norrtälje, and Öregrund run, once a week. By the 1850s several lines were going, and only in the 1890s did true winter traffic really get under way."
+            },
+            {
+              "label": "outer water",
+              "line": "Sandhamn is the far sort of name that sets people dreaming even on the quay. It's a custom-station and a watering-place right out on the extreme eastern edge of the archipelago, which means some of these decks are bound not merely away from town, but almost out to sea."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Stockholm as I know it: horses at the square, old rooms in the town, lock-gates at Slussen, the lift hauling folk uphill, Skansen teaching them to remember, and steamers here teaching them to go faster than memory keeps pace. I'm Gustav Ek. Det var inte värt standing about longer; you've places to get to. Take one last look over the water, and spare a thought for the horses too — they're still pulling this city, though maybe not for very much longer. Goodbye."
+    }
+  }
+}

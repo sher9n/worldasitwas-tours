@@ -1,0 +1,344 @@
+{
+  "tourId": "tour_rome_1870_seamstress",
+  "companion": "Assunta Belli",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_porta_pia": {
+      "arrival": {
+        "line": "Morning to you. I'm Assunta Belli, twenty-nine, a seamstress from Regola, and I sew out of a room near the river for shops and private houses both. I was born here, I've been at the work for years now, and I cross these streets with bundles on my arm from one opinion to the other, so I talk piano in public. Still, I saw the breach at Porta Pia co' these eyes, from a rooftop. This walk has five stops: from this wall to the northern gate, then the Ghetto, the riverbank, and the square where news lands first. Touch anything in the picture and I'll talk about it. Hold the green button and ask me what you like. Now, start with that torn wall and the pretty gate beside it, because a government can end in one morning and a city still take longer to change.",
+        "scene": "A wide exterior view of Porta Pia just after the fighting, seen from outside the wall. The decorated gate front stands on the left, its stonework pocked and chipped, while to the right a jagged opening rips through the curtain wall. Broken brick and pale dust spill down the slope in front. Near the gate sits a low garden entrance and wall, and farther along the line of masonry a belt of villa trees rises behind the damage.",
+        "points": [
+          {
+            "label": "the gate front",
+            "line": "That handsome outer face wasn't simply the old gate left alone. After lightning struck in 1851, Pius the Ninth had it rebuilt by Virginio Vespignani, and then this September's firing mauled the decoration and the wall beside it all over again."
+          },
+          {
+            "label": "the garden entrance",
+            "line": "Right outside the gate was the way into Villa Patrizi, which tells you what this edge of Rome still looked like then. Nun zo' mmica in a ministry quarter here yet, but at a villa approach with open ground and garden walls."
+          },
+          {
+            "label": "the far trees",
+            "line": "Along the wall toward the next gate stood Villa Bonaparte with parkland, fountains, odd little scenic structures, and exotic plants by report. Fine places suffer like poor ones when shot starts, and that property was damaged too."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_porta_pia_c1": {
+          "narration": "They started on this sector at about ten past five in the morning. Three Italian batteries worked one narrow strip of wall and sent 888 rounds into it before the order to rush was given. By then the opening beside the gate was about thirty metres across, wide enough for infantry, and the whole place had gone from ornament to raw brick, chips, and bad footing.",
+          "scene": "A close view of the breach beside Porta Pia from outside the wall. The torn masonry fills the right half of the frame, and a steep brick slope runs down toward the camera. Fresh yellow dust lies over the rubble. At the foot of it stand several dark-coated soldiers, one with a feathered hat clear against the pale debris, while broken mouldings and shattered stone are mixed through the fall.",
+          "points": [
+            {
+              "label": "the brick slope",
+              "line": "Men didn't pass through a doorway here. They had to scramble over broken brick, lime, and chunks of facing that roll under your soles, and a neat attack on paper can go crooked fast when the ground won't hold still."
+            },
+            {
+              "label": "the yellow dust",
+              "line": "Fresh-shot masonry makes its own weather. The dust gets in your nose and teeth, mixes with burnt powder, and hangs low enough that morning light turns ugly, as if the wall itself were still coming apart in the air."
+            },
+            {
+              "label": "the feathered hats",
+              "line": "Those plumes tell you at a glance who you're looking at: bersaglieri. They seem very fine in a print, but over rubble every man works the same way, bent forward, hands busy, trying not to slide back."
+            }
+          ]
+        },
+        "stop_01_porta_pia_c2": {
+          "narration": "The Pope didn't mean to hold Rome to the last stone; the defence was meant as protest, enough to show force had been used. Trouble was, the giving-over didn't begin when the first cannon spoke, because General Kanzler delayed it, and so this dragged on for hours. The papal guns here fell quiet after about three-quarters of an hour, but rifles kept cracking from the Castro Pretorio, the Macao barracks, and Villa Patrizi until the white flag went up at about five past ten and the nearest Italians went straight in.",
+          "scene": "A mid-distance frame on the damaged gate and breach in thinning smoke. A small white cloth is raised on the wall top above the opening. In the foreground stands a bugler with his instrument lifted. Beyond the broken masonry, a low roofline and trees show the sort of positions from which rifle fire could still come after the cannon had eased.",
+          "points": [
+            {
+              "label": "the white cloth",
+              "line": "A surrender signal means one thing only if every post hears of it. Till the word reaches the last nervous pair with loaded rifles, a man still crosses open ground as if he's wagering his own skin."
+            },
+            {
+              "label": "the bugler",
+              "line": "You can shout till your throat gives out and smoke will swallow half of it, so bugles matter. One clean call travels farther than a hoarse officer, and on a morning like this that can save lives or waste them."
+            },
+            {
+              "label": "the low roof",
+              "line": "Fire didn't need a grand fortress. A roofline, a garden wall, a barrack window, any of them could hide enough men to keep the whole business dangerous long after the big noise had slackened."
+            }
+          ]
+        },
+        "stop_01_porta_pia_c4": {
+          "narration": "Even when the flag was up, it still bit. Some papal men near Villa Bonaparte hadn't got the surrender order and fired again, killing four bersaglieri, Major Pagliari among them, and wounding nine more. Altogether the day left 48 Italians dead and 141 wounded, and 19 papal dead with 68 wounded. By evening, though, the city had turned itself outward: flags in windows, and on the Corso a river of songs, cheers, and light.",
+          "scene": "An evening view along the Corso, crowded shoulder to shoulder beneath tall house fronts. Flags hang from upper windows over the street. Illuminated windows and lamps throw light onto the people below, and in the middle of the crowd several men carry a bust above their heads as they move forward through the press.",
+          "points": [
+            {
+              "label": "the window cloth",
+              "line": "Most of those colours weren't proper flags bought ready-made. They were patched up from whatever cloth came to hand, a strip of lining, a scarf, a ribbon, cicco cqua, ccicco llà, and suddenly the whole street looked decided."
+            },
+            {
+              "label": "the carried bust",
+              "line": "That head over the crowd is Victor Emmanuel, borne along almost like a feast-day image, only louder. Romans know how to turn politics into procession the minute they think it's safe enough to enjoy themselves."
+            },
+            {
+              "label": "the lit windows",
+              "line": "A diarist said the cheering and singing lasted late into the night, and I believe him. Once a street gets the taste for its own echo, it keeps itself awake better than coffee ever could."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on from here. A wall can fall before breakfast, but that still doesn't tell you who'll dare show themselves in public. We'll go inward now, toward the northern gate, where the city's new face had to be seen and read."
+    },
+    "stop_02_piazza_del_popolo": {
+      "arrival": {
+        "line": "By night they sang, and by daylight they had to make the singing count. This is Piazza del Popolo, just inside the old Flaminian gate on the Florence road, the main northern mouth of Rome. On the 20th the first Italian regiments took this square and the Pincio, because if you hold the gate, you hold who comes in. Army first, yes, but after that it's strangers, papers, horses, and at last a ballot saying aloud who the city belongs to.",
+        "scene": "We're under the inner shadow of the gate, looking south across the oval of the square. The gate arch catches the left edge of the frame above us, and in the middle the obelisk rises from its basin. Near the left foreground two men hold a broad newspaper sheet open between them. On the right foreground a porter stands by a trunk at the wheel of a waiting carriage, while feathered soldiers, citizens, and the mouths of the Corso, the Babuino, and the Ripetta spread beyond.",
+        "points": [
+          {
+            "label": "the gate arch",
+            "line": "Anybody entering Rome this way had to give up a passport at the gate first, and only later go fetch it back from the police office in Piazza di Monte Citorio. Welcome to the city, and hand over your papers."
+          },
+          {
+            "label": "the newspaper sheet",
+            "line": "Even the print changed clothes overnight. The old official Giornale di Roma vanished after 20 September, and a new official daily, the Gazzetta ufficiale di Roma, started on the 22nd, so men in squares kept sniffing fresh ink for the next truth."
+          },
+          {
+            "label": "the porter",
+            "line": "If you arrived tired with luggage, the city began nibbling at once: ten bajocchi to get a trunk carried in, and a facchino might want five or ten for himself. Cicco cqua, ccicco llà."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_piazza_del_popolo_c1": {
+          "narration": "Strangers learn Rome here before they learn a church name. They come through in hired carriages or on foot, dusty and cross, wanting a bed, a porter, a direction, and somebody to tell them which office and which turning. That's why this square matters even when nobody is cheering. A city isn't only taken by cannon. It's taken again each day by the people who enter it and have to be sorted, charged, and sent onward.",
+          "scene": "The frame stands lower down the square toward the Corso. A line of carriages noses along the curb, travellers are stepping out with valises, and porters weave between wheels. Above them runs a row of upper windows on the houses leading south, and at one doorway below, a knot of black coats and broad-brimmed hats has formed beside the traffic.",
+          "points": [
+            {
+              "label": "the upper windows",
+              "line": "Guidebooks send the better sort of stranger along this northern run between Porta del Popolo and Piazza di Spagna for the best hotels, which tells you this whole quarter lives by people arriving with money and questions."
+            },
+            {
+              "label": "the black coats",
+              "line": "That kind of company had a known harbor nearby. The Hotel de Rome in Piazza di San Carlo in Corso was called the general rendezvous of Roman Catholic clergy and laity from every country when they came visiting Rome."
+            }
+          ]
+        },
+        "stop_02_piazza_del_popolo_c2": {
+          "narration": "Then came the plebiscito, which is a grand word for a plain act. The provisional men fixed it for 2 October, and men of twenty-one and up, if they had their civil rights, went and voted. Not me, of course. In Rome they used bollettini, little voting slips, dropped into prepared urns, and the voting ran till ten at night. When the official count was printed, union had 133,681, the no had 1,507, and 103 slips were null.",
+          "scene": "This frame catches the square in restless half-order: citizens in hats cluster around folded papers, a soldier with a dark uniform and high plume stands at the left edge, and a mounted officer has reined in near the centre-right while men talk in little knots around him. Behind them the open space of the piazza runs back to the obelisk and the church fronts.",
+          "points": [
+            {
+              "label": "the plume hat",
+              "line": "Before that vote, Cadorna kept from making some grand military show under Roman noses, so nobody could say the army had leaned on the urns. Only on 3 October did he review the garrisoning troops, out at the Farnesina meadows."
+            },
+            {
+              "label": "the mounted officer",
+              "line": "Some men came back a long way for this business. Roman officers and non-commissioned officers already serving in the Italian army returned from distant cities, and on the morning of 2 October they gathered in Piazza di Spagna before going to vote."
+            }
+          ]
+        },
+        "stop_02_piazza_del_popolo_c4": {
+          "narration": "And in the middle of all this fuss stands a stone that doesn't care who won last week. That obelisk is red granite cut in Egypt for Seti the First and his son Ramesses the Second, at Heliopolis. Augustus had it brought here to Rome, the first Egyptian obelisk to make that journey, and for ages it stood in the Circus Maximus. Then in 1589 they set it up in this square, and every new ruler borrows its height for his own scene.",
+          "scene": "Now the view is nearer the centre, with the obelisk taking almost the whole height of the frame, its red shaft climbing out of the lion-ringed basin. Behind it, to the north, sits the still narrow gate mouth of Porta del Popolo, tighter than people will know it later. A few soldiers and townsmen are scattered small at the base, which only makes the stone seem taller.",
+          "points": [
+            {
+              "label": "the red shaft",
+              "line": "If I tell you that stone is more than three thousand years old, I'm not bragging for effect. It really is. Men change uniforms, governments change seals, and that thing has outlasted more shouting than Rome can count."
+            },
+            {
+              "label": "the gate mouth",
+              "line": "Photographs from these very years keep this same southward view for us, with Porta del Popolo still a tighter mouth than it'll be later, and all this before the river embankments remake the nearby city."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's the grand entrance: soldiers in one morning, voters after, strangers every day. Now annamo toward the Ghetto, because a new ruler still has to fit inside old lanes, old rents, and old habits of living."
+    },
+    "stop_03_ghetto": {
+      "arrival": {
+        "line": "At the gate they counted votes; here you count bodies, steps, windows, room. That's the change in this quarter: not a cheer, not a cannon, but whether a family can pass a doorway, pay a rent, breathe in summer, and walk out as citizens. Parlate piano, though. In Rome old habits cling harder than damp, and this place has had plenty of both.",
+        "scene": "A street-height view facing north along Via del Portico d'Ottavia: on the left the battered stone of the old portico with a fish barrow and chopping board under its arches, baskets and scraps at the curb, the narrow lane running away between tall patched houses, and above it all a stack of dark upper windows and hanging laundry leaning over the street.",
+        "points": [
+          {
+            "label": "fish barrow",
+            "line": "Under the Portico they sell fish for the whole city, and they've done it so long the stones seem to smell of scales even on a cool day. It's no antique corner to the people working it. It's trade, knives, shouting, and wet boards."
+          },
+          {
+            "label": "narrow lane",
+            "line": "This pinch in the street isn't some passing muddle. The houses have been crowding it close for years, so light comes down mean and late, and a cart or barrow can make everybody flatten themselves to a wall."
+          },
+          {
+            "label": "upper windows",
+            "line": "Some of these houses climb shockingly high, and the poorest folk get pushed nearest the river on Fiumara, where damp and flood are always waiting their turn. Up or down, somebody pays with lungs, legs, or sleep."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_ghetto_c1": {
+          "narration": "Here's the trick of it. Paul the Fourth made this ghetto in 1555, in a run-down bit by the Tiber, and Jews were forced to live apart here. Pius the Ninth ordered the wall and gates pulled down on 17 April 1848, but after the Republic was crushed he drove Roman Jews back into the same quarter anyway. So the stone barrier went, and the enclosure stayed.",
+          "scene": "A cramped ghetto lane seen from mid-street, open at both ends with no gate across it, rough paving underfoot, a small shopfront with goods set in the doorway on the right, dark house doors on the left, and above the shop a single cramped upper room window in patched plaster.",
+          "points": [
+            {
+              "label": "shopfront",
+              "line": "Before this change, a Jewish shopkeeper wanting to trade outside the pale could be made to pay a privilege of 10 scudi each year. That's Rome for you: first they bar the road, then they hold out a palm to let you pass."
+            },
+            {
+              "label": "upper room",
+              "line": "By last year a poor family's apartment could cost about 24 scudi for the year, and cheap on paper doesn't mean roomy. When money's short, beds multiply, privacy vanishes, and sewing, eating, sleeping all get shoved into one air."
+            }
+          ]
+        },
+        "stop_03_ghetto_c2": {
+          "narration": "You don't need a clerk to reckon this crush, but the number's cruel enough. De Cesare, borrowing d'Azeglio's judgment, calls the place narrow, foul, and crowded, with about 3,900 people squeezed into space fit for roughly half. They live on every floor, and where other houses keep attics or cellar-holes for storage, here families get put there instead, because bodies have to go somewhere.",
+          "scene": "A tight upward view inside the quarter, with a packed block of patched houses rising on both sides of a lane, lines of laundry between them, a worn stair climbing in shadow, a low cellar opening at street level, and the lane itself barely wide enough for two loaded people to pass.",
+          "points": [
+            {
+              "label": "packed block",
+              "line": "This stretch has the worst name in the quarter for dirt and press of people. That's what happens when a place is made to hold more lives than it can kindly carry: even the walls seem to sweat bad temper."
+            }
+          ]
+        },
+        "stop_03_ghetto_c4": {
+          "narration": "And now the law may finally loosen its grip. Before this autumn Jews here were still tied in law and practice to the quarter, and there was even the old hereditary lease called jus gazzagà, which kept landlords from raising the rent and helped keep people fixed in place. Then the royal decree of 13 October swept away inequality in civil and political rights, and in holding public office too, regardless of religion.",
+          "scene": "A modest, worn street front of the Cinque Scole set among taller houses, with a doorway and worn steps at center, shuttered windows above, and to the right a narrow street corner opening out toward brighter daylight and passing townspeople.",
+          "points": [
+            {
+              "label": "worn steps",
+              "line": "This is the heart of the quarter's worship: the Cinque Scole, where since 1555 the community's five synagogues have been gathered into one building. Packed together, like everything else here, but still kept alive by use, prayer, and memory."
+            },
+            {
+              "label": "street corner",
+              "line": "One sign the change is turning solid already: Samuele Alatri, a leading man here, was elected to the city council in November. That's not charity from above. That's this quarter stepping into Rome and speaking back."
+            }
+          ]
+        }
+      },
+      "transitionOut": "And yet a decree doesn't sweeten damp plaster or carry off refuse. Come along toward the river, che ffo adascio, because the Tiber keeps its own accounts, and what it does to these streets tells you how unfinished every victory is."
+    },
+    "stop_04_tiber_banks": {
+      "arrival": {
+        "line": "Those cramped rooms we just left answer to one more master, and it isn't pope or king. It's the Tevere. I sew near enough to smell it through the shutters, and most days it's only brown water, ropes, washing, boys shouting, boats nudging in for sacks and flour. Then it rises a little, then more, and all at once the same useful edge turns enemy. So, piano co' la lingua and use your eyes. The river speaks plain.",
+        "scene": "From a little above the water on the Regola side, the frame looks across a low muddy bank to the brown-green Tiber sliding past Isola Tiberina. In the foreground, a short run of muddy steps drops into the water beside a plaster wall stained with an old brown tide mark. A small boat is tied close in, its rope lying across the bank. Midframe, Ponte Cestio crosses toward the island, and just beyond it a black mill-hulk sits moored on the current.",
+        "points": [
+          {
+            "label": "muddy steps",
+            "line": "When the water goes, it doesn't put things back kindly. It leaves slime on the steps, grit in your shoes, and mud that dries hard as plaster. If you live low by the bank, you clean first and grumble after."
+          },
+          {
+            "label": "brown stain",
+            "line": "Even a few hours before the December disaster, plenty of Romans still hadn't taken precautions. That's the nasty trick of an old danger: it visits so often people shrug, say domani, and then wake with the river in the room."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_tiber_banks_c1": {
+          "narration": "Most days the Tevere isn't a terror, it's a workplace. Here the bank goes down easy in dirt, patched stone and short stairs, so boats can come right in and make fast almost at your feet. Near Ponte Cestio the mills float on the water itself, grinding while the current does part of the labour, and the same stretch serves for beaches too. That's Rome: sacks, washing, sweat, and a swim, all shoulder to shoulder.",
+          "scene": "A daylight frame from the Regola bank opens along the river toward Ponte Cestio and the island. In the lower foreground a sandy strip lies beside shallow steps, and a small reed-and-matting bathing hut stands near the water's edge. Left of centre, a black mill barge is moored in the stream below the bridge, with a boat nosed into shore nearby. Men with sacks and poles work the bank, and the open unwalled river fills the rest.",
+          "points": [
+            {
+              "label": "sandy strip",
+              "line": "Before they box the river in, Romans use four main beaches along the urban Tevere. The nearest here are the Regola beach opposite Sant'Anna dei Bresciani and the Renella on the Trastevere side, so this muddy edge serves pleasure as well as labour."
+            },
+            {
+              "label": "reed hut",
+              "line": "Bathing was loosened up by Pius the Ninth in 1855, but not as a free scramble wherever a body fancied it. For safety it was supposed to happen inside seasonal bath-huts, made light from poles, matting, reeds, and awnings."
+            },
+            {
+              "label": "mill barge",
+              "line": "That black hulk isn't fancy talk. A photograph made before 1880 keeps floating mills here by Ponte Cestio in plain view, which means this reach stayed a working piece of river machinery after the change of rulers."
+            }
+          ]
+        },
+        "stop_04_tiber_banks_c2": {
+          "narration": "Romans talk of floods the way we talk of damp, because they come often enough that people half-live with them. First the lower steps go under, then cellars, then drains push foul water back, and then the streets nearest the bank start taking the river indoors. But late in December this familiar nuisance turned beast. From the 26th to the 29th it climbed to 17.22 metres at Ripetta, the highest rise since 1637.",
+          "scene": "The frame looks downriver after a bad rise. In front, a doorway at bank level is plastered with drying mud, and a sharp brown water mark runs across the wall above it. Behind, the river still stands high against the low bank, with driftwood caught on steps and a plank fence leaning crooked toward the water.",
+          "points": [
+            {
+              "label": "water mark",
+              "line": "They sort flood heights afterwards, and the reckoning is plain enough: from 13 to 16 metres at Ripetta counts as extraordinary, and above 16 as exceptional, the sort that spills from the banks at several points through the city."
+            },
+            {
+              "label": "doorway mud",
+              "line": "After the inundation, Vittorio Emanuele came on 31 December to inspect the flooded districts for himself, and he placed 200,000 lire at the municipality's disposal for immediate relief. Fine gesture, yes, but the shovelling still fell to ordinary arms."
+            }
+          ]
+        },
+        "stop_04_tiber_banks_c4": {
+          "narration": "After a rise like that, every man with a pen starts curing the river. Since the inundation, all the talk is of doing something big at last, not patching a stair or scraping mud from one doorway. Some want embankments so high and firm the water can't bully the lower quarters again. Others say better send the Tevere around Rome and spare the old banks. Either way, speeches are cheap and masonry isn't.",
+          "scene": "From a slightly raised bank near the island, the frame takes in the pointed upstream tip of Isola Tiberina, the open water on both sides, and the broken arch of Ponte Rotto downriver. In the foreground two surveying men stand with measuring staffs and a rolled paper on the sloping shore. Beyond them the far bank runs low and unwalled, with moored boats and rough steps coming straight down to the river.",
+          "points": [
+            {
+              "label": "surveying men",
+              "line": "The new Italian government wasted no time after the flood. On 1 January 1871 it set up a technical commission with one job only: study how to make Tevere floods harmless to Rome. Once engineers arrive, you know the talk has turned serious."
+            },
+            {
+              "label": "island tip",
+              "line": "By 7 December 1871 that commission had chosen the Canevari scheme: 45-degree embankments and heavy changes around the island here, at an estimate of 32 million lire. That's not mending; that's remaking the river's edge from the ground up."
+            },
+            {
+              "label": "far bank",
+              "line": "And straight off the quarrel begins. Critics say Canevari would mutilate old Rome, altering bridges and even suppressing one branch by the island. Another cure, later backed by Garibaldi, would send the river east and leave this old course navigable with less, steadier water."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away from the water now. Mud makes a mess, but paper decides whose mess it is, who pays, and what gets promised next. We'll go where news is printed and repeated till half the city believes it."
+    },
+    "stop_05_piazza_colonna": {
+      "arrival": {
+        "line": "From the river's mud to this dressed-up middle, it's the same story, only cleaner at first glance. Piazza Colonna sits in the heart of the Corso, with Palazzo Chigi to the north, Palazzo Ferrajoli to the south, Palazzo Piombino closing the east, and the old post-office portico opposite, so if Rome wants to hear itself, it gathers here. After the breach, news comes every way at once — by wire, by letter, by printed sheet, by one man reading aloud, and by another swearing he's heard better.",
+        "scene": "A broad view across Piazza Colonna on a damp day: the Column of Marcus Aurelius rises near the middle of the square, and beyond it the front of Palazzo Chigi closes the north side. Palazzo Ferrajoli runs dark along one side, while Palazzo Piombino blocks the eastern opening of the Corso. Opposite stands the old portico with its ancient Ionic columns. Beneath and beside it are café tables with cups and chairs, knots of townspeople, and several feathered bersaglieri hats among black coats, shawls, and aprons.",
+        "points": [
+          {
+            "label": "the old portico",
+            "line": "By 1860 that porticoed building was doing more than taking letters. The French had used it for military headquarters, and the electric telegraph office was under the same roof, which is Rome all over: antique columns outside, fast little sparks of news within."
+          },
+          {
+            "label": "the café tables",
+            "line": "On the twentieth, these tables were packed tight. De Amicis says ladies, townsmen, and bersaglieri were all mixed together here, shoulder to shoulder, which tells you how a city changes once people think it's safe enough to sit down and talk in public."
+          },
+          {
+            "label": "the feathered hats",
+            "line": "A Roman diarist notes that around midday on 20 September companies of bersaglieri came into the city interior and took station here. Once those plumes were planted in the square, every whisper and every posted sheet had soldiers standing beside it."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_piazza_colonna_c1": {
+          "narration": "That pale shaft isn't some ornament the new rulers borrowed for a day. It's the square's own namesake, the Column of Marcus Aurelius, and it winds upward with scenes of war — soldiers, horses, captives, baggage — from the emperor's fighting against the Marcomanni and other northern peoples on the Danube. Rome loves doing this: setting today's argument under yesterday's victories, so the stone makes everybody sound smaller, which may be for the best.",
+          "scene": "The frame looks slightly upward from near the base of the central column. The pale shaft fills most of the picture, its spiral relief clear enough to pick out a section of carved rain among the crowded figures. At the foot of the monument a little carriage is hemmed in by a pressing crowd of men in dark coats, women in shawls, and a few bersaglieri with plumes, their hands reaching toward it.",
+          "points": [
+            {
+              "label": "the carved rain",
+              "line": "One bit people single out on this column is the miracle of rain, with Jupiter Pluvius pouring water down so it helps the Romans and ruins their enemies. That's a handsome thought in stone, though Rome knows rain doesn't always choose sides so politely."
+            },
+            {
+              "label": "the little carriage",
+              "line": "Perodi says that when General Bottacco arrived here in a small carriage, jubilant Romans lifted him up on their arms and kissed his hands, face, and even his clothes. That's how quickly a military entry can turn into a street feast once the fear slackens."
+            }
+          ]
+        },
+        "stop_05_piazza_colonna_c2": {
+          "narration": "Once the cheering settles, everybody in Piazza Colonna turns their face toward Florence. People are waiting for two bits of news: the law making Rome the capital, and the King's departure for the city. It sounds grand till you bring it down to earth, but that's my trade. Ministries mean clerks, clerks mean rooms, rooms mean rent, and rent bites quicker than patriot talk. Panza piena nun crede ar diggiuno.",
+          "scene": "A street-level view under the portico and along the edge of the square: a newspaper sheet is held up by a seller beside a wall with pasted notices, while several men lean in to read and argue. Just beyond them a short line of waiting carriages stands nose to tail by the curb, drivers perched on their boxes, with a slice of café frontage and the lower part of the column behind.",
+          "points": [
+            {
+              "label": "the newspaper sheet",
+              "line": "Within two days of the breach, Sonzogno had founded La Capitale, and people read it eagerly. Once a new daily catches on that fast, news stops being a solemn announcement and starts becoming a race, with each edition trying to outrun the last rumour."
+            },
+            {
+              "label": "the waiting carriages",
+              "line": "People talk of 17 million lire to transport the capital, and some reckon the move might come after six months from the law. Here that doesn't sound like distant state business. It means ministries, clerks, landlords, soldiers, and builders all bearing down on the same streets."
+            }
+          ]
+        },
+        "stop_05_piazza_colonna_c4": {
+          "narration": "After a government drops, the trick isn't finding talk, it's sorting voices. L'Osservatore Romano went quiet just after the capture, then came back on the seventeenth of October as the continuing papal voice in print. So this square learns a new habit: not just hearing the news, but choosing who to trust, co' coffee going cold and rumour always half a step ahead of the paper.",
+          "scene": "A damp afternoon at a café table in Piazza Colonna: two small coffee cups and saucers sit beside a folded newspaper, with the wet paving stones of the square shining beyond. In the background the lower part of the column rises out of the frame, umbrellas pass under the portico, and the palace fronts sit dark with moisture.",
+          "points": [
+            {
+              "label": "the coffee cups",
+              "line": "A cup of coffee here runs to 3 or 4 baiocchi. That's cheap enough for a man to buy himself a chair and linger over the latest sheet, but not so cheap he forgets he's paying for the privilege of listening to the city think aloud."
+            },
+            {
+              "label": "the wet paving",
+              "line": "By Christmas the other question wasn't politics at all but water. That flood was one of the worst in modern Rome; later men called 28 and 29 December the last flood before the embankments, and Canevari's future walls would be planned about a metre and a half above the level it reached."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's the sum of it, from breach to ballot to rent to mud: Rome has changed masters, yes, but now it has to learn the price of being a capital and the harder trick of living with its own river. I'm Assunta Belli. Thanks for walking with me. Speak soft, watch the street, and come back soon, because in Rome one morning breaks a wall and the next rain remakes the rest. Addio."
+    }
+  }
+}

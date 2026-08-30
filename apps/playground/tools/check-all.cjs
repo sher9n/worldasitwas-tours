@@ -26,7 +26,7 @@ for (const tour of tours) {
   for (const [name, script] of SUITE) {
     if (only.includes("--fast") && name === "full") continue;
     try {
-      const out = execFileSync("node", [script, ...(name === "full" ? ["--", tour] : [])], {
+      const out = execFileSync("node", [script, ], {
         env: { ...process.env, TOUR: tour },
         encoding: "utf8",
         timeout: 20 * 60_000,

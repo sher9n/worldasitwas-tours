@@ -1,0 +1,330 @@
+{
+  "tourId": "tour_stockholm_1755_tavern",
+  "companion": "Brita Lindqvist",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_stortorget": {
+      "arrival": {
+        "line": "Good day to you. I'm Brita Lindqvist, forty-one now, and I keep a tavern here on Stortorget. I'm a widow, born in Stockholm, and I've been at this work long enough to know how the city sounds when it's thirsty. My door takes in clerks from the rådhus, sailors with harbour mud on their boots, market women, and little gentlemen with big opinions. We'll make five stops together, from my square outward, and I'll show you how trade, print, taxes, and debt all get stirred into the same cup here. My stairs hear harbour news, riksdag talk, and court business in one climb, so I hear the city reckon itself every day. Touch anything in the picture and I'll tell you more about it. Hold the green button and you may ask me what you like. Start with the door and the water queue.",
+        "scene": "We stand just inside a tavern doorway looking out over Stortorget. Uneven cobbles fill the foreground, with the open tavern door and a worn bench set against the wall by the stair on the left. In the middle distance a queue of women and servants waits at the square well with buckets and small casks. Beyond them carts, stalls, and steep-roofed merchant houses ring the square, and the large old rådhus closes the north side beneath a pale sky.",
+        "points": [
+          {
+            "label": "the tavern door",
+            "line": "A krog of this sort is often a woman's trade, and there's sense in that, because pouring, calming quarrels, and keeping a score all want the same steady head. Men think the hard part is the cask. It isn't."
+          },
+          {
+            "label": "the stair bench",
+            "line": "That's where I seat the loudest men, by the wall and away from the stair, because after two cups even a thin opinion grows elbows. I like to see a man's hands when he grows eloquent."
+          },
+          {
+            "label": "the water queue",
+            "line": "Those folk are waiting at the square well, and a water queue is never silent for long. Morning news reaches me there first, damp and half sorted, before any skrivare has copied it clean enough for a gentleman to trust."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_stortorget_c1": {
+          "narration": "My sort of krog isn't a wine cellar and it isn't a coffeehouse either. I sell chiefly beer and brännvin, not wine, and the cost that ruins a man isn't the cup by itself but the score behind it. Once drink turns into credit, talk grows bolder than coin, and then I hear what each customer truly believes.",
+          "scene": "Inside the low tavern room, two rough tables run toward a hearth at the back. Tankards, a stone bottle, and a chalk slate lie on the nearest table. Beside them stands a blackened coffee pot near a pair of small cups, and a folded printed sheet sits under a pewter spoon. Wet cloaks hang from pegs by the door, and pipe smoke blurs the dark ceiling beams.",
+          "points": [
+            {
+              "label": "the chalk slate",
+              "line": "That slate is kinder than a lawsuit and sharper than friendship. Pay first if you can, promise if you must, but do not promise like a gentleman and vanish like a sailor, because chalk remembers longer than good humour does."
+            },
+            {
+              "label": "the coffee pot",
+              "line": "Coffee's newer stuff in Stockholm, but it has gathered talk around it fast. The authorities were grumbling as far back as 1705 that coffeehouses kept all sorts up late with company, play, and disorder, as if the pot itself invited allahanda oskickelighet."
+            },
+            {
+              "label": "the folded paper",
+              "line": "That printed sheet can warm a room faster than brandy. This season men carry En Ärlig Swensk from the estates into taverns and stairways, and then every fellow who can spell believes he has taken the kingdom's measure."
+            }
+          ]
+        },
+        "stop_01_stortorget_c2": {
+          "narration": "This square was old before my grandmother's people were dust, and folk say Stockholm begins here. So when the town is stirred, it shows first in these cobbles. The old rådhus holds the north side, and this year the whole city is hotter than usual because the Riksdag is in season and the Hats stand strong. Burghers, clergy, messengers, and listeners all cross here, arguing council, king, and what liberty ought to mean.",
+          "scene": "From the middle of Stortorget, the frame faces the north side where the old rådhus dominates the square. Dark cobbles spread across the foreground, and a knot of men stands in argument off to one side. Between the steep roofs at the far edge of the square, a narrow gap opens toward the newer royal palace in the distance.",
+          "points": [
+            {
+              "label": "the dark cobbles",
+              "line": "Trade goes on, but the place keeps its memory. Folk still speak of the Bloodbath here in November 1520, and I've heard it reckoned near a hundred were publicly put to death on this square."
+            },
+            {
+              "label": "the roof gap",
+              "line": "Through that opening you catch the new palace. The royal family only moved back last year, though work still goes on within, so court splendour and fresh plaster stand together like uneasy kin."
+            }
+          ]
+        },
+        "stop_01_stortorget_c4": {
+          "narration": "For all the talk, Stortorget is still a trading place first. Around it stand stalls and shops for wine, spices, and dry wares, so the whole square smells of business before noon is done. A hired wagon within town is 2 daler kopparmynt for the first hour and 1 daler for each after, and that's a fair lesson in Stockholm: movement costs money, and delay makes it worse.",
+          "scene": "From the west side of Stortorget, the frame looks along two close merchant houses with ornate gables, their plaster fronts catching pale light. At street level a stall is stacked with casks, sacks, and tied spice parcels. A hired wagon stands angled on the cobbles with its horse steaming faintly, while passers-by thread between the wheel and the stall.",
+          "points": [
+            {
+              "label": "the tall plaster house",
+              "line": "That taller front keeps older bones than it admits. One house here has medieval masonry still inside it, though the face is dressed in our own early-century manner, and beside it stands the Schantz house, raised back in 1650."
+            },
+            {
+              "label": "the waiting wagon",
+              "line": "If that sort of wagon is hired for a wedding or a funeral in town, the first hour is 3 daler kopparmynt. Joy and grief both cost extra once a horse must wait under everybody's eye."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now, down toward the quay. Here in the square you've heard the city talk and reckon, and by the water you'll see what feeds that talk, because cargo and credit arrive together."
+    },
+    "stop_02_royal_palace": {
+      "arrival": {
+        "line": "And now that glimpse from the square becomes the whole of it. From here by the water the palace doesn't look like a dwelling at all, more like a cliff cut into windows, and folk who come down the quay do the same thing every time: first they admire it, and then they remember what it has cost them, so pride and vexation walk side by side, which is a very Stockholm way of honouring grandeur.",
+        "scene": "From the quay east of the palace, the frame looks west across wet stone and quay timbers to the long waterside front of the royal palace, a sheer pale wall with rows of windows and stone pilasters running nearly the whole width of the picture. A small boat noses along the waterfront below it. Near a dark arched doorway at ground level, a sentry stands with his musket, while a cart and a waiting sedan chair sit farther off along the wall.",
+        "points": [
+          {
+            "label": "the waterside front",
+            "line": "This is the easier face of the palace, the side toward Saltsjön and Logården, laid out for the Queen and made more graceful than the sterner fronts toward the town. Easier, mind you, does not mean small."
+          },
+          {
+            "label": "the quay boat",
+            "line": "From this side the palace keeps company with boatmen, tarred rope, wet timber and salt water, so however grand it looks, it still breathes the same working air as the rest of Stockholm."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_royal_palace_c1": {
+          "narration": "This ground has had building on it since the Middle Ages, and before these windows there was Tre Kronor. Folk older than I am still speak of that fire as if the smoke had only just gone. It began in the attic above the Hall of State on 7 May 1697, and once it bit, the old castle burned fast. The copper roof carried the heat, the dry timber took it greedily, and near all was lost.",
+          "scene": "Closer now, the frame catches the palace turning away into a heavy north corner above the quay. The stone corner rises high, with long ranks of upper windows running along both faces and pilasters between them. At the foot of the wall the quay edge shows dark and damp, with a small boat low in the foreground.",
+          "points": [
+            {
+              "label": "the north corner",
+              "line": "When Tre Kronor burned, the rebuilt north wing was the one part that came through well enough to be kept, so some of the old place lives on inside the new whether court folk care to say so or not."
+            },
+            {
+              "label": "the upper windows",
+              "line": "The fire had hardly cooled before the regency resolved to rebuild, and Tessin had drawings ready within six weeks. Great people can be wonderfully swift with plans when payment is left for later."
+            }
+          ]
+        },
+        "stop_02_royal_palace_c2": {
+          "narration": "Tessin thought the palace could be finished in six years, and that was a hopeful man's reckoning, because want of money dragged the work toward sixty. The Great Northern War strained the kingdom so badly that building stood still for years, and only in the later 1720s did it properly take hold again. That is how a handsome plan turns into a generation's burden.",
+          "scene": "At a service stretch of the palace wall, a cart stands by the curb with a barrel and a flour sack on it while two men handle tubs near a side doorway. Above them the regular windows go on and on, and a pulley beam projects from an opening higher up the wall. The quay edge and water sit off to one side.",
+          "points": [
+            {
+              "label": "the barrel cart",
+              "line": "To bring palace cost down into a kitchen, reckon small beer at 12 öre a kanna and rye flour at 2 daler the lispund. Folk may not know a grand total for this house, but they know what vanishes from an ordinary table."
+            },
+            {
+              "label": "the pulley beam",
+              "line": "From 1728 they called the levy slottsbyggnadshjälpen and said it would last four years. Well then, it stayed on for more than eighty, which is why the name can still sour a man's mouth quicker than cheap brandy."
+            }
+          ]
+        },
+        "stop_02_royal_palace_c4": {
+          "narration": "And this is the thing: it wasn't planned merely for a monarch's lodging. The palace was designed to hold the Riksdag of the Estates, the Council of the Realm, the archives, the library, and the Supreme Court, with the royal apartments among them, so it works like a whole state packed inside one shell. The Hall of State was ready for the parliament of 1755, which ties this new stone directly to our present political noise.",
+          "scene": "At a vaulted palace entry, a sentry stands to one side while a clerk carrying a bundle of papers steps out past a porter and a servant. Behind them the arch runs back into shade, and above it the high windows and pilasters keep the stone face severe. Near the curb, a sedan chair waits with its poles resting low.",
+          "points": [
+            {
+              "label": "the paper bundle",
+              "line": "You might think a palace lives on velvet, but much of it lives on paper. Petitions, council business, copied orders, court records - they pass from hand to hand till even a porter learns which bundle matters by how tightly it is held."
+            },
+            {
+              "label": "the vaulted entry",
+              "line": "Under arches like that, footsteps carry strangely. A servant's clatter, a councillor's measured tread, a messenger running late - they all sound equally mortal once the stone throws the noise back."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now. You've seen the stone that swallows tax and business together, and next I'll take you where men turn such burdens into speeches, alliances, and votes, which is a dearer trade than beer by far."
+    },
+    "stop_03_skeppsbron": {
+      "arrival": {
+        "line": "Now we've come past the palace flank to the city's other face, because here on Skeppsbron grandeur turns back into hauling and reckoning. This quay was laid out after the east wall was pulled down and new ground filled out in the 1630s, and the warehouses run back from here toward Österlånggatan. In our time it's harbour and parade street together, with merchants living in these dark fronts and keeping their business at the water where all may judge it.",
+        "scene": "A street-level view along Skeppsbron on a grey day. On the left stands a row of tall, dark waterside merchant houses with high upper windows and heavy stone fronts; one open warehouse fills the near foreground, its wide door thrown back on shadowy stacks within. In front of it, two numbered chests are being rolled across the cobbles by porters while a clerk with a ledger stands nearby. To the right, the quay edge drops to brackish water crowded with masts and a moored cargo boat.",
+        "points": [
+          {
+            "label": "open warehouse",
+            "line": "That depth matters more than the frontage. A house here isn't just rooms to the street, because it runs back in workrooms and magazines, so samples, weights, bales, and chests are handled below while the family keeps its better chairs upstairs."
+          },
+          {
+            "label": "numbered chests",
+            "line": "What starts the quarrel here is seldom beauty. Men argue marks, dampness, broken seals, and tare, which is the weight of chest and packing that isn't the tea at all, and a lot can be marked down before the lid is half raised."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_skeppsbron_c1": {
+          "narration": "What folk call goods from the East don't commonly sail straight from China to these stones. The Swedish East India Company keeps that trade to itself, and it brings in tea, silk, and porcelain, but the great cargo is sold first in Gothenburg. After that the lots are broken up and sent on again in smaller shipping, so Skeppsbron deals in the second life of the voyage, when wonder has worn off and resale begins.",
+          "scene": "From the quay edge looking down toward the water, a small cutter lies alongside while men pass crates and chests across a gangplank. In the centre, an opened crate lined with straw holds stacks of blue cups and saucers, and beside it sits a tightly wrapped silk bale on a handcart. Near the gangplank an open tea chest stands with its lid propped back, dark leaves showing within, while the tarred hull and rigging rise behind.",
+          "points": [
+            {
+              "label": "small cutter",
+              "line": "After the auctions, cargo sets off again for places like Amsterdam, Rotterdam, and Ostend, and goods meant for re-export are charged only 0.13 percent of the auction price, which tells you how kindly the rules can treat onward profit."
+            },
+            {
+              "label": "blue cups",
+              "line": "These aren't trifles for a mantel. Whole shipments come as cups and saucers for tea, coffee, and punch, with plates and full dinner services besides, and some are made with a family's arms so that even drinking can wear a pedigree."
+            },
+            {
+              "label": "open tea chest",
+              "line": "A chest like that is judged by the nose as much as the eye. If it smells musty, or the lining has taken damp, or the leaves don't answer their mark, buyers grow sour at once and the whole lot must be reckoned lower."
+            }
+          ]
+        },
+        "stop_03_skeppsbron_c2": {
+          "narration": "If you think all this is for a few delicate mouths, that's not how the trade reads. Last August in Gothenburg they put up more than eleven hundred tons of tea, the biggest East India sale yet, and near all of it was cheap black Bohea rather than the grander sorts. That tells me the real money lies in many middling cups. Coffee came by the same western gate: the customs books first note it in 1685, and then only one skålpund.",
+          "scene": "At a warehouse threshold, a clerk stands over an open chest while a shallow coffee pan of dark beans rests on a barrel beside him. In front, a porter braces a tightly wrapped silk bale on a two-wheeled handcart. Packing straw lies scattered across the cobbles, and in the gloom behind them more crates are stacked against the wall.",
+          "points": [
+            {
+              "label": "coffee pan",
+              "line": "Coffee pays its way into town like any other luxury. Stockholm takes 1 öre silvermynt on every skålpund brought in, and that revenue has been assigned to Adolf Fredrik church, so even a cup for gossip helps raise stone and mortar."
+            },
+            {
+              "label": "silk bale",
+              "line": "Silk meant for folk here at home is charged far harder than goods merely passing through. For the Swedish market the duty runs at 15 percent of the auction price, which is why a bale can grow dear before a tailor even touches it."
+            }
+          ]
+        },
+        "stop_03_skeppsbron_c4": {
+          "narration": "And don't let the bustle fool you into thinking the whole town shares this trade evenly, because it doesn't. When the cargo of the ship Prins Carl was sold, there were fifty-five buyers on paper, divided broadly between Swedish names and Scots or British ones, yet the ten busiest men took 943 of 1,463 tea lots between them. Niklas Sahlgren alone had 297, and Christian Arfvidson 200, so noise is plentiful here but command is not.",
+          "scene": "A tight street-level view against one merchant house. A broad stone doorway opens into a counting room at ground level, above it three tall upper windows catch the light over the quay, and below them a clerk at a standing desk presses a seal onto a folded paper. A porter waits by the threshold with a shoulder strap over one arm, and the worn housefront runs away along the street behind him.",
+          "points": [
+            {
+              "label": "stone doorway",
+              "line": "Christian Hebbe came from Greifswald, took over the von Scheven business, and built one of the leading import firms in town with its seat here on Skeppsbron. That's how this quay works: a new man arrives, and soon half the city buys through his door."
+            },
+            {
+              "label": "upper windows",
+              "line": "A building drawing from 1738 names the owner plain enough as Handelsmannen Hebbe, which pleases me, because it says outright what the house is for. No poetry, just trade standing in stone before our own day."
+            },
+            {
+              "label": "sealed paper",
+              "line": "During the company's second charter men like Abraham Grill the younger, Claes Grill, and Anders von Plomgren sat in the direction, and before they made it a joint stock with fixed capital in 1753, a Swedish subscription for one voyage could stand at 600 daler silvermynt."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away from the chests now, because once goods have been weighed and parceled, the next quarrel is over rules. We'll go where estates and officeholders try to turn private profit into public wisdom, or say they do."
+    },
+    "stop_04_riddarhuset": {
+      "arrival": {
+        "line": "And here at Riddarhuset the talk we've been carrying from quay and palace goes into gear. This is the House of Nobility, and while the Diet sits the noble estate gathers here, yet the square labours almost as hard as the hall, because chairs arrive, lackeys wait, clerks hurry with folded papers, and hall doors keep clapping shut. So politics isn't only a speech under a painted ceiling. It's wet wool, sealing wax, horse dung, and business pushed along by hand.",
+        "scene": "From the cobbles of Riddarhustorget, the view faces the red-brick and pale-stone front of Riddarhuset with its high gables and central entrance. In the foreground a sedan chair has just stopped at an angle, its chair poles jutting toward the viewer. Near the middle a clerk crosses the square with folded sheets tucked in one hand. Two servants linger off to one side by the paving, and above them the upper windows of the building are clear against the sky while the hall door stands open behind the steps.",
+        "points": [
+          {
+            "label": "the chair poles",
+            "line": "A man carried to the door may still need to fetch favour once he's inside, and that's why this square matters. Votes are softened here by errands, courtesies, dinners, promises, and ready money before any fine phrase is ever entered in the record."
+          },
+          {
+            "label": "the folded sheets",
+            "line": "Not every paper here is secret. Some are the official Riksdags-Tidningar, and each number is made in the same handy eight-page quarto form, so a clerk can fold it, pocket it, and read it out again wherever listeners can be found."
+          },
+          {
+            "label": "the upper windows",
+            "line": "Learned men borrow this house too. The Royal Swedish Academy of Sciences uses rooms here in our time, so the same building can hold noble wrangling in one part and lectures on useful knowledge in another, which is very like Stockholm."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_riddarhuset_c1": {
+          "narration": "The kingdom isn't settled in this house alone, though some here behave as if it were. We have four estates in the Diet - nobles, clergy, burghers, and peasants - and each estate has one vote, so a decision commonly needs three to agree. The Diet ought to be called every third year, and once it meets it can sit about a year because business is thick. Between meetings the king governs with the riksråd, but what is done meanwhile must come back under estate hands.",
+          "scene": "The frame stands just inside the main entrance, looking across the threshold and lower hall. Stone flooring leads inward under a high doorway. On one side wall hang rows of painted shields. A clerk on the near side holds a bundle of copied papers against his coat, while two wigged men pause beside him as others pass through the doorway toward the chamber beyond.",
+          "points": [
+            {
+              "label": "the copied papers",
+              "line": "When the Diet is sitting, the council's protocols are brought under review, and ordinances made in the interval don't properly stand as law till the four estates have approved them. That's why so much power here first appears as copies, extracts, and memorials."
+            },
+            {
+              "label": "the painted shields",
+              "line": "Inside the noble estate, voting goes by classes, which gives the higher nobility an advantage over the crowd of lesser nobles. A room may look full enough of equal coats and wigs, and still be tilted before anyone begins to argue."
+            }
+          ]
+        },
+        "stop_04_riddarhuset_c2": {
+          "narration": "Once the estates are sitting, loud talk has to be turned into numbers, committees, and obedience, and that's where Hats and Caps fight. The Hats are strong this session, and the hardest work is done in committees, above all the Secret Committee, where peasants aren't admitted. Then print takes over: En Ärlig Svensk serves the Hat side, and at about 11½ öre a number on subscription, it's cheap enough for delegates, clerks, pastors, merchants, and officials to buy, lend, or hear read aloud.",
+          "scene": "At the edge of the square, three men have stopped in a knot beside the House of Nobility. One holds a folded pamphlet open in both hands. Another has a thin stitched booklet under his arm. Beyond them, near the main steps, a small doorway group of well-dressed men stands talking while servants wait back from the conversation. The brick front of Riddarhuset fills the background.",
+          "points": [
+            {
+              "label": "the folded pamphlet",
+              "line": "A paper like that doesn't fly quite free. Before political sheets circulate, a censor stands over them, and for En Ärlig Svensk the visible go-between is Niklas von Oelreich, which means party quarrel still passes through an official hand."
+            },
+            {
+              "label": "the thin booklet",
+              "line": "For comparison, the second fascicle of Stockholms Historiska Bibliotek costs 2 daler kopparmynt. Learned print is dearer company than party sheets, and that helps explain why polemic travels faster from pocket to pocket than scholarship does."
+            },
+            {
+              "label": "the doorway group",
+              "line": "If you care for the names, the speakers now are von Fersen for the nobles, Benzelius for the clergy, Kierman for the burghers, and Olof Håkansson of Lösen for the peasants, and every one of them stands with the Hats."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now. After so much governing by paper and committee, I'll show you where the same men go to take the air, loosen their tongues, and continue the kingdom's business as if trees made them honest."
+    },
+    "stop_05_kungstradgarden": {
+      "arrival": {
+        "line": "So here the city loosens its shoulders a little, and you feel at once that we've come out of the old town. On Norrmalm the streets run straighter, crossing one another into square blocks, and this garden answers them in the same spirit, with trees and gravel set out as neatly as accounts in a ledger. Folk don't come here because they must pass through. They come to walk, to greet, to be marked, and to mark others in return.",
+        "scene": "A broad gravel walk runs straight through Kungsträdgården beneath double rows of clipped lime trees. Dark bosquets stand on both sides like green rooms with shadowed openings. Ahead lies a patterned parterre and, at its middle, a dry fountain basin. On the right side of the walk a well-dressed woman in a printed apron and fitted bodice strolls with a gentleman carrying a cane; farther back an officer with a sword-knot is turning his head toward them. At the garden gate to the left stands a sentry, and beyond him a wide, straight Norrmalm street opens with a coach turning in the distance.",
+        "points": [
+          {
+            "label": "gate sentry",
+            "line": "He's no ornament. This is still crown ground, and if a place belongs to the crown, somebody will commonly be set where he can judge who comes in and whether their manner is fit for it."
+          },
+          {
+            "label": "printed apron",
+            "line": "A printed-cotton apron like that can be had for 12 skilling, which isn't grand money, though it does better work when the rest of a woman is tidy enough to carry it well among company."
+          },
+          {
+            "label": "straight street",
+            "line": "That's Norrmalm for you. The newer quarter is laid out by rule, with straight streets crossing cleanly and making square blocks, not our old twisting lanes where one house seems always to lean into the next."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_kungstradgarden_c1": {
+          "narration": "What strikes me here is how firmly the ground tells people what sort of behaviour it expects. This isn't loose grass and chance shade. It's still a baroque garden, with long lines, clipped thickets, and a middle laid out like embroidery in earth and green. A person may call it a stroll, and I won't be against it, but the place has already chosen the measure of his steps before he begins.",
+          "scene": "The view looks slightly down across the center of the garden. A broderie parterre fills the foreground in low curling patterns of clipped planting and gravel. In the exact middle sits a round stone fountain basin with no water playing. Double lime avenues run away on both sides toward the far end, and dense dark bosquets frame the walks like walls. A few small figures in wigs and hoods move along the paths at measured distances.",
+          "points": [
+            {
+              "label": "dry fountain",
+              "line": "Water used to be led here from Träsksjön near Jarlaplan, and that work stopped in 1733. Since then the middle keeps its shape and dignity, though it no longer spends itself in spray."
+            },
+            {
+              "label": "dark bosquet",
+              "line": "Those green masses make little outdoor chambers, and folk commonly credit Hårleman with settling the garden into this formal order. It suits court taste very well, because everything seems arranged before anyone arrives."
+            }
+          ]
+        },
+        "stop_05_kungstradgarden_c2": {
+          "narration": "And the walking is never only walking. The people you meet here are mostly prosperous burghers, officials, officers, and households tied in one way or another to court business, and they come for company, for display, and sometimes for advantage. Burghers have been admitted here these many years, yes, but that doesn't make the place equal. A bow may mean civility, acquaintance, ambition, or credit seeking, and often enough it's all four together.",
+          "scene": "A closer view along the gravel path shows three small groups passing one another. In the center a burgher woman in a dark silk hood, fitted damask bodice, and gloves walks beside a man in a powdered wig with a polished cane. To the left an officer in uniform has a sword-knot hanging at his side. Behind them a maidservant follows at a respectful distance carrying a folded wrap. The clipped trees and bosquet walls hem the path neatly on both sides.",
+          "points": [
+            {
+              "label": "damask bodice",
+              "line": "A bodice in worsted damask like that stands at 1 riksdaler 21 skilling. It isn't the sort of purchase for scrubbing floors in, so when it's worn here, it's meant to be reckoned."
+            },
+            {
+              "label": "walking cane",
+              "line": "That cane is as useful for bearing as for support. Men carry themselves with such things, and a turn in this garden gives them a decent excuse to exchange greetings, seek introductions, and show they have leisure to spare."
+            }
+          ]
+        },
+        "stop_05_kungstradgarden_c4": {
+          "narration": "For all its fine manners, this was first the king's kålgård, the crown's kitchen ground on Norrmalm, and in older time vegetables and spices were sent from here to the royal court. That older usefulness still sits under the polish. The garden must be planted, sown, weeded, and carried on in season, and the tender stock watched carefully besides, so among the compliments stand orange and lemon tubs, with myrtle, laurel, jasmine, and other delicate things that want steady hands.",
+          "scene": "The frame stands near a service edge of the formal garden. In the foreground a gardener in a plain coat is pushing a wooden wheelbarrow over the gravel. Beside him are large tubs holding small orange trees and lemon trees, with other potted laurels and myrtles set in a neat row near a pale wall. A second cluster of tubs sits farther back, and beyond them the formal walk continues with two well-dressed strollers passing without much notice of the work.",
+          "points": [
+            {
+              "label": "garden barrow",
+              "line": "A wheelbarrow costs 2 riksdaler 42 skilling, so even the plain gear of growing can bite a purse. Fine order rests on humble timber, iron, and somebody's back pushing both."
+            },
+            {
+              "label": "orange tubs",
+              "line": "In 1741 Johan Wolfgang Meijerhöfver was made garden master here, and part of his charge was to preserve the orangerie plants, keep the waterworks in repair, and see planting and sowing done in their proper seasons."
+            },
+            {
+              "label": "laurel row",
+              "line": "An inventory from that same year reckoned large orange trees, lemon trees, myrtles, olives, pomegranates, jasmines, cedar of Lebanon, laurels, and other tender plants besides. It's a kitchen garden grown proud, but it's still a garden that must be kept alive."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's the walk done, and you've seen my city as I know it: a palace newly in use, Chinese cups on the table, pamphlets passing from hand to hand, and debts crouching behind half the talk. Splendour and shortage are the same story here, only dressed for different company. I'm Brita Lindqvist of Stortorget. Come back my way if you fancy a beer or coffee, and goodbye to you - politics may wait a little, but a score never rubs itself out."
+    }
+  }
+}

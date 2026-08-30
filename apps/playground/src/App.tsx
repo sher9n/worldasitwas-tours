@@ -97,20 +97,20 @@ export function App() {
       {error && <div className="pg-error">{error}</div>}
 
       {gallery && gallery.length > 0 && (
-        <nav className="walks" aria-label="Choose a walk">
+        <nav className="tourcards" aria-label="Choose a walk">
           {Object.entries(
             gallery.reduce<Record<string, TourSummary[]>>((acc, t) => {
               (acc[t.city] ??= []).push(t);
               return acc;
             }, {}),
           ).map(([cityId, tours]) => (
-            <div className="walk-city" key={cityId}>
+            <div className="tourcard-city" key={cityId}>
               <h3>{catalog?.cities.find((c) => c.id === cityId)?.name ?? cityId}</h3>
-              <div className="walk-row">
+              <div className="tourcard-row">
                 {tours.map((t) => (
                   <button
                     key={t.id}
-                    className={`walk ${t.id === tourId ? "on" : ""}`}
+                    className={`tourcard ${t.id === tourId ? "on" : ""}`}
                     onClick={() => {
                       setTourId(t.id);
                       setCity(t.city);
@@ -118,9 +118,9 @@ export function App() {
                     }}
                   >
                     <img src={t.cover.image} alt="" loading="lazy" />
-                    <span className="walk-year">{t.year}</span>
-                    <span className="walk-title">{t.title}</span>
-                    <span className="walk-who">
+                    <span className="tourcard-year">{t.year}</span>
+                    <span className="tourcard-title">{t.title}</span>
+                    <span className="tourcard-who">
                       {t.companion.name} · {t.stopCount} stops
                     </span>
                   </button>

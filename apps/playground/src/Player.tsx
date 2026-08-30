@@ -619,15 +619,19 @@ export function Player({ tour, onEvent, onCompanion }: { tour: Tour; onEvent: Ev
             </>
           )}
           {spotsRevealed && spots.map((h) => {
+            // Her circle sits low on the right. A marker underneath it cannot be
+            // tapped, so anything that lands there is moved clear of it.
+            const underCircle = h.x > 0.62 && h.y > 0.68 && h.y < 0.93;
+            const x = underCircle ? Math.max(0.08, h.x - 0.34) : h.x;
             const active = hotspot?.id === h.id;
             const below = h.y < 0.28; // a high point gets its label underneath, clear of the HUD
             const low = h.y > 0.68; // a low point lifts its label clear of the controls and her circle
-            const edge = h.x < 0.22 ? "edge-l" : h.x > 0.78 || (low && h.x > 0.5) ? "edge-r" : "";
+            const edge = x < 0.22 ? "edge-l" : x > 0.78 || (low && x > 0.5) ? "edge-r" : "";
             return (
               <button
                 key={h.id}
                 className={`poi ${gated ? "beckon" : ""} ${active ? "active" : ""} ${hotspot && !active ? "dim" : ""} ${below ? "below" : ""} ${low ? "low" : ""} ${edge}`}
-                style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%` }}
+                style={{ left: `${x * 100}%`, top: `${h.y * 100}%` }}
                 data-noadvance
                 onClick={() => openHotspot(h)}
                 aria-label={h.label}
