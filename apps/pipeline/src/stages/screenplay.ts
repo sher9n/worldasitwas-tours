@@ -75,7 +75,7 @@ const STOP_SCREENS_SCHEMA = {
       additionalProperties: false,
       required: ["line", "scene", "points"],
       properties: {
-        line: { type: "string", description: "What the guide says on arriving. 55 to 95 words, except the first stop of the tour which is longer because it introduces them." },
+        line: { type: "string", description: "What the guide says on arriving: 20 to 30 words. HARD LIMIT 32 words. One thought, not a paragraph." },
         scene: { type: "string", description: "What the picture shows: a single photographic frame described in one paragraph, naming every thing the points below refer to, so they can be found in it." },
         points: {
           type: "array",
@@ -101,7 +101,7 @@ const STOP_SCREENS_SCHEMA = {
         required: ["cardId", "line", "scene", "points"],
         properties: {
           cardId: { type: "string" },
-          line: { type: "string", description: "The narration over this picture: 55 to 90 words carrying ONE idea." },
+          line: { type: "string", description: "The narration over this picture: 20 to 30 words. HARD LIMIT 32 words. ONE idea, said once." },
           scene: { type: "string", description: "What the picture shows: one photographic frame, naming every thing the points refer to." },
           points: {
             type: "array",
@@ -115,7 +115,7 @@ const STOP_SCREENS_SCHEMA = {
         },
       },
     },
-    transitionOut: { type: "string", description: "Said while walking to the next stop: 25 to 45 words that hand the listener forward. On the last stop this is the farewell instead, and it is longer." },
+    transitionOut: { type: "string", description: "Said while walking to the next stop: 15 to 25 words that hand the listener forward. On the last stop this is the farewell, which may run to 60 words." },
   },
 } as const;
 
@@ -132,7 +132,9 @@ const VOICE_RULES = `HOW THE WRITING MUST SOUND
 
 WHAT EACH KIND OF LINE DOES
 - The arrival lines are one continuous story across the whole tour. The first one introduces the guide before anything else: a greeting, their name, their trade, how long they have done it, then what the walk is and how many stops, and only then how to look and how to ask. The last stop's transitionOut is the farewell: what the walk added up to, their name again, and goodbye.
-- A scene line carries ONE idea. Not a list of facts.
+- Every line is short. Twenty to thirty words, never more than thirty-two. Count them. A line of forty words is a picture held for fifteen seconds, which is the thing this tour is being rewritten to stop.
+- A scene line carries ONE idea in about eight seconds of speech. A picture holds the screen for exactly as long as its line, so a long line means a still picture the visitor stares at; keep them short and let the pictures change.
+- The tour is a sequence of short looks, not a few long speeches. Where a thought needs more than ten seconds, split it across two screens that each show something different.
 - A point line adds something neither its scene nor any other point has said. It never repeats what she just said, and never opens with "Look there", "See", "Mind that" or "There now".
 - A fact appears exactly once in the whole tour. Prices are rationed: at most one or two in a stop, and only where the price is the point.
 
@@ -208,7 +210,7 @@ The guide: ${recipe.companion.name}, ${recipe.companion.role}. ${recipe.companio
 How they speak: ${companion.speechNotes}
 Sample phrases: ${companion.samplePhrases.join(" | ")}
 
-${isFirst ? `THIS IS THE FIRST STOP, so the arrival line introduces them: ${plan.introduction}\nAfter introducing themselves and saying what the walk is, they explain in their own words, as its own short beat rather than tacked onto a longer sentence, that touching something in the picture will have them talk about it and that holding the green button lets the visitor ask them anything. Use the words "green button". Then they turn to the first thing worth looking at. The whole arrival line runs 120 to 170 words.` : `The arrival line picks up from where the last stop left off. Do not re-introduce them.`}
+${isFirst ? `THIS IS THE FIRST STOP. The arrival line is only the first breath of the introduction: a greeting, their name and what they do, in 30 to 40 words. The rest of the introduction, how long they have done it, what the walk is and how many stops, and how to look and ask, carries on across the first two card screens of this stop, so the picture changes while they are still introducing themselves: ${plan.introduction}\nAfter introducing themselves and saying what the walk is, they explain in their own words, as its own short beat rather than tacked onto a longer sentence, that touching something in the picture will have them talk about it and that holding the green button lets the visitor ask them anything. Use the words "green button", on one of those first card screens rather than in the arrival line.` : `The arrival line picks up from where the last stop left off. Do not re-introduce them.`}
 ${isLast ? `THIS IS THE LAST STOP. Its transitionOut is the farewell, 60 to 90 words: ${plan.farewell}` : ""}
 
 STOP ${stopIndex + 1} of ${recipe.stops.length}: ${stop.title}

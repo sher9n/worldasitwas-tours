@@ -1,0 +1,653 @@
+{
+  "tourId": "tour_london_1850_flower_seller",
+  "companion": "Nell Baker",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_ludgate_hill": {
+      "arrival": {
+        "line": "I sell flowers on Ludgate Hill, with a shallow basket on my arm and one eye always on the wheels.",
+        "scene": "A wide street-level view looks uphill along wet Ludgate Hill after rain. The open roadway climbs toward the full west front and great dome of St Paul's at the top center, with the two western towers showing. Omnibuses, a brewer's dray, a hackney cab, carts, and hand-barrows are jammed across the middle of the hill, and several roof passengers sit above one omnibus. On the right foreground corner, a broom boy stands by a muddy crossing with his broom angled over a thin swept path. On the left pavement, near churchyard railings and shopfronts with painted signs and bow windows, a flower seller carries a shallow basket.",
+        "points": [
+          {
+            "label": "the dome",
+            "line": "That great round back of stone was Sir Christopher Wren's doing, and they count the cathedral complete since 1711, which is older news than any cry in this street, and steadier too."
+          },
+          {
+            "label": "roof passengers",
+            "line": "Those roof people pay for air and soot together. When traffic locks, they hear every quarrel in the street and likely smell my wallflowers before they pass me at this crawl."
+          },
+          {
+            "label": "the broom boy",
+            "line": "He'll whisk the worst of the slop aside and wait with his hand half out, because a busy corner may keep him in coppers all day, though only on a good one."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_ludgate_hill_c1": {
+          "narration": "I've kept Tom and Sal on this road since my husband died.",
+          "scene": "A closer pavement view shows a shawled flower seller paused beside black churchyard railings on Ludgate Hill. Her shallow flower basket hangs from one arm, filled with dark violets, yellow wallflowers, and fresh green watercress. The railings run behind her toward the churchyard, while passers-by in bonnets, caps, and top hats squeeze past between the curb and the shopfronts.",
+          "points": [
+            {
+              "label": "the flower basket",
+              "line": "A shallow basket suits the trade because folks must smell the flowers before they buy. If violets keep sweet they earn; if they turn warm and flat, they are only dead weight uphill."
+            },
+            {
+              "label": "the churchyard railings",
+              "line": "These railings make a handy pitch, giving you a back to lean on and a moment to sort your bunches, though the beadle or police may soon fancy you elsewhere."
+            }
+          ]
+        },
+        "stop_01_ludgate_hill_c2": {
+          "narration": "I know the fares, crossings, customers, and smells here, so ask me anything.",
+          "scene": "The camera faces a bookseller and print shop on Ludgate Hill. A paper boy stands in the foreground with folded sheets tucked under his arm. Behind him, a deep bow window is crowded with prints, pamphlets, and broadsides, and a painted sign hangs above the doorway. Men hurrying past glance toward the window while wheels and horses blur in the street beyond.",
+          "points": [
+            {
+              "label": "the paper boy",
+              "line": "He has murders, meetings, verses, and the last fright from Parliament all rustling on one arm, and he'll sing a line of the ballad if he thinks that will loose a coin."
+            },
+            {
+              "label": "the bow window",
+              "line": "Print's everywhere on this road, and many of us can make out a bit if we go slow, though writing our names fair is another business altogether, for market folk especially."
+            }
+          ]
+        },
+        "stop_01_ludgate_hill_c4": {
+          "narration": "That's Ludgate's trick: St Paul's grand above us, while below, every wheel, cry, and wet boot is after a penny.",
+          "scene": "A centered view from midway up the hill looks straight toward St Paul's, with the whole roadway rising clean to the cathedral. The open roadway fills the middle of the frame without any bridge or viaduct across it. In the foreground and lower middle, the crowd below thickens around omnibuses, carts, women in shawls, porters with loads, and clerks threading through the traffic.",
+          "points": [
+            {
+              "label": "the open roadway",
+              "line": "You can still take the whole pull of Ludgate in one look because no railway strides across it yet; folk say a viaduct will come later, but not in my time of selling."
+            },
+            {
+              "label": "the crowd below",
+              "line": "This is only one street among thousands, and London is reckoned at about two and a third million souls now, so a morning crush here is no marvel, only the common size of things."
+            }
+          ]
+        },
+        "stop_01_ludgate_hill_c5": {
+          "narration": "That dome heartens me, because however rough the morning turns, there's something in London stands fast and high over it.",
+          "scene": "A low curbside view catches the wet gutter in the foreground, where cloudy water runs along the kennel beside gleaming granite setts. Above it, the pale curve of St Paul's dome rises between shop roofs. On a wall to the left, a cluster of pasted bills and torn notices hangs crooked above the pavement, while people step around the gutter with lifted hems and careful boots.",
+          "points": [
+            {
+              "label": "the wet gutter",
+              "line": "That wet along the kennel puts me in mind of the summer before last, when cholera took some fourteen thousand Londoners, and grand stone overhead didn't sweeten what ran below."
+            },
+            {
+              "label": "the bills",
+              "line": "Every shopfront and hoarding wants your eye, because London is forever announcing itself. Folk are full of talk about the great glass show promised for Hyde Park, though most of us have other errands."
+            }
+          ]
+        },
+        "stop_01_ludgate_hill_c6": {
+          "narration": "This early, it's clerks, porters, servant girls, boys with papers, and sellers like me, while an omnibus crawls past.",
+          "scene": "The frame is tight beside a crawling omnibus on Ludgate Hill. The conductor stands on the rear step with one hand on the rail, mouth open mid-shout, while passengers sit shoulder to shoulder on the roof above him. Just beyond the omnibus, a coffee stall sends up steam from its urn, and two men stand with mugs near the curb as horses and wheels press by.",
+          "points": [
+            {
+              "label": "the conductor",
+              "line": "He must bawl his road above iron, bells, and tempers, and keep his footing on that step besides. A smart one can fill his seats quicker than a lazy driver clears a yard."
+            },
+            {
+              "label": "the coffee stall",
+              "line": "That steam is coffee, black and heartening, and many a man takes it standing with his collar up, because the street feels kinder once there's something hot inside you before work."
+            }
+          ]
+        },
+        "stop_01_ludgate_hill_c7": {
+          "narration": "We all must bargain with the mud, which is why that broom boy earns halfpennies clearing a dry strip there.",
+          "scene": "A close street-level view fixes on a muddy crossing where the granite setts are churned dark with rain and dung. A thin swept strip runs from curb to curb through the muck, and the broom boy stands just beside it with his broom braced in both hands. At the edge of the crossing, a hackney cab's front wheel is turned sharply, its rim thick with mud, while boots and skirts pick their way around it.",
+          "points": [
+            {
+              "label": "the swept strip",
+              "line": "He sells dry footing by the inch, which is a queer trade till you've had your petticoat splashed or your boot filled at the seam, and then it seems sensible enough."
+            },
+            {
+              "label": "the cab wheel",
+              "line": "Once the wheels begin their slip and shove, the mud climbs everywhere: hem, stocking, trouser, basket, all of it, and the day's respectability goes home speckled before dinner if you're unlucky."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away down the slope now; where the hill spends itself, the mud and the river begin mixing closer."
+    },
+    "stop_02_st_pauls_churchyard": {
+      "arrival": {
+        "line": "Come up into the Churchyard with me; trade presses close under the dome here, and every bunch must prove itself.",
+        "scene": "A street-level view across St Paul's Churchyard on a bright but smoky spring morning, with the darkened dome rising huge above crowded cathedral steps. In the foreground stands Nell with a shallow basket showing deep purple violets and bright green cress. To the left of the steps a little basket girl waits in a shawl with her own small load. Mid-frame, a pair of country visitors in travel clothes pause awkwardly among black-coated clerks, aproned shopmen, and a porter carrying a wrapped parcel. Shopfronts and business doorways press tight against the precinct at the edges of the stone pavement.",
+        "points": [
+          {
+            "label": "little basket girl",
+            "line": "Most of this flower trade falls to children, truth be told. Girls go out at about seven with a shallow basket and maybe two shillings stock-money, and many begin with watercress because it turns quick."
+          },
+          {
+            "label": "country visitors",
+            "line": "A stranger here is good violet custom. A penny on flowers is kindness or show more often than need, and folk come up these steps ready to spend on both."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_st_pauls_churchyard_c1": {
+          "narration": "With violets it's plain enough: I buy twelve bunches for a shilling, part them smaller, and sell them at a penny.",
+          "scene": "A close frame at the cathedral railings, looking down on Nell's hands as she divides bunches of violets on a flat stretch of grey stone. Open paper wraps lie ready beside the flowers, a few copper coins sit near her cuff, and the shallow basket on her arm still holds more violet bunches waiting to be remade.",
+          "points": [
+            {
+              "label": "paper wraps",
+              "line": "The flowers aren't the only expense. Paper for a dozen bunches costs a penny, though sometimes you may get it for a halfpenny if the seller's in a yielding humour."
+            },
+            {
+              "label": "violet bunches",
+              "line": "Violets bear the street better than roses, which is why some dealers favour them. Mayhew sets their street sale by the year in great heaps, mostly at a halfpenny the bunch."
+            }
+          ]
+        },
+        "stop_02_st_pauls_churchyard_c2": {
+          "narration": "Watercress goes quicker than flowers: four bunches a penny, and off it goes to folk coming up for the cathedral.",
+          "scene": "A mid-street frame near the cathedral steps, with Nell holding out tied green bundles of watercress toward a black-coated clerk reaching with a coin. The thick stalks and broad leaves show plainly in her hand. Behind him an aproned shopman stands in an open shop doorway, while a porter squeezes past and two visitors climb the steps under the dark stone of the cathedral.",
+          "points": [
+            {
+              "label": "green bundles",
+              "line": "Cress is bought by the hand in market reckonings, and one hand makes about five halfpenny bundles. That's why I tie it to look biggish without wasting a sprig either."
+            },
+            {
+              "label": "thick stalks",
+              "line": "Street sellers like the big-stalked, broad-leaved cress from Farringdon better than the finer sort at Covent Garden. It stands up handsome in the hand and looks worth the penny too."
+            },
+            {
+              "label": "shop doorway",
+              "line": "Spring helps the green stuff along because people reckon cress sweetens the blood, and a child seller said the shops took most of hers between six in the morning and ten."
+            }
+          ]
+        },
+        "stop_02_st_pauls_churchyard_c5": {
+          "narration": "On a lucky morning cress may bring eighteenpence on sixpence laid out, but rain can spoil even that.",
+          "scene": "A greyer frame under a lowering spring sky, with wet flagstones shining dark across the Churchyard. Nell's basket sits half-full against the railings, and nearby another flower girl has drawn her shawl close while watching thin foot traffic hurry by along the edge of the cathedral wall.",
+          "points": [
+            {
+              "label": "other flower girl",
+              "line": "One flower girl said she and her mate didn't clear less than sixpence between them, except in very bad luck. That's two bellies and two pairs of shoes bargaining with the sky."
+            },
+            {
+              "label": "wet flagstones",
+              "line": "Rain chills the scent out of violets and drives buyers under eaves. A bright noon can mend a poor morning, but a soaking day leaves you carrying half your stock home."
+            }
+          ]
+        },
+        "stop_02_st_pauls_churchyard_c6": {
+          "narration": "A stale quartern loaf runs fourpence, sometimes three, and porter about twopence, so you see the pinch.",
+          "scene": "A pavement frame at the Churchyard edge beside a bread barrow, where several quartern loaves lie stacked under a cloth and a smaller penny loaf sits near the front. A working man holds a plain porter mug by an alehouse doorway, while Nell stands beyond with her basket, measuring what the day's coppers will reach.",
+          "points": [
+            {
+              "label": "bread barrow",
+              "line": "Bread hawkers suffer in wet weather and short days much as we do. People hurry past, the loaves sit, and a street trade that depends on pausing loses its chance."
+            },
+            {
+              "label": "penny loaf",
+              "line": "A penny loaf may sound a poor little thing, yet many a body counts it a meal worth thinking on. When takings are low, that single penny is the whole question."
+            }
+          ]
+        },
+        "stop_02_st_pauls_churchyard_c7": {
+          "narration": "So this is my reckoning place: stone enough for kings above, and below it nothing grander than pennies and a basket turning.",
+          "scene": "A view looking along the Churchyard frontage, where the cathedral's massive wall rises on one side and trade crowds the other. A painted warehouse sign reading James Spence & Co. hangs above a large doorway. Beside it runs a line of mixed shopfronts with different windows and signs, while two boys carrying wrapped book parcels head toward a passage leading behind the cathedral toward Paternoster Row.",
+          "points": [
+            {
+              "label": "warehouse sign",
+              "line": "A lithograph made near this time shows James Spence and Company, warehousemen, at numbers seventy-six to seventy-nine here. It tells you the trade wasn't behind the churchyard, but planted square upon its edge."
+            },
+            {
+              "label": "mixed shopfronts",
+              "line": "A street book lists this Churchyard with wholesale drapers and booksellers, and milliners and chemists besides. That's how it goes here: ribbons, remedies, ledgers, and mourning all within a few doors."
+            },
+            {
+              "label": "book parcels",
+              "line": "Paul's Churchyard has long belonged to the book trade, and though the old open stalls are gone, the printing and publishing still cling about Paternoster Row behind the cathedral there."
+            }
+          ]
+        }
+      },
+      "transitionOut": "The river often tells you why, and it has a stronger smell than violets."
+    },
+    "stop_03_paternoster_row": {
+      "arrival": {
+        "line": "Come along into Paternoster Row. It looks sober enough, but it's all paper and parcels here.",
+        "scene": "From standing height on the narrow pavement, the frame looks west along Paternoster Row: a cramped setted carriageway with a dray edging past a handcart, tall brown houses closing in on both sides, gilt booksellers' names above sober shopfronts, two parcel boys hurrying along the left pavement, and a side court opening on the right where leather-aproned men are half seen; farther south through a gap, the pale curve of St Paul's shows close by.",
+        "points": [
+          {
+            "label": "the tall houses",
+            "line": "The row's commonly no wider than two vehicles can manage at once, with just these mean pavements, and the houses keep such a dark face that strangers think it quiet, though business is humming behind every blind and counter."
+          },
+          {
+            "label": "the parcel boys",
+            "line": "Booksellers and publishers have had the run of this place so long they leave scant room for anybody else, which is why even the errand boys seem made of string, paper, and hurry."
+          },
+          {
+            "label": "the side court",
+            "line": "That side court smells of paste and leather because the binders work right on the spot here, not elsewhere, and a finished book begins with men in aprons, boards, glue, and sore thumbs."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_paternoster_row_c1": {
+          "narration": "This is the book quarter proper; the fronts keep a grave face, and behind them men are shifting opinions all day.",
+          "scene": "Seen from a little back from the roadway, a broad bookseller's front fills the middle, its sign stretching across two adjoining doorways with numbers over them, while a porter shoulders corded bundles from the curb. To the right, the mouth of Lovell's Court opens darkly, and two men in leather aprons stand there among boards and pasted paper.",
+          "points": [
+            {
+              "label": "the double doorway",
+              "line": "That big concern with the two doorways is Longman, at numbers thirty-eight and forty-one, and you'll find the name in the trade books year after year, which tells you this isn't fluttering hawker's work but settled money."
+            },
+            {
+              "label": "the leather aprons",
+              "line": "In Lovell's Court, just there beyond the cartwheel, Remnant and Edmonds have a string of rooms for binding and leather embossing, so the books aren't only sold here; they're being covered, pressed, and finished within earshot."
+            }
+          ]
+        },
+        "stop_03_paternoster_row_c2": {
+          "narration": "One buys the sheet, another gives it tongue, and a whole court gets Parliament, murders, and scandal for nothing.",
+          "scene": "Inside a narrow court off the Row, a knot of street men and boys stand in a half-circle by a doorway while one man in the middle holds a large newspaper sheet chest-high. Tucked under his arm is another cheap number with a bold illustrated front page, its black picture plain enough to catch the eye from across the court.",
+          "points": [
+            {
+              "label": "the reader's sheet",
+              "line": "I've heard it myself in summer: one man with the beer-shop Sunday paper, or some cheap number, reading out in a court while costers and loafers listen as hard as church folk to a sermon."
+            },
+            {
+              "label": "the pictured page",
+              "line": "Reynolds goes down famously with street hearers, especially The Mysteries of the Court, and the cuts do half the work, because a bold picture will hold a ring of listeners even where the words stumble."
+            }
+          ]
+        },
+        "stop_03_paternoster_row_c4": {
+          "narration": "Cheap print goes everywhere from here, and what catches best is often a picture before it's words.",
+          "scene": "At a pavement stall under a dull shopfront, a workman in rough clothes is paying for a folded paper while two paper boys beside him sort a stack of penny sheets, some with large woodcut pictures showing through. Behind them, passers-by squeeze along the narrow flags as a cart wheel nearly brushes the curb.",
+          "points": [
+            {
+              "label": "the workman with paper",
+              "line": "The best customers for penny papers, they say, are mechanics taking one home to amuse the family after work, so a single sheet may have six or seven hearers by the fire."
+            },
+            {
+              "label": "the paper boys",
+              "line": "Boys buy almost as many as the men, and they pass them on till the corners go soft, so the news comes to half the neighbourhood already thumbed and argued over."
+            }
+          ]
+        },
+        "stop_03_paternoster_row_c5": {
+          "narration": "A new weekly's just come out at two pence, because even respectable reading knows it must travel cheap to live.",
+          "scene": "A bookseller's window is shown straight on, the glass packed with fresh print: a neat new weekly displayed face out, a monthly sheet beside it, and beyond the doorway several wooden crates and tied bundles stacked under a painted number 56. Reflections of carts and hats slide across the panes, but the wrappers and crates are still clear.",
+          "points": [
+            {
+              "label": "the new weekly",
+              "line": "That neat fresh wrapper is Household Words, only started on the thirtieth of March, so it's as new to the street as primroses, though it means to speak plain enough for ordinary firesides."
+            },
+            {
+              "label": "the monthly sheet",
+              "line": "Beside it sits the Household Narrative of Current Events, brought out this year as a cheap monthly looking back over home and foreign news for anyone who wants the world tidied into one packet."
+            },
+            {
+              "label": "the tract crates",
+              "line": "Those crates by number fifty-six are the Religious Tract Society's, and they boast about twenty-four million copies in a year, with some five hundred and twenty-four million sent out altogether by March."
+            }
+          ]
+        },
+        "stop_03_paternoster_row_c6": {
+          "narration": "As for that grand show in Hyde Park, half London cries marvel and the other half folly.",
+          "scene": "Outside another window, a printed notice is pinned where it can be read from the street, and two men have stopped under it mid-argument, one with his hand raised and the other turned half away. Between them stands a passerby holding a round loaf tight under his arm, listening without meaning to.",
+          "points": [
+            {
+              "label": "the printed notice",
+              "line": "That paper in the window is the sort of thing that set tongues going, because the Royal Commission put out its first plans in February, and since then Hyde Park has been built over in talk if nowhere else."
+            },
+            {
+              "label": "the arguing men",
+              "line": "From men like these I catch the whole jumble at second hand: the Queen, Prince Albert, foreigners, wages, bread, and whether the glass place will make London grander or only more ridiculous."
+            },
+            {
+              "label": "the loaf under arm",
+              "line": "Bread prices prick sharper than speeches. Only this May the four-pound loaf in London stood at fivepence farthing to sixpence farthing, and plenty of us can tell you which end of that reckoning we met."
+            }
+          ]
+        },
+        "stop_03_paternoster_row_c7": {
+          "narration": "I gather plenty of news, because a street can pass a story along quicker than ink dries.",
+          "scene": "At the edge of the Row near an opening southward, a bare recessed doorway makes a dull background for a woman with a shallow flower basket on her arm. Clerks and porters pass without stopping, one man glancing toward the violets as he goes, and beyond the gap the pale stone of St Paul's catches a little light.",
+          "points": [
+            {
+              "label": "the bare doorway",
+              "line": "You may search the City and not find a flower-stand fixed proper, because nobody here wants blossom standing about permanent, everything's for business, and anything sweet must travel on an arm like mine."
+            },
+            {
+              "label": "the flower basket",
+              "line": "City people ain't regular flower buyers, so a violet seller by St Paul's lives on passing trade, and passing trade is a thin friend: kind one minute, gone round the corner the next."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away west and down again. The river, when we reach it, has a rougher way of spreading news."
+    },
+    "stop_04_fleet_street": {
+      "arrival": {
+        "line": "Come along to Fleet Street, and keep your nose about you, because something fouler runs hidden under all that business.",
+        "scene": "From the middle of Fleet Street looking west, the wet cobbles slope gently down through a crush of omnibuses, cabs, carts, riders, and men on foot. Smoke-dark shopfronts line both sides. Near the left kerb a street grating sits in the stones beside a coffee stall glowing over charcoal, with bright tin cans, mugs, and a small heap of watercress. A policeman stands close by. Ahead, Temple Bar rises across the street, blackened and narrow above the traffic.",
+        "points": [
+          {
+            "label": "street grating",
+            "line": "Under these stones runs the Fleet, not as any pretty stream, but as a main City sewer, taking filth away toward the Thames by Blackfriars Bridge. You can't see it, and all the same the smell tells on it when the air sits heavy."
+          },
+          {
+            "label": "coffee stall",
+            "line": "A stand here can do handsome trade in the small hours. From midnight to two is counted prime time on this stretch, when the late foot traffic is thick and cold folk will pay for heat."
+          },
+          {
+            "label": "stone gateway",
+            "line": "That blackened gateway pinches all the westward traffic together, which is why coachmen curse it and everyone notices it. Smoke has made it look as dingy as an old grate, though it still carries a deal of ceremony."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_fleet_street_c1": {
+          "narration": "When it turns warm, the road gives up a sour breath from below, and nobody thinks that's innocent.",
+          "scene": "A low view along the kerb shows wet cobbles shining beside a drain grating, brown kennel water wobbling in the rut, and a wheel striking past so close the splash lifts. Smoke hangs against the dark shop walls, and the roadway rises away uphill under constant traffic.",
+          "points": [
+            {
+              "label": "drain grating",
+              "line": "What you smell comes strongest at the openings. After rain, or in a warm spell, the sour sewer-breath lifts plain enough, and most folk here take bad smell and bad sickness for near relations, whether in air or water."
+            },
+            {
+              "label": "uphill roadway",
+              "line": "This buried part isn't the whole business. Farther north, outside the City's bounds, bits of the Fleet still lie open, so what's hidden under our boots keeps company with open foul water beyond."
+            }
+          ]
+        },
+        "stop_04_fleet_street_c2": {
+          "narration": "When the drains turn sharp, you hear it in talk at once: cholera may come again.",
+          "scene": "Beside a narrow court mouth off Fleet Street, three men stand with mugs near the coffee stall, one with his collar up and one holding a kerchief to his nose. A woman passes quickly along the slim pavement, and behind them the wet roadway carries cabs and carts past without a break.",
+          "points": [
+            {
+              "label": "court mouth",
+              "line": "Last year's reckoning frightened everybody. In the City alone, three thousand seven hundred and sixty-three died in the fifty-two weeks ending late September, and cholera had a hard hand in that terrible count."
+            },
+            {
+              "label": "kerchiefed man",
+              "line": "When a man lifts cloth to his nose, he ain't only tender to stinks. Plenty reckon foul drains, tainted wells, and bad pumps warn you together, and no one laughs much at caution now."
+            }
+          ]
+        },
+        "stop_04_fleet_street_c5": {
+          "narration": "Here's comfort on the kerb: bright tins, charcoal, and steam, with men stopping long enough to get warm inside.",
+          "scene": "At the kerb the coffee stall fills the frame: bright tin cans shining over charcoal, thick white steam, a row of rough mugs, a board with bread beside it, a bunch of watercress, and the stall keeper reaching forward. Two labouring men stand shoulder to shoulder, and a policeman waits just beyond them in the street light.",
+          "points": [
+            {
+              "label": "tin cans",
+              "line": "He sells coffee, tea, and cocoa from those bright cans, and the common reckonings are plain enough: a mug for a penny, or a half-mug for a ha'penny when stock-money is short."
+            },
+            {
+              "label": "rough mugs",
+              "line": "The company changes with the hour. About midnight you'll get night-walkers, fast gentlemen, and loose girls, but toward morning it's working men, and here I'd wager a sprinkling of office and printing folk besides."
+            },
+            {
+              "label": "the policeman",
+              "line": "A stall like this stands fair under the policeman's eye, which is why people say thieves don't much haunt them. Warm drink likes a bit of order round it, same as the rest of us."
+            }
+          ]
+        },
+        "stop_04_fleet_street_c6": {
+          "narration": "Every wheel must pinch through that blackened gateway, so the Bar feels less like ornament than an obstacle.",
+          "scene": "The view faces straight down the crowded street to Temple Bar, its smoke-black stone spanning the road ahead. Omnibuses, cabs, carts, and riders jam beneath it, wheels almost locked, while shopfronts close in on both sides and the pavement is crowded with men pushing west.",
+          "points": [
+            {
+              "label": "stone arch",
+              "line": "That gate's no mere ornament. It marks a chief entrance to the City, and the stone bar standing here now was finished in 1672, though smoke has given it a far older look."
+            },
+            {
+              "label": "jammed wheels",
+              "line": "For all the fine meaning hung on it, the day's truth is simpler: everything westbound must squeeze through there, and the squeeze sets horses fretting, drivers swearing, and walkers dodging for their shins."
+            }
+          ]
+        },
+        "stop_04_fleet_street_c7": {
+          "narration": "That's Fleet Street's whole temper: everybody eating, arguing, and earning above what they dread.",
+          "scene": "Near Temple Bar, the frontages crowd together: dark windows of printing and office rooms above, a chop-house sign hanging out, and at the kerb a paper boy edging past a stall man tending his charcoal fire. Men hurry by with packets under their arms while the traffic grinds on behind them.",
+          "points": [
+            {
+              "label": "paper boy",
+              "line": "This road feeds on news and law besides eating. Offices, stationers, taverns, and chambers all live by the stream between Westminster and the City, so the hurry here isn't fashion; it's daily bread."
+            },
+            {
+              "label": "stall man",
+              "line": "Many who keep stalls come to it after rough turns elsewhere: a cabman out of luck, a labouring man short of hire, an artisan broken in work, even a policeman turned adrift. Street dealing catches the fall from other trades."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away toward Blackfriars now, because this hidden foulness runs to the river, and the river will show the rest."
+    },
+    "stop_05_blackfriars": {
+      "arrival": {
+        "line": "Come on to Blackfriars Bridge with me; the river looks broad and free, though it's carrying rubbish and worse.",
+        "scene": "From the west footpath of Blackfriars Bridge facing south, the Portland-stone parapet fills the foreground, with a brewer's cart and a cab edging past behind. Beneath the nearest arch, a black-funnel paddle steamer noses through the brown wrinkled Thames, while to the left of the arch a strip of shining mud lies bare at low water, scored with footprints and littered with cinders and rope-ends.",
+        "points": [
+          {
+            "label": "stone parapet",
+            "line": "This is the old Portland-stone bridge, opened in 1769, with nine low arches and room enough for wheels in the middle and walkers on either side still to pass comfortably."
+          },
+          {
+            "label": "black steamer",
+            "line": "Above bridge they used to call the Thames a silent highway, but not now. These little steamers keep captains, engine-boys, and gangway-men shouting through the whole day on it too."
+          },
+          {
+            "label": "shining mud",
+            "line": "That shining bank is where road and rubbish meet. At low water the Thames shows every cinder, rope-end, potshard, and bone the city thought it had done with already too."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_blackfriars_c1": {
+          "narration": "This old stone crossing carries carts over our heads, and the Thames below's all churn and shouting now.",
+          "scene": "From near the north half of the bridge, the view looks north-west along the parapet and down to the river wall. On the left bank stand the gas chimneys above blackened buildings, and beside the bridge at both near and far edges two flights of stone steps drop to the landing places, while brown water slips under a low arch.",
+          "points": [
+            {
+              "label": "gas chimneys",
+              "line": "A view made near this very time shows those gas works on the north bank beside the bridge, which is why coal smoke comes off the water almost as steady as mist."
+            },
+            {
+              "label": "stone steps",
+              "line": "There are stone stairs down at each end of Blackfriars, two flights to a side, so a passenger can leave the carts above and be on the water in a trice."
+            }
+          ]
+        },
+        "stop_05_blackfriars_c2": {
+          "narration": "For a ha'penny, you may save boots by water, and clerks and labouring folk use the river like a road.",
+          "scene": "From just above the water before an arch, a small paddle steamer comes straight toward the frame with its lowered funnel, the paddle boxes whipping up brown spray. The deck crowd is packed along the rail in caps and shawls, and the dark stone of the arch hangs close overhead.",
+          "points": [
+            {
+              "label": "lowered funnel",
+              "line": "On the halfpenny run between the Adelphi and London Bridge, the funnel was dropped to clear the arch, and a passenger said he smelled gas first, then felt the bridge jump above him."
+            },
+            {
+              "label": "deck crowd",
+              "line": "Up this reach a ride might cost a halfpenny, a penny, or twopence, according to line and distance, which made the river a road for ordinary purses here every day."
+            }
+          ]
+        },
+        "stop_05_blackfriars_c4": {
+          "narration": "The wherries still hang about the stairs, but steam's taken the best of their custom.",
+          "scene": "At a riverside stair beside the bridge, a wherry rocks against the lowest step while a waterman stands with one oar shipped. Halfway up the wet stone steps a sitting girl in a ragged shawl is tying cress into bunches, and beside her lies a shallow basket lined with green leaves.",
+          "points": [
+            {
+              "label": "shallow basket",
+              "line": "They reckon there are at least five hundred watercress sellers in London, and I don't doubt it. Before breakfast, a bridge or church step sprouts shallow baskets like sparrows everywhere."
+            },
+            {
+              "label": "sitting girl",
+              "line": "Many cress girls sit on St Andrew's steps between five and six making up bunches, and at Farringdon of a spring morning you may find four or five hundred at it together."
+            }
+          ]
+        },
+        "stop_05_blackfriars_c5": {
+          "narration": "At ebb the bank turns into a rough pitch, and children work it by the tide, if they've strength.",
+          "scene": "On the north-bank foreshore at low tide, two stooping boys and a smaller child pick across black-brown mud scored with footprints. One boy's bare feet are sunk at the edge of a shallow runnel, and around them lie broken pots, rope-ends, cinders, and bits of weed.",
+          "points": [
+            {
+              "label": "bare feet",
+              "line": "They go knee-deep at times, and the bank is full of glass and nails, so cut feet and hands are near part of the trade down here for children too."
+            },
+            {
+              "label": "stooping boys",
+              "line": "On a decent tide you might count twenty or thirty at work along the shore, and mudlarks with bone-grubbers together run to many hundreds in London all told by reckoning."
+            }
+          ]
+        },
+        "stop_05_blackfriars_c6": {
+          "narration": "What they prize is anything saleable, and now and then some dropped tool from a boat.",
+          "scene": "Close on a mudlark's spread apron upon the foreshore, there are coal lumps, wet rope, crooked iron scraps, a few bones, copper nails, and a dropped tool that looks like a hammer. Behind the apron, a child's thin legs are splashed with mud up to the knee.",
+          "points": [
+            {
+              "label": "coal lumps",
+              "line": "A middlin day is about 3d., with bad ones lower and good ones higher, so you may judge what sort of supper comes from the mud at home that night."
+            },
+            {
+              "label": "dropped tool",
+              "line": "The best find isn't always pretty. A dropped hammer or chisel from loading or repairs may be worth more to them than a whole apron of cinders some days altogether."
+            }
+          ]
+        },
+        "stop_05_blackfriars_c7": {
+          "narration": "And this same river takes the city's nastiness too, because the Fleet comes down here as sewer under the street.",
+          "scene": "From the bridge edge looking down at the north side, the nearest arch throws a heavy shadow on the brown water. Along the river wall a dark eddy curls out beneath the shadowed arch, while above it blackened warehouses and a smear of smoke sit against the pale sky.",
+          "points": [
+            {
+              "label": "dark eddy",
+              "line": "They've turned some outlets elsewhere of late, so the surveyor says, but eleven main mouths still meet the river wall, and the Fleet is already sent below low water by a covered culvert."
+            },
+            {
+              "label": "shadowed arch",
+              "line": "The Fleet is reckoned the oldest sewer in London, which is a proud sort of age for a thing nobody would own once it breaks surface before their door either."
+            }
+          ]
+        }
+      },
+      "transitionOut": "From the bridge you smell the river, but on the shore you'll learn what it keeps."
+    },
+    "stop_06_thames_foreshore": {
+      "arrival": {
+        "line": "When the tide runs off, the river leaves all its dirty reckonings spread open.",
+        "scene": "A low-tide view from the edge of the foreshore beside stone steps: slick, weed-dark stone steps descend from the right foreground into broad brown mud strewn with orange peel, rope-ends, cask staves, straw, and black lumps of coal; a row of timber piles and a hanging chain stand left of centre beside a leaning barge-end, black warehouse fronts wall the bank above, and high beyond them a pale dome rises against a washed spring sky.",
+        "points": [
+          {
+            "label": "stone steps",
+            "line": "These steps are likely Paul's Wharf, or close against it, the old landing under the cathedral. Folks came down Paul's Wharf Hill from the streets above, and ended their errand here with mud on the last few stones."
+          },
+          {
+            "label": "timber piles",
+            "line": "When the water runs off, those piles do the river's rough holding. Barges nose in, chains strain, and the craft sit crooked till the tide returns and lifts the whole lumbering business again."
+          },
+          {
+            "label": "pale dome",
+            "line": "What startles me each time is that pale dome over the black trade. London likes that trick: glory up top, and under it wet timber, shouting, and men earning by the ounce."
+          }
+        ]
+      },
+      "cards": {
+        "stop_06_thames_foreshore_c1": {
+          "narration": "From here, St Paul's seems ashamed of us, standing clean over slime and cargo.",
+          "scene": "From lower on the mud, the frame faces north toward the river wall: black warehouse fronts fill the top half, their hoists and shuttered doors hanging over a narrow landing stage; at lower right a steep run of slime-green stones climbs toward the street; left foreground shows a moored lighter leaning hard with the ebb, its rope fast to an iron ring, and above all a pale dome clears the roofs.",
+          "points": [
+            {
+              "label": "warehouse wall",
+              "line": "This strip counted with Castle Baynard Ward, with the Thames to its south and Paul's Wharf on its east, so the cathedral's river side was never merely handsome; it was packed into the City's working map."
+            },
+            {
+              "label": "landing stage",
+              "line": "A parish map made for St Benet Paul's Wharf shows these wharves as the place's real business, with steps running up into the buildings, which tells you water carriage mattered here as much as any road."
+            }
+          ]
+        },
+        "stop_06_thames_foreshore_c2": {
+          "narration": "When the tide falls, the filth lies open on the shore, and folk sicken by it.",
+          "scene": "A tighter foreshore frame at ebb tide: a brick outfall gapes low in the river wall at left, streaking dark wetness into a spread of glistening mud; centre frame a barefoot child bends over the ooze with a sack, one foot sunk deep beside bits of glass, nails, rope, coal, and orange peel; to the right a boat lists against slime-green steps, and the warehouse wall looms above.",
+          "points": [
+            {
+              "label": "brick outfall",
+              "line": "City doctors have been saying this ebb is dangerous besides nasty, because sewer wash spreads over the retreating mud, and that sodden shore, once laid bare, is thought fit ground for disease."
+            },
+            {
+              "label": "barefoot child",
+              "line": "Mayhew says mudlarks wait by the river stairs for low water, then scatter among the craft. Some wade up to the middle in Thames mud, and glass or nails underfoot slice them cruelly."
+            },
+            {
+              "label": "warehouse wall",
+              "line": "That warehouse wall stands over a fearful reckoning. In the year ending late last September, two thousand seven hundred and fifty-two died under the City authorities' charge, so riverside folk don't hear of sickness as old news."
+            }
+          ]
+        },
+        "stop_06_thames_foreshore_c4": {
+          "narration": "Watercress belongs to poor hands because it asks so little, though that mercy turns hard when old and young must live by it.",
+          "scene": "On a drier patch beside the wall, an old woman in a shawl and a small girl crouch over heaps of bright watercress spread on sacking; between them sits a cress basket packed with tied bunches, a length of string across it, while behind them the river glints dull and a lighter's stern hangs at the frame's edge.",
+          "points": [
+            {
+              "label": "old woman",
+              "line": "Watercress falls much to women, the very old, and the very young, because it asks almost no stock-money to begin. That's called a mercy, but mostly it means a family is keeping off the workhouse by fingers alone."
+            },
+            {
+              "label": "cress basket",
+              "line": "Most street cress comes out of Farringdon. They reckon twelve million nine hundred and sixty thousand bunches sold wholesale there in a year, and half of them again go out retail through the streets."
+            },
+            {
+              "label": "tied bunches",
+              "line": "A tidy bunch wants tying full and handsome, because poor buyers still judge with their eyes first, same as gentlefolk do over violets, and a mean-looking handful may be good stuff yet sell worst."
+            }
+          ]
+        },
+        "stop_06_thames_foreshore_c5": {
+          "narration": "Flowers are sweetness as sells them, but sweetness is uncertain, and if oranges come cheap and sound, certainty feeds children.",
+          "scene": "A flower seller stands on the foreshore stones with a shallow basket on her arm, paper twists tucked at one side, small violet bunches laid at the front; beside her, on an upturned crate, sits an orange tray bright with fruit, and behind both the river mud and a moored barge run out under the warehouse shadow.",
+          "points": [
+            {
+              "label": "orange tray",
+              "line": "A many flower sellers turn orange sellers when fruit comes cheap and good, because oranges go off quicker and surer than blossom. A sweet smell is pleasant, but a certain sale is what keeps a room."
+            },
+            {
+              "label": "paper twists",
+              "line": "For a morning start, a flower girl may have only sixpence or a shilling in stock-money laid out. That isn't a grand sum till you think how weather, waste, and hunger are all taking bites at it."
+            }
+          ]
+        },
+        "stop_06_thames_foreshore_c6": {
+          "narration": "I've never been farther than Greenwich or Kensington, yet I'd sooner buy schooling for mine than finery.",
+          "scene": "On broad river steps, a worn flower seller stands half-turned toward the water with a little boy at her left and a little girl clutching her skirt on the right; beyond them a steamer moves down midstream trailing smoke, and high in the distance a pale dome hangs above the warehouse roofs.",
+          "points": [
+            {
+              "label": "little boy",
+              "line": "I don't hunger to make a gentleman of him. I'd be gladder if he wrote a fair hand, kept a regular place, and came home with clean boots instead of learning the river's shifts."
+            },
+            {
+              "label": "little girl",
+              "line": "I once heard of a flower girl proud chiefly because her brother could write, and I understood her. That's the rise I'd choose for Sal too: letters, steadier work, and no need to hawk in weather."
+            },
+            {
+              "label": "steamer smoke",
+              "line": "I've never been past Greenwich eastward nor Kensington west, yet I know these steamers by sight. The Port has about three hundred of them now, near ninety-nine thousand tons together, and they're forever shouldering old boat ways aside."
+            }
+          ]
+        },
+        "stop_06_thames_foreshore_c7": {
+          "narration": "It keeps its feet by poor hands working where the mud and money meet.",
+          "scene": "A final wide frame along the foreshore: in the foreground a mud child picks through the ooze with one hand while, above on a landing stage, a porter shoulders a sack toward a waiting lighter; midstream a steamer passes with smoke blown low, black warehouses line the bank, and beyond them a pale dome rises clear in the washed spring light.",
+          "points": [
+            {
+              "label": "the porter",
+              "line": "Up top or down here, the same rule holds: one carries, one rows, one sweeps, one sells, and somebody else picks from the mud. That's the unseen scaffolding under half the City's fine talk."
+            },
+            {
+              "label": "the steamer",
+              "line": "London outruns every other port. For 1847 they counted nine thousand four hundred and three vessels entering, with one million nine hundred and thirty-one thousand seven hundred and seventy-seven tons, about a quarter of the kingdom's whole sea trade."
+            },
+            {
+              "label": "the mud child",
+              "line": "Men talk improvement grand enough, and God send it comes, but until it does, children are still down here gleaning what the river forgets, with cold hands, wet hems, and no ceremony at all."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So when you think on London, don't begin with the dome, or the wharves, or the steamers, or all the book trade and improvement talk. Begin with the hands under them: the sellers, carriers, sweepers, rowers, and the poor souls picking the shore. That's what keeps the great city standing. I'm Nell Baker, and I'm glad of your company. Goodbye, and let the river go on as it likes."
+    }
+  }
+}

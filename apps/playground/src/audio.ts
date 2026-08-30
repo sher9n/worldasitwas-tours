@@ -23,6 +23,61 @@ export class AudioEngine {
   private voiceToken = 0;
   unlocked = false;
 
+  /**
+   * Levels go through Web Audio, not through element.volume, because iOS
+   * ignores element.volume completely: on a phone the street bed was playing at
+   * full level under her voice and the duck did nothing at all. Gain nodes also
+   * ramp smoothly, which is what stops a level change clicking.
+   */
+  private ctx?: AudioContext;
+  private voiceGain?: GainNode;
+  private bedNode?: GainNode;
+
+  private wire(): void {
+    if (this.ctx) return;
+    try {
+      // On iOS, sound routed through Web Audio is treated as ambient and is
+      // silenced by the ring/silent switch, while a plain audio element is not.
+      // Declaring the session as playback keeps a walk audible with the switch
+      // on, and keeps it running when the phone locks or the tab goes behind.
+      const session = (navigator as unknown as { audioSession?: { type: string } }).audioSession;
+      if (session) session.type = "playback";
+      const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!Ctor) return;
+      const ctx = new Ctor();
+      const voiceGain = ctx.createGain();
+      const bedNode = ctx.createGain();
+      voiceGain.gain.value = 1;
+      bedNode.gain.value = 0;
+      ctx.createMediaElementSource(this.voice).connect(voiceGain).connect(ctx.destination);
+      ctx.createMediaElementSource(this.ambience).connect(bedNode).connect(ctx.destination);
+      this.ctx = ctx;
+      this.voiceGain = voiceGain;
+      this.bedNode = bedNode;
+      // Coming back from a locked phone or another tab leaves the context
+      // suspended, which is silence that looks like a bug. Wake it on return.
+      const wake = () => void ctx.resume().catch(() => undefined);
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") wake();
+      });
+      document.addEventListener("pointerdown", wake, { passive: true });
+    } catch {
+      // No Web Audio: element volume is the only lever, and on iOS not even that.
+    }
+  }
+
+  /** Ramp a channel smoothly; an abrupt change is what makes a click. */
+  private ramp(node: GainNode | undefined, to: number, ms: number, el: HTMLAudioElement): void {
+    if (node && this.ctx) {
+      const t = this.ctx.currentTime;
+      node.gain.cancelScheduledValues(t);
+      node.gain.setValueAtTime(Math.max(0.0001, node.gain.value), t);
+      node.gain.linearRampToValueAtTime(Math.max(0.0001, to), t + ms / 1000);
+      return;
+    }
+    el.volume = Math.max(0, Math.min(1, to));
+  }
+
   private ambiencePlays = 0;
   private ambienceDone = false;
 
@@ -40,6 +95,11 @@ export class AudioEngine {
       }
     });
     this.voice.preload = "auto";
+    // The recordings come from the API on another port. A media element routed
+    // through Web Audio outputs SILENCE if its source is cross-origin and the
+    // request did not ask for CORS, so this attribute is what makes the mixer
+    // audible at all. It must be set before any src is assigned.
+    for (const el of [this.voice, this.ambience]) el.crossOrigin = "anonymous";
     // Attached (hidden) so devtools and tests can observe playback state.
     for (const [el, name] of [[this.voice, "voice"], [this.ambience, "ambience"]] as const) {
       el.dataset.channel = name;
@@ -56,6 +116,9 @@ export class AudioEngine {
       el.src = SILENCE;
       el.play().then(() => el.pause()).catch(() => undefined);
     }
+    // Wiring must happen inside the gesture too, or the context stays suspended.
+    this.wire();
+    void this.ctx?.resume().catch(() => undefined);
   }
 
   /**
@@ -107,15 +170,15 @@ export class AudioEngine {
     el.onended = null;
     el.onerror = null;
     this.duck(false);
-    const start = el.volume;
+    const start = 1;
     const t0 = performance.now();
     const step = () => {
       if (token !== this.voiceToken) return;
       const k = Math.min(1, (performance.now() - t0) / 180);
-      el.volume = start * (1 - k);
+      this.ramp(this.voiceGain, start * (1 - k), 40, el);
       if (k >= 1) {
         el.pause();
-        el.volume = start;
+        this.ramp(this.voiceGain, 1, 60, el);
       } else requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -161,17 +224,7 @@ export class AudioEngine {
 
   private fadeTo(target: number, ms: number): void {
     if (this.fadeTimer) window.clearInterval(this.fadeTimer);
-    const el = this.ambience;
-    const start = el.volume;
-    const t0 = performance.now();
-    this.fadeTimer = window.setInterval(() => {
-      const k = Math.min(1, (performance.now() - t0) / ms);
-      el.volume = start + (target - start) * k;
-      if (k >= 1 && this.fadeTimer) {
-        window.clearInterval(this.fadeTimer);
-        this.fadeTimer = null;
-      }
-    }, 40);
+    this.ramp(this.bedNode, target, ms, this.ambience);
   }
 
   /** Hold-to-pause: her voice waits, the street keeps breathing quietly. */
