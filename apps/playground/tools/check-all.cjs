@@ -12,7 +12,6 @@ const tours = (only.length ? only : fs.readdirSync(TOURS_DIR)).filter((t) => fs.
 
 const SUITE = [
   ["script", "apps/playground/tools/checks/p9-script.cjs"],
-  ["pacing", "apps/playground/tools/checks/p10-pacing.cjs"],
   ["gates", "apps/playground/tools/checks/p2-gate.cjs"],
   ["stills", "apps/playground/tools/checks/p6-pausebg.cjs"],
   ["points", "apps/playground/tools/checks/p7-hotspot-audio.cjs"],

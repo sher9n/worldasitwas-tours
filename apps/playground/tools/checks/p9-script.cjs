@@ -16,7 +16,10 @@ const overlap = (a, b) => { const A = gist(a), B = gist(b); let n = 0; for (cons
 
 const m = JSON.parse(fs.readFileSync(TOUR, "utf8"));
 let pass = true;
-const first = m.stops[0].arrival.line.text;
+// The introduction is spread over the opening screens now, so this reads the
+// first stop's opening as a whole rather than only its arrival line.
+const opening = [m.stops[0].arrival.line.text, ...m.stops[0].cards.filter((c) => c.narration).slice(0, 4).map((c) => c.narration.text)].join(" ");
+const first = opening;
 const last = m.stops[m.stops.length - 1].transitionOut?.text || "";
 
 // 1. The guide introduces themselves before anything else: who they are, what
