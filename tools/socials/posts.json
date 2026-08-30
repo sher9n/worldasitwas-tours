@@ -1,0 +1,139 @@
+{
+  "_comment": "Post copy for the socials pack. One entry per post. Media filenames are resolved by the builder against content/tours/_socials. Written per platform because a LinkedIn paragraph dies on Twitter and a Snapchat line is not a LinkedIn post.",
+  "posts": [
+    {
+      "id": "launch",
+      "kind": "brand",
+      "title": "Twelve walks, twelve guides",
+      "hook": "The launch post. Lead with the idea, not the technology.",
+      "media": ["montage-guides.jpg", "clip-tour_london_1850_flower_seller.mp4"],
+      "linkedin": "We built something we wanted to exist.\n\nTwelve walking tours through cities that are gone. London in the week of the Great Fire. Rome in the Jubilee of 1600. Stockholm when the harbour ran on copper. Colombo when cinnamon paid for everything.\n\nEach one is led by somebody who actually lived there. Not a narrator. A flower seller on Ludgate Hill who buys violets before six. A waterman who rowed families away from the fire. A seamstress who watched the wall come down at Porta Pia and kept her opinions to herself, because half her customers were on one side and half on the other.\n\nYou can interrupt them and ask questions. They answer in their own voice, and they know nothing about the world after their own year.\n\nTwelve are live now. Where should we go next?",
+      "instagram": "Twelve cities that no longer exist, and twelve people who lived in them.\n\nLondon 1666. Rome 1600. Stockholm 1650. Colombo 1700.\n\nEach walk is led by someone who was there. You can stop them and ask.\n\nWhere should we go next? 👇",
+      "twitter": "We built twelve walking tours through cities that are gone.\n\nEach one led by somebody who lived there: a flower seller, a waterman, a rickshaw puller, a seamstress.\n\nYou can interrupt them and ask questions. They know nothing after their own year.",
+      "snapchat": "Twelve cities that don't exist any more. Twelve people who lived in them. Swipe up 👆",
+      "hashtags": "#history #storytelling #ai #travel #design #audio"
+    },
+    {
+      "id": "guides",
+      "kind": "brand",
+      "title": "The portraits move",
+      "hook": "The craft post. People stop for a face that looks back.",
+      "media": ["montage-guides.jpg", "portrait-caterina.mp4"],
+      "linkedin": "A portrait that holds still reads as a photograph. A portrait that looks up and finds you reads as a person.\n\nSo our guides do the second thing. Their attention wanders while they talk: they glance off at something in their own street, come back to you, smile, get on with their work. Forty seconds of it, so it never comes round often enough to notice.\n\nThe engineering detail we got wrong first is a good one. To make a clip loop seamlessly, the obvious instruction is that it must end in the pose it started in. That instruction is why our first attempt barely moved: told to end exactly where she began, the model does as little as possible in between.\n\nWe removed the constraint and closed the loop afterwards in code instead, by dissolving the end back into the start. Measured movement went up by a factor of thirty.\n\nThe lesson generalises: if your output looks lifeless, check whether you asked for it.",
+      "instagram": "She looks up. She finds you. She smiles and goes back to her herbs.\n\nForty seconds, looping, so you never catch it repeating.\n\nRome, 1600. 🕯️",
+      "twitter": "To make a video loop, the obvious instruction is \"end in the pose you started in\".\n\nThat instruction is why our characters barely moved. Told to end where she began, the model does as little as possible in between.\n\nWe removed it and closed the loop in code. Movement went up 30x.",
+      "snapchat": "She looks up and finds you 👀 Rome, 1600",
+      "hashtags": "#ai #design #craft #video #storytelling"
+    },
+    {
+      "id": "ask",
+      "kind": "brand",
+      "title": "You can interrupt them",
+      "hook": "The differentiator. This is the thing no audio guide does.",
+      "media": ["shot-ask.jpg", "clip-tour_rome_1600_herb_seller.mp4"],
+      "linkedin": "Every audio guide has the same problem. It talks, you listen, and if you have a question you keep it.\n\nOurs can be interrupted. Hold the button and ask, and the person you are walking with answers you in her own voice, out of her own life. Ask Caterina what a friar being burned in her square smelled like and she will tell you, because she was there in February and she sells herbs twenty feet from where it happened.\n\nWhat she will not do is tell you anything about the world after 1600. She has never heard of a photograph. She does not know the Jubilee ends.\n\nThat boundary is the whole design. A guide who knows everything is a search engine with a voice. A guide who knows only what she could know is a person.",
+      "instagram": "Hold the button. Ask her anything.\n\nShe will answer in her own voice, from her own life. And she has never heard of a photograph, because it is 1600.\n\n🎙️",
+      "twitter": "Every audio guide has the same flaw: it talks, you listen, and your question goes nowhere.\n\nOurs can be interrupted. She answers in her own voice.\n\nAnd she knows nothing about the world after 1600. That limit is the point: a guide who knows everything is a search engine.",
+      "snapchat": "Hold to ask her anything 🎙️ she's been dead 400 years",
+      "hashtags": "#ai #voice #product #history #design"
+    },
+    {
+      "id": "research",
+      "kind": "brand",
+      "title": "Everything is sourced",
+      "hook": "The trust post. Aimed at museums, educators, partners.",
+      "media": ["shot-sources.jpg", "montage-cities.jpg"],
+      "linkedin": "The fastest way to make historical content is to let a model improvise. We do the opposite, and it costs us.\n\nEvery stop on every walk is researched first, against archives and primary sources, and the reconstructions are built from that research. When Nell tells you what a bunch of violets cost outside St Paul's in 1850, that price came from somewhere, and the walk will show you where.\n\nIt is slower. It is more expensive. It is the only version worth building, because the moment one detail is invented, the listener is right to doubt all of them.\n\nIf you work in a museum or an archive and this is interesting to you, I would like to talk.",
+      "instagram": "Every price, every street, every date: sourced.\n\nIt would be faster to make it up. It would also be worthless. 📚",
+      "twitter": "The fast way to make historical content is to let the model improvise.\n\nWe research every stop against archives first, then build from that.\n\nSlower and dearer. But the moment one detail is invented, the listener is right to doubt all of them.",
+      "snapchat": "Every detail: real, sourced, checked 📚",
+      "hashtags": "#history #archives #museums #ai #education"
+    }
+  ],
+  "tourPosts": {
+    "tour_london_1666_waterman": {
+      "hook": "The fire, from the water.",
+      "linkedin": "In the first week of September 1666, the safest place in London was the river.\n\nWill Chandler was a licensed waterman at Old Swan Stairs, seven years apprenticed, rowing a pair of oars. That week he carried furniture, plate and frightened families downriver while the City burned behind them, and he watched the price of a boat go up by the hour.\n\nHe is dry about it. He is not impressed by gentlemen. And he will take you along five stops of a city in the act of disappearing.\n\nNew walk: The Fire and the Waterman. London, 1666.",
+      "instagram": "The safest place in London that week was the water.\n\nWill rowed families downriver while the City burned behind them, and watched the price of a boat go up by the hour. 🔥\n\nLondon, 1666.",
+      "twitter": "In September 1666 the safest place in London was the river.\n\nWill Chandler rowed frightened families downriver while the City burned, and watched the price of a boat rise by the hour.\n\nNew walk: London, 1666.",
+      "snapchat": "London's burning 🔥 he's got a boat. London, 1666"
+    },
+    "tour_london_1755_coffee_house": {
+      "hook": "A city running on coffee, news and credit.",
+      "linkedin": "Georgian London ran on coffee, news, credit and gin, and most of it was transacted in rooms like Hannah Pyke's.\n\nShe keeps a coffee house off Fleet Street. Merchants, printers and ships' captains read the papers there and do business she is not supposed to overhear. She overhears it. She is widowed, practical, funny and entirely unshockable, and she knows what everyone in the room is worth.\n\nFive stops through the city that invented the modern news cycle, led by the woman pouring.\n\nNew walk: The Coffee House and the New Bridge. London, 1755.",
+      "instagram": "She's not supposed to overhear the business done in her coffee house.\n\nShe overhears all of it. ☕\n\nLondon, 1755.",
+      "twitter": "Georgian London ran on coffee, news, credit and gin, mostly transacted in rooms like Hannah Pyke's.\n\nShe is not supposed to overhear the business done there. She overhears all of it.\n\nNew walk: London, 1755.",
+      "snapchat": "She hears everything in this room ☕ London, 1755"
+    },
+    "tour_london_1850_flower_seller": {
+      "hook": "Violets bought before six, sold on Ludgate Hill.",
+      "linkedin": "Nell Baker is thirty-one, widowed, with two children, and she is at Covent Garden before six in the morning to buy violets, wallflowers and watercress.\n\nThen she stands on Ludgate Hill with a basket and sells them, in the spring of 1850, in a London of new railways and old smells.\n\nShe is sharp, warm and very funny, and she will walk you from St Paul's down to the river telling you what things cost, who buys them, and how you tell a good bunch from a bad one.\n\nNew walk: A Walk with a Flower Seller. London, 1850.",
+      "instagram": "At Covent Garden before six to buy violets. On Ludgate Hill by nine to sell them.\n\nLondon, 1850. 💐",
+      "twitter": "Nell Baker is at Covent Garden before six to buy violets, and on Ludgate Hill by nine to sell them.\n\nShe will tell you what they cost, who buys them, and how to spot a bad bunch.\n\nNew walk: London, 1850.",
+      "snapchat": "Violets before six, Ludgate Hill by nine 💐 London, 1850"
+    },
+    "tour_london_1908_conductor": {
+      "hook": "The horse buses are dying and he knows it.",
+      "linkedin": "Ernie Marsh has been on the buses six years, three of them behind horses before the motors came.\n\nHe is twenty-nine, from Bermondsey, a talker by trade, and he is proud of knowing every fare and every short cut in London. He is also watching his trade change under him: the horse buses are dying, electricity is arriving, and nobody has told him what happens to the men who knew the horses.\n\nFive stops across Edwardian London from the platform of a motor omnibus.\n\nNew walk: The Conductor's Round. London, 1908.",
+      "instagram": "Six years on the buses. Three of them behind horses.\n\nThe motors are here now, and nobody has told him what happens next. 🚌\n\nLondon, 1908.",
+      "twitter": "Ernie has been on the buses six years, three behind horses before the motors came.\n\nHe knows every fare and every short cut. He is also watching his trade disappear under him.\n\nNew walk: London, 1908.",
+      "snapchat": "The horses are going 🚌 London, 1908"
+    },
+    "tour_rome_1600_herb_seller": {
+      "hook": "The market and the executions share a square.",
+      "linkedin": "Caterina Ruspoli sells herbs in Campo de' Fiori, where the market runs every morning and the executions happen in the same square.\n\nIn February of 1600 she watched a friar burned there. She will tell you what the crowd was like. Then she will go back to selling greens, because it is the Jubilee, Rome is full of pilgrims, and a stall does not mind itself.\n\nBlunt, kind, quietly devout and quietly sceptical. Five stops through a city of scaffolding and pilgrims with the new St Peter's rising over the old one.\n\nNew walk: The Holy Year. Rome, 1600.",
+      "instagram": "The market runs every morning. The executions happen in the same square.\n\nShe watched a friar burn there in February, and she will tell you what the crowd was like. 🕯️\n\nRome, 1600.",
+      "twitter": "Caterina sells herbs in Campo de' Fiori, where the market runs every morning and the executions happen in the same square.\n\nShe watched a friar burn there in February. She will tell you what the crowd was like.\n\nNew walk: Rome, 1600.",
+      "snapchat": "Her market square doubles as the execution ground 🕯️ Rome, 1600"
+    },
+    "tour_rome_1750_cicerone": {
+      "hook": "The original tour guide, and he is charging you.",
+      "linkedin": "Domenico Fabbri walks English, French and German gentlemen round the antiquities of Rome for a fee. He learned his Latin from a priest and his English from his customers.\n\nHe is forty-four, charming, mercenary, and extremely good at knowing what a young Englishman on the Grand Tour wants to be told. Half the city is a building site and half of it is two thousand years old, and he will show you both while relieving you of your money.\n\nThe original tour guide, guiding you.\n\nNew walk: The Cicerone's Round. Rome, 1750.",
+      "instagram": "He learned Latin from a priest and English from his customers.\n\nHe knows exactly what a young Englishman on the Grand Tour wants to hear, and exactly what it costs. 🏛️\n\nRome, 1750.",
+      "twitter": "Domenico walks English gentlemen round the ruins of Rome for a fee. Latin from a priest, English from his customers.\n\nCharming, mercenary, and very good at knowing what you want to be told.\n\nThe original tour guide. Rome, 1750.",
+      "snapchat": "The original tour guide, and he's charging you 🏛️ Rome, 1750"
+    },
+    "tour_rome_1870_seamstress": {
+      "hook": "The year the Pope lost Rome.",
+      "linkedin": "In September 1870 the Italian army breached the wall at Porta Pia, and the Papal States ended.\n\nAssunta Belli watched it from a rooftop. She is twenty-nine, a seamstress near the river, and she takes in sewing from households on both sides of that argument, which is why she is careful about what she says out loud.\n\nShe has opinions. She voted for nothing, being a woman. She will walk you through five stops of a city changing hands, and she will tell you which of her customers stopped speaking to which.\n\nNew walk: The Year Everything Changed. Rome, 1870.",
+      "instagram": "She watched the wall come down from a rooftop.\n\nHalf her customers were on one side, half on the other, so she keeps her voice down. 🧵\n\nRome, 1870.",
+      "twitter": "September 1870: the Italian army breaches the wall at Porta Pia and the Papal States end.\n\nAssunta watched from a rooftop. She sews for households on both sides, so she is careful what she says out loud.\n\nNew walk: Rome, 1870.",
+      "snapchat": "The year the Pope lost Rome 🧵 1870"
+    },
+    "tour_stockholm_1650_porter": {
+      "hook": "A wooden capital grown rich on copper.",
+      "linkedin": "In 1650 Stockholm was a small wooden capital that had grown rich on copper, iron and a long war, and all of it came across the Skeppsbron quay on somebody's back.\n\nOlof Nilsson's back, for instance. He is thirty-six, up from a farm in Uppland at fifteen, and he carries and stacks copper plates, iron bars, salt and cloth. Strong, dry, watchful. A Lutheran who works on saints' days because the cargo does not keep.\n\nFive stops through Queen Christina's harbour with the man moving it.\n\nNew walk: Queen Christina's Harbour. Stockholm, 1650.",
+      "instagram": "A wooden city grown rich on copper, and every bar of it came across the quay on someone's back.\n\nHis, mostly. ⚓\n\nStockholm, 1650.",
+      "twitter": "In 1650 Stockholm was a small wooden capital rich on copper and iron, and all of it crossed the Skeppsbron quay on somebody's back.\n\nOlof's, mostly. Up from a farm at fifteen.\n\nNew walk: Stockholm, 1650.",
+      "snapchat": "Copper, iron, salt, all of it on his back ⚓ Stockholm, 1650"
+    },
+    "tour_stockholm_1755_tavern": {
+      "hook": "A parliament that argues in public, and a tavern that hears it.",
+      "linkedin": "Sweden's Age of Liberty had a parliament that argued in public, and the arguing did not stop at the door.\n\nBritta Lindqvist keeps a tavern on Stortorget, the main square, where clerks, sailors and minor gentlemen drink beer, brandy and coffee and settle the affairs of the nation loudly enough to be heard on the stairs. She is forty-one, widowed, shrewd, warm, and unimpressed by all of them.\n\nFive stops through a city where politics was a spectator sport, told from behind the bar.\n\nNew walk: The Tavern on the Square. Stockholm, 1755.",
+      "instagram": "They settle the affairs of the nation at her tables, loudly enough to be heard on the stairs.\n\nShe is unimpressed by all of them. 🍺\n\nStockholm, 1755.",
+      "twitter": "Sweden's Age of Liberty had a parliament that argued in public, and the arguing did not stop at the door.\n\nBritta keeps the tavern on the main square where it continues, loudly, every night.\n\nNew walk: Stockholm, 1755.",
+      "snapchat": "Politics as a spectator sport 🍺 Stockholm, 1755"
+    },
+    "tour_stockholm_1900_tram": {
+      "hook": "Nine years on the horse trams, and the electric is coming.",
+      "linkedin": "Gustav Ek has been a conductor on the horse trams for nine years. He is thirty-three, married, three children in two rooms on Södermalm, and he is proud of his line.\n\nHe is also quietly worried, because there is electric light on the main streets now and everybody can see what is coming for the horses.\n\nFive stops through Stockholm at the turn of the century, with a man who can feel his own job ending and is too polite to say so directly.\n\nNew walk: The Last of the Horse Trams. Stockholm, 1900.",
+      "instagram": "Nine years on the horse trams. Electric light on the main streets now.\n\nHe can see what's coming, and he is too polite to say it. 🐴\n\nStockholm, 1900.",
+      "twitter": "Gustav has been a conductor on the horse trams for nine years, and there is electric light on the main streets now.\n\nHe can see what is coming for the horses. He is too polite to say so directly.\n\nNew walk: Stockholm, 1900.",
+      "snapchat": "Last days of the horse trams 🐴 Stockholm, 1900"
+    },
+    "tour_colombo_1700_cinnamon": {
+      "hook": "The bark that paid for a colony.",
+      "linkedin": "In 1700 the Dutch East India Company held the coast of Ceylon, and what paid for it was cinnamon.\n\nKumari peels it. She is thirty-four, of the Salagama community, working the Company's quota with her family: cutting the shoots, scraping the bark, rolling the quills to dry. It takes years to learn to do it without tearing, and she is quietly proud of that.\n\nShe is also working to a number set by men she will never meet, in a city built to move her work to Amsterdam.\n\nNew walk: The Cinnamon Coast. Colombo, 1700.",
+      "instagram": "It takes years to learn to peel it without tearing the bark.\n\nShe is very good at it, and the quota is set by men she will never meet. 🌿\n\nColombo, 1700.",
+      "twitter": "In 1700 the Dutch East India Company held the coast of Ceylon, and cinnamon paid for it.\n\nKumari peels it. Years to learn to do it without tearing the bark, to a quota set by men she will never meet.\n\nNew walk: Colombo, 1700.",
+      "snapchat": "The bark that paid for a whole colony 🌿 Colombo, 1700"
+    },
+    "tour_colombo_1905_rickshaw": {
+      "hook": "Ten hours a day barefoot on hot tar.",
+      "linkedin": "Sena is twenty-seven and pulls a rickshaw for hire in Colombo's Fort and Pettah: ten hours a day, barefoot on hot tar, renting the vehicle by the day from a man who owns thirty of them.\n\nHe came down from a village up the coast at seventeen. Behind him the harbour sits behind its new breakwater, one of the great coaling stations of the empire, and everything in the city is arriving or leaving.\n\nFive stops through British Colombo at street level, from the one person who sees all of it and is paid by the trip.\n\nNew walk: The Rickshaw Man's Colombo. Colombo, 1905.",
+      "instagram": "Ten hours a day, barefoot on hot tar, renting the rickshaw by the day from a man who owns thirty.\n\nHe sees the whole city. 🛺\n\nColombo, 1905.",
+      "twitter": "Sena pulls a rickshaw in Colombo's Fort: ten hours a day barefoot on hot tar, renting the vehicle daily from a man who owns thirty of them.\n\nHe sees the entire city, and is paid by the trip.\n\nNew walk: Colombo, 1905.",
+      "snapchat": "Ten hours barefoot on hot tar 🛺 Colombo, 1905"
+    }
+  }
+}
