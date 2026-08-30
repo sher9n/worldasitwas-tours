@@ -268,7 +268,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .walk-dots { display: flex; gap: 10px; }
 .walk-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.35); }
 .walk-dots span.on { background: #fff; }
-.continue { font: 700 14px "Source Sans 3", sans-serif; letter-spacing: .06em; color: #fff; background: var(--accent); border: none; border-radius: 12px; padding: 14px 20px; cursor: pointer; animation: continuein .4s ease-out both; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.continue { font: 700 14px "Source Sans 3", sans-serif; letter-spacing: .06em; color: var(--on-amber); background: var(--amber); border: none; border-radius: 12px; padding: 14px 20px; cursor: pointer; animation: continuein .4s ease-out both; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
 @keyframes continuein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 /* explore gate: a thin grey pane shows the way on; taps flash it like a reel */
@@ -311,7 +311,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .poi { position: absolute; z-index: 5; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; padding: 8px; color: #fff; transition: opacity .4s; }
 .poi i { position: relative; display: block; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.95); box-shadow: 0 0 0 1.5px rgba(0,0,0,.3), 0 0 0 5px rgba(255,255,255,.16); animation: poishimmer 2.6s ease-in-out infinite; }
 .poi.dim { animation: none; opacity: .15; }
-.poi.active i { background: var(--accent); box-shadow: 0 0 0 2px rgba(255,255,255,.95); animation: none; }
+.poi.active i { background: var(--amber); box-shadow: 0 0 0 2px rgba(255,255,255,.95); animation: none; }
 .poi.active i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85); transform: translate(-50%, -50%); animation: ringbreathe 2.4s ease-in-out infinite; }
 /* hairline connector between ring and label */
 .poi.active::before { content: ""; position: absolute; left: 50%; top: -16px; width: 1px; height: 16px; background: rgba(255,255,255,.6); }
@@ -398,7 +398,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .round { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.4); color: #fff; font: 700 12px "Source Sans 3", sans-serif; cursor: pointer; }
 .round.on { background: #fff; color: #1b2230; }
 .leave { position: absolute; right: 18px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.4); color: #fff; font-size: 18px; cursor: pointer; }
-.ask { width: 74px; height: 74px; border-radius: 50%; background: var(--accent); color: #fff; border: none; font: 700 11px "Source Sans 3", sans-serif; letter-spacing: .03em; box-shadow: 0 0 0 8px rgba(42,127,121,.3); cursor: pointer; touch-action: none; transition: transform .15s, box-shadow .3s; }
+.ask { width: 74px; height: 74px; border-radius: 50%; background: var(--amber); color: var(--on-amber); border: none; font: 700 11px "Source Sans 3", sans-serif; letter-spacing: .03em; white-space: nowrap; box-shadow: 0 0 0 8px var(--amber-halo); cursor: pointer; touch-action: none; transition: transform .15s, box-shadow .3s; }
 .ask.listening { background: #c2410c; transform: scale(1.12); box-shadow: 0 0 0 14px rgba(194,65,12,.3); }
 .ask.thinking { background: #6b5ca5; }
 .ask.speaking { background: #2e7d5b; box-shadow: 0 0 0 12px rgba(46,125,91,.35); animation: pulse 1.2s ease-in-out infinite; }
@@ -418,7 +418,7 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .idle-companion b { display: block; }
 .idle-companion span { font-size: 13px; opacity: .8; }
 .idle-meta { font-size: 13px; opacity: .8; }
-.travel { font: 700 16px "Source Sans 3", sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 16px; border-radius: 14px; border: none; background: var(--accent); color: #fff; cursor: pointer; }
+.travel { font: 700 16px "Source Sans 3", sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 16px; border-radius: 14px; border: none; background: var(--amber); color: var(--on-amber); cursor: pointer; }
 
 .arrival, .card, .transition { position: absolute; inset: 0; }
 .portrait-inset { position: absolute; right: 16px; bottom: 210px; width: 132px; height: 132px; border-radius: 50%; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,.5); z-index: 4; }
@@ -449,9 +449,9 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .sheet-body { width: 100%; background: #f4f5f3; color: #1b2230; border-radius: 22px 22px 0 0; padding: 22px 20px 34px; max-height: 70%; overflow: auto; display: grid; gap: 10px; }
 .sheet-body h3 { font-size: 16px; margin-top: 6px; }
 .sheet-body ul { margin: 0; padding-left: 18px; font-size: 14px; }
-.sheet-body a { color: var(--accent); }
+.sheet-body a { color: var(--amber); }
 .claim-text { font-size: 17px; margin: 0; }
-.sheet-body .idle-companion img { border-color: var(--accent); }
+.sheet-body .idle-companion img { border-color: var(--amber); }
 .sheet-body .idle-companion span { color: var(--muted); }
 .player.paused .caption::after { content: "paused"; position: absolute; right: 0; top: -22px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
 
