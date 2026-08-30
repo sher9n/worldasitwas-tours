@@ -16,7 +16,11 @@
     "role": "Thames waterman, Old Swan Stairs",
     "brief": "Forty-two, a licensed waterman who served his seven years and rows a pair of oars from Old Swan Stairs. Born in Southwark. Dry, steady, unimpressed by gentlemen. He carried furniture, plate and frightened families downriver through the fire of September 1666, and charged what the day was worth, which he will admit to. He knows the river's tides and stairs the way other men know streets, and nothing at all of the world past Gravesend.",
     "voice": "cedar",
-    "narrationVoice": "George"
+    "narrationVoice": "George",
+    "presence": {
+      "standing": "at the top of Old Swan Stairs with his wherry moored below, the river and the crowded bridge behind him",
+      "gesture": "rubs his palms together against the cold"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in London in September 1666: timber-framed jettied houses, narrow lanes, smoke-filled orange light, ash falling, the river crowded with lighters and wherries. Period clothing of the Restoration, wide hats, breeches, coifs. Portrait 9:16 framing, eye level. Muted colour under smoke, not sepia.",

@@ -26,6 +26,7 @@ import type { MediaProvider } from "./providers/types.ts";
 import { CompanionDossier, StopDossier, StopScript } from "./shapes.ts";
 import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
+import { buildPresenceLoop } from "./stages/presence.ts";
 import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
 import { applyWrittenScript, loadWritten, type WrittenScript } from "./stages/written.ts";
 import { emptyScript, planTour, toWrittenStop, writeStop } from "./stages/screenplay.ts";
@@ -52,7 +53,11 @@ interface Args {
 
 function parseArgs(argv: string[]): Args {
   const [cmd, recipe, ...rest] = argv;
-  const a: Args = { cmd, recipe, quality: env.quality, provider: env.mediaProvider, imageModel: "gpt-image-2", portrait: true, fresh: false };
+  // The catalogue is built with nano-banana-pro, and the image model is part of
+  // every picture's cache key. Defaulting to anything else means a re-run
+  // quietly misses every cached image and rebuilds the walk with a different
+  // face on the guide, which is expensive and wrong in the same breath.
+  const a: Args = { cmd, recipe, quality: env.quality, provider: env.mediaProvider, imageModel: "nano-banana-pro", portrait: true, fresh: false };
   for (let i = 0; i < rest.length; i++) {
     const k = rest[i];
     if (k === "--stops") a.stops = Number(rest[++i]);
@@ -270,55 +275,42 @@ async function main(): Promise<void> {
   }
   let reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
   if (reelClips.length === 0 && provider.name === "fal") {
-    log("reel: generating the guide's presence clip");
-    // The circle is always muted and only moves while her recorded voice plays,
-    // so these clips need speaking MOVEMENT, not speech. A lip-synced render
-    // costs about $1.50 and ten minutes each for a mouth nobody can hear; a
-    // plain image-to-video clip of the same person talking costs a fraction of
+    log("reel: building the guide's presence loop");
+    // The circle is muted, so this needs presence, not speech. A lip-synced
+    // render costs about $1.50 and ten minutes each for a mouth nobody can
+    // hear; a plain image-to-video clip of the same person costs a fraction of
     // that and looks identical behind a muted circle.
-    // One clip that begins and ends on the same picture. Every other approach
-    // leaves a seam: cutting between clips snaps her back to the starting pose,
-    // dissolving puts the same woman on screen twice, and reversing makes the
-    // people behind her walk backwards. Given the same frame at both ends, the
-    // model brings her back to where she started, so the clip simply loops.
-    const PRESENCE =
-      `${recipe.companion.name} stands where they work and looks calmly toward the viewer, as though listening to someone they like. ` +
-      "They breathe, blink, shift their weight and turn the head a little, and by the end they have settled back into exactly the posture and expression they began in. " +
-      "The mouth stays closed and relaxed; they are not speaking. " +
-      "Behind them the world moves gently and always forwards: people walking past at a distance, smoke or dust drifting. " +
-      "The camera is locked off and does not move or zoom.";
+    //
+    // Length and freedom are what make it read as a person: see
+    // stages/presence.ts for why it is built in segments and why nothing in
+    // the prompt asks her to hold still.
     try {
-      const clip = await provider.video({
-        prompt: PRESENCE,
-        imageUrl: character.portraitUrl,
-        endImageUrl: character.portraitUrl,
-        durationSec: 10,
+      const built = await buildPresenceLoop({
+        name: recipe.companion.name,
+        setting: recipe.companion.presence ?? {
+          standing: `where they work as ${recipe.companion.role}`,
+          gesture: "brushes their hands off",
+        },
+        portraitUrl: character.portraitUrl,
+        provider,
         quality: args.quality,
-        audio: false,
-        stage: "reel",
-        note: "presence",
+        workDir: path.join(work, "presence"),
+        out: path.join(reelDir, "presence.mp4"),
       });
-      if (clip.localPath) {
-        // Re-encoded locally with a keyframe every second and the index at the
-        // front. Looping means seeking back to zero, and on a clip whose only
-        // keyframe is at the start that seek can drop a frame, which is seen as
-        // a hiccup once every time round.
-        const out = path.join(reelDir, "presence.mp4");
-        await new Promise<void>((ok, bad) => {
-          execFile(
-            FFMPEG,
-            ["-y", "-i", clip.localPath as string, "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-g", "24", "-keyint_min", "24", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out],
-            (err) => (err ? bad(err) : ok()),
-          );
-        }).catch(async (err) => {
-          console.warn(`[reel] could not re-encode the presence clip: ${(err as Error).message}`);
-          await fs.copyFile(clip.localPath as string, out);
-        });
-      }
+      log(`reel: ${built.segments} segments, ${built.seconds}s loop`);
     } catch (err) {
-      console.warn(`[reel] presence clip failed: ${(err as Error).message}`);
+      console.warn(`[reel] presence loop failed: ${(err as Error).message}`);
     }
     reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
+  }
+  // A walk with no presence loop is a walk where the guide is a still photograph,
+  // and assemble would go on to publish exactly that: the manifest gets an empty
+  // faceReel and the orphan sweep then deletes the clip the old manifest pointed
+  // at. Refusing here keeps the published walk as it was until the loop can
+  // actually be built, which is what you want when the failure is a provider
+  // outage rather than anything about this tour.
+  if (reelClips.length === 0 && provider.name === "fal") {
+    throw new Error("no presence loop for the guide; refusing to publish a walk without one");
   }
   log(`reel: ${reelClips.length} clips`);
 

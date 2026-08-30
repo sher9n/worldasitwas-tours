@@ -17,7 +17,11 @@
     "brief": "Forty-one, widowed, keeps a tavern on the main square where clerks, sailors and minor gentlemen drink beer, brandy and coffee and argue politics loudly enough to be heard on the stairs. Born in Stockholm. Shrewd, warm, unimpressed by titles, keeps a slate of debts she rarely collects in full. She knows nothing of the world after 1755.",
     "voice": "coral",
     "narrationVoice": "oVXQ3H21hRI9OtM4YH5K",
-    "narrationVoiceName": "Freya, approachable Swedish"
+    "narrationVoiceName": "Freya, approachable Swedish",
+    "presence": {
+      "standing": "behind the board of her tavern on Stortorget, tankards in front of her, the low crowded room behind",
+      "gesture": "wipes the board with her cloth"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in Stockholm in 1755: plastered stone houses in ochre and grey, steep roofs, cobbled squares, sledges and carts, ships at the quay, lanterns, wood smoke and cold light. Clothing of the mid eighteenth century: tricornes, wool coats, aprons, shawls, caps. Portrait 9:16 framing, eye level. Cool muted colour, not sepia.",

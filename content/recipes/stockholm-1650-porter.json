@@ -16,7 +16,11 @@
     "role": "Harbour porter, Skeppsbron",
     "brief": "Thirty-six, a porter who carries and stacks cargo on the Skeppsbron quay: copper plates, iron bars, salt, cloth. Born on a farm in Uppland, came to the city at fifteen. Strong, dry, watchful, a Lutheran who works on saints' days because there is no bread otherwise. He has carried crates of books and statues taken in the war and does not think much of it. He knows nothing of the world after 1650.",
     "voice": "echo",
-    "narrationVoice": "Callum"
+    "narrationVoice": "Callum",
+    "presence": {
+      "standing": "on the quay at Skeppsbron with crates and coiled rope around him, masts and grey water behind",
+      "gesture": "shifts the rope on his shoulder"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in Stockholm in 1650: wooden and plastered stone houses with steep roofs, a crowded quay of masts and rigging, barrels and copper plates stacked on stone, mud and timber walkways, wood smoke, grey northern light. Clothing of 1650: wide collars, capes, wool coats, headscarves, leather aprons. Portrait 9:16 framing, eye level. Cool muted colour, not sepia.",

@@ -133,3 +133,79 @@ export async function trimBorder(file: string): Promise<boolean> {
     return false;
   }
 }
+
+/** The last decoded frame of a clip, written as a JPEG. Seeds the next segment. */
+export async function lastFrame(video: string, out: string): Promise<void> {
+  const secs = (await probeDuration(video)) ?? 0;
+  // sseof seeks from the end, so this does not depend on knowing the frame rate.
+  await ffmpeg(["-y", "-sseof", "-0.2", "-i", video, "-update", "1", "-frames:v", "1", "-q:v", "2", out]);
+  if (!secs) return;
+}
+
+/**
+ * Joins segments that already run on from one another.
+ *
+ * Each segment after the first was generated FROM the last frame of the one
+ * before, so that frame is present at both ends of the join. The duplicate is
+ * dropped, otherwise the picture holds still for two frames every ten seconds
+ * and reads as a stutter.
+ */
+export async function joinClips(files: string[], out: string, size: number): Promise<void> {
+  const parts = files.map((_, i) => `[${i}:v]scale=${size}:${size},setsar=1${i ? ",trim=start_frame=1" : ""},setpts=PTS-STARTPTS[v${i}]`);
+  const chain = files.map((_, i) => `[v${i}]`).join("");
+  await ffmpeg([
+    "-y",
+    ...files.flatMap((f) => ["-i", f]),
+    "-filter_complex", `${parts.join(";")};${chain}concat=n=${files.length}:v=1[out]`,
+    "-map", "[out]", "-an",
+    // An intermediate: loopJoin encodes it again, so this stays near-lossless
+    // and the compression budget is spent once, at the end.
+    "-c:v", "libx264", "-crf", "18", "-preset", "veryfast", "-pix_fmt", "yuv420p",
+    out,
+  ]);
+}
+
+/**
+ * Turns any clip into one that loops without a visible join.
+ *
+ *   head = [0,d)   mid = [d,T-d)   tail = [T-d,T)
+ *   out  = crossfade(tail -> head) ++ mid
+ *
+ * The result ends on the frame at T-d and begins on the frame at T-d, so
+ * going round again is an ordinary step from one frame to the next.
+ *
+ * This is why nothing upstream has to hold still. Asking a video model to end
+ * in the pose it started in is a heavy instruction: under it the model plays
+ * safe and the guide barely moves, which is exactly the stiffness this
+ * replaces. Let her perform, and close the loop here instead.
+ */
+export async function loopJoin(file: string, out: string, dissolveSec = 1, size = 540): Promise<void> {
+  const T = await probeDuration(file);
+  if (!T || T <= dissolveSec * 3) {
+    await fs.copyFile(file, out);
+    return;
+  }
+  const d = dissolveSec;
+  await ffmpeg([
+    "-y", "-i", file,
+    "-filter_complex",
+    // Scaled here rather than in joinClips, so the join works on the full
+    // picture and only the delivered file is reduced.
+    `[0:v]scale=${size}:${size}[s];[s]split=3[h][m][t];` +
+      `[h]trim=0:${d},setpts=PTS-STARTPTS[head];` +
+      `[m]trim=${d}:${T - d},setpts=PTS-STARTPTS[mid];` +
+      `[t]trim=${T - d}:${T},setpts=PTS-STARTPTS[tail];` +
+      `[tail][head]xfade=transition=fade:duration=${d}:offset=0[bl];` +
+      `[bl][mid]concat=n=2:v=1[out]`,
+    "-map", "[out]", "-an",
+    // This file is fetched at the start of every walk and plays inside a circle
+    // that is never wider than 132px, so it is encoded for that rather than for
+    // a full screen: 540 square covers even a 3x display with room to spare,
+    // and the download is a third of what 720 costs. A keyframe every second
+    // because looping seeks back to zero, and on a clip whose only keyframe is
+    // at the start that seek can drop a frame.
+    "-c:v", "libx264", "-crf", "28", "-preset", "slow", "-pix_fmt", "yuv420p",
+    "-g", "24", "-keyint_min", "24", "-movflags", "+faststart",
+    out,
+  ]);
+}

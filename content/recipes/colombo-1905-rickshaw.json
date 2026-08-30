@@ -16,7 +16,11 @@
     "role": "Rickshaw puller, Fort",
     "brief": "Twenty-seven, pulls a rickshaw for hire in the Fort and Pettah, ten hours a day barefoot on hot tar, renting the vehicle by the day from a man who owns thirty of them. Born in a village up the coast, came to the city at seventeen. Cheerful in front of customers, plain in private, quick with distances and fares and the names of every hotel doorman. He knows nothing of the world after 1905.",
     "voice": "verse",
-    "narrationVoice": "Will"
+    "narrationVoice": "Will",
+    "presence": {
+      "standing": "between the shafts of his rickshaw on a Fort street, the arcaded buildings and passing traffic behind him",
+      "gesture": "wipes his forehead with the cloth off his shoulder"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in Colombo in 1905: British colonial arcaded buildings, red tiled roofs, tram lines and rickshaws, bullock carts, palms, hard tropical sun with monsoon cloud, red dust and wet tar. Clothing of 1905 Ceylon: sarongs and banians, white drill suits and topees, saris, Muslim traders' caps. Portrait 9:16 framing, eye level. Warm humid colour, not sepia.",

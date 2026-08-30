@@ -40,6 +40,9 @@ set -u
 
 VOLUME="${VOLUME:-worldasitwas-tours-volume}"
 PAUSE="${PAUSE:-5}"
+# Eight parallel transfers times out on this endpoint far more often than it
+# succeeds; four gets through.
+CONCURRENCY="${CONCURRENCY:-4}"
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 TOURS_DIR="$ROOT/content/tours"
 
@@ -106,12 +109,31 @@ for t in $TOURS; do
     n=$((n + 1))
     # Exit status is not enough: the CLI has returned zero having transferred
     # only part of a walk. The word it prints on a real success is checked too.
-    out=$(railway volume files --volume "$VOLUME" upload "$src" "/tours" --overwrite --concurrency 8 2>&1)
+    out=$(railway volume files --volume "$VOLUME" upload "$src" "/tours" --overwrite --concurrency "$CONCURRENCY" 2>&1)
     if printf '%s' "$out" | grep -q "Uploaded"; then
       echo "ok"; ok=$((ok + 1)); break
     fi
     if [ $n -eq 4 ]; then
-      echo "FAILED"; echo "$out" | sed 's/^/        /' >&2; failed="$failed $t"
+      # The whole-walk transfer times out on this endpoint often enough that it
+      # cannot be the only route: one file at a time is slower but has not been
+      # seen to fail, and a walk that is half sent is a walk that is broken.
+      printf "one file at a time ... "
+      missed=0
+      for f in "$src"/*; do
+        m=0
+        while [ $m -lt 4 ]; do
+          m=$((m + 1))
+          fout=$(railway volume files --volume "$VOLUME" upload "$f" "/tours/$t" --overwrite 2>&1)
+          printf '%s' "$fout" | grep -q "Uploaded" && break
+          [ $m -eq 4 ] && missed=$((missed + 1))
+          sleep 3
+        done
+      done
+      if [ "$missed" = 0 ]; then
+        echo "ok"; ok=$((ok + 1))
+      else
+        echo "FAILED ($missed file(s))"; echo "$out" | sed 's/^/        /' >&2; failed="$failed $t"
+      fi
     else
       printf "retry %s ... " "$n"; sleep $((PAUSE * n))
     fi

@@ -16,7 +16,11 @@
     "role": "Flower seller, Covent Garden and Ludgate Hill",
     "brief": "Thirty-one, widowed, two children (Tom, nine, and Sal, six). Buys violets, wallflowers and watercress at Covent Garden before six and sells from a basket on Ludgate Hill. Born in Clerkenwell. Sharp, warm, funny. SHE IS THE TOUR'S HOST AND NARRATOR: she speaks like the finest kind of broadcast presenter of a guided walk - welcoming, vivid, always carrying the listener forward to the next thing - but she is entirely a woman of 1850 and uses only the language, measures and ideas of her time. She addresses the visitor directly and warmly without pet names: endearments such as 'love' appear at most once per stop and often not at all. She never lectures; she points, remembers, and moves you along. Her knowledge, prices and worries come from the street sellers interviewed in Henry Mayhew's London Labour and the London Poor (1851). She knows nothing after spring 1850 and has never been past Greenwich or Kensington.",
     "voice": "marin",
-    "narrationVoice": "Lily"
+    "narrationVoice": "Lily",
+    "presence": {
+      "standing": "on the pavement with her flower basket held at her hip, the market and the passing carts behind her",
+      "gesture": "straightens the flowers in her basket"
+    }
   },
   "style": {
     "look": "Photographic realism as if a large-format camera had been on the spot in 1850, natural overcast London light, wet cobbles, coal smoke haze, period-correct clothing (women in shawls and bonnets, men in top hats or caps, no bare heads), horse traffic only, gas lamps, painted shop signs. Portrait 9:16 framing, eye level from the pavement. Muted colour, not sepia. No text overlays, no watermarks.",

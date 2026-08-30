@@ -471,6 +471,19 @@ export const Recipe = z.object({
     voice: z.string().default("marin"),
     /** ElevenLabs voice name used for pre-recorded narration. */
     narrationVoice: z.string().default("Alice"),
+    /**
+     * Where this guide stands when nothing is asked of them, and the small
+     * thing their hands do while they wait. The presence loop in their circle
+     * is written from these two facts, so it is theirs rather than generic.
+     */
+    presence: z
+      .object({
+        /** Where they are and what is behind them. */
+        standing: z.string().min(1),
+        /** Their own idle gesture: "wipes her hands on her apron". */
+        gesture: z.string().min(1),
+      })
+      .optional(),
   }),
   /** Visual direction applied to every reconstruction prompt. */
   style: z.object({

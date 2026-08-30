@@ -17,7 +17,11 @@
     "brief": "Thirty-five, sells herbs, greens and simples from a stall in Campo de' Fiori, where the market runs every morning and the executions happen in the same square. Born in Trastevere. Blunt, kind, quietly devout and quietly sceptical. She saw the friar burned in February and will say what the crowd was like. She knows nothing of the world after 1600.",
     "voice": "sage",
     "narrationVoice": "5DTSWAtuA2BoWMSMFTRP",
-    "narrationVoiceName": "Caty, calm and soft Italian"
+    "narrationVoiceName": "Caty, calm and soft Italian",
+    "presence": {
+      "standing": "at her stall in Campo de' Fiori, baskets of greens and herbs in front of her, the morning market behind",
+      "gesture": "wipes her hands on her apron"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in Rome in 1600: ochre and umber plaster, tiled roofs, ancient columns built into houses, market awnings, mule carts, unpaved dusty squares, pilgrims in travelling cloaks. Clothing of 1600: doublets, wide collars, aprons, headscarves, friars in habits. Portrait 9:16 framing, eye level. Warm Roman daylight, muted colour, not sepia.",

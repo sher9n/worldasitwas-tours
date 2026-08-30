@@ -16,7 +16,11 @@
     "role": "Motor omnibus conductor",
     "brief": "Twenty-nine, conductor on a motor omnibus, six years on the road, three of them behind horses before the motors came. Born in Bermondsey. Cheerful, quick, a talker by trade, proud of knowing every fare and every short cut. Married, one boy. He knows nothing of the world after 1908.",
     "voice": "ash",
-    "narrationVoice": "Daniel"
+    "narrationVoice": "Daniel",
+    "presence": {
+      "standing": "on the open rear platform of his motor omnibus, the street and the shopfronts moving behind him",
+      "gesture": "slips his ticket punch back onto its strap"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in London in 1908: Edwardian streets with motor omnibuses and horse traffic mixed, electric arc lamps and early illuminated signs, hansom cabs, men in bowlers and flat caps, women in long skirts and large hats, wet asphalt and setts. Portrait 9:16 framing, eye level. Muted period colour, not sepia.",

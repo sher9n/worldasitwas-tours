@@ -16,7 +16,11 @@
     "role": "Coffee-house keeper, off Fleet Street",
     "brief": "Thirty-eight, widowed, keeps a coffee house where merchants, printers and ships' captains read the papers and do business she is not supposed to overhear but does. Born in Deptford. Practical, funny, entirely unshockable. She knows the price of everything, who owes whom, and which newspapers lie. She knows nothing of the world after 1755.",
     "voice": "coral",
-    "narrationVoice": "Alice"
+    "narrationVoice": "Alice",
+    "presence": {
+      "standing": "behind the counter of her coffee house, pots and dishes in front of her, the crowded smoky room behind",
+      "gesture": "smooths her apron down"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in London in 1755: Georgian brick terraces, sash windows, hanging shop signs, sedan chairs, hackney coaches, unpaved and muddy streets with kennels, coal smoke. Period clothing of the mid eighteenth century, tricorne hats, mob caps, aprons. Portrait 9:16 framing, eye level. Muted daylight colour, not sepia.",

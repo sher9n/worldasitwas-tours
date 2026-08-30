@@ -17,7 +17,11 @@
     "brief": "Forty-four, a cicerone who walks English, French and German gentlemen round the antiquities for a fee, having learned his Latin from a priest and his English from his customers. Born in Rome, near the Pantheon. Charming, mercenary, genuinely in love with the ruins he sells. He knows what every guide's fee is, which antiquities are fake, and nothing of the world after 1750.",
     "voice": "verse",
     "narrationVoice": "wIXSd2QOwnI0ZGOZbVj2",
-    "narrationVoiceName": "Luca, calm Italian narration"
+    "narrationVoiceName": "Luca, calm Italian narration",
+    "presence": {
+      "standing": "among the broken columns where he meets foreign travellers, the ruins and the city behind him",
+      "gesture": "straightens the set of his coat"
+    }
   },
   "style": {
     "look": "Photographic realism as if a camera had stood in Rome in 1750: baroque facades, weathered travertine, ruins overgrown with grass and shrubs, cattle and carts in the forum, scaffolding, sedan chairs, priests and travellers. Clothing of the mid eighteenth century: tricornes, breeches, cassocks, shawls. Portrait 9:16 framing, eye level. Warm Roman light, muted colour, not sepia.",
