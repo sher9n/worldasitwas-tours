@@ -277,7 +277,10 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     const body = z.object({ text: z.string().min(1).max(600) }).safeParse(req.body ?? {});
     if (!body.success) return sendError(reply, 400, "bad_request", "text (<=600 chars) is required");
     if (!opts.falKey) return sendError(reply, 503, "companion_unavailable", "Speech is not configured");
-    const voice = stored.tour.companion.narrationVoice;
+    // A walk uploaded before the manifest carried its voice would otherwise ask
+    // for an empty one and get silence; a named voice is a better answer than
+    // no answer, even if it is not quite the right person.
+    const voice = stored.tour.companion.narrationVoice || "Alice";
     try {
       const res = await fetch("https://fal.run/fal-ai/elevenlabs/tts/eleven-v3", {
         method: "POST",
