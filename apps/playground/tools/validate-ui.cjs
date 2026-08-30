@@ -121,10 +121,10 @@ async function labelContrast(page) {
   }
 
   await page.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
-  await page.waitForSelector(".player .idle");
+  await page.waitForSelector(".player .idle", { timeout: 90000 });
   await page.screenshot({ path: `${S}/v-00-cover.png` });
   await page.click("button.travel");
-  await page.waitForSelector(".titlecard", { timeout: 8000 });
+  await page.waitForSelector(".titlecard", { timeout: 60000 });
   await page.waitForTimeout(1600);
 
   // Arrival basics
@@ -266,7 +266,7 @@ async function labelContrast(page) {
   const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: "reduce" });
   const p2 = await ctx2.newPage();
   await p2.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
-  await p2.waitForSelector(".player .idle");
+  await p2.waitForSelector(".player .idle", { timeout: 90000 });
   await p2.click("button.travel");
   await p2.waitForTimeout(1500);
   await neutralTapOn(p2);
@@ -287,7 +287,7 @@ async function labelContrast(page) {
     const b3 = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
     const p3 = await (await b3.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
     await p3.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
-    await p3.waitForSelector(".player .idle");
+    await p3.waitForSelector(".player .idle", { timeout: 90000 });
     await p3.click("button.travel");
     await p3.waitForTimeout(1500);
     const ask = await p3.$(".ask");

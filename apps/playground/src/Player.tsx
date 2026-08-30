@@ -373,31 +373,54 @@ export function Player({
     const inc = hidden();
     if (!inc) return;
     swapping.current = true;
+
+    const nextIdx = (reelIdx.current + 1) % reel.length;
+    const afterIdx = (nextIdx + 1) % reel.length;
+    reelIdx.current = nextIdx;
+
+    /** Give the player that has left the screen the clip after next. */
+    const queueNext = () =>
+      window.setTimeout(() => {
+        const out = active === 0 ? slotA.current : slotB.current;
+        if (out) out.pause();
+        setSrcs((cur) => {
+          // Reassigning the same clip reloads it, and a reloading player has no
+          // frame to show. Leave it alone unless the clip actually changes.
+          if (cur[active] === reel[afterIdx].video) return cur;
+          const copy: [string, string] = [...cur];
+          copy[active] = reel[afterIdx].video;
+          return copy;
+        });
+        swapping.current = false;
+      }, 220);
+
+    const flip = () => {
+      setActive((a) => (a === 0 ? 1 : 0));
+      queueNext();
+    };
+
     try {
       inc.currentTime = 0;
     } catch {
       // not seekable yet; it will start from the beginning anyway
     }
     void inc.play().catch(() => undefined);
-    const nextIdx = (reelIdx.current + 1) % reel.length;
-    const afterIdx = (nextIdx + 1) % reel.length;
-    reelIdx.current = nextIdx;
-    setActive((a) => (a === 0 ? 1 : 0));
-    // Load the clip after next into the player that just left the screen, once
-    // it is safely out of sight.
+
+    // Never put a player on screen with no frame to show: if the incoming clip
+    // is not ready, the outgoing one stays a moment longer.
+    if (inc.readyState >= 2) {
+      flip();
+      return;
+    }
+    const done = () => {
+      inc.removeEventListener("loadeddata", done);
+      flip();
+    };
+    inc.addEventListener("loadeddata", done, { once: true });
     window.setTimeout(() => {
-      const out = active === 0 ? slotA.current : slotB.current;
-      if (out) out.pause();
-      setSrcs((cur) => {
-        // Reassigning the same clip reloads it, and a reloading player has no
-        // frame to show. Leave it alone unless the clip actually changes.
-        if (cur[active] === reel[afterIdx].video) return cur;
-        const copy: [string, string] = [...cur];
-        copy[active] = reel[afterIdx].video;
-        return copy;
-      });
-      swapping.current = false;
-    }, 220);
+      inc.removeEventListener("loadeddata", done);
+      flip();
+    }, 400);
   };
 
   useEffect(() => {

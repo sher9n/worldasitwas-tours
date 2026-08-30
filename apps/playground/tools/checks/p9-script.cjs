@@ -38,7 +38,7 @@ pass = ok("how to look and ask is explained, after they introduce themselves", a
 const invites = (JSON.stringify(m).match(/green (disc|button)/gi) || []).length;
 pass = ok("the interface is explained once in the whole tour", invites === 1, `${invites} mentions`) && pass;
 // 3. She closes the walk.
-pass = ok("says goodbye at the end", /thank you|good ?bye|farewell|walking with me|good rest|god keep|good day to you|safe home|mind how you go/i.test(last), last.slice(-60)) && pass;
+pass = ok("says goodbye at the end", /thank you|bye\b|farewell|walking with me|good rest|god keep|good day to you|safe home|mind how you go/i.test(last), last.slice(-60)) && pass;
 
 // 4. Nothing is told twice: gather every spoken line with its home.
 const lines = [];

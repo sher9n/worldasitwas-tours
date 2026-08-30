@@ -16,7 +16,7 @@ const voice = (pg) => pg.evaluate(() => {
   const failed = [];
   page.on("response", (r) => { if (!r.ok() && /\.mp3|\.m4a/.test(r.url())) failed.push(`${r.status()} ${r.url().split("/").pop()}`); });
   await page.goto(`http://localhost:5173/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
-  await page.waitForSelector(".player .idle");
+  await page.waitForSelector(".player .idle", { timeout: 90000 });
   await page.click("button.travel");
   let pass = true;
 

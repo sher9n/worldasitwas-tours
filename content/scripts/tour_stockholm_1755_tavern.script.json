@@ -65,7 +65,7 @@
             },
             {
               "label": "the waiting wagon",
-              "line": "If that sort of wagon is hired for a wedding or a funeral in town, the first hour is 3 daler kopparmynt. Joy and grief both cost extra once a horse must wait under everybody's eye."
+              "line": "A waiting wagon draws every gaze in the square, because nobody keeps a horse standing for pleasure. If it's decked for a wedding or hung dark for a funeral, folk make room and talk lower as it passes."
             }
           ]
         }
@@ -135,7 +135,7 @@
     },
     "stop_03_skeppsbron": {
       "arrival": {
-        "line": "Now we've come past the palace flank to the city's other face, because here on Skeppsbron grandeur turns back into hauling and reckoning. This quay was laid out after the east wall was pulled down and new ground filled out in the 1630s, and the warehouses run back from here toward Österlånggatan. In our time it's harbour and parade street together, with merchants living in these dark fronts and keeping their business at the water where all may judge it.",
+        "line": "Now we've come past the palace flank to the city's other face, because here on Skeppsbron the wind smells of tar and salt and every doorway seems half shop, half home. This quay was made when the old east wall gave way and fresh ground was thrown out in my grandmother's day, with long storehouses stretching back toward Österlånggatan. In our time folk stroll here to be seen as readily as they come to bargain, and the fine façades keep one eye on the water and the other on the town.",
         "scene": "A street-level view along Skeppsbron on a grey day. On the left stands a row of tall, dark waterside merchant houses with high upper windows and heavy stone fronts; one open warehouse fills the near foreground, its wide door thrown back on shadowy stacks within. In front of it, two numbered chests are being rolled across the cobbles by porters while a clerk with a ledger stands nearby. To the right, the quay edge drops to brackish water crowded with masts and a moored cargo boat.",
         "points": [
           {

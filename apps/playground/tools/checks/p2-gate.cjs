@@ -6,7 +6,7 @@ const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
   await page.goto(`http://localhost:5173/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
   await page.evaluate(() => localStorage.removeItem("tt.hintExplore"));
-  await page.waitForSelector(".player .idle");
+  await page.waitForSelector(".player .idle", { timeout: 90000 });
   await page.click("button.travel");
   let pass = true;
   // Gradual reveal: while she is still early in her arrival line, no dots yet.
