@@ -95,7 +95,18 @@ class Materializer {
     if (asset.localPath) {
       await fs.copyFile(asset.localPath, target);
     } else if (asset.remoteUrl) {
-      await download(asset.remoteUrl, target);
+      try {
+        await download(asset.remoteUrl, target);
+      } catch (err) {
+        // An archive photo this walk has published before is already sitting at
+        // exactly this path. Wikimedia rate-limits hard when several walks are
+        // rebuilt at once, and losing a whole republish over a picture we
+        // already hold is the wrong trade: keep the copy and carry on. Only a
+        // photo we have never had is fatal.
+        const held = await fs.stat(target).catch(() => undefined);
+        if (!held?.size) throw err;
+        console.warn(`[assemble] keeping the copy already published of ${file}: ${(err as Error).message}`);
+      }
     }
     // Every recording lands at the same loudness. The provider returns lines
     // that differ by a few decibels, which on a phone is heard as her voice
