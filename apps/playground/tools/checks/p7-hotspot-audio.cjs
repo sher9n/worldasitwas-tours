@@ -4,6 +4,7 @@
  * the other dots dim, and the tour resumes when the aside ends.
  */
 const { chromium } = require("/Applications/MAMP/htdocs/document-capture-service/node_modules/playwright");
+const TOUR = process.env.TOUR || "tour_london_1850_flower_seller";
 const ok = (n, c, d = "") => console.log(`[p7] ${c ? "PASS" : "FAIL"} ${n}${d ? " · " + d : ""}`) || c;
 const voice = (pg) => pg.evaluate(() => {
   const a = document.querySelector('audio[data-channel="voice"]');
@@ -14,7 +15,7 @@ const voice = (pg) => pg.evaluate(() => {
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
   const failed = [];
   page.on("response", (r) => { if (!r.ok() && /\.mp3|\.m4a/.test(r.url())) failed.push(`${r.status()} ${r.url().split("/").pop()}`); });
-  await page.goto("http://localhost:5173/?tour=tour_london_1850_flower_seller&play=1", { waitUntil: "networkidle" });
+  await page.goto(`http://localhost:5173/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
   await page.waitForSelector(".player .idle");
   await page.click("button.travel");
   let pass = true;

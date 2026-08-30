@@ -1,0 +1,141 @@
+{
+  "id": "tour_stockholm_1755_tavern",
+  "city": "stockholm",
+  "cityName": "Stockholm",
+  "country": "SE",
+  "year": 1755,
+  "yearRange": [
+    1753,
+    1757
+  ],
+  "lang": "en",
+  "title": "The Tavern on the Square",
+  "theme": "Five stops through Stockholm in 1755 with Brita Lindqvist, who keeps a tavern on Stortorget. The Age of Liberty: a parliament that argues in public, a brand new royal palace just finished, coffee and punch and East India porcelain, and everybody in debt.",
+  "companion": {
+    "name": "Brita Lindqvist",
+    "role": "Tavern keeper, Stortorget",
+    "brief": "Forty-one, widowed, keeps a tavern on the main square where clerks, sailors and minor gentlemen drink beer, brandy and coffee and argue politics loudly enough to be heard on the stairs. Born in Stockholm. Shrewd, warm, unimpressed by titles, keeps a slate of debts she rarely collects in full. She knows nothing of the world after 1755.",
+    "voice": "coral",
+    "narrationVoice": "Charlotte"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Stockholm in 1755: plastered stone houses in ochre and grey, steep roofs, cobbled squares, sledges and carts, ships at the quay, lanterns, wood smoke and cold light. Clothing of the mid eighteenth century: tricornes, wool coats, aprons, shawls, caps. Portrait 9:16 framing, eye level. Cool muted colour, not sepia.",
+    "avoid": "no nineteenth-century buildings, no motor vehicles, no gas or electric light, no modern clothing, no Tre Kronor castle (it burned in 1697), no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_stortorget",
+      "title": "Stortorget",
+      "geo": {
+        "lat": 59.3251,
+        "lng": 18.071,
+        "bearing": 0
+      },
+      "brief": "The old square with her tavern on it: gabled merchant houses, the exchange, market stalls, and a well that everybody queues at.",
+      "mustCover": [
+        "what a tavern sells and what it costs",
+        "who drinks here and what they argue about",
+        "the square's own history and reputation"
+      ],
+      "archiveQueries": [
+        "Stortorget Stockholm 18th century engraving",
+        "Stockholm Gamla Stan 1750",
+        "Swedish tavern 18th century"
+      ]
+    },
+    {
+      "id": "stop_02_royal_palace",
+      "title": "The Royal Palace",
+      "geo": {
+        "lat": 59.3268,
+        "lng": 18.0717,
+        "bearing": 270
+      },
+      "brief": "The enormous new palace finished last year after nearly sixty years of building on the ashes of the old castle, paid for by taxes everyone remembers paying.",
+      "mustCover": [
+        "how long it took and what it cost",
+        "what stood here before",
+        "what ordinary people think of it"
+      ],
+      "archiveQueries": [
+        "Stockholm Royal Palace 18th century engraving",
+        "Stockholms slott 1754",
+        "Stockholm palace construction"
+      ]
+    },
+    {
+      "id": "stop_03_skeppsbron",
+      "title": "Skeppsbron",
+      "geo": {
+        "lat": 59.3253,
+        "lng": 18.074,
+        "bearing": 90
+      },
+      "brief": "The quay and the merchant houses of the Skeppsbron nobility, with East Indiamen goods, porcelain, tea and silk coming ashore and prices arguing themselves out on the stones.",
+      "mustCover": [
+        "what comes in from the East and who buys it",
+        "the merchants who live along the quay",
+        "coffee and how it arrived"
+      ],
+      "archiveQueries": [
+        "Skeppsbron Stockholm 18th century",
+        "Swedish East India Company goods",
+        "Stockholm harbour 1750 engraving"
+      ]
+    },
+    {
+      "id": "stop_04_riddarhuset",
+      "title": "Riddarhuset",
+      "geo": {
+        "lat": 59.326,
+        "lng": 18.0655,
+        "bearing": 180
+      },
+      "brief": "The House of Nobility where one of the four estates meets: the Diet in session, Hats and Caps buying votes, and pamphlets everywhere.",
+      "mustCover": [
+        "how the parliament of four estates works",
+        "the two parties and how they get their way",
+        "what a printed pamphlet costs and who reads it"
+      ],
+      "archiveQueries": [
+        "Riddarhuset Stockholm 18th century",
+        "Swedish Age of Liberty Riksdag",
+        "Stockholm 1750 political pamphlets"
+      ]
+    },
+    {
+      "id": "stop_05_kungstradgarden",
+      "title": "Kungsträdgården",
+      "geo": {
+        "lat": 59.3315,
+        "lng": 18.0715,
+        "bearing": 0
+      },
+      "brief": "The king's garden on Norrmalm, walked in by people who want to be seen, with lime avenues, guards, and the city's newer streets around it.",
+      "mustCover": [
+        "who walks here and why",
+        "how Norrmalm differs from the old town",
+        "what is grown in the garden"
+      ],
+      "archiveQueries": [
+        "Kungsträdgården Stockholm 18th century",
+        "Stockholm Norrmalm 1750 engraving",
+        "Stockholm garden 18th century"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Stockholm engravings and city views, 18th century",
+      "url": "https://commons.wikimedia.org/",
+      "license": "public-domain",
+      "note": "The palace, the quay and the old town in these years."
+    },
+    {
+      "title": "Swedish Age of Liberty parliamentary records",
+      "url": "https://riksdagen.se/",
+      "license": "reference",
+      "note": "The Diet of the four estates, Hats and Caps."
+    }
+  ]
+}

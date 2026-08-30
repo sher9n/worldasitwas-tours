@@ -1,0 +1,336 @@
+{
+  "tourId": "tour_rome_1750_cicerone",
+  "companion": "Domenico Fabbri",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_piazza_di_spagna": {
+      "arrival": {
+        "line": "Good day, Signore. I'm Domenico Fabbri, forty-four years old, a Roman born near the Pantheon, and I'm a cicerone, which is to say I walk English, French, and German gentlemen through antiquities, marbles, churches, and ruins for a fee. I've done it for years now. My Latin came from a priest, and my English from my customers, so if I sound half church and half lodging-house, that's honest enough. I was raised in these streets, and I know this round in five stops: Rome not as a finished museum, but as a city earning from what is broken, repaired, half-made, and very well shown. I know what every guide charges, and which antiquity is true, restored, or made for strangers. Touch anything in the picture and I'll speak of it, and if you hold the green button you may ask me anything.",
+        "scene": "From the paving beside the Barcaccia, the square opens wide, and straight ahead the fresh pale staircase climbs in long flights to the church and convent on the hill. On one side stands the long palace front of the Spanish embassy; on the other, dusty ochre houses with shopfronts below and upper windows above. Around the fountain boat are sedan chairs, a hired carriage edging in, porters in dark coats, a cassock, and a few bright foreign liveries.",
+        "points": [
+          {
+            "label": "the palace front",
+            "line": "Spanish Rome below, French Rome above: that is the bargain of this view. The ambassador of Spain has his palace here, and the French church crowns the hill, so one staircase joins two foreign powers and lets Rome collect the traffic between them."
+          },
+          {
+            "label": "the upper windows",
+            "line": "Those upper floors are money. Houses around the stair have been divided into apartments, and the lower parts serve for inns and cafés, so pious building on the hill helps fill rented rooms below with strangers and their servants."
+          },
+          {
+            "label": "the fountain boat",
+            "line": "That fountain boat is Bernini's Barcaccia, stranded on purpose in the middle of the square. Before a stranger has bought a room or a guide, Rome lets him hear water, admire stone, and feel half pleased with himself for having arrived."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_piazza_di_spagna_c1": {
+          "narration": "See the stair first. It was authorized in 1723 and opened for the Jubilee of 1725, though Rome was still finishing it when people had already begun admiring it. So in this year of 1750 it is only about twenty-five years old, which means remembered modern Rome, not ancient time without memory. Foreigners come hunting antiquity, and the first grand sight we give them here is new, broad, easy, and theatrical.",
+          "scene": "The frame is filled by the staircase, seen from low in the piazza so the steps rise in widening flights and shallow landings toward the church top. People are scattered on the lower steps, the travertine still pale rather than old-dark, and above the roofline the summit is bare, with no obelisk breaking the sky.",
+          "points": [
+            {
+              "label": "the lower steps",
+              "line": "Before this stair, the way up was bad work. An English traveller remembering Rome of 1720 to 1722 called the ascent from here rude and wild, and troublesome too, which is plain enough when you imagine mud and slope instead of these ordered flights."
+            },
+            {
+              "label": "the church top",
+              "line": "A man buying prints from Piranesi may carry away almost this same sight. His view of the piazza shows what you see now: no Marian column in the square below, and no obelisk yet standing above the church."
+            }
+          ]
+        },
+        "stop_01_piazza_di_spagna_c2": {
+          "narration": "Now the houses. Because this piazza lies near Porta del Popolo, where many northern travellers first enter Rome, inns gathered here to catch them almost at once, and people call it the strangers' quarter for good reason. Travellers generally lodge in or near Piazza di Spagna. If a man stays, he commonly quits the inn and takes furnished rooms instead: I know private lodging near this piazza at twenty crowns a month, and a handsome furnished house in Rome at about six guineas.",
+          "scene": "The view shifts sideways along the piazza: a row of lodging houses and inns with shopfronts at street level, upper windows thrown open above, a hanging sign over one doorway, and a porter crossing the frame with a covered basket balanced in his hands. A sedan chair waits at the curb, and beyond it the traffic of the square presses past.",
+          "points": [
+            {
+              "label": "the hanging sign",
+              "line": "One inn here, the Mont d'Or, has a better name with strangers than most Roman houses of that kind. I don't promise paradise, but if a traveller praises an inn in Rome, I pay attention, because they are not lavish with compliments."
+            },
+            {
+              "label": "the covered basket",
+              "line": "That covered basket is Roman lodging in a hurry. Many strangers eat upstairs in hired rooms, with dinner sent home from a trattoria, so the street smells of broth and roast before a plate has even crossed the threshold."
+            }
+          ]
+        },
+        "stop_01_piazza_di_spagna_c4": {
+          "narration": "And here is the true beginning of antiquity as trade: not in the Forum, but in the bargain before it. A cicerone, that is the word strangers use for guides like me, gets work in this piazza by catching the new arrival, or better by attaching himself to the English colony and to the men who arrange letters, money, conveyance, and introductions. First comes trust, then the carriage, then the temple, and after that perhaps a little learning.",
+          "scene": "In the foreground a black-coated guide leans toward a powdered traveller just alighting from a carriage, while a servant in bright livery waits by the carriage door. Behind them two street openings run away from the piazza between tall houses, and the square's traffic keeps moving around them.",
+          "points": [
+            {
+              "label": "the street openings",
+              "line": "On the new map made two years ago, this piazza sits packed among Via del Babuino, Via Condotti, the theatre, the church, and the embassy palace. Beds, amusements, traffic, and antiquities all lie within a few turns of the heel."
+            },
+            {
+              "label": "the carriage door",
+              "line": "A newcomer with proper letters often goes first to a resident banker-antiquary, not to a ruin. From one such doorway he may get lodgings, introductions, conveyance, and, if luck runs kindly, a guide before the road-dust is off his boots."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So here Rome receives the stranger: a stair to admire, a room to rent, a guide to hire. Come with me now, and we'll go on to another place where incompletion itself is turned into a spectacle."
+    },
+    "stop_02_trevi": {
+      "arrival": {
+        "line": "Now we leave the lodgings and come to what the lodgings sell best: a marvel not yet finished. Trevi is old water dressed in new papal stone, and half the pleasure for Rome is that you must stand here guessing what it will be. The top already speaks grandly, the lower part still coughs dust, and because the money comes from the lottery people admire and grumble together. A place that once served thirst is being taught to serve astonishment, and that change pays many pockets.",
+        "scene": "From the far side of Piazza di Trevi, the whole fountain-front fills the frame, strapped against Palazzo Poli like a new stone theatre. High at the top sit the papal arms; below them the great central opening is still screened by a wooden barrier, with rough unfinished work behind it. In the foreground, white travertine stone blocks and chips lie scattered across the square while priests, pilgrims, workmen, and a few well-dressed strangers thread between them.",
+        "points": [
+          {
+            "label": "papal arms",
+            "line": "Those arms were up early. By '35 and '36 the pope's shield and the Seasons along the attic had already been cut in travertine and set in place, so the top learnt ceremony long before the lower part learnt how to be a fountain."
+          },
+          {
+            "label": "wooden barrier",
+            "line": "Vasi etched this very business in 1739, with the middle still empty and the rough rock screened off like a stage before the players enter. After the first burst of work ended in July '44, he altered the plate, because Trevi had changed its face again."
+          },
+          {
+            "label": "stone blocks",
+            "line": "When so much fresh travertine lies whitening the ground, people begin reckoning aloud. The old outlet did its work well enough, they say, so why must thirst be served with theatre? Romans can admire and mutter at the same time."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_trevi_c1": {
+          "narration": "See how the thing is made: not a free-standing fountain, but the back of Palazzo Poli turned into a triumph. Clement XII called the decisive competition in 1732, and Salvi's design was taken because it promised the grandest effect while doing the least harm to the palace behind. Eighteen years on, the upper order stands like a finished proclamation, and the lower part still asks for patience, money, and dust.",
+          "scene": "From almost straight below, the giant pilasters and palace windows rise above the unfinished lower stage of the fountain. A pair of ladder men cling to the right-hand side, while the empty middle niche yawns dark over rough-cut stone and timber. At the base, small figures of onlookers bunch along the edge of the work, which makes the façade seem even more monumental.",
+          "points": [
+            {
+              "label": "empty middle niche",
+              "line": "That vacancy is honest. The great centre promises a hero and gives you a hole for now, which is Rome all over: she takes your admiration on account, and delivers the marble when it can."
+            },
+            {
+              "label": "ladder men",
+              "line": "When ladders stay so long that no one notices them, you may judge the job has been checked and taken up again more than once. Rome has a talent for making delay seem part of the design."
+            }
+          ]
+        },
+        "stop_02_trevi_c2": {
+          "narration": "Now the true antiquity is not the carving but the water. This is the mostra, the show-end, of the Acqua Vergine, the old Aqua Virgo of Agrippa, first brought in 19 before Christ. It is the one great ancient aqueduct Rome has kept in uninterrupted use, so while popes change façades and architects argue, the same line still comes on faithfully to the Campo Marzio and empties its credit here.",
+          "scene": "From one side of the basin, the frame catches clear water spilling from a temporary spout onto wet stone. Beside it, a woman bends with a clay jug, and lower down a broad trough glistens where splashed water gathers. Dark damp masonry, bare rockwork, and the legs of passing pilgrims crowd the edges of the shot.",
+          "points": [
+            {
+              "label": "water spout",
+              "line": "The springs lie out by the eighth mile of the Via Collatina, near Salone, and the run to the Campo Marzio is more than twenty kilometres, most of it hidden underground. That is why this rush of water feels older than the stone dressed around it."
+            },
+            {
+              "label": "low trough",
+              "line": "Before this grand scheme, Bernini's unfinished fountain stood here facing south, and by common judgement it had sunk to little more than a wash-place and beast-trough. Useful, yes, but not a thing a pope could show off to strangers."
+            }
+          ]
+        },
+        "stop_02_trevi_c4": {
+          "narration": "Now the best commerce here is not water but explanation. Because the work is unfinished, strangers ask more questions than they would before a completed marvel—whose arms, whose palace, why so slow, what is ancient, what is new—and every answer feeds somebody. Priests, print-men, coachmen, stone-cutters, and ciceroni all earn a little from the same splash. That is Rome's cleverness in Jubilee time: even delay can be turned into service, and service into memory.",
+          "scene": "At the side of the piazza, a cicerone in a dark coat holds one arm out toward the fountain while two well-dressed foreign gentlemen listen. Beside them a seller balances folded prints and a little guidebook on a narrow board, and just behind waits a town coach with two horses and its driver on the box. Beyond them, workmen and pilgrims cross the dusty square under the half-finished façade.",
+          "points": [
+            {
+              "label": "little guidebook",
+              "line": "That small book is the new trade in pocket form. This very year Fausto Amidei sells Il Mercurio errante with plates by Piranesi, so a stranger may buy Trevi explained, mapped, and remembered before the carvers are done with it."
+            },
+            {
+              "label": "waiting coach",
+              "line": "A town coach is 14 pauls for the day, and the coachman takes 2 pauls besides. So even the pause in this square has a tariff, and the wonder arrives on wheels."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on now. We have seen Rome sell living water before the stone is done; next I'll show you older ground still, where antiquity lies half buried and a man pays as much for interpretation as for marvel."
+    },
+    "stop_03_pantheon": {
+      "arrival": {
+        "line": "From Trevi, where new stone dresses old water, we come to the old marvel that survives by wearing new offices. This stands almost entire not because emperors cherished it, but because in 609 Phocas gave it to Pope Boniface IV, and it was consecrated as Santa Maria ad Martyres. That saved it from the abandonment which ate so many temples. So strangers come asking for ancient Rome, and Rome answers with a church still living, earning, and very willing to be shew'd.",
+        "scene": "From the north side of the Piazza della Rotonda, looking south, the Pantheon fills the frame behind Giacomo della Porta's fountain and the tall red obelisk set at its centre. Eight dark granite columns carry the ancient porch, and above the pediment sit the twin bell towers. On both sides of the square, market awnings and little sheds crowd in close, with baskets, cages, boards, porters, and a few foreign gentlemen standing among Roman sellers and a beggar near the paving.",
+        "points": [
+          {
+            "label": "the twin towers",
+            "line": "Urban VIII had the old belfry removed and these two towers built in 1625, Bernini's work they say, and Rome laughs at them as ass's ears. It's a cruel name, yes, but once you've heard it, you can't quite look up innocently again."
+          },
+          {
+            "label": "the red obelisk",
+            "line": "The fountain before the porch is not antique together with the temple, no. The basin was made in 1575, and the obelisk was added in 1711, so Baroque Rome frames the old front and makes you admire two centuries at once."
+          },
+          {
+            "label": "the market awning",
+            "line": "Those sheds are licensed market buildings, the casini, and they cling like burrs. Alexander VII tried in the 1660s to rescue the church from their squalor, but trade came back into assigned places, because piety complains and appetite pays cash."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_pantheon_c1": {
+          "narration": "Now, don't let the great whole deceive you into talking of untouched antiquity. This house survived because men kept mending it. After it became Christian, an emperor still stripped much of the roof bronze in 663, and in 735 Pope Gregory III clad it again with lead. Even the square was altered, because Alexander VII lowered it so the portico now meets the piazza level instead of sinking below the street.",
+          "scene": "A closer frontal view from the middle of the square shows the Pantheon's porch nearly filling the frame: the huge granite columns rise from the paving, one scarred shaft stands at the left front, a patched capital with papal arms is visible high to the right, and the great bronze doors sit dark and half reflective in the centre under the deep shadow of the portico.",
+          "points": [
+            {
+              "label": "the scarred column",
+              "line": "Those cuts and rubs low on the shaft are blamed on market gear. People say supports for the stalls bit into the granite there, which means commerce has marked the antique not only with noise and smell, but with scratches you can count."
+            },
+            {
+              "label": "the patched capital",
+              "line": "That repair tells the truth better than any compliment. When something failed, Rome replaced it and carried on, so what you have here is not a dead relic kept pure, but an old body doctored by generations who meant to use it tomorrow."
+            },
+            {
+              "label": "the bronze doors",
+              "line": "Through those doors pass not only pilgrims but painters, musicians, and gentlemen with notebooks. Raphael lies buried within, and the church has long kept its company of Virtuosi, so devotion and reputation pull on the same ring together."
+            }
+          ]
+        },
+        "stop_03_pantheon_c2": {
+          "narration": "Inside is the sharpest trick of all, because the eye says Rome of the emperors and the pope's hand says yesterday. Benedict XIV has just spent money here: last year Paolo Posi redid the coloured wall dressing in a new scheme, and in 1747 the broad attic frieze under the dome was restored into something little like the ancient work. So what you admire as antique reaches you already translated into our own century.",
+          "scene": "Just inside the entrance, the camera looks across the vast round interior: the coffered dome rises overhead with the round opening bright at its crown, the broad attic frieze runs below it, and coloured marble revetment wraps the lower walls. At one side a side altar glows with candles, while the patterned floor catches the light falling down from above.",
+          "points": [
+            {
+              "label": "the round opening",
+              "line": "That eye in the roof gives light, weather, and sound together. When rain comes, the floor must take it, and when one person speaks, the dome answers back, so a prayer, a cough, even a shoe-heel grows large."
+            },
+            {
+              "label": "the side altar",
+              "line": "Those candles remind you this place earns its life by worship, not by memory alone. A church with relics to guard and bodies to bury is visited every day, and daily use protects better than a hundred elegant sighs from travellers."
+            }
+          ]
+        },
+        "stop_03_pantheon_c4": {
+          "narration": "And now the Roman lesson: this marvel is never shew'd free of hands. Outside, the market crowds the approaches and the lanes toward Sant'Eustachio; inside, if you want doors opened, chapels named, a tomb pointed out, the sacristan grows much more eloquent for a paul or two. That is why foreigners do not really buy the Pantheon alone. They buy access, order, and explanation, and Rome is always ready to provide all three.",
+          "scene": "From under one side of the portico, the view looks outward and across the threshold. At the right stands a black-gowned sacristan beside the open bronze door. To the left, wet boards lie under a market awning with baskets and produce nearby, and beside them a stall hangs print sheets in a row. Two foreign gentlemen linger between the stall and the doorway with purses in hand.",
+          "points": [
+            {
+              "label": "the black gown",
+              "line": "He knows very well which party wants devotion and which wants marvel, and he serves both. In Rome the same key opens a chapel for prayer, for curiosity, or for a gentleman who chiefly wants to say he has seen it."
+            },
+            {
+              "label": "the wet boards",
+              "line": "The water on those boards is market work, not ceremony. Sellers wash the place down, porters squeeze through, and the church keeps its dignity as best it can while dinner is bargained for almost under the ancient porch."
+            },
+            {
+              "label": "the print sheets",
+              "line": "Those sheets are the neatest trade of all, because a ruin carried home on paper never smells of fish or mule. A stranger remembers the grandeur, and Rome keeps the profit of having edited the truth for him."
+            }
+          ]
+        }
+      },
+      "transitionOut": "You see the bargain now: an ancient shell kept alive by church, market, repairs, and little fees. Come on, Signore. I'll shew you next a place that pretends to be pure ruin, though Rome still finds a way to live from that too."
+    },
+    "stop_04_campo_vaccino": {
+      "arrival": {
+        "line": "And now, Signore, from the best-kept temple in Rome to the place where keeping failed altogether. Here men say Campo Vaccino more readily than Forum, because cows have had the ground so long, and because the ancient heart is smothered under centuries of earth and rubbish. So old Rome doesn't present itself to you cleanly here. It comes by hints only: a basin, a slope, a shaft rising alone, and your own feet set many palms above buried pavement.",
+        "scene": "From a slight rise at the western end of the valley, the Arch of Septimius Severus stands at the left edge, its shadow falling across a rutted green-brown field. In the middle, cows and oxen stand among tufts of grass and churned soil while a drover with a stick turns them past cart tracks. Farther in, a lone column rises from the basin. To the right, the three columns and heavy entablature of a temple are half-lost in the Capitoline slope; beyond, a church front sits inside an ancient temple shell, with broken marble heaps and a cart scattered across the ground.",
+        "points": [
+          {
+            "label": "the cows",
+            "line": "Roisecco sells a guidebook this very year that includes Campo Vaccino among the sights, and the surviving copy dutifully shows herds of cattle for scale. Even printed Rome, made for strangers, admits that cows belong to the prospect."
+          },
+          {
+            "label": "the lone column",
+            "line": "That half-buried shaft is the Column of Phocas, set up in 608, and it was the last addition made to the Forum in antiquity. A Roman joke, almost: the final monument standing above a whole world already sinking out of sight."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_campo_vaccino_c1": {
+          "narration": "What lies under us is not one fine ruin but a whole city-floor. Later men measuring in this valley found the base of that standing column about twenty-five feet beneath the surface of the Campo Vaccino, and in central Rome the old soil was seldom less than fifteen feet below the modern one. So beneath this grass are pavements, basilicas, drains, and the old political heart itself, present only by absence and by the little that still shows above ground.",
+          "scene": "A closer frame looks down the basin from the west: in the foreground a grassy sloping bank falls into churned earth scored by cart ruts, with scattered stone blocks half-sunk in the soil. Across the middle stands the lone column, and beyond it the hollow runs east toward the church lodged inside an ancient temple shell, while the broad turf of the field fills most of the view.",
+          "points": [
+            {
+              "label": "the sloping bank",
+              "line": "Later men reckoned that before the great clearances after 1870, the classic group here lay buried under an embankment as much as thirty-three feet high in places. So even these rises of grass are a kind of accidental roof over antiquity."
+            },
+            {
+              "label": "the turf",
+              "line": "Under this turf there were not only republican and imperial buildings, but an older burial ground too. The latest tombs of that sepulcretum are placed in the end of the seventh century, or middle of the sixth, before Christ."
+            }
+          ]
+        },
+        "stop_04_campo_vaccino_c2": {
+          "narration": "And yet the place works for a living. After repeated plundering and changes of use, the old Forum was almost completely buried by the sixteenth century and had become pasture for cattle. So in Jubilee year you find beasts watered, prodded, bought, and driven on, while travellers sketch, boys scramble over blocks, and fellows like me explain the republic and emperors over the music of cowbells and bad footing.",
+          "scene": "From near the arch, the field is busy: at lower left a seated foreign gentleman works in a sketchbook on a folding stool, his servant standing behind him. Across the centre cows and oxen bunch around a drover and a snapping dog. At right, the three columns and thick entablature of a temple lift out of the slope, while the arch cuts in from the left foreground and a cart jolts over rubble behind.",
+          "points": [
+            {
+              "label": "the sketchbook man",
+              "line": "If he wants the view without the smell, Piranesi will sell it him. His Veduta di Campo Vaccino takes this very west-end prospect—arch before us, Vespasian to the right, Colosseum far off—and one large sheet costs 2½ paoli."
+            },
+            {
+              "label": "the three columns",
+              "line": "Vasi put this side of the Campo Vaccino into his great book of Rome in 1752, which means strangers were expected to admire it. In his plate these columns come up half-buried, and he even labels them wrong, so uncertain the ground still made the antiquity."
+            }
+          ]
+        },
+        "stop_04_campo_vaccino_c4": {
+          "narration": "And when the earth is opened, it is not commonly opened for knowledge. A handsome block may be carried off whole and sold for reuse, but much broken revetment, statue-piece, and architectural marble is beaten smaller, burnt into lime, and mixed back into modern Rome. Later men said antique marbles and statues here were hammered to dust or burnt into lime, and that the hunt for material for St Peter's crossed this valley from end to end, which I can well believe.",
+          "scene": "A tighter frame turns down to the working ground: in the foreground a scraped hollow of fresh earth lies beside a heap of broken marble revetment and statue fragments dusted white. Two men with pry-bars lever a block toward a two-wheeled work cart, while baskets sit ready beside them. Behind, the field rises back toward scattered cattle and the dark mass of the arch.",
+          "points": [
+            {
+              "label": "the work cart",
+              "line": "This habit has papal blessing behind it. Julius II used this area for ancient material to be reused, and if a piece was too awkward or too broken, men often reduced it further and sent it on as lime."
+            },
+            {
+              "label": "the scraped hollow",
+              "line": "Don't imagine an orderly excavation with plans and scholars. Nothing of that kind has yet been attempted here. Only at the end of this century was part of the Basilica Julia laid bare, and even then they managed to call the poor thing by the wrong name."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come away now. Here the ancient heart lies under grass, hoof, and lime, and that too is Rome. Next I'll shew you old stone under firmer management, where ruin is not grazed but governed."
+    },
+    "stop_05_colosseum": {
+      "arrival": {
+        "line": "And from the buried Forum, Signore, we come to the great shell that still refuses to be only ancient. Face into it and you have half country, half chapel: open sky, black arches, grass in the joints, prayer going round the arena, and old stone with workmen's habits still clinging to it. Foreigners come here for emperor's Rome, and the pope now teaches them to carry away martyr's Rome as well. That change, like all the others, has its men, its fees, and its profit.",
+        "scene": "From a low rise inside the Colosseum, the frame looks west across the rough arena. In the foreground a new little shrine stands beside a dusty path, and near it a gentleman in travel clothes holds a rolled print under his arm. The oval walls rise broken and dark behind, with shattered seating, fallen blocks, tufts of grass, and shrubs in the joints. High along the broken crown, three small wooden top crosses cut against the bright sky.",
+        "points": [
+          {
+            "label": "little shrine",
+            "line": "Some say these were set in the run-up to the Holy Year, others tell the story by the fixing and blessing done this year. I don't quarrel over the telling; the plain truth is that this small architecture is new, and meant to instruct the eye."
+          },
+          {
+            "label": "rolled print",
+            "line": "That paper may well be Piranesi. He began his Vedute two years ago, and his Colosseum sheets already sell the place with cross and stations included, dark, living, and grand enough to carry home under the arm."
+          },
+          {
+            "label": "top crosses",
+            "line": "Those little wooden crosses are not an engraver's fancy. Painters show them on the upper rim already, together with the clinging wall-growth, which tells honestly how devotion and wildness sit here side by side."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_colosseum_c1": {
+          "narration": "Now the use of the place is changed on purpose. Benedict the Fourteenth first forbade profanation here in 1744, and for this Holy Year he has consecrated the arena to Christ's Passion and to the memory of the Christian martyrs. So instead of a mere wreck for measuring, or a convenient heap of stone, the Colosseum becomes a route of devotion. A man is meant to go round it station by station, not only stare upward.",
+          "scene": "At arena level, the frame follows the inner curve of the oval. A plain wooden central cross rises from the middle distance, while along the edge a row of brand-new little shrines marks the route. In the left foreground a brown-robed friar walks with a small cluster of pilgrims, one woman holding beads. Behind them the masonry is cracked and open, with dark arches above the shrines.",
+          "points": [
+            {
+              "label": "central cross",
+              "line": "That plain wood pulls the whole ruin into one meaning. However a gentleman came in—history, curiosity, or idle walking—the cross tells him plainly that Rome wants the arena read through the Passion before anything else."
+            },
+            {
+              "label": "the friar",
+              "line": "Men of his cloth have driven this business hard. On 25 January of this year Leonardo da Porto Maurizio asked the pope for leave to make the fourteen stations here, and the answer came back at once."
+            }
+          ]
+        },
+        "stop_05_colosseum_c2": {
+          "narration": "Now the other truth: neglect is visible here, and it is fine in its way. The broken seats, fallen courses, and hollow ledges are full of grass, scrub, and rooted things that come only when stone has been left to weather for generations. Men who draw the place exactly don't need to invent the shaggy look; shrubs really do grow among the fallen masonry. If you ask me their names, I won't answer for every leaf from here below.",
+          "scene": "A closer frame looks across a tumble of travertine blocks inside the ruin. In the front right, a woody wall fig pushes from a crack between stones. Above it, a shaded ledge under a broken arch is thick with grass and small plants. Behind, more shattered seating climbs into shadow, with loose rubble scattered across a narrow dirt strip.",
+          "points": [
+            {
+              "label": "wall fig",
+              "line": "The woody growth most often named on these old walls is fig, and olive too. I won't swear from below to every branch, but that kind of stubborn tree is very much at home where Roman masonry has been left to itself."
+            },
+            {
+              "label": "shaded ledge",
+              "line": "One shelf bakes, another stays damp, another catches wind-blown dust, and each makes room for different growth. That's why the green comes patched and various here, not trimmed like a garden but bred by old disorder."
+            }
+          ]
+        },
+        "stop_05_colosseum_c4": {
+          "narration": "And still the place keeps its country habits. This stands out in the disabitato, the thin-set ancient quarter, where great ruins serve as shelter, enclosure, or rough pasture because so much open ground lies round them. Till very lately men treated the Colosseum as a quarry besides. Now papal will says no more, and devotion makes the prohibition stick better than any sermon against theft. A blessed ruin is harder to cart away stone by stone.",
+          "scene": "From the shadow of a lower arch, the frame looks toward one entrance passage closed by a barred gate. Across the dusty ground a dirt track cuts between fallen blocks and a small heap of dung. Beyond the track, sun strikes the far curve of the Colosseum, where rough walls rise above scrub and broken arches.",
+          "points": [
+            {
+              "label": "barred gate",
+              "line": "After a hermit lodged here was attacked some years ago, the pope ordered the openings locked and barred. So even before this newest consecration, the old freedom of coming and going had already begun to tighten."
+            },
+            {
+              "label": "dirt track",
+              "line": "Tracks like that belong to the empty ancient quarter round about, where carts, drovers, and grazing beasts move among the monuments almost as in the country. Here grandeur comes mixed with wheel-ruts, dust, and stable smell."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that is Rome, Signore: one city lying broken, buried, grazed over, and quarried for the next load of stone, and another laid over it by popes, with blessing, repairs, new fronts, keys, candles, and explanations ready for sale. If Milord has seen fine antiquity today, tomorrow there are medals, villas, and statues still to be shew'd, and I, Domenico Fabbri, remain at your service. For this day I kiss your hands, and wish you good rest."
+    }
+  }
+}

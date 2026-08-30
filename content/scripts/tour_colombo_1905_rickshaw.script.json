@@ -1,0 +1,356 @@
+{
+  "tourId": "tour_colombo_1905_rickshaw",
+  "companion": "Sena",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_fort_clock_tower": {
+      "arrival": {
+        "line": "Morning, friend—I'm Sena, twenty-seven, a rickshaw puller for hire in the Fort and Pettah. I came down from a village up the coast when I was seventeen, and I've spent ten years learning every stand, landing stage, hotel door, shortcut, and fare in this part of Colombo. I know this road because I run it barefoot for ten hours a day, and the rickshaw isn't even mine—I rent it by the day from a man who owns thirty. We've five stops together, and I'll show you Colombo the way I know it, by the men whose labour keeps it moving minute by minute. Touch anything in the picture and I'll tell you about it, and if you want to ask me something yourself, hold the green button.",
+        "scene": "A street-level view stands in the middle of the Fort crossing with the slim clock tower rising from the roadway at centre. Chatham Street runs away beneath spreading shade trees, their branches breaking the sun across the road. To one side a white hotel front shows its portico and arcade, with hotel boys near trunks and cabin baggage, while a rickshaw waits in the foreground. Clerks in white drill and European passengers in topis move through the frame, and beyond the buildings sit harbour masts, funnels, and traffic.",
+        "points": [
+          {
+            "label": "the tower lantern",
+            "line": "After dark that lantern works for the harbour as well as the street. It throws a white group light—three quick flashes every thirty seconds—so ships offshore can pick Colombo out even when the road below has gone quiet."
+          },
+          {
+            "label": "the hotel portico",
+            "line": "That portico belongs to the Grand Oriental, almost on top of the harbour gate. Its front is only a few yards from the principal landing stage, which is why mail-steamer passengers are bundled there first before they learn the city at all."
+          },
+          {
+            "label": "the shade trees",
+            "line": "Those are rain trees along Chatham Street. Their leaves fold up at night, and when they open again at sunrise they shake off the damp they've gathered, so an early walker can get a little shower from a clear sky."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_fort_clock_tower_c1": {
+          "narration": "Steamer day, this road is all haste. The people I watch are new arrivals with money and no patience: some want the hotel at once, some an office or a bank, some the station, and some are only breaking journey before the next ship. A few have come from very far indeed, China one way, Australia the other. I don't need their stories. I need to sort them quicker than the next man can smile.",
+          "scene": "The frame faces the white front of a big hotel near the harbour, its ground-floor arcade running along the street and balconies stacked above. A portico projects over the entrance while hotel boys cluster at the steps with cabin trunks and valises. European passengers in topis and travel coats pause under the shade, and a waiting rickshaw stands at the curb with the upper balconies, the long front, and the open arcade all clear in view.",
+          "points": [
+            {
+              "label": "the upper balconies",
+              "line": "A traveller coming home from China called this place a large pile near the harbour, with arcades and balconies. That is fair enough. From the street it looks as if half the Indian Ocean might sleep there between steamers."
+            },
+            {
+              "label": "the long front",
+              "line": "Near as anyone tells it, the house holds 154 bedrooms. No wonder the servants move like ants when a mail boat lands, because a building that size can swallow a crowd before the crowd knows where it has gone."
+            },
+            {
+              "label": "the open arcade",
+              "line": "It isn't just big. The place is lighted throughout by electricity, and the public rooms and bedrooms have electric fans. That sounds grand to a man who cools himself with a shoulder-cloth and whatever breeze the street remembers."
+            }
+          ]
+        },
+        "stop_01_fort_clock_tower_c2": {
+          "narration": "People still call it the Fort, but by now this isn't a fort of soldiers' barracks and gun smoke. It's the Governor's quarter, the government offices, and the British merchants' rooms, all packed close with the harbour business. The tower in the crossing keeps time over the lot, and I work by that time as much as any clerk does. A missed half-hour here can lose a fare as neatly as a lost letter.",
+          "scene": "The view centres on the slim tower planted in the roadway where two streets meet. Around it stand low office buildings with verandahs and doorways opening almost straight onto the pavement. Clerks pass beneath them, and the corner itself is plain to read, while above the roofs in the distance rise dark harbour funnels and bits of mast. The street corner, the office doors, and the funnels beyond all sit clearly in the same frame.",
+          "points": [
+            {
+              "label": "the street corner",
+              "line": "That crossing is Chatham Street and Queen Street. If you learn that much, you can already understand half the Fort, because so many roads of money and messages meet right here in the same patch of heat."
+            },
+            {
+              "label": "the office doors",
+              "line": "Those verandah doors are the kind I mean—shipping houses and produce brokers close by the tower. The men inside handle paper, samples, and orders, and then whole files of coolies, clerks, carters, and pullers have to move because of it."
+            },
+            {
+              "label": "the funnels beyond",
+              "line": "Past the roofs, those funnels tell the truth. Colombo is no painted postcard harbour: in this year five hundred and thirty-seven vessels call here just to coal, so that smoke means men shovelling black stone by the ton."
+            }
+          ]
+        },
+        "stop_01_fort_clock_tower_c4": {
+          "narration": "A fare here begins with time more than distance. I ask how long you want me, because ten minutes there and waiting outside can cost me more than a hard pull across the sun. A first-class hire runs at ten cents for ten minutes and twenty-five cents for half an hour, if the bargain stays honest. Fresh passengers seldom know that tariff as well as a puller, a doorman, or a policeman, so the haggling starts before the seat even creaks.",
+          "scene": "The picture is tight on a curbside bargain: a rickshaw stands angled into the street with its shafts down and hood raised against the glare. A European passenger with a small trunk and papers in hand has paused beside the step, while a hotel doorman stands a pace behind under the doorway watching the talk. The doorman and the passenger's trunk are both easy to pick out in the frame.",
+          "points": [
+            {
+              "label": "the doorman",
+              "line": "A hotel doorman can feed a man better than luck. I know every one of them round these doors, and the friendly sort will tilt his head toward the passenger worth catching before he lets three rivals crowd the step."
+            },
+            {
+              "label": "the passenger's trunk",
+              "line": "You learn to read baggage fast. A trunk means bed first, washing after. Papers and no luggage means office first, temper after. If a man carries both, then he wants the whole city in half an hour and blames your legs for the shortage."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, we'll leave the polished doors. Fort shows the city in a collar and cuffs, but the harbour behind it works in soot, and that's where the next part of the story begins."
+    },
+    "stop_02_harbour": {
+      "arrival": {
+        "line": "From the hotel door you could think the harbour is only for landing passengers and shaking money out of them, and fair enough. Come to the edge and it shows its real face. This quiet water had to be made quiet, and once a steamer is inside, nothing rests for long. Coal, boats, baggage, whistles, waiting men, shouted orders—everything here runs by the ship's clock, and the whole city bends with it.",
+        "scene": "From the Fort shorefront, the frame looks north across chopped green harbour water. In the left distance the long stone wall of the breakwater runs out toward a small white beacon. Across the middle, two high-sided steamers sit moored in line while a steam launch crosses in front of them. Along the right-hand shore a row of black sheds and coal depots stands behind several short timber jetties, and a low coal-lighter waits by the nearest landing.",
+        "points": [
+          {
+            "label": "long stone wall",
+            "line": "That long wall is the south-west breakwater, the first big barrier of the harbour works. They began it in the 1870s, and the foundation stone was laid in December 1875 by the Prince of Wales, who is King Edward now."
+          },
+          {
+            "label": "short jetties",
+            "line": "Those little jetties multiply because each kind of work wants its own landing. By 1907 they count one passenger jetty, eight small landing jetties for cargo-lighters, and eighteen more for coal-lighters alone."
+          },
+          {
+            "label": "black sheds",
+            "line": "The harbour men planned the sheltered water at about six hundred and sixty acres at low tide, and the works with it include a graving dock, a slipway, and a coaling depot. Once they start measuring the sea like that, commerce is plainly in charge."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_harbour_c1": {
+          "narration": "Before these walls, this was only an open roadstead, and the sea could spoil any fine arrangement. Now three breakwaters hold about six hundred and forty net acres of water for Colombo, so steamers can lie in order instead of pitching outside. The big change came in June 1882, when the P. and O. mail boats left Galle and made Colombo Ceylon's port of call.",
+          "scene": "A tighter view aims straight into the basin. A high-sided mail steamer fills the right half of the frame, her bow held near a round mooring buoy, with a second steamer farther back in the same row. Between ship and shore a lighter sits loaded with canvas mail sacks. The clear fairway of green water runs through the middle, and beyond it the breakwater cuts the horizon under a pale beacon.",
+          "points": [
+            {
+              "label": "mooring buoy",
+              "line": "That round buoy does the work a deep quay can't do yet. The ocean steamers don't come alongside masonry wharves here. They lie stem and stern to buoys, and passengers, water, cargo, and coal all have to be ferried out and in by lighter."
+            },
+            {
+              "label": "high-sided steamer",
+              "line": "And it's not one or two grand ships for show. The port books make it two thousand steamers this year, with another four hundred and sixty-five sailing vessels besides, so when the basin looks crowded, that's not your eye playing tricks."
+            },
+            {
+              "label": "mail sacks",
+              "line": "Those sacks mean hurry. The Brindisi mails for the Indian and Australian steamers commonly run to about four thousand bags and boxes, and every one of them wants a hand, a tally, a boat, and somebody swearing over the delay."
+            }
+          ]
+        },
+        "stop_02_harbour_c2": {
+          "narration": "Coaling is the hard heart of the place, and there's nothing delicate about it. Coal comes from the shore depots into lighters, then from lighter to ship by hand, in sacks or baskets, with men packed so close they seem one black moving thing. They do it by lamp at night as well, because a mail steamer won't wait while anyone takes his ease.",
+          "scene": "The frame is close to the coaling work. A squat coal-lighter lies low in the foreground, heaped with black coal. Along a plank and up the ship's side, black-shouldered men in short cloths pass sacks and baskets hand to hand. Behind them the flank of a steamer rises like a wall, while nearer shore a line of dark coal sheds and a chuffing launch sit in dusty haze.",
+          "points": [
+            {
+              "label": "coal-lighter",
+              "line": "A harbour visitor said nearly a quarter of the whole surface was taken up by lighters and boats, and I believe him. On a busy day the water seems to grow hulls the way a drain grows flies after rain."
+            },
+            {
+              "label": "black-shouldered men",
+              "line": "The speed comes from cheap bodies and plenty of them. Men have been set at tenpence a day for this labour, and with enough hands they can coal at two or three hundred tons an hour, which sounds splendid until you notice whose backs make it splendid."
+            },
+            {
+              "label": "coal sheds",
+              "line": "Along this shore it's one long line of coal beds and depots, black almost from end to end. The dust gets into rope, skin, shirt, nostril, and tea-water alike, so the harbour taste stays with you even after you leave it."
+            }
+          ]
+        },
+        "stop_02_harbour_c4": {
+          "narration": "These ships are not wandering. One service goes to India every week, others run through Colombo toward China and Australia every fortnight, and westward the steamers head by Aden and the Canal for Europe. That is why Colombo matters so much. A ship can nurse its coal from Port Said and then fill properly here, where the business is made fast and comparatively cheap. I watch the passenger jetty for that very reason, because the shortest halt throws the quickest fares.",
+          "scene": "From beside the landing place, the picture catches a harbour launch nosed against the passenger jetty. A narrow gangway is down, with one European traveller stepping ashore while a porter carries a light parcel and another balances a trunk behind him. At the gate end of the jetty a waiting carriage stands turned toward town, and beyond the posts a moored steamer sits out in the basin.",
+          "points": [
+            {
+              "label": "gangway",
+              "line": "A passenger landed from ship could be charged twenty-five cents just for getting ashore, which tells you how many little hands are waiting between deck and street. Nobody touches dry land here without somebody's bill following him."
+            },
+            {
+              "label": "light parcel",
+              "line": "Even a small package has its own price. From the jetty to a carriage, a light parcel could be charged four cents, and that is before a gentleman has even argued with his coachman or called for my shafts."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Passengers, coal, and letters all touch water first, but they don't finish here. Come inland a little and I'll show you what happens when ship's hurry breaks open on the streets and has to be sorted by hand."
+    },
+    "stop_03_pettah_market": {
+      "arrival": {
+        "line": "Leave the basin behind a minute, and the city narrows its throat. Just beyond the old Dutch belfry stand the Town Hall and the Public Market-place, and from there the Fort loosens into Pettah, which comes from pettai, the quarter outside the walls. Folk call this the heart of the native part of Colombo, and that is fair, because all day there's bustle without mercy here, and no shortage of smell to go with it.",
+        "scene": "A street-level frame taken just past the Fort edge and looking into Pettah. The old belfry rises to the right rear above low roofs, the Town Hall and market sheds sit beyond it, and the foreground is packed by a hooded cart angled across the lane, fruit baskets on the ground, and a hanging scale under a verandah while buyers and sellers squeeze between shafts, sacks, and awning shadow.",
+        "points": [
+          {
+            "label": "hooded cart",
+            "line": "Pictures taken round these years show this same squeeze again and again, hooded carts jammed among people so thick the sea, if it shows at all, is only a strip behind them. Pettah doesn't clear its throat for anybody."
+          },
+          {
+            "label": "hanging scale",
+            "line": "Trade here is close work. Goods are weighed, argued over, touched, and weighed again, and the seller stands half in shade and half in road because the bargain begins before the customer has properly stopped walking."
+          },
+          {
+            "label": "fruit baskets",
+            "line": "By midday the fruit sweetens past kindness in this heat, and that smell mixes with fish, damp sacking, dung, and sweat until you know Pettah with your nose before you know which street you're standing in."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_pettah_market_c1": {
+          "narration": "Every lane here has its own habit. Sea Street off to the side is where the rice and cotton dealers sit, and on Main Street the drapers hang out both daily cloth and the fancy imported sorts, French muslins, Swiss spangs, fancy grenadines, silk gauzes, fine lace cloth. A woman buying household stuff and a clerk wanting smart cuffs must squeeze past the same baskets and counters, which is Pettah all over.",
+          "scene": "A shaded shopfront on Main Street seen from across the road, with long pale cloth bolts and brighter dress lengths hanging under a deep verandah on the left, a wooden shop counter crowded with folded goods at centre, and stacked rice sacks rising by a doorway on the right while buyers edge through baskets and puddled street mud.",
+          "points": [
+            {
+              "label": "cloth bolts",
+              "line": "A plain dress cloth might be marked at 25 cents a yard, while the finer kind climbs to two rupees. Cloth teaches you quickly that Pettah serves both necessity and vanity, and charges each according to nerve."
+            },
+            {
+              "label": "shop counter",
+              "line": "The counter is the true shop wall here. Men bargain leaning over it, women feel the edge of a length, and nobody waits for privacy because trade in Pettah likes witnesses almost as much as it likes profit."
+            },
+            {
+              "label": "rice sacks",
+              "line": "Rice looks quiet once it is in the sack, but each one has already changed hands several times before it reaches this doorway. Dealers need room for stacking, porters, and scales more than they need a handsome front."
+            }
+          ]
+        },
+        "stop_03_pettah_market_c2": {
+          "narration": "Nothing passes Pettah in a neat line. Goods move in a crush, hooded carts, ox-carts, horse-carts, and men on foot all forcing one passage together. A bale comes down from one cart, onto a shoulder, against a shopfront, back into another cart, and then perhaps into my road besides. People talk as if commerce rides on paper and stamps. Here it has horns, wheels, ankles, and bad temper.",
+          "scene": "A narrow Pettah lane photographed from standing height, the road almost blocked by an ox-cart facing the camera and a hooded cart skewed behind it, a horse-cart wheel at the far left, stacked bales against verandah posts, and the shaft of a rickshaw jutting in from the right while walkers thread the scraps of space between all of them.",
+          "points": [
+            {
+              "label": "ox-cart",
+              "line": "Another street view from near these same years shows the very same mixed traffic, ox-carts and horse-carts together in the press. So when I say this confusion is ordinary, I mean ordinary, not festival or accident."
+            },
+            {
+              "label": "rickshaw shaft",
+              "line": "Printed tariff tables for Colombo make it plain that hired muscle is part of daily business here. One traveller a little after this was carried through the native quarter in a 20-cent rickshaw, and that sounds about right to me."
+            }
+          ]
+        },
+        "stop_03_pettah_market_c4": {
+          "narration": "Behind this press the railway breathes into the market all day. One return early this year counted 47,341 tons of goods traffic, and you can hear the truth of that in the shunting. From the first of August the Jaffna peninsula is in rail touch with Colombo, sending copra, tobacco, and cigars, with eggs, poultry, and vegetables coming as that passenger trade grows. The up-country lines were made to send coffee first and now tea down to Colombo, while taking labour, machinery, manure, rice, and foodstuffs back inland.",
+          "scene": "At the market's railway edge, viewed across a siding, an engine's smoke hangs over the rear roofs, open wagons stand behind a row of tea chests, and high copra sacks wait on the platform while a few basket cages sit near the rails and porters move between track and street.",
+          "points": [
+            {
+              "label": "tea chests",
+              "line": "Tea seems delicate in the cup, but by the time it reaches Colombo it comes as freight and tally. The average price here this year is about 34 cents a pound, so every chest on the platform already has half the city counting on it."
+            },
+            {
+              "label": "copra sacks",
+              "line": "After a reduction this year, freight on copra to Colombo stands at 8 cents a ton a mile. Numbers like that sound small until you watch how many sacks are waiting for cart, porter, wagon, and ship in turn."
+            }
+          ]
+        }
+      },
+      "transitionOut": "By afternoon this quarter has swallowed cargo from ship and rail and pushed it back out into the city. Come on now toward the evening road, where the same timed labour turns into pleasure for other people."
+    },
+    "stop_04_galle_face": {
+      "arrival": {
+        "line": "Out of Pettah's stink and shove, this feels like another city, and that is the whole trick of it. People come for the wind off the sea, because inland the streets keep the day's heat like a grudge. This open ground wasn't always even like this. It had been marsh in front of the Fort, then men filled it and levelled it, and the walk was kept for the comfort of Colombo's ladies and children.",
+        "scene": "A sunset view along Galle Face from the inland edge, with a squat stone memorial standing near the carriage road in the foreground. Rough green turf and sandy patches run away beside it toward the sea-wall, and beyond that the white lace of surf breaks hard under the low western light. A few carriages and rickshas move along the drive, and far down at the southern end the pale bulk of a hotel catches the same salt wind.",
+        "points": [
+          {
+            "label": "stone memorial",
+            "line": "That stone says the walk was begun in 1856 and finished in 1859, and it politely recommends the place to later governors in the interest of Colombo's ladies and children. Governments like to carve their kindness in stone when labour has already done the lifting."
+          },
+          {
+            "label": "rough turf",
+            "line": "Before evening dresses and parasols, horses had the use of it. Racing was going here by 1821, which is why the Green never feels like a tucked-away garden to me. It keeps a bit of open-course roughness under the grass."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_galle_face_c1": {
+          "narration": "Wait till half-past five and the whole edge wakes up. Every sort of conveyance goes round, from a Governor's carriage down to the humble bandy, and the road fills by rank as much as by wheels. European folk come out from the Fort on horseback and in carriages for the evening air, while prosperous Ceylonese gentlemen take the same road home in hackeries. The people strolling and driving are not the wiry fellows who pulled them here. We stay to earn.",
+          "scene": "The camera stands just off the drive at the busy evening hour. The road curves across the frame with a phaeton, a pony trap, a bandy, and a jinricksha all moving through the same strip of dust. A rider on horseback passes near the middle. Along the road edge and turf are scattered walkers, children with an ayah, white-clad gentlemen near a hackery, and a few runners and pullers waiting for custom while the surf flashes beyond.",
+          "points": [
+            {
+              "label": "the drive",
+              "line": "A Colombo chapter written near our own time calls this the city's premier public promenade, and that's fair. If you want to be seen taking the sea air respectably, this strip is worth half a drawing room."
+            },
+            {
+              "label": "the road edge",
+              "line": "Writers like to call it common ground because races and classes show themselves here in one long line of light. True for the eye, yes. For comfort and standing, not so much."
+            }
+          ]
+        },
+        "stop_04_galle_face_c2": {
+          "narration": "Now for the poor arithmetic. On paper, a busy rickshaw man in a serviceable day can gross about one rupee, if he gets four sound first half-hours and no foolishness. On paper, mind. One fare that slips away, one customer who says he'll be a minute and isn't, one slack spell after rain, and the neat sum begins leaking out at once. So when I smile and wait, I'm counting time like a clerk counts columns.",
+          "scene": "A close view at the rickshaw stand on Galle Face, with one empty jinricksha angled across the foreground. Its small lamp bracket shows on the shaft, and beside it stands a barefoot puller with a shoulder-cloth over one shoulder, resting but still watchful. Behind him the drive carries a passing carriage, and beyond that the turf falls away to the sea-wall and the bright line of breakers.",
+          "points": [
+            {
+              "label": "lamp bracket",
+              "line": "After dark the rate goes a quarter above the day fare, which sounds generous until you remember the road is worse, the lamps are few, and tired legs are all you've brought with you."
+            },
+            {
+              "label": "bare feet",
+              "line": "By evening this ground feels kinder than Fort tar. That's one small mercy of the Green. A man who pulls all day notices comfort first through the soles, not through poetry."
+            }
+          ]
+        },
+        "stop_04_galle_face_c4": {
+          "narration": "This place changed its trade when the racecourse went elsewhere in 1893. Since then the Green has opened more fully for promenade and games, which is why you'll catch boys setting out a cricket pitch where horses once had the room. It still isn't a park in the tucked-up sense. It's an old working piece of ground turned to evening use, and even at leisure Colombo likes a space that can serve three purposes before dark.",
+          "scene": "A broad view toward the southern end of Galle Face. In the foreground boys are marking out a cricket pitch on the uneven turf. The open field stretches behind them toward the carriage road, where a few vehicles pass in the evening light. At the far end stands the pale hotel, wide-fronted with verandahs facing the sea, while the whole broad field lies open to the wind from the surf beyond the wall.",
+          "points": [
+            {
+              "label": "pale hotel",
+              "line": "At the south end that hotel sets up as a first-class house, rebuilt in 1894 in a Renaissance style, under entirely European management, with more than two hundred bedrooms. It drinks the same salt wind as the rest of us, only through better windows."
+            },
+            {
+              "label": "broad field",
+              "line": "One survey counts Galle Face among Colombo's big lungs, with Victoria Park and Havelock Town Park. That's a doctor's way of saying the city needs open breathing places after a day of smoke, offices, kitchens, and stables."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, we'll leave the nice breeze to the strollers. The pleasant side of Colombo always leans on a working side, and at our last stop I'll show you where that reckoning ends up."
+    },
+    "stop_05_tea_auction": {
+      "arrival": {
+        "line": "From Galle Face wind you might think Colombo lives on leisure. Come back to Lower Chatham Street and you find the counting-room behind the breeze. The Chamber's new place took the tea sales in 1898, and on sale days the curb clogs with chests, clerks, carts, and fellows like me waiting for the next short dash. Folk hear 'tea room' and think cakes. Not here. This is where hill-country leaf turns into office paper, orders, and hurry.",
+        "scene": "From the curb on Lower Chatham Street, the frame looks along an office frontage in the Fort. A marked tea chest stands nearest, its stencil and chalk plain on the wood, while a ledger clerk waits in a shaded doorway behind it. At the edge of the road a waiting rickshaw stands with its shafts raised, and a bullock cart noses past among more chests and office walls, so the whole street seems half warehouse, half waiting room.",
+        "points": [
+          {
+            "label": "marked chest",
+            "line": "Before a chest leaves the estate, men line it with lead, weigh it, fill it, solder it, nail it down, and mark it with the estate name, the grade, and the gross and nett weights. By here, the box is already an argument in timber."
+          },
+          {
+            "label": "ledger clerk",
+            "line": "When the sale is on, these clerks live by the catalogue. One blue mark, one scratch in the margin, and a morning in the hills becomes a London instruction, a cart order, or a man sent running down to the harbour steps."
+          },
+          {
+            "label": "waiting rickshaw",
+            "line": "I do well enough from this street when the room breaks up. Buyers want one office, then another, then the jetty, and every errand is urgent because paper moves faster than legs unless it hires legs."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_tea_auction_c1": {
+          "narration": "Tea sits here because coffee died badly. Coffee-rust showed itself in 1869 and in a little more than ten years the coffee business was finished, so the hills had to choose another plant. Tea answered better than a mere patch, because the bush likes our wet heat and broken country. James Taylor had already shown the road at Loolecondera, with twenty acres planted and a first little consignment, only twenty-three pounds, sent off to England.",
+          "scene": "A bullock cart stands at the curb beside a godown doorway, its bed heaped with tea chests stacked in rough rows. On the nearest chest, chalk and stencil marks show estate and grade, and a porter has one hand under a box as if about to lift. The cart wheel fills the lower corner, while the shaded doorway and piled cases make the whole frame feel heavy and close.",
+          "points": [
+            {
+              "label": "chest stack",
+              "line": "All this timber stands for a vast planting country. In this year there are about 486,000 acres under tea, and about 425,000 immigrant coolies employed in the planting districts, which is a bigger army than any band playing on the Green."
+            },
+            {
+              "label": "chest marks",
+              "line": "Most of what passes through here is black tea, though green tea still goes out in a smaller trickle. This year it is 3,086,177 pounds, down from 5.4 million last year and 8.2 million the year before, so you can see which taste has won."
+            },
+            {
+              "label": "cart wheel",
+              "line": "The wheel is the quiet part of the trade. First the leaf comes down from Kandy, Dimbula, Uva, or the low country, and only then do Fort gentlemen begin speaking as if the tea started life in a ledger."
+            }
+          ]
+        },
+        "stop_05_tea_auction_c2": {
+          "narration": "Inside, it isn't ladies taking tea at all, only business. The Tea Traders' Association was set up in 1894, and at first the sale was done on one regular day each week in a single room. Now the room fills with buyers, brokers, clerks, and tea-tasters from the Colombo agency houses. They slurp, nod, scratch notes, and when the lot is called the bidding runs quick in clipped English till a price sticks.",
+          "scene": "Inside the sale room, a long table runs across the frame with rows of white tasting cups set close together. Behind them stand men in dark coats and solar topees, one with an open catalogue in his hand and another holding a blue pencil above the page. At the near end of the table the sample rows shine pale against the wood, and the packed room seems to lean inward toward the auctioneer's side.",
+          "points": [
+            {
+              "label": "sample rows",
+              "line": "A sale lot is not any mixed-up heap. They wait till there is enough of one grade to make a proper break, about 6,000 pounds and upward, and if it has been bulked unevenly the buyers may refuse it after all."
+            },
+            {
+              "label": "blue pencil",
+              "line": "Sometimes one line climbs high enough to make the room sit up. At a Chamber sale, the top figure on a really favoured lot may reach 81 cents, or 1 shilling 11 pence the pound, which is plenty of excitement for men who mostly whisper."
+            }
+          ]
+        },
+        "stop_05_tea_auction_c4": {
+          "narration": "Once the bid is fixed, the rest is destination. This year tea goes out of Ceylon at 170,183,558 pounds, valued at Rs. 59,564,245, and most of it heads for Britain, with large lots besides for Russia, New South Wales, Canada, the United States, British India, and Russia in Asia. Standing here, I don't think first of drinking it. I think of chest marks, catalogue numbers, and whether the order reaches the harbour before the steamer does.",
+          "scene": "Back on the street, a row of tea chests stands against the curb beside a clerk's open ledger laid on a case top. Beyond them a running boy hurries away with papers in his hand, and over the roofs at the far end of the street a smear of harbour smoke shows where the steamers lie. The boxes, the ledger, and the running boy all point the same way.",
+          "points": [
+            {
+              "label": "open ledger",
+              "line": "The value rose again this year. In 1904 the estimate stood at Rs. 56,854,563, and now it is higher, which is why every broker in the street talks as if Providence had signed over the island directly to his account book."
+            },
+            {
+              "label": "running boy",
+              "line": "Figures in directories like to round things off. A later planting book would call this year's tea export about 171 million pounds, which is close enough for print, though the men dashing with orders here prefer the sharper total."
+            },
+            {
+              "label": "harbour smoke",
+              "line": "Britain takes the lion's share, 111,983,810 pounds, but the smoke out there carries more than one appetite: 9,738,989 go to Russia in Europe, 9,246,516 to New South Wales, 6,446,184 to Canada, 4,974,150 to the United States, 2,040,292 to British India, and 1,492,345 to Russia in Asia."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Colombo as I know it. Not the grand map, only the hire by ten minutes, the coal sack, the market load, the evening turn on the Green, and now these chest marks going out to sea. Empire is a big word for clerks. For me it's men sweating till the whistle goes and somebody catching the ship in time. I'm Sena. You've kept me pleasant company. Good-bye now, and stand clear a little—the next fare won't wait."
+    }
+  }
+}

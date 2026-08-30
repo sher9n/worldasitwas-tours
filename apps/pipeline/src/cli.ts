@@ -25,7 +25,8 @@ import { CompanionDossier, StopDossier, StopScript } from "./shapes.ts";
 import { pickArchive, type StopArchive } from "./stages/archive.ts";
 import { assemble } from "./stages/assemble.ts";
 import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
-import { applyWrittenScript, loadWritten } from "./stages/written.ts";
+import { applyWrittenScript, loadWritten, type WrittenScript } from "./stages/written.ts";
+import { emptyScript, planTour, toWrittenStop, writeStop } from "./stages/screenplay.ts";
 import { KNOWN_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
 import { applyPolish, polishStop, PolishedStop } from "./stages/polish.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
@@ -165,7 +166,27 @@ async function main(): Promise<void> {
   // 3b. A hand-written script, if this tour has one, speaks for itself: it
   // replaces the generated words before anything is recorded, and it turns the
   // polish pass off, since polish exists to rewrite the model's own prose.
-  const written = await loadWritten(env.contentDir, recipe.id);
+  let written = await loadWritten(env.contentDir, recipe.id);
+  // A tour with no script of its own gets one written for it, as one piece
+  // rather than stop by stop, and saved where it can be read and edited.
+  if (!written && provider.name === "fal") {
+    const scriptFile = path.join(env.contentDir, "scripts", `${recipe.id}.script.json`);
+    log(`screenplay: planning ${recipe.id}`);
+    const plan = await planTour(recipe, dossiers, companion, llm);
+    const draft: WrittenScript = emptyScript(recipe);
+    const said: string[] = [];
+    for (let i = 0; i < scripts.length; i++) {
+      log(`screenplay: writing ${scripts[i].stopId}`);
+      const cardIds = scripts[i].cards.filter((c) => c.kind === "image" || c.kind === "thenNow").map((c) => c.id);
+      const screens = await writeStop(recipe, plan, i, dossiers[i], companion, cardIds, said, llm);
+      draft.stops[scripts[i].stopId] = toWrittenStop(screens);
+      said.push(screens.arrival.line, ...screens.cards.map((c) => c.line), ...screens.arrival.points.map((pt) => pt.line), ...screens.cards.flatMap((c) => c.points.map((pt) => pt.line)));
+    }
+    await fs.mkdir(path.dirname(scriptFile), { recursive: true });
+    await writeJson(scriptFile, draft);
+    written = draft;
+    log(`screenplay: wrote ${scriptFile}`);
+  }
   if (written) {
     for (let i = 0; i < scripts.length; i++) scripts[i] = applyWrittenScript(scripts[i], written.stops[scripts[i].stopId]);
     log(`written script: ${Object.keys(written.stops).length} stop(s) spoken verbatim`);
@@ -243,18 +264,35 @@ async function main(): Promise<void> {
     // no seed dir; fine
   }
   let reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
-  if (reelClips.length === 0 && provider.name === "fal") {
-    log("reel: generating 3 generic talking clips");
-    const audios = [character.greetingAudio, media[0]?.arrivalAudio, media[0]?.transitionAudio].filter(Boolean);
-    for (const [ri, audio] of audios.slice(0, 3).entries()) {
-      try {
-        const audioUrl = audio!.remoteUrl ?? (await provider.publish(audio!.localPath!, audio!.mime));
-        const clip = await provider.talkingPortrait({ imageUrl: character.portraitUrl, audioUrl, prompt: "A woman speaks warmly to the viewer, small natural head movements, street background.", quality: args.quality, stage: "reel", note: `reel ${ri + 1}` });
-        if (clip.localPath) await fs.copyFile(clip.localPath, path.join(reelDir, `reel_0${ri + 1}.mp4`));
-      } catch (err) {
-        console.warn(`[reel] clip ${ri + 1} failed: ${(err as Error).message}`);
-      }
-    }
+  if (reelClips.length < 2 && provider.name === "fal") {
+    log("reel: generating 2 talking clips");
+    // The circle is always muted and only moves while her recorded voice plays,
+    // so these clips need speaking MOVEMENT, not speech. A lip-synced render
+    // costs about $1.50 and ten minutes each for a mouth nobody can hear; a
+    // plain image-to-video clip of the same person talking costs a fraction of
+    // that and looks identical behind a muted circle.
+    const MOVES = [
+      "She is talking warmly to someone just off camera: her lips move as if speaking, her head tilts and nods a little, she blinks naturally. The background stays still. No camera movement.",
+      "She listens and then answers, mouth moving in speech, a small smile, a slight turn of the head. The background stays still. No camera movement.",
+    ];
+    await Promise.all(
+      MOVES.map(async (move, ri) => {
+        try {
+          const clip = await provider.video({
+            prompt: move.replace("She ", `${recipe.companion.name} `).replace(" she ", " "),
+            imageUrl: character.portraitUrl,
+            durationSec: 5,
+            quality: args.quality,
+            audio: false,
+            stage: "reel",
+            note: `reel ${ri + 1}`,
+          });
+          if (clip.localPath) await fs.copyFile(clip.localPath, path.join(reelDir, `reel_0${ri + 1}.mp4`));
+        } catch (err) {
+          console.warn(`[reel] clip ${ri + 1} failed: ${(err as Error).message}`);
+        }
+      }),
+    );
     reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
   }
   log(`reel: ${reelClips.length} clips`);

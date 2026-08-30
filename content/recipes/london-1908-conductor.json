@@ -1,0 +1,141 @@
+{
+  "id": "tour_london_1908_conductor",
+  "city": "london",
+  "cityName": "London",
+  "country": "GB",
+  "year": 1908,
+  "yearRange": [
+    1906,
+    1910
+  ],
+  "lang": "en",
+  "title": "The Conductor's Round",
+  "theme": "Five stops across Edwardian London with Ernie Marsh, conductor on a motor omnibus. The horse buses are dying, electricity is arriving, and half of London is going out to White City for the Games and the great exhibition.",
+  "companion": {
+    "name": "Ernie Marsh",
+    "role": "Motor omnibus conductor",
+    "brief": "Twenty-nine, conductor on a motor omnibus, six years on the road, three of them behind horses before the motors came. Born in Bermondsey. Cheerful, quick, a talker by trade, proud of knowing every fare and every short cut. Married, one boy. He knows nothing of the world after 1908.",
+    "voice": "ash",
+    "narrationVoice": "Daniel"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in London in 1908: Edwardian streets with motor omnibuses and horse traffic mixed, electric arc lamps and early illuminated signs, hansom cabs, men in bowlers and flat caps, women in long skirts and large hats, wet asphalt and setts. Portrait 9:16 framing, eye level. Muted period colour, not sepia.",
+    "avoid": "no vehicles after 1910, no modern clothing, no neon, no post-war buildings, no double-decker buses of later design, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_piccadilly_circus",
+      "title": "Piccadilly Circus",
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.134,
+        "bearing": 45
+      },
+      "brief": "The circus at dusk, with early electric advertising signs going up on the buildings, buses circling the fountain, and the crowd changing over from work to theatre.",
+      "mustCover": [
+        "the new electric signs and what people think of them",
+        "the traffic and how it moves",
+        "who is out at this hour"
+      ],
+      "archiveQueries": [
+        "Piccadilly Circus 1908",
+        "Piccadilly Circus Edwardian photograph",
+        "London electric signs 1900s"
+      ]
+    },
+    {
+      "id": "stop_02_covent_garden_market",
+      "title": "Covent Garden Market",
+      "geo": {
+        "lat": 51.512,
+        "lng": -0.1225,
+        "bearing": 90
+      },
+      "brief": "The market before six in the morning: porters carrying stacked baskets on their heads, carts backed up in every street, the flower market glasshouse, and the first buses starting their day.",
+      "mustCover": [
+        "how porters carry and what they are paid",
+        "what arrives and from where",
+        "the smell and the noise at dawn"
+      ],
+      "archiveQueries": [
+        "Covent Garden market 1900s photograph",
+        "Covent Garden porters baskets",
+        "Covent Garden flower market Edwardian"
+      ]
+    },
+    {
+      "id": "stop_03_embankment",
+      "title": "Victoria Embankment",
+      "geo": {
+        "lat": 51.5085,
+        "lng": -0.122,
+        "bearing": 90
+      },
+      "brief": "The river wall built forty years back, electric trams running along it, plane trees, and the men who sleep on the benches at night.",
+      "mustCover": [
+        "what the embankment replaced and why",
+        "the trams and the buses competing",
+        "who sleeps out here"
+      ],
+      "archiveQueries": [
+        "Victoria Embankment 1908",
+        "London trams Embankment Edwardian",
+        "Embankment benches homeless 1900s"
+      ]
+    },
+    {
+      "id": "stop_04_tower_bridge",
+      "title": "Tower Bridge and the Pool",
+      "geo": {
+        "lat": 51.5055,
+        "lng": -0.0754,
+        "bearing": 90
+      },
+      "brief": "The bridge lifting for a coaster, the Pool of London crowded with masts and funnels, cranes and warehouses on both banks, dockers waiting at the gates.",
+      "mustCover": [
+        "how the bridge lifts and how often",
+        "what the ships carry and where from",
+        "how dockers are hired"
+      ],
+      "archiveQueries": [
+        "Tower Bridge 1900s photograph",
+        "Pool of London Edwardian shipping",
+        "London docks 1908"
+      ]
+    },
+    {
+      "id": "stop_05_white_city",
+      "title": "White City",
+      "geo": {
+        "lat": 51.512,
+        "lng": -0.224,
+        "bearing": 270
+      },
+      "brief": "The Franco-British Exhibition and the new stadium out west: white plaster palaces, a scenic railway, and the Olympic Games running all summer, with special buses out from the middle of London.",
+      "mustCover": [
+        "what the exhibition is and what it costs to get in",
+        "the stadium and the Games",
+        "how people get there"
+      ],
+      "archiveQueries": [
+        "Franco-British Exhibition 1908 White City",
+        "1908 Olympic Games stadium London",
+        "White City exhibition photograph"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "The Illustrated London News, 1908",
+      "url": "https://archive.org/",
+      "license": "reference",
+      "note": "The exhibition, the Games and London street life of the year."
+    },
+    {
+      "title": "London County Council tramways and omnibus records",
+      "url": "https://www.londontransportmuseum.co.uk/",
+      "license": "reference",
+      "note": "Fares, routes and the shift from horse to motor buses."
+    }
+  ]
+}

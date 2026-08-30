@@ -15,6 +15,17 @@ async function get<T>(url: string): Promise<T> {
 export const api = {
   catalog: () => get<Catalog>("/v1/catalog"),
   tours: (city: string, year: number) => get<{ matches: TourSummary[]; nearest: TourSummary[] }>(`/v1/tours?city=${encodeURIComponent(city)}&year=${year}`),
+  /** Every published tour, for the gallery: one call per city, flattened. */
+  allTours: async (cities: { id: string; years: number[] }[]) => {
+    const seen = new Map<string, TourSummary>();
+    for (const c of cities) {
+      for (const y of c.years) {
+        const r = await get<{ matches: TourSummary[]; nearest: TourSummary[] }>(`/v1/tours?city=${encodeURIComponent(c.id)}&year=${y}`);
+        for (const t of [...r.matches, ...r.nearest]) if (!seen.has(t.id)) seen.set(t.id, t);
+      }
+    }
+    return [...seen.values()].sort((a, b) => (a.city === b.city ? a.year - b.year : a.city.localeCompare(b.city)));
+  },
   tour: (id: string) => get<Tour>(`/v1/tours/${encodeURIComponent(id)}`),
   ledger: (id: string) => get<{ totalUsd: number; byProvider: Record<string, number>; entries: unknown[] }>(`/dev/tours/${encodeURIComponent(id)}/ledger`),
   session: async (tourId: string, body: { travellerId: string; stopId?: string; cardId?: string; locale?: string }) => {

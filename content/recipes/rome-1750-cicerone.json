@@ -1,0 +1,141 @@
+{
+  "id": "tour_rome_1750_cicerone",
+  "city": "rome",
+  "cityName": "Rome",
+  "country": "IT",
+  "year": 1750,
+  "yearRange": [
+    1748,
+    1752
+  ],
+  "lang": "en",
+  "title": "The Cicerone's Round",
+  "theme": "Five stops through Rome in the Jubilee of 1750 with Domenico Fabbri, a cicerone who guides foreign gentlemen on the Grand Tour. Half the city is a building site, half of it is a cattle pasture with emperors buried under it, and everyone is selling something to the English.",
+  "companion": {
+    "name": "Domenico Fabbri",
+    "role": "Cicerone, guide to foreign travellers",
+    "brief": "Forty-four, a cicerone who walks English, French and German gentlemen round the antiquities for a fee, having learned his Latin from a priest and his English from his customers. Born in Rome, near the Pantheon. Charming, mercenary, genuinely in love with the ruins he sells. He knows what every guide's fee is, which antiquities are fake, and nothing of the world after 1750.",
+    "voice": "verse",
+    "narrationVoice": "Brian"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Rome in 1750: baroque facades, weathered travertine, ruins overgrown with grass and shrubs, cattle and carts in the forum, scaffolding, sedan chairs, priests and travellers. Clothing of the mid eighteenth century: tricornes, breeches, cassocks, shawls. Portrait 9:16 framing, eye level. Warm Roman light, muted colour, not sepia.",
+    "avoid": "no nineteenth-century excavations of the forum (it is still buried and grazed), no motor vehicles, no electric light, no modern clothing, no Victor Emmanuel monument (1911), no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_piazza_di_spagna",
+      "title": "Piazza di Spagna",
+      "geo": {
+        "lat": 41.906,
+        "lng": 12.4823,
+        "bearing": 0
+      },
+      "brief": "The foreigners' quarter: the new steps of twenty-five years ago, lodging houses full of English travellers, artists' models waiting to be hired, and guides waiting for customers.",
+      "mustCover": [
+        "who lodges here and what they pay",
+        "the steps and how new they are",
+        "how a guide finds work"
+      ],
+      "archiveQueries": [
+        "Piazza di Spagna 18th century engraving",
+        "Spanish Steps 1750 Piranesi",
+        "Rome Grand Tour travellers"
+      ]
+    },
+    {
+      "id": "stop_02_trevi",
+      "title": "The Trevi Fountain",
+      "geo": {
+        "lat": 41.9009,
+        "lng": 12.4833,
+        "bearing": 90
+      },
+      "brief": "The fountain half built: the wall going up, blocks of travertine in the square, the old outlet still running, and the crowd that comes to watch the work.",
+      "mustCover": [
+        "what is being built and how long it has taken",
+        "where the water comes from",
+        "what Romans think of the expense"
+      ],
+      "archiveQueries": [
+        "Trevi Fountain construction 18th century",
+        "Fontana di Trevi 1750 engraving",
+        "Rome aqueduct Acqua Vergine"
+      ]
+    },
+    {
+      "id": "stop_03_pantheon",
+      "title": "The Pantheon",
+      "geo": {
+        "lat": 41.8986,
+        "lng": 12.4769,
+        "bearing": 180
+      },
+      "brief": "The best preserved building of the ancients, with two bell towers on the front that Romans mock, and a portico used as a market and a shelter.",
+      "mustCover": [
+        "why it survived when the rest did not",
+        "the bell towers and what people call them",
+        "what a traveller is charged to be shown round"
+      ],
+      "archiveQueries": [
+        "Pantheon 18th century engraving Piranesi",
+        "Pantheon bell towers asses ears",
+        "Pantheon portico 1750"
+      ]
+    },
+    {
+      "id": "stop_04_campo_vaccino",
+      "title": "Campo Vaccino",
+      "geo": {
+        "lat": 41.8925,
+        "lng": 12.4853,
+        "bearing": 90
+      },
+      "brief": "The Roman Forum as it is now: a cattle market with column tops sticking out of the earth, buffalo and cows, and diggers turning up marble for the lime kilns.",
+      "mustCover": [
+        "what is buried here and how deep",
+        "the cattle and the market",
+        "what happens to the marble that is dug up"
+      ],
+      "archiveQueries": [
+        "Campo Vaccino Roman Forum 18th century",
+        "Piranesi Campo Vaccino",
+        "Roman Forum cattle market engraving"
+      ]
+    },
+    {
+      "id": "stop_05_colosseum",
+      "title": "The Colosseum",
+      "geo": {
+        "lat": 41.8902,
+        "lng": 12.4922,
+        "bearing": 270
+      },
+      "brief": "The amphitheatre full of wild plants and small shrines, the Stations of the Cross set up inside it last year, hermits living in the arches and stone still being carried away.",
+      "mustCover": [
+        "what it is used for now",
+        "the plants growing in it",
+        "the crosses set up inside and why"
+      ],
+      "archiveQueries": [
+        "Colosseum 18th century engraving Piranesi",
+        "Colosseum Stations of the Cross 1750",
+        "Colosseum overgrown plants"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Giovanni Battista Piranesi, Vedute di Roma (from 1748)",
+      "url": "https://archive.org/",
+      "license": "public-domain",
+      "note": "How Rome's monuments and ruins actually looked in these years."
+    },
+    {
+      "title": "Grand Tour travellers' letters and journals, 18th century",
+      "url": "https://archive.org/",
+      "license": "public-domain",
+      "note": "Fees, guides, lodgings and what visitors were shown."
+    }
+  ]
+}

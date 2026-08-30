@@ -29,11 +29,19 @@ export function App() {
   const [tab, setTab] = useState<"events" | "manifest" | "cost" | "companion">("events");
   const [ledger, setLedger] = useState<{ totalUsd: number; byProvider: Record<string, number>; entries: unknown[] } | null>(null);
   const [qr, setQr] = useState("");
+  const [gallery, setGallery] = useState<TourSummary[] | null>(null);
   const [cState, setCState] = useState<CompanionState>("idle");
   const [transcript, setTranscript] = useState<{ who: string; text: string }[]>([]);
 
   useEffect(() => {
-    api.catalog().then(setCatalog).catch((e) => setError(e.message));
+    api
+      .catalog()
+      .then((c) => {
+        setCatalog(c);
+        // Every published tour, so the whole set can be browsed and played from here.
+        api.allTours(c.cities.map((x) => ({ id: x.id, years: x.years }))).then(setGallery).catch(() => setGallery([]));
+      })
+      .catch((e) => setError(e.message));
   }, []);
 
   useEffect(() => {
@@ -76,7 +84,6 @@ export function App() {
     );
   }
 
-  const years = catalog?.cities.find((c) => c.id === city)?.years ?? [];
 
   return (
     <div className="pg">
@@ -85,39 +92,44 @@ export function App() {
           <div className="eyebrow">Time Travel · playground</div>
           <h1>Tour engine</h1>
         </div>
-        <div className="pg-controls">
-          <label>
-            City
-            <select value={city} onChange={(e) => setCity(e.target.value)}>
-              {(catalog?.cities ?? []).map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Year
-            <input type="number" value={year} onChange={(e) => setYear(Number(e.target.value))} list="years" />
-            <datalist id="years">
-              {years.map((y) => (
-                <option key={y} value={y} />
-              ))}
-            </datalist>
-          </label>
-          <label>
-            Tour
-            <select value={tourId ?? ""} onChange={(e) => setTourId(e.target.value)}>
-              {[...(list?.matches ?? []), ...(list?.nearest ?? [])].map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.title} ({t.year}){t.distanceYears ? ` · ${t.distanceYears} yrs away` : ""}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+        <div className="pg-count">{gallery ? `${gallery.length} walks in ${new Set(gallery.map((t) => t.city)).size} cities` : "loading walks…"}</div>
       </header>
       {error && <div className="pg-error">{error}</div>}
+
+      {gallery && gallery.length > 0 && (
+        <nav className="walks" aria-label="Choose a walk">
+          {Object.entries(
+            gallery.reduce<Record<string, TourSummary[]>>((acc, t) => {
+              (acc[t.city] ??= []).push(t);
+              return acc;
+            }, {}),
+          ).map(([cityId, tours]) => (
+            <div className="walk-city" key={cityId}>
+              <h3>{catalog?.cities.find((c) => c.id === cityId)?.name ?? cityId}</h3>
+              <div className="walk-row">
+                {tours.map((t) => (
+                  <button
+                    key={t.id}
+                    className={`walk ${t.id === tourId ? "on" : ""}`}
+                    onClick={() => {
+                      setTourId(t.id);
+                      setCity(t.city);
+                      setYear(t.year);
+                    }}
+                  >
+                    <img src={t.cover.image} alt="" loading="lazy" />
+                    <span className="walk-year">{t.year}</span>
+                    <span className="walk-title">{t.title}</span>
+                    <span className="walk-who">
+                      {t.companion.name} · {t.stopCount} stops
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </nav>
+      )}
 
       <main className="pg-main">
         <section className="pg-phone">

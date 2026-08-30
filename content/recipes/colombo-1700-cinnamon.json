@@ -1,0 +1,141 @@
+{
+  "id": "tour_colombo_1700_cinnamon",
+  "city": "colombo",
+  "cityName": "Colombo",
+  "country": "LK",
+  "year": 1700,
+  "yearRange": [
+    1698,
+    1702
+  ],
+  "lang": "en",
+  "title": "The Cinnamon Coast",
+  "theme": "Five stops through Dutch Colombo in 1700 with Kumari, a cinnamon peeler. The Dutch East India Company holds the coast and the cinnamon that pays for it, peeled by hand under a quota by the people whose caste has always done it, and shipped from a fort built on the ruins of a Portuguese one.",
+  "companion": {
+    "name": "Kumari",
+    "role": "Cinnamon peeler, Salagama community",
+    "brief": "Thirty-four, a cinnamon peeler working the Company's quota with her family: cutting shoots, scraping the bark, rolling the quills to dry. Born near the cinnamon lands south of the fort. Quiet, exact, proud of a skill that takes years to learn and cannot be hurried. She has strong views about the quota and expresses them carefully, because the Company's punishments are not small. She knows nothing of the world after 1700 and has never been further than the Kelani river.",
+    "voice": "sage",
+    "narrationVoice": "Sarah"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Dutch Colombo in 1700: whitewashed Dutch gabled buildings with tiled roofs inside a walled fort, palm thatch houses outside it, canals and outrigger boats, red laterite earth, dense green cinnamon and coconut, hard tropical light with monsoon cloud. Clothing of 1700 Ceylon: cotton cloths and jackets, headcloths, Dutch officials in linen coats and hats. Portrait 9:16 framing, eye level. Warm humid colour, not sepia.",
+    "avoid": "no British colonial buildings or uniforms (they come a century later), no motor vehicles, no electric light, no modern clothing, no railway, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_fort_gate",
+      "title": "The Fort Gate",
+      "geo": {
+        "lat": 6.934,
+        "lng": 79.843,
+        "bearing": 90
+      },
+      "brief": "The landward gate of the Dutch fort: bastions and a moat, sentries checking loads in and out, carts of cinnamon and areca nut waiting, the town of Pettah outside the walls.",
+      "mustCover": [
+        "what the fort is for and who may live inside",
+        "what is checked at the gate and why",
+        "how the Dutch took this place from the Portuguese"
+      ],
+      "archiveQueries": [
+        "Dutch fort Colombo 17th century engraving",
+        "Colombo VOC fort plan",
+        "Dutch Ceylon Colombo 1700"
+      ]
+    },
+    {
+      "id": "stop_02_cinnamon_gardens",
+      "title": "The Cinnamon Lands",
+      "geo": {
+        "lat": 6.91,
+        "lng": 79.865,
+        "bearing": 180
+      },
+      "brief": "The cinnamon growing wild and tended in the sandy ground south and east of the town, where the peelers cut, scrape and roll under a quota set by the Company.",
+      "mustCover": [
+        "how cinnamon is cut, peeled and rolled",
+        "the quota and what happens if it is not met",
+        "why the bark is worth so much in Europe"
+      ],
+      "archiveQueries": [
+        "Ceylon cinnamon peeling 18th century engraving",
+        "cinnamon garden Ceylon Dutch",
+        "Cinnamon preparation Sri Lanka historic"
+      ]
+    },
+    {
+      "id": "stop_03_pettah",
+      "title": "Pettah",
+      "geo": {
+        "lat": 6.938,
+        "lng": 79.856,
+        "bearing": 45
+      },
+      "brief": "The town outside the walls: a grid of streets, market stalls, Moor and Chetty traders, temples and churches, and everything the fort will not keep inside it.",
+      "mustCover": [
+        "who trades in Pettah and what they sell",
+        "how the town outside differs from the fort",
+        "the languages heard in the street"
+      ],
+      "archiveQueries": [
+        "Pettah Colombo historic engraving",
+        "Colombo Oude Stad Dutch map",
+        "Ceylon market 18th century"
+      ]
+    },
+    {
+      "id": "stop_04_dutch_hospital",
+      "title": "The Company Hospital",
+      "geo": {
+        "lat": 6.9337,
+        "lng": 79.8425,
+        "bearing": 270
+      },
+      "brief": "The Company's hospital and warehouses inside the fort: sick sailors and soldiers, clerks weighing and sealing bales, the smell of the cinnamon store carrying down the street.",
+      "mustCover": [
+        "who the hospital is for and what it treats",
+        "how the cinnamon is weighed, baled and sealed",
+        "what the Company's clerks are afraid of"
+      ],
+      "archiveQueries": [
+        "Dutch hospital Colombo historic",
+        "VOC warehouse Ceylon cinnamon bales",
+        "Dutch Ceylon medicine 18th century"
+      ]
+    },
+    {
+      "id": "stop_05_beira_canal",
+      "title": "The Canal and the Lake",
+      "geo": {
+        "lat": 6.928,
+        "lng": 79.85,
+        "bearing": 0
+      },
+      "brief": "The waterway the Dutch cut and dug to move goods: flat boats poled along the canal from the lake and the river, carrying cinnamon, arrack and coconut down to the fort.",
+      "mustCover": [
+        "what the canals carry and how the boats move",
+        "why water is used instead of roads",
+        "what the lake is used for by the town"
+      ],
+      "archiveQueries": [
+        "Dutch canal Colombo historic",
+        "Beira Lake Colombo old",
+        "Ceylon canal boats 18th century"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Philippus Baldaeus, Description of Ceylon (1672)",
+      "url": "https://archive.org/",
+      "license": "public-domain",
+      "note": "Dutch account of Ceylon, its towns, trade and people."
+    },
+    {
+      "title": "VOC records on Ceylon cinnamon, 17th and 18th centuries",
+      "url": "https://www.nationaalarchief.nl/",
+      "license": "reference",
+      "note": "The cinnamon monopoly, quotas and the peeler communities."
+    }
+  ]
+}

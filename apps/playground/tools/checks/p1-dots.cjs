@@ -2,7 +2,7 @@ const { chromium } = require("/Applications/MAMP/htdocs/document-capture-service
 (async () => {
   const browser = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
-  await page.goto("http://localhost:5173/?tour=tour_london_1850_flower_seller&play=1", { waitUntil: "networkidle" });
+  await page.goto(`http://localhost:5173/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
   await page.waitForSelector(".player .idle");
   await page.click("button.travel");
   // tap to the walk screen
@@ -16,7 +16,8 @@ const { chromium } = require("/Applications/MAMP/htdocs/document-capture-service
     const stops = Number((document.querySelector(".walk-dots").getAttribute("aria-label") || "of 0").split("of ")[1]);
     return { count: dots.length, stops, onIndex: dots.findIndex((d) => d.classList.contains("on")) };
   });
-  const ok = anims.every((a) => a === "none") && info.count === info.stops && info.onIndex >= 1;
+  const TOUR = process.env.TOUR || "tour_london_1850_flower_seller";
+const ok = anims.every((a) => a === "none") && info.count === info.stops && info.onIndex >= 1;
   console.log(`[p1] ${ok ? "PASS" : "FAIL"} stop-indicator dots · animations:${anims.join(",")} · ${JSON.stringify(info)}`);
   await page.screenshot({ path: "/Users/sherancorera/.claude/jobs/83f0d0aa/tmp/shots/p1-walk-dots.png" });
   await browser.close();

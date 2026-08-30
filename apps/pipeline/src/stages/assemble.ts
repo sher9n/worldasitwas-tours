@@ -43,17 +43,30 @@ export interface AssembleInput {
   companionMarkdown: string;
 }
 
-/** Polite download: identifies itself and backs off on 429 or transient errors. */
-async function download(url: string, target: string, tries = 4): Promise<void> {
+/** One archive request at a time, with a gap: several tours building at once
+ * will otherwise trip Wikimedia's rate limit and lose a whole assemble. */
+let archiveQueue: Promise<unknown> = Promise.resolve();
+function politely<T>(fn: () => Promise<T>): Promise<T> {
+  const next = archiveQueue.then(fn, fn);
+  archiveQueue = next.then(() => new Promise((ok) => setTimeout(ok, 350)), () => new Promise((ok) => setTimeout(ok, 350)));
+  return next;
+}
+
+/** Polite download: identifies itself, queues, and waits out a rate limit rather than failing the tour. */
+async function download(url: string, target: string, tries = 7): Promise<void> {
+  const archive = /wikimedia\.org|wikipedia\.org/.test(url);
   for (let i = 0; i < tries; i++) {
-    const res = await fetch(url, { headers: { "User-Agent": "TimeTravelTours/0.1 (tour engine prototype) node-fetch" } });
+    const res = await (archive
+      ? politely(() => fetch(url, { headers: { "User-Agent": "TimeTravelTours/0.1 (tour engine prototype) node-fetch" } }))
+      : fetch(url, { headers: { "User-Agent": "TimeTravelTours/0.1 (tour engine prototype) node-fetch" } }));
     if (res.ok) {
       await fs.writeFile(target, Buffer.from(await res.arrayBuffer()));
       return;
     }
     if ((res.status === 429 || res.status >= 500) && i < tries - 1) {
       const retryAfter = Number(res.headers.get("retry-after")) || 0;
-      await new Promise((ok) => setTimeout(ok, Math.max(retryAfter * 1000, 2000 * (i + 1))));
+      // Back off properly: 3s, 6s, 12s, 24s, 48s, 60s.
+      await new Promise((ok) => setTimeout(ok, Math.max(retryAfter * 1000, Math.min(60_000, 3000 * 2 ** i))));
       continue;
     }
     throw new Error(`download ${url}: ${res.status}`);

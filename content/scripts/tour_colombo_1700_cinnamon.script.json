@@ -1,0 +1,352 @@
+{
+  "tourId": "tour_colombo_1700_cinnamon",
+  "companion": "Kumari",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_fort_gate": {
+      "arrival": {
+        "line": "Nicamava — I come for nothing, though since we're together I may ask your patience. I'm Kumari, thirty-four, Salagama, and I was born near the cinnamon lands south of the fort. I still work the Company's quota with my family, as I always have: we cut the shoots, scrape the bark, and roll the quills to dry. This walk has five stops, because cinnamon doesn't end in the grove. It comes through gates like this, brushes Pettah, reaches the fort stores, and goes on by water, and I've known that chain all my working life. Touch something in the picture and I'll speak of it. Hold the green button and ask me anything. For now, keep your eye on that gate mouth, because it tells you at once who may pass, and who must wait to be counted.",
+        "scene": "A photographic view from just inside the fort’s eastern entrance, facing out toward Pettah. The whitewashed gateway fills the middle of the frame, its opening falling into a dark gate mouth that bends away inside. A wooden bridge over the green moat is crowded with carriers, a bullock cart, and waiting townspeople, forming the bridge crowd. Under a strip of shade beside the gateway stands a musket-bearing guard, the sentry shade. At lower right, an opened carrier’s load reveals a tied bark bundle. Beyond the bridge are tiled roofs and trees of Pettah.",
+        "points": [
+          {
+            "label": "the bark bundle",
+            "line": "Fresh bark gives that dry sweet bite even before the bundle is opened. A fine quill begins in the hand that lifts the peel clean from the shoot and rolls it patient and tight. Soft hands spoil bark faster than rough ones."
+          },
+          {
+            "label": "the sentry shade",
+            "line": "At a gate like this you don't speak bluntly first. You find the proper title, keep your face quiet, and let respect enter before your errand does. It saves trouble, and trouble here has boots, keys, and witnesses."
+          },
+          {
+            "label": "the bridge crowd",
+            "line": "The bridge makes everyone bunch together — bullocks, carriers, carts, excuses, all of it. Once the road narrows to boards over water, the guard can take names in his own order, which is a neat trick if ruling is your trade."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_fort_gate_c1": {
+          "narration": "When the Dutch took Colombo from the Portuguese in 1656, after a long siege and with the king of Kandy on their side, they didn't keep the town whole. They cut it in two. The western part became the Casteel, hard and guarded, and the eastern part became the Oude Stad, the Old City we call Pettah. So this isn't only a gate in a wall. It's the seam where one city was turned into two kinds of living.",
+          "scene": "A wider view from the drawbridge shows the white arch of the Delft Gate dominating the left half of the frame, its masonry bright against shadow. To the right beyond the moat are the clustered town roofs of Pettah, low tiled houses and sheds among palms. People with head-loads and a few townsmen move between bridge and town, making the split between fort and outer settlement visible in one shot.",
+          "points": [
+            {
+              "label": "the town roofs",
+              "line": "Those roofs mark the half of Colombo where burghers and tradesmen are meant to stay. Company people belong inside the fortress. So a wall does more than keep enemies out; it sorts neighbours before dawn and after dark."
+            },
+            {
+              "label": "the white arch",
+              "line": "Men drew a separate plan of this very gate before the last century ended, measuring it carefully on paper. That's how important it is to them. If the Company can map a threshold, it can imagine owning every step across it."
+            }
+          ]
+        },
+        "stop_01_fort_gate_c2": {
+          "narration": "This bridge is a sieve. Cinnamon and elephants are great revenues for the Company on this coast, so anything that smells of profit is watched closely. Loads come up in bunches — carts, bullocks, head-loads, servants, brokers, messengers, peelers — and strangers are questioned before they go farther. I can't swear what every sentry asks, E eppa queinda, but a place built with guards at both cheeks of the gate doesn't waste that trouble on idle curiosity.",
+          "scene": "A closer frame at the bridge entrance shows a knot of people waiting to pass. At the center a carrier balances a head-load bundle wrapped around bark. To one side stands a bullock cart with its rough cart bed visible. Behind them, set into the gateway wall, an open guardroom door sits beneath a shaded overhang where a sentry watches. A clerk with paper stands near the threshold as the queue bunches over the planks above the moat.",
+          "points": [
+            {
+              "label": "the head-load bundle",
+              "line": "Our peeling isn't a free choosing. It falls under rajakariya, service owed to the ruler, and among Salagama households the cinnamon duty stays close as kin. That's why the work passes through families even when the season is poor and spirits thinner still."
+            },
+            {
+              "label": "the guardroom door",
+              "line": "One day's absence from obligatory labour can cost 2 stivers. It sounds tidy when a clerk says it, but people feel it in rice and temper, so many come half fit rather than be marked absent."
+            },
+            {
+              "label": "the cart bed",
+              "line": "Peeling in the grove isn't the end. After the bark is stripped and sorted, it still has to be brought on to the harbour for export. The road, the counting, and the loading are part of the cinnamon just as much as the knife."
+            }
+          ]
+        },
+        "stop_01_fort_gate_c4": {
+          "narration": "The gate works like a trap turned inside out. This is one of the three main entrances to the fort — the others are the Galle gate to the south and the Water gate by the harbour — but this one takes the landward pressure. You cross the drawbridge, pass between guardrooms, and then the way kinks right instead of running straight. That bend isn't clumsy building. It's there so an attacker outside can't fire directly into the fort's heart.",
+          "scene": "A broad three-quarter view from outside the fort shows the defensive face of the gate. The green moat runs across the foreground, crossed by the wooden drawbridge leading to the white gateway. Just inside the opening, the passage disappears into a rightward bend. On the left rises a corner gun platform on the bastion wall. Beyond the ditch on the right stretches low marsh ground with sparse grass and wet patches.",
+          "points": [
+            {
+              "label": "the green moat",
+              "line": "They cut this wet ditch between 1692 and 1697, feeding it from a stream off the lake, and beyond it lies the glacis, that open sloping ground. Even the land in front has been disciplined to leave a man exposed."
+            },
+            {
+              "label": "the low marsh ground",
+              "line": "That low ground outside is Buffalos field, a marsh that can be flooded by opening a sluice. So before an enemy even reaches the wall, the fort can turn the earth soft under him and muddle every wheel."
+            },
+            {
+              "label": "the corner gun platform",
+              "line": "By the end of the last century, the fort had all its main parts complete. That's why it feels so settled in its suspicion. Nothing here seems improvised; every angle has already chosen its purpose."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come with me into Pettah now. Outside the wall the air loosens a little, but cinnamon is still being counted there, only by other hands, with other noises around it."
+    },
+    "stop_02_cinnamon_gardens": {
+      "arrival": {
+        "line": "So, having been counted in, this is what the counting reaches for. Some men talk as if cinnamon comes from one neat garden. E eppa queinda, not here. This side of Colombo is broken working ground, villages and tracks and scrub on pale sand. My people know which rods will lift clean, which patch is worth entering after rain, and which bundle will make a clerk's face sour by evening.",
+        "scene": "From a low rise, the frame looks south across pale sandy ground scattered with glossy cinnamon bushes. In the foreground a ring of cut stools throws up fresh green rods; to the right two women crouch beside mats with pale bark strips drying under a light shade screen; a narrow track runs away between the scrub; beyond it stand several coconut palms and the darker edge of a field; at the far left near a rough fence sits a covered pit in the ground.",
+        "points": [
+          {
+            "label": "coconut palms",
+            "line": "Another map of the country outside Colombo marks coconut gardens and rice fields through this side of town, which is why the ground never lies as one single crop. Peeling, palms, and field work all rub shoulders here."
+          },
+          {
+            "label": "covered pit",
+            "line": "Men who mapped these outskirts bothered to note roads, gardens, estates, and even elephant traps. That's the sort of country this is, half managed and half watchful, with profit expected from whatever can be grown, carried, or caught."
+          },
+          {
+            "label": "cut stools",
+            "line": "Those old bases sending up new rods tell their own lesson. We don't strip every patch flat if we want good bark again. A grove can be tired, and sensible people let ground recover before boasting of a heavy cut."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_cinnamon_gardens_c1": {
+          "narration": "From Narahenpita through Kirulapone, Pepiliyana, Wellawatte, and on toward Galkisse, this belt is stitched with settlements. Dutch papers even name cinnamon-peeler villages as such. That's important, because the bark isn't gathered by whoever wants a day's wage. The duty sits on households and on place. A good peeler is known before the knife comes out, and a bad headman can make a whole village feel it.",
+          "scene": "A work gang stands beside a small thatched shed on sandy ground. In the center a woman kneels scraping a cinnamon rod across her lap; at left a man bends to cut new shoots from low bushes; behind them a young helper carries a bundle of rods; at right a headman sits by a low stool with a palm-leaf tally, and beside him a bundle pile of rolled quills rises neatly from the ground.",
+          "points": [
+            {
+              "label": "young helper",
+              "line": "The counting starts young. A peeler may begin at twelve with one pingo to make, about sixty-two pounds in Company weight, and the burden climbs year by year until sickness or age pulls it down again."
+            },
+            {
+              "label": "bundle pile",
+              "line": "Clerks correct numbers after the season as if bark were a sum that can still be tidied. For the year just gone, they altered the reckoning and said 1700 truly made 7,291 bales, eighty-four more than first entered."
+            }
+          ]
+        },
+        "stop_02_cinnamon_gardens_c2": {
+          "narration": "You don't bully cinnamon out of the rod. You wait for the season, when the hard rain has run through it and the young leaves have turned green, and then the bark gives. First the shoot is cut, then the rough skin is scraped, then the true bark is loosened and lifted in long thin pieces. Do not pull. Lift it. After that it dries, and the small clean quills go inside the larger ones.",
+          "scene": "A close frame at ground level shows a peeler's work on the sand. Bare toes pin a smooth cinnamon shoot in place while hands guide a small knife under the bark. Pale strips curl away from the rod. To the right, a sun mat holds drying bark and a heap of nested quills.",
+          "points": [
+            {
+              "label": "bare toes",
+              "line": "Soft hands aren't the only danger. Nothing here is done at a comfortable distance. Toes hold the rod steady, fingers test where the bark will part, and the knife must go just deep enough. If you hurry for neatness, you lose both neatness and bark."
+            },
+            {
+              "label": "nested quills",
+              "line": "Those little tubes tucked inside the larger ones are why our cinnamon is praised above cassia, which is thicker and coarser. The worth isn't only the shrub itself. It's the patient nesting that turns thin bark into a fine quill."
+            }
+          ]
+        },
+        "stop_02_cinnamon_gardens_c4": {
+          "narration": "Now comes the part the clerks love. In Company letters the whole harvest turns into demands: a general need of 500,000 pounds, and for one season 4,636 bales of duty, with arrears and paid peeling added until the expected work reached 7,344 bales. If we fall short, it isn't taken as tired hands or thin bark. Failure can bring severe punishment, and across the sea the finest cinnamon may fetch 12 shillings a pound.",
+          "scene": "At the edge of the grove a rough counting place stands under a lean awning. A headman sits over a counting board; beside him lies a freshly cut branch among tied bundles. In front, a tired carrier leans into a shoulder yoke while other bundles wait on the sand, and behind them the track leads townward through low cinnamon scrub.",
+          "points": [
+            {
+              "label": "counting board",
+              "line": "Missed delivery doesn't stay a scolding between a headman and a family. Men have been convicted for not delivering their obligated cinnamon, which means the tally can leave the shed and become a matter for a court."
+            },
+            {
+              "label": "shoulder yoke",
+              "line": "The season can pull people away from home for more than eight months, and not everyone bears it meekly. Some have slipped off toward Kandy, and some have joined disturbances, because a shoulder can only answer so much weight before it starts answering back."
+            },
+            {
+              "label": "cut branch",
+              "line": "The old monopoly rules are spoken of in a hard voice. Cut cinnamon without right, and they say a man might lose his right hand; buy or sell it outside the Company's claim, and the threat goes to death. That's how jealously the bark is guarded."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once the quills are dry and counted, they don't stay among the bushes. Come with me toward the noisier half of the business, where bark meets bargaining and the town begins to smell profit before it smells spice."
+    },
+    "stop_03_pettah": {
+      "arrival": {
+        "line": "Now we're in Pettah, and the air loosens at once. Inside the fort, the highest Company people keep to the stronger walls, while burghers, tradesmen, brokers, carriers, sailors, and visiting merchants are pushed out here to do the work of living. That's the difference you feel under your ribs: the fort is rank and permission, and Pettah is bargaining, cooking, hauling, and argument. It seems outside the Company's embrace, though never outside its need.",
+        "scene": "From the middle of a long straight Pettah street, the frame looks slightly west toward the fort. On the left runs a low churchyard wall, and beside it a cloth shade is stretched over stacked bales of fabric. On the right sit fish sacks and baskets of rice and onions with buyers crouched near them. Porters with head-loads move through the dust between men in turbans and caps, tiled roofs line both sides, and at the far end above the roofs a fort bastion rises.",
+        "points": [
+          {
+            "label": "cloth shade",
+            "line": "People here say, and I believe it, that around the churchyard the Moors and Persians keep silks, other stuffs, and linen going all week. Pettah likes cloth because it folds small, travels well, and shows at a glance who still has ready money."
+          },
+          {
+            "label": "fish sacks",
+            "line": "The food sellers gather the town to itself. Folks speak of Malabarians, Maldivians, Sinhalese, and plenty of others offering fruit, dried fish, onions, sugar, and rice hereabout. That's Pettah's truth in a basket: whatever worship a man keeps, he still has to eat."
+          },
+          {
+            "label": "fort bastion",
+            "line": "That rampart doesn't stand by itself. In the years just before now they strengthened the fort with a wet ditch, fed from water near the lake, so the contrast grew sharper: hard defence there, open bargaining here."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_pettah_c1": {
+          "narration": "The Company keeps cinnamon to itself, yes, but a harbour can't live on bark alone. So Pettah swells with the trades it can't quite shut into a monopoly. Asian merchants still send out arecanut, palmyra goods, woodwork, and tobacco, and they bring in cloth, rice, salt, and dried fish from India. That's why these streets feel useful in every direction at once: selling, lending, packing, feeding, carrying.",
+          "scene": "At an open-front stall on a straight street, bales of cloth are stacked under a deep awning beside a low table with an ink board, an ink pot, and tally slips. In the road a porter stoops under a bundle, while farther back sit sacks of tobacco leaves, plaited palmyra baskets, and tied bags of grain. A white turban seller stands near the cloth, another man in a close cap counts coins, and carts edge past tiled compounds.",
+          "points": [
+            {
+              "label": "ink board",
+              "line": "Men working with a board and pen like that are often Chetties, Tamil-speaking merchants with South Indian ties, and some of them lend money as readily as they sell wares. A settled Colombo family may be Christian, while newer arrivals may keep other worship, but all know how debt grips a town."
+            },
+            {
+              "label": "white turban seller",
+              "line": "That white turban makes me think of the Gulf traders people remember. Not long before now, ships from Persia were still coming into Colombo and then sailing on to Galle for pepper and cinnamon, so this market's threads run farther than my own feet ever will."
+            }
+          ]
+        },
+        "stop_03_pettah_c2": {
+          "narration": "If you shut your eyes here, Pettah is mostly voices. Sinhala comes from buyers and carriers, Tamil from merchants and labourers, Dutch drops in as orders, and the speech that stitches strangers together is still Portuguese. The Hollanders would rather their own tongue ruled the island, but wishes aren't markets. A sale goes in the language that both hands can manage before the crowd presses on.",
+          "scene": "Beside the churchyard wall, a narrow school building with a doorway open to the street faces a knot of bargainers. A bell hangs above the gate. In the foreground two women and a capped merchant argue over a basket while a porter sets down a load. A side lane runs off beyond the wall, and farther back a Dutch sentry stands at the mouth of the street among passing men in turbans, headcloths, and caps.",
+          "points": [
+            {
+              "label": "school doorway",
+              "line": "That school belongs with the church, and both Portuguese and Malabar, that's Tamil, have long been used to reach ordinary people in such places. The ministers know well enough that if they want ears, they must teach in the tongues already walking the street."
+            },
+            {
+              "label": "side lane",
+              "line": "By lines on later papers, the Chetty people seem to stretch away to the north-east from here, and the Moor folk more to the south-east. I won't swear every doorway obeys that pattern today, but towns sort themselves by trust, kin, and credit."
+            }
+          ]
+        },
+        "stop_03_pettah_c4": {
+          "narration": "These straight streets aren't an act of kindness. They were laid so troops could fall back in order if trouble broke through, and so the fort's guns could rake the line behind them. The old outer works of this town were pulled down in the last decade, because the Company didn't need a second strong shell here. So Pettah is busy and open, yes, but its very openness has been measured for force.",
+          "scene": "From the centre of a broad street crossing, the camera looks down a long ruler-straight road under bright sky. Low tiled roofs and compound walls run evenly away on both sides. A porter load rides high on one man's head as he passes near the corner, two small soldiers stand in the distance toward the fort end, and the wide clear line of the road leaves almost nowhere for a crowd to hide.",
+          "points": [
+            {
+              "label": "street crossing",
+              "line": "This is how Pettah truly behaves: bazaar on the surface, fort discipline underneath. People, goods, quarrels, prayers, all mixed together, and yet the shape of the place keeps answering west to the guns. A town can look loose and still be held short."
+            },
+            {
+              "label": "porter load",
+              "line": "A carrier bent like that doesn't earn grandly for it. An unskilled monthly wage in Colombo runs about 4.7 guilders, which is why so many backs are hired cheap and spent hard when ships, storehouses, and markets all want moving at once."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Pettah makes the noise, but the fort keeps the reckoning. Come back with me through the quieter side of the walls, and I'll show you where cinnamon stops being street trade and becomes bundles, ledger lines, and Company care of a very particular sort."
+    },
+    "stop_04_dutch_hospital": {
+      "arrival": {
+        "line": "So this is the fort turned inward. West of Pettah the noise drops, and what remains is the Company's inside trade: the hospital along one side, the warehouses close by, and that dry sweet cinnamon lying over the sharper smell of oils and bilge. Men come here bent with fever, flux, sores, broken limbs, and the sea still in them, and other men come upright with pens, because healing and counting are neighbours when bark must leave as dependable cargo.",
+        "scene": "We stand in a straight fort street under hard sun. On the left runs the long white range of the hospital, low and thick-walled under deep red tiles, its shaded veranda holding a couple of convalescents on bedsteads. In the middle distance two ledger men sit at a small table with papers and a sand shaker. To the right an open warehouse door shows dim stacks of cinnamon bales, with a porter half in shadow and the street dust lying between hospital and storehouse.",
+        "points": [
+          {
+            "label": "the long white range",
+            "line": "That long house isn't mercy for Colombo at large. It's for Company folk: soldiers of the garrison, sailors brought ashore sick from ships, and merchants or clerks in service. If you don't belong to their work, you don't easily belong to their bed."
+          },
+          {
+            "label": "the ledger men",
+            "line": "The officers set over this place include the commander and the man in charge of stores, which is a neat confession if ever there was one. The same authority that guards the fort and counts the warehouses also governs the sickroom."
+          },
+          {
+            "label": "the warehouse door",
+            "line": "The cinnamon smell in this street isn't garnish for the nose. Hospital and packhuis stand together because the fort wants sick men mended, cargo readied, and ships served as one machine, each part leaning on the next."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_dutch_hospital_c1": {
+          "narration": "Inside, they call these men suffering servants, and what they mostly suffer is service. One bed holds a man with a splinted fracture, another a fevered sailor, another a body puffed with dropsy, another scratching at scabies, and beyond him someone hushed over venereal sores, colds, fits, or bowel sickness. The ward gathers all the ways Company labour and Company travel can wear a person down.",
+          "scene": "The frame is inside a cool shaded ward, looking down a row of wooden bedsteads beneath whitewashed walls and a tiled roof. One patient lies bandaged, another props himself on an elbow, and at the near left stands a shelf of medicine jars beside rolled bandages. Near the centre a clay jug and cup rest on a stool, and at the foot of the nearest bed a neat pile of folded linen sits ready.",
+          "points": [
+            {
+              "label": "the medicine jars",
+              "line": "Their cures aren't all brought by ship. They use imported drugs, yes, but also what grows or trades nearby: cinnamon, ginger, cardamom, coriander. It's a queer turn, if you ask me, when the same coast that strips men for bark also grinds bark back into physic."
+            },
+            {
+              "label": "the clay jug",
+              "line": "That jug won't only hold water. Cape wine and arrack are given medicinally, especially when the bowels won't stay quiet. Because drunkenness is common enough, patients aren't meant to wander out by night, and smuggled drink may be seized."
+            },
+            {
+              "label": "the folded linen",
+              "line": "None of this is free kindness. A patient can have half his pay stopped for hospital dues, and extra charged for linen, pillows, and a mattress, which helps explain why many outside their own people scarcely enter, and Company slaves are refused altogether."
+            }
+          ]
+        },
+        "stop_04_dutch_hospital_c2": {
+          "narration": "Once our quills reach the fort, the bark leaves our hands and enters theirs. Here it is sorted, weighed, bound tight, given a known mark, and stacked till a ship requires it. They don't trust a bundle merely because it smells fine. A bale has to be made legible to the warehouse, so that what was cut in scattered groves can travel as one reliable cargo.",
+          "scene": "We look into a dim storehouse from just inside the doorway. In the foreground one bale lies on its side with a wrapping seam and bindings clear in the light. Beside it rises the front bale stack, squared and orderly to shoulder height. Beyond, the back rows of bales recede into shadow between thick posts, so the room seems to go on swallowing cinnamon.",
+          "points": [
+            {
+              "label": "the wrapping seam",
+              "line": "They sew the cinnamon in gunny, cover it with hides, describe what it holds, and set a signed plank into the bale. So the parcel carries its own identity with it, and a dispute has something solid to bite on."
+            },
+            {
+              "label": "the front bale stack",
+              "line": "For one harvest demand, the peelers were pressed for 7,344 bales altogether, counting obligation, arrears, and bark delivered for cash. Yet the same reckoning says 522 bales came in beyond that demand, and 7,866 bales of fine cinnamon were received."
+            },
+            {
+              "label": "the back rows",
+              "line": "The year just before was reckoned at 7,291 bales. Set old peel and new together, and the stock rose to 14,817 bales. That is why the dim back of a warehouse can feel heavier than a field full of growing rods."
+            }
+          ]
+        },
+        "stop_04_dutch_hospital_c4": {
+          "narration": "A clerk's fear isn't only a thief with nimble fingers. It's a bale a little light, a wrapping a little damp, dust shaken away while binding, a mark broken, or a headman who smooths one account by hiding another. Small losses sound petty when spoken softly at a table, and then they multiply into a quarrel large enough to sail across the sea. Even these tidy stacks depend on what happens far inland, beyond the walls and beyond the Company's temper.",
+          "scene": "The frame sits at a warehouse threshold. A clerk's table fills the left foreground with an open ledger page, ink, and tally pieces. On the floor below it, beside a partly bound bale, is a little drift of bark dust. To the right, the doorway light cuts bright across the shadows and shows a strip of street beyond, where movement outside is only half seen.",
+          "points": [
+            {
+              "label": "the ledger page",
+              "line": "Bad headmen are feared almost as much as outside thieves. A man who conceals some peelers, excuses another's delivery, or profits from surplus bark can bend the whole quota from within, and the clerk may not discover the shape of it till much later."
+            },
+            {
+              "label": "the bark dust",
+              "line": "What lies in that little sweepings pile is exactly what troubles them. If the bale runs short, if dry dust spills away on the floor, or if bad packing keeps damp inside, the loss looks tiny to the eye and ugly in the book."
+            },
+            {
+              "label": "the doorway light",
+              "line": "Last year the Colombo officials even asked the Kandyan ruler to order that chalias not be molested while peeling in his lands. So these tables don't rest on walls alone. They rest on leave to work, and on peace holding where the bark grows."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once the bale has its weight and mark, the fort still isn't done with it. Bark sitting in a shed feeds nobody across the sea, so come with me to the water, where the Company's neat numbers must learn to float."
+    },
+    "stop_05_beira_canal": {
+      "arrival": {
+        "line": "From the storehouse street the bark seems nearly finished, but it isn't. It still has to move, and this water does the heavy work. The Portuguese first made the lake as a wet guard for the fort, and the Dutch have widened it and cut more channels from it, so what holds enemies off also carries cargo in. That's Colombo plainly enough: a wall that floats.",
+        "scene": "The view stands on a muddy bank where a narrow canal opens into the broader brown-green water of the lake. In the foreground at right, a low flat boat sits heavy in the water with bundles and casks under matting. From its bow a tow rope runs diagonally to the left bank. Beyond, marsh grass and a few coconut palms soften the edge, while farther back the fort wall and a bastion rise above the water.",
+        "points": [
+          {
+            "label": "tow rope",
+            "line": "When the cut is shallow, a pole will do, but where the bank gives a firm path men can haul a loaded boat from land instead of grinding it deeper into mud. It's slow work, shoulder and back work, and still cheaper than wheels sinking axle-deep."
+          },
+          {
+            "label": "flat hull",
+            "line": "These boats ride shallow because the water does. A flat bottom will creep through cuts and marsh edges where a deeper hull would sit fast and curse the mud before the day is half done."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_beira_canal_c1": {
+          "narration": "This water is the town's inland harbour. Loads reach Colombo here before they ever smell the sea, because it's easier to float them in than to bump them over bad ground. On one day you'll have salt, rice, dried fish, arecanut, coir, vinegar and arrack sharing the cut with cinnamon. That's the truth of the place: every useful thing edging along together, and the fort taking notice of all of it.",
+          "scene": "A close waterside frame shows two low cargo boats tied beside the bank. In the nearer boat, an arrack cask lies on its side near the stern, with coils of coir piled beside it. Across in the other boat are rice sacks, fish baskets, and cinnamon bundles under matting. Men stand between boat and bank shifting loads, and the fort wall sits beyond the water in the distance.",
+          "points": [
+            {
+              "label": "arrack cask",
+              "line": "A man can buy arrack dearer by thirst than by measure. Hereabout a quart goes for about six stuivers, and a gallon for about thirty-six, so a leaking cask draws eyes quickly. Palm spirit travels as trade, medicine, comfort, and trouble, all in one smell."
+            },
+            {
+              "label": "coir coil",
+              "line": "Coir comes rough and hairy like that, twisted from coconut fibre, and towns never have enough of it. Rope for boats, lashings for loads, cords for a hundred small needs. It looks humble, which is often how the most used things look."
+            }
+          ]
+        },
+        "stop_05_beira_canal_c2": {
+          "narration": "Water is chosen here because weight behaves better on it than on land. Outside the walls the ground lies low and wet, and the roads are few, so one boat can carry what would exhaust carts and bullocks. Men say you may go from this lake out to the Kelani and then north by canal as far as Puttalam, which means the fort's hand travels farther than its stones.",
+          "scene": "The frame looks lengthwise along a straight reach of canal. A boatman near the bow braces over a long pole set into the waterbed, while behind him rice sacks are stacked low in the hull. On the bank beside the canal runs a worn strip of path between mud and marsh grass. Coconut palms stand farther back, and the fort bastion is faint beyond the line of water.",
+          "points": [
+            {
+              "label": "long pole",
+              "line": "They don't row these the way sea craft are rowed. In shallow water the boatman plants the pole on the bottom and walks his weight through his arms, so the hull slides ahead a little at a time. It looks easy only until you try it."
+            },
+            {
+              "label": "rice sacks",
+              "line": "Loads like those come down from inland places such as Hanwella and Kaduwela over the Kelani-Ganga. That's why this bank matters. It gathers the river's country into Colombo, not merely the nearest fields."
+            }
+          ]
+        },
+        "stop_05_beira_canal_c4": {
+          "narration": "And the lake serves the town in more than one way. It stores movement, gives access from side to side, holds working ground at the edge of the fort, and still stands between the walls and trouble. The Dutch have made it broader by flooding low land, and little islands have risen out in it, so even the water has been made to labour for Colombo.",
+          "scene": "The picture opens wider across the lake edge. In the foreground a covered boat lies moored, and a thread of cooking smoke slips from under its thatched roof. Near the bow, cinnamon bundles sit hidden under a sheet of matting. Across the water the fort bastion stands firm, and off to one side a low island with a cluster of coconut trees rises from the enlarged lake.",
+          "points": [
+            {
+              "label": "cooking smoke",
+              "line": "A boat with smoke coming out of it is telling you somebody lives there. Some owners keep their families aboard under the thatch, so a freight craft becomes house, cookroom and shop of labour at once. Water carries goods, and it carries whole days of living."
+            },
+            {
+              "label": "cinnamon matting",
+              "line": "What lies under that mat came from hands like mine, and the fort would like as much labour as it can wring from what they call the Chalia people. They say it in orders and tallies, not in kindness. A fine quill is made by patience, not by shouting."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Colombo as I know it. The wall, the bazaar, the hospital beds, the warehouse marks, and these boats on the lake all answer to one business: getting cinnamon from skilled hands into Company ships without loss. I'm proud of the work, because good bark doesn't make itself, and I mind the burden, because the burden is laid hard. I'm Kumari. Forgive me now, I must go back to work. Goodbye."
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "tour_colombo_1905_rickshaw",
+  "city": "colombo",
+  "cityName": "Colombo",
+  "country": "LK",
+  "year": 1905,
+  "yearRange": [
+    1903,
+    1907
+  ],
+  "lang": "en",
+  "title": "The Rickshaw Man's Colombo",
+  "theme": "Five stops through British Colombo in 1905 with Sena, who pulls a rickshaw in the Fort. The harbour behind its new breakwater is one of the great coaling ports of the empire, the tea that replaced the dead coffee bushes is auctioned by the chest, and the city runs on people who carry other people.",
+  "companion": {
+    "name": "Sena",
+    "role": "Rickshaw puller, Fort",
+    "brief": "Twenty-seven, pulls a rickshaw for hire in the Fort and Pettah, ten hours a day barefoot on hot tar, renting the vehicle by the day from a man who owns thirty of them. Born in a village up the coast, came to the city at seventeen. Cheerful in front of customers, plain in private, quick with distances and fares and the names of every hotel doorman. He knows nothing of the world after 1905.",
+    "voice": "verse",
+    "narrationVoice": "Will"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Colombo in 1905: British colonial arcaded buildings, red tiled roofs, tram lines and rickshaws, bullock carts, palms, hard tropical sun with monsoon cloud, red dust and wet tar. Clothing of 1905 Ceylon: sarongs and banians, white drill suits and topees, saris, Muslim traders' caps. Portrait 9:16 framing, eye level. Warm humid colour, not sepia.",
+    "avoid": "no motor cars later than 1905, no modern clothing, no post-war buildings, no neon, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_fort_clock_tower",
+      "title": "The Fort",
+      "geo": {
+        "lat": 6.9337,
+        "lng": 79.842,
+        "bearing": 90
+      },
+      "brief": "The commercial heart inside the old walls: the clock tower lighthouse in the middle of the street, banks and agency houses, the Grand Oriental Hotel full of passengers off the mail steamers.",
+      "mustCover": [
+        "who the passengers are and where they are going",
+        "what a rickshaw fare is and how it is haggled",
+        "the clock tower and what it does at night"
+      ],
+      "archiveQueries": [
+        "Colombo Fort clock tower 1900s photograph",
+        "Grand Oriental Hotel Colombo 1905",
+        "Colombo Fort street 1900"
+      ]
+    },
+    {
+      "id": "stop_02_harbour",
+      "title": "The Harbour",
+      "geo": {
+        "lat": 6.943,
+        "lng": 79.843,
+        "bearing": 0
+      },
+      "brief": "The great artificial harbour behind its breakwater: mail steamers and colliers at anchor, lighters ferrying coal in baskets, and hundreds of men coaling a ship by hand through the night.",
+      "mustCover": [
+        "how the breakwater made the harbour",
+        "how coaling is done and by whom",
+        "where the ships are going"
+      ],
+      "archiveQueries": [
+        "Colombo harbour breakwater 1900s",
+        "coaling ship Colombo photograph",
+        "Colombo port 1905"
+      ]
+    },
+    {
+      "id": "stop_03_pettah_market",
+      "title": "Pettah Market",
+      "geo": {
+        "lat": 6.9385,
+        "lng": 79.857,
+        "bearing": 45
+      },
+      "brief": "The market beyond the Fort: fruit, fish, cloth, hardware, bullock carts jammed in the lanes, and the railway station sending trains up to the hills.",
+      "mustCover": [
+        "what is sold and who sells it",
+        "the bullock carts and how goods move",
+        "where the trains go and what they carry back"
+      ],
+      "archiveQueries": [
+        "Pettah market Colombo 1900s photograph",
+        "Colombo bullock carts 1905",
+        "Colombo railway station Ceylon 1900"
+      ]
+    },
+    {
+      "id": "stop_04_galle_face",
+      "title": "Galle Face Green",
+      "geo": {
+        "lat": 6.927,
+        "lng": 79.841,
+        "bearing": 270
+      },
+      "brief": "The long green by the sea where the whole town walks at sunset: carriages and rickshaws along the drive, cricket, sea wind, and the hotel at the far end.",
+      "mustCover": [
+        "who walks here in the evening and who does not",
+        "what a rickshaw man earns in a day",
+        "the sea wind and why the green was made"
+      ],
+      "archiveQueries": [
+        "Galle Face Green Colombo 1900s",
+        "Galle Face promenade Ceylon photograph",
+        "Colombo sea front 1905"
+      ]
+    },
+    {
+      "id": "stop_05_tea_auction",
+      "title": "The Tea Rooms",
+      "geo": {
+        "lat": 6.935,
+        "lng": 79.848,
+        "bearing": 180
+      },
+      "brief": "The agency houses and auction rooms where Ceylon tea is tasted, catalogued and sold by the chest, twenty years after the coffee blight ruined the old plantations.",
+      "mustCover": [
+        "how tea replaced coffee and why",
+        "how an auction works and who is in the room",
+        "where the tea goes from here"
+      ],
+      "archiveQueries": [
+        "Colombo tea auction 1900s",
+        "Ceylon tea chests warehouse photograph",
+        "Colombo mercantile offices 1905"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Twentieth Century Impressions of Ceylon (1907)",
+      "url": "https://archive.org/details/twentiethcentury00wrig",
+      "license": "public-domain",
+      "note": "Colombo's harbour, trade, hotels and streets in exactly these years."
+    },
+    {
+      "title": "Photographs of Ceylon, 1890 to 1910",
+      "url": "https://commons.wikimedia.org/",
+      "license": "public-domain",
+      "note": "Fort, Pettah, Galle Face and the harbour."
+    }
+  ]
+}

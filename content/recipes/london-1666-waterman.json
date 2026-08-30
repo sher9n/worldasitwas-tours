@@ -1,0 +1,141 @@
+{
+  "id": "tour_london_1666_waterman",
+  "city": "london",
+  "cityName": "London",
+  "country": "GB",
+  "year": 1666,
+  "yearRange": [
+    1665,
+    1667
+  ],
+  "lang": "en",
+  "title": "The Fire and the Waterman",
+  "theme": "Five stops through the burning City with Will Chandler, a Thames waterman, in the first week of September 1666. The fire begins in a baker's house and takes four days, and the men who make their living rowing the river spend it carrying other people's lives out of it.",
+  "companion": {
+    "name": "Will Chandler",
+    "role": "Thames waterman, Old Swan Stairs",
+    "brief": "Forty-two, a licensed waterman who served his seven years and rows a pair of oars from Old Swan Stairs. Born in Southwark. Dry, steady, unimpressed by gentlemen. He carried furniture, plate and frightened families downriver through the fire of September 1666, and charged what the day was worth, which he will admit to. He knows the river's tides and stairs the way other men know streets, and nothing at all of the world past Gravesend.",
+    "voice": "cedar",
+    "narrationVoice": "George"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in London in September 1666: timber-framed jettied houses, narrow lanes, smoke-filled orange light, ash falling, the river crowded with lighters and wherries. Period clothing of the Restoration, wide hats, breeches, coifs. Portrait 9:16 framing, eye level. Muted colour under smoke, not sepia.",
+    "avoid": "no Georgian or Victorian buildings, no Wren's St Paul's dome (built after this), no Tower Bridge, no embankments, no gas or electric light, no modern clothing or vehicles, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_pudding_lane",
+      "title": "Pudding Lane",
+      "geo": {
+        "lat": 51.5093,
+        "lng": -0.0857,
+        "bearing": 20
+      },
+      "brief": "The narrow lane behind Thames Street where the fire started in a baker's house before dawn on the second of September. Timber houses jettied out overhead almost touching, cellars full of pitch and oil.",
+      "mustCover": [
+        "how the fire began and how fast it moved",
+        "why the houses burned so easily",
+        "what the neighbours did first"
+      ],
+      "archiveQueries": [
+        "Great Fire of London 1666 engraving",
+        "Pudding Lane fire 1666",
+        "London before the Great Fire houses"
+      ]
+    },
+    {
+      "id": "stop_02_old_swan_stairs",
+      "title": "Old Swan Stairs",
+      "geo": {
+        "lat": 51.5089,
+        "lng": -0.0899,
+        "bearing": 200
+      },
+      "brief": "The waterman's own stairs on the north bank just above the bridge, where the lighters and wherries loaded goods away from the fire and where fares went from pennies to pounds in a day.",
+      "mustCover": [
+        "what watermen did during the fire and what they charged",
+        "how the stairs and the river worked",
+        "what people carried away with them"
+      ],
+      "archiveQueries": [
+        "Thames watermen 17th century",
+        "Old Swan Stairs London",
+        "London river craft 1666"
+      ]
+    },
+    {
+      "id": "stop_03_london_bridge",
+      "title": "London Bridge",
+      "geo": {
+        "lat": 51.5079,
+        "lng": -0.0877,
+        "bearing": 180
+      },
+      "brief": "The only bridge, crowded with houses and shops, its northern end burning. The gap left by the fire of 1633 is what stopped the flames crossing to Southwark.",
+      "mustCover": [
+        "the houses on the bridge and who lived there",
+        "why Southwark was spared",
+        "the crush of people leaving"
+      ],
+      "archiveQueries": [
+        "Old London Bridge houses engraving",
+        "London Bridge 1666",
+        "London Bridge 17th century"
+      ]
+    },
+    {
+      "id": "stop_04_old_st_pauls",
+      "title": "Old St Paul's",
+      "geo": {
+        "lat": 51.5138,
+        "lng": -0.0984,
+        "bearing": 90
+      },
+      "brief": "The medieval cathedral, scaffolded for repair, its roof lead running molten into the churchyard and the booksellers' stock burning in the crypt of St Faith's beneath it.",
+      "mustCover": [
+        "what the old cathedral looked like",
+        "the booksellers and what they lost",
+        "the scaffolding and the lead"
+      ],
+      "archiveQueries": [
+        "Old St Paul's Cathedral before 1666",
+        "Old St Pauls burning Great Fire",
+        "St Faith's under St Paul's booksellers"
+      ]
+    },
+    {
+      "id": "stop_05_moorfields",
+      "title": "Moorfields",
+      "geo": {
+        "lat": 51.5195,
+        "lng": -0.0876,
+        "bearing": 340
+      },
+      "brief": "The open fields north of the wall where tens of thousands camped with what they saved, in tents and under carts, while the City burned out behind them.",
+      "mustCover": [
+        "the camps and what people had with them",
+        "prices for bread and carts after the fire",
+        "what happens to the city next"
+      ],
+      "archiveQueries": [
+        "Moorfields refugees Great Fire 1666",
+        "London Great Fire aftermath engraving",
+        "Moorfields 17th century"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Samuel Pepys, Diary, September 1666",
+      "url": "https://www.pepysdiary.com/diary/1666/09/",
+      "license": "public-domain",
+      "note": "Eyewitness account of the fire, the watermen, the river and Moorfields."
+    },
+    {
+      "title": "John Evelyn, Diary, 1666",
+      "url": "https://archive.org/details/diaryofjohnevely01eveluoft",
+      "license": "public-domain",
+      "note": "Eyewitness account of the burning city and St Paul's."
+    }
+  ]
+}

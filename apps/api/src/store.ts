@@ -21,6 +21,8 @@ export interface StoredTour {
 const CITY_META: Record<string, { name: string; country: string; anchor: { lat: number; lng: number } }> = {
   london: { name: "London", country: "GB", anchor: { lat: 51.5139, lng: -0.1015 } },
   stockholm: { name: "Stockholm", country: "SE", anchor: { lat: 59.3251, lng: 18.0711 } },
+  rome: { name: "Rome", country: "IT", anchor: { lat: 41.8986, lng: 12.4769 } },
+  colombo: { name: "Colombo", country: "LK", anchor: { lat: 6.9337, lng: 79.8425 } },
 };
 
 export class TourStore {

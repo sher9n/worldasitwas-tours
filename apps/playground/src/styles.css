@@ -286,3 +286,19 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .player.walking .walk-body { text-align: center; }
 .player.walking .walk-dots { justify-content: center; }
 .player.walking .continue { margin-top: 4px; }
+
+/* the gallery: every published walk, one tap from playing */
+.pg-count { font: 600 12px "Source Sans 3", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.walks { padding: 0 24px 8px; display: grid; gap: 18px; }
+.walk-city h3 { font: 700 13px "Source Sans 3", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.walk-row { display: grid; grid-auto-flow: column; grid-auto-columns: 210px; gap: 12px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.walk { position: relative; display: grid; align-content: end; gap: 2px; height: 148px; padding: 12px; border: 1px solid rgba(0,0,0,.10); border-radius: 14px; overflow: hidden; background: #222; color: #fff; text-align: left; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+.walk img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .62; }
+.walk::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,16,.10) 0%, rgba(10,12,16,.72) 68%, rgba(10,12,16,.92) 100%); }
+.walk > span { position: relative; z-index: 1; text-shadow: 0 1px 8px rgba(0,0,0,.8); }
+.walk-year { font: 700 12px "Source Sans 3", sans-serif; letter-spacing: .12em; opacity: .85; }
+.walk-title { font: 700 16px/1.15 "Fraunces", Georgia, serif; }
+.walk-who { font-size: 12px; opacity: .8; }
+.walk:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+.walk.on { outline: 2px solid var(--accent); outline-offset: 1px; }
+.walk.on img { opacity: .8; }

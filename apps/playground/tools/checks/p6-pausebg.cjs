@@ -1,9 +1,10 @@
 const { chromium } = require("/Applications/MAMP/htdocs/document-capture-service/node_modules/playwright");
+const TOUR = process.env.TOUR || "tour_london_1850_flower_seller";
 const ok = (n, c, d = "") => console.log(`[p6] ${c ? "PASS" : "FAIL"} ${n}${d ? " · " + d : ""}`) || c;
 (async () => {
   const browser = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
-  await page.goto("http://localhost:5173/?tour=tour_london_1850_flower_seller&play=1", { waitUntil: "networkidle" });
+  await page.goto(`http://localhost:5173/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
   await page.waitForSelector(".player .idle");
   await page.click("button.travel");
   await page.waitForTimeout(2000);

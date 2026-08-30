@@ -1,0 +1,141 @@
+{
+  "id": "tour_stockholm_1900_tram",
+  "city": "stockholm",
+  "cityName": "Stockholm",
+  "country": "SE",
+  "year": 1900,
+  "yearRange": [
+    1898,
+    1902
+  ],
+  "lang": "en",
+  "title": "The Last of the Horse Trams",
+  "theme": "Five stops through Stockholm at the turn of the century with Gustav Ek, a tram conductor. Electric light on the main streets, steamboats everywhere, a new open-air museum full of the countryside people have just left, and horses about to lose their jobs to electricity.",
+  "companion": {
+    "name": "Gustav Ek",
+    "role": "Horse tram conductor",
+    "brief": "Thirty-three, a conductor on the horse trams, nine years on the line, married with three children in two rooms on Södermalm. Born in Värmland, came to the city as a boy. Friendly, talkative, proud of his line and quietly worried about the electric cars coming. He knows every fare, every horse by name, and nothing of the world after 1900.",
+    "voice": "ash",
+    "narrationVoice": "Eric"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Stockholm in 1900: stone and stucco apartment blocks, horse trams on rails, steamboats on the water, early electric arc lamps, cobbles and tram tracks, snow or wet stone. Clothing of 1900: long coats, bowler and peaked caps, long skirts, shawls. Portrait 9:16 framing, eye level. Cool muted colour, not sepia.",
+    "avoid": "no motor cars or buses, no modern clothing, no post-war buildings, no Stadshuset (built 1923), no neon, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_gustav_adolfs_torg",
+      "title": "Gustav Adolfs torg",
+      "geo": {
+        "lat": 59.3295,
+        "lng": 18.07,
+        "bearing": 180
+      },
+      "brief": "The square between the palace and the opera house, tram lines crossing it, arc lamps overhead, cabs waiting and the water beyond.",
+      "mustCover": [
+        "the tram line and what a ticket costs",
+        "the electric lamps and how new they are",
+        "who crosses this square at what hour"
+      ],
+      "archiveQueries": [
+        "Gustav Adolfs torg Stockholm 1900",
+        "Stockholm horse tram photograph",
+        "Stockholm electric arc lamps 1900"
+      ]
+    },
+    {
+      "id": "stop_02_gamla_stan",
+      "title": "Gamla Stan",
+      "geo": {
+        "lat": 59.3251,
+        "lng": 18.071,
+        "bearing": 45
+      },
+      "brief": "The old town, no longer fashionable: narrow lanes, workshops and cheap lodgings, families packed into rooms in houses three hundred years old.",
+      "mustCover": [
+        "who lives in the old town now",
+        "what the lanes are like to work in",
+        "what the city plans to do about it"
+      ],
+      "archiveQueries": [
+        "Gamla Stan Stockholm 1900 photograph",
+        "Stockholm old town alleys 1900",
+        "Stockholm slum housing 1900"
+      ]
+    },
+    {
+      "id": "stop_03_slussen",
+      "title": "Slussen and Katarinahissen",
+      "geo": {
+        "lat": 59.32,
+        "lng": 18.072,
+        "bearing": 0
+      },
+      "brief": "The lock between the lake and the sea with boats queueing through it, and the iron passenger lift standing over it carrying people up to Södermalm for a few öre.",
+      "mustCover": [
+        "how the lock works and why it is needed",
+        "the lift and what a ride costs",
+        "the traffic of boats through the middle of the city"
+      ],
+      "archiveQueries": [
+        "Katarinahissen Stockholm 1900",
+        "Slussen Stockholm 1900 photograph",
+        "Stockholm lock boats 19th century"
+      ]
+    },
+    {
+      "id": "stop_04_djurgarden_skansen",
+      "title": "Skansen on Djurgården",
+      "geo": {
+        "lat": 59.326,
+        "lng": 18.103,
+        "bearing": 90
+      },
+      "brief": "The open-air museum on the island: farmhouses moved here log by log from the provinces, animals, folk music, and city people paying to look at the life their parents left.",
+      "mustCover": [
+        "what Skansen is and why it was made",
+        "what it costs to go in",
+        "who comes and what they make of it"
+      ],
+      "archiveQueries": [
+        "Skansen Stockholm 1900 photograph",
+        "Skansen open air museum 1890s",
+        "Djurgården Stockholm 1900"
+      ]
+    },
+    {
+      "id": "stop_05_stromkajen",
+      "title": "Strömkajen",
+      "geo": {
+        "lat": 59.329,
+        "lng": 18.077,
+        "bearing": 90
+      },
+      "brief": "The quay where the steamboats leave for the archipelago, smoke and whistles, timetables chalked up, and the city standing bright on the water behind.",
+      "mustCover": [
+        "where the steamboats go and who takes them",
+        "the fares and the crowds in summer",
+        "how the city looks from the water"
+      ],
+      "archiveQueries": [
+        "Strömkajen Stockholm 1900",
+        "Stockholm steamboats archipelago 1900",
+        "Stockholm waterfront photograph 1900"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Stockholm photographs, 1890 to 1905",
+      "url": "https://commons.wikimedia.org/",
+      "license": "public-domain",
+      "note": "Trams, quays, Skansen and street life."
+    },
+    {
+      "title": "Stockholm tramway company records",
+      "url": "https://sparvagsmuseet.sll.se/",
+      "license": "reference",
+      "note": "Fares, lines and the change from horse to electric traction."
+    }
+  ]
+}

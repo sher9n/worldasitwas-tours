@@ -1,0 +1,332 @@
+{
+  "tourId": "tour_london_1666_waterman",
+  "companion": "Will Chandler",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_pudding_lane": {
+      "arrival": {
+        "line": "Morning to you. I'm Will Chandler, forty-two, Southwark-born, a licensed Thames waterman out of Old Swan Stairs. I served my seven years proper, and I earn by a pair of oars, above bridge and below as the tide serves. This walk's five stops, from this lane to the fields where folk ended, and I know it because in the first week of September '66 I carried goods, plate, and frightened households away from the burning riverside. So I can tell you what the fire did when streets failed and the river took over, because I know these stairs and this tide better than any gentleman knows his own street. Touch something in the picture and I'll speak on it, and hold the green button if you want to ask me something.",
+        "scene": "You stand in the middle of a narrow cobbled lane before dawn, hemmed in by black timber fronts and pale plaster that lean out above. On the right is the bakehouse door of a riverside house, its lower room dim and sooty. Higher up the same front, an upper window stands open over the lane. Far off at the south end, the lane drops toward Thames Street, where masts, a crane, and a lighter show beyond the mouth of the street.",
+        "points": [
+          {
+            "label": "the bakehouse door",
+            "line": "The hearth-tax men set Farrinor here with five hearths and one oven, which tells you this was no mean stall. House and trade sat together under one roof, with enough fire in daily use before the great one came."
+          },
+          {
+            "label": "the upper window",
+            "line": "A journeyman baker named Thomas Dagger is said to have woken 'with the choke of the smoke'. Farrinor, his daughter, and his man got out by an upper window, but the maidservant did not. Fires begin as household business, and then they don't."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_pudding_lane_c1": {
+          "narration": "This is Pudding Lane, a narrow run between Little Eastcheap and Thames Street, and before dawn on Sunday the second of September the trouble starts here. Call it shortly after one, or nearer two, as you please; no man disputes it was dark. The likeliest tale is plain enough: a spark from the baker's fire catches nearby wood, and in a lane built close for trade, a common mishap turns city's business.",
+          "scene": "The view looks uphill along a narrow cobbled lane just before full light. On the right, the baker's lower room stands open, a brick oven glowing inside; above it, dark timber framing and pale plaster jut outward over the street. Across from it, other upper storeys lean so far on their jetties that the gap overhead looks pinched. Under one eave a first orange lick of flame shows through smoke.",
+          "points": [
+            {
+              "label": "the lower room",
+              "line": "Farrinor's house is described as timber-framed and jettied over the street, with the brick oven down in the bakehouse. That's the common London make of it: fire for work below, sleeping above, and timber round about."
+            },
+            {
+              "label": "the leaning houses",
+              "line": "That's how much of old London stood, timber-framed and crowded, with the upper floors thrust out till near enough they almost met across the lane. A man might fancy the street snug in winter. In fire, it was a chimney."
+            }
+          ]
+        },
+        "stop_01_pudding_lane_c2": {
+          "narration": "Once it had hold, the street helped it. The houses here were thick together, and down in Thames Street the warehouses kept pitch, tar, oil, wine, and brandy, which is to say a fire's own victuals. By about seven that morning Pepys was hearing that more than three hundred houses were gone and Fish Street by the Bridge was alight, and he watched the blaze run past the Old Swan to the Steelyard in a very little time.",
+          "scene": "From the mouth of the lane, the frame catches Thames Street running left and right in fire. Warehouse fronts on the south side belch flame through broken shutters, and burst casks lie among stalled carts. In the middle distance two men haul on roof hooks fixed into a house-front while others tug at falling timbers. Above them, sparks stream sideways on the wind over masts and a crane by the wharf.",
+          "points": [
+            {
+              "label": "the roof hooks",
+              "line": "They were already trying to pull houses down on the Sunday, and still the fire outwent the work. A gap in a street can stop flame, but only if you make it before the blaze is on your back."
+            },
+            {
+              "label": "the sparks",
+              "line": "Evelyn wrote of a fierce eastern wind in a very dry season, and he swore the fire leapt house to house and street to street at great distances. Once sparks start travelling, no man has enough buckets for it."
+            }
+          ]
+        },
+        "stop_01_pudding_lane_c4": {
+          "narration": "What neighbours did first was not heroics. They saved goods. Pepys says folk flung property into the river or loaded it into lighters, and only cried out for boats in earnest when the fire was at their own doors. That's London in a fright: bedding, chests, children, account books, all made for the stairs, because the water could carry what the lane could not.",
+          "scene": "At a riverside stair off Thames Street, the view looks down from the top step toward the low water. A laden lighter lies just off the stairs, heaped with trunks, bedding, chairs, and a barrel, while two men steady it with boat hooks. On the near steps, a bucket woman stands fixed with a single pail in her hand. Behind her, smoke rolls across the wharf and the warehouse roofs burn bright.",
+          "points": [
+            {
+              "label": "the laden lighter",
+              "line": "A lighter is a blunt, working barge, made for weight. When wharf goods are bales, casks, chests, and worse, that's the craft you want, because she takes what a lane choked with carts and folk cannot shift in order."
+            },
+            {
+              "label": "the bucket woman",
+              "line": "Evelyn said people hardly stirred to quench it at first, and I believe him. Not for want of hands, mind you, but because terror makes poor order. A bucket in one fist is no help if your wits are off with the smoke."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Now come away from the lane and down toward the water. A street fire is one thing on land, but once it catches the wharves and stairs, the Thames becomes London's road whether it likes it or not."
+    },
+    "stop_02_old_swan_stairs": {
+      "arrival": {
+        "line": "From that bakery it was only a short pull up to Old Swan, and here the business of burning turned at once into carriage. These steps were where broken streets handed folk over to the tide. We watermen took passengers and what baggage could come with them, and the lightermen took the heavy goods, so in a few hours this landing was less a stair than a market in fear, with room, muscle, and hard cash all crying together.",
+        "scene": "A view from partway down Old Swan Stairs toward the Thames: the worn stone steps and narrow causeway drop from the lane into smoky, tide-marked water; a crowded wherry is jammed against the foot of the stairs with people and bundles pressed together; farther out lies a broad lighter low in the stream; around them are trunks, bedding, chairs, and a birdcage, while London Bridge stands dark through smoke to the east and sparks skim low over the river.",
+        "points": [
+          {
+            "label": "stone steps",
+            "line": "These are Old Swan Stairs proper, dropping from Swan Lane on the north bank. Men marked places by their landing places as much as by their parishes, and if you knew this stair, you knew where the City met the water for business."
+          },
+          {
+            "label": "broad lighter",
+            "line": "That broad craft off the steps is a lighter, built for weight, not nicety. They often lay near stairs like these when idle, and if she was deep-laden she'd wait on the tide like any sensible beast instead of forcing the river."
+          },
+          {
+            "label": "crowded wherry",
+            "line": "A wherry stand wasn't a free scramble of any fool with a boat. Our Company was founded in 1514, and men working the Thames reach between Gravesend and Windsor generally had to belong, rules and all."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_old_swan_stairs_c1": {
+          "narration": "Most folk on land think a road must keep still under their feet. London never had that luxury. The river stairs made a whole running street along the Thames, and before there was any Westminster Bridge, London Bridge was the one central bridge to trust. So if you wanted to cross quick, or go east or west with less jostling, you hired a waterman. In settled time a plain crossing was a penny.",
+          "scene": "From the top of the stair, the eye looks outward over the river road: the black bridge arches sit in smoke at a little distance downstream, and in the foreground a waterman's pair of oars lies across a wherry's thwarts as the boat noses in below the steps. Behind it the tide is busy with other small boats, and the stone landing is slick with mud and trampled straw.",
+          "points": [
+            {
+              "label": "bridge arches",
+              "line": "Later men called Old Swan the first stairs above London Bridge, and a celebrated landing-place above bridge. That's not vanity, only use. Once you passed the bridge, this was one of the first names that told you where to fetch in."
+            },
+            {
+              "label": "pair of oars",
+              "line": "We asked for journeys by the water's own reckoning: through Bridge, round by the old Swan, in oars, in a scull. A gentleman might give a street name. A boatman wanted the reach, the stair, and whether the tide served."
+            }
+          ]
+        },
+        "stop_02_old_swan_stairs_c2": {
+          "narration": "In a fright, people save what proves the house is still theirs, or what can be turned back into livelihood. So you get plate, money, iron chests, office papers, books, pictures, wine, bedding, chairs, and all the best things tumbled together. A merchant's accounts go down to the water beside a family's linen, because both must travel if the rooms behind them are finished.",
+          "scene": "At the foot of the stairs an overloaded boat is being packed in haste. A small keyboard is lashed sideways on top of bedding and chairs, a bed frame is being lowered by two men from the step above, and a woman with a silver apron full of plate stands braced beside an iron chest, while a child, a birdcage, and loose books crowd the rest of the frame.",
+          "points": [
+            {
+              "label": "small keyboard",
+              "line": "That little keyboard is a pair of virginals, awkward as sin in a boat and common all the same. Pepys swore there was hardly one boat in three carrying household goods that did not have such an instrument aboard."
+            },
+            {
+              "label": "bed frame",
+              "line": "A bed was not always furniture then; sometimes it was the patient as well. Pepys saw sick people carried away in their beds on Watling Street, and fine goods too, borne in carts or on backs when wheels and water were all that still obeyed."
+            },
+            {
+              "label": "silver apron",
+              "line": "Plate in an apron could be salvage, could be theft, and often no man could tell which till later. After the fire, a royal order had to name plate, jewels, money, household stuff, merchandise, even building materials, because so much property had gone wandering."
+            }
+          ]
+        },
+        "stop_02_old_swan_stairs_c4": {
+          "narration": "Don't make this into charity. By '66 our passenger trade was already a ruled trade, with fares set in ordinary times and the Company kept under civic oversight, all to stop men overcharging and, if truth be told, to stop passengers feigning poverty. Then came the fire, and every chest was heavier, every landing hotter, every family more urgent. Aye, I charged dear; the day was dear.",
+          "scene": "The frame looks back up from the waterline toward Swan Lane. A loaded cart stands at the head of the stairs with chests and bedding piled high, a paper bundle tied with cord rests in the stern sheets of a wherry where a boatman is arguing over room, and beyond them in the river a floating cask drifts among scattered bits of timber under a brown-red sky.",
+          "points": [
+            {
+              "label": "loaded cart",
+              "line": "Land carriage turned savage in price as well. A carter's load went at four pounds during the fire, which tells you what panic does when too many households need wheels at once and too few wheels answer."
+            },
+            {
+              "label": "paper bundle",
+              "line": "The worst of a fire is not only what it burns in front of you. Almost all the Watermen's Company's records from before 1666 were lost in the blaze, so the trade kept working while much of its own memory went up the chimney."
+            },
+            {
+              "label": "floating cask",
+              "line": "Evelyn said the Thames was covered with goods afloat, with boats and barges laden by whatever people had time and courage to save. Beyond the walls, he found the fields strewn with movables and tents, as if the City had been turned inside out."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come up from the stairs now. The river could carry people off and goods away, but it could not master the blaze by itself, so the City had to try a rougher cure further on."
+    },
+    "stop_03_london_bridge": {
+      "arrival": {
+        "line": "And if you pulled on through Bridge from Old Swan, you came to the worst pinch of all. This was no bare crossing but a street over water, houses to either side and sometimes over your head, so close-set that the City's own fire walk later said it could not serve well for escape. With the City end already burning, the press of carts, horses, porters, and frightened families had nowhere to ease, and the river below filled up with all the goods the roadway could not carry.",
+        "scene": "From a boat a little downstream and east of the bridge, the frame looks slantwise along the stone arches and the crowded houses above them. Near the centre, a single jutting upper room hangs far out above the roadway, and farther right toward the Southwark side rises the larger timber bulk of the great house on the bridge. Under the arches below, a loaded lighter sits deep in the water with chests and bedding heaped aboard, while black smoke and orange flame boil up from the City end in the distance.",
+        "points": [
+          {
+            "label": "the great house",
+            "line": "That great house is Nonsuch House, set where the old drawbridge tower had been. It ran about seventy-five feet by twenty-five, four storeys and a half high, and was first let as two holdings, one to a grocer and one to a vintner, which is London all over."
+          },
+          {
+            "label": "the jutting room",
+            "line": "These bridge houses were forever leaning over the way. Some thrust out as much as thirty-four feet, while only two to five feet of their depth truly sat on the stone below, which gave them a bold look if you were cheerful and a sickening one if you weren't."
+          },
+          {
+            "label": "the loaded lighter",
+            "line": "Pepys says householders pitched goods into the Thames or loaded them aboard lighters like that, and some stayed put till the flame was on them, then bolted for boats or scrambled from one stair to the next. Fright makes late movers of people."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_london_bridge_c1": {
+          "narration": "What deceives people is thinking the bridge was lined with petty stalls. It wasn't. These were proper shop-houses, some four and five storeys, with cellars below and then shop, hall, kitchen, chambers, and garrets all piled above the river. And by my time the trade there leaned hard to cloth—drapers, mercers, hosiers, silkmen, merchant tailors—with booksellers and stationers among them, so you passed through other people's work and sleep together.",
+          "scene": "Standing in the roadway midway along the bridge, the frame looks down a tunnel-dark run of timber fronts and jettied upper storeys with strips of sky between them. At left a woman stands in a doorway beneath shuttered windows, and at right a hanging wine bush swings above another shopfront, while the close-packed houses climb storey upon storey over the water.",
+          "points": [
+            {
+              "label": "the woman in doorway",
+              "line": "A widow could keep both trade and household here. We can name one mid-century bridge householder, Martha Charlton, widow, which is useful because it reminds you these weren't day-stalls only. People cooked, slept, reckoned, and weathered their fortunes in the same rooms where they sold."
+            },
+            {
+              "label": "the wine bush",
+              "line": "And a vintner too. One named householder on the bridge was Lawrence Warkman, so the place wasn't all cloth and paper. If you lived above your stock, the whole business of your life sat over the arches with you, casks, bedding, accounts, and all."
+            }
+          ]
+        },
+        "stop_03_london_bridge_c2": {
+          "narration": "For all its name, it was a poor road for a scared city. Near the Southwark side the pass opened to about eighteen feet, and under Nonsuch it pinched to a little over twelve, which is not much once carts, packhorses, servants, children, and gentlemen's panic all mean to go together. No wonder the way clogged. A man might be fleeing for his life and still stand fixed between wheel, hoof, and wall.",
+          "scene": "From just above the roadway at the north approach, the frame is choked with a cart set crooked across the bridge, a horse with its head high in the traces, men carrying a bed on poles between the wheels, and a crowd packed tight around them. Beyond the crush at the City end, a church tower stands in smoke with fire running through the houses beside it.",
+          "points": [
+            {
+              "label": "the bed on poles",
+              "line": "Pepys saw sick people carried out in their beds, not merely their bedsteads. When the streets go bad, you move the whole patient if you can, mattress, blankets, fear, and all, because there isn't time for neatness."
+            },
+            {
+              "label": "the church tower",
+              "line": "That is St Magnus. On the second of September Pepys had the houses at the City end of the bridge burning before his eyes, and he says this church and most of Fish Street were already gone, which shows how fast the fire had reached the throat of the crossing."
+            }
+          ]
+        },
+        "stop_03_london_bridge_c4": {
+          "narration": "Southwark's good fortune came of old damage. An earlier fire had already bitten a gap into the north part of the bridge, so when the houses at the City end burned again in '66 the run southward was no longer whole. That break did more than courage did. It kept the blaze from stepping house to house across the bridge, and so from taking Southwark after the City.",
+          "scene": "Seen from the Southwark bank looking north, the bridge shows a broken line of houses: on the far left by the City end a blackened burning cluster, then an open void crossed only by a tall boarded fence, and farther right the southern houses still standing above the arches. Smoke drifts over the river beneath them, and the empty stretch between the charred block and the unburnt roofs is plain in the middle of the frame.",
+          "points": [
+            {
+              "label": "the boarded fence",
+              "line": "After the fire of 1633, that void was marked with a tall wooden fence, and only one building ever partly filled it before '66. Untidy, you might say, but empty space can do honest work when timber all about is ready tinder."
+            },
+            {
+              "label": "the blackened houses",
+              "line": "The rebuilt bit at the north did burn in this fire, mind you. Southwark wasn't saved because the flames turned merciful, only because enough vacancy still remained beyond that blackened stretch that the next houses south did not catch."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once people were through this pinch, or off into boats below it, they wanted open ground and any patch not yet burning. Come along from the bridge now, and I'll show you where London emptied itself into the fields."
+    },
+    "stop_04_old_st_pauls": {
+      "arrival": {
+        "line": "Come up from Paul's Wharf and you'd swear this was the place to outface the fire. Old St Paul's had been rising since 1087, was consecrated in 1240, and was not fully done till 1314, so men took it for an ancient certainty. It filled Ludgate Hill like a dark ship run aground, longer and wider in its ground than the church here now, and a place with that weight on it made London think some things simply could not burn.",
+        "scene": "A broad view from the west churchyard facing east: the great porch stands in the left foreground at the cathedral's west front, and beyond it the long dark body of Old St Paul's runs away through smoke, with high rooflines, buttresses, and the blunt central tower wrapped in timber scaffold. To the right, tight churchyard houses and shop fronts press close along the precinct edge, and farther beyond the east end sits the school range under a dirty sky with sparks riding the wind.",
+        "points": [
+          {
+            "label": "the great porch",
+            "line": "That front was not all old work. Londoners knew this west face by the repair Inigo Jones gave it in the 1630s, an Italianate dressing with a grand portico, which made the place look half ancient church, half court show."
+          },
+          {
+            "label": "the school range",
+            "line": "From this side you'd have the east end, the school, and the thickest run of the book trade in or near sight together. It was one of the busiest edges of Paul's Churchyard, sacred ground doing a hard day's commerce."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_old_st_pauls_c1": {
+          "narration": "Round the churchyard, a cathedral precinct was no idle ring of grass. Houses stood worked into it, and many had a bookseller's shop on the ground floor with the family lodged above. Because the church was stone-built and had open ground about it, stationers near by carried their stock down into St Faith's below for safety. Sound enough, you might say, till the same roof that sheltered it came down on top of it.",
+          "scene": "A view from the churchyard's busier east side: on the left the cathedral wall rises in shadow, with a crypt door standing open and porters carrying tied book bundles toward it. On the right, a row of narrow shop-houses crowds the precinct, one with shutters open over shelves and more book bundles stacked outside, while small upper windows sit above the shop fronts. Smoke drifts low across the yard.",
+          "points": [
+            {
+              "label": "the crypt door",
+              "line": "St Faith was not born a crypt church. When the quire and chancel were pushed farther east in the thirteenth century, the parish above was displaced and its people were put below, under Paul's vaulting."
+            },
+            {
+              "label": "the book bundles",
+              "line": "A fresh history book was not a trifle. Rycaut's late History of the Turkish Policy might be 8 shillings plain, or 20 if it came bound and coloured, so a cellar full of stock was nearer a merchant's hoard than a scholar's fancy."
+            }
+          ]
+        },
+        "stop_04_old_st_pauls_c2": {
+          "narration": "Then the church's own mending turned traitor. Fire took St Paul's on the third of September, and Evelyn wrote that the scaffolds helped it exceedingly, which any boatman would have told him for nothing. Once the timbers on that height were alight, the roof glowed red and the lead began to run. By next day men saw it in a stream down the streets, with the paving so hot that neither horse nor man could tread there.",
+          "scene": "The frame looks up from the west front into the blaze: the tower top rises black against orange smoke, and all round it the burning scaffold climbs like a cage of fire. Red shows through the roof below, sparks whip eastward, and on the pavement in the foreground a bright ribbon of melted lead snakes between scattered ash and broken stone.",
+          "points": [
+            {
+              "label": "the tower top",
+              "line": "The old spire had been lost in the fire of 1561, so by our time the middle tower stood blunt, only a lantern above the crossing. London had long got used to that maimed look, which is its own kind of danger."
+            },
+            {
+              "label": "the burning scaffold",
+              "line": "Those timbers had gone up in 1663 for repairs and were still standing in '66 while wiser men debated what should be done with the tower. Debate burns poorly, but dry wood catches at once."
+            }
+          ]
+        },
+        "stop_04_old_st_pauls_c4": {
+          "narration": "When the vaulting failed, the grand place and the safe place perished together. Pepys came from Paul's Wharf on the seventh and found all the roofs fallen, with the body of the quire dropped into St Faith's below. Evelyn says the fall broke into the crypt where the Stationers had laid up their magazines of books, and those books burned for a week after. Stone had not saved them; it had penned the heat in round them.",
+          "scene": "An aftermath view from the west shows the broken porch in the foreground, its stonework cracked and scattered. Beyond it the nave lies open to the sky, and farther in the ruined quire has fallen into a dark gap below. At the edge of that hole sit charred books, smoking among ash, broken timbers, and lumps of cooled lead under a grey, bitter haze.",
+          "points": [
+            {
+              "label": "the broken porch",
+              "line": "By the seventh Evelyn said the portico was shattered, and the lead gone from the church was no little dribble neither. He reckoned the sheet that melted away at no less than six acres by measure."
+            },
+            {
+              "label": "the charred books",
+              "line": "By month's end the losses in books here and at Stationers' Hall were reckoned at about £150,000, and Pepys names Joseph Kirton among the booksellers wholly undone. Paper seems light till a whole trade is ash."
+            }
+          ]
+        }
+      },
+      "transitionOut": "After this, few trusted walls for refuge. Goods kept drifting out, and people with them, till the City's living and trading lay pitched in the open. Come on now, and I'll show you where London ended up when even Paul's would not stand."
+    },
+    "stop_05_moorfields": {
+      "arrival": {
+        "line": "After Paul's, if you want the size of it, you come here. Pepys walked into Moorfields on the fifth and found it full, poor wretches bringing in their goods, and every household sitting close by its own little stock. Fair weather was a mercy, because folk could remain out in the open by day and night, but mercy's a thin blanket when all you own lies under your eye in a field.",
+        "scene": "From standing height on open ground, a broad camp spreads across Moorfields under pale sky: a rutted gravel path runs across the foreground, on the left a family sits beside a goods heap of trunks, bedding, linen bundles and tools under a low bit of canvas, on the right a bread basket and a few loaves rest on a board set over trestles, and beyond them carts, tents and smoke lie against the City wall with a red-brown glare hanging above it.",
+        "points": [
+          {
+            "label": "goods heap",
+            "line": "What a family saves becomes a little island here, and they sit on it, eat by it, and sleep beside it. Once a chest or bundle is set down in such confusion, it may be stolen, falsely claimed, or simply lost among other people's ruin."
+          },
+          {
+            "label": "bread basket",
+            "line": "A plain penny loaf ought to be a penny by the very name of it, yet in Moorfields it went at 2d. Hunger teaches sums quick enough, and a dear loaf in a camp tells you rescue has already turned into trade."
+          },
+          {
+            "label": "gravel path",
+            "line": "That track under the ruts is likely one of Moorfields' old gravel walks. Before the fire this was civic open ground with trees and ordered paths, and now the same neat place is trampled into an encampment."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_moorfields_c1": {
+          "narration": "This field isn't the whole sorrow, only one patch of it. Evelyn wrote that the homeless were scattered through St George's Fields and Moorfields as far as Highgate, some in tents, some in miserable huts and hovels, and many without common household necessities. When about 13,200 houses are gone, and something like 70,000 to 100,000 people are left without roof or room, a fire stops being an accident and becomes a second city.",
+          "scene": "A wide view across Moorfields shows rough tents and lean-tos scattered over the field, with a church tower rising dark through smoke beyond the wall at the left rear, a market cart standing in the middle distance with people gathered round it, and families crouched beside bundles and carts all across the open ground.",
+          "points": [
+            {
+              "label": "church tower",
+              "line": "Pepys saw churches filling with rescued goods while the fire still ran on. Holy places and civic rooms alike turned into makeshift warehouses, because any roof that still stood was pressed into service."
+            },
+            {
+              "label": "market cart",
+              "line": "Order kept shifting outward. On the sixth, further markets were set at Tower Hill, Smithfield, Leadenhall and Bishopsgate, and merchants were told to meet at Gresham College, because the Royal Exchange was burned."
+            }
+          ]
+        },
+        "stop_05_moorfields_c2": {
+          "narration": "Moorfields was a camp, but it was a market too, and a hard one. On the fifth, a royal order set emergency markets at Clerkenwell, Islington, Finsbury Fields, Mile End Green and Ratcliff, with great quantities of bread to be brought daily for the burned-out people. Even so, carriage bit cruelly. A common removal might cost £40, because every chest wanted wheels at once and every carter knew it.",
+          "scene": "A nearer frame catches the trading edge of the camp: a bread board with loaves sits in the foreground, beside it a coarse biscuit sack lies half open on the ground, and a locked chest stands near the wheel of a loaded cart while anxious buyers and sellers press around them under drifting smoke.",
+          "points": [
+            {
+              "label": "biscuit sack",
+              "line": "Bread from the naval stores was sent in for the poor, ship's biscuit among it, but an account printed on the eighth says much of it was sent back. By then the markets were better supplied, and refugees did not care for that sort of bread."
+            },
+            {
+              "label": "locked chest",
+              "line": "A locked chest like that might hold papers as dear as silver—leases, bonds, wills—and once the houses were down, proving what was yours could be misery enough."
+            }
+          ]
+        },
+        "stop_05_moorfields_c4": {
+          "narration": "What comes after isn't quick. In February '67 the Act for rebuilding says new houses must be of brick or stone, and not rise so high as before, which is the City learning sense the dear way. In the same month Special Fire Courts begin to sit, to settle quarrels between landlords and tenants over rebuilding costs. So this camp is not an ending. It's the first rough waiting-room of the next London.",
+          "scene": "From a little farther north, the field shows a row of rough sheds and patched shelters in the foreground, a mounted rider passing along an open track between camps, and beyond them the spread of Moorfields running back toward the wall where the smoke hangs thinner over the City.",
+          "points": [
+            {
+              "label": "shed row",
+              "line": "Moorfields did not empty in a week or two. The City let out fields for temporary homes, shanty places grew here, and a later rebuilding law ordered sheds, shops and such buildings removed by late September 1674."
+            },
+            {
+              "label": "mounted rider",
+              "line": "Fear ran on after the flames, mostly of foreigners and plots. An Oxford history notes that the King came in person to the Moorfields camp on the seventh of September, to quiet that talk and say the fire was an accident."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's my account. The fire burned houses, books, lead and timber, aye, but it also sorted what might be saved, what might be stolen, what might be sold dear, and what had to be made again under new rules. I'm Will Chandler, round by the Old Swan when tide serves. The city stands, though not the same one, and the tide turns whether men are ready or no. If you mean to go on, go now. Goodbye."
+    }
+  }
+}

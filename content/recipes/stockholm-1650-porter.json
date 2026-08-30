@@ -1,0 +1,141 @@
+{
+  "id": "tour_stockholm_1650_porter",
+  "city": "stockholm",
+  "cityName": "Stockholm",
+  "country": "SE",
+  "year": 1650,
+  "yearRange": [
+    1648,
+    1652
+  ],
+  "lang": "en",
+  "title": "Queen Christina's Harbour",
+  "theme": "Five stops through Stockholm in 1650 with Olof Nilsson, a porter on the Skeppsbron quay. A small wooden capital grown rich on copper, iron and a long war just ended, with a young queen about to be crowned and Europe's plunder arriving by ship.",
+  "companion": {
+    "name": "Olof Nilsson",
+    "role": "Harbour porter, Skeppsbron",
+    "brief": "Thirty-six, a porter who carries and stacks cargo on the Skeppsbron quay: copper plates, iron bars, salt, cloth. Born on a farm in Uppland, came to the city at fifteen. Strong, dry, watchful, a Lutheran who works on saints' days because there is no bread otherwise. He has carried crates of books and statues taken in the war and does not think much of it. He knows nothing of the world after 1650.",
+    "voice": "echo",
+    "narrationVoice": "Callum"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Stockholm in 1650: wooden and plastered stone houses with steep roofs, a crowded quay of masts and rigging, barrels and copper plates stacked on stone, mud and timber walkways, wood smoke, grey northern light. Clothing of 1650: wide collars, capes, wool coats, headscarves, leather aprons. Portrait 9:16 framing, eye level. Cool muted colour, not sepia.",
+    "avoid": "no Royal Palace of 1754 (the old castle Tre Kronor still stands), no nineteenth-century buildings, no motor vehicles, no electric or gas light, no modern clothing, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_skeppsbron",
+      "title": "Skeppsbron",
+      "geo": {
+        "lat": 59.3253,
+        "lng": 18.074,
+        "bearing": 90
+      },
+      "brief": "The working quay along the east side of the old town: ships tied three deep, copper plates and iron bars stacked on the stone, porters, customs men and merchants' clerks.",
+      "mustCover": [
+        "what the ships carry out and bring in",
+        "how a porter is paid and what he carries",
+        "the customs men and what they want"
+      ],
+      "archiveQueries": [
+        "Skeppsbron Stockholm 17th century engraving",
+        "Stockholm harbour 1650",
+        "Swedish copper trade 17th century"
+      ]
+    },
+    {
+      "id": "stop_02_stortorget",
+      "title": "Stortorget",
+      "geo": {
+        "lat": 59.3251,
+        "lng": 18.071,
+        "bearing": 0
+      },
+      "brief": "The main square of the old town, packed with merchants' houses of German and Swedish families, the town hall and the weigh house, market days and proclamations.",
+      "mustCover": [
+        "who trades here and where they come from",
+        "the weigh house and why weighing matters",
+        "what is read out to the crowd"
+      ],
+      "archiveQueries": [
+        "Stortorget Stockholm 17th century",
+        "Stockholm Gamla Stan 1650 engraving",
+        "Stockholm town hall 17th century"
+      ]
+    },
+    {
+      "id": "stop_03_tre_kronor",
+      "title": "Tre Kronor Castle",
+      "geo": {
+        "lat": 59.3269,
+        "lng": 18.0716,
+        "bearing": 270
+      },
+      "brief": "The old royal castle above the water, a tower with three crowns on it, a warren of halls and archives and a great library growing with books carried home from the war.",
+      "mustCover": [
+        "what the castle is and how old",
+        "the books and where they came from",
+        "the young queen and her coronation"
+      ],
+      "archiveQueries": [
+        "Tre Kronor castle Stockholm engraving",
+        "Stockholm castle before 1697 fire",
+        "Queen Christina Stockholm 1650"
+      ]
+    },
+    {
+      "id": "stop_04_riddarholmen",
+      "title": "Riddarholmen",
+      "geo": {
+        "lat": 59.3245,
+        "lng": 18.064,
+        "bearing": 180
+      },
+      "brief": "The nobles' island: new stone palaces going up for the great families enriched by the war, and the brick church where kings are buried.",
+      "mustCover": [
+        "who is building here and with what money",
+        "the church and who lies in it",
+        "how the nobility live compared to the town"
+      ],
+      "archiveQueries": [
+        "Riddarholmen Stockholm 17th century",
+        "Riddarholmskyrkan engraving",
+        "Stockholm noble palaces 1650"
+      ]
+    },
+    {
+      "id": "stop_05_sodermalm",
+      "title": "Under Södermalm",
+      "geo": {
+        "lat": 59.32,
+        "lng": 18.07,
+        "bearing": 340
+      },
+      "brief": "The steep hills across the water south of the town: cottages, ropewalks, mills on the heights, and the best view back at the whole city on its islands.",
+      "mustCover": [
+        "who lives on the south heights and how",
+        "the mills and the ropewalks",
+        "how the city looks from here"
+      ],
+      "archiveQueries": [
+        "Södermalm Stockholm 17th century engraving",
+        "Stockholm panorama 1650",
+        "Stockholm windmills 17th century"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Suecia antiqua et hodierna (Erik Dahlbergh, from 1660s)",
+      "url": "https://commons.wikimedia.org/",
+      "license": "public-domain",
+      "note": "Engravings of Stockholm's buildings and quays soon after this date."
+    },
+    {
+      "title": "Stockholm town records, 17th century",
+      "url": "https://stadsarkivet.stockholm.se/",
+      "license": "reference",
+      "note": "Trade, wages and harbour life."
+    }
+  ]
+}

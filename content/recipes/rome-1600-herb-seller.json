@@ -1,0 +1,141 @@
+{
+  "id": "tour_rome_1600_herb_seller",
+  "city": "rome",
+  "cityName": "Rome",
+  "country": "IT",
+  "year": 1600,
+  "yearRange": [
+    1599,
+    1601
+  ],
+  "lang": "en",
+  "title": "The Holy Year",
+  "theme": "Five stops through Rome in the Jubilee of 1600 with Caterina Ruspoli, who sells herbs in Campo de' Fiori. A city of pilgrims, scaffolding and executions, where the new St Peter's is rising over the old one and a friar was burned in her square in February.",
+  "companion": {
+    "name": "Caterina Ruspoli",
+    "role": "Herb and vegetable seller, Campo de' Fiori",
+    "brief": "Thirty-five, sells herbs, greens and simples from a stall in Campo de' Fiori, where the market runs every morning and the executions happen in the same square. Born in Trastevere. Blunt, kind, quietly devout and quietly sceptical. She saw the friar burned in February and will say what the crowd was like. She knows nothing of the world after 1600.",
+    "voice": "sage",
+    "narrationVoice": "Matilda"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Rome in 1600: ochre and umber plaster, tiled roofs, ancient columns built into houses, market awnings, mule carts, unpaved dusty squares, pilgrims in travelling cloaks. Clothing of 1600: doublets, wide collars, aprons, headscarves, friars in habits. Portrait 9:16 framing, eye level. Warm Roman daylight, muted colour, not sepia.",
+    "avoid": "no Bernini fountains or colonnade (built after 1650), no Spanish Steps (1725), no Trevi Fountain (1762), no motor vehicles, no electric light, no modern clothing, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_campo_de_fiori",
+      "title": "Campo de' Fiori",
+      "geo": {
+        "lat": 41.8955,
+        "lng": 12.4723,
+        "bearing": 45
+      },
+      "brief": "The market square: herb and vegetable stalls, horse dealers, inns around the edges, and the spot where the friar Giordano Bruno was burned in February of this year.",
+      "mustCover": [
+        "what the market sells and when",
+        "what happened in the square in February and how the crowd behaved",
+        "who lodges in the inns around it"
+      ],
+      "archiveQueries": [
+        "Campo de' Fiori 17th century engraving",
+        "Rome market 1600",
+        "Giordano Bruno execution 1600"
+      ]
+    },
+    {
+      "id": "stop_02_piazza_navona",
+      "title": "Piazza Navona",
+      "geo": {
+        "lat": 41.8992,
+        "lng": 12.4731,
+        "bearing": 0
+      },
+      "brief": "The long square built on the shape of an ancient stadium, its market and its flooding, palaces going up along the sides, no great fountain in the middle yet.",
+      "mustCover": [
+        "why the square is that shape",
+        "what happens here in a Holy Year",
+        "the palaces being built"
+      ],
+      "archiveQueries": [
+        "Piazza Navona 1600 engraving",
+        "Piazza Navona before Bernini",
+        "Rome Circus Agonalis"
+      ]
+    },
+    {
+      "id": "stop_03_pantheon",
+      "title": "The Pantheon",
+      "geo": {
+        "lat": 41.8986,
+        "lng": 12.4769,
+        "bearing": 180
+      },
+      "brief": "The ancient temple turned church, its portico half buried by centuries of rubbish and market stalls crowded against the columns, the open eye in the roof letting in rain.",
+      "mustCover": [
+        "how old it is and what it was",
+        "the hole in the roof and what happens when it rains",
+        "the market against its walls"
+      ],
+      "archiveQueries": [
+        "Pantheon Rome 17th century engraving",
+        "Pantheon portico market stalls",
+        "Pantheon before 1626"
+      ]
+    },
+    {
+      "id": "stop_04_ponte_sant_angelo",
+      "title": "Ponte Sant'Angelo",
+      "geo": {
+        "lat": 41.9013,
+        "lng": 12.4666,
+        "bearing": 270
+      },
+      "brief": "The pilgrim bridge to St Peter's, crowded to a crush in a Holy Year, with the castle at the far end and the heads of the executed sometimes on show.",
+      "mustCover": [
+        "how many pilgrims come and where they sleep",
+        "the crush on the bridge and the danger of it",
+        "the castle and what it is used for"
+      ],
+      "archiveQueries": [
+        "Ponte Sant'Angelo 1600 engraving",
+        "Castel Sant'Angelo 17th century",
+        "Rome pilgrims Holy Year 1600"
+      ]
+    },
+    {
+      "id": "stop_05_st_peters",
+      "title": "St Peter's",
+      "geo": {
+        "lat": 41.9022,
+        "lng": 12.4539,
+        "bearing": 270
+      },
+      "brief": "The building site: Michelangelo's dome finished ten years ago, the old basilica's nave still standing in front of it, scaffolding, stone, and thousands of pilgrims arriving anyway.",
+      "mustCover": [
+        "what is old and what is new on this site",
+        "the dome and who finished it",
+        "what the pilgrims come for"
+      ],
+      "archiveQueries": [
+        "Old St Peter's Basilica 1600",
+        "St Peter's dome construction 16th century",
+        "St Peters Rome engraving 1600"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Giovanni Baglione, Le vite de' pittori (1642)",
+      "url": "https://archive.org/",
+      "license": "public-domain",
+      "note": "Rome and its building sites around 1600."
+    },
+    {
+      "title": "Avvisi di Roma (newsletters), 1600",
+      "url": "https://archive.org/",
+      "license": "public-domain",
+      "note": "Contemporary Roman news, the Jubilee and the executions."
+    }
+  ]
+}

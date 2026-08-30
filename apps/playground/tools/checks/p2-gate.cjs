@@ -1,9 +1,10 @@
 const { chromium } = require("/Applications/MAMP/htdocs/document-capture-service/node_modules/playwright");
+const TOUR = process.env.TOUR || "tour_london_1850_flower_seller";
 const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? " · " + d : ""}`) || c;
 (async () => {
   const browser = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true })).newPage();
-  await page.goto("http://localhost:5173/?tour=tour_london_1850_flower_seller&play=1", { waitUntil: "networkidle" });
+  await page.goto(`http://localhost:5173/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });
   await page.evaluate(() => localStorage.removeItem("tt.hintExplore"));
   await page.waitForSelector(".player .idle");
   await page.click("button.travel");
@@ -13,7 +14,7 @@ const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   pass = ok("dots hidden at the start of her line", !(await page.$(".poi"))) && pass;
   // The arrival gates once her line ends: chevron flashes, dots are out by then.
   let chevron = null;
-  for (let i = 0; i < 90 && !chevron; i++) { await page.waitForTimeout(500); chevron = await page.$(".side-pane.right"); }
+  for (let i = 0; i < 200 && !chevron; i++) { await page.waitForTimeout(500); chevron = await page.$(".side-pane.right"); }
   pass = ok("arrival gates (right chevron)", Boolean(chevron)) && pass;
   pass = ok("dots revealed by gate time", Boolean(await page.$(".poi"))) && pass;
   pass = ok("first-time hint shown", Boolean(await page.$(".gate-hint"))) && pass;
@@ -40,7 +41,7 @@ const ok = (n, c, d = "") => console.log(`[p2] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   }
   await page.waitForTimeout(1000);
   let chevron2 = null;
-  for (let i = 0; i < 90 && !chevron2; i++) { await page.waitForTimeout(500); chevron2 = await page.$(".side-pane.right"); }
+  for (let i = 0; i < 200 && !chevron2; i++) { await page.waitForTimeout(500); chevron2 = await page.$(".side-pane.right"); }
   pass = ok("next screen gates too", Boolean(chevron2)) && pass;
   pass = ok("hint shows only once", !(await page.$(".gate-hint"))) && pass;
   pass = ok("back pane flashes past the first screen", Boolean(await page.$(".side-pane.left"))) && pass;

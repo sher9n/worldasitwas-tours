@@ -1,0 +1,141 @@
+{
+  "id": "tour_london_1755_coffee_house",
+  "city": "london",
+  "cityName": "London",
+  "country": "GB",
+  "year": 1755,
+  "yearRange": [
+    1753,
+    1757
+  ],
+  "lang": "en",
+  "title": "The Coffee House and the New Bridge",
+  "theme": "Five stops through Georgian London with Hannah Pyke, who keeps a coffee house off Fleet Street. A city running on coffee, news, credit and gin, with a brand new bridge at Westminster that everyone has an opinion about.",
+  "companion": {
+    "name": "Hannah Pyke",
+    "role": "Coffee-house keeper, off Fleet Street",
+    "brief": "Thirty-eight, widowed, keeps a coffee house where merchants, printers and ships' captains read the papers and do business she is not supposed to overhear but does. Born in Deptford. Practical, funny, entirely unshockable. She knows the price of everything, who owes whom, and which newspapers lie. She knows nothing of the world after 1755.",
+    "voice": "coral",
+    "narrationVoice": "Alice"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in London in 1755: Georgian brick terraces, sash windows, hanging shop signs, sedan chairs, hackney coaches, unpaved and muddy streets with kennels, coal smoke. Period clothing of the mid eighteenth century, tricorne hats, mob caps, aprons. Portrait 9:16 framing, eye level. Muted daylight colour, not sepia.",
+    "avoid": "no Victorian buildings, no gas or electric light, no railways, no modern clothing or vehicles, no top hats (not yet worn), no Regent Street or Trafalgar Square (built later), no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_covent_garden",
+      "title": "Covent Garden Piazza",
+      "geo": {
+        "lat": 51.5117,
+        "lng": -0.124,
+        "bearing": 90
+      },
+      "brief": "The piazza used as a market: stalls and sheds against Inigo Jones's arcades and the church portico, gardeners in from the country before dawn, taverns and worse around the edges.",
+      "mustCover": [
+        "what the market sells and when it starts",
+        "who lives around the piazza",
+        "the church and the arcades"
+      ],
+      "archiveQueries": [
+        "Covent Garden market 18th century engraving",
+        "Covent Garden piazza 1750",
+        "London market 18th century"
+      ]
+    },
+    {
+      "id": "stop_02_coffee_house",
+      "title": "The Coffee House",
+      "geo": {
+        "lat": 51.514,
+        "lng": -0.108,
+        "bearing": 270
+      },
+      "brief": "Her own room off Fleet Street: long tables, newspapers on sticks, a penny at the bar, coffee and chocolate, ships' news chalked on a board, printers and lawyers arguing.",
+      "mustCover": [
+        "what a penny buys and what you get for it",
+        "how the news arrives and how it spreads",
+        "who sits in the room and why"
+      ],
+      "archiveQueries": [
+        "London coffee house 18th century interior",
+        "coffee house print 1750",
+        "Fleet Street 18th century"
+      ]
+    },
+    {
+      "id": "stop_03_fleet_market",
+      "title": "Fleet Market",
+      "geo": {
+        "lat": 51.5148,
+        "lng": -0.105,
+        "bearing": 180
+      },
+      "brief": "The market built along the covered-over Fleet ditch since 1737: butchers, herbs, fish, and the smell of what is still running underneath it.",
+      "mustCover": [
+        "what the ditch was and why it was covered",
+        "what the market sells",
+        "the smell and what people believe about it"
+      ],
+      "archiveQueries": [
+        "Fleet Market London 18th century",
+        "Fleet ditch London engraving",
+        "Farringdon Fleet market 1750"
+      ]
+    },
+    {
+      "id": "stop_04_westminster_bridge",
+      "title": "Westminster Bridge",
+      "geo": {
+        "lat": 51.5008,
+        "lng": -0.122,
+        "bearing": 90
+      },
+      "brief": "The new stone bridge opened in 1750, the first to cross the Thames in London besides the old bridge, and the watermen's loudest grievance.",
+      "mustCover": [
+        "why the bridge was built and who objected",
+        "what it is made of and how it looks new",
+        "the view from the middle"
+      ],
+      "archiveQueries": [
+        "Westminster Bridge 1750 engraving",
+        "Canaletto Westminster Bridge",
+        "Westminster Bridge 18th century"
+      ]
+    },
+    {
+      "id": "stop_05_vauxhall",
+      "title": "Vauxhall Gardens",
+      "geo": {
+        "lat": 51.4855,
+        "lng": -0.123,
+        "bearing": 0
+      },
+      "brief": "The pleasure gardens across the water: lit walks, an orchestra, supper boxes, a shilling to get in and everyone from dukes to shop girls inside.",
+      "mustCover": [
+        "what it costs and who goes",
+        "the lamps and the music",
+        "the dark walks and their reputation"
+      ],
+      "archiveQueries": [
+        "Vauxhall Gardens 18th century engraving",
+        "Vauxhall pleasure gardens 1750",
+        "Vauxhall Gardens supper boxes"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "London Evening Post and Public Advertiser, 1750s",
+      "url": "https://www.britishnewspaperarchive.co.uk/",
+      "license": "reference",
+      "note": "Prices, shipping news and advertisements of the period."
+    },
+    {
+      "title": "John Rocque, Plan of the Cities of London and Westminster (1746)",
+      "url": "https://www.locatinglondon.org/",
+      "license": "public-domain",
+      "note": "Street layout of London a few years before this walk."
+    }
+  ]
+}

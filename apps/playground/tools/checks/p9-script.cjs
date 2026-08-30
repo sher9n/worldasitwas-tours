@@ -5,7 +5,7 @@
  * she says goodbye, no fact is told twice, and no tap echoes the scene it sits on.
  */
 const fs = require("fs");
-const TOUR = "/Applications/MAMP/htdocs/timetravel/content/tours/tour_london_1850_flower_seller/manifest.json";
+const TOUR = `/Applications/MAMP/htdocs/timetravel/content/tours/${process.env.TOUR || "tour_london_1850_flower_seller"}/manifest.json`;
 const ok = (n, c, d = "") => console.log(`[p9] ${c ? "PASS" : "FAIL"} ${n}${d ? " · " + d : ""}`) || c;
 
 const words = (s) => (s || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
@@ -19,20 +19,26 @@ let pass = true;
 const first = m.stops[0].arrival.line.text;
 const last = m.stops[m.stops.length - 1].transitionOut?.text || "";
 
-// 1. She introduces herself before anything else.
+// 1. The guide introduces themselves before anything else: who they are, what
+//    they do, and what the walk is. Worded their own way, so this looks for the
+//    substance rather than for any particular phrasing.
 const name = m.companion.name.split(" ")[0].toLowerCase();
 const openingWords = words(first);
-pass = ok("she gives her name in the opening", openingWords.includes(name), first.slice(0, 60) + "...") && pass;
-pass = ok("she says what she sells", /violet|watercress|flower/i.test(first)) && pass;
-pass = ok("she says what the walk is", /walk you|from here to the river|six stops/i.test(first)) && pass;
-// 2. The interface is explained, but not before she has introduced herself.
-const touchAt = first.toLowerCase().indexOf("touch it");
-const nameAt = first.toLowerCase().indexOf(name);
-pass = ok("how to look is explained after she introduces herself", touchAt > nameAt && touchAt > 0, `name at ${nameAt}, instructions at ${touchAt}`) && pass;
+pass = ok("gives their name in the opening", openingWords.includes(name), first.slice(0, 60) + "...") && pass;
+const trade = words(m.companion.role).filter((w) => w.length > 3 && !STOP_WORDS.has(w));
+const saidTrade = trade.filter((t) => openingWords.includes(t) || openingWords.includes(t.replace(/s$/, "")));
+pass = ok("says what they do for a living", saidTrade.length > 0, `role words found: ${saidTrade.join(", ") || "none"} (role: ${m.companion.role})`) && pass;
+pass = ok("says what the walk is", /\b(walk|round|stops?)\b/i.test(first) && /\b(\d+|one|two|three|four|five|six|seven|eight)\b/i.test(first), first.slice(0, 90)) && pass;
+// 2. How to look and how to ask, explained once, and after the introduction.
+const lower = first.toLowerCase();
+const askAt = lower.indexOf("green button");
+const touchAt = Math.max(lower.indexOf("touch"), lower.indexOf("tap"));
+const nameAt = lower.indexOf(name);
+pass = ok("how to look and ask is explained, after they introduce themselves", askAt > nameAt && touchAt > nameAt && askAt > 0 && touchAt > 0, `name ${nameAt}, touch ${touchAt}, ask ${askAt}`) && pass;
 const invites = (JSON.stringify(m).match(/green (disc|button)/gi) || []).length;
 pass = ok("the interface is explained once in the whole tour", invites === 1, `${invites} mentions`) && pass;
 // 3. She closes the walk.
-pass = ok("she says goodbye at the end", /thank you|farewell|walking with me/i.test(last), last.slice(-60)) && pass;
+pass = ok("says goodbye at the end", /thank you|goodbye|farewell|walking with me|good rest|god keep|good day to you/i.test(last), last.slice(-60)) && pass;
 
 // 4. Nothing is told twice: gather every spoken line with its home.
 const lines = [];

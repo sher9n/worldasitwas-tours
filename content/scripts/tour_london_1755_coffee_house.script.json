@@ -1,0 +1,334 @@
+{
+  "tourId": "tour_london_1755_coffee_house",
+  "companion": "Hannah Pyke",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_covent_garden": {
+      "arrival": {
+        "line": "Good morning to you. I'm Hannah Pyke, thirty-eight, born in Deptford, and a widow, and I keep a coffee-house off Fleet Street. I've been at that trade long enough to know merchants, printers, and ships' captains by their step on the stair, and gentlemen by what they let fall when they think I'm deaf. This walk is five stops, from this square to the new bridge, and I know it by business, not fancy: food comes through it before sunrise, papers before breakfast, debt all day, and opinion never stops moving. Touch anything in the picture and I'll speak of it. Hold the green button and you may ask me what you please. Now, first reckon the hour: the lanterns are dying, and Covent Garden is already earning London's breakfast.",
+        "scene": "From a little way inside the west side of Covent Garden, the frame looks across the square in weak dawn. St Paul's church stands to the left with its broad portico facing the market. Across the open middle are carts, hampers, wicker baskets, heaps of greens, and bundles of flowers, with porters and hucksters moving among them on wet paving strewn with leaves. Along the far side, under brick fronts and stone arcades, shop and coffee-room windows sit in shadow. At the right edge a tavern sign hangs above a narrow passage beside the playhouse side of the piazza, and the last lantern light catches the damp stones.",
+        "points": [
+          {
+            "label": "flower bundles",
+            "line": "Those bundles haven't all come bumping in by cart. Covent Garden draws from the market gardens to the west, yes, but plenty is helped along by water too, unloaded at river stairs and brought on from there. London likes two roads to every profit."
+          },
+          {
+            "label": "tavern sign",
+            "line": "That tavern trade knows its company. One house beside the playhouse advertises an entrance from the theatre passage, so a gentleman may slip in or out without fighting the whole crowd, which usually means he has business he doesn't care to explain."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_covent_garden_c1": {
+          "narration": "This trade isn't an accident somebody tolerated till breakfast. The Bedford estate got letters patent in 1670, so the market may trade every day but Sundays and Christmas Day. Still, custom rules as much as parchment: Tuesday, Thursday, and Saturday are the chief mornings, and by daybreak the retail dealers are already here. In summer the press can begin about three, dealing chiefly in fruits, herbs, roots, and flowers.",
+          "scene": "A closer frame runs along the market side of the square at dawn. A country cart stands backed onto the paving while women sort roots and greens from wicker baskets and sieves. In front of low wooden sheds and coffee-room fronts, heaps of cabbage, herbs, and flower pots spread across the ground. Behind the stalls, a fence is lined with bay tubs, and the first light catches horse steam, damp boards, and muddied straw.",
+          "points": [
+            {
+              "label": "country cart",
+              "line": "Country gardeners are a recognized interest here, and touchy with reason. A paper some years back complained that untolled sellers kept supplying the market in all seasons, which pinches the people who pay yearly dues for the right to stand and sell."
+            },
+            {
+              "label": "bay tubs",
+              "line": "A painter showed the square much this way not long since: tall houses, a fence lined with bay trees, and wooden sheds with shops and coffee-rooms pressed right up against the fruit and herb trade. Order in the brick, muddle at ground level."
+            }
+          ]
+        },
+        "stop_01_covent_garden_c2": {
+          "narration": "The clever part is the frame. The north side is the Great Piazza, the east side the Little Piazza, both open covered walks set up by Inigo Jones in the 1630s, so trade may sprawl and still seem orderly. And St Paul's holds the west side like a warehouse made respectable, red brick with pale stone about it, built in 1631 to 1638 and broad enough for the old jest about the handsomest barn in England.",
+          "scene": "The camera stands beneath the east arcade looking back across the square toward St Paul's. Stone pilasters and the roofed covered walk run away along the right side, sheltering a few early walkers and traders. Across the open space the church fills the frame, plain red brick with pale stone dressings, and its broad portico and central church door sit above wet steps. Low in the foreground stand a couple of market barrows and scattered baskets.",
+          "points": [
+            {
+              "label": "covered walk",
+              "line": "These arcades aren't ornament only. They've long been known as meeting ground, because a covered walk lets business wait on weather, and gossip does even better under a roof. Half the city seems to arrange itself under arches before it pays a bill."
+            },
+            {
+              "label": "church door",
+              "line": "That grand door under the portico is a sham one. Jones meant the altar to stand westward, but custom pulled it back to the east, so the piazza kept its handsome front and lost the use of it. London does that often."
+            }
+          ]
+        },
+        "stop_01_covent_garden_c4": {
+          "narration": "If you think everybody of condition fled years ago, not quite. The north side still keeps notable people, only they earn their names now. William Hunter, the physician, is at No. 1; Abraham Langford, the auctioneer, at 9 and 10; Charles Macklin has 10 and 11 just now; and John Rich lives behind No. 15. That's Covent Garden in little: medicine, sale, theatre, and bustle sharing one row.",
+          "scene": "The north side of the piazza fills the frame in stronger morning light: a row of tall brick houses with shop fronts and coffee-house windows under the arcade, sedan chairs and gentlemen gathered below, and servants passing through. One doorway carries a hanging coffee-house sign, and beside another a posted bill is fixed to the wall. The covered walk throws a long shadow across the paving.",
+          "points": [
+            {
+              "label": "coffee-house sign",
+              "line": "Under this piazza, the Bedford Coffee House draws men who value their wit a shade above their temper. A description printed last year had it crowded every night with men of parts, all disputing literature and whether the play deserved clapping."
+            },
+            {
+              "label": "posted bill",
+              "line": "Macklin knows how to turn talk into dinner. At the Great Piazza coffee-house he serves an ordinary at 3s., and that buys you a place at table with strangers who'll judge the roast, the stage, and one another before they've done the second course."
+            }
+          ]
+        }
+      },
+      "transitionOut": "We've seen breakfast arrive dirty at the wheels. Come with me now where it turns neat on a table: hot coffee, damp newspapers, and gentlemen pretending they only came to read."
+    },
+    "stop_02_coffee_house": {
+      "arrival": {
+        "line": "From those covered walks to this room is only a turn of the heel, and the work is the same, only warmer. Here at the Fleet Street corner by Fetter Lane, in a house people know as Peele's, a coffee-room keeps open court from morning on. You pay at the bar first, then you may sit by the fire, read the papers, wait for a man, dodge a man, hear the town argued over, and do a bargain under nobody's title but your own.",
+        "scene": "Standing just inside the doorway from the pavement, the whole coffee-room opens in one warm frame. The bar counter is on the left with coins laid by the hand of the keeper; in the middle, long deal tables run away into the room, with newspapers skewered on a newspaper stick and others spread damp among dishes and spoons. On the wall near the bar hangs a chalk board covered with ship notes, while benches full of customers, wet hats, and cloudy front windows show the busy Fleet Street corner beyond.",
+        "points": [
+          {
+            "label": "the bar counter",
+            "line": "That's where the old boast begins. A penny was said to buy your fire, your seat, your dish, and leave to stay; though mind, houses now often reckon the drink above the bare entrance, because papers cost money and gentlemen still want fresh ones."
+          },
+          {
+            "label": "the newspaper stick",
+            "line": "Those sheets don't lie quiet for long. One man reads, another leans in, a third carries the sense of it into the street half-right and wholly certain, and by noon the town has improved the story past knowing."
+          },
+          {
+            "label": "the chalk board",
+            "line": "I keep a board much like that myself when ships are the talk. Not everybody can buy every paper or wait on every wharf, so a copied list near the bar saves time, and time, in trade, is commonly the dearer article."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_coffee_house_c1": {
+          "narration": "What men buy here, mostly, is an address. A coffee-house saves the cost of a private office and does the work nearly as well, because clients know where to call and at what hour. So on this stretch you get clerks from the Inns, printers and compositors from the eastward streets, booksellers, pamphlet-men, and merchants or factors who come to be found, not merely to drink.",
+          "scene": "The view is halfway down the room toward a long deal table by the window. On the table lie folded letters, a tied parcel of books or papers, and several law papers spread before a clerk in a wig. Around him sit a printer with ink on his cuffs, a bookseller, and a merchant in a wet coat, while beyond them other customers fill benches under cloudy windows looking onto Fleet Street.",
+          "points": [
+            {
+              "label": "the folded letters",
+              "line": "The post uses houses like this when it suits. On holidays letters may be left at appointed coffee-houses for collection, and a private packet for abroad can go onward by a shipmaster if the parties have laid it so."
+            },
+            {
+              "label": "the tied parcel",
+              "line": "Trade sorts itself by room. In Paternoster Row the Chapter is known for booksellers, and the talk there runs on new titles and whether they sell, which is often more urgent than whether they deserve to."
+            },
+            {
+              "label": "the law papers",
+              "line": "Fleet Street breeds mixtures. Nando's, up toward Temple Bar and next door to Bernard Lintot's shop, gives you law and print almost elbow to elbow, which is how half the arguments in this part of town get started."
+            }
+          ]
+        },
+        "stop_02_coffee_house_c2": {
+          "narration": "News comes in here by more roads than one. A runner brings a paper wet from the press, a letter is opened at table, a ship report is copied up, and then the room does the rest. One man reads aloud, another corrects him, a third swears he heard it first, and within the hour bare intelligence has turned into opinion, which travels faster because every listener helps to carry it.",
+          "scene": "The frame catches the room at the moment fresh news lands. A waiter has just brought in a damp newspaper; beside him a man stands reading from an opened letter while listeners crowd close. On the wall by the bar hangs a chalk board covered with ship arrivals, departures, and sale notices copied in a quick hand.",
+          "points": [
+            {
+              "label": "the damp newspaper",
+              "line": "Maritime news comes printed now as well as spoken. Lloyd's has had a shipping list in print these years, so men who live by sailings expect regular lines of arrivals and departures, not mere wharf gossip."
+            },
+            {
+              "label": "the opened letter",
+              "line": "Speed is part of the value. Lloyd's got a post-office arrangement for ship arrivals and departures, and early word matters because an hour gained may alter what a man buys, insures, promises, or fears."
+            },
+            {
+              "label": "the chalk board",
+              "line": "A paper notice often sends a man on to a coffee-house for the fuller particulars. Auction lists, cargo descriptions, inquiries, all that may wait in the room, so print stirs curiosity and the house finishes the business."
+            }
+          ]
+        },
+        "stop_02_coffee_house_c4": {
+          "narration": "A house stands or falls by attendance. The coffee may be sound enough, but if the room is cold, the papers stale, or the company poor, men won't stay. What they pay for is warmth, service, and profitable talk. This spring the surest talk is Johnson's new Dictionary from Gough Square, and every printer, bookseller, and lawyer has taken to judging it as if he had written half of it.",
+          "scene": "Near the fire a waiter balances a serving tray with steaming dishes and glasses, edging between benches. At the nearest table lies a thick new book opened wide, with disputing customers bent over it; behind them more men sit under tobacco haze, cups, spoons, and newspapers scattered across the boards.",
+          "points": [
+            {
+              "label": "the serving tray",
+              "line": "Coffee isn't the whole trade. A house may promise tea, chocolate, eaugeat, and capillaire besides, and men remember good attendance and decent accommodation as sharply as they remember a bad dish."
+            },
+            {
+              "label": "the thick book",
+              "line": "That sort of volume is for serious purses. Johnson's Dictionary stands at £4 10s, so plenty of men will dispute its authority in a coffee-room before they ever reckon to own a copy."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now. We've had heat, papers, and promises enough in one room. Next I'll show you where London carries meat over a river it has half smothered, and calls the arrangement improvement."
+    },
+    "stop_03_fleet_market": {
+      "arrival": {
+        "line": "From the coffee-room you step into the larder that feeds it. This long covered run is Fleet Market, laid over the old Fleet ditch, so you walk on stone and trade while old water goes under your feet. London couldn't make the canal answer and wouldn't give up the ground, which means meat and greens are sold where tide once pushed in. The smell will tell you the river has not agreed to be forgotten.",
+        "scene": "A photographic view from about the middle of Fleet Market facing south down the long narrow spine of the market. Two low rows of one-storey shopfronts run away on either side under a covered walk lit from above, with a roof lantern and clock hanging near the centre. The rag-stone paving is damp and greasy and the whole path shows a visible fall away toward the bright south end. On the right, very close beyond the stalls, rises the brick prison wall. Meat, fowls, and baskets crowd the shopfronts.",
+        "points": [
+          {
+            "label": "roof lantern",
+            "line": "The whole place was built in two long rows with a covered walk between, and that lantern with its clock in the middle keeps it from turning cave-like on a dark morning. London likes trade to be under shelter and still seen."
+          },
+          {
+            "label": "brick prison",
+            "line": "That brick bulk close on the east side is Fleet Prison, so debt and dinner stand elbow to elbow here all day. London has a neat way of selling supper beside the place where unpaid reckonings are punished."
+          },
+          {
+            "label": "falling walk",
+            "line": "Standing about the middle and looking this way, you're looking south down the market spine toward Fleet Bridge and Ludgate Hill. The ground tells it too, because the whole walk falls that way and carts take the slope easier downhill than back."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_fleet_market_c1": {
+          "narration": "After the Fire they tried to mend the Fleet for carriage. They made the channel deep and wide enough to take the tide, so barges and lighters might come up as far as Holborn Bridge. It sounds useful, and for a while it was. Then silt, filth, and cost beat that project hollow, so the city arched it over and turned failed water-trade into rented stalls. That is a London remedy: bury the nuisance and charge for the top of it.",
+          "scene": "A photographic frame from within the covered walk shows the long roof stretching away overhead, top-lit and low, with a dark wet stone channel running along the rag-stone paving underfoot. To the left hangs a beef quarter outside a butcher's stall, its block below streaked from fresh chopping. The market recedes in a straight line beneath the long roof, cramped, damp, and built hard over what used to be open water.",
+          "points": [
+            {
+              "label": "stone channel",
+              "line": "Under that wet seam the old course still has to be carried off. The rules for the market require drains through the channel below, and they would not allow houses or sheds above fifteen feet high over it, which tells you the river still had a vote."
+            },
+            {
+              "label": "long roof",
+              "line": "People reckon this as a market now, not a waterway. Strype's ward map, in the state it stands this year, marks Fleet Market straight along the old cut, which is London in little: once a channel, then a property line."
+            },
+            {
+              "label": "beef quarter",
+              "line": "A housekeeper watches that hook more closely than any map. Beef is about 3.06d the pound here, and mutton 2.70d, so a small difference at the block may settle what a whole family calls dinner."
+            }
+          ]
+        },
+        "stop_03_fleet_market_c2": {
+          "narration": "When this place opened to the public on 30 September 1737, it wasn't contrived for strolling. It was built for working kitchens, and it still serves them. Here you get butcher's meat, pork, bacon, poultry, butter, eggs, fruit, herbs, greens, and fish, with porters carrying baskets off to houses, taverns, and coffee-rooms before the morning is half spent. If Covent Garden is the city's table spread out, this is the larder shelf close to hand.",
+          "scene": "A closer photographic frame inside the market shows a provision line in full business. At right, broad butter tubs stand on a board in front of a seller; farther on, fruit stands fill a south-end opening under shallow piazza-like bays; at left a small coffee stall shows a steaming pot and dishes set ready on its counter. Between them hang fowls, bunches of herbs, and strips of bacon, while buyers press through the narrow walk.",
+          "points": [
+            {
+              "label": "butter tubs",
+              "line": "When the city first let these places, butter had a strong footing: nineteen butter sellers by the list, against eight poulterers and seven fruiterers. A market declares its customers by who can afford the rent."
+            },
+            {
+              "label": "fruit stands",
+              "line": "Down at the south end the fruiterers are set in little piazzas, and there are places to stow what goes unsold. Soft fruit doesn't mend by noble principles, so a market must think about tomorrow as well as today."
+            },
+            {
+              "label": "coffee stall",
+              "line": "There's even one coffee seller among the tenants, which I take as proof that London means to drink at every turn. Still, a market dish is mostly for warming the seller; the serious talk goes back to the houses."
+            }
+          ]
+        },
+        "stop_03_fleet_market_c4": {
+          "narration": "The market sells fresh things, but the place itself never smells fresh through. Under blood, feathers, bruised parsley, and fish scales you get a sour wet breath from below, because the old Fleet is only hidden, not gone. Londoners have cursed this ditch for stink a very long time, and most people here don't call it mere offence. They call it corrupted air, the sort that seems to breed fevers.",
+          "scene": "A low close photographic frame fixes on the foul side of the market. Wet stones shine dark underfoot. Beside a butcher's block sits an offal basket full of trimmings and scraps. Under a poulterer's stall lies a feather heap matted with damp straw. Around them hang meat and fowls under the dim covered roof, and the paving looks as if bad smells have soaked into it as much as blood.",
+          "points": [
+            {
+              "label": "offal basket",
+              "line": "Swift once made a whole picture of this river by its sweepings—guts, blood, butchers' wash, and rotting fish. He was sneering, but he wasn't inventing the ingredients."
+            },
+            {
+              "label": "feather heap",
+              "line": "People have been grumbling at the Fleet's putrid exhalations since before our grandfathers' grandfathers. That's the comfort of London nuisances, if you want one: they become ancient without growing tolerable."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Keep that smell in mind as we go south. London covers what offends, then builds convenience over it, and in a little while I'll show you the same temper practiced on a grander scale and in cleaner stone."
+    },
+    "stop_04_westminster_bridge": {
+      "arrival": {
+        "line": "So from the Fleet buried under a market, we come to the Thames carried in the open, and crossed in a new way. For centuries, if you wanted Westminster from the south bank, you took boat or horse ferry, because the nearest standing bridges were Putney westward and London Bridge eastward. People had talked of a bridge here since the 1660s, but the watermen cried out against it, and the Archbishop's ferry interest did too, because easier passage commonly takes the bread from somebody's mouth.",
+        "scene": "From the raised footway near the middle of Westminster Bridge, the picture looks east-north-east along the pale stone balustrade. A semi-octagonal stone alcove with its half-dome stands on the left above a pier. Beside it runs the broad roadway, busy with coaches, riders, and foot passengers. Below, a wherry cuts across the brown water and a heavier barge works with the tide. On the right lies the lower, more open Lambeth shore, and far through the haze a great dome and several church spires rise downriver.",
+        "points": [
+          {
+            "label": "stone alcove",
+            "line": "That recess isn't mere finery. The bridge is broken with resting places over the piers, and twelve of them are covered with half-domes, so a foot passenger may step out of the wind and let the coaches grind past. A new bridge learns manners quickly."
+          },
+          {
+            "label": "wherry below",
+            "line": "Before this bridge, a direct cross-river place in the next skuller anywhere between London Bridge and Vauxhall was 2d, and that is the sort of small fare this free crossing pinches away every hour. No wonder the watermen grumble from under us."
+          },
+          {
+            "label": "open shore",
+            "line": "That Surrey side still shows itself broad and low. Rocque's map sheet of this reach, printed in 1746, catches the bridge before it had settled into common habit, and Lambeth Marsh still stands out there as the making of the place."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_westminster_bridge_c1": {
+          "narration": "The scheme was driven forward by Act of Parliament in 1736, and work began in 1738 under Charles Labelye, a Swiss engineer. It was meant for public convenience, and free to cross, not a turnpike taking pennies off ordinary passengers. So the charge was met by lotteries and parliamentary support instead. When it opened fully in November 1750, they marked it with a procession, because London does like to celebrate its own usefulness when it comes off.",
+          "scene": "From the Lambeth shore a little downstream, the whole side of Westminster Bridge runs across the frame in pale stone. Several great semicircular arches stride over the water. Above them the broad roadway carries coaches and riders, while the raised footway along the balustrade holds clusters of walkers. One semi-octagonal recess projects over a pier, and small boats move under the arches with the tide.",
+          "points": [
+            {
+              "label": "stone arch",
+              "line": "It isn't a slight affair. The bridge runs 1,223 feet in all, with thirteen large semicircular arches and a small land arch at each end. The middle water arch spans 76 feet, which gives the stream fair room to keep the river trade moving."
+            },
+            {
+              "label": "raised footway",
+              "line": "The carriageway through the middle is about 30 feet wide, and each footway about 7 feet, set up above the road and paved with broad Moor stone. If you're walking, that rise saves your shoes a little and your temper more."
+            }
+          ]
+        },
+        "stop_04_westminster_bridge_c2": {
+          "narration": "What strikes me every time is how new it still looks. The Portland stone stays pale against the brown Thames, and the Purbeck work shows darker in parts of the upper fabric, so the whole bridge reads sharp and fresh, not yet smoked into London's common colour. We've had it fully open only since 1750, which means people still stop here to stare, judge it, and take the air as if trying out a new room in a house.",
+          "scene": "From the middle of the bridge, the picture looks east over the balustrade and down the river. Pale stone fills the lower left, with a darker band in the upper arching and a stone pier with its cutwater showing below. Wherries, barges, and lighters crowd the brown stream. To the right the Lambeth shore lies low and open, and far off through haze stand the great dome and a scatter of church spires.",
+          "points": [
+            {
+              "label": "stone pier",
+              "line": "Those piers go deeper than they look. The foundations were laid in great timber caissons on the river's gravel bed, and because the bottom was uneven some began much lower than others. One pier settled badly in 1747, so the adjoining arches had to be taken down and rebuilt."
+            },
+            {
+              "label": "far dome",
+              "line": "That long view east is the one painters favour: heavy river traffic in front, the Lambeth shore lying low to the right, and farther off the great dome with Wren steeples about it. It makes this new crossing seem joined to the whole city in a single glance."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on now to the south side. A free bridge gets you over, but London is never content with one kind of traffic, and by evening the same river that serves business is made to carry pleasure at a settled charge."
+    },
+    "stop_05_vauxhall": {
+      "arrival": {
+        "line": "So here's what the new bridge helps feed after dark. This isn't a park for idlers, it's a pleasure ground kept as strictly as any house of business, only the wares are music, lamp-light, and being seen. Since the bridge opened, coaches come over from the north bank much easier, and the owner cut a way in for them through Red Lion Yard. The river still sends its share as well, because London never trusts one road to profit when two will serve.",
+        "scene": "From a little rise near the riverside approach at dusk, the great gate stands ahead under trees, with a small crowd pressing toward it. On the left are the boat stairs, where a wherry lies in and two watermen wait by the wet edge. On the right a coach line turns in through the yard, with horses' heads, coach lamps, and a chair being carried beside it. Near the gate, a plainly dressed couple pause together before going in.",
+        "points": [
+          {
+            "label": "the boat stairs",
+            "line": "Plenty still come this way, because a boat can set you down within about two hundred yards of the gardens, and commonly for less money than land carriage asks. Watermen grumble at new conveniences, and then keep rowing."
+          },
+          {
+            "label": "the coach line",
+            "line": "When they first made the coach-way, people said the coaches stood near a mile in length on the opening night. London called that success. The horses, I dare say, had a harsher opinion."
+          },
+          {
+            "label": "the gate couple",
+            "line": "The gate asks 1s. of each person, and that single sum does a great deal of sorting. A duke pays it carelessly, a tradesman's wife counts it, and both may walk in together if they're dressed decent."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_vauxhall_c1": {
+          "narration": "Once you're through the gate, the whole place shows its rule. It doesn't sprawl like a fair and it doesn't pretend to be wild country, because the walks are laid out to draw you on, and the evening is kept to its hours like any other trade. The gardens open about the beginning of May, go on till August, and take company every evening but Sunday from five o'clock. Pay first, boast after: that's the method here.",
+          "scene": "Viewed straight from just inside the entrance, a broad gravel walk runs away under two ranks of tall elms. Men with swords, women in hoops, and sober-coated couples stroll in the middle distance. At the far end, beyond the thinning crowd, theatrical painted scenery rises beside a gothic obelisk.",
+          "points": [
+            {
+              "label": "the gravel walk",
+              "line": "A gravel walk like this is no wild path at all, though it feels gentle enough, for someone has had men spread and rake it proper, so ladies may pass dry-shod here after a spell of rain."
+            },
+            {
+              "label": "the gothic obelisk",
+              "line": "That first prospect runs about nine hundred feet, which is long enough to make you feel carried along by it, and it ends not in open fields but in stage business, scenery and a gothic obelisk."
+            }
+          ]
+        },
+        "stop_05_vauxhall_c2": {
+          "narration": "Here in the Grove, they make the business plain. Music is the chief bait now, and not merely any music: they favour English songs and English performers, which suits a London audience that likes to think itself patriotic while it is being entertained. So the orchestra stands in the middle like a little theatre, painted white and bloom colour, and the company settles round it in boxes as if they themselves were part of the performance.",
+          "scene": "In the middle of the Grove stands the orchestra, a gothic wooden structure painted pale white and bloom colour, with musicians visible inside. Around it run open-fronted supper boxes, one of them a painted box with a number above its opening. In the foreground a waiter badge shines on a man's breast as he bends to a table set with glasses, plates, and a chicken dish, while promenaders pass on the gravel behind.",
+          "points": [
+            {
+              "label": "the painted box",
+              "line": "The supper boxes are contrived much like theatre boxes, open at the front, marked with numbers and paintings behind, and large enough to hold six or eight, which is just enough company for display and disagreement."
+            },
+            {
+              "label": "the waiter badge",
+              "line": "They don't leave the reckoning loose. Printed prices are posted up, and the waiters wear little numbered tin plates on their breasts, so each man answers for his own tables if a customer cries overcharge."
+            },
+            {
+              "label": "the chicken dish",
+              "line": "A cold chicken here is 2s. 6d., and that tells you the rule of the place. You pay once to enter, and then you pay again for eating in public, because supper is part nourishment and part performance."
+            }
+          ]
+        },
+        "stop_05_vauxhall_c4": {
+          "narration": "And then they work the evening like stage machinery. About nine, when supper is coming on, the brightness rises suddenly and everyone gives a little cry as if surprised, though they came hoping for exactly that. Yet the light stops short of innocence. Off beyond the shine lies the long close walk they call Lover's Walk, or Druid's Walk, roofed by branches, with the music coming through softened, and with room enough for courtship to turn into intrigue.",
+          "scene": "At the edge of a narrow tree-covered avenue, the branches interlace overhead and throw the path into shadow. A couple in shadow walk away under the dark boughs. Beyond the trees to the right, the bright Grove shows through in broken patches, and a lamp-lighter stands near a row of glowing lamps with the pale orchestra farther off.",
+          "points": [
+            {
+              "label": "the lamp-lighter",
+              "line": "The sudden blaze is prepared beforehand. When the whistles go, the men set light to ready-laid fuses, and thousands of oil lamps seem to spring up in a moment, which is half the wonder of the place."
+            },
+            {
+              "label": "the couple in shadow",
+              "line": "They advertise decorum and family diversion, and no doubt some families divert themselves very properly. Still, these dark walks have long given cover for flirtation and sexual intrigue, so reputation may be lost here as readily as found."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's my reckoning of London. Before sunrise the market fills, by breakfast the coffee-room turns news into opinion, underfoot the buried Fleet carries off the city's dirt, the new bridge shifts whole streams of people, and here at night pleasure itself is timed, lit, and billed. I'm Hannah Pyke, and I thank you for your company. In this city everything moves, everything is priced, and even what is called free is paid for somewhere else. Goodbye."
+    }
+  }
+}

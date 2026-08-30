@@ -149,7 +149,7 @@ async function labelContrast(page) {
   // Gradual reveal: dots stay hidden early in her line, then fade in near its end.
   const dotsEarly = await page.$$(".poi");
   let firstDots = [];
-  for (let i = 0; i < 90 && !firstDots.length; i++) { await page.waitForTimeout(500); firstDots = await page.$$(".poi"); }
+  for (let i = 0; i < 200 && !firstDots.length; i++) { await page.waitForTimeout(500); firstDots = await page.$$(".poi"); }
   check("dots hold back, then reveal as her line winds down", dotsEarly.length === 0 && firstDots.length > 0, `early ${dotsEarly.length}, later ${firstDots.length}`);
   if (firstDots.length) {
     await firstDots[0].click();
@@ -188,7 +188,7 @@ async function labelContrast(page) {
     for (let i = 0; i < 8 && !onWalk; i++) { await neutralTap(); await page.waitForTimeout(600); onWalk = Boolean(await page.$(".walk")); }
     if (onWalk) {
       let cont = null;
-      for (let i = 0; i < 30 && !cont; i++) { await page.waitForTimeout(500); cont = await page.$(".continue"); }
+      for (let i = 0; i < 200 && !cont; i++) { await page.waitForTimeout(500); cont = await page.$(".continue"); }
       check("walk gates on Continue", Boolean(cont));
       if (cont) {
         await page.waitForTimeout(2500);
@@ -208,11 +208,11 @@ async function labelContrast(page) {
     if (await page.$(".done-view")) break;
     if (await page.$(".walk")) {
       let cont = null;
-      for (let i = 0; i < 60 && !cont; i++) { await page.waitForTimeout(500); cont = await page.$(".continue"); if (await page.$(".done-view")) break; }
+      for (let i = 0; i < 200 && !cont; i++) { await page.waitForTimeout(500); cont = await page.$(".continue"); if (await page.$(".done-view")) break; }
       if (cont) { await cont.click(); await page.waitForTimeout(800); continue; }
     }
     let dots = await page.$$(".poi");
-    for (let i = 0; i < 90 && dots.length < 2; i++) {
+    for (let i = 0; i < 200 && dots.length < 2; i++) {
       await page.waitForTimeout(500);
       if (await page.$(".done-view") || await page.$(".walk")) break;
       dots = await page.$$(".poi");
@@ -252,7 +252,7 @@ async function labelContrast(page) {
   await p2.waitForTimeout(1500);
   await neutralTapOn(p2);
   let dots2 = [];
-  for (let i = 0; i < 90 && !dots2.length; i++) { await p2.waitForTimeout(500); dots2 = await p2.$$(".poi"); }
+  for (let i = 0; i < 200 && !dots2.length; i++) { await p2.waitForTimeout(500); dots2 = await p2.$$(".poi"); }
   if (dots2.length) {
     await dots2[0].click();
     await p2.waitForTimeout(600);

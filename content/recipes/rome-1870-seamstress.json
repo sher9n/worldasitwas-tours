@@ -1,0 +1,141 @@
+{
+  "id": "tour_rome_1870_seamstress",
+  "city": "rome",
+  "cityName": "Rome",
+  "country": "IT",
+  "year": 1870,
+  "yearRange": [
+    1869,
+    1871
+  ],
+  "lang": "en",
+  "title": "The Year Everything Changed",
+  "theme": "Five stops through Rome in the autumn of 1870 with Assunta Belli, a seamstress. In September the Italian army breaches the wall at Porta Pia and the Pope's Rome ends; in December the Tiber floods the city one last time before the walls go up.",
+  "companion": {
+    "name": "Assunta Belli",
+    "role": "Seamstress, Regola quarter",
+    "brief": "Twenty-nine, a seamstress working from a room near the river, taking in sewing for shops and households. Born in Rome. Sharp-eyed, careful about what she says out loud, since half her customers are on one side and half on the other. She watched the breach at Porta Pia from a rooftop and voted for nothing, being a woman, but has opinions. She knows nothing of the world after 1870.",
+    "voice": "shimmer",
+    "narrationVoice": "Laura"
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Rome in 1870: ochre plaster, shuttered windows, laundry lines, unpaved squares, horse cabs, gas lamps, soldiers in the streets, the river running between low unwalled banks. Clothing of 1870: shawls, aprons, bowler and soft hats, uniforms. Portrait 9:16 framing, eye level. Muted colour, not sepia.",
+    "avoid": "no Tiber embankment walls (built after this), no Victor Emmanuel monument (1911), no motor vehicles, no electric light, no modern clothing, no text overlays"
+  },
+  "stops": [
+    {
+      "id": "stop_01_porta_pia",
+      "title": "Porta Pia",
+      "geo": {
+        "lat": 41.9095,
+        "lng": 12.503,
+        "bearing": 90
+      },
+      "brief": "The gate and the broken stretch of wall beside it, hit by artillery on the twentieth of September until the papal troops raised a white flag.",
+      "mustCover": [
+        "what happened here on the twentieth of September",
+        "how long the fighting lasted and who was hurt",
+        "what the city did that evening"
+      ],
+      "archiveQueries": [
+        "Breach of Porta Pia 1870 photograph",
+        "Porta Pia breccia 1870",
+        "Rome 1870 Italian army"
+      ]
+    },
+    {
+      "id": "stop_02_piazza_del_popolo",
+      "title": "Piazza del Popolo",
+      "geo": {
+        "lat": 41.9109,
+        "lng": 12.4763,
+        "bearing": 180
+      },
+      "brief": "The great oval square where travellers arrive from the north, with the obelisk in the middle, now full of soldiers, newspapers and people arguing about the vote to come.",
+      "mustCover": [
+        "the plebiscite and how the vote was taken",
+        "who arrives through this gate",
+        "the obelisk and how old it is"
+      ],
+      "archiveQueries": [
+        "Piazza del Popolo 1870 photograph",
+        "Rome plebiscite 1870",
+        "Piazza del Popolo 19th century"
+      ]
+    },
+    {
+      "id": "stop_03_ghetto",
+      "title": "The Ghetto",
+      "geo": {
+        "lat": 41.8926,
+        "lng": 12.4779,
+        "bearing": 0
+      },
+      "brief": "The riverside quarter where Rome's Jews were locked in by night until two years ago: tall crowded houses, narrow lanes, a fish market, and the gates now gone.",
+      "mustCover": [
+        "what the gates were and when they came down",
+        "how crowded the quarter is",
+        "what changes for the people here now"
+      ],
+      "archiveQueries": [
+        "Rome Ghetto 1870 photograph",
+        "Roman ghetto before demolition",
+        "Portico d'Ottavia fish market"
+      ]
+    },
+    {
+      "id": "stop_04_tiber_banks",
+      "title": "The Tiber Banks",
+      "geo": {
+        "lat": 41.893,
+        "lng": 12.47,
+        "bearing": 270
+      },
+      "brief": "The river as it still is, without walls: mills and boats moored against the bank, steps down to the water, and the flood of December that put the streets under water again.",
+      "mustCover": [
+        "how the river floods and how often",
+        "the mills and boats on the water",
+        "what is being proposed to stop it"
+      ],
+      "archiveQueries": [
+        "Tiber flood Rome 1870",
+        "Tiber river mills before embankment",
+        "Rome river bank 19th century photograph"
+      ]
+    },
+    {
+      "id": "stop_05_piazza_colonna",
+      "title": "Piazza Colonna",
+      "geo": {
+        "lat": 41.9007,
+        "lng": 12.4797,
+        "bearing": 0
+      },
+      "brief": "The square on the Corso with the ancient column in it, newspaper offices and cafes around it, and crowds reading the proclamations posted up on the walls.",
+      "mustCover": [
+        "how news travels in the city now",
+        "the column and what is carved on it",
+        "what people expect to happen next"
+      ],
+      "archiveQueries": [
+        "Piazza Colonna 1870 photograph",
+        "Rome Corso 19th century",
+        "Column of Marcus Aurelius engraving"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Contemporary Roman press, September to December 1870",
+      "url": "https://archive.org/",
+      "license": "public-domain",
+      "note": "The breach, the plebiscite and the December flood."
+    },
+    {
+      "title": "Photographs of Rome, 1860s and 1870s",
+      "url": "https://commons.wikimedia.org/",
+      "license": "public-domain",
+      "note": "The city before the embankments and the demolitions."
+    }
+  ]
+}

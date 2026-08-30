@@ -1,0 +1,350 @@
+{
+  "tourId": "tour_stockholm_1650_porter",
+  "companion": "Olof Nilsson",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_skeppsbron": {
+      "arrival": {
+        "line": "Good day to you. I'm Olof Nilsson, thirty-six, and I carry on Skeppsbron, have done ever since I came in from an Uppland farm at fifteen, and the place has got into my shoulders whether I wanted it or not. This walk has five stops, and I know the road because I follow cargo through it for my bread: iron, copper, salt, cloth, from ship to scales, market, and storehouse, so I see where the city's money truly moves. This strip was made only in the 1630s, when they pulled down the east wall and filled out into the water. Touch something in the picture, and I'll talk about that thing. Hold the green button, and you can ask me what you like. First, take the whole harbour in.",
+        "scene": "From standing height on the rough edge of Skeppsbron, the frame looks north along the quay. Dark hulls lie hard against the timber waterfront and more vessels crowd the water beyond, their masts and yards thick against a pale sky. In the foreground sits a low iron stack on wet planks. A timber crane arm rises a little farther along the quay. Beyond the shipping, the castle towers and roofline fill the north end of the view, while clerks, porters, carts, coils of rope, and scattered cargo break up the strip of muddy ground between water and houses.",
+        "points": [
+          {
+            "label": "iron stack",
+            "line": "What you're looking at is mostly bar iron now, not the older little osmond lumps men used to send out. The Crown stopped that older trade years ago, and the work here turned with it. Long bars are cleaner business on paper, though not on the back."
+          },
+          {
+            "label": "crane arm",
+            "line": "That crane isn't some fresh cleverness. We've had a heavy-lift crane here since the last century, because sooner or later every port learns that muscle alone is a fool's plan. Still, plenty gets moved without it, and that's where we come in."
+          },
+          {
+            "label": "castle towers",
+            "line": "This whole harbour front is being shown off just now for the Queen's coronation, as if the masts and mud were part of the ceremony. Fair enough. Without this strip, the towers behind it wouldn't shine half so bright."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_skeppsbron_c1": {
+          "narration": "If you want the city's true face, it isn't the castle, it's loading and unloading. In these years about two-thirds of the realm's trade passes through Stockholm, and much of the press lands here first. One ship sheds foreign goods, another takes metal away, and nobody leaves a clean gap between them. We work in layers—hulls at the edge, smaller craft outside them, all of it waiting its turn.",
+          "scene": "From mid-quay at water level, the frame faces out across a busy berth. At left, tar barrels stand beside coils of rope and rough timber. Center frame is a broad stack of copper wares and bundled metal with a couple of covered bales resting near it. To the right, a sea-going ship rides alongside the quay, and beyond it a crowd of far masts fills the waterline. Men cross the planks between ship and shore, and the dark water between hulls is streaked with scum and reflection.",
+          "points": [
+            {
+              "label": "tar barrels",
+              "line": "Tar and pitch go outward too, and more than folk inland tend to think. The iron gets the talk, because it rings, but a ship wants sealing and smearing as much as a town wants nails."
+            },
+            {
+              "label": "far masts",
+              "line": "A good share of the business points toward Amsterdam. Lübeck and Danzig matter too, and you hear their tongues often enough on the quay, mixed in with ours and each man's bad temper."
+            }
+          ]
+        },
+        "stop_01_skeppsbron_c2": {
+          "narration": "My pay is reckoned by the skeppund, not by the hour. Carry iron from a skuta, one of the smaller cargo boats, and set it down by the plank, whether near the weigh-house door or farther off, and it's 2 öre kopparmynt per skeppund. Lay the same lot onto the scale pan, and there's 1 öre more. Iron, copper, sacks, bales—each sort has its own awkwardness, and none grows lighter because it's written down.",
+          "scene": "The frame is close and low beside a gangplank from a small cargo boat to the quay. In the foreground, two harbour men bend over long iron bars, with a stack of square copper plates laid behind them on timber bearers. Just beyond stands the open weigh-house door, and in front of it hangs a broad scale pan from a stout beam. The planks are wet, the metal is dark, and a line of waiting loads runs back toward the water.",
+          "points": [
+            {
+              "label": "copper plates",
+              "line": "Those flat copper pieces aren't a trifle. In 1648 and again this very year, one merchant bought more than 800 skeppund of raw copper up at Falun, which tells you the scale of what comes under merchants' hands before it reaches our quay."
+            },
+            {
+              "label": "weigh-house door",
+              "line": "A little later than today, the iron carriers are written down as gathering by five in the morning at the new weigh-bridge, under their own elder and route-masters. That sounds right to me. Work like this only runs if men are counted like the loads."
+            }
+          ]
+        },
+        "stop_01_skeppsbron_c4": {
+          "narration": "The men with papers don't lift much, though they can stop a whole deck. Foreign goods pay the sea customs, the stora sjötullen, which is not the same as the little town toll, and every imported skeppund must be entered so the Crown gets its due. Ships bringing such goods to Stockholm, or farther north, have already cleared at Dalarö before they nose in here.",
+          "scene": "The frame stands beside a trestle table set on the quay. At center, a customs officer in a dark coat holds out his hand while a skipper beside him shows a folded paper. On the ground between them sit a bound bale and a nailed wooden chest waiting to be entered. Behind the table runs a roof row of warehouses and gables packed close behind the quay, and beyond them the narrow line of the street disappears between buildings.",
+          "points": [
+            {
+              "label": "folded paper",
+              "line": "For iron at least, the rule later written down is plain enough: no unloading till the skipper shows his tullsedel. That's the customs paper, and it tells who shipped the lot, so the carriers can charge right and no man pretend forgetfulness."
+            },
+            {
+              "label": "roof row",
+              "line": "Those buildings jammed in behind the quay are the magazines and storehouses, with Österlånggatan just beyond. Goods don't rest long in the open if they can help it. Salt cakes, cloth mildews, and clerks hate both nearly as much as we do."
+            },
+            {
+              "label": "customs officer",
+              "line": "Men of his sort answer up a long ladder. Two years ago Vilhelm Drakenhielm became tullnär here, and this summer he was set over all the Great Sea Customs revenues in Sweden and Finland. Paper climbs faster than any porter."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along from the water a little. Cargo isn't money till it's weighed, entered, sold, and shut under a roof, and the next stretch shows how fast this wet edge turns into dry walls and account books."
+    },
+    "stop_02_stortorget": {
+      "arrival": {
+        "line": "Up here from Skeppsbron, the cargo gets a tongue. This is Stortorget, the oldest square in town, and it serves as the city's shopping place, only tighter and noisier than that sounds. Swedes bargain here, and foreign merchants too, mostly Germans, with some Russians and Dutch among them, and all of it sits under the rådhus, the town hall, on the north side. A deal may start with a handshake, but it doesn't settle till the town can hear it.",
+        "scene": "From the south side of Stortorget, the frame looks north across a crowded cobbled square. The old rådhus fills the far side with a broad front and a central hall door. In the foreground a porter has set down a wooden load-bier beside sacks and a barrel, while carts nose into the square. Around the edges stand gabled merchant houses with red and ochre plaster, open shutters, hanging signs, cellar doors, and servants crossing with baskets.",
+        "points": [
+          {
+            "label": "the hall door",
+            "line": "Mayor and council go in through that door, and what they settle doesn't stay indoors. Ordinances, court matters, property dealings, the small daily business of the town, it all gets turned into written pages by the clerks inside."
+          },
+          {
+            "label": "the load-bier",
+            "line": "Fine fronts don't make this place gentle. Between the carts, barrels, sacks, and these carrying frames, the square stays wooden and working, and if a man trips here, it's usually over trade rather than over grandeur."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_stortorget_c1": {
+          "narration": "Men come in while the water still carries them, take a room or a corner here, and trade on through the cold if the season holds. The town lets them, but not for nothing. Foreign merchants must register, and they pay higher taxes and fees than townsmen do. That's why the voices shift as you cross the square. Most are German. Now and then you catch Russian or Dutch, and every one of them wants terms made plain.",
+          "scene": "A closer frame on one side of the square shows a dark shop doorway under a steep gable, with a customer just stepping inside. Beside it, open shutters fold back from a booth where packets and small goods are laid out on a board. A basket woman passes in front of the stall, with signs hanging above her and other house fronts pressing close behind.",
+          "points": [
+            {
+              "label": "the shop doorway",
+              "line": "Around this square you can buy wine, spices, and dry goods, and not every sale is made through a hatch now. Some places have turned proper shop, so the customer goes in under the lintel instead of standing outside at a shutter."
+            },
+            {
+              "label": "the basket woman",
+              "line": "Folk here are mixed more closely than they look at first glance. The city counts them carefully too, by name, address, occupation, and civil state, which tells you this crowded place runs on knowing exactly who belongs where."
+            }
+          ]
+        },
+        "stop_02_stortorget_c2": {
+          "narration": "A bargain made here still has to survive the scale. For metal, the town's iron scale stands over at Järntorget, a short walk from this square, and that matters because weight isn't mere curiosity. The rules say iron, brass, and copper must be officially weighed so the right quantity goes out and the quality stays straight before export. So men argue here, yes, but the paper from the scale is what makes the arguing stick.",
+          "scene": "In the middle of the square, two merchants are halted beside a hand-bier stacked with iron bars. A clerk stands next to them with a folded paper and an open ledger resting on a barrel head, while a porter waits with one hand on the bier. Behind them, booth fronts, shutters, and close house walls hem the space in on every side.",
+          "points": [
+            {
+              "label": "the open ledger",
+              "line": "Nothing stills a bargain like a number set in a book. Once a lot is entered, men can stop swearing by their own memory and start quarrelling over something firmer, which is about as near to peace as trade usually comes."
+            },
+            {
+              "label": "the folded paper",
+              "line": "That paper is what follows the metal back into the square. Without a certificate from the scale, buyers grow cautious, sellers grow loud, and carriers like me stand waiting with the load biting into our palms."
+            },
+            {
+              "label": "the iron bars",
+              "line": "A bundle like that may have come down from the northern districts first, because Stockholm is the great harbour where such goods gather before they go abroad. The square feels local, but the bars in it have travelled."
+            }
+          ]
+        },
+        "stop_02_stortorget_c4": {
+          "narration": "That front on the north side is the rådhus, and it does more than hear quarrels. The magistrates sit there over criminal and civil cases, and they meddle in prices besides, and in guild affairs too, which means the square hears government mixed in with its market noise. When a clerk or crier reads out a notice here, it may be a trade rule, a tax demand, a legal sentence, or news sent down in the Crown's name. Same voice, whatever it carries.",
+          "scene": "The frame faces the north side of the square, where a clerk stands before the rådhus reading from a paper to a listening crowd. To one side of the crowd runs a red wall washed warm against the light, and beyond it rises a stepped gable sharper and newer than the older fronts nearby. Servants, merchants, and a cart at the edge of the cobbles hold still just long enough to hear.",
+          "points": [
+            {
+              "label": "the listening crowd",
+              "line": "Even punishment is reckoned like market work. Whipping at the pillory is charged at 16 öre, and banishing a person from the city at 8. A sentence comes with a tariff, which tells you how closely order and money lie together."
+            },
+            {
+              "label": "the red wall",
+              "line": "That orange-red wash is no grand mystery. Folk paint plaster so it reads like brick from a little way off, and on a fresh front the trick works well enough, especially in this thin northern light."
+            },
+            {
+              "label": "the stepped gable",
+              "line": "That sharp, dressed-up front is new this very year, raised for a royal secretary in the German-Dutch taste rich men favour. Fine enough to stare at, though it still opens on the same dung, wheels, and shouting as the rest."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, then. We've heard the bargain spoken and the order shouted over it. Now let's go where talk is turned into measure and account, because this city trusts a written weight more than any man's oath."
+    },
+    "stop_03_tre_kronor": {
+      "arrival": {
+        "line": "From the square, this is where the city's reckonings end up. Tre Kronor stands on royal ground that goes back to the middle of the thirteenth century, and the ruler has kept this same place ever since. It isn't one neat new palace. It's an old strong place grown by bits into a court, with the high tower and the three crowns telling you whose head sits above the rest of us.",
+        "scene": "A wide view from the Skeppsbron quay looks west across dark harbour water to the full bulk of Tre Kronor rising above the waterfront. In the middle stands the high tower with the three crowns at its top. Uneven roofs, mixed brick and plaster walls, and jutting galleries spread out below it. Near the lower wall a gate arch opens under a hanging banner with two guards beside it. At the bottom edge of the frame, on the quay, a loaded cart stands near a pair of porters.",
+        "points": [
+          {
+            "label": "high tower",
+            "line": "That tower gives the whole place its common name. In rain or dusk you may lose half the roofs, but not that mark. The Crown likes an emblem that can be known from the water before a man hears a trumpet."
+          },
+          {
+            "label": "gate arch",
+            "line": "By that arch it's never only silk and bowing. Guards stand there, yes, but so do messengers, kitchen hands, grooms, and men sent with papers. A castle eats through doors much the way a ship eats through rope."
+          },
+          {
+            "label": "loaded cart",
+            "line": "The cart below tells the truth of it. Rule sits uphill, but it still runs on wheels, fodder, casks, timber, and written tallies. Grand places have the same belly as the rest of us, only larger."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_tre_kronor_c1": {
+          "narration": "Inside, Tre Kronor isn't only lodging. It holds the chancery and the realm's papers, so what comes ashore below may end as an order, a grant, a tax, or a memory tied up and kept. There are halls and a chapel, of course, but also workrooms, passages, stores, and servants forever crossing one another. That's the truth of it. The old fortress has become a state house without ceasing to be a house.",
+          "scene": "The frame looks through a stone passage into a busy service court inside the castle. At left, a clerk sits at a writing table with papers spread before him. Beside the wall behind him are stacked paper bundles tied with cord. To the right, a servant pushes through a side door carrying a covered tray. Two guards stand under a post with banners above them, and irregular walls with many windows rise close around the court.",
+          "points": [
+            {
+              "label": "writing table",
+              "line": "A pen at a table may weigh more than a cargo hook. Once a matter reaches a clerk's hand here, it can travel farther than the man who hauled the chest or the horse that dragged the cart."
+            },
+            {
+              "label": "paper bundles",
+              "line": "Those bundles outlast stronger men than me. Tie a matter up, mark it, and lay it by, and years later it can be fetched back and made to speak again as if it had never gone quiet."
+            },
+            {
+              "label": "side door",
+              "line": "Service doors matter nearly as much as grand stairs. Meals, wax, firewood, linen, account books, all of it slips this way and that, because a ruling house is forever being fed, warmed, swept, and counted."
+            }
+          ]
+        },
+        "stop_03_tre_kronor_c2": {
+          "narration": "Another sort of cargo climbs these walls now, and that's books. The Queen is making a great library here, heavy with theology, rhetoric, histories, languages, and books about other lands. Since Prague was stormed two summers ago, chests of rare volumes and manuscripts have come north among the spoils, and the best of them are set here in the palace library. One of those giants is the Codex Gigas, a book carried more like furniture than reading.",
+          "scene": "Inside a long library chamber, tall shelves run along the walls and a window throws pale light across a central table. On the table lies a huge open book with thick leaves. To one side, on a small stand, rests a silver-bound book. Near the foot of the table an open chest shows more volumes and wrapped bundles inside. Loose copied pages are spread under a paperweight at the near corner.",
+          "points": [
+            {
+              "label": "silver book",
+              "line": "That silver-bound volume stands apart for good reason. It's the Silver Bible, taken from Prague as well, and now drawn into the Queen's shelves here with the rest of the learned plunder."
+            },
+            {
+              "label": "open chest",
+              "line": "Not every book here was seized by soldiers. This very year, in Paris, the Queen bought the library of Paul and Alexander Pétau, so the shelves grow by purse as well as force."
+            },
+            {
+              "label": "copied pages",
+              "line": "And if a manuscript can't be bought, she has students abroad copy it out for her. So some learning comes north in chests, some under seal, and some a page at a time by hired hands."
+            }
+          ]
+        },
+        "stop_03_tre_kronor_c4": {
+          "narration": "And all this old stone is being polished for a young ruler. Christina was born here, which means the castle is both her cradle and her seat, and though she's ruled since forty-four, great men governed in her name till now. On the twentieth of October she'll take the public crown in Storkyrkan, and you'll hear some people say they'll crown her king, which is their stiff old word for the one who rules.",
+          "scene": "A broad road climbs toward the castle gate under hanging banners. A long line of richly harnessed horses enters the frame from the left, with mounted riders and attendants moving toward the walls. Along the right edge stands a knot of watching men in dark coats and hats. Near the horses' feet a stable boy bends with a shovel, clearing the road, while the castle rises above the whole scene.",
+          "points": [
+            {
+              "label": "horse line",
+              "line": "The entry will be no small trot up the hill. The great procession comes in from Ulriksdal, and they say fifteen hundred horses will be in it before the city has done staring."
+            },
+            {
+              "label": "watching men",
+              "line": "Among men like those you'll hear that odd word, king. They don't mean she's a man. They mean the crown and office sit in that title, and habit is stronger than good sense sometimes."
+            },
+            {
+              "label": "stable boy",
+              "line": "He has the right of it, if you ask me. Before the silk can shine, somebody has to clear dung, steady harness, carry water, and keep the road passable. Ceremony still leaves a mess behind it."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, then. The castle keeps the crown, but the great lords want their own walls as well, and they raise them with the same money that came over the scales. We'll go where rank turns itself into stone frontage."
+    },
+    "stop_04_riddarholmen": {
+      "arrival": {
+        "line": "So after the castle, here's the payment made visible. This holm was the Greyfriars' place, and under Gustav Adolf and now Queen Christina the Crown has let men who served the realm raise palaces all round the old church, so the island is turning noble before our eyes. From afar it looks settled and rich. Underfoot it's brick dust, wet lime, cart ruts, and hired backs. That's how favour hardens into stone.",
+        "scene": "A wide view across Riddarholmen facing south, with the long red brick church standing near the middle, pale plastered palaces rising around it, and dark water flashing beyond the island edges. At left sits a large pale palace with high roofs and dressed stone round its windows. To the right, a roof scaffold climbs over another grand house where labourers move among stacked timber and stone. Carts stand in the uneven ground, and servants and workmen cross between the church, the houses, and the waterfront.",
+        "points": [
+          {
+            "label": "the pale palace",
+            "line": "That house began for Lars Sparre on ground the Crown had granted him, and two years ago the Queen bought it and gave it to Carl Gustaf Wrangel for his deeds in the German war. A grand thank-you weighs more than any chest I carry."
+          },
+          {
+            "label": "the roof scaffold",
+            "line": "A noble house doesn't rise by wish alone. The Stenbock place has wanted stucco men, carpenters, timbermen, stonemasons, and master masons besides. When rich folk mean to impress one another, they burn through skilled hands as fast as lime and oak."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_riddarholmen_c1": {
+          "narration": "These aren't merchants' houses in the common town way. The money here is office money, estate money, and reward money from service to the Crown. One war captain is given a palace, one councillor buys a rock plot, one court president sets up a family seat, and all of it stands broader than our timber lanes. A labouring man may get 24 öre for a summer day, so don't tell me this quarter is built for folk like us. Even the tailors sort noble women apart from burgher women, because rank wants showing in cloth as well as wall.",
+          "scene": "The frame looks along an uneven lane on Riddarholmen. In the foreground a broad pale palace front shows a carved stone doorway and tall windows. In the middle lies a wide forecourt with carts, stone blocks, and two servants crossing it. Behind and to the right, higher on rocky ground, stands another pale house still being finished, with lower side buildings and workmen on ladders. A few labourers carry hods, and stacks of timber lie beside the wall.",
+          "points": [
+            {
+              "label": "the high house",
+              "line": "Schering Rosenhane bought that high plot in 1648, where an older mill had stood before. He's a councillor and the city's over-governor, and he has served as ambassador in Paris too, so he builds like a man used to being noticed."
+            },
+            {
+              "label": "the wide court",
+              "line": "They say master Tessin set that place out in the French manner, with the open forecourt and the lower side pieces to the south. Space like that is a luxury in Stockholm. Most of us live wall to wall and step straight into mud."
+            },
+            {
+              "label": "the carved doorway",
+              "line": "Wrangel's house isn't meant to stay plain. For him and his wife, Anna Margareta von Haugwitz, they've named Jean de la Vallée and old Tessin for the rebuilding. War service goes in at one end and comes out dressed stone at the other."
+            }
+          ]
+        },
+        "stop_04_riddarholmen_c2": {
+          "narration": "In the middle of all this showing off stands the church, older and harder than the rest. It grew from the Greyfriars' house founded here in 1270, and long before these pale fronts rose up, kings were already being laid under its vaults. Karl Knutsson Bonde had his royal grave set here in 1470. Gustav Adolf ordered a burial choir here before he went to the Continent, and when he was killed at Lützen they brought him back to this church. Noble folk may build big, but the church keeps the last word.",
+          "scene": "The picture faces the church more closely, with its long red brick wall filling most of the frame and a dark doorway opening near the center. Buttresses cast shadows along the wall, and a strip of worn ground runs beside it. Over the roofline behind, pale palace roofs and chimneys rise in the distance. At the far edge of the frame, beyond the church corner, a bright patch of water shows between buildings.",
+          "points": [
+            {
+              "label": "the brick wall",
+              "line": "As late as the 1645 map, this island is still written down as Gromunkeholm, and the church is marked out there as the chief sign of the place. That tells you what endured first. The nobles came after, however loudly they build."
+            },
+            {
+              "label": "the dark doorway",
+              "line": "Magnus Ladulås said in his testament that he wished to lie in the monastery church here, but where exactly he rests now, folk can't say for certain. Even kings can go partly missing once enough years and rebuildings have passed."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, let's leave the stone to its owners and go where the island meets the traffic again. Fine houses can stand still. The city I know keeps moving, and it always shows its seams near the water."
+    },
+    "stop_05_sodermalm": {
+      "arrival": {
+        "line": "So after all that noble stone, come down here and stand by the water. Under the south bank the city quits pretending. From this rough shore, with rock rising hard behind us, Stockholm looks the way it works: half planned, half makeshift, mostly timber, yard, and weather. The showy fronts are across the water where visitors stare. Here you've got the ground that keeps them fed, rigged, and turning, and it still feels more like a place being made than one finished.",
+        "scene": "From the muddy waterline under the slope, the frame looks up and across: a rough strand with two drawn-up boats at lower left, hemp coils and stacked poles by a fence in the foreground, a weathered wooden house halfway up the bank beside a little cabbage strip, bare rock and a winding path climbing past sheds, and on the skyline a windmill with its sails turning. Beyond the water, the distant town shows the castle mass, church towers, steep gables, and a scatter of masts.",
+        "points": [
+          {
+            "label": "windmill sails",
+            "line": "Up there the wind earns its keep. These heights carry mills because they're bare and take every gust. From down here you hear the timbers complain before you ever think of flour, which is about right for work done by weather."
+          },
+          {
+            "label": "hemp coils",
+            "line": "Hemp gets everywhere once men start teasing it out. You carry the smell of fibre and tar home with you, and your sleeves keep a few threads besides. Some trades mark a man before he's paid."
+          },
+          {
+            "label": "wooden house",
+            "line": "That's the common building here, boards, posts, and a roof taking the wind as it comes. Fine plans are one thing. What most families can raise is another."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_sodermalm_c1": {
+          "narration": "Plenty still call this side Åsön, and that suits it, because it feels like a ridge with houses clinging to it rather than a city quarter finished by rule. In the summer of 1642 it was still little ordered beyond Hornsgatan and Götgatan, and men were pulling buildings down to drive those ways through. You can feel the job isn't done. A straight street starts, then an older path slips off as if it owes no clerk a thing.",
+          "scene": "The frame stands low on the slope looking along a newly cut road. A raw straight stretch runs uphill through rubble, with a muddy roadside ditch on the left and a few survey stakes set in the earth beside it. Off to the right, an older crooked footpath dodges between timber sheds and fenced plots. In the foreground sits a narrow cabbage patch beside a rough work-yard, with bare rock showing through behind.",
+          "points": [
+            {
+              "label": "roadside ditch",
+              "line": "A lot of this straightening waited on wetter ground than the clerks like to admit. By old Fatburen the marsh had to be drained before they could force the new south road through, so mud argued with the plan for years."
+            },
+            {
+              "label": "survey stakes",
+              "line": "They've been straightening these streets these many years, and four years ago the engineer, Anders Torstensson, was back remeasuring plots for tax and plan both, which means even a fence line may end in a clerk's book."
+            },
+            {
+              "label": "cabbage patch",
+              "line": "That mix is common enough on this side: a bit of kitchen ground, then a shed, then some work-yard. Around Fatburen it's been thinly built like that, with gardens and trades rubbing shoulders."
+            }
+          ]
+        },
+        "stop_05_sodermalm_c2": {
+          "narration": "What does well on this side is anything needing wind or length. Rope-makers want long clear ground and water at hand, so they lie out here, and the mills climb the bare heights for the same reason the poor houses do not: the gust reaches them first. That's why the south looks stretched and working, with open runs, fenced yards, and odd wide spaces. They're not empty. They've been claimed by trades that need room more than company.",
+          "scene": "The frame looks across an open working stretch on western Södermalm: a long rope lane runs away between fences, with hemp coils and hanging fibre near a yard gate in the foreground. A low waterside edge with two small fenced sheds sits beyond it, and behind all that a windmill stands on the exposed ridge. The ground is uneven, half grass and half mud, with a few poles and work-sheds scattered around.",
+          "points": [
+            {
+              "label": "rope lane",
+              "line": "This sort of run has been on the south side longer than any of us. Around Fatburen there are at least two ropewalks, because a rope-maker needs room to walk his fibres out straight and water close by when the work calls for it."
+            },
+            {
+              "label": "yard gate",
+              "line": "Four years ago, when the measuring men were poking about Repslagargatan, one plot was set down right next to a rope-maker's yard. That tells you the craft isn't wandering here by chance. It's rooted in the ground."
+            },
+            {
+              "label": "fenced sheds",
+              "line": "By the lake-side inland you get little fenced sheds much like those, and I'd take them for fish sheds soon enough. Folk use every bit of water they can, grand harbour or miserable pond, if there's food or pennies in it."
+            }
+          ]
+        },
+        "stop_05_sodermalm_c4": {
+          "narration": "From under the bank the truth is plain enough. Across the water you get the castle, towers, noble fronts, and a forest of masts, and they make a brave picture. But this year they're said to number only about twenty stone houses on the whole south side, and the rest is mostly wood. Folk up there live by yard, workshop, patch of earth, and whatever labour turns up—carpenters, shoemakers, stable-hands, sailors, and their households.",
+          "scene": "From slightly above the strand, the picture looks north over the water. In the foreground, a row of small wooden slope houses clings to rock beside fenced garden plots, with a goat near one fence and two drawn-up boats on the shore below. Smoke lifts from low chimneys. Across the water, the crowded skyline shows the castle bulk, church towers, steep gables, and a thicket of masts pressed against the edge.",
+          "points": [
+            {
+              "label": "garden plots",
+              "line": "A household here keeps whatever helps it through: cabbages if the soil will answer, maybe a pig, maybe a goat, and space to mend, chop, dry, or stack. Court folk would call it poor. I call it sensible."
+            },
+            {
+              "label": "drawn-up boats",
+              "line": "When the boats are dragged up like that, the shore becomes another workbench. A man may fish, ferry, mend a hull, or wait for carrying work from one tide to the next. Bread comes mixed here."
+            },
+            {
+              "label": "crowded skyline",
+              "line": "Northward the place bunches up fast—rock, deep water, then houses and masts jammed against the edge. That's why Stockholm can seem grand from a distance. It has learned to crowd its best face at the shore."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Well, that's the town as I know it. From this height the castle, the churches, the noble palaces, and all those masts make a fair show, but they're standing on labour, toll, and war-money, and most of Stockholm is still wood however stone tries to preen. I've been Olof Nilsson. I must leave you now, because at five the bell goes again, God willing, and the loads won't move straxt without us. Goodbye."
+    }
+  }
+}

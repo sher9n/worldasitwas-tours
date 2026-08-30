@@ -1,0 +1,356 @@
+{
+  "tourId": "tour_rome_1600_herb_seller",
+  "companion": "Caterina Ruspoli",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_campo_de_fiori": {
+      "arrival": {
+        "line": "Good day to you. I'm Caterina Ruspoli, born in Trastevere, and now I live and trade by Campo de' Fiori, where my art is herbs, greens, and simples, and I've worked this road long enough to know who sleeps in the inns, what food costs, and how pilgrims stream toward the bridge and Saint Peter's. We'll make five stops together, from this square to the great church, and I'll show you Holy Year Rome as it truly works, with grain, lodging, building, punishment, and prayer all pushed through the same streets. The market runs here every morning, and the executions happen in the same square. I saw the friar burned in February with my own eyes. I say my prayers, and I keep my wits, and I tell you only what I know. Touch anything in the picture and I'll talk about it. Hold the green button if you want to ask me something. Start with the grain sacks.",
+        "scene": "A wide morning view across Campo de' Fiori from the edge of a herb stall: in the middle of the paving sit stacked grain sacks and a few loose baskets, while women with market baskets and a tethered mule crowd around them. On the right, an inn doorway stands open beneath a hanging board painted with a moon, and a servant leans out above shaking bedding. On the left wall of a tavern or lodging-house, a posted price board is fixed beside the door. All over the ground are cabbage leaves, spilled chaff, hoof marks, and wet mud.",
+        "points": [
+          {
+            "label": "grain sacks",
+            "line": "Those matter more than my parsley, truth told. Peasants who bring grain into Rome have to sell it here under the Annona, and once the sacks are on the square they can't just turn about and carry them somewhere dearer."
+          },
+          {
+            "label": "painted moon",
+            "line": "Pilgrims have been taking rooms around this square for longer than my grandmother's memory. By 1440 there were already inns here for them, and in Jubilee time every painted moon or sun over a door starts to look like coin."
+          },
+          {
+            "label": "price board",
+            "line": "That board means the city doesn't trust appetite to behave. This Holy Year, if a seller or innkeeper breaks the fixed rule, they can get three public tratti di corda, three jerks on the rope, and four scudi each time."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_campo_de_fiori_c1": {
+          "narration": "Morning is the tender hour for my trade. I want the herbs cut fresh and the greens still cool, because noses wake before purses do, and pilgrims buy before they set out again. But this square isn't just pretty leaves. It's the grain market for ordinary Romans, watched by the Annona, so while I weigh fennel and chicory, wheat is being measured and argued over like a matter of life, which it is.",
+          "scene": "A closer market view at mid-morning: in the left foreground stand low herb baskets full of fennel, chicory, borage, and other greens, their leaves still damp. Near the center a wooden grain measure rests beside open sacks and a porter’s shovel. Across the lower half of the frame the paving is churned into hoof-marked mud mixed with crushed leaves and chaff, while a mule’s legs and the hems of market-goers pass through the mess.",
+          "points": [
+            {
+              "label": "herb baskets",
+              "line": "By noon the best gloss is gone from lettuce and borage, and all you've got left is shouting. Early on, with dew still clinging, I can sell herbs for a pot of soup and simples for a sour stomach before the road pulls people onward."
+            },
+            {
+              "label": "wooden measure",
+              "line": "If you want the old truth of Campo, it's in that measure and the fodder round it. People talk as if the square lives on gossip, but its staple business is animals, wheat, and feed, plain as that."
+            },
+            {
+              "label": "hoof-marked mud",
+              "line": "By noon the paving turns to a broth of hoof marks, split chaff, cabbage leaves, and mud, and by evening the fresh market thins while the inns and taverns begin pulling the square back to themselves."
+            }
+          ]
+        },
+        "stop_01_campo_de_fiori_c2": {
+          "narration": "Now take the houses round the edge. By Jubilee time they work as hard as any stall. People don't only pray in Rome; they have to sleep, eat, stable a mule, and pay for all of it, so paid inns cluster here with rooms above, kitchens smoking below, stables behind, and courtyards where carts can turn. In December the order went out that innkeepers, bakers, butchers, grocers, all of them, must post fixed prices and keep enough for people and beasts.",
+          "scene": "The frame faces an inn on the edge of Campo de' Fiori: over the doorway hangs a painted sun sign, and just inside the arch a servant drags a straw mattress toward the yard. Beyond him, a courtyard opens to a cart and a mule near the stable, while a kitchen door stands ajar with steam and smoke coming out. Pilgrims with bundles wait at the threshold, and a tariff sheet is pinned near the entrance.",
+          "points": [
+            {
+              "label": "straw mattress",
+              "line": "For one person, a bed is fixed at two and a half baiocchi, and hay for a beast at twenty-five baiocchi the hundred libbre. That's Rome being merciful in figures: one price for your bones, another for the mule that carried them."
+            },
+            {
+              "label": "painted sun",
+              "line": "The pilgrim stream along this road has multiplied houses like this, some under a sun, some under a moon, until the streets round Campo are thick with lodgings. A signboard eats as well as a stall when the pardons are flowing."
+            }
+          ]
+        },
+        "stop_01_campo_de_fiori_c4": {
+          "narration": "And then, because Rome likes all its lessons in public, this same square turned scaffold. On 8 February they declared Giordano Bruno an unrepentant, stubborn heretic, and on Thursday the 17th they brought him here in the morning, stripped him naked, tied him to the stake, and burned him. I was here. The crowd pressed thick, and it had that ugly stillness crowds get, half prayer and half hunger, because people wanted to see the end with their own eyes.",
+          "scene": "A cold morning scene in Campo de' Fiori during the execution: at the center stands the stake with smoke rising above it, and a ring of onlookers packs the square so tightly that only a little paving shows between their feet. Near the front stand men in white hoods and robes, turned toward the stake as they sing or speak. Behind them, market buildings and inn fronts line the square, their shutters and signs looking down on the crowd.",
+          "points": [
+            {
+              "label": "white hoods",
+              "line": "The men in white are from San Giovanni Decollato. They went with him to the stake singing litanies and urging him to give up his obstinacy even at the last, which is mercy of a hard Roman sort."
+            },
+            {
+              "label": "rising smoke",
+              "line": "An avviso going about two days later said he claimed he died a willing martyr, and that his soul would rise to heaven with the smoke. I didn't hear that with my own ears, so I leave it as reported."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on now, let's leave the square by the pilgrim road. Food, beds, punishments, all of it has to move somewhere, and if you follow the same feet that bought supper, they'll carry you toward the bridge."
+    },
+    "stop_02_piazza_navona": {
+      "arrival": {
+        "line": "If Campo taught you how Rome fills its belly and frightens itself in public, this place shows you how she stages the same business on older bones. Piazza Navona keeps the long shape of the ancient stadium buried underneath, so the houses follow that curve instead of making a neat square, and even the name comes from the old games once run here. Rome is forever laying today's traffic over yesterday's stone.",
+        "scene": "From standing height near the south end of Piazza Navona, the frame looks north along the whole stone-paved piazza. The space runs away in a long oval curve, with houses, botteghe, and shuttered upper windows bending with it on both sides. In the middle distance stands a marble watering trough with mules nosing near it, and at the nearer end an end fountain throws water into a round basin. Sellers, handcarts, pilgrims, and servants scatter across the open ground.",
+        "points": [
+          {
+            "label": "the long curve",
+            "line": "The old stadium sits deep below this paving, well under the street as we stand, and that helped keep the ground in this stretched basin instead of letting later builders square it off and forget it."
+          },
+          {
+            "label": "the middle trough",
+            "line": "That watering trough in the middle was set here in 1579, and they made use of an old Roman marble basin for it. Beasts know it as well as men do, which is why the ground round it is always busy."
+          },
+          {
+            "label": "the fountain basin",
+            "line": "The end fountains have been here since Gregory XIII's time, made in 1574 by men of Giacomo della Porta's circle. Even when the piazza is jammed, the sound of water keeps answering the wheels and hooves."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_piazza_navona_c1": {
+          "narration": "This piazza isn't a stage made new for the Holy Year. Rome moved a city market here from the Campidoglio long ago, so trade was already rooted in it, and now the Jubilee crowds bear down on the same ground. Foreigners must visit the four great churches fifteen times for the indulgence, Romans thirty, which keeps this quarter in constant motion, and before it all began Clement forbade landlords and victual sellers to raise their prices, because he knew very well what crowds can do.",
+          "scene": "The north end of Piazza Navona fills the frame from just off the middle of the square. At right stands a plain stone fountain basin with water spilling into it. To the left is the front of a church with a broad doorway and adjoining buildings. Between church and fountain opens the mouth of a narrower street, where pilgrims, mules, and servants are streaming away in a tight current, while traders and handcarts crowd the foreground paving.",
+          "points": [
+            {
+              "label": "the church front",
+              "line": "That's the Spanish church on the piazza. It was rebuilt for the Jubilee of 1450, and it still serves Spanish pilgrims and institutions here, so its threshold works nearly as hard as any inn door."
+            },
+            {
+              "label": "the lane mouth",
+              "line": "That street is the quickest way from this quarter to Ponte Sant'Angelo and Saint Peter's. People headed for the bridge take it if they know what's good for them, which is why this end never rests."
+            },
+            {
+              "label": "the plain basin",
+              "line": "That north fountain isn't dressed up with some grand carved figure. In my day it's a basin and water source, useful first and handsome after, which is exactly what a crowded square requires."
+            }
+          ]
+        },
+        "stop_02_piazza_navona_c2": {
+          "narration": "And then, when feast day comes, trade doesn't vanish, it dresses itself. The brethren of the Resurrection make Easter here with a grand showing, and folk remember the Sacrament carried out from San Giacomo and led around the whole piazza to an altar before old Sant'Agnese, with lights and temporary arches over the fountains. So the square turns devout without ceasing to be public, which is a very Roman trick.",
+          "scene": "At dusk in the middle of Piazza Navona, temporary wooden arches hung with lamps rise over the end fountains. Before the church opposite stands a raised altar draped with cloth and candles. Under a canopy the Sacrament is being carried through a dense ring of kneeling people, while servants hold torches, onlookers pack the edges, and the paving under all of them lies dry and crowded.",
+          "points": [
+            {
+              "label": "the lamped arch",
+              "line": "They've been putting on this Easter showing here since 1579, so by now Romans expect the piazza to turn half church and half theatre when Paschal time comes round."
+            },
+            {
+              "label": "the raised altar",
+              "line": "This very Holy Year the Paschal celebrations were made splendid again, not only in old memory but in the present one too. Jubilee Rome likes devotion best when it can gather a multitude and hold it fast."
+            },
+            {
+              "label": "the dry paving",
+              "line": "We don't flood the square for play. In my time the stones stay dry underfoot, and water belongs in the fountains, the trough, and the buckets carried home."
+            }
+          ]
+        },
+        "stop_02_piazza_navona_c4": {
+          "narration": "What looks noble from a distance is still being stitched together. This piazza isn't being remade by one grand will. A rich man takes two houses, then three, joins them with fresh stone and a better cornice, and his neighbour does the same, so a market edge slowly learns aristocratic manners. That's why you see patched fronts, new scaffolds, and offended faces together: palace-making here comes by parcel and argument, not by a clean ruler on a table.",
+          "scene": "The south-west corner of Piazza Navona fills the frame. Along the left runs a broad patched frontage made from joined houses, while across the south side stands a larger, more settled palace front with regular windows over ground-floor shops. At the corner itself a scaffold climbs fresh masonry around a new building site, where older shopfronts have been cut into and stone, timber, and lime lie heaped at street level.",
+          "points": [
+            {
+              "label": "the patched frontage",
+              "line": "That west-side frontage grew by swallowing its neighbours. Cardinal Giovanni Domenico de Cupis enlarged it between 1520 and 1553 by taking in adjoining houses, which is why it looks broad but not born all at once."
+            },
+            {
+              "label": "the broad south house",
+              "line": "The south-side palace was already firm by the middle of the century. Ludovico de Torres bought the houses in 1542, and the great house standing there is dated 1552."
+            },
+            {
+              "label": "the scaffolded corner",
+              "line": "At that corner, houses with shops were bought in 1599 by Baldassare Bonadies for a new palazzetto with a central courtyard, and because it bit into the neighbouring Torres frontage it started a quarrel straightaway."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now. This open stretch narrows into a truer street by the bridge, and when we step into it the noise changes, carts bite the stones harder, and every shopfront seems to lean into your sleeve."
+    },
+    "stop_03_pantheon": {
+      "arrival": {
+        "line": "And now the road narrows and opens again, and the quarrelsome new fronts fall away, and you meet a round giant hemmed in by ordinary business. Nothing stands off from it with proper respect. The fountain splashes, hawkers cry herbs and fruit and fish, candle smoke slips out from the door, and above all that old stone the sky still has a way in. That's Rome for you, never one thing at a time.",
+        "scene": "From the middle of the piazza, the Pantheon’s portico fills the background with its grey columns and dark bronze porch ceiling. In front of it stands the stone fountain basin and shaft, with water splashing into a shallow pool. Along the right side of the portico a side doorway is cut awkwardly through the colonnade, and under the roof the bronze work catches a dull gleam above hanging awnings, baskets of greens, a fish board, and people passing between church door and market stalls.",
+        "points": [
+          {
+            "label": "the stone fountain",
+            "line": "That basin and shaft have been here a good while already. Giacomo della Porta set the fountain in this piazza in 1575, so when mules, pilgrims, sellers, and priests all converge, the water is relief before it's ornament."
+          },
+          {
+            "label": "the side doorway",
+            "line": "The porch sits lower than the piazza now, and that's why you see that awkward side way cut through the columns. They hacked lintel notches into the ancient stone so people could enter from the higher street into the buried porch below."
+          },
+          {
+            "label": "the bronze porch",
+            "line": "And mind the dark shine above the columns. In my day the porch still keeps its bronze work. No one has stripped it out yet, which means the old entrance still carries more of its ancient weight than it will later."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_pantheon_c1": {
+          "narration": "This round house began as a Roman temple, and the shell standing now was rebuilt under Hadrian on the place where Agrippa had made the earlier Pantheon. Count from that rebuilding and you're looking at something near fifteen centuries old; count from Agrippa and Romans will call it older than sixteen. It has lasted because long ago they gave it to the Church as Santa Maria ad Martyres, and a building with altars and feast days gets defended.",
+          "scene": "A closer frontal frame fixes on the portico: the carved letters of the inscription run across the entablature above the columns, and below them the central church door stands open into shadow, with a few candles burning inside. The worn stone threshold, the heavy wooden leaves, and the ancient shafts crowd the frame so the old front and the living church sit together.",
+          "points": [
+            {
+              "label": "the carved letters",
+              "line": "Those great letters keep Agrippa's memory fixed on the front, even though the building standing here belongs to Hadrian's time. Rome does that often, keeps an older name nailed to a newer shell until both seem equally true."
+            },
+            {
+              "label": "the open door",
+              "line": "Plenty of us say Santa Maria Rotonda in ordinary speech, because that's the shape of it and Romans shorten what they use every day. Through that door you pass from market stink to candle smoke in a single breath."
+            }
+          ]
+        },
+        "stop_03_pantheon_c2": {
+          "narration": "Inside, the sky is part of the building, because the dome has one round opening at the top, about nine metres across, and that's the only natural light it gets. When the weather turns, rain comes straight in. No one can pretend otherwise, so the floor is made to cope with it, rising a little and hiding twenty-two drain holes below, and the storm passes through the church like an uninvited worshipper.",
+          "scene": "From inside the rotunda, the camera looks upward and slightly across the church so the coffered vault curves overhead and the round hole at its crown opens straight to the sky. A hard shaft of light falls through it onto the patterned stone floor below, where a dark wet patch glistens among the paving.",
+          "points": [
+            {
+              "label": "the round hole",
+              "line": "They did think of closing that eye. In 1591 Giacomo della Porta proposed a wooden lantern sheathed in lead over it, with better drainage besides, but the plan came to nothing, so in my day the opening still faces the weather."
+            },
+            {
+              "label": "the coffered vault",
+              "line": "The trick of the place is measure. From the floor to that crown, and across from wall to wall, it runs almost the same span, just over forty-three metres either way, so you feel as if you're standing inside a giant stone ball."
+            }
+          ]
+        },
+        "stop_03_pantheon_c4": {
+          "narration": "And for all that grandeur, nobody leaves it alone. Trade crowds the walls as if the ancient Romans built a shed for supper. Sellers pin awnings to boards, heap baskets by the columns, gut fish nearby, stack fruit and greens in the shelter, and pass the day in the monument's shadow. That's the truth of Jubilee Rome: a church on old imperial bones, and dinner being bargained for against the same stone.",
+          "scene": "From the higher paving of the piazza, the view looks down into the half-buried portico, where worn steps lead under the columns. Lean-to stalls and rough boards crowd the shelter, with baskets of greens, hanging awnings, a fish board, and a seller working in the dim edge between market and church wall.",
+          "points": [
+            {
+              "label": "the worn steps",
+              "line": "The ground has climbed so much over the centuries that you go down into the porch from the piazza. One account says seven steps, which sounds right to me, because the old entrance sits there half-smothered by later street dirt and rubbish."
+            },
+            {
+              "label": "the lean-to stalls",
+              "line": "This isn't some new nuisance of mine to complain about. Authorities have tried again and again to clear stalls from this portico, and still they creep back, so old writers were already grumbling about the squalor before our own day."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, bella anima. From here the road pulls west again, and the crowd thickens as every vow, mule, cart, and begging hand is drawn toward the bridge and the great church waiting beyond it."
+    },
+    "stop_04_ponte_sant_angelo": {
+      "arrival": {
+        "line": "From the Rotonda the road tipped us into this bottleneck, and here the Holy Year shows its elbows. Everybody bound for Saint Peter's wants this same strip of stone, so prayers, beasts, baggage, and bad temper all squeeze together, and the round castle ahead keeps watch like a shut fist. You come for mercy, yes, but Rome won't let you forget whose city this is, because even pardons are handed out under orders and under guard.",
+        "scene": "Midway on Ponte Sant'Angelo, the view faces west along the crowded stone roadway toward the huge round bulk of Castel Sant'Angelo filling the end of the bridge. Pilgrims in cloaks and broad hats press forward shoulder to shoulder. A tall prayer banner rises above the middle of the crowd, and a loaded pack mule noses along on the left among bundles and staffs. Guards stand at the castle arch, the Tiber flashes through the parapets on both sides, and Borgo traffic shows beyond the gate.",
+        "points": [
+          {
+            "label": "the prayer banner",
+            "line": "They carry those high because voices get swallowed here. A company that can answer together can also move together, and that's half the trick on a crowded road, because if three or four stop to gape, fifty are stalled behind them."
+          },
+          {
+            "label": "the pack mule",
+            "line": "A mule takes its share of the bridge as boldly as a bishop, and sometimes with more sense. But if one balks, or swings its load against a passer-by, the whole file knots up at once and tempers turn sour fast."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_ponte_sant_angelo_c1": {
+          "narration": "And think what Rome has taken in this year. They reckon something like half a million visitors, and our city holds only about a hundred thousand of its own, so strangers must be fitted wherever purse and patronage allow: inns, hired rooms, houses kept by their own nation, and confraternity shelters. The men of the Trinità alone are said to have received about a hundred and eighty thousand, with beds, supper, prayers, and all the rest of it laid on in order.",
+          "scene": "At the west end of the bridge, just before the castle arch, a knot of tired pilgrims has slowed beside their bundles while the crowd keeps moving around them. Two dark-robed confraternity men stand together near the center, sorting their company and urging them onward. At the right edge a grey old man sits low on a pack, bent and weary, while beyond him more travelers file toward Borgo and the river shows through the parapet.",
+          "points": [
+            {
+              "label": "the dark-robed brothers",
+              "line": "You can tell them by the plain dark habit and the way they move with purpose. Brothers like these spend their days gathering alms, settling quarrels at the door, and making sure the poor are received decently, not shoved about."
+            },
+            {
+              "label": "the grey old man",
+              "line": "If a poor pilgrim falls sick, he may be taken to Santo Spirito in Saxia instead of being left in some hired room. A richer traveler usually pays to be nursed where he lodges, which is one more way money softens devotion."
+            }
+          ]
+        },
+        "stop_04_ponte_sant_angelo_c2": {
+          "narration": "This bridge is the pinch of the whole road. Long before our time they knew it, and another crossing was made partly to ease the load, yet here everybody still converges for Saint Peter's. Romans remember the Jubilee of 1450, when a jam on this very bridge killed a hundred and seventy-two people, and that memory comes back the moment a procession, a mule string, and an impatient crowd meet on the stones and stop.",
+          "scene": "Mid-bridge, the crowd has tightened into a dense press between the stone parapets. A barefoot pilgrim with a wooden cross is wedged near the center of the roadway, a pack mule with hanging bells blocks part of the right side, and at the far end a guard raises an arm and shouts for people to keep moving. Through the parapet gaps the Tiber gleams below, and nobody in the frame has space to step aside.",
+          "points": [
+            {
+              "label": "the raised arm",
+              "line": "They've tried to prepare for the Holy Year with rules on food, firewood, cleanliness, innkeepers, and public order, and still a man with strong lungs at the bridge end is sometimes all that stands between order and a pile of bodies."
+            },
+            {
+              "label": "the wooden cross",
+              "line": "The great processions to Saint Peter's do pass this way, by the bridge and into Borgo, so devotion itself helps make the bottleneck. A road can be holy and badly planned at the same time, and Rome often proves it."
+            }
+          ]
+        },
+        "stop_04_ponte_sant_angelo_c4": {
+          "narration": "And then that round mass ahead tells the harder truth. The castle isn't scenery. It's a papal refuge, a strong place for treasure and papers, and a place of judgment and cells besides. Major punishments have been pushed to this threshold, so the way to Saint Peter's passes straight under signs of obedience. Beatrice Cenci lost her head at this end of the crossing last September, and nobody walking here now can pretend the road to pardon is kept apart from fear.",
+          "scene": "A few paces before the gate, the frame looks straight at the blunt round tower of Castel Sant'Angelo, its dark windows and layered stone filling the sky. Two guards stand at the arch with halberds. Along the right parapet a line of bare wooden stakes rises above the heads of the crowd, and behind them the roadway of the bridge stretches back eastward toward the city. Pilgrims keep filing under the gate into Borgo while the river glints below.",
+          "points": [
+            {
+              "label": "the wooden stakes",
+              "line": "Those are enough to chill a person without anything on them. Heads of the executed have been shown along this bridge as a warning, so even empty stakes preach obedience more sharply than many sermons."
+            },
+            {
+              "label": "the dark windows",
+              "line": "It still serves as a refuge if high people must bolt for safety, but you can hear the turn in how folk speak of it now: less a palace to flee into, more a prison to be swallowed by."
+            },
+            {
+              "label": "the road behind",
+              "line": "I don't love this road; by dawn it's already a tangle of cart ruts, drovers' cries, river men splashed from the bank, and now and then a file of prisoners going quiet toward the bridge."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on now, we're almost through the throat of it. Once we pass the castle shadow, the road opens and the great church begins to gather everything we've seen—charity, traffic, fear, and hope—into one last showing."
+    },
+    "stop_05_st_peters": {
+      "arrival": {
+        "line": "And here, at the end of that same road, Rome gathers itself in one breath. You smell wet lime before incense, you hear hammers under bells, and the crowd keeps its holy face while carts grind past its hems. So if anyone tells you the Jubilee ends where earthly business stops, don't believe them. At Saint Peter's the promise of pardon arrives in the middle of a building yard, and the truth of that sits plain in your nose, your ears, and your shoes.",
+        "scene": "From the Borgo approach, the frame looks west toward Saint Peter's. Low across the lower middle runs the dark weathered roofline and front edge of the older basilica, while behind it rises the vast new masonry and the leaded dome. At ground level a stone cart with a mule stands in pale lime dust beside timber scaffold and a hoist. Pilgrims bunch toward the doors at right, and clerics thread between labourers carrying tools.",
+        "points": [
+          {
+            "label": "old roofline",
+            "line": "That low dark stretch across the front belongs to the older basilica, and the broader pale mass behind it is the newer making. From here you can read the whole puzzle at a glance: one church not gone, another not done."
+          },
+          {
+            "label": "timber scaffold",
+            "line": "Those frames are as needful as any altar rail. Without scaffold, hoists, and planks, stone goes nowhere, and the men below spend the day breathing lime dust until it settles white on cloak hems and beard stubble."
+          },
+          {
+            "label": "stone cart",
+            "line": "A shrine this great still depends on a mule and a wheel. Before prayer reaches the door, carts have brought the blocks, the timber, the tools, and the food for the hands that lift them."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_st_peters_c1": {
+          "narration": "What fools outsiders is this: the new church didn't sweep the old away in one bite. The older basilica still stands and still serves, and the newer fabric has been rising beside and around it, so the whole place feels doubled. You walk toward one shrine and meet two ages at once, weathered brick and marble below, broad fresh supports beside it, and men forever passing from holy ground into a mason's muddle without any clear edge between them.",
+          "scene": "From near the flank, the frame shows the weathered curved apse wall of the old church at left, its brick and patched marble worn dark. Just beyond it stands a broad fresh pier of the new work in pale stone. Rutted ground fills the foreground, and labourers cross it with baskets and tools.",
+          "points": [
+            {
+              "label": "apse wall",
+              "line": "Julius II set the first stone of the new work on 18 April 1506, and not on some empty field either, but just outside the old church, to the left of its apse. That's how close the two histories sit."
+            },
+            {
+              "label": "fresh pier",
+              "line": "For all the changing plans and masters, the builders had one fixed obedience: the holy center could not be displaced. New stone had to gather round it, not shove it aside."
+            }
+          ]
+        },
+        "stop_05_st_peters_c2": {
+          "narration": "And then there's the dome, which is why half Rome looks up when this place is named. Michelangelo gave it the great thought and carried the work as far as the drum before he died in 1564, and Giacomo della Porta finished it with Domenico Fontana from 1588 to 1590. So by my day the vast shell already rules the skyline, with the lower works still clanging beneath it, because at Saint Peter's even a landmark doesn't end the labour.",
+          "scene": "The frame looks sharply upward from below the crossing works. The great dome fills most of the sky, rising from the drum to the lantern, where the gilded sphere and cross catch the light. Along the lower edge of the dome a work platform runs round it, and men on the ledge stand small against the masonry.",
+          "points": [
+            {
+              "label": "lantern cross",
+              "line": "The gilded bronze sphere and cross up there were set in place on 18 November 1593, and since then the whole crown has read as complete from far across the city."
+            },
+            {
+              "label": "work platform",
+              "line": "Finished to the eye isn't finished in truth. Under Clement VIII, mosaic work in the dome began in 1598 and is still going on, so beauty keeps a crew employed long after the great masonry stands."
+            },
+            {
+              "label": "men on the ledge",
+              "line": "The Fabric says the dome was raised in just twenty-two months by about eight hundred labourers. I believe it easily enough, because no small gang leaves a memory this big in a city's ears, or in the shoulders of the men who boast of it."
+            }
+          ]
+        },
+        "stop_05_st_peters_c4": {
+          "narration": "But don't let the dome trick you. The end of the road isn't new stone. It's Peter. In the older basilica that's still standing, the place is thick with altars, tombs, lamps, shrines, and relics, and the high altar marks his burial beneath. That's what draws people over bridge, dust, and bad lodging. In this Holy Year they must come to the great basilicas for remission of sins, and here they come because the apostle's tomb is the heart they mean to reach.",
+          "scene": "The frame stands just inside the entrance of the older basilica. At the left edge is the Holy Door, open and dark-framed, while a crowded aisle runs forward through hanging lamps and side altars toward the distant high altar. Pilgrims press shoulder to shoulder along the aisle, and several hold yellow candles that catch the warm light near the foreground.",
+          "points": [
+            {
+              "label": "Holy Door",
+              "line": "For the Jubilee, passing that Holy Door stands for penance and the gaining of a full indulgence. Wood and metal don't save a soul by themselves, of course, but people cross that threshold with very serious faces."
+            },
+            {
+              "label": "crowded aisle",
+              "line": "Because plague threatened, Clement VIII changed the customary Jubilee route on 30 January, allowing more central substitute churches. That only helped drive more traffic toward the great inner shrines, and you can feel the squeeze of it here."
+            },
+            {
+              "label": "yellow candles",
+              "line": "White or yellow wax candles cost 14 baiocchi the libbra, while tallow is only 3. So even a little light before an altar reminds you that devotion always has a purse tucked in behind it."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's the whole of it, and I swear it true as I know it. The Rome that feeds strangers, houses them, frightens them, judges them, and builds over its own old bones is the very Rome that brings them here to Peter's tomb. Nothing is separate, not market from mercy, not scaffold from prayer. I'm Caterina Ruspoli. Go with God, keep your purse close, and remember that in this city grace stands beside smoke, stone dust, and the price of bread. Goodbye."
+    }
+  }
+}
