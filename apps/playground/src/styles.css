@@ -381,9 +381,17 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .side-ctl:last-child { font-size: 18px; font-weight: 400; }
 .companion-chip video { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
 /* the talking lady: large enough to read as a person, out of the image's way */
-.voice-circle { position: absolute; right: 16px; bottom: 118px; z-index: 6; width: 112px; height: 112px; border-radius: 50%; overflow: hidden; border: 3px solid rgba(255,255,255,.95); box-shadow: 0 10px 30px rgba(0,0,0,.5); animation: circlein .35s ease-out; }
-.voice-circle video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .18s linear; }
+/* Her presence: one clip looping without a seam, and a halo that follows her
+   voice. Speech is told by the light, never by a mouth out of time with words. */
+.voice-circle { position: absolute; right: 16px; bottom: 118px; z-index: 6; width: 112px; height: 112px; border-radius: 50%; border: 3px solid rgba(255,255,255,.95); box-shadow: 0 10px 30px rgba(0,0,0,.5); animation: circlein .35s ease-out; transition: box-shadow .35s ease, transform .35s ease; }
+.voice-circle::before { content: ""; position: absolute; inset: -3px; border-radius: 50%; overflow: hidden; }
+.voice-circle video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; opacity: 0; transition: opacity .45s ease-in-out; }
 .voice-circle video.on { opacity: 1; }
+/* While she is audible the ring warms and breathes; in silence it settles back. */
+.voice-circle.speaking { box-shadow: 0 10px 30px rgba(0,0,0,.5), 0 0 0 5px var(--amber-halo), 0 0 26px 6px rgba(232,184,106,.30); transform: scale(1.03); }
+.voice-circle.speaking::after { content: ""; position: absolute; inset: -11px; border-radius: 50%; border: 2px solid var(--amber-soft); opacity: .8; animation: halo 2.2s ease-in-out infinite; pointer-events: none; }
+@keyframes halo { 0%, 100% { transform: scale(1); opacity: .75; } 50% { transform: scale(1.08); opacity: .2; } }
+@media (prefers-reduced-motion: reduce) { .voice-circle.speaking::after { animation: none; } }
 @keyframes circlein { from { opacity: 0; transform: translateY(10px) scale(.9); } to { opacity: 1; transform: none; } }
 .ask-state { position: absolute; left: 50%; transform: translateX(-50%); bottom: 108px; z-index: 7; background: rgba(0,0,0,.6); border-radius: 999px; padding: 6px 14px; font-size: 13px; display: flex; align-items: center; }
 /* typing dots: something is visibly happening while she thinks */

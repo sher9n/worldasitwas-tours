@@ -264,35 +264,37 @@ async function main(): Promise<void> {
     // no seed dir; fine
   }
   let reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
-  if (reelClips.length < 2 && provider.name === "fal") {
-    log("reel: generating 2 talking clips");
+  if (reelClips.length === 0 && provider.name === "fal") {
+    log("reel: generating the guide's presence clip");
     // The circle is always muted and only moves while her recorded voice plays,
     // so these clips need speaking MOVEMENT, not speech. A lip-synced render
     // costs about $1.50 and ten minutes each for a mouth nobody can hear; a
     // plain image-to-video clip of the same person talking costs a fraction of
     // that and looks identical behind a muted circle.
-    const MOVES = [
-      "She is talking warmly to someone just off camera: her lips move as if speaking, her head tilts and nods a little, she blinks naturally. The background stays still. No camera movement.",
-      "She listens and then answers, mouth moving in speech, a small smile, a slight turn of the head. The background stays still. No camera movement.",
-    ];
-    await Promise.all(
-      MOVES.map(async (move, ri) => {
-        try {
-          const clip = await provider.video({
-            prompt: move.replace("She ", `${recipe.companion.name} `).replace(" she ", " "),
-            imageUrl: character.portraitUrl,
-            durationSec: 5,
-            quality: args.quality,
-            audio: false,
-            stage: "reel",
-            note: `reel ${ri + 1}`,
-          });
-          if (clip.localPath) await fs.copyFile(clip.localPath, path.join(reelDir, `reel_0${ri + 1}.mp4`));
-        } catch (err) {
-          console.warn(`[reel] clip ${ri + 1} failed: ${(err as Error).message}`);
-        }
-      }),
-    );
+    // One clip of the guide simply being there: breathing, blinking, looking at
+    // you, with the world moving a little behind them. Not speech. A mouth
+    // moving out of time with the words is worse than a mouth that never
+    // pretends, so the circle carries presence and the voice carries the talking.
+    const PRESENCE =
+      `${recipe.companion.name} stands where they work and looks calmly toward the viewer, as though listening to someone they like. ` +
+      "Very small movements only: they breathe, blink twice, shift their weight slightly, and turn the head a little before settling back. " +
+      "A faint smile comes and goes. The mouth stays closed and relaxed; they are not speaking. " +
+      "Behind them the world moves gently: people passing at a distance, smoke or dust drifting, cloth stirring. " +
+      "The camera is locked off and does not move or zoom. Nothing enters or leaves the frame.";
+    try {
+      const clip = await provider.video({
+        prompt: PRESENCE,
+        imageUrl: character.portraitUrl,
+        durationSec: 5,
+        quality: args.quality,
+        audio: false,
+        stage: "reel",
+        note: "presence",
+      });
+      if (clip.localPath) await fs.copyFile(clip.localPath, path.join(reelDir, "presence.mp4"));
+    } catch (err) {
+      console.warn(`[reel] presence clip failed: ${(err as Error).message}`);
+    }
     reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
   }
   log(`reel: ${reelClips.length} clips`);

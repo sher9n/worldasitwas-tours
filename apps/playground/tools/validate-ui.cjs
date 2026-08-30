@@ -117,7 +117,7 @@ async function labelContrast(page) {
     const file = JSON.parse(fs.readFileSync(`/Applications/MAMP/htdocs/timetravel/content/tours/${TOUR}/manifest.json`, "utf8"));
     const same = JSON.stringify(served) === JSON.stringify(file);
     check("API serves the manifest verbatim (no stale-schema stripping)", same, same ? "" : "served differs from file - restart the API");
-    check("companion has a talking reel", (served.companion.faceReel || []).length >= 2, `${(served.companion.faceReel || []).length} clips`);
+    check("the guide has a presence clip", (served.companion.faceReel || []).length >= 1, `${(served.companion.faceReel || []).length} clip`);
   }
 
   await page.goto(`${BASE}/?tour=${TOUR}&play=1`, { waitUntil: "networkidle" });

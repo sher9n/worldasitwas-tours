@@ -347,103 +347,83 @@ export function Player({
     }
   }, [paused, phase]);
 
-  // Her mouth moves only while sound actually comes out - narration, an aside,
-  // or a live answer - and freezes in silence. When a reel clip runs out
-  // mid-speech, the next clip takes over.
+  /* --------------------------- her presence ------------------------------ */
+
+  // She is not lip-synced and never pretends to be. The circle carries presence:
+  // one short clip of her simply being there, looped without a seam by
+  // crossfading between two players, running the whole time so she never freezes
+  // into a photograph. What tells you she is speaking is the halo, which follows
+  // her actual voice, so it reads the same for a recorded line and a live answer.
   const reel = tour.companion.faceReel?.length ? tour.companion.faceReel : stop.arrival.talkingPortrait ? [stop.arrival.talkingPortrait] : [];
-  // Two players, never rebuilt: one on screen, one quietly loading the clip that
-  // follows. Swapping a src on a single element blanks it to black while the new
-  // clip decodes, so the handover happens between two ready elements instead.
+  const clip = reel[0]?.video;
   const slotA = useRef<HTMLVideoElement | null>(null);
   const slotB = useRef<HTMLVideoElement | null>(null);
   const [active, setActive] = useState<0 | 1>(0);
-  const [srcs, setSrcs] = useState<[string, string]>(() => [reel[0]?.video ?? "", reel[1 % Math.max(reel.length, 1)]?.video ?? ""]);
-  const reelIdx = useRef(0);
-  const talkingRef = useRef(false);
   const swapping = useRef(false);
+  const [speaking, setSpeaking] = useState(false);
 
   const visible = () => (active === 0 ? slotA.current : slotB.current);
   const hidden = () => (active === 0 ? slotB.current : slotA.current);
-  // The circle's pause control acts on whichever player is on screen.
+  // The pause control acts on whichever player is on screen.
   circleVideo.current = visible();
 
-  /** Hand over to the clip already loaded in the other player, then queue the next. */
-  const handOver = () => {
-    if (swapping.current || reel.length < 2) return;
+  /** Hand the loop to the other player before this one runs out, so there is no seam. */
+  const loopOver = () => {
+    if (swapping.current) return;
     const inc = hidden();
     if (!inc) return;
     swapping.current = true;
-
-    const nextIdx = (reelIdx.current + 1) % reel.length;
-    const afterIdx = (nextIdx + 1) % reel.length;
-    reelIdx.current = nextIdx;
-
-    /** Give the player that has left the screen the clip after next. */
-    const queueNext = () =>
-      window.setTimeout(() => {
-        const out = active === 0 ? slotA.current : slotB.current;
-        if (out) out.pause();
-        setSrcs((cur) => {
-          // Reassigning the same clip reloads it, and a reloading player has no
-          // frame to show. Leave it alone unless the clip actually changes.
-          if (cur[active] === reel[afterIdx].video) return cur;
-          const copy: [string, string] = [...cur];
-          copy[active] = reel[afterIdx].video;
-          return copy;
-        });
-        swapping.current = false;
-      }, 220);
-
-    const flip = () => {
-      setActive((a) => (a === 0 ? 1 : 0));
-      queueNext();
-    };
-
     try {
       inc.currentTime = 0;
     } catch {
-      // not seekable yet; it will start from the beginning anyway
+      // not seekable yet; it starts at the beginning anyway
     }
     void inc.play().catch(() => undefined);
-
-    // Never put a player on screen with no frame to show: if the incoming clip
-    // is not ready, the outgoing one stays a moment longer.
-    if (inc.readyState >= 2) {
-      flip();
-      return;
-    }
-    const done = () => {
-      inc.removeEventListener("loadeddata", done);
-      flip();
+    const flip = () => {
+      setActive((a) => (a === 0 ? 1 : 0));
+      // The one that has left the screen rests until its turn comes round again.
+      window.setTimeout(() => {
+        const out = active === 0 ? slotA.current : slotB.current;
+        if (out) out.pause();
+        swapping.current = false;
+      }, 700);
     };
-    inc.addEventListener("loadeddata", done, { once: true });
-    window.setTimeout(() => {
-      inc.removeEventListener("loadeddata", done);
-      flip();
-    }, 400);
+    if (inc.readyState >= 2) flip();
+    else {
+      const done = () => {
+        inc.removeEventListener("loadeddata", done);
+        flip();
+      };
+      inc.addEventListener("loadeddata", done, { once: true });
+      window.setTimeout(() => {
+        inc.removeEventListener("loadeddata", done);
+        flip();
+      }, 400);
+    }
   };
 
   useEffect(() => {
     if (phase !== "playing") return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const id = window.setInterval(() => {
       const v = visible();
       if (!v) return;
       const live = Boolean(companionRef.current?.isSpeakingAudio());
-      const talking = ((Boolean(engine.current?.isVoicePlaying()) && !askingRef.current) || live) && !paused;
-      talkingRef.current = talking;
-      // Hand over a beat BEFORE the clip runs out, so the swap lands on a moving
-      // frame rather than on a stopped one.
-      const nearEnd = v.duration > 0 && v.duration - v.currentTime < 0.25;
-      if (talking && (v.ended || nearEnd)) {
-        handOver();
+      setSpeaking(((Boolean(engine.current?.isVoicePlaying()) && !askingRef.current) || live) && !paused);
+      if (paused || reduced) {
+        if (!v.paused) v.pause();
         return;
       }
-      if (talking && v.paused && !v.ended) v.play().catch(() => undefined);
-      if (!talking && !v.paused) v.pause();
+      // Cross into the other player half a second before this one ends.
+      if (v.duration > 0 && v.duration - v.currentTime < 0.5) {
+        loopOver();
+        return;
+      }
+      if (v.paused) v.play().catch(() => undefined);
     }, 120);
     return () => window.clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, paused, reel.length, active]);
+  }, [phase, paused, active, clip]);
 
   const holdTimer = useRef<number | null>(null);
   const downAt = useRef<{ x: number; y: number } | null>(null);
@@ -731,13 +711,13 @@ export function Player({
       )}
 
       {/* her, talking: the large circle that makes the voice a person */}
-      <div className="voice-circle" data-noadvance>
+      <div className={`voice-circle ${speaking ? "speaking" : ""}`} data-noadvance>
         {/* Her reel: reusable talking clips rotate while any of her audio plays
             (recorded or live) and freeze the instant it stops. */}
-        {reel.length ? (
+        {clip ? (
           <>
-            <video ref={slotA} className={active === 0 ? "on" : ""} src={srcs[0]} muted autoPlay playsInline preload="auto" />
-            <video ref={slotB} className={active === 1 ? "on" : ""} src={srcs[1]} muted playsInline preload="auto" />
+            <video ref={slotA} className={active === 0 ? "on" : ""} src={clip} muted autoPlay playsInline preload="auto" />
+            <video ref={slotB} className={active === 1 ? "on" : ""} src={clip} muted playsInline preload="auto" />
           </>
         ) : (
           <img src={tour.companion.portrait} alt="" />
