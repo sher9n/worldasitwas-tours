@@ -79,5 +79,20 @@ for (const s of m.stops) {
 }
 pass = ok("prices stay in the background everywhere", true) && pass;
 
+// Every spoken line must have a recording: a point with none looks tappable and
+// does nothing, which is worse than not being there at all.
+const silent = [];
+for (const s of m.stops) {
+  if (!s.arrival.line.audio) silent.push(`${s.id}/arrival`);
+  if (s.transitionOut && !s.transitionOut.audio) silent.push(`${s.id}/walking`);
+  for (const h of s.arrival.hotspots || []) if (!h.line.audio) silent.push(`${s.id}/arrival/${h.label}`);
+  for (const c of s.cards) {
+    if (c.kind !== "image" && c.kind !== "thenNow") continue;
+    if (c.narration && !c.narration.audio) silent.push(c.id);
+    for (const h of c.hotspots || []) if (!h.line.audio) silent.push(`${c.id}/${h.label}`);
+  }
+}
+pass = ok("every line has a recording", silent.length === 0, silent.slice(0, 4).join(", ")) && pass;
+
 console.log(`[p9] ${lines.length} spoken lines checked`);
 if (!pass) process.exit(1);

@@ -333,6 +333,22 @@ async function main(): Promise<void> {
         }
         await writeJson(f, h);
       } else log(`hotspots ${script.stopId} (cached)`);
+
+      // A cached result written while the voice provider was down has points
+      // with no recording. Trusting that cache ships a tour where tapping a
+      // point does nothing, so any gap is filled in before the tour is built.
+      const silent = [...(h.arrival ?? []), ...h.cards.flatMap((c) => c.points)].filter((pt) => !pt.audio);
+      if (silent.length) {
+        log(`hotspots ${script.stopId}: recording ${silent.length} line(s) that have no audio`);
+        for (const pt of silent) {
+          try {
+            pt.audio = await provider.tts({ text: pt.text, voice: recipe.companion.narrationVoice, stage: "hotspots", note: `poi ${pt.id}` });
+          } catch (err) {
+            console.warn(`[hotspots] tts ${pt.id} failed: ${(err as Error).message}`);
+          }
+        }
+        await writeJson(f, h);
+      }
       hotspots.push(h);
     }
   }
