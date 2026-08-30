@@ -39,6 +39,16 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = findRepoRoot(here);
 dotenv.config({ path: path.join(repoRoot, ".env") });
 
+function resolvePlayerDir(): string {
+  if (process.env.PLAYER_DIR !== undefined) {
+    const raw = process.env.PLAYER_DIR;
+    if (!raw) return "";
+    return path.isAbsolute(raw) ? raw : path.resolve(repoRoot, raw);
+  }
+  const built = path.join(repoRoot, "apps/playground/dist");
+  return fs.existsSync(path.join(built, "index.html")) ? built : "";
+}
+
 function resolveContentDir(): string {
   const raw = process.env.CONTENT_DIR || "./content";
   return path.isAbsolute(raw) ? raw : path.resolve(repoRoot, raw);
@@ -57,10 +67,17 @@ export const config = {
    */
   mediaBaseUrl: (process.env.MEDIA_BASE_URL || `${(process.env.PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 4100}`).replace(/\/$/, "")}/media`).replace(/\/$/, ""),
   /**
-   * The built player (apps/playground/dist), served at the root so a walk can
-   * be opened at <origin>/?tour=…&play=1. Unset in dev, where Vite serves it.
+   * The built player, served at the root so a walk opens at
+   * <origin>/?tour=…&play=1.
+   *
+   * Found rather than configured: a deployment that has run the build has the
+   * player sitting right there, and making the operator name its path is a
+   * step to forget — one that fails as a 404 on the tour itself rather than as
+   * anything obviously wrong at boot. In development the directory does not
+   * exist and Vite serves the player instead, so this stays empty on its own.
+   * Set PLAYER_DIR to override, or to "" to serve the API alone.
    */
-  playerDir: process.env.PLAYER_DIR || "",
+  playerDir: resolvePlayerDir(),
   /**
    * Secret for player tokens, shared with whoever builds player URLs. Without
    * it the hosted player cannot authenticate itself and only a platform key
