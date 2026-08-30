@@ -1,4 +1,4 @@
-import type { Catalog, Tour, TourSummary } from "@timetravel/schema";
+import type { Catalog, Feed, Tour, TourSummary } from "@timetravel/schema";
 
 /**
  * How this page proves it may read the walk it was opened on.
@@ -34,6 +34,8 @@ async function get<T>(url: string): Promise<T> {
 
 export const api = {
   catalog: () => get<Catalog>("/v1/catalog"),
+  /** Every published walk with its stops, in one call. What a host plots. */
+  feed: () => get<Feed>("/v1/feed"),
   tours: (city: string, year: number) => get<{ matches: TourSummary[]; nearest: TourSummary[] }>(`/v1/tours?city=${encodeURIComponent(city)}&year=${year}`),
   /** Every published tour, for the gallery: one call per city, flattened. */
   allTours: async (cities: { id: string; years: number[] }[]) => {

@@ -20,6 +20,11 @@ import {
   expoInstall,
   expoScreen,
   expoSource,
+  feedCurl,
+  feedMapLibre,
+  feedNativeMap,
+  feedProxy,
+  feedShape,
   nativeRender,
   restCurl,
   webButton,
@@ -107,6 +112,27 @@ export function Integrate({ tour, summary }: { tour: Tour | null; summary: TourS
           <CodeBlock lang="sh" file="terminal" code={restCurl(c)} />
         </Step>
       )}
+
+      <section className="doc-sec">
+        <h3>Put every walk on your own map</h3>
+        <p className="muted">
+          Everything above answers "they pressed Travel, now what". This answers the question before it: how does
+          anyone find a walk at all? <code>GET /v1/feed</code> returns every published walk with its stops, so our
+          walks appear on your map where they physically happen, and a walk we publish tomorrow appears without
+          anyone shipping anything. See it running on the <b>Atlas</b> tab.
+        </p>
+        <Step n={1} title="Read it, and serve it on from your own origin" note="The platform key is server-side. Cache it: it changes when we publish, which is rarely, and the ETag makes the check nearly free.">
+          <CodeBlock lang="sh" file="terminal" code={feedCurl(c)} />
+          <CodeBlock lang="ts" file="your API" code={feedProxy} />
+        </Step>
+        <Step n={2} title="One walk, as the feed gives it to you">
+          <CodeBlock lang="json" file="GET /v1/feed → tours[0]" code={feedShape} />
+        </Step>
+        <Step n={3} title="Draw it" note="The route is a line through the stops in order; the stops are pins on it. Both platforms, same document.">
+          <CodeBlock lang="ts" file="MapLibre  ·  apps/web" code={feedMapLibre} />
+          <CodeBlock lang="tsx" file="react-native-maps  ·  apps/mobile" code={feedNativeMap} />
+        </Step>
+      </section>
 
       <section className="doc-sec">
         <h3>What comes back</h3>

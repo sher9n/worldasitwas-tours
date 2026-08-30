@@ -7,7 +7,10 @@ import {
   tourCommandScript,
   TimeTravelError,
   PLAYER_MESSAGE_SOURCE,
+  DEFAULT_RETURN_URL,
+  isReturnUrlAllowed,
   type Catalog,
+  type Feed,
   type TourMatches,
   type TourSummary,
 } from "./index.ts";
@@ -218,4 +221,61 @@ test("a command round-trips through the injected script", () => {
   const script = tourCommandScript("exit");
   const inner = JSON.parse(script.slice(script.indexOf("(") + 1, script.lastIndexOf(',"*")')));
   assert.deepEqual(JSON.parse(inner as string), tourCommand("exit"));
+});
+
+/* ── the feed ────────────────────────────────────────────────────────── */
+
+const emptyFeed: Feed = { schema: "feed/1", updatedAt: "2026-08-30T00:00:00.000Z", cities: [], tours: [] };
+
+test("feed is one call, and it carries the key", async () => {
+  const { f, calls } = stubFetch(() => json(emptyFeed));
+  const c = createClient({ baseUrl: "https://tours.example.com", apiKey: "k", fetch: f });
+  const out = await c.feed();
+  assert.equal(calls.length, 1, "a host drawing our walks should not need a call per city");
+  assert.equal(calls[0].url, "https://tours.example.com/v1/feed");
+  assert.equal((calls[0].init?.headers as Record<string, string>).authorization, "Bearer k");
+  assert.equal(out.schema, "feed/1");
+});
+
+/* ── where a walk hands back ─────────────────────────────────────────── */
+
+test("the player only hands a visitor back to our own domain", () => {
+  assert.ok(isReturnUrlAllowed("https://app.worldasitwas.com"));
+  assert.ok(isReturnUrlAllowed("https://app.worldasitwas.com/?city=london"));
+  assert.ok(isReturnUrlAllowed("https://worldasitwas.com/"));
+  assert.ok(isReturnUrlAllowed("https://tours.worldasitwas.com/"));
+});
+
+test("an open redirect is exactly what this refuses", () => {
+  // Without the check, our domain forwards anyone anywhere the link author chose.
+  assert.equal(isReturnUrlAllowed("https://evil.example.com"), false);
+  // The classic near-miss: a suffix that only looks like ours.
+  assert.equal(isReturnUrlAllowed("https://notworldasitwas.com"), false);
+  assert.equal(isReturnUrlAllowed("https://worldasitwas.com.evil.example"), false);
+  // And a scheme that runs code rather than navigating.
+  assert.equal(isReturnUrlAllowed("javascript:alert(1)"), false);
+  assert.equal(isReturnUrlAllowed("data:text/html,<script>1</script>"), false);
+  assert.equal(isReturnUrlAllowed("not a url at all"), false);
+});
+
+test("plain http is for a developer machine and nowhere else", () => {
+  assert.ok(isReturnUrlAllowed("http://localhost:5173/"));
+  assert.ok(isReturnUrlAllowed("http://127.0.0.1:4100/"));
+  assert.equal(isReturnUrlAllowed("http://app.worldasitwas.com"), false);
+});
+
+test("playerUrl carries the return address, so a closed walk knows where to go", async () => {
+  const c = createClient({ baseUrl: "https://tours.example.com", playerSecret: "s", fetch: (async () => json({})) as unknown as typeof fetch });
+  const plain = c.playerUrl("tour_x", { returnUrl: DEFAULT_RETURN_URL });
+  assert.ok(plain.includes(`return=${encodeURIComponent(DEFAULT_RETURN_URL)}`), plain);
+
+  const signed = await c.signedPlayerUrl("tour_x", { travellerId: "t_1", returnUrl: DEFAULT_RETURN_URL });
+  assert.ok(signed.includes(`return=${encodeURIComponent(DEFAULT_RETURN_URL)}`), signed);
+  // Still signed, and the token still covers the walk and the traveller only.
+  assert.ok(signed.includes("tk="), signed);
+});
+
+test("no return address means no parameter, not an empty one", () => {
+  const c = createClient({ baseUrl: "https://tours.example.com", fetch: (async () => json({})) as unknown as typeof fetch });
+  assert.ok(!c.playerUrl("tour_x").includes("return="));
 });

@@ -68,7 +68,45 @@ const tabNamed = (page, label) => page.locator(".tabs button", { hasText: new Re
 
   /* ── the tabs exist, in the right place ─────────────────────────────── */
   const tabs = await page.$$eval(".tabs button", (els) => els.map((e) => e.textContent.trim().split(" ·")[0]));
-  check("both integration tabs sit beside the existing ones", tabs.slice(0, 6).join(",") === "Events,Manifest,Cost,Companion,Integrate,Embed", tabs.join(" | "));
+  check("the integration tabs sit beside the existing ones", tabs.slice(0, 7).join(",") === "Events,Manifest,Cost,Companion,Atlas,Integrate,Embed", tabs.join(" | "));
+
+  /* ── Atlas: the feed, drawn where the walks actually happen ─────────── */
+  // The map is the discovery surface, so "it rendered" is not enough: the pins
+  // have to be on it, zooming has to change what is drawn, and picking a stop
+  // has to name the walk it belongs to.
+  await tabNamed(page, "Atlas").click();
+  await page.waitForSelector(".atlas-map canvas", { timeout: 30_000 });
+  await page.waitForTimeout(4000);
+
+  // A zero-height container renders a black rectangle with every marker stacked
+  // in one corner, and nothing throws. It happened; this is why it is checked.
+  const mapBox = await page.locator(".atlas-map").boundingBox();
+  check("the map is actually the size of its frame", mapBox && mapBox.height > 300, mapBox ? `${Math.round(mapBox.width)}x${Math.round(mapBox.height)}` : "no box");
+
+  const cityPins = await page.locator(".atlas-pin--city").count();
+  check("every city we publish walks for has a pin", cityPins >= 1, `${cityPins} cities`);
+
+  await page.locator(".atlas-pin--city").first().click();
+  await page.waitForTimeout(4500);
+  const stopPins = await page.locator(".atlas-pin--stop").count();
+  check("picking a city flies in and puts its stops on the map", stopPins >= 3, `${stopPins} stops in view`);
+
+  await page.locator(".atlas-pin--stop").first().click();
+  await page.waitForTimeout(2500);
+  const panel = page.locator(".atlas-card");
+  check("picking a stop opens the walk it belongs to", await panel.isVisible().catch(() => false));
+
+  const listed = await page.locator(".atlas-stops li").count();
+  check("the panel lists every stop of that walk", listed >= 2, `${listed} listed`);
+
+  // The thing the feed exists for: a place, described, with somewhere to put it.
+  const firstStop = await page.locator(".atlas-stops li").first().innerText().catch(() => "");
+  check("each stop carries a name, a description and a coordinate", /\S/.test(firstStop) && /-?\d+\.\d{4},\s*-?\d+\.\d{4}/.test(firstStop), firstStop.split("\n")[0]);
+
+  const meta = await page.locator(".atlas-meta").innerText().catch(() => "");
+  check("the card names the guide, the stops and the minutes", /stops/.test(meta) && /min/.test(meta), meta);
+
+  await page.screenshot({ path: `${SHOTS}/p10-atlas.png` });
 
   /* ── Integrate: the code is built from the live tour ────────────────── */
   await tabNamed(page, "Integrate").click();

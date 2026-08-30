@@ -17,7 +17,8 @@
     "build": "npm run build:player && npm run build:api",
     "build:api": "node tools/build-api.mjs",
     "build:player": "npm run build -w @timetravel/playground",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "check:return": "node apps/playground/tools/checks/p11-return.cjs"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

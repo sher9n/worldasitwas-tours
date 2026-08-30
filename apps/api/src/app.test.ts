@@ -272,3 +272,72 @@ test("with no secret configured, a token opens nothing", async () => {
   assert.equal(res.statusCode, 401);
   await other.close();
 });
+
+/* ─────────────────────────── the feed ─────────────────────────── */
+
+test("the feed needs a platform key, like the catalogue", async () => {
+  const res = await app.inject({ method: "GET", url: "/v1/feed" });
+  assert.equal(res.statusCode, 401);
+});
+
+test("a player token does not open the feed", async () => {
+  // The token authorises one walk for one traveller. The feed is every walk we
+  // have, so a page holding one must not be able to read the catalogue through it.
+  const token = await signPlayerToken(SECRET, tour.id, "t_1");
+  const res = await app.inject({ method: "GET", url: "/v1/feed", headers: { authorization: `Player ${token}` } });
+  assert.equal(res.statusCode, 401);
+});
+
+test("the feed carries what a map needs to draw a walk", async () => {
+  const res = await app.inject({ method: "GET", url: "/v1/feed", headers: { authorization: "Bearer k1" } });
+  assert.equal(res.statusCode, 200);
+  const body = res.json();
+  assert.equal(body.schema, "feed/1");
+  assert.equal(body.tours.length, 1);
+
+  const t = body.tours[0];
+  assert.equal(t.id, tour.id);
+  assert.equal(t.title, "Test walk");
+  assert.equal(t.year, 1850);
+  assert.equal(t.durationMin, 12);
+  assert.equal(t.stopCount, 1);
+  assert.equal(t.companion.name, "Nell Baker");
+  assert.deepEqual(t.city, { id: "london", name: "London", country: "GB" });
+  // The pin for the walk as a whole is its first stop.
+  assert.deepEqual(t.start, { lat: 51.5139, lng: -0.1015 });
+
+  const stop = t.stops[0];
+  assert.equal(stop.name, "Ludgate Hill");
+  assert.equal(stop.lat, 51.5139);
+  assert.equal(stop.lng, -0.1015);
+  // No blurb in the fixture, so the description falls back to the card caption.
+  assert.equal(stop.description, "Busy.");
+});
+
+test("feed media is re-pointed the same way a manifest is", async () => {
+  // The cover is what a host draws on its card, so a feed still pointing at the
+  // laptop that published the walk is a broken image on somebody else's site.
+  const res = await app.inject({ method: "GET", url: "/v1/feed", headers: { authorization: "Bearer k1" } });
+  const t = res.json().tours[0];
+  assert.ok(t.cover.image.startsWith("https://media.example.com/"), t.cover.image);
+  assert.ok(t.companion.portrait.startsWith("https://media.example.com/"), t.companion.portrait);
+});
+
+test("the feed is ETagged over its walks, not over the time it was asked for", async () => {
+  const first = await app.inject({ method: "GET", url: "/v1/feed", headers: { authorization: "Bearer k1" } });
+  const etag = first.headers.etag as string;
+  assert.ok(etag, "feed should carry an ETag");
+
+  // updatedAt moves on every call. If the tag were taken over the body, a host
+  // polling an unchanged catalogue would re-download it every single time.
+  const second = await app.inject({ method: "GET", url: "/v1/feed", headers: { authorization: "Bearer k1" } });
+  assert.equal(second.headers.etag, etag);
+
+  const third = await app.inject({
+    method: "GET",
+    url: "/v1/feed",
+    headers: { authorization: "Bearer k1", "if-none-match": etag },
+  });
+  assert.equal(third.statusCode, 304);
+  assert.equal(third.body, "");
+});

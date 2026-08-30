@@ -20,6 +20,9 @@ type Mutual<A, B> = [A] extends [B] ? ([B] extends [A] ? true : ["client is miss
 const _tour: Mutual<Schema.Tour, Client.Tour> = true;
 const _summary: Mutual<Schema.TourSummary, Client.TourSummary> = true;
 const _catalog: Mutual<Schema.Catalog, Client.Catalog> = true;
+const _feed: Mutual<Schema.Feed, Client.Feed> = true;
+const _feedTour: Mutual<Schema.FeedTour, Client.FeedTour> = true;
+const _feedStop: Mutual<Schema.FeedStop, Client.FeedStop> = true;
 const _stop: Mutual<Schema.Stop, Client.Stop> = true;
 const _card: Mutual<Schema.Card, Client.Card> = true;
 const _companion: Mutual<Schema.Companion, Client.Companion> = true;
@@ -36,5 +39,5 @@ const _origin: Mutual<Schema.Origin, Client.Origin> = true;
 
 test("the client's hand-written types still match the tour/1 schema", () => {
   // Proven by the assignments above at compile time; nothing to check here.
-  void [_tour, _summary, _catalog, _stop, _card, _companion, _hotspot, _spoken, _image, _video, _claim, _source, _prov, _geo, _confidence, _origin];
+  void [_tour, _summary, _catalog, _feed, _feedTour, _feedStop, _stop, _card, _companion, _hotspot, _spoken, _image, _video, _claim, _source, _prov, _geo, _confidence, _origin];
 });
