@@ -189,6 +189,9 @@ export const Companion = z.object({
   portrait: url,
   greeting: SpokenLine,
   voice: Voice,
+  /** The voice the tour is recorded in. A live answer is spoken in it too, so a
+   * question is answered by the same person who has been telling the story. */
+  narrationVoice: z.string().default(""),
   /** Reusable clips of her talking; the player rotates through them while any
    * of her audio plays and freezes her in silence. Works for live answers. */
   faceReel: z.array(VideoAsset).default([]),

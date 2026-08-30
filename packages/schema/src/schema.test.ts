@@ -22,6 +22,7 @@ function minimalTour(): Tour {
       portrait: "https://cdn/nell.webp",
       greeting: { text: "Hello." },
       voice: { provider: "openai-realtime", voice: "marin" },
+      narrationVoice: "Lily",
       faceReel: [],
     },
     stops: [

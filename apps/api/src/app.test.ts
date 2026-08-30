@@ -27,6 +27,7 @@ const tour: Tour = {
     portrait: "http://localhost:4100/media/tour_london_1850_test/nell.jpg?v=bbbb222233",
     greeting: { text: "Mind the mud." },
     voice: { provider: "openai-realtime", voice: "marin" },
+      narrationVoice: "Lily",
     faceReel: [],
   },
   stops: [

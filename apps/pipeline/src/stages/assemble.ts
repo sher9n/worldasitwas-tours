@@ -313,6 +313,7 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
       portrait: portrait?.url ?? firstHero,
       greeting: { text: input.companion.greeting, audio: greeting?.url, durationSec: greeting?.durationSec },
       voice: { provider: "openai-realtime", voice: recipe.companion.voice },
+      narrationVoice: recipe.companion.narrationVoice,
       faceReel,
     },
     stops,

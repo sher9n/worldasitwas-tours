@@ -3,6 +3,7 @@ import { config } from "./config.ts";
 
 const app = await buildApp({
   toursDir: config.toursDir,
+  falKey: config.falKey,
   mediaBaseUrl: config.mediaBaseUrl,
   playerDir: config.playerDir,
   playerTokenSecret: config.playerTokenSecret,

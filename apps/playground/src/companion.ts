@@ -86,6 +86,10 @@ export class CompanionSession {
   private responseActive = false;
   private meter = new VoiceMeter();
   private sounding = false;
+  /** Sentences of the current answer, spoken in order in the tour's own voice. */
+  private toSay: string[] = [];
+  private saying = false;
+  private buffer = "";
   state: CompanionState = "idle";
   sessionId = "";
   /** A minted credential that no call has consumed yet, kept for the next attempt. */
@@ -160,6 +164,49 @@ export class CompanionSession {
     }
   }
 
+  /** Queue one sentence to be spoken in the tour's voice. */
+  private enqueue(sentence: string): void {
+    if (!sentence) return;
+    this.toSay.push(sentence);
+    void this.drain();
+  }
+
+  /** Speak what is queued, in order, never two at once. */
+  private async drain(): Promise<void> {
+    if (this.saying) return;
+    this.saying = true;
+    try {
+      while (this.toSay.length) {
+        const text = this.toSay.shift()!;
+        let url = "";
+        try {
+          const res = await fetch(`/v1/tours/${encodeURIComponent(this.tourId)}/companion/say`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("tt.key") || "dev"}` },
+            body: JSON.stringify({ text }),
+          });
+          if (!res.ok) throw new Error(`say ${res.status}`);
+          url = URL.createObjectURL(await res.blob());
+        } catch {
+          continue;
+        }
+        this.sounding = true;
+        if (this.state !== "speaking") this.setState("speaking");
+        await new Promise<void>((done) => {
+          this.audioEl.onended = () => done();
+          this.audioEl.onerror = () => done();
+          this.audioEl.src = url;
+          void this.audioEl.play().catch(() => done());
+        });
+        URL.revokeObjectURL(url);
+      }
+    } finally {
+      this.saying = false;
+      this.sounding = false;
+      if (this.state === "speaking") this.setState("ready");
+    }
+  }
+
   /** Mints a realtime credential, waiting once if the budget asks us to. */
   private async mint(stopId?: string, cardId?: string): Promise<SessionInfo> {
     const ask = () => api.session(this.tourId, { travellerId: travellerId(), stopId, cardId, locale: navigator.language });
@@ -193,6 +240,9 @@ export class CompanionSession {
     // Cut her off only if she is actually mid-sentence, then open the mic.
     if (this.responseActive) this.send({ type: "response.cancel" });
     this.send({ type: "output_audio_buffer.clear" });
+    this.toSay = [];
+    this.buffer = "";
+    this.audioEl.pause();
     this.sounding = false;
     this.send({ type: "input_audio_buffer.clear" });
     const track = this.mic?.getAudioTracks()[0];
@@ -206,6 +256,9 @@ export class CompanionSession {
     // Whatever has already been sent is sitting in the playback buffer; clearing
     // it is what actually stops the sound.
     this.send({ type: "output_audio_buffer.clear" });
+    this.toSay = [];
+    this.buffer = "";
+    this.audioEl.pause();
     this.sounding = false;
     if (this.state === "speaking" || this.state === "thinking") this.setState("ready");
   }
@@ -228,10 +281,20 @@ export class CompanionSession {
         this.responseActive = true;
         this.answerText = "";
         break;
-      case "response.output_text.delta":
-        this.answerText += String(ev.delta ?? "");
-        this.ev.onTranscript("companion", String(ev.delta ?? ""), false);
+      case "response.output_text.delta": {
+        const delta = String(ev.delta ?? "");
+        this.answerText += delta;
+        this.ev.onTranscript("companion", delta, false);
+        // Peel off whole sentences as they arrive, so she starts talking a
+        // sentence in rather than after the entire answer is written.
+        this.buffer += delta;
+        let m: RegExpMatchArray | null;
+        while ((m = this.buffer.match(/^[\s\S]*?[.!?…]+(?=\s|$)/))) {
+          this.enqueue(m[0].trim());
+          this.buffer = this.buffer.slice(m[0].length).replace(/^\s+/, "");
+        }
         break;
+      }
       case "response.output_audio.delta":
       case "output_audio_buffer.started":
         this.sounding = true;
@@ -266,6 +329,10 @@ export class CompanionSession {
       }
       case "response.done": {
         this.responseActive = false;
+        if (this.buffer.trim()) {
+          this.enqueue(this.buffer.trim());
+          this.buffer = "";
+        }
         if (this.answerText.trim()) this.ev.onTranscript("companion", this.answerText.trim(), true);
         // Her audio keeps playing after the answer is generated, so thinking
         // gives way to ready only when nothing is left to be heard.
@@ -298,7 +365,7 @@ export class CompanionSession {
 
   /** Is her live answer audibly playing right now? Drives her on-screen mouth. */
   isSpeakingAudio(): boolean {
-    return this.sounding && !this.audioEl.muted && this.meter.audible();
+    return this.sounding && !this.audioEl.muted && !this.audioEl.paused;
   }
 
   close(): void {

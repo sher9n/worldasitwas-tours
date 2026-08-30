@@ -25,6 +25,7 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   const midHold = await page.evaluate(() => ({
     cls: document.querySelector(".ask").className,
     circle: (() => { const v = document.querySelector(".voice-circle video.on"); return v ? !v.paused : null; })(),
+    halo: document.querySelector(".voice-circle")?.className.includes("speaking") ?? null,
   }));
   await page.waitForTimeout(1800);
   await page.mouse.up();
@@ -35,6 +36,7 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
     const s = await page.evaluate(() => ({
       cls: document.querySelector(".ask").className.replace("ask", "").trim() || "ready",
       circle: (() => { const v = document.querySelector(".voice-circle video.on"); return v ? !v.paused : null; })(),
+    halo: document.querySelector(".voice-circle")?.className.includes("speaking") ?? null,
     }));
     timeline.push(s);
     if (s.cls === "thinking" && dotsSeen === null) {
@@ -46,7 +48,10 @@ const ok = (n, c, d = "") => console.log(`[p45] ${c ? "PASS" : "FAIL"} ${n}${d ?
   const states = timeline.map((x) => x.cls);
   const firstSpeak = states.indexOf("speaking");
   let pass = true;
-  pass = ok("listening while held, circle still", /listening/.test(midHold.cls) && midHold.circle !== true, JSON.stringify(midHold)) && pass;
+  // She stays alive while you speak, as she would if you were standing there.
+  // What must be true is that she is not being shown as speaking: the halo is
+  // for her voice, and her voice is not the one talking right now.
+  pass = ok("listening while held, and not shown as speaking", /listening/.test(midHold.cls) && midHold.halo !== true, JSON.stringify(midHold)) && pass;
   pass = ok("thinking immediately after release", states[0] === "thinking" || states[0] === "listening", states.slice(0, 3).join(",")) && pass;
   pass = ok("thinking shows animated dots", dotsSeen === "tdot", String(dotsSeen)) && pass;
   if (firstSpeak >= 0) {

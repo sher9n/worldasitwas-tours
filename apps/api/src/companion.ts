@@ -115,8 +115,10 @@ export async function mintSession(opts: {
       type: "realtime",
       model: opts.model,
       instructions,
-      // She answers aloud in her own voice, the same one the tour is recorded in.
-      output_modalities: ["audio"],
+      // She answers in text, and the player speaks it in the very voice the tour
+      // is recorded in. Letting the model speak would answer a question in a
+      // different person's voice from the one telling the story.
+      output_modalities: ["text"],
       audio: {
         input: {
           // Push-to-talk: the client commits turns; no server voice activity detection.

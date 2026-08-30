@@ -10,6 +10,8 @@ import { mintSession } from "./companion.ts";
 
 export interface AppOptions {
   toursDir: string;
+  /** Speech for live answers, in the tour's own voice. Never leaves the server. */
+  falKey?: string;
   /**
    * Secret for player tokens. Empty means the player has no way to prove
    * itself, and the tour and companion routes then accept only a platform key.
@@ -263,6 +265,37 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
       return reply.type("text/html").header("Cache-Control", "no-cache").send(indexHtml);
     });
   }
+
+  // One sentence of a live answer, spoken in the voice this tour is recorded in.
+  // The player sends text as it streams, so she starts talking a sentence in
+  // rather than after the whole answer.
+  // A player token is exactly the right credential here: the hosted player holds
+  // one, and speaking an answer belongs to the same walk the token authorises.
+  app.post<{ Params: { tourId: string } }>("/v1/tours/:tourId/companion/say", { preHandler: requireKeyOrPlayerToken }, async (req, reply) => {
+    const stored = await store.get(req.params.tourId);
+    if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
+    const body = z.object({ text: z.string().min(1).max(600) }).safeParse(req.body ?? {});
+    if (!body.success) return sendError(reply, 400, "bad_request", "text (<=600 chars) is required");
+    if (!opts.falKey) return sendError(reply, 503, "companion_unavailable", "Speech is not configured");
+    const voice = stored.tour.companion.narrationVoice;
+    try {
+      const res = await fetch("https://fal.run/fal-ai/elevenlabs/tts/eleven-v3", {
+        method: "POST",
+        headers: { Authorization: `Key ${opts.falKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ text: `[warmly] ${body.data.text}`, voice, stability: 0.3, language_code: "en" }),
+      });
+      if (!res.ok) throw new Error(`fal tts ${res.status}: ${(await res.text()).slice(0, 200)}`);
+      const json = (await res.json()) as { audio: { url: string } };
+      const audio = await fetch(json.audio.url);
+      if (!audio.ok) throw new Error(`fal tts fetch ${audio.status}`);
+      reply.header("Content-Type", "audio/mpeg");
+      reply.header("Cache-Control", "no-store");
+      return reply.send(Buffer.from(await audio.arrayBuffer()));
+    } catch (err) {
+      req.log.error(err);
+      return sendError(reply, 503, "companion_unavailable", "Speech failed");
+    }
+  });
 
   if (opts.dev) {
     // Playground helpers: not part of the platform contract.
