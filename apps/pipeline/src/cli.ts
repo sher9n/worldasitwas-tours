@@ -10,10 +10,12 @@
  * assets that do not exist yet.
  */
 import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseRecipe, type Recipe } from "@timetravel/schema";
 import { dirs, env, type ProviderName, type Quality } from "./env.ts";
+import { FFMPEG } from "./ffmpeg.ts";
 import { Ledger } from "./ledger.ts";
 import { Llm } from "./llm.ts";
 import { CachedProvider } from "./providers/cached.ts";
@@ -291,11 +293,37 @@ async function main(): Promise<void> {
         stage: "reel",
         note: "presence",
       });
-      if (clip.localPath) await fs.copyFile(clip.localPath, path.join(reelDir, "presence.mp4"));
+      if (clip.localPath) {
+        const forward = path.join(reelDir, "presence.mp4");
+        await fs.copyFile(clip.localPath, forward);
+        // A loop that dissolves back to its own beginning shows two different
+        // moments of the same person at once, which reads as a glitch. Played
+        // forward and then backward there is nothing to blend: the last frame of
+        // one is the first frame of the other, so the motion simply reverses and
+        // the stream never breaks.
+        const reversed = path.join(reelDir, "presence_reverse.mp4");
+        await new Promise<void>((ok, bad) => {
+          execFile(FFMPEG, ["-y", "-i", forward, "-vf", "reverse", "-an", reversed], (err) => (err ? bad(err) : ok()));
+        }).catch((err) => console.warn(`[reel] could not reverse the presence clip: ${(err as Error).message}`));
+      }
     } catch (err) {
       console.warn(`[reel] presence clip failed: ${(err as Error).message}`);
     }
     reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
+  }
+  // The backward copy is made locally and costs nothing, so it is kept in step
+  // with the clip itself rather than only being written when the clip is new.
+  const forwardClip = reelClips.find((f) => f.endsWith("presence.mp4"));
+  if (forwardClip) {
+    const reversed = path.join(reelDir, "presence_reverse.mp4");
+    const haveReverse = await fs.access(reversed).then(() => true, () => false);
+    if (!haveReverse) {
+      log("reel: writing the backward copy so the loop has no seam");
+      await new Promise<void>((ok, bad) => {
+        execFile(FFMPEG, ["-y", "-i", forwardClip, "-vf", "reverse", "-an", reversed], (err) => (err ? bad(err) : ok()));
+      }).catch((err) => console.warn(`[reel] could not reverse the presence clip: ${(err as Error).message}`));
+      reelClips = (await fs.readdir(reelDir)).filter((f) => f.endsWith(".mp4")).sort().map((f) => path.join(reelDir, f));
+    }
   }
   log(`reel: ${reelClips.length} clips`);
 

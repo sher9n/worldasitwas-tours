@@ -355,7 +355,14 @@ export function Player({
   // into a photograph. What tells you she is speaking is the halo, which follows
   // her actual voice, so it reads the same for a recorded line and a live answer.
   const reel = tour.companion.faceReel?.length ? tour.companion.faceReel : stop.arrival.talkingPortrait ? [stop.arrival.talkingPortrait] : [];
-  const clip = reel[0]?.video;
+  // Forward and backward copies of the same clip. Played one after the other the
+  // motion turns around rather than jumping, and there is nothing to blend: the
+  // last frame of one is the first frame of the other.
+  // The publisher renames the files, so the order is what identifies them: the
+  // clip first, its backward copy second.
+  const forward = reel[0]?.video;
+  const backward = reel[1]?.video ?? forward;
+  const clip = forward;
   const slotA = useRef<HTMLVideoElement | null>(null);
   const slotB = useRef<HTMLVideoElement | null>(null);
   const [active, setActive] = useState<0 | 1>(0);
@@ -367,39 +374,33 @@ export function Player({
   // The pause control acts on whichever player is on screen.
   circleVideo.current = visible();
 
-  /** Hand the loop to the other player before this one runs out, so there is no seam. */
+  /** Turn the motion around at the exact frame it ends on. */
   const loopOver = () => {
     if (swapping.current) return;
     const inc = hidden();
-    if (!inc) return;
+    if (!inc || inc.readyState < 2) return;
     swapping.current = true;
+    // The incoming clip starts on the frame the outgoing one is ending on, so
+    // both are shown for a moment and the cut lands between identical frames.
     try {
       inc.currentTime = 0;
     } catch {
       // not seekable yet; it starts at the beginning anyway
     }
     void inc.play().catch(() => undefined);
-    const flip = () => {
-      setActive((a) => (a === 0 ? 1 : 0));
-      // The one that has left the screen rests until its turn comes round again.
-      window.setTimeout(() => {
-        const out = active === 0 ? slotA.current : slotB.current;
-        if (out) out.pause();
-        swapping.current = false;
-      }, 700);
-    };
-    if (inc.readyState >= 2) flip();
-    else {
-      const done = () => {
-        inc.removeEventListener("loadeddata", done);
-        flip();
-      };
-      inc.addEventListener("loadeddata", done, { once: true });
-      window.setTimeout(() => {
-        inc.removeEventListener("loadeddata", done);
-        flip();
-      }, 400);
-    }
+    setActive((a) => (a === 0 ? 1 : 0));
+    window.setTimeout(() => {
+      const out = active === 0 ? slotA.current : slotB.current;
+      if (out) {
+        out.pause();
+        try {
+          out.currentTime = 0;
+        } catch {
+          // it will be rewound when its turn comes round
+        }
+      }
+      swapping.current = false;
+    }, 400);
   };
 
   useEffect(() => {
@@ -415,7 +416,7 @@ export function Player({
         return;
       }
       // Cross into the other player half a second before this one ends.
-      if (v.duration > 0 && v.duration - v.currentTime < 0.5) {
+      if (v.duration > 0 && v.duration - v.currentTime < 0.12) {
         loopOver();
         return;
       }
@@ -716,8 +717,8 @@ export function Player({
             (recorded or live) and freeze the instant it stops. */}
         {clip ? (
           <>
-            <video ref={slotA} className={active === 0 ? "on" : ""} src={clip} muted autoPlay playsInline preload="auto" />
-            <video ref={slotB} className={active === 1 ? "on" : ""} src={clip} muted playsInline preload="auto" />
+            <video ref={slotA} className={active === 0 ? "on" : ""} src={forward} muted autoPlay playsInline preload="auto" />
+            <video ref={slotB} className={active === 1 ? "on" : ""} src={backward} muted playsInline preload="auto" />
           </>
         ) : (
           <img src={tour.companion.portrait} alt="" />

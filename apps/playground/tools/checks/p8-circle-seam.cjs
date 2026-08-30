@@ -15,7 +15,10 @@ const ok = (n, c, d = "") => console.log(`[p8] ${c ? "PASS" : "FAIL"} ${n}${d ? 
   await page.click("button.travel");
   await page.waitForTimeout(2500);
   let pass = true;
-  pass = ok("two players hold the same clip", await page.evaluate(() => { const v = [...document.querySelectorAll(".voice-circle video")]; return v.length === 2 && v[0].src === v[1].src; })) && pass;
+  pass = ok("one player runs the clip, the other its backward copy", await page.evaluate(() => { const v = [...document.querySelectorAll(".voice-circle video")]; return v.length === 2 && v[0].src !== v[1].src; })) && pass;
+  // A blend would mean two different moments of her on screen at once; the cut
+  // must land between matching frames instead, so no fade is allowed.
+  pass = ok("the swap is a cut, not a dissolve", await page.evaluate(() => getComputedStyle(document.querySelector(".voice-circle video")).transitionDuration === "0s")) && pass;
   // Sample across two loop lengths: presence must never stop or go blank.
   const s = await page.evaluate(() => new Promise((done) => {
     const out = [];
