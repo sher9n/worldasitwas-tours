@@ -237,6 +237,12 @@ export class CompanionSession {
         await new Promise<void>((done) => {
           this.audioEl.onended = () => done();
           this.audioEl.onerror = () => done();
+          // A hold cuts him off with pause(), and pause fires neither ended
+          // nor error. Without this line the loop parks here forever, saying
+          // stays true, and every later answer queues sentences that nothing
+          // will ever play: he hears the question, answers it in text, and
+          // says none of it. The second ask looked ignored because of this.
+          this.audioEl.onpause = () => done();
           this.audioEl.src = url;
           void this.audioEl.play().catch(() => done());
         });
@@ -289,7 +295,7 @@ export class CompanionSession {
       }
     }
     if (!this.holding) return;
-    if (this.state !== "ready" && this.state !== "speaking") return;
+    if (this.state !== "ready" && this.state !== "speaking" && this.state !== "thinking") return;
     if (!this.mic) {
       // First hold: ask for the microphone now, inside the gesture. On the
       // devices that cannot give one at all, say so instead of "hiccup".
@@ -327,7 +333,7 @@ export class CompanionSession {
         return;
       }
     }
-    if (!this.holding || (this.state !== "ready" && this.state !== "speaking")) return;
+    if (!this.holding || (this.state !== "ready" && this.state !== "speaking" && this.state !== "thinking")) return;
     // Cut her off only if she is actually mid-sentence, then open the mic.
     if (this.responseActive) this.send({ type: "response.cancel" });
     this.send({ type: "output_audio_buffer.clear" });
