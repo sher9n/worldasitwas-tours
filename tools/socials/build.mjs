@@ -60,17 +60,6 @@ async function crop(src, dst, w, h) {
   await ff(["-i", src, "-vf", `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}`, "-q:v", "3", dst]);
 }
 
-/** The phone kept whole, on a blurred bed of itself. Nothing is cut off. */
-async function pad(src, dst, w, h) {
-  await ff([
-    "-i", src, "-i", src,
-    "-filter_complex",
-    `[0:v]scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h},boxblur=22:2,eq=brightness=-0.16[bg];` +
-      `[1:v]scale=-2:${Math.round(h * 0.94)}[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2`,
-    "-q:v", "3", dst,
-  ]);
-}
-
 /** A grid, for the posts that are about the whole set rather than one walk. */
 async function grid(sources, dst, cols, cell) {
   const ins = sources.flatMap((s) => ["-i", s]);
@@ -104,15 +93,16 @@ const withV = async (src) => `${src}?v=${await fp(src)}`;
 
 const made = [];
 for (const t of tours) {
-  const cover = path.join(SHOTS, `${t.id}-cover.png`);
-  const clean = path.join(SHOTS, `${t.id}-clean1.png`);
+  // Captured at the aspect they ship in, interface visible, so every picture
+  // is the product full-bleed: what the app actually looks like in the hand,
+  // Hold to ask included. The square is the walk's own art, edge to edge.
+  const story = path.join(SHOTS, `${t.id}-story.png`);
+  const feed = path.join(SHOTS, `${t.id}-feed.png`);
   const hero = path.join(t.dir, "s01_hero.jpg");
-  if (!(await exists(cover))) { console.warn(`no shots for ${t.id}`); continue; }
+  if (!(await exists(story)) || !(await exists(feed))) { console.warn(`no shots for ${t.id}`); continue; }
 
-  // The phone kept whole where the product is the point, the world edge to edge
-  // where the place is the point.
-  await pad(cover, path.join(MEDIA, `${t.id}-portrait.jpg`), 1080, 1350);
-  await pad(clean, path.join(MEDIA, `${t.id}-story.jpg`), 1080, 1920);
+  await crop(feed, path.join(MEDIA, `${t.id}-portrait.jpg`), 1080, 1350);
+  await crop(story, path.join(MEDIA, `${t.id}-story.jpg`), 1080, 1920);
   await crop(hero, path.join(MEDIA, `${t.id}-square.jpg`), 1080, 1080);
 
   made.push(t.id);
@@ -280,6 +270,17 @@ function agentBrief(p, plats) {
   L.push("RULES");
   for (const r of RULES) L.push(`  - ${r}`);
   return L.join("\n");
+}
+
+// A film's poster is one of its own frames, so the card shows the film
+// before play, full-bleed, rather than an unrelated padded picture.
+for (const p of posts) {
+  const film = p.media.find((m) => m.kind === "vid");
+  if (film) {
+    const poster = film.src.replace(/\.mp4$/, "-poster.jpg");
+    await ff(["-ss", "1.6", "-i", path.join(MEDIA, film.src), "-frames:v", "1", "-q:v", "3", path.join(MEDIA, poster)]);
+    film.poster = poster;
+  }
 }
 
 // Every reference the page or the feed makes carries the content hash.
