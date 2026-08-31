@@ -264,7 +264,7 @@ const html = `<!doctype html>
     <li><b>Pick a post.</b> The first four are about the product; the rest are one per walk.</li>
     <li><b>Take the media.</b> Pictures come in the shape each platform wants; the two films have sound, so post them with sound on.</li>
     <li><b>Copy the words.</b> Each platform has its own version, already the right length. The character count is next to the button.</li>
-    <li><b>Link.</b> Send people to <b>tours.worldasitwas.com</b>.</li>
+    <li><b>Link.</b> Send people to <b>app.worldasitwas.com</b>.</li>
   </ol>
 </div>
 

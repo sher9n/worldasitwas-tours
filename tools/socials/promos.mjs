@@ -156,7 +156,7 @@ async function cards(promo, browser) {
     `<div class="scrim"></div><div class="centre">
        <div class="eyebrow">WORLD AS IT WAS</div>
        <div class="line" style="font-size:98px">Twelve walks through<br>vanished cities</div>
-       <div class="url">tours.worldasitwas.com</div>
+       <div class="url">app.worldasitwas.com</div>
      </div>`), { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: brand, omitBackground: true });
