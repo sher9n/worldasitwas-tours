@@ -135,7 +135,7 @@ for (const p of copy.posts) {
   const media = [];
   if (p.media.includes("montage-guides.jpg")) media.push({ src: "montage-guides.jpg", kind: "img", label: "All twelve guides" });
   if (p.media.includes("montage-cities.jpg")) media.push({ src: "montage-cities.jpg", kind: "img", label: "Six of the cities" });
-  if (p.media.includes("portrait-caterina.mp4")) media.push({ src: "portrait-caterina.mp4", kind: "vid", label: "Caterina's portrait, 39s loop" });
+  if (p.media.includes("portrait-caterina.mp4")) media.push({ src: "portrait-caterina.mp4", kind: "vid", silent: true, label: "Caterina's portrait, 39s silent loop" });
   for (const m of p.media.filter((x) => x.startsWith("clip-"))) {
     const id = m.replace("clip-", "").replace(".mp4", "");
     if (made.includes(id)) media.push({ src: `${id}-clip.mp4`, kind: "vid", label: `${id.replace("tour_", "").replace(/_/g, " ")}, 22s` });
@@ -180,9 +180,16 @@ const card = (p, i) => `
   </header>
 
   <div class="assets">
-    ${p.media.map((m) => m.kind === "img"
-      ? `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`
-      : `<figure><video muted loop playsinline controls preload="none" src="${m.src}"></video><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`).join("")}
+    ${p.media.map((m) => {
+      if (m.kind === "img")
+        return `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`;
+      // Narrated clips play with sound: no muted attribute, and no loop, so a
+      // tap on play behaves like the post will. The muted-loop treatment is
+      // only for the one clip that has no audio track at all, where an
+      // unmuted player pretending to offer sound would read as broken.
+      const attrs = m.silent ? "muted loop playsinline controls" : "controls playsinline";
+      return `<figure><video ${attrs} preload="none" src="${m.src}"></video><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`;
+    }).join("")}
   </div>
 
   <div class="copyblocks">
@@ -319,9 +326,17 @@ document.querySelectorAll("button.copy").forEach((b) => {
   });
 });
 
+// One voice at a time: starting a clip pauses every other, so two narrations
+// never talk over each other while someone works down the page.
+document.addEventListener("play", (e) => {
+  document.querySelectorAll("video").forEach((v) => { if (v !== e.target && !v.muted) v.pause(); });
+}, true);
+
 // Twelve clips is more than a phone decodes at once, so only what is on screen loads.
 const io = new IntersectionObserver((es) => es.forEach((e) => {
-  if (e.isIntersecting && e.target.preload === "none") { e.target.preload = "metadata"; e.target.load(); }
+  // The paused guard matters: load() tears down a play() already in flight,
+  // so a tap that lands in the same instant as this upgrade would be eaten.
+  if (e.isIntersecting && e.target.preload === "none" && e.target.paused) { e.target.preload = "metadata"; e.target.load(); }
 }), { rootMargin: "200px 0px" });
 document.querySelectorAll("video").forEach((v) => io.observe(v));
 </script>
