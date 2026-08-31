@@ -403,6 +403,8 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .ask .tdots { margin-left: 0; }
 .ask .tdots i { width: 6px; height: 6px; }
 .ask-state.error { background: rgba(122,31,31,.85); border-radius: 10px; }
+/* A hint asks for one action; amber, not alarm. */
+.ask-state.hint { background: rgba(122,90,31,.9); border-radius: 10px; }
 .round { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.4); color: #fff; font: 700 12px "Source Sans 3", sans-serif; cursor: pointer; }
 .round.on { background: #fff; color: #1b2230; }
 .leave { position: absolute; right: 18px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.4); color: #fff; font-size: 18px; cursor: pointer; }

@@ -10,6 +10,8 @@ export type CompanionState = "idle" | "connecting" | "ready" | "listening" | "th
 
 export interface CompanionEvents {
   onState: (s: CompanionState, detail?: string) => void;
+  /** A gentle instruction moment: not an error, but the traveller must act. */
+  onHint?: (text: string) => void;
   onTranscript: (who: "you" | "companion", text: string, final: boolean) => void;
   onTool: (name: string, args: Record<string, unknown>) => void;
   onEvent?: (name: string, payload: Record<string, unknown>) => void;
@@ -298,16 +300,19 @@ export class CompanionSession {
       setAudioSessionType("play-and-record");
       try {
         const mic = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
-        if (!this.holding) {
-          // Released while the permission prompt was up; keep nothing running.
-          mic.getTracks().forEach((t) => t.stop());
-          setAudioSessionType("playback");
-          return;
-        }
+        // The permission dialog itself cancels the hold on iOS, so the grant
+        // usually lands AFTER the hold has ended. The stream is kept and
+        // attached regardless: the next hold then listens instantly, with no
+        // second prompt. Throwing it away here is what made every hold prompt
+        // again and swallowed the question whole.
         const track = mic.getAudioTracks()[0];
         track.enabled = false;
         await this.sender?.replaceTrack(track);
         this.mic = mic;
+        if (!this.holding) {
+          this.ev.onHint?.("I can hear you now — hold the button and ask again");
+          return;
+        }
       } catch (err) {
         // The browser's own words here are famously unhelpful ("Not
         // supported"), so the common refusals get said in ours.
@@ -431,7 +436,12 @@ export class CompanionSession {
         const code = (ev.error as { code?: string } | undefined)?.code ?? "";
         if (/response_cancel_not_active|input_audio_buffer_commit_empty|conversation_already_has_active_response/.test(code)) {
           this.ev.onEvent?.("ask_notice", { code });
-          if (this.state === "thinking") this.setState("ready");
+          if (this.state === "thinking") {
+            // A hold that captured nothing must not dissolve silently into the
+            // narration carrying on: that reads as the question being ignored.
+            if (code === "input_audio_buffer_commit_empty") this.ev.onHint?.("I didn't catch that — hold the button and ask again");
+            this.setState("ready");
+          }
           break;
         }
         const msg = (ev.error as { message?: string } | undefined)?.message ?? code;

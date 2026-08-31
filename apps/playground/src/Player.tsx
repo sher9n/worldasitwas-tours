@@ -87,6 +87,8 @@ export function Player({
   const [hotspot, setHotspot] = useState<Hotspot | null>(null);
   const [cState, setCState] = useState<CompanionState>("idle");
   const [cDetail, setCDetail] = useState("");
+  const [cHint, setCHint] = useState("");
+  const hintTimer = useRef<number | undefined>(undefined);
   const [beatFrac, setBeatFrac] = useState(0);
   const [speakingUi, setSpeakingUi] = useState(false);
   const [gated, setGated] = useState(false);
@@ -161,6 +163,13 @@ export function Player({
         // Her live answer ended: the recorded walk picks back up.
         if (s === "ready" && (prev === "speaking" || prev === "thinking")) engine.current?.resumeVoice();
         onCompanion?.(s, transcriptRef.current);
+      },
+      onHint: (text) => {
+        // A hint is an instruction with a shelf life: shown long enough to
+        // read, gone before it nags.
+        window.clearTimeout(hintTimer.current);
+        setCHint(text);
+        hintTimer.current = window.setTimeout(() => setCHint(""), 5000);
       },
       onTranscript: (who, text, final) => {
         if (!final) return;
@@ -738,6 +747,7 @@ export function Player({
         </div>
       )}
       {cState === "error" && <div className="ask-state error">Voice hiccup, hold to try again{cDetail ? ` (${cDetail.slice(0, 60)})` : ""}</div>}
+      {cHint && cState !== "error" && cState !== "listening" && <div className="ask-state hint">{cHint}</div>}
 
       {sheet && (
         <div className="sheet" data-noadvance onClick={() => setSheet(false)}>
