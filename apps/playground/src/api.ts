@@ -23,6 +23,11 @@ function authHeader(): Record<string, string> {
 
 const headers = authHeader();
 
+/** The same credential every API call uses, for callers that build their own fetch. */
+export function apiAuthHeaders(): Record<string, string> {
+  return { ...headers };
+}
+
 async function get<T>(url: string): Promise<T> {
   const res = await fetch(url, { headers, credentials: "same-origin" });
   if (!res.ok) {
@@ -33,6 +38,7 @@ async function get<T>(url: string): Promise<T> {
 }
 
 export const api = {
+  chats: (limit = 200) => get<{ turns: import("./Chats.tsx").ChatTurn[] }>(`/v1/chats?limit=${limit}`),
   catalog: () => get<Catalog>("/v1/catalog"),
   /** Every published walk with its stops, in one call. What a host plots. */
   feed: () => get<Feed>("/v1/feed"),

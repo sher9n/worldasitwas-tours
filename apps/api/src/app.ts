@@ -308,6 +308,75 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     });
   }
 
+  /**
+   * The chat ledger: one JSONL line per completed ask, appended by the player
+   * when an answer finishes. It lives under the tours volume in _chats, which
+   * the catalogue skips (no manifest.json), so it persists with the media and
+   * can never appear as a walk.
+   *
+   * The realtime call runs browser-to-OpenAI, so the server never sees the
+   * words unless the player reports them; this is that report.
+   */
+  const chatsDir = path.join(opts.toursDir, "_chats");
+  await fs.mkdir(chatsDir, { recursive: true });
+  const ChatTurn = z.object({
+    sessionId: z.string().min(1).max(80),
+    travellerId: z.string().min(1).max(80),
+    stopId: z.string().max(80).optional(),
+    question: z.string().max(4000),
+    answer: z.string().max(8000),
+    model: z.string().max(80).optional(),
+    usage: z
+      .object({
+        input_tokens: z.number().int().nonnegative().optional(),
+        output_tokens: z.number().int().nonnegative().optional(),
+        total_tokens: z.number().int().nonnegative().optional(),
+      })
+      .optional(),
+  });
+  app.post<{ Params: { tourId: string } }>("/v1/tours/:tourId/companion/chat", { preHandler: requireKeyOrPlayerToken }, async (req, reply) => {
+    const stored = await store.get(req.params.tourId);
+    if (!stored) return sendError(reply, 404, "tour_not_found", "Unknown or unpublished tour");
+    const body = ChatTurn.safeParse(req.body ?? {});
+    if (!body.success) return sendError(reply, 400, "bad_request", "not a chat turn");
+    const t = body.data;
+    const line = JSON.stringify({
+      ts: new Date().toISOString(),
+      tour: req.params.tourId,
+      ...t,
+      qChars: t.question.length,
+      aChars: t.answer.length,
+    });
+    const file = path.join(chatsDir, `turns-${new Date().toISOString().slice(0, 10)}.jsonl`);
+    await fs.appendFile(file, line + "\n");
+    return { ok: true };
+  });
+
+  // The operator's view of every conversation, newest first.
+  app.get("/v1/chats", { preHandler: requireKey }, async (req) => {
+    const limit = Math.min(1000, Math.max(1, Number((req.query as { limit?: string }).limit) || 200));
+    let files: string[] = [];
+    try {
+      files = (await fs.readdir(chatsDir)).filter((f) => f.startsWith("turns-") && f.endsWith(".jsonl")).sort().reverse();
+    } catch {
+      files = [];
+    }
+    const turns: unknown[] = [];
+    for (const f of files) {
+      if (turns.length >= limit) break;
+      const lines = (await fs.readFile(path.join(chatsDir, f), "utf8")).trim().split("\n").filter(Boolean).reverse();
+      for (const l of lines) {
+        if (turns.length >= limit) break;
+        try {
+          turns.push(JSON.parse(l));
+        } catch {
+          // one bad line must not hide the rest
+        }
+      }
+    }
+    return { turns };
+  });
+
   // One sentence of a live answer, spoken in the voice this tour is recorded in.
   // The player sends text as it streams, so she starts talking a sentence in
   // rather than after the whole answer.

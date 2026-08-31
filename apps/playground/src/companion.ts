@@ -4,7 +4,7 @@
  * context pushed as conversation items, tool calls surfaced to the player.
  */
 import type { CompanionContext } from "@timetravel/schema";
-import { api, travellerId } from "./api.ts";
+import { api, apiAuthHeaders, travellerId } from "./api.ts";
 
 export type CompanionState = "idle" | "connecting" | "ready" | "listening" | "thinking" | "speaking" | "error" | "closed";
 
@@ -106,6 +106,10 @@ export class CompanionSession {
   private holding = false;
   private audioEl: HTMLAudioElement;
   private pendingContext?: CompanionContext;
+  /** The question and where it was asked, held until the answer completes. */
+  private lastQuestion = "";
+  private askStopId?: string;
+  private model = "";
   private turns = 0;
   private startedAt = 0;
   private answerText = "";
@@ -162,10 +166,14 @@ export class CompanionSession {
       const session = spare ?? (await this.mint(stopId, cardId));
       this.spare = { session, expiresAt: Date.parse(session.expiresAt) || Date.now() + 600_000 };
       this.sessionId = session.sessionId;
+      this.model = session.realtime.model;
+      this.askStopId = stopId;
       const pc = new RTCPeerConnection();
       this.pc = pc;
       pc.ontrack = (e) => {
-        this.audioEl.srcObject = e.streams[0];
+        // Deliberately NOT attached to audioEl: srcObject takes precedence
+        // over src, and audioEl's job is voicing her sentences. The realtime
+        // call is text-only, so this track is silence anyway.
         this.meter.attach(e.streams[0]);
       };
       // No microphone here, on purpose. connect runs at page-load preconnect
@@ -224,7 +232,7 @@ export class CompanionSession {
           const res = await fetch(`/v1/tours/${encodeURIComponent(this.tourId)}/companion/say`, {
             method: "POST",
             credentials: "same-origin",
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("tt.key") || "dev"}` },
+            headers: { "Content-Type": "application/json", ...apiAuthHeaders() },
             body: JSON.stringify({ text }),
           });
           if (!res.ok) throw new Error(`say ${res.status}`);
@@ -243,6 +251,7 @@ export class CompanionSession {
           // will ever play: he hears the question, answers it in text, and
           // says none of it. The second ask looked ignored because of this.
           this.audioEl.onpause = () => done();
+          if (this.audioEl.srcObject) this.audioEl.srcObject = null;
           this.audioEl.src = url;
           void this.audioEl.play().catch(() => done());
         });
@@ -410,6 +419,7 @@ export class CompanionSession {
         this.ev.onTranscript("companion", String(ev.transcript ?? ""), true);
         break;
       case "conversation.item.input_audio_transcription.completed":
+        this.lastQuestion = String(ev.transcript ?? "").trim();
         this.ev.onTranscript("you", String(ev.transcript ?? ""), true);
         break;
       case "response.function_call_arguments.done": {
@@ -432,9 +442,10 @@ export class CompanionSession {
           this.buffer = "";
         }
         if (this.answerText.trim()) this.ev.onTranscript("companion", this.answerText.trim(), true);
+        this.logTurn(ev.response as Record<string, unknown> | undefined);
         // Her audio keeps playing after the answer is generated, so thinking
         // gives way to ready only when nothing is left to be heard.
-        if (!this.sounding && this.state !== "speaking") this.setState("ready");
+        if (!this.sounding && !this.saying && this.toSay.length === 0 && this.state !== "speaking") this.setState("ready");
         break;
       }
       case "error": {
@@ -469,6 +480,34 @@ export class CompanionSession {
   /** Is her live answer audibly playing right now? Drives her on-screen mouth. */
   isSpeakingAudio(): boolean {
     return this.sounding && !this.audioEl.muted && !this.audioEl.paused;
+  }
+
+  /**
+   * One line to the ledger per completed ask. Fire-and-forget with keepalive,
+   * so a traveller closing the page mid-answer still gets counted, and a
+   * failed report never disturbs the conversation itself.
+   */
+  private logTurn(response?: Record<string, unknown>): void {
+    const answer = this.answerText.trim();
+    const question = this.lastQuestion;
+    this.lastQuestion = "";
+    if (!question && !answer) return;
+    const usage = (response?.usage ?? undefined) as { input_tokens?: number; output_tokens?: number; total_tokens?: number } | undefined;
+    void fetch(`/v1/tours/${encodeURIComponent(this.tourId)}/companion/chat`, {
+      method: "POST",
+      credentials: "same-origin",
+      keepalive: true,
+      headers: { "Content-Type": "application/json", ...apiAuthHeaders() },
+      body: JSON.stringify({
+        sessionId: this.sessionId,
+        travellerId: travellerId(),
+        stopId: this.askStopId,
+        question,
+        answer,
+        model: this.model,
+        usage: usage ? { input_tokens: usage.input_tokens, output_tokens: usage.output_tokens, total_tokens: usage.total_tokens } : undefined,
+      }),
+    }).catch(() => undefined);
   }
 
   close(): void {

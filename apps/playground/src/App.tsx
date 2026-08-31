@@ -5,6 +5,7 @@ import { api } from "./api.ts";
 import { Player, type PlayerControls } from "./Player.tsx";
 import type { CompanionState } from "./companion.ts";
 import { hasHost, onHostCommand, postToHost } from "./host.ts";
+import { Chats } from "./Chats.tsx";
 import { Integrate } from "./integration/Integrate.tsx";
 import { Embed } from "./integration/Embed.tsx";
 /**
@@ -20,12 +21,13 @@ interface Ev {
   payload: Record<string, unknown>;
 }
 
-const TABS = ["events", "manifest", "cost", "companion", "atlas", "integrate", "embed"] as const;
+const TABS = ["events", "chats", "manifest", "cost", "companion", "atlas", "integrate", "embed"] as const;
 type Tab = (typeof TABS)[number];
 
 /** What each tab is called and what it is for, above the panel. */
 const TAB_LABEL: Record<Tab, string> = {
   events: "Events",
+  chats: "Chats",
   manifest: "Manifest",
   cost: "Cost",
   companion: "Companion",
@@ -49,7 +51,8 @@ export function App() {
   const [tour, setTour] = useState<Tour | null>(null);
   const [error, setError] = useState("");
   const [events, setEvents] = useState<Ev[]>([]);
-  const [tab, setTab] = useState<Tab>("events");
+  // /chats is the same console opened straight onto the conversations.
+  const [tab, setTab] = useState<Tab>(() => (location.pathname === "/chats" ? "chats" : "events"));
   const [ledger, setLedger] = useState<{ totalUsd: number; byProvider: Record<string, number>; entries: unknown[] } | null>(null);
   const [qr, setQr] = useState("");
   const [gallery, setGallery] = useState<TourSummary[] | null>(null);
@@ -142,6 +145,7 @@ export function App() {
             {gallery ? `${gallery.length} walks · ${new Set(gallery.map((t) => t.city)).size} cities` : "loading walks"}
           </span>
           {tour && <span className="pg-version" title="Manifest version">{tour.version}</span>}
+          <button className={`pg-chats ${tab === "chats" ? "on" : ""}`} onClick={() => setTab("chats")}>Chats</button>
           <span className={`pg-live ${catalog ? "up" : ""}`}>{catalog ? "engine up" : "no engine"}</span>
         </div>
       </header>
@@ -252,6 +256,7 @@ export function App() {
               </ul>
             </div>
           )}
+          {tab === "chats" && <Chats />}
           {tab === "manifest" && (
             <div className="panel">
               <pre>{tour ? JSON.stringify(tour, null, 2) : "…"}</pre>
