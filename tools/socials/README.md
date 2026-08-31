@@ -37,3 +37,18 @@ folder, so only what is actually served gets uploaded: 65 MB rather than 300.
 `posts.json`. Four brand posts and one per walk, written per platform because a
 LinkedIn paragraph dies on Twitter and a Snapchat line is not a LinkedIn post.
 The page counts characters and marks anything over the 280 limit on X.
+
+## Adding a post
+
+1. Add an entry to `posts.json` (a brand post in `posts`, a walk post in
+   `tourPosts`). Optional `schedule` ("2026-09-03 09:00 IST") flows into the
+   agent brief; optional `platforms` narrows the copy columns.
+2. `node tools/socials/build.mjs` — the build REFUSES to produce the page if
+   anything is missing (a caption, a hook, a media file), naming every problem.
+   Nothing half-made can ship.
+3. `RAILWAY_TOKEN=... tools/socials/publish.sh` — sends only what changed.
+
+Every post automatically gets its "Hand this post to an agent" block, and the
+machine feed at `/media/_socials/briefs.json` regenerates with it. Agents are
+told to fetch that feed fresh each run and to keep a ledger of published ids,
+so re-running them after adding posts publishes only the new ones.

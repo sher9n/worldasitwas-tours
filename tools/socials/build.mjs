@@ -114,7 +114,56 @@ await grid(tours.slice(0, 6).map((t) => path.join(t.dir, "s01_hero.jpg")), path.
 
 // ----------------------------------------------------------------- build page
 
+const PLATFORMS = [
+  { key: "linkedin", name: "LinkedIn" },
+  { key: "instagram", name: "Instagram" },
+  { key: "twitter", name: "X / Twitter" },
+  { key: "snapchat", name: "Snapchat" },
+  { key: "tiktok", name: "TikTok" },
+];
+// A post names its platforms when the default four are not the right set; the
+// two films are cut for LinkedIn and TikTok and say so.
+const platformsFor = (p) =>
+  p.platforms ? PLATFORMS.filter((x) => p.platforms.includes(x.key)) : PLATFORMS.filter((x) => x.key !== "tiktok");
+
 const copy = JSON.parse(await fs.readFile(path.join(here, "posts.json"), "utf8"));
+
+/**
+ * A post that is missing anything fails the BUILD, loudly, with every problem
+ * named. The alternative is a card or an agent brief that ships half-made and
+ * is discovered by the sales team, which is the one way this page must never
+ * break. Adding a post is: edit posts.json, run this build, fix what it names.
+ */
+{
+  const problems = [];
+  const ids = new Set();
+  const platformKeys = new Set(PLATFORMS.map((x) => x.key));
+  const all = [...copy.posts.map((p) => ({ ...p, _src: "posts" })),
+               ...Object.entries(copy.tourPosts).map(([id, p]) => ({ id, kind: "tour", title: id, hook: p.hook, ...p, _src: "tourPosts" }))];
+  for (const p of all) {
+    const where = `${p._src}:${p.id ?? "?"}`;
+    if (!p.id) problems.push(`${where}: no id`);
+    else if (ids.has(p.id)) problems.push(`${where}: duplicate id`);
+    else ids.add(p.id);
+    if (!p.title) problems.push(`${where}: no title`);
+    if (!p.hook) problems.push(`${where}: no hook`);
+    const plats = p.platforms ?? PLATFORMS.filter((x) => x.key !== "tiktok").map((x) => x.key);
+    for (const k of plats) {
+      if (!platformKeys.has(k)) problems.push(`${where}: unknown platform "${k}"`);
+      else if (typeof p[k] !== "string" || !p[k].trim()) problems.push(`${where}: no ${k} caption`);
+    }
+    if (p.schedule !== undefined && (typeof p.schedule !== "string" || !p.schedule.trim()))
+      problems.push(`${where}: schedule must be a non-empty string when given`);
+    for (const f of [p.video, p.poster].filter(Boolean)) {
+      if (!(await exists(path.join(MEDIA, f)))) problems.push(`${where}: file not built: ${f}`);
+    }
+  }
+  if (problems.length) {
+    console.error("posts.json is not publishable:\n  " + problems.join("\n  "));
+    process.exit(1);
+  }
+}
+
 const posts = [];
 
 for (const p of copy.posts) {
@@ -134,7 +183,7 @@ for (const t of tours) {
   if (!c) continue;
   posts.push({
     id: t.id, kind: "tour", title: `${t.city} ${t.year} — ${t.title}`,
-    hook: c.hook, guide: `${t.guide}, ${t.role}`,
+    hook: c.hook, guide: `${t.guide}, ${t.role}`, schedule: c.schedule,
     linkedin: c.linkedin, instagram: c.instagram, twitter: c.twitter, snapchat: c.snapchat,
     hashtags: `#history #${t.city.toLowerCase()} #storytelling #travel #ai`,
     media: [
@@ -145,17 +194,7 @@ for (const t of tours) {
   });
 }
 
-const PLATFORMS = [
-  { key: "linkedin", name: "LinkedIn" },
-  { key: "instagram", name: "Instagram" },
-  { key: "twitter", name: "X / Twitter" },
-  { key: "snapchat", name: "Snapchat" },
-  { key: "tiktok", name: "TikTok" },
-];
-// A post names its platforms when the default four are not the right set; the
-// two films are cut for LinkedIn and TikTok and say so.
-const platformsFor = (p) =>
-  p.platforms ? PLATFORMS.filter((x) => p.platforms.includes(x.key)) : PLATFORMS.filter((x) => x.key !== "tiktok");
+
 
 /**
  * The hand-off brief: everything an agent needs to publish one post, in one
@@ -164,11 +203,9 @@ const platformsFor = (p) =>
  * so the brief and the page cannot disagree.
  */
 const LIVE = "https://tours.worldasitwas.com/media/_socials";
-function agentBrief(p, plats) {
+function briefData(p, plats) {
   const caption = (key) =>
     p[key] + (p.hashtags && (key === "instagram" || key === "linkedin") ? "\n\n" + p.hashtags : "");
-  // Which file each platform gets. Tour posts carry the three picture shapes;
-  // film posts carry the film; brand posts lead with their first picture.
   const byShape = Object.fromEntries(p.media.map((m) => [m.label, m]));
   const pick = (key) => {
     const film = p.media.find((m) => m.kind === "vid");
@@ -180,31 +217,57 @@ function agentBrief(p, plats) {
     }
     return p.media[0];
   };
+  return {
+    id: p.id,
+    title: p.title,
+    schedule: p.schedule ?? null,
+    assets: p.media.map((m) => ({ url: `${LIVE}/${m.src}`, label: m.label })),
+    steps: plats.map((pl) => {
+      const m = pick(pl.key);
+      return {
+        platform: pl.name,
+        attach: `${LIVE}/${m.src}`,
+        postAs: m.kind === "vid" ? "native video, vertical 9:16, sound on" : "single image",
+        altText: m.kind === "vid" ? null : p.title,
+        caption: caption(pl.key),
+      };
+    }),
+  };
+}
+
+const RULES = [
+  "The caption is final: add nothing, remove nothing, no extra hashtags or emoji.",
+  "Upload the asset file itself; never crop, filter, or screenshot it.",
+  "Films must go up with sound on; if a platform strips audio, stop and report.",
+  "If a platform rejects the caption length or the file, stop and report; do not edit to fit.",
+  "Honour the schedule: schedule for that time if one is named, otherwise publish now.",
+  "Keep a ledger of post ids you have published and skip any id already in it; the same id is never published twice.",
+  "One platform failing does not block the others; report what failed and carry on.",
+];
+
+function agentBrief(p, plats) {
+  const d = briefData(p, plats);
   const L = [];
-  L.push(`TASK: publish the post "${p.title}" (id: ${p.id})`);
+  L.push(`TASK: publish the post "${d.title}" (id: ${d.id})`);
+  L.push(`SCHEDULE: ${d.schedule ?? "none given — publish immediately, unless the operator names a time"}`);
   L.push("");
   L.push("ASSETS — download these first:");
-  for (const m of p.media) L.push(`  ${LIVE}/${m.src}   (${m.label})`);
+  for (const a of d.assets) L.push(`  ${a.url}   (${a.label})`);
   L.push("");
-  for (const [n, pl] of plats.entries()) {
-    const m = pick(pl.key);
-    L.push(`STEP ${n + 1} — ${pl.name}`);
-    L.push(`  attach: ${LIVE}/${m.src}`);
-    L.push(m.kind === "vid"
+  for (const [n, st] of d.steps.entries()) {
+    L.push(`STEP ${n + 1} — ${st.platform}`);
+    L.push(`  attach: ${st.attach}`);
+    L.push(st.altText === null
       ? "  post as a NATIVE video upload (not a link), vertical 9:16, sound on."
-      : `  post as a single image. alt text: "${p.title}".`);
+      : `  post as a single image. alt text: "${st.altText}".`);
     L.push("  caption — paste EXACTLY as between the markers, keeping every line break:");
     L.push("  ---CAPTION START---");
-    L.push(caption(pl.key));
+    L.push(st.caption);
     L.push("  ---CAPTION END---");
     L.push("");
   }
   L.push("RULES");
-  L.push("  - The caption is final: add nothing, remove nothing, no extra hashtags or emoji.");
-  L.push("  - Upload the asset file itself; never crop, filter, or screenshot it.");
-  L.push("  - Films must go up with sound on; if a platform strips audio, stop and report.");
-  L.push("  - If a platform rejects the caption length or the file, stop and report; do not edit to fit.");
-  L.push("  - Publish immediately unless told a schedule; one platform failing does not block the others.");
+  for (const r of RULES) L.push(`  - ${r}`);
   return L.join("\n");
 }
 
@@ -339,6 +402,37 @@ const html = `<!doctype html>
   </ol>
 </div>
 
+<details class="agent" style="max-width:900px;margin:26px auto 0;padding:0 22px;">
+  <summary>Agent? Start here</summary>
+  <div class="block">
+    <div class="block-head">
+      <span class="plat">How this page works for you</span>
+      <button class="copy" data-target="agent-start">Copy</button>
+    </div>
+    <pre id="agent-start">You are publishing social posts for World As It Was.
+
+EVERYTHING you need is on this page, and in machine form at:
+  ${LIVE}/briefs.json
+That file lists every post: its id, schedule, asset URLs, and per-platform
+steps with the caption verbatim. It is regenerated whenever posts change, so
+fetch it fresh each run rather than caching it.
+
+PER RUN
+  1. Fetch briefs.json.
+  2. Compare against your ledger of already-published post ids; the same id is
+     never published twice.
+  3. For each new post: honour its schedule (null means publish now, unless the
+     operator names a time), then follow its steps in order.
+  4. Record each id you publish in your ledger, per platform.
+
+Each post on this page also carries the same brief as a copyable block under
+"Hand this post to an agent", for doing one post by hand.
+
+RULES
+${RULES.map((r) => "  - " + r).join("\n")}</pre>
+  </div>
+</details>
+
 <nav class="index">
   ${posts.map((p, i) => `<a href="#${esc(p.id)}">${String(i + 1).padStart(2, "0")} ${esc(p.kind === "tour" ? p.title.split(" — ")[0] : p.title)}</a>`).join("")}
 </nav>
@@ -392,4 +486,18 @@ document.querySelectorAll("button.copy").forEach((b) => {
 `;
 
 await fs.writeFile(path.join(OUT, "index.html"), html);
+await fs.writeFile(
+  path.join(OUT, "briefs.json"),
+  JSON.stringify(
+    {
+      generatedAt: new Date().toISOString(),
+      page: `${LIVE}/index.html`,
+      note: "One entry per post. Follow steps in order; captions are verbatim. See rules.",
+      rules: RULES,
+      posts: posts.map((p) => briefData(p, platformsFor(p))),
+    },
+    null,
+    2,
+  ),
+);
 console.log(`${posts.length} posts, ${made.length} walks with media -> content/tours/_socials/index.html`);
