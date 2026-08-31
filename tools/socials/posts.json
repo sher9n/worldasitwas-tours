@@ -6,7 +6,10 @@
       "kind": "brand",
       "title": "Twelve walks, twelve guides",
       "hook": "The launch post. Lead with the idea, not the technology.",
-      "media": ["montage-guides.jpg", "clip-tour_london_1850_flower_seller.mp4"],
+      "media": [
+        "montage-guides.jpg",
+        "clip-tour_london_1850_flower_seller.mp4"
+      ],
       "linkedin": "We built something we wanted to exist.\n\nTwelve walking tours through cities that are gone. London in the week of the Great Fire. Rome in the Jubilee of 1600. Stockholm when the harbour ran on copper. Colombo when cinnamon paid for everything.\n\nEach one is led by somebody who actually lived there. Not a narrator. A flower seller on Ludgate Hill who buys violets before six. A waterman who rowed families away from the fire. A seamstress who watched the wall come down at Porta Pia and kept her opinions to herself, because half her customers were on one side and half on the other.\n\nYou can interrupt them and ask questions. They answer in their own voice, and they know nothing about the world after their own year.\n\nTwelve are live now. Where should we go next?",
       "instagram": "Twelve cities that no longer exist, and twelve people who lived in them.\n\nLondon 1666. Rome 1600. Stockholm 1650. Colombo 1700.\n\nEach walk is led by someone who was there. You can stop them and ask.\n\nWhere should we go next? 👇",
       "twitter": "We built twelve walking tours through cities that are gone.\n\nEach one led by somebody who lived there: a flower seller, a waterman, a rickshaw puller, a seamstress.\n\nYou can interrupt them and ask questions. They know nothing after their own year.",
@@ -14,11 +17,44 @@
       "hashtags": "#history #storytelling #ai #travel #design #audio"
     },
     {
+      "id": "promo-walk-back",
+      "kind": "promo",
+      "title": "Film: Walk back in time",
+      "hook": "Fifteen seconds of the experience itself, built from the walk's own scenes and Caterina's own voice. Post with sound on.",
+      "video": "promo-walk-back-in-time.mp4",
+      "poster": "tour_rome_1600_herb_seller-story.jpg",
+      "platforms": [
+        "linkedin",
+        "tiktok"
+      ],
+      "linkedin": "Turn your sound on for this one.\n\nThis is fifteen seconds of Rome in the year 1600. The market you can hear is Campo de' Fiori. The voice is Caterina Ruspoli, the herb seller who leads the walk, and everything on screen is our own reconstruction of her city.\n\nThere is no film crew behind this, and no stock footage in it. It is the actual fabric of the tour: the scenes you walk through, the woman who talks to you, the street noise around her. We just let it speak for itself for fifteen seconds.\n\nThe product is this feeling, held for forty minutes, with a guide you can interrupt and question at any moment.\n\nTwelve walks. London, Rome, Stockholm, Colombo. tours.worldasitwas.com",
+      "tiktok": "POV: you close your eyes in Rome and open them in 1600 🕯️\n\nthe voice is your actual tour guide. she sells herbs in this market. you can ask her anything.\n\n#timetravel #history #rome #pov #immersive #ai #traveltok #fyp",
+      "hashtags": "#history #storytelling #ai #travel #immersive"
+    },
+    {
+      "id": "promo-hold-to-ask",
+      "kind": "promo",
+      "title": "Film: Hold to ask",
+      "hook": "The feature film: the guide you can interrupt, in his own voice, over the burning of London. Post with sound on.",
+      "video": "promo-hold-to-ask.mp4",
+      "poster": "tour_london_1666_waterman-story.jpg",
+      "platforms": [
+        "linkedin",
+        "tiktok"
+      ],
+      "linkedin": "Every audio guide talks at you. This one you can interrupt.\n\nSound on: that is Will Chandler, a Thames waterman, rowing through the week London burned in 1666. He leads one of our walks, and at any point in it you can hold a button and ask him anything: what the smoke smells like, what a boat costs tonight, whether the King has been seen.\n\nHe answers in his own voice, out of his own life. And he knows nothing after 1666, because a guide who knows everything is a search engine, and a guide who knows only what he could know is a person.\n\nFifteen seconds of him, over our reconstruction of the fire. The walk is forty minutes.\n\ntours.worldasitwas.com",
+      "tiktok": "your tour guide is FROM 1666 and you can ask him anything 🔥\n\nhold the button, ask about the fire, he answers in his own voice. he doesn't know anything after 1666. that's the point.\n\n#london #greatfire #history #ai #interactive #storytime #fyp",
+      "hashtags": "#history #london #ai #voice #product"
+    },
+    {
       "id": "guides",
       "kind": "brand",
       "title": "The portraits move",
       "hook": "The craft post. People stop for a face that looks back.",
-      "media": ["montage-guides.jpg", "portrait-caterina.mp4"],
+      "media": [
+        "montage-guides.jpg",
+        "portrait-caterina.mp4"
+      ],
       "linkedin": "A portrait that holds still reads as a photograph. A portrait that looks up and finds you reads as a person.\n\nSo our guides do the second thing. Their attention wanders while they talk: they glance off at something in their own street, come back to you, smile, get on with their work. Forty seconds of it, so it never comes round often enough to notice.\n\nThe engineering detail we got wrong first is a good one. To make a clip loop seamlessly, the obvious instruction is that it must end in the pose it started in. That instruction is why our first attempt barely moved: told to end exactly where she began, the model does as little as possible in between.\n\nWe removed the constraint and closed the loop afterwards in code instead, by dissolving the end back into the start. Measured movement went up by a factor of thirty.\n\nThe lesson generalises: if your output looks lifeless, check whether you asked for it.",
       "instagram": "She looks up. She finds you. She smiles and goes back to her herbs.\n\nForty seconds, looping, so you never catch it repeating.\n\nRome, 1600. 🕯️",
       "twitter": "To make a video loop, the obvious instruction is \"end in the pose you started in\".\n\nThat instruction is why our characters barely moved. Told to end where she began, the model does as little as possible in between.\n\nWe removed it and closed the loop in code. Movement went up 30x.",
@@ -30,7 +66,10 @@
       "kind": "brand",
       "title": "You can interrupt them",
       "hook": "The differentiator. This is the thing no audio guide does.",
-      "media": ["shot-ask.jpg", "clip-tour_rome_1600_herb_seller.mp4"],
+      "media": [
+        "shot-ask.jpg",
+        "clip-tour_rome_1600_herb_seller.mp4"
+      ],
       "linkedin": "Every audio guide has the same problem. It talks, you listen, and if you have a question you keep it.\n\nOurs can be interrupted. Hold the button and ask, and the person you are walking with answers you in her own voice, out of her own life. Ask Caterina what a friar being burned in her square smelled like and she will tell you, because she was there in February and she sells herbs twenty feet from where it happened.\n\nWhat she will not do is tell you anything about the world after 1600. She has never heard of a photograph. She does not know the Jubilee ends.\n\nThat boundary is the whole design. A guide who knows everything is a search engine with a voice. A guide who knows only what she could know is a person.",
       "instagram": "Hold the button. Ask her anything.\n\nShe will answer in her own voice, from her own life. And she has never heard of a photograph, because it is 1600.\n\n🎙️",
       "twitter": "Every audio guide has the same flaw: it talks, you listen, and your question goes nowhere.\n\nOurs can be interrupted. She answers in her own voice.\n\nAnd she knows nothing about the world after 1600. That limit is the point: a guide who knows everything is a search engine.",
@@ -42,7 +81,10 @@
       "kind": "brand",
       "title": "Everything is sourced",
       "hook": "The trust post. Aimed at museums, educators, partners.",
-      "media": ["shot-sources.jpg", "montage-cities.jpg"],
+      "media": [
+        "shot-sources.jpg",
+        "montage-cities.jpg"
+      ],
       "linkedin": "The fastest way to make historical content is to let a model improvise. We do the opposite, and it costs us.\n\nEvery stop on every walk is researched first, against archives and primary sources, and the reconstructions are built from that research. When Nell tells you what a bunch of violets cost outside St Paul's in 1850, that price came from somewhere, and the walk will show you where.\n\nIt is slower. It is more expensive. It is the only version worth building, because the moment one detail is invented, the listener is right to doubt all of them.\n\nIf you work in a museum or an archive and this is interesting to you, I would like to talk.",
       "instagram": "Every price, every street, every date: sourced.\n\nIt would be faster to make it up. It would also be worthless. 📚",
       "twitter": "The fast way to make historical content is to let the model improvise.\n\nWe research every stop against archives first, then build from that.\n\nSlower and dearer. But the moment one detail is invented, the listener is right to doubt all of them.",

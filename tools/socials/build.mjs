@@ -119,10 +119,13 @@ const posts = [];
 
 for (const p of copy.posts) {
   const media = [];
-  if (p.media.includes("montage-guides.jpg")) media.push({ src: "montage-guides.jpg", kind: "img", label: "All twelve guides" });
-  if (p.media.includes("montage-cities.jpg")) media.push({ src: "montage-cities.jpg", kind: "img", label: "Six of the cities" });
-  if (p.media.includes("shot-ask.jpg")) media.push({ src: `${tours[0].id}-story.jpg`, kind: "img", label: "In the walk" });
-  if (p.media.includes("shot-sources.jpg")) media.push({ src: `${tours[4].id}-portrait.jpg`, kind: "img", label: "In the walk" });
+  // A film post carries its film and nothing else; picture posts list pictures.
+  const want = p.media ?? [];
+  if (p.video) media.push({ src: p.video, kind: "vid", poster: p.poster, label: "Vertical film, sound on" });
+  if (want.includes("montage-guides.jpg")) media.push({ src: "montage-guides.jpg", kind: "img", label: "All twelve guides" });
+  if (want.includes("montage-cities.jpg")) media.push({ src: "montage-cities.jpg", kind: "img", label: "Six of the cities" });
+  if (want.includes("shot-ask.jpg")) media.push({ src: `${tours[0].id}-story.jpg`, kind: "img", label: "In the walk" });
+  if (want.includes("shot-sources.jpg")) media.push({ src: `${tours[4].id}-portrait.jpg`, kind: "img", label: "In the walk" });
   posts.push({ ...p, media });
 }
 
@@ -147,7 +150,12 @@ const PLATFORMS = [
   { key: "instagram", name: "Instagram" },
   { key: "twitter", name: "X / Twitter" },
   { key: "snapchat", name: "Snapchat" },
+  { key: "tiktok", name: "TikTok" },
 ];
+// A post names its platforms when the default four are not the right set; the
+// two films are cut for LinkedIn and TikTok and say so.
+const platformsFor = (p) =>
+  p.platforms ? PLATFORMS.filter((x) => p.platforms.includes(x.key)) : PLATFORMS.filter((x) => x.key !== "tiktok");
 
 const card = (p, i) => `
 <article class="post" id="${esc(p.id)}">
@@ -160,12 +168,13 @@ const card = (p, i) => `
   </header>
 
   <div class="assets">
-    ${p.media.map((m) =>
-      `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`).join("")}
+    ${p.media.map((m) => m.kind === "vid"
+      ? `<figure class="vid"><video controls playsinline preload="none"${m.poster ? ` poster="${m.poster}"` : ""} src="${m.src}"></video><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`
+      : `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`).join("")}
   </div>
 
   <div class="copyblocks">
-    ${PLATFORMS.map((pl) => `
+    ${platformsFor(p).map((pl) => `
     <div class="block">
       <div class="block-head">
         <span class="plat">${pl.name}</span>
@@ -223,7 +232,8 @@ const html = `<!doctype html>
   figure { margin:0; width:262px; max-width:100%; }
   /* A post with one picture is showing THE picture, so it gets real space. */
   figure:only-child { width:480px; }
-  figure img { width:100%; border-radius:12px; display:block; background:#0B0906; border:1px solid var(--hair); }
+  figure img, figure video { width:100%; border-radius:12px; display:block; background:#0B0906; border:1px solid var(--hair); }
+  figure.vid, figure.vid:only-child { width:340px; }
   figcaption { font:500 9px/1.5 "JetBrains Mono", monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px; display:flex; justify-content:space-between; gap:8px; }
   figcaption a { color:var(--gilt); text-decoration:none; border-bottom:1px solid var(--hair); }
 
@@ -252,7 +262,7 @@ const html = `<!doctype html>
 <div class="how">
   <ol>
     <li><b>Pick a post.</b> The first four are about the product; the rest are one per walk.</li>
-    <li><b>Take the picture.</b> Each comes in the shape that platform wants; Download gives you the full-size file.</li>
+    <li><b>Take the media.</b> Pictures come in the shape each platform wants; the two films have sound, so post them with sound on.</li>
     <li><b>Copy the words.</b> Each platform has its own version, already the right length. The character count is next to the button.</li>
     <li><b>Link.</b> Send people to <b>tours.worldasitwas.com</b>.</li>
   </ol>
@@ -267,11 +277,16 @@ ${posts.map(card).join("")}
 </main>
 
 <footer>
-  Every picture here is a real screenshot of the product or one of its own reconstructions; nothing is a mock-up.
+  Every picture here is a real screenshot of the product or one of its own reconstructions, and the two films are built from the walks' own scenes and voices; nothing is a mock-up.
   Rebuild the pack after any change with <b>node tools/socials/build.mjs</b>.
 </footer>
 
 <script>
+// One voice at a time: starting a film pauses the other.
+document.addEventListener("play", (e) => {
+  document.querySelectorAll("video").forEach((v) => { if (v !== e.target) v.pause(); });
+}, true);
+
 // Character counts matter: X cuts at 280 and Instagram gets truncated in feed.
 document.querySelectorAll("pre").forEach((pre) => {
   const el = document.querySelector('.count[data-for="' + pre.id + '"]');
