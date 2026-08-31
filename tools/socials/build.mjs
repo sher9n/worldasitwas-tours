@@ -157,6 +157,57 @@ const PLATFORMS = [
 const platformsFor = (p) =>
   p.platforms ? PLATFORMS.filter((x) => p.platforms.includes(x.key)) : PLATFORMS.filter((x) => x.key !== "tiktok");
 
+/**
+ * The hand-off brief: everything an agent needs to publish one post, in one
+ * block. Absolute asset URLs, which file goes to which platform, the caption
+ * verbatim, and the rules. Generated from the same data as the visible card,
+ * so the brief and the page cannot disagree.
+ */
+const LIVE = "https://tours.worldasitwas.com/media/_socials";
+function agentBrief(p, plats) {
+  const caption = (key) =>
+    p[key] + (p.hashtags && (key === "instagram" || key === "linkedin") ? "\n\n" + p.hashtags : "");
+  // Which file each platform gets. Tour posts carry the three picture shapes;
+  // film posts carry the film; brand posts lead with their first picture.
+  const byShape = Object.fromEntries(p.media.map((m) => [m.label, m]));
+  const pick = (key) => {
+    const film = p.media.find((m) => m.kind === "vid");
+    if (film) return film;
+    if (p.kind === "tour") {
+      if (key === "twitter") return byShape["Square, 1:1"] ?? p.media[0];
+      if (key === "snapchat") return byShape["Story, 9:16"] ?? p.media[0];
+      return byShape["Instagram feed, 4:5"] ?? p.media[0];
+    }
+    return p.media[0];
+  };
+  const L = [];
+  L.push(`TASK: publish the post "${p.title}" (id: ${p.id})`);
+  L.push("");
+  L.push("ASSETS — download these first:");
+  for (const m of p.media) L.push(`  ${LIVE}/${m.src}   (${m.label})`);
+  L.push("");
+  for (const [n, pl] of plats.entries()) {
+    const m = pick(pl.key);
+    L.push(`STEP ${n + 1} — ${pl.name}`);
+    L.push(`  attach: ${LIVE}/${m.src}`);
+    L.push(m.kind === "vid"
+      ? "  post as a NATIVE video upload (not a link), vertical 9:16, sound on."
+      : `  post as a single image. alt text: "${p.title}".`);
+    L.push("  caption — paste EXACTLY as between the markers, keeping every line break:");
+    L.push("  ---CAPTION START---");
+    L.push(caption(pl.key));
+    L.push("  ---CAPTION END---");
+    L.push("");
+  }
+  L.push("RULES");
+  L.push("  - The caption is final: add nothing, remove nothing, no extra hashtags or emoji.");
+  L.push("  - Upload the asset file itself; never crop, filter, or screenshot it.");
+  L.push("  - Films must go up with sound on; if a platform strips audio, stop and report.");
+  L.push("  - If a platform rejects the caption length or the file, stop and report; do not edit to fit.");
+  L.push("  - Publish immediately unless told a schedule; one platform failing does not block the others.");
+  return L.join("\n");
+}
+
 const card = (p, i) => `
 <article class="post" id="${esc(p.id)}">
   <header class="post-head">
@@ -184,6 +235,17 @@ const card = (p, i) => `
       <pre id="${esc(p.id)}-${pl.key}">${esc(p[pl.key])}${pl.key === "instagram" || pl.key === "linkedin" ? "\n\n" + esc(p.hashtags) : ""}</pre>
     </div>`).join("")}
   </div>
+
+  <details class="agent">
+    <summary>Hand this post to an agent</summary>
+    <div class="block">
+      <div class="block-head">
+        <span class="plat">One block, the whole job</span>
+        <button class="copy" data-target="${esc(p.id)}-agent">Copy</button>
+      </div>
+      <pre id="${esc(p.id)}-agent">${esc(agentBrief(p, platformsFor(p)))}</pre>
+    </div>
+  </details>
 </article>`;
 
 const html = `<!doctype html>
@@ -248,6 +310,14 @@ const html = `<!doctype html>
   button.copy.done { border-color:var(--gilt); color:var(--gilt); }
   pre { margin:0; padding:15px 16px; font:400 14px/1.62 "Source Sans 3", sans-serif; white-space:pre-wrap; word-wrap:break-word; color:var(--bone); max-height:290px; overflow-y:auto; }
 
+  details.agent { margin-top:14px; }
+  details.agent summary {
+    cursor:pointer; font:600 11px/1 "Source Sans 3",sans-serif; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gilt); padding:12px 2px; list-style-position:inside;
+  }
+  details.agent .block { margin-top:8px; }
+  details.agent pre { font:400 12.5px/1.6 "JetBrains Mono",monospace; color:var(--muted); max-height:340px; }
+
   footer { max-width:900px; margin:56px auto 0; padding:0 22px; text-align:center; color:var(--muted); font-size:13px; text-wrap:pretty; }
 </style>
 </head>
@@ -265,6 +335,7 @@ const html = `<!doctype html>
     <li><b>Take the media.</b> Pictures come in the shape each platform wants; the two films have sound, so post them with sound on.</li>
     <li><b>Copy the words.</b> Each platform has its own version, already the right length. The character count is next to the button.</li>
     <li><b>Link.</b> Send people to <b>app.worldasitwas.com</b>.</li>
+    <li><b>Handing off instead?</b> Every post ends with <b>Hand this post to an agent</b>: one copyable block holding the whole job — the files to fetch, which platform gets which, the captions verbatim, and the rules. Paste it into Claude Code and it has everything.</li>
   </ol>
 </div>
 
