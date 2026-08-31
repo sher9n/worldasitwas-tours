@@ -78,6 +78,12 @@ export class CompanionSession {
   private pc?: RTCPeerConnection;
   private dc?: RTCDataChannel;
   private mic?: MediaStream;
+  /** The audio sender negotiated up front; the mic is attached to it on first hold. */
+  private sender?: RTCRtpSender;
+  /** The connect in flight, so a hold during it waits rather than no-ops. */
+  private connectPromise?: Promise<void>;
+  /** True from pointer-down to pointer-up; a mic prompt outlives a short hold. */
+  private holding = false;
   private audioEl: HTMLAudioElement;
   private pendingContext?: CompanionContext;
   private turns = 0;
@@ -114,6 +120,18 @@ export class CompanionSession {
   }
 
   async connect(stopId?: string, cardId?: string): Promise<void> {
+    // A second caller while a connect is in flight (holding during the
+    // preconnect, most of the time) waits for the same attempt instead of
+    // being silently dropped, which is exactly how the button went dead.
+    if (this.dc?.readyState === "open") return;
+    if (this.connectPromise) return this.connectPromise;
+    this.connectPromise = this.doConnect(stopId, cardId).finally(() => {
+      this.connectPromise = undefined;
+    });
+    return this.connectPromise;
+  }
+
+  private async doConnect(stopId?: string, cardId?: string): Promise<void> {
     if (this.pc) return;
     this.setState("connecting");
     try {
@@ -130,10 +148,13 @@ export class CompanionSession {
         this.audioEl.srcObject = e.streams[0];
         this.meter.attach(e.streams[0]);
       };
-      this.mic = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
-      const track = this.mic.getAudioTracks()[0];
-      track.enabled = false;
-      pc.addTrack(track, this.mic);
+      // No microphone here, on purpose. connect runs at page-load preconnect
+      // and after awaiting the network, both places where iOS refuses a mic
+      // request (no fresh user gesture) and then REMEMBERS the refusal, which
+      // left the button dead for the whole visit. The call is negotiated with
+      // an empty audio sender instead, and the mic is attached to it inside
+      // the first hold, the one moment a mic request is unquestionably wanted.
+      this.sender = pc.addTransceiver("audio", { direction: "sendrecv" }).sender;
       const dc = pc.createDataChannel("oai-events");
       this.dc = dc;
       dc.onmessage = (m) => this.handle(JSON.parse(m.data));
@@ -236,8 +257,51 @@ export class CompanionSession {
     this.send({ type: "conversation.item.create", item: { type: "message", role: "user", content } });
   }
 
-  pttStart(): void {
+  async pttStart(): Promise<void> {
+    this.holding = true;
+    // A hold that lands while the session is still connecting waits for it;
+    // releasing during the wait simply means nothing starts.
+    if (this.connectPromise) {
+      try {
+        await this.connectPromise;
+      } catch {
+        return;
+      }
+    }
+    if (!this.holding) return;
     if (this.state !== "ready" && this.state !== "speaking") return;
+    if (!this.mic) {
+      // First hold: ask for the microphone now, inside the gesture. On the
+      // devices that cannot give one at all, say so instead of "hiccup".
+      if (!navigator.mediaDevices?.getUserMedia) {
+        this.setState("error", "no microphone on this device");
+        return;
+      }
+      try {
+        const mic = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+        if (!this.holding) {
+          // Released while the permission prompt was up; keep nothing running.
+          mic.getTracks().forEach((t) => t.stop());
+          return;
+        }
+        const track = mic.getAudioTracks()[0];
+        track.enabled = false;
+        await this.sender?.replaceTrack(track);
+        this.mic = mic;
+      } catch (err) {
+        // The browser's own words here are famously unhelpful ("Not
+        // supported"), so the common refusals get said in ours.
+        const name = (err as DOMException).name;
+        const why =
+          name === "NotAllowedError" ? "allow microphone access to ask"
+          : name === "NotFoundError" ? "no microphone found"
+          : name === "NotSupportedError" || name === "SecurityError" ? "this browser will not share the microphone"
+          : (err as Error).message;
+        this.setState("error", why);
+        return;
+      }
+    }
+    if (!this.holding || (this.state !== "ready" && this.state !== "speaking")) return;
     // Cut her off only if she is actually mid-sentence, then open the mic.
     if (this.responseActive) this.send({ type: "response.cancel" });
     this.send({ type: "output_audio_buffer.clear" });
@@ -265,6 +329,7 @@ export class CompanionSession {
   }
 
   pttEnd(): void {
+    this.holding = false;
     if (this.state !== "listening") return;
     const track = this.mic?.getAudioTracks()[0];
     if (track) track.enabled = false;
@@ -379,6 +444,7 @@ export class CompanionSession {
     this.pc = undefined;
     this.dc = undefined;
     this.mic = undefined;
+    this.sender = undefined;
     this.startedAt = 0;
     if (this.state !== "error") this.setState("closed");
   }

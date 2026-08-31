@@ -464,7 +464,7 @@ export function Player({
         return;
       }
     }
-    companion.pttStart();
+    void companion.pttStart();
   };
   const askUp = (e: React.PointerEvent) => {
     e.stopPropagation();
