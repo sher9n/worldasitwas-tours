@@ -47,6 +47,34 @@
       "hashtags": "#history #london #ai #voice #product"
     },
     {
+      "id": "promo-stockholm-harbour",
+      "kind": "promo",
+      "title": "Film: Queen Christina's harbour",
+      "hook": "Fifteen seconds of Stockholm in 1650, read in the Swedish voice from our tram walk. Post with sound on.",
+      "video": "promo-stockholm-harbour.mp4",
+      "platforms": [
+        "linkedin",
+        "tiktok"
+      ],
+      "linkedin": "Sound on for fifteen seconds of Stockholm in 1650.\n\nA small wooden capital, grown rich on copper and iron and a long war, and all of it crossing the Skeppsbron quay on somebody's back. Olof Nilsson's, mostly: a porter, up from a farm in Uppland at fifteen, who leads this walk and will tell you what every load weighs and what the foreman does not need to know.\n\nEverything on screen is our own reconstruction of his harbour, and the walk itself is forty minutes of it, with a guide you can interrupt and question at any moment.\n\nTwelve walks. London, Rome, Stockholm, Colombo. app.worldasitwas.com",
+      "tiktok": "Stockholm 1650: a whole empire paid for in copper, carried across one quay 🪙⚓\n\nyour guide is the porter carrying it. you can ask him anything.\n\n#stockholm #sweden #history #timetravel #pov #ai #traveltok #fyp",
+      "hashtags": "#history #stockholm #sweden #storytelling #ai"
+    },
+    {
+      "id": "promo-stockholm-tavern",
+      "kind": "promo",
+      "title": "Film: The tavern hears everything",
+      "hook": "Fifteen seconds of Stockholm in 1755, read in the Swedish voice from our tram walk. Post with sound on.",
+      "video": "promo-stockholm-tavern.mp4",
+      "platforms": [
+        "linkedin",
+        "tiktok"
+      ],
+      "linkedin": "Sweden's Age of Liberty had a parliament that argued in public, and the arguing did not stop at the tavern door.\n\nSound on: this is Stockholm in 1755, and the room you can hear is Britta Lindqvist's tavern on Stortorget, where clerks, sailors and minor gentlemen settle the affairs of the nation loudly enough to be heard on the stairs. She keeps the bar, she hears everything, and she is unimpressed by all of them.\n\nShe leads this walk in her own voice, and you can stop her and ask her anything along the way.\n\nTwelve walks. London, Rome, Stockholm, Colombo. app.worldasitwas.com",
+      "tiktok": "politics was a spectator sport in 1755 and the stadium was her tavern 🍺\n\nthe landlady hears everything. she'll tell you, if you ask.\n\n#stockholm #sweden #history #timetravel #storytime #ai #fyp",
+      "hashtags": "#history #stockholm #sweden #storytelling #ai"
+    },
+    {
       "id": "guides",
       "kind": "brand",
       "title": "The portraits move",

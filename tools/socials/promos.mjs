@@ -59,6 +59,33 @@ const PROMOS = [
     eyebrow: "LONDON · 1666",
     line: "Hold to ask. He answers.",
   },
+  // The Swedish pair. Both are read by Jakob, the voice Gustav's walk uses,
+  // so neither claims to be its own guide: the voice speaks about the walk,
+  // and the guide keeps her own voice for the walk itself.
+  {
+    name: "promo-stockholm-harbour",
+    tour: "tour_stockholm_1650_porter",
+    stills: ["s01_hero.jpg", "s03_hero.jpg", "s05_hero.jpg"],
+    voice: "c5sAfPgkk3bY7V6oyekT",
+    vo:
+      "Stockholm, sixteen fifty. A wooden city, grown rich on copper, " +
+      "and every plate of it crosses this quay on someone's back. " +
+      "Walk the harbour with the man who carries it. Walk back in time.",
+    eyebrow: "STOCKHOLM · 1650",
+    line: "Walk back in time.",
+  },
+  {
+    name: "promo-stockholm-tavern",
+    tour: "tour_stockholm_1755_tavern",
+    stills: ["s01_hero.jpg", "s03_hero.jpg", "s05_hero.jpg"],
+    voice: "c5sAfPgkk3bY7V6oyekT",
+    vo:
+      "Stockholm, seventeen fifty-five. Parliament argues in public, " +
+      "and the argument does not stop at the tavern door. " +
+      "Take a seat on the square. The landlady hears everything. Walk back in time.",
+    eyebrow: "STOCKHOLM · 1755",
+    line: "She hears everything.",
+  },
 ];
 
 // The one instruction that matters is the camera: it must feel like walking,
