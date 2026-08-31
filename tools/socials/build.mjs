@@ -1,6 +1,6 @@
 /**
  * Builds the socials pack: every post, its copy for four platforms, and the
- * picture or clip to attach.
+ * pictures to attach.
  *
  *   node tools/socials/build.mjs
  *
@@ -104,16 +104,6 @@ for (const t of tours) {
   await pad(clean, path.join(MEDIA, `${t.id}-story.jpg`), 1080, 1920);
   await crop(hero, path.join(MEDIA, `${t.id}-square.jpg`), 1080, 1080);
 
-  // Encoded down for delivery rather than copied. Every platform re-encodes on
-  // upload anyway, so shipping the master only makes the pack slower to publish
-  // and to download; this is still well above what any feed will serve.
-  const clip = path.join(CLIPS, `${t.id}.mp4`);
-  if (await exists(clip)) {
-    await ff(["-i", clip, "-c:v", "libx264", "-crf", "27", "-preset", "slow",
-      "-pix_fmt", "yuv420p", "-g", "50", "-c:a", "copy", "-movflags", "+faststart",
-      path.join(MEDIA, `${t.id}-clip.mp4`)]);
-  }
-  t.hasClip = await exists(path.join(MEDIA, `${t.id}-clip.mp4`));
   made.push(t.id);
 }
 
@@ -121,10 +111,6 @@ for (const t of tours) {
 await grid(tours.map((t) => path.join(t.dir, "companion_portrait.jpg")), path.join(MEDIA, "montage-guides.jpg"), 4, 340);
 await grid(tours.slice(0, 6).map((t) => path.join(t.dir, "s01_hero.jpg")), path.join(MEDIA, "montage-cities.jpg"), 3, 420);
 
-// One guide's own loop, as a clip in its own right: it is the most striking
-// thing we have and it needs no explanation.
-const cat = tours.find((t) => t.slug === "caterina-ruspoli");
-if (cat) await fs.copyFile(path.join(root, "content/companions/caterina-ruspoli/reel/presence.mp4"), path.join(MEDIA, "portrait-caterina.mp4"));
 
 // ----------------------------------------------------------------- build page
 
@@ -135,11 +121,6 @@ for (const p of copy.posts) {
   const media = [];
   if (p.media.includes("montage-guides.jpg")) media.push({ src: "montage-guides.jpg", kind: "img", label: "All twelve guides" });
   if (p.media.includes("montage-cities.jpg")) media.push({ src: "montage-cities.jpg", kind: "img", label: "Six of the cities" });
-  if (p.media.includes("portrait-caterina.mp4")) media.push({ src: "portrait-caterina.mp4", kind: "vid", silent: true, label: "Caterina's portrait, 39s silent loop" });
-  for (const m of p.media.filter((x) => x.startsWith("clip-"))) {
-    const id = m.replace("clip-", "").replace(".mp4", "");
-    if (made.includes(id)) media.push({ src: `${id}-clip.mp4`, kind: "vid", label: `${id.replace("tour_", "").replace(/_/g, " ")}, 22s` });
-  }
   if (p.media.includes("shot-ask.jpg")) media.push({ src: `${tours[0].id}-story.jpg`, kind: "img", label: "In the walk" });
   if (p.media.includes("shot-sources.jpg")) media.push({ src: `${tours[4].id}-portrait.jpg`, kind: "img", label: "In the walk" });
   posts.push({ ...p, media });
@@ -157,7 +138,6 @@ for (const t of tours) {
       { src: `${t.id}-portrait.jpg`, kind: "img", label: "Instagram feed, 4:5" },
       { src: `${t.id}-square.jpg`, kind: "img", label: "Square, 1:1" },
       { src: `${t.id}-story.jpg`, kind: "img", label: "Story, 9:16" },
-      ...(t.hasClip ? [{ src: `${t.id}-clip.mp4`, kind: "vid", label: "Video, 22s, sound on" }] : []),
     ],
   });
 }
@@ -180,16 +160,8 @@ const card = (p, i) => `
   </header>
 
   <div class="assets">
-    ${p.media.map((m) => {
-      if (m.kind === "img")
-        return `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`;
-      // Narrated clips play with sound: no muted attribute, and no loop, so a
-      // tap on play behaves like the post will. The muted-loop treatment is
-      // only for the one clip that has no audio track at all, where an
-      // unmuted player pretending to offer sound would read as broken.
-      const attrs = m.silent ? "muted loop playsinline controls" : "controls playsinline";
-      return `<figure><video ${attrs} preload="none" src="${m.src}"></video><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`;
-    }).join("")}
+    ${p.media.map((m) =>
+      `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`).join("")}
   </div>
 
   <div class="copyblocks">
@@ -247,9 +219,11 @@ const html = `<!doctype html>
   .post-head h2 { font:500 27px/1.15 "Cormorant Garamond", Georgia, serif; margin:9px 0 6px; }
   .hook { margin:0; color:var(--muted); font-size:14px; }
 
-  .assets { display:flex; gap:14px; overflow-x:auto; padding:20px 0 6px; }
-  figure { margin:0; flex:none; width:190px; }
-  figure img, figure video { width:190px; border-radius:10px; display:block; background:#0B0906; border:1px solid var(--hair); }
+  .assets { display:flex; flex-wrap:wrap; gap:18px; padding:20px 0 6px; }
+  figure { margin:0; width:262px; max-width:100%; }
+  /* A post with one picture is showing THE picture, so it gets real space. */
+  figure:only-child { width:480px; }
+  figure img { width:100%; border-radius:12px; display:block; background:#0B0906; border:1px solid var(--hair); }
   figcaption { font:500 9px/1.5 "JetBrains Mono", monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px; display:flex; justify-content:space-between; gap:8px; }
   figcaption a { color:var(--gilt); text-decoration:none; border-bottom:1px solid var(--hair); }
 
@@ -272,13 +246,13 @@ const html = `<!doctype html>
 <header class="top">
   <span class="eyebrow">${posts.length} posts &middot; 4 platforms &middot; ${made.length} walks</span>
   <h1>Everything you need to <em>post</em> about this</h1>
-  <p>One card per post: the picture or clip to attach, and the words already written for each platform. Nothing here needs editing before it goes out, though of course it can be.</p>
+  <p>One card per post: the pictures to attach, and the words already written for each platform. Nothing here needs editing before it goes out, though of course it can be.</p>
 </header>
 
 <div class="how">
   <ol>
     <li><b>Pick a post.</b> The first four are about the product; the rest are one per walk.</li>
-    <li><b>Take the media.</b> Download gives you the file at the size that platform wants. Video has sound, so post it with sound on.</li>
+    <li><b>Take the picture.</b> Each comes in the shape that platform wants; Download gives you the full-size file.</li>
     <li><b>Copy the words.</b> Each platform has its own version, already the right length. The character count is next to the button.</li>
     <li><b>Link.</b> Send people to <b>tours.worldasitwas.com</b>.</li>
   </ol>
@@ -293,7 +267,7 @@ ${posts.map(card).join("")}
 </main>
 
 <footer>
-  Every picture here is a real screenshot of the product and every clip is the guide's own recorded voice; nothing is a mock-up.
+  Every picture here is a real screenshot of the product or one of its own reconstructions; nothing is a mock-up.
   Rebuild the pack after any change with <b>node tools/socials/build.mjs</b>.
 </footer>
 
@@ -326,19 +300,6 @@ document.querySelectorAll("button.copy").forEach((b) => {
   });
 });
 
-// One voice at a time: starting a clip pauses every other, so two narrations
-// never talk over each other while someone works down the page.
-document.addEventListener("play", (e) => {
-  document.querySelectorAll("video").forEach((v) => { if (v !== e.target && !v.muted) v.pause(); });
-}, true);
-
-// Twelve clips is more than a phone decodes at once, so only what is on screen loads.
-const io = new IntersectionObserver((es) => es.forEach((e) => {
-  // The paused guard matters: load() tears down a play() already in flight,
-  // so a tap that lands in the same instant as this upgrade would be eaten.
-  if (e.isIntersecting && e.target.preload === "none" && e.target.paused) { e.target.preload = "metadata"; e.target.load(); }
-}), { rootMargin: "200px 0px" });
-document.querySelectorAll("video").forEach((v) => io.observe(v));
 </script>
 </body>
 </html>
