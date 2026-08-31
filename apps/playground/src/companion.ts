@@ -15,6 +15,24 @@ export interface CompanionEvents {
   onEvent?: (name: string, payload: Record<string, unknown>) => void;
 }
 
+/**
+ * The walk declares its iOS audio session as "playback" so narration survives
+ * the ring/silent switch. But playback is an output-only category, and iOS
+ * refuses a microphone under it: "audio session category is not compatible
+ * with audio capture". So for exactly as long as an ask session holds the
+ * mic, the session runs as "play-and-record", which captures and still
+ * ignores the silent switch, and it goes back to "playback" when the mic is
+ * released. Browsers without the API skip all of this.
+ */
+function setAudioSessionType(type: "playback" | "play-and-record"): void {
+  try {
+    const session = (navigator as unknown as { audioSession?: { type: string } }).audioSession;
+    if (session) session.type = type;
+  } catch {
+    // an unsupported session type is not worth breaking the ask over
+  }
+}
+
 async function imageToDataUrl(url: string, maxSide = 640): Promise<string | undefined> {
   try {
     const img = new Image();
@@ -277,11 +295,13 @@ export class CompanionSession {
         this.setState("error", "no microphone on this device");
         return;
       }
+      setAudioSessionType("play-and-record");
       try {
         const mic = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
         if (!this.holding) {
           // Released while the permission prompt was up; keep nothing running.
           mic.getTracks().forEach((t) => t.stop());
+          setAudioSessionType("playback");
           return;
         }
         const track = mic.getAudioTracks()[0];
@@ -292,6 +312,7 @@ export class CompanionSession {
         // The browser's own words here are famously unhelpful ("Not
         // supported"), so the common refusals get said in ours.
         const name = (err as DOMException).name;
+        setAudioSessionType("playback");
         const why =
           name === "NotAllowedError" ? "allow microphone access to ask"
           : name === "NotFoundError" ? "no microphone found"
@@ -441,6 +462,9 @@ export class CompanionSession {
     this.dc?.close();
     this.pc?.close();
     this.mic?.getTracks().forEach((t) => t.stop());
+    // The mic is gone, so the walk goes back to the category that keeps
+    // narration audible with the silent switch on.
+    if (this.mic) setAudioSessionType("playback");
     this.pc = undefined;
     this.dc = undefined;
     this.mic = undefined;
