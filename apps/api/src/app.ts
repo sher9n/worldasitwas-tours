@@ -70,9 +70,17 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     root: opts.toursDir,
     prefix: "/media/",
     decorateReply: false,
-    cacheControl: true,
-    maxAge: "365d",
-    immutable: true,
+    // Off, so setHeaders below is the only writer of this header.
+    cacheControl: false,
+    // Tour media is fingerprinted (?v=hash) and safely immutable. Pages and
+    // feeds served from under /media (the socials pack, the galleries) are
+    // NOT: a browser that cached one for a year kept showing a redone film's
+    // old cut for as long as the filename stayed the same. Documents
+    // revalidate; media stays put for a year.
+    setHeaders: (res, filePath) => {
+      const doc = /\.(html|json)$/i.test(filePath);
+      res.setHeader("Cache-Control", doc ? "no-cache" : "public, max-age=31536000, immutable");
+    },
   });
 
   // Read once at boot: a per-request read of the same file on every deep link

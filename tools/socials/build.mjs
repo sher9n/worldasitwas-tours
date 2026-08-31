@@ -33,6 +33,15 @@ const CLIPS = path.join(WORK, "clips");
 // upload then failed with "not a directory". Flat has no such trap.
 const MEDIA = OUT;
 
+import crypto from "node:crypto";
+const FP = new Map();
+async function fp(file) {
+  if (!FP.has(file)) {
+    const buf = await fs.readFile(path.join(OUT, file));
+    FP.set(file, crypto.createHash("sha1").update(buf).digest("hex").slice(0, 10));
+  }
+  return FP.get(file);
+}
 const ff = (args) =>
   new Promise((ok, bad) => execFile("ffmpeg", ["-v", "error", "-y", ...args], (e) => (e ? bad(e) : ok())));
 const exists = (f) => fs.access(f).then(() => true, () => false);
@@ -90,6 +99,8 @@ for (const f of recipes) {
   });
 }
 tours.sort((a, b) => a.city.localeCompare(b.city) || a.year - b.year);
+
+const withV = async (src) => `${src}?v=${await fp(src)}`;
 
 const made = [];
 for (const t of tours) {
@@ -221,12 +232,12 @@ function briefData(p, plats) {
     id: p.id,
     title: p.title,
     schedule: p.schedule ?? null,
-    assets: p.media.map((m) => ({ url: `${LIVE}/${m.src}`, label: m.label })),
+    assets: p.media.map((m) => ({ url: `${LIVE}/${m.vsrc}`, label: m.label })),
     steps: plats.map((pl) => {
       const m = pick(pl.key);
       return {
         platform: pl.name,
-        attach: `${LIVE}/${m.src}`,
+        attach: `${LIVE}/${m.vsrc}`,
         postAs: m.kind === "vid" ? "native video, vertical 9:16, sound on" : "single image",
         altText: m.kind === "vid" ? null : p.title,
         caption: caption(pl.key),
@@ -271,6 +282,14 @@ function agentBrief(p, plats) {
   return L.join("\n");
 }
 
+// Every reference the page or the feed makes carries the content hash.
+for (const p of posts) {
+  for (const m of p.media) {
+    m.vsrc = await withV(m.src);
+    if (m.poster) m.vposter = await withV(m.poster);
+  }
+}
+
 const card = (p, i) => `
 <article class="post" id="${esc(p.id)}">
   <header class="post-head">
@@ -283,8 +302,8 @@ const card = (p, i) => `
 
   <div class="assets">
     ${p.media.map((m) => m.kind === "vid"
-      ? `<figure class="vid"><video controls playsinline preload="none"${m.poster ? ` poster="${m.poster}"` : ""} src="${m.src}"></video><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`
-      : `<figure><img loading="lazy" src="${m.src}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.src}" download>Download</a></figcaption></figure>`).join("")}
+      ? `<figure class="vid"><video controls playsinline preload="none"${m.vposter ? ` poster="${m.vposter}"` : ""} src="${m.vsrc}"></video><figcaption>${esc(m.label)}<a href="${m.vsrc}" download>Download</a></figcaption></figure>`
+      : `<figure><img loading="lazy" src="${m.vsrc}" alt="${esc(m.label)}"><figcaption>${esc(m.label)}<a href="${m.vsrc}" download>Download</a></figcaption></figure>`).join("")}
   </div>
 
   <div class="copyblocks">
