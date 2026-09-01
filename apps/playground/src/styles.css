@@ -656,19 +656,24 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .atlas-stop-body em { font-style: normal; font-size: 12px; color: var(--dim); line-height: 1.5; }
 .atlas-stop-body code { font: 400 10.5px "JetBrains Mono", monospace; color: var(--dim); opacity: .75; }
 
-/* Chats: the conversations ledger. */
+/* Chats: the conversations ledger. Cell classes are c-prefixed on purpose:
+   the player owns short names like .walk (absolute, inset 0, dark ::after
+   overlay), and an unprefixed cell inherits it and blacks out the page. */
 .pg-chats { font: 500 10px "JetBrains Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); background: var(--sunk); border: 1px solid var(--hair); padding: 4px 10px; border-radius: 5px; cursor: pointer; }
 .pg-chats.on, .pg-chats:hover { color: var(--amber); border-color: var(--amber); }
-.chats table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.chats table { width: 100%; border-collapse: collapse; font-size: 12.5px; table-layout: fixed; }
+/* Give the words the room: the two text columns carry the conversation. */
+.chats col.c-when { width: 13%; } .chats col.c-walk { width: 15%; } .chats col.c-q { width: 24%; }
+.chats col.c-a { width: 32%; } .chats col.c-chars { width: 8%; } .chats col.c-tokens { width: 8%; }
 .chats th { text-align: left; font: 500 10px "JetBrains Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); padding: 8px 10px; border-bottom: 1px solid var(--hair); }
 .chats td { padding: 9px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
 .chats tr { cursor: pointer; }
 .chats tr:hover td { background: var(--sunk); }
-.chats td.when { white-space: nowrap; color: var(--dim); font-family: "JetBrains Mono", monospace; font-size: 11px; }
-.chats td.walk { white-space: nowrap; text-transform: capitalize; color: var(--dim); }
-.chats td.q { max-width: 220px; }
-.chats td.a { max-width: 420px; color: var(--muted, #b9b0a2); }
-.chats tr.open td.a { white-space: pre-wrap; }
-.chats td.num { text-align: right; font-family: "JetBrains Mono", monospace; font-size: 11px; white-space: nowrap; color: var(--dim); }
+.chats td.c-when { white-space: nowrap; color: var(--dim); font-family: "JetBrains Mono", monospace; font-size: 11px; }
+.chats td.c-walk { white-space: nowrap; text-transform: capitalize; color: var(--dim); }
+.chats td.c-q { overflow-wrap: anywhere; }
+.chats td.c-a { overflow-wrap: anywhere; color: var(--muted, #b9b0a2); }
+.chats tr.open td.c-a { white-space: pre-wrap; }
+.chats td.c-num { text-align: right; font-family: "JetBrains Mono", monospace; font-size: 11px; white-space: nowrap; color: var(--dim); }
 .chats .chats-sum { display: flex; gap: 18px; padding: 4px 10px 12px; font: 500 10px "JetBrains Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
 .chats .chats-note { padding: 12px 10px 2px; font-size: 12px; color: var(--dim); }

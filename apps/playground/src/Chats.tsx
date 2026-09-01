@@ -63,25 +63,29 @@ export function Chats() {
         <span>{tokens.toLocaleString()} tokens</span>
       </div>
       <table>
+        <colgroup>
+          <col className="c-when" /><col className="c-walk" /><col className="c-q" />
+          <col className="c-a" /><col className="c-chars" /><col className="c-tokens" />
+        </colgroup>
         <thead>
           <tr>
             <th>When (IST)</th>
             <th>Walk</th>
             <th>They asked</th>
             <th>The guide said</th>
-            <th className="num">Chars</th>
-            <th className="num">Tokens in/out</th>
+            <th className="c-num">Chars</th>
+            <th className="c-num">Tokens in/out</th>
           </tr>
         </thead>
         <tbody>
           {turns.map((t, i) => (
             <tr key={`${t.sessionId}-${i}`} className={open === i ? "open" : ""} onClick={() => setOpen(open === i ? null : i)}>
-              <td className="when">{ist.format(new Date(t.ts))}</td>
-              <td className="walk">{walkName(t.tour)}</td>
-              <td className="q">{t.question || <em>unintelligible</em>}</td>
-              <td className="a">{open === i ? t.answer : t.answer.length > 160 ? `${t.answer.slice(0, 160)}…` : t.answer}</td>
-              <td className="num">{t.qChars}/{t.aChars}</td>
-              <td className="num">
+              <td className="c-when">{ist.format(new Date(t.ts))}</td>
+              <td className="c-walk">{walkName(t.tour)}</td>
+              <td className="c-q">{t.question || <em>unintelligible</em>}</td>
+              <td className="c-a">{open === i ? t.answer : t.answer.length > 160 ? `${t.answer.slice(0, 160)}…` : t.answer}</td>
+              <td className="c-num">{t.qChars}/{t.aChars}</td>
+              <td className="c-num">
                 {t.usage?.input_tokens ?? "–"}/{t.usage?.output_tokens ?? "–"}
               </td>
             </tr>
