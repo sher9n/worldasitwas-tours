@@ -662,15 +662,17 @@ code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-
 .pg-chats { font: 500 10px "JetBrains Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); background: var(--sunk); border: 1px solid var(--hair); padding: 4px 10px; border-radius: 5px; cursor: pointer; }
 .pg-chats.on, .pg-chats:hover { color: var(--amber); border-color: var(--amber); }
 .chats table { width: 100%; border-collapse: collapse; font-size: 12.5px; table-layout: fixed; }
-/* Give the words the room: the two text columns carry the conversation. */
-.chats col.c-when { width: 13%; } .chats col.c-walk { width: 15%; } .chats col.c-q { width: 24%; }
-.chats col.c-a { width: 32%; } .chats col.c-chars { width: 8%; } .chats col.c-tokens { width: 8%; }
+/* Give the words the room: the two text columns carry the conversation, so the
+   narrow ones take exactly what their content needs (fixed, not a percentage
+   that shrinks under them) and the question and answer share everything left. */
+.chats col.c-when { width: 112px; } .chats col.c-walk { width: 150px; }
+.chats col.c-chars { width: 72px; } .chats col.c-tokens { width: 104px; }
 .chats th { text-align: left; font: 500 10px "JetBrains Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); padding: 8px 10px; border-bottom: 1px solid var(--hair); }
-.chats td { padding: 9px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+.chats td { padding: 9px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; overflow: hidden; }
 .chats tr { cursor: pointer; }
 .chats tr:hover td { background: var(--sunk); }
-.chats td.c-when { white-space: nowrap; color: var(--dim); font-family: "JetBrains Mono", monospace; font-size: 11px; }
-.chats td.c-walk { white-space: nowrap; text-transform: capitalize; color: var(--dim); }
+.chats td.c-when { color: var(--dim); font-family: "JetBrains Mono", monospace; font-size: 11px; }
+.chats td.c-walk { text-transform: capitalize; color: var(--dim); overflow-wrap: anywhere; }
 .chats td.c-q { overflow-wrap: anywhere; }
 .chats td.c-a { overflow-wrap: anywhere; color: var(--muted, #b9b0a2); }
 .chats tr.open td.c-a { white-space: pre-wrap; }
