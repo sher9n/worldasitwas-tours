@@ -62,37 +62,44 @@ export function Chats() {
         <span>{sessions} conversation{sessions === 1 ? "" : "s"}</span>
         <span>{tokens.toLocaleString()} tokens</span>
       </div>
-      <table>
-        <colgroup>
-          <col className="c-when" /><col className="c-walk" /><col className="c-q" />
-          <col className="c-a" /><col className="c-chars" /><col className="c-tokens" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>When (IST)</th>
-            <th>Walk</th>
-            <th>They asked</th>
-            <th>The guide said</th>
-            <th className="c-num">Chars</th>
-            <th className="c-num">Tokens in/out</th>
-          </tr>
-        </thead>
-        <tbody>
-          {turns.map((t, i) => (
-            <tr key={`${t.sessionId}-${i}`} className={open === i ? "open" : ""} onClick={() => setOpen(open === i ? null : i)}>
-              <td className="c-when">{ist.format(new Date(t.ts))}</td>
-              <td className="c-walk">{walkName(t.tour)}</td>
-              <td className="c-q">{t.question || <em>unintelligible</em>}</td>
-              <td className="c-a">{open === i ? t.answer : t.answer.length > 160 ? `${t.answer.slice(0, 160)}…` : t.answer}</td>
-              <td className="c-num">{t.qChars}/{t.aChars}</td>
-              <td className="c-num">
-                {t.usage?.input_tokens ?? "–"}/{t.usage?.output_tokens ?? "–"}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <p className="chats-note">A row is one completed ask. Click a row for the full answer. Turns are reported by the player when the answer finishes, so an ask with no entry here is an ask whose answer never completed.</p>
+      {/*
+        A card per turn, not a table: this panel is about 600px wide, and six
+        columns turn the answer into a one-word-per-line ribbon. Stacked, the
+        question and the answer get the full width, which is what people came
+        to read, and the measurements sit on one quiet line above them.
+      */}
+      <ol className="chats-list">
+        {turns.map((t, i) => {
+          const long = t.answer.length > 320;
+          return (
+            <li key={`${t.sessionId}-${i}`} className="c-turn">
+              <div className="c-meta">
+                <span className="c-when">{ist.format(new Date(t.ts))} IST</span>
+                <span className="c-walk">{walkName(t.tour)}</span>
+                {t.stopId && <span className="c-stop">{t.stopId.replace(/^stop_\d+_?/, "").replace(/_/g, " ")}</span>}
+                <span className="c-num">{t.qChars}/{t.aChars} chars</span>
+                <span className="c-num">
+                  {t.usage?.input_tokens?.toLocaleString() ?? "–"} in / {t.usage?.output_tokens?.toLocaleString() ?? "–"} out tokens
+                </span>
+              </div>
+              <p className="c-q">
+                <span className="c-lab">They asked</span>
+                {t.question || <em>nothing we could make out</em>}
+              </p>
+              <p className="c-a">
+                <span className="c-lab">The guide said</span>
+                {long && open !== i ? `${t.answer.slice(0, 320)}…` : t.answer}
+                {long && (
+                  <button className="c-more" onClick={() => setOpen(open === i ? null : i)}>
+                    {open === i ? "less" : "the rest"}
+                  </button>
+                )}
+              </p>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="chats-note">One card is one completed ask. Turns are reported by the player when the answer finishes, so an ask with no card here is an ask whose answer never completed.</p>
     </div>
   );
 }

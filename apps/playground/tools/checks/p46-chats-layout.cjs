@@ -15,41 +15,41 @@ const BASE = process.env.BASE || "http://localhost:5173";
   await p.goto(`${BASE}/chats`, { waitUntil: "networkidle" });
   await p.waitForTimeout(2500);
   const r = await p.evaluate(() => {
-    const cell = document.querySelector(".chats td.c-walk");
-    const table = document.querySelector(".chats table");
-    const inside = cell && table ? (() => {
-      const c = cell.getBoundingClientRect(), t = table.getBoundingClientRect();
-      return c.left >= t.left - 1 && c.top >= t.top - 1 && c.right <= t.right + 1;
-    })() : null;
-    // What is actually visible where the brand and the tab bar are drawn?
+    const panel = document.querySelector(".chats");
     // Scroll it into view first: the console is a wide layout, and a point
     // outside the viewport is not "covered", it is just off-screen.
     const at = (el) => { if (!el) return "missing"; el.scrollIntoView({ block: "center", inline: "center" }); const b = el.getBoundingClientRect();
       const hit = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
       return hit === el || el.contains(hit) ? "visible" : `covered by <${hit ? hit.tagName.toLowerCase() : "none"}${hit && hit.className ? "." + hit.className : ""}>`; };
-    // Fixed columns don't move for content: text wider than its column paints
-    // over the neighbour (or gets clipped). Either way the column is too narrow.
-    let overlap = null;
-    for (const tr of document.querySelectorAll(".chats tbody tr, .chats thead tr"))
-      for (const [i, c] of [...tr.children].entries())
-        if (c.scrollWidth > c.clientWidth + 1)
-          overlap = `col ${i} content ${c.scrollWidth}px in ${c.clientWidth}px: "${c.textContent.slice(0, 20)}"`;
+    // Nothing in the ledger may be wider than the panel that holds it, and no
+    // card may escape it: both are how a stray class blows the layout open.
+    let spill = null;
+    if (panel) {
+      const pb = panel.getBoundingClientRect();
+      if (panel.scrollWidth > panel.clientWidth + 1) spill = `panel content ${panel.scrollWidth}px in ${panel.clientWidth}px`;
+      for (const el of panel.querySelectorAll(".c-turn, .c-q, .c-a, .c-meta")) {
+        const b = el.getBoundingClientRect();
+        if (b.right > pb.right + 1 || b.left < pb.left - 1) spill = `${el.className} escapes the panel`;
+        if (el.scrollWidth > el.clientWidth + 1) spill = `${el.className} content ${el.scrollWidth}px in ${el.clientWidth}px`;
+      }
+    }
+    const answer = panel && panel.querySelector(".c-a");
     return {
-      inside,
-      overlap,
-      rows: document.querySelectorAll(".chats tbody tr").length,
-      walkText: cell ? cell.textContent : null,
+      spill,
+      cards: document.querySelectorAll(".chats .c-turn").length,
+      // How much of the answer fits per line: the ribbon bug made this ~2 words.
+      answerWidth: answer ? Math.round(answer.getBoundingClientRect().width) : null,
       brand: at(document.querySelector(".pg-head .pg-brand") || document.querySelector(".pg-head")),
       tabs: at(document.querySelector(".tabs")),
-      table: at(table),
+      list: at(document.querySelector(".chats-list")),
     };
   });
   console.log(width + ":", JSON.stringify(r));
   if (width === 1280) await p.screenshot({ path: process.env.SHOT || "/Users/sherancorera/.claude/jobs/83f0d0aa/tmp/chats-geo.png" });
-  if (r.inside !== true || r.overlap || r.brand !== "visible" || r.tabs !== "visible") bad++;
+  if (r.spill || r.cards < 1 || (r.answerWidth && r.answerWidth < 260) || r.brand !== "visible" || r.tabs !== "visible") bad++;
   await ctx.close();
   }
   await b.close();
   if (bad) { console.log("FAIL: layout leak at " + bad + " width(s)"); process.exit(1); }
-  console.log("PASS: every width, cells inside the table, no content wider than its column");
+  console.log("PASS: every width, cards inside the panel, answer column readable");
 })();
