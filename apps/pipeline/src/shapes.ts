@@ -75,6 +75,7 @@ export const STOP_DOSSIER_SCHEMA = {
 
 export const CompanionDossier = z.object({
   bio: z.string(),
+  intro: z.string(),
   speechNotes: z.string(),
   worldview: z.string(),
   knowledgeLimits: z.string(),
@@ -87,9 +88,10 @@ export type CompanionDossier = z.infer<typeof CompanionDossier>;
 export const COMPANION_DOSSIER_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["bio", "speechNotes", "worldview", "knowledgeLimits", "samplePhrases", "greeting", "portraitPrompt"],
+  required: ["bio", "intro", "speechNotes", "worldview", "knowledgeLimits", "samplePhrases", "greeting", "portraitPrompt"],
   properties: {
-    bio: { type: "string" },
+    bio: { type: "string", description: "Who she is, as prose the guide speaks from. No URLs, no citation markers, no source names: a person, not a literature review." },
+    intro: { type: "string", description: "At most three short sentences, under 400 characters, introducing her and this walk to a traveller who has just opened the card. Warm, plain, present tense, no citations." },
     speechNotes: { type: "string", description: "How she talks: vocabulary, rhythm, phrases, drawn from the primary sources. Concrete examples." },
     worldview: { type: "string" },
     knowledgeLimits: { type: "string" },

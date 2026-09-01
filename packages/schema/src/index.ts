@@ -182,10 +182,36 @@ export const Voice = z.object({
   voice: z.string().min(1),
 });
 
+/**
+ * Research prose arrives with its citations attached: markdown links, bare
+ * URLs, "([researchgate.net])", "Source: ...". That is right for a dossier and
+ * wrong everywhere it is actually used, which is a card a traveller reads and a
+ * prompt a guide speaks from. A guide handed her own footnotes talks like a
+ * literature review; a card handed them shows a wall of URLs.
+ */
+export function stripCitations(text: string): string {
+  return text
+    .replace(/\[([^\]]*)\]\((?:https?:\/\/|`)[^)]*\)/g, "$1") // [label](url) keeps the label
+    .replace(/\(`?https?:\/\/[^)]*\)/g, "") // (url) and (`url`)
+    .replace(/`?https?:\/\/\S+`?/g, "") // anything else that is a bare link
+    .replace(/\(\[[^\]]*\]\)/g, "") // ([researchgate.net])
+    .replace(/\b(?:Sources?|See also|Citation)\s*:\s*/gi, "")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/ +([.,;:])/g, "$1")
+    .replace(/\(\s*\)/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 export const Companion = z.object({
   name: z.string().min(1),
   role: z.string().min(1),
   bio: z.string().min(1),
+  /**
+   * Three lines at most: who she is and what this walk is, written to be read
+   * by a traveller on the guide card. The bio behind it is for the model.
+   */
+  intro: z.string().max(420).optional(),
   portrait: url,
   greeting: SpokenLine,
   voice: Voice,

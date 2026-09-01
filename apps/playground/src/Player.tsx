@@ -10,6 +10,7 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Card, Tour } from "@timetravel/schema";
+import { stripCitations } from "@timetravel/schema";
 import { AudioEngine } from "./audio.ts";
 import { buildBeats, type Beat } from "./beats.ts";
 import { CompanionSession, type CompanionState } from "./companion.ts";
@@ -63,6 +64,13 @@ export interface PlayerControls {
   resume(): void;
   /** Ends the walk and returns to the cover, emitting tour_left. */
   leave(): void;
+}
+
+/** The opening two sentences, for a walk published before intros existed. */
+function firstLines(bio: string): string {
+  const clean = stripCitations(bio);
+  const two = clean.split(/(?<=[.!?])\s+/).slice(0, 2).join(" ");
+  return two.length > 400 ? `${two.slice(0, 397)}\u2026` : two;
 }
 
 export function Player({
@@ -759,7 +767,13 @@ export function Player({
                 <span>{tour.companion.role}</span>
               </div>
             </div>
-            <p>{tour.companion.bio}</p>
+            {/*
+              The intro, never the bio: the bio is a research dossier written
+              for the model, and putting it on this card is how a traveller got
+              a wall of citation URLs. Walks published before the intro existed
+              fall back to the opening lines of a cleaned bio.
+            */}
+            <p>{tour.companion.intro || firstLines(tour.companion.bio)}</p>
             <p className="muted">
               {tour.companion.name} is not a real historical person, but is built from the records of people who did this work, and knows nothing after {tour.yearRange[1]}. Everything you see is a reconstruction; sources travel with the tour's data.
             </p>

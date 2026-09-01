@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { parseTour, type Card, type Hotspot, type Recipe, type Source, type Stop, type Tour } from "@timetravel/schema";
+import { parseTour, type Card, type Hotspot, type Recipe, type Source, type Stop, type Tour, stripCitations } from "@timetravel/schema";
 import { levelAudio, probeDuration } from "../ffmpeg.ts";
 import type { Asset } from "../providers/types.ts";
 import type { CompanionDossier, StopDossier, StopScript } from "../shapes.ts";
@@ -293,7 +293,8 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
     companion: {
       name: recipe.companion.name,
       role: recipe.companion.role,
-      bio: input.companion.bio,
+      bio: stripCitations(input.companion.bio),
+      intro: stripCitations(input.companion.intro ?? "").slice(0, 420),
       portrait: portrait?.url ?? firstHero,
       greeting: { text: input.companion.greeting, audio: greeting?.url, durationSec: greeting?.durationSec },
       voice: { provider: "openai-realtime", voice: recipe.companion.voice },

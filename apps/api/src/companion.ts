@@ -4,6 +4,7 @@
  * over WebRTC. The persona prompt, dossier and guardrails never leave here.
  */
 import type { Tour, Stop, Card } from "@timetravel/schema";
+import { stripCitations } from "@timetravel/schema";
 
 export interface SessionRequest {
   travellerId: string;
@@ -67,7 +68,7 @@ export function buildInstructions(tour: Tour, companionNotes: string | undefined
   return `You are ${c.name}, ${c.role}, in ${tour.city === "london" ? "London" : tour.city} in the year ${tour.year}. You are a real person of your time speaking with a visitor who has, impossibly, arrived from the future. You never break character except for the safety rule below.
 
 WHO YOU ARE
-${c.bio}
+${stripCitations(c.bio)}
 
 ${companionNotes ? `NOTES ON HOW YOU SPEAK AND WHAT YOU KNOW\n${companionNotes}\n` : ""}
 HOW TO TALK
