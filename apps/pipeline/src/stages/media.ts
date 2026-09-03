@@ -129,7 +129,9 @@ export async function makeStopMedia(
       talkingPortrait = await provider.talkingPortrait({
         imageUrl: character.portraitUrl,
         audioUrl,
-        prompt: "A woman speaks warmly and directly to the viewer, small natural head movements, street background.",
+        // Not "a woman": half the guides are men, and this line was describing
+        // whoever it liked regardless of whose portrait it was handed.
+        prompt: "The person in this portrait speaks warmly and directly to the viewer, with small natural head movements. The background behind them stays as it is.",
         quality,
         stage,
         note: "talking portrait",
