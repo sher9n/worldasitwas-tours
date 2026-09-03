@@ -1,0 +1,183 @@
+{
+  "id": "tour_colombo_1999_three_wheeler",
+  "city": "colombo",
+  "cityName": "Colombo",
+  "country": "LK",
+  "year": 1999,
+  "yearRange": [
+    1997,
+    1999
+  ],
+  "lang": "en",
+  "title": "The Last Year of the Century",
+  "theme": "Six stops across Colombo in 1999 with Ranjith, who drives a hired three-wheeler. Ninety-four years after Sena pulled a rickshaw through the same Fort, the trade is the same and the city is not: the Fort is a sealed high-security zone, the twin towers of the World Trade Centre are two years old, a war that nobody can see the end of is measured out in checkpoints and identity cards, and the century is running out with an election, a bomb and a rumour that the computers will stop at midnight.",
+  "companion": {
+    "name": "Ranjith",
+    "role": "Three-wheeler driver",
+    "brief": "Thirty-four, drives a red Bajaj two-stroke three-wheeler he rents by the day from a man in Dematagoda, paying the hire before he earns a rupee for himself. Left school after O-Levels, was a lorry helper and then a bus conductor before he got the three-wheeler six years ago. Lives in a lane in Dematagoda; his wife works in a cloth shop in Pettah and their two children are at school in Maradana. He knows every junction, every shortcut, every checkpoint and which of the soldiers on them are decent. Cheerful and fast-talking with a fare in the back, plain and tired when he is not. He carries Sinhala, Tamil, Muslim and Burgher passengers and does not pretend the city is one people. He has opinions about the war and about politicians and keeps most of them to himself while the meter runs. He knows nothing of the world after 1999: not how the war ends, not what the sea does in five years, not what the century turning will or will not do to the computers.",
+    "voice": "ballad",
+    "narrationVoice": "dahpPHJ9zA9ckbsyrVfz",
+    "presence": {
+      "standing": "beside his red three-wheeler at the kerb on a Colombo street, shopfronts and traffic behind him in the afternoon light",
+      "gesture": "wipes the passenger seat with a cloth and glances up the road for a fare"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a 35mm camera had stood in Colombo in 1999: hot tropical light with monsoon cloud, wet tar, red dust, jackfruit and rain trees. Red and black Bajaj three-wheelers, crowded private buses and red CTB buses, Japanese hatchbacks and Morris Minors kept alive, bicycles and handcarts. Concrete and cement-plaster buildings from the sixties and seventies with grilles and shutters, older colonial arcades in the Fort and Pettah, corrugated roofs, hand-painted shopfronts and cloth banners. Clothes of 1999 Colombo: sarongs and shirts, school uniforms in white, saris and shalwar kameez, office shirts with ties, soldiers in olive fatigues at sandbagged posts. Camera at eye level, 9:16 framing, natural warm colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or made after 1999. No Lotus Tower, no Port City reclamation, no Shangri-La, Altair, Cinnamon Life or any modern glass tower beyond the 1997 World Trade Centre twin towers and the Bank of Ceylon tower. No smartphones, no flat-screen televisions or monitors, no LED signs, digital billboards or modern illuminated advertising. No cars, buses or three-wheelers of a shape later than 1999. No modern uniforms or equipment. No legible Sinhala or Tamil lettering: signage must sit far off, at an angle, or softened by depth of field, because rendered script comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces, no images of the moment of a bombing, no bodies, no blood."
+  },
+  "stops": [
+    {
+      "id": "stop_01_fort_wtc",
+      "title": "The Fort, Under the New Towers",
+      "geo": {
+        "lat": 6.9333,
+        "lng": 79.8428,
+        "bearing": 45
+      },
+      "brief": "The old commercial Fort turned into a high-security zone: the two-year-old World Trade Centre twin towers standing over barriers, sandbagged posts and streets a three-wheeler is no longer allowed down, three years after the Central Bank bomb tore the quarter open.",
+      "mustCover": [
+        "what a driver can and cannot do in the Fort now, and where he has to set passengers down",
+        "the twin towers, when they went up and what they mean to look at from the street",
+        "how an ordinary identity check goes, told plainly and without drama"
+      ],
+      "archiveQueries": [
+        "Colombo Fort World Trade Centre towers",
+        "Colombo Fort street present day photograph",
+        "Colombo Central Bank building Fort"
+      ]
+    },
+    {
+      "id": "stop_02_pettah",
+      "title": "Pettah",
+      "geo": {
+        "lat": 6.9371,
+        "lng": 79.8578,
+        "bearing": 90
+      },
+      "brief": "The wholesale market beyond the Fort: Main Street and Sea Street, hand-carts and lorries, cloth and hardware and gold, cassette shops playing baila and film songs, and the bus stands where private buses race each other for passengers.",
+      "mustCover": [
+        "what is sold in which street, and who sells it",
+        "the private buses and the CTB buses, and why the private ones drive the way they do",
+        "what music is coming out of the cassette shops this year"
+      ],
+      "archiveQueries": [
+        "Pettah market Colombo photograph",
+        "Colombo Main Street Pettah",
+        "Colombo bus stand Pettah"
+      ]
+    },
+    {
+      "id": "stop_03_galle_face",
+      "title": "Galle Face Green",
+      "geo": {
+        "lat": 6.9271,
+        "lng": 79.8412,
+        "bearing": 270
+      },
+      "brief": "The long green by the sea in the evening: kites, prawn fritters off a cart, families and courting couples, the old hotel at one end and the new ones behind, and the sea wind that everyone comes for.",
+      "mustCover": [
+        "what a three-wheeler driver earns in a day once the hire is paid",
+        "who comes to the green in the evening and what they eat and do here",
+        "the sea, the wind and why this is the one place in the city that belongs to everybody"
+      ],
+      "archiveQueries": [
+        "Galle Face Green Colombo photograph",
+        "Galle Face Hotel Colombo",
+        "Colombo seafront promenade evening"
+      ]
+    },
+    {
+      "id": "stop_04_beira_slave_island",
+      "title": "Beira Lake and Slave Island",
+      "geo": {
+        "lat": 6.9174,
+        "lng": 79.8543,
+        "bearing": 135
+      },
+      "brief": "The temple on the water at Gangaramaya and the crowded quarter behind it, where Sinhala, Tamil, Muslim and Malay families live street by street, army camp and railway line and lake all in the same square mile.",
+      "mustCover": [
+        "who lives in these streets and how long they have been here",
+        "the temple, the lake and what happens here at Navam Perahera",
+        "how the city's communities live side by side in one quarter, said without a speech"
+      ],
+      "archiveQueries": [
+        "Gangaramaya temple Colombo photograph",
+        "Beira Lake Colombo Seema Malaka",
+        "Slave Island Colombo street"
+      ]
+    },
+    {
+      "id": "stop_05_bambalapitiya_wellawatte",
+      "title": "Down the Coast Line",
+      "geo": {
+        "lat": 6.8891,
+        "lng": 79.8564,
+        "bearing": 180
+      },
+      "brief": "Galle Road south through Bambalapitiya and Wellawatte with the coast railway running between the shops and the sea: Majestic City, the tea kiosks, the Tamil quarter, and the searches and cordons that fall hardest on the people who live here.",
+      "mustCover": [
+        "the trains that run along the beach and what it is like to ride one",
+        "what a cordon-and-search morning is like for the people in these lanes, told from what he sees from the road",
+        "what a driver does when the road is closed and a fare is waiting"
+      ],
+      "archiveQueries": [
+        "Bambalapitiya Colombo coastal railway photograph",
+        "Wellawatte Colombo Galle Road",
+        "Colombo coast line train sea"
+      ]
+    },
+    {
+      "id": "stop_06_town_hall",
+      "title": "The Year Runs Out",
+      "geo": {
+        "lat": 6.9167,
+        "lng": 79.864,
+        "bearing": 315
+      },
+      "brief": "Town Hall and the park at the end of December 1999: a presidential election, a bomb at a rally that took the president's eye, a city that has learned to keep going, and a midnight coming that half the world says will stop the computers.",
+      "mustCover": [
+        "the election and what ordinary people are saying about it in the back of a three-wheeler",
+        "the December bombing, told as the city heard about it and lived through the next day, never as spectacle",
+        "the turn of the century, Y2K as it was actually talked about, and what he hopes for the next year"
+      ],
+      "archiveQueries": [
+        "Colombo Town Hall building photograph",
+        "Viharamahadevi Park Colombo",
+        "Colombo city hall night"
+      ]
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "The Sunday Times (Sri Lanka), 1999 archives",
+      "url": "http://www.sundaytimes.lk/",
+      "license": "press-archive",
+      "note": "Week-by-week Colombo in 1999: the election, the December bombing, prices, transport, city life."
+    },
+    {
+      "title": "Sri Lankan presidential election, 1999",
+      "url": "https://en.wikipedia.org/wiki/1999_Sri_Lankan_presidential_election",
+      "license": "cc-by-sa",
+      "note": "The December 21 election and the December 18 attack at Town Hall."
+    },
+    {
+      "title": "Central Bank bombing, Colombo, 1996",
+      "url": "https://en.wikipedia.org/wiki/Central_Bank_bombing",
+      "license": "cc-by-sa",
+      "note": "Why the Fort is a sealed high-security zone by 1999."
+    },
+    {
+      "title": "World Trade Center Colombo",
+      "url": "https://en.wikipedia.org/wiki/World_Trade_Center_(Colombo)",
+      "license": "cc-by-sa",
+      "note": "The twin towers, opened 1997, and the skyline of exactly these years."
+    },
+    {
+      "title": "Auto rickshaws in Sri Lanka",
+      "url": "https://en.wikipedia.org/wiki/Auto_rickshaw",
+      "license": "cc-by-sa",
+      "note": "The Bajaj two-stroke three-wheeler, the hire system and the trade."
+    }
+  ]
+}
