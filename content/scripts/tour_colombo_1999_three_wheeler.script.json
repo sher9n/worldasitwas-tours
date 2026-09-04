@@ -1,0 +1,435 @@
+{
+  "tourId": "tour_colombo_1999_three_wheeler",
+  "companion": "Ranjith",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_fort_wtc": {
+      "arrival": {
+        "line": "Ayubowan, I'm Ranjith, and I drive a hired three-wheeler in Colombo, on these same roads every day, learning which junction opens, which shortcut saves time, and which soldier waves you through.",
+        "scene": "From the pavement at Echelon Square, a red Bajaj three-wheeler with a black hood stands angled at the curb in the left foreground. Behind it, the twin glass towers rise steeply into white coastal light. On the right, a soldier at a sandbagged post holds an identity card up toward a man in an office shirt. Metal barriers and control fencing cut across the road beyond, with a few more three-wheelers kept back, a traffic policeman farther off, and clerks carrying files through the open patch of street.",
+        "points": [
+          {
+            "label": "red Bajaj",
+            "line": "Not my own machine, this one. I rent it by the day from a man in Dematagoda, so first I pay the owner, then petrol, and only after that I start earning for the house."
+          },
+          {
+            "label": "twin towers",
+            "line": "Those towers opened in October 1997, so by this year they're still new and too shiny, as if Fort has put on a foreign suit and hasn't broken it in yet."
+          },
+          {
+            "label": "soldier with card",
+            "line": "A usual check is like that: stop, hand over your identity card, say where you're going, and wait while he matches face to card. If nothing troubles him, you move in minutes."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_fort_wtc_c1": {
+          "narration": "I’m thirty-four, and this hired red Bajaj carries me from Dematagoda through Fort, Pettah and Galle Road; after lorry helping and bus conducting, I’ve done six years, and we've got six stops.",
+          "scene": "From the back seat of the three-wheeler, Ranjith's hands grip the black handlebars in the foreground, with the square fare meter bolted beside them. A round mirror catches the blue nose of a bus crowding up behind. Through the windscreen opening ahead, the pale lower faces of the twin towers and a wide Fort street sit in hard sun.",
+          "points": [
+            {
+              "label": "fare meter",
+              "line": "With plenty of short hires, the talk can be faster than the ride: eighty asked, sixty settled, ha, naginna, and off we go before another fellow steals the fare first."
+            },
+            {
+              "label": "mirror bus",
+              "line": "That bus in the mirror is why I don't daydream at junctions. If a bus sees a gap, that gap is already finished, and a three-wheeler driver learns that quickly."
+            },
+            {
+              "label": "driver's hands",
+              "line": "Conductor work never leaves you. Even now I'm explaining myself before anyone asks, because the road blocks, the bus cuts across, the destination changes, and somehow the delay becomes your fault."
+            }
+          ]
+        },
+        "stop_01_fort_wtc_c2": {
+          "narration": "Touch anything in the picture and I'll tell you about it, and if you hold the green button, you can ask me anything at all.",
+          "scene": "A broad Fort junction seen from curb height: a narrow side lane opens on the left between office blocks, a soldier at center lifts one arm to wave a car through a checkpoint, and a white-shirt clerk with a file walks away from a parked three-wheeler on the right. Control barriers, a traffic policeman, and the lower faces of tall glass buildings sit behind them.",
+          "points": [
+            {
+              "label": "side lane",
+              "line": "Fort teaches you little escapes. One turn saves five minutes, the next one traps you behind a lorry, so knowing shortcuts isn't bravery, it's just how you keep the day moving."
+            },
+            {
+              "label": "waving soldier",
+              "line": "You learn faces as much as roads. Good soldier, we move; bad soldier, we wait and swallow it, because arguing at a checkpoint only burns time and everyone's temper for nothing."
+            },
+            {
+              "label": "white-shirt clerk",
+              "line": "Not everyone even tries for the closed frontage now. Plenty of office people get down where traffic still flows, tuck the pass or card away, and walk the last part themselves."
+            }
+          ]
+        },
+        "stop_01_fort_wtc_c4": {
+          "narration": "Fort side looks open for business with those new towers, but for us drivers the truth is down here, where the sealed road decides where a fare must walk.",
+          "scene": "From the mouth of a broad street, a metal road barrier cuts across the sealed stretch in the foreground, with dusty sandbags piled beside a small post on the right. Above, the blue-grey windows of the twin towers fill most of the frame, while a few office workers thread along the pavement far behind the barrier.",
+          "points": [
+            {
+              "label": "road barrier",
+              "line": "That barrier is the real map now. Janadhipathi Mawatha stayed closed after the Central Bank bombing, so we drivers nose in only to the open edge and let the fare do the last walk."
+            },
+            {
+              "label": "tower windows",
+              "line": "In October 1997 a blast near the Galadari shattered glass here too, and still by Friday offices were back at work, though some had to shift elsewhere for security reasons."
+            },
+            {
+              "label": "sandbag post",
+              "line": "If the card worries them, that's when the day bends: they can ask for a Colombo registration report and every reason you have for being in the city that day."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come, we'll slip out of these office streets and into the crush, because once Fort stops pretending, Pettah starts telling the truth."
+    },
+    "stop_02_pettah": {
+      "arrival": {
+        "line": "Once you cross out of Fort, Colombo stops pretending it's tidy. Pettah starts at full voice, each lane selling one thing hard and chasing every rupee.",
+        "scene": "A street-level view facing east into Pettah from the Fort edge on a hot afternoon: concrete barriers and a sentry post sit at the far left behind a knot of pedestrians, Main Street runs ahead under faded awnings and hanging signs, bolts of cloth are stacked shoulder-high outside a textile shop on the right, a cloth shop boy in a pale shirt stands on the pavement holding open a bright sari length, a hand-cart loaded with cartons squeezes between a lorry tailboard and people in the centre, and farther back a side lane shows glass-fronted jewellery windows.",
+        "points": [
+          {
+            "label": "concrete barriers",
+            "line": "Three years now since the Central Bank bombing, and this Fort edge still carries the answer to it. Even when you're only coming to buy cloth, the city wants to know who you are first."
+          },
+          {
+            "label": "cloth shop boy",
+            "line": "Main Street is textiles, simple as that. Those boys work the pavement for wedding parties and family shoppers, because if one customer drifts ten doors farther, the sale may belong to somebody else."
+          },
+          {
+            "label": "jewellery windows",
+            "line": "Gold gathers on Sea Street, which plenty of people still call Hetti Weediya. The trade there was shaped by South Indian merchant families, and even now a lot of the jewellery shops are in Indian-origin hands."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_pettah_c1": {
+          "narration": "Main Street runs straight through this bazaar, Bankshall keeps parallel, and Olcott holds the south edge, so even chaos here has its own proper lanes.",
+          "scene": "A frame halfway down Main Street: awnings hang low over both sides, enamel signs jut out above, bolts of cloth are piled shoulder-high at left, a glass bangle counter gleams at the right-hand shopfront, a hand-cart stacked with cardboard cartons is wedged in the middle between a lorry tailboard and pedestrians, and loaders with gunny sacks thread through the heat under half-open shutters.",
+          "points": [
+            {
+              "label": "hand-cart",
+              "line": "This place earns by volume. A cart like that keeps slipping between lorries because every shop wants cartons, sacks, and one more load before the afternoon shuts its fist tight."
+            },
+            {
+              "label": "bangle counter",
+              "line": "A glass counter like that pulls in women buying cloth, bangles, and the little matching bits, and the bargaining will jump between Sinhala and Tamil without anyone stopping the sale."
+            }
+          ]
+        },
+        "stop_02_pettah_c2": {
+          "narration": "The bus world leans right into Pettah, red CTBs at the older terminals and private fellows lunging for fares because one half-empty run hurts.",
+          "scene": "A roadside frame near the Pettah bus stands: a soot-streaked red CTB bus idles on the left with passengers clustering by its open door, a bright-painted private bus angles in from the right with a conductor hanging off the step and clapping the bodywork, a tin route board sits inside the windscreen, another conductor leans from a bus behind shouting a destination, and diesel haze hangs over parcels, tea stalls, and the curbside crowd.",
+          "points": [
+            {
+              "label": "red CTB bus",
+              "line": "The red ones are the people's buses, and around here their older terminals sit on Olcott and Bodhiraja. Private buses answer from Bastian side, which is why this corner always feels like two depots spilling into one road."
+            },
+            {
+              "label": "conductor on step",
+              "line": "He isn't showing off, he is earning. Private crews often owe the owner's daily charge before they touch their own wage, and with too many buses on one route they grab passengers wherever they can."
+            },
+            {
+              "label": "route board",
+              "line": "Officials keep making rules on speed, passenger loads, road manners, and late-night running, and this year they're even training thousands of private crews with the state bus schools. Still, once the road opens, habit wins."
+            }
+          ]
+        },
+        "stop_02_pettah_c4": {
+          "narration": "Even the cassette shops bargain for your ear, pushing baila, fresh Sinhala-English pop, and Hindi or Tamil film songs all into the same hot air.",
+          "scene": "A narrow cassette-shop row in Pettah: racks of plastic-cased tapes fill a shopfront, handwritten price cards hang above them, two black speaker boxes are wired out under the awning, a pop poster of a smiling young duo is taped beside a brighter party cassette cover, and pedestrians pass below while the nose of a private bus and the edge of a tea stall crowd the frame.",
+          "points": [
+            {
+              "label": "pop poster",
+              "line": "That young crowd sound is Bathiya and Santhush. This year people are playing Wasanthaye because it mixes Sinhala and English with rap, reggae, and ragga in it, and it feels a bit new without frightening anyone's mother."
+            },
+            {
+              "label": "party cassette",
+              "line": "The party stuff sells too. Chandimal and the Second Connection have an unplugged calypso kind of cassette out already, and between tracks you'll still get Hindi choruses and Tamil film hits everybody knows by heart."
+            }
+          ]
+        }
+      },
+      "transitionOut": "We'll nose out by Olcott now and catch a bit of sea wind, because after Pettah's heat Colombo always pretends it can breathe again."
+    },
+    "stop_03_galle_face": {
+      "arrival": {
+        "line": "Then we come out to Galle Face, and all at once Colombo can breathe again, because here the sea takes everybody equally and nobody needs a pass to stand.",
+        "scene": "An evening photograph from the promenade facing west: the Indian Ocean and white surf fill the left half, a worn brown-green strip of ground fills the centre, a kite boy runs under a hard-pulled kite, couples sit along the seawall, food carts glow with gas lanterns to the right, and the long cream frontage of the old hotel stands beyond them to the south.",
+        "points": [
+          {
+            "label": "food carts",
+            "line": "By evening these sellers make a little street of their own. Opposite the Taj side they keep to sections, but nobody has to stay with one stall; you buy here, then sit anywhere under the stars."
+          },
+          {
+            "label": "kite boy",
+            "line": "Children come for room to move, which is rarer in this city than people admit. They fly kites, paddle at the edge, and if the parents are soft-hearted, there's a pony ride for ten rupees."
+          },
+          {
+            "label": "old hotel",
+            "line": "That old hotel has been here since 1864, so when the stalls light and the kites pull, it watches Colombo doing the same evening business under a much older roof."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_galle_face_c1": {
+          "narration": "For me this is working ground too, because one decent evening of drops and returns might leave a few hundred rupees when owner and petrol are settled.",
+          "scene": "A close evening photograph at the Galle Road edge: a red Bajaj three-wheeler stands angled toward the camera with blue smoke drifting behind it, Ranjith half-turned in the driver's seat counting crumpled notes above the small meter, while a sleeping child leans on a woman's shoulder in the back and sea spray whitens the dark beyond.",
+          "points": [
+            {
+              "label": "crumpled notes",
+              "line": "A few hundred in hand can vanish fast. Rice is about twenty-six rupees a kilo this year, and red onions are over fifty, so a driver counts earnings against the kitchen almost automatically."
+            },
+            {
+              "label": "blue smoke",
+              "line": "That haze is normal now. Most of our hired three-wheelers are the old noisy two-stroke kind, so they rattle, smoke a little, and announce themselves before you even turn your head."
+            },
+            {
+              "label": "sleeping child",
+              "line": "Evening work here is full of small returns: a family out, then the same family back with one child asleep, another sticky with gram, and everybody too tired to argue over the fare."
+            }
+          ]
+        },
+        "stop_03_galle_face_c2": {
+          "narration": "By dusk you get office clerks, families, courting pairs, young fellows in packs, and everybody eating something with chilli while the children run till they drop.",
+          "scene": "A nightfall photograph opposite the hotel strip: a row of food stalls and carts stands under hissing gas lanterns, one seller handing over a gram paper, another chopping food on an iron plate, while families crowd plastic chairs, a child circles on a pony ride in the foreground, and couples and laughing office boys spread across the open ground behind.",
+          "points": [
+            {
+              "label": "gas lantern",
+              "line": "Once these lanterns are lit, the whole stretch turns into a mini food street. You can get prawns, cuttlefish, koththu, string hoppers, chips, naan, and all the fried things that smell better than they look."
+            },
+            {
+              "label": "gram paper",
+              "line": "One fellow here, Mohideen, started with nothing grand, only a little gram store earning about a hundred rupees a day, and saved from that till he built up a proper stall."
+            },
+            {
+              "label": "pony ride",
+              "line": "You'd think only the sea matters, but children measure an evening differently. Ten rupees buys a pony ride here, and that can be the whole story they take home."
+            }
+          ]
+        },
+        "stop_03_galle_face_c4": {
+          "narration": "That's why people forgive the litter and rough ground, because this is the one stretch where Colombo opens its hands and lets you belong without buying permission.",
+          "scene": "A later evening photograph from low on the ground facing north-west: rough grass and scraps of litter fill the foreground, a few friends on grass sit cross-legged in the middle sharing snacks, the dark sea and seawall run away at left, and the twin towers rise to the right beyond the open sweep toward Fort.",
+          "points": [
+            {
+              "label": "rough grass",
+              "line": "Nobody mistakes this for a pretty lawn. They have been mending it for years and it is still half-mended, more dust than green once the rains stop."
+            },
+            {
+              "label": "friends on grass",
+              "line": "This open spread was laid out back in 1859, and later even the courts treated it as public ground in perpetuity, which just means nobody is meant to fence ordinary people out."
+            },
+            {
+              "label": "twin towers",
+              "line": "Just beyond that side, Fort still carries the war in its bones. After the Central Bank blast, Janadhipathi Mawatha was a barricaded ghost road with armed men patrolling it."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, enough sea air. We'll pull back into the traffic now, because in Colombo even a pleasant evening sits right beside somebody's hurry."
+    },
+    "stop_04_beira_slave_island": {
+      "arrival": {
+        "line": "Now the roads squeeze in again, and Slave Island shows Colombo the way it really is: temple roof, mosque dome, kovil tower, church wall, all within shouting distance.",
+        "scene": "From the edge of Beira Lake, green water with a thin oily film fills the foreground; just left of centre a white lake hall with low red-brown tiled roofs sits over the water, prayer flags and flower trays at its landing. Behind roadside shophouses deeper in Slave Island rises a blue kovil tower, and to the right a cream mosque dome with a short minaret lifts above corrugated roofs, with a pale church wall and statue further back between laundry lines.",
+        "points": [
+          {
+            "label": "white lake hall",
+            "line": "The temple began in the late nineteenth century on swampy ground by Beira, and now it has spread onto the water itself, which suits Colombo somehow: never enough land, still making room."
+          },
+          {
+            "label": "blue kovil tower",
+            "line": "That blue tower is the Murugan kovil on Kew Road, dated to 1822, and it sits here as naturally as the tyre shop and tea kiosk jammed beside it today."
+          },
+          {
+            "label": "cream mosque dome",
+            "line": "The cream dome belongs to Wekanda Jumma Mosque, built in 1786 under the Dutch by a Malay nobleman, Pandan Bali, which tells you how long Malay life has been stitched into this quarter."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_beira_slave_island_c1": {
+          "narration": "Gangaramaya began in the late nineteenth century on swamp beside this lake, and every Navam season the quiet water gives way to drums, lights, and jam.",
+          "scene": "A close view from the lakeside landing shows green lake water under a white platform and low red-brown tiled roofs, with brass railings catching the light. In the lower foreground sit stacked flower trays of lotus and jasmine beside oil lamps, and on a pillar near the steps hangs an elephant banner fluttering lightly above the water.",
+          "points": [
+            {
+              "label": "flower trays",
+              "line": "Those flower trays smell sweeter than the lake, because Beira always keeps a bit of algae and engine smoke under the incense, and Colombo never gives a temple silence for free."
+            },
+            {
+              "label": "elephant banner",
+              "line": "Navam Maha Perahera has been run from 1979, and once it gets close already you'll hear practice before you see anything, then half Colombo pretends it isn't stuck behind it."
+            },
+            {
+              "label": "green lake water",
+              "line": "People call this a calm view, but the water keeps that warm, slightly rotten smell, and all around it you've still got horns, bells, crows, and the railway breaking in."
+            }
+          ]
+        },
+        "stop_04_beira_slave_island_c2": {
+          "narration": "These lanes go back to Dutch-time Colombo, and some family lines reach the seventeenth and eighteenth centuries, so living side by side here isn't anybody's new idea.",
+          "scene": "A narrow Slave Island lane is seen straight on, hemmed by two-storey shophouses with peeling plaster and laundry overhead. At left, above a wall, rises a green minaret; near the middle a white church statue stands in a niche on a pale frontage; at right an orange temple gate opens into a small compound, while a blue kovil tower peeks above roofs further back.",
+          "points": [
+            {
+              "label": "green minaret",
+              "line": "That green minaret is Java Lane mosque, begun in 1864 under the British, and old people still call it the Malay Military Mosque or the Pensioners' Mosque around this quarter."
+            },
+            {
+              "label": "church statue",
+              "line": "That church serves people in Tamil, Sinhala and English now, and it was likely already doing the same in our time, because this neighbourhood has never kept to one tongue."
+            },
+            {
+              "label": "orange temple gate",
+              "line": "People here will tell you one street can hold a church, a kovil, a mosque and a temple, and the families have lived like that for decades without composing speeches about it."
+            }
+          ]
+        },
+        "stop_04_beira_slave_island_c4": {
+          "narration": "And still, by the lake road, the war slows everybody, because one checkpoint, one card check, and your short cut isn't short anymore.",
+          "scene": "On a road at the edge of Slave Island, a red Bajaj waits at the curb in the foreground. To the left, beyond a chain-link fence, sit a small cricket outfield and a low pavilion; ahead, checkpoint soldiers and a policeman stand beside sandbags stopping traffic; to the right a train slides past, and far beyond the rooftops the twin glass towers rise in the haze.",
+          "points": [
+            {
+              "label": "cricket pavilion",
+              "line": "That pavilion belongs to the Colombo Malay Cricket Club, founded in 1872 for the Malay community, just as the old Ceylon Malay Rifle Regiment was being disbanded out of service."
+            },
+            {
+              "label": "checkpoint soldiers",
+              "line": "These lake roads got a reputation after that bomb lorry was said to have used them to dodge Fort checks, and ever since, every uniform here looks twice before waving you on."
+            },
+            {
+              "label": "red Bajaj",
+              "line": "A red Bajaj like mine is nothing special. There are twenty-five thousand of us registered in this province alone, which is why every gap in the traffic coughs one up eventually."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come, we'll cut out by the station side, because once the lanes open again, Colombo starts talking politics whether you asked or not."
+    },
+    "stop_05_bambalapitiya_wellawatte": {
+      "arrival": {
+        "line": "Come farther south and Colombo stretches thin, road on one side, sea on the other, and every easy ride starts carrying its papers in its shirt pocket.",
+        "scene": "From the open left side of a moving three-wheeler on southbound Galle Road, a blue bus with a painted destination board looms ahead while two policemen stand at the mouth of a side lane on the right; across the traffic on the sea side, a cream-and-red coast train is passing behind a low parapet and a ragged row of snack bars and shops, and just inland of Station Road the big glass-fronted block with the readable Majestic City sign fills the middle distance, with trilingual shop signs around it and a bright slice of sea beyond the rails.",
+        "points": [
+          {
+            "label": "the train",
+            "line": "From Fort it is only the next two stations down the coast, Bambalapitiya then Wellawatte, five kilometres and seven, but on that train it feels longer, because the doors stay open and the sea keeps coming at your shoulder."
+          },
+          {
+            "label": "the mall sign",
+            "line": "One Saturday in May, gunmen shot three party men at the beach end of Station Road, by Majestic City, with the road still full of shoppers. They say a false call had pulled the police away somewhere else that evening."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_bambalapitiya_wellawatte_c1": {
+          "narration": "If you've got the coast train instead of my hire, take it. The carriage gets sea wind, surf flash, then somebody's back garden and washing line.",
+          "scene": "From inside a southbound coast train, the open doorway and metal hand bar fill the near left, a few standing passengers are inside the carriage, and outside the track runs beside a low seawall with bright surf, sand, and spray; on the landward side beyond the retaining wall are back gardens, laundry lines, and the upper fronts of roadside shops, with a large readable Savoy cinema sign ahead above the roofs.",
+          "points": [
+            {
+              "label": "the open doorway",
+              "line": "This is why some office fellows prefer the train. You stand by that open door, one hand on the bar, and the wind does half the journey for you, though your shirt will come out smelling of salt and brake dust."
+            },
+            {
+              "label": "the cinema sign",
+              "line": "Savoy tells you you've reached the Wellawatte end of the strip. It's been one of Colombo's popular cinemas for years, so even drivers who never buy a ticket use it like a milestone."
+            }
+          ]
+        },
+        "stop_05_bambalapitiya_wellawatte_c2": {
+          "narration": "On a search morning these side lanes go quiet in a hard way, because everyone is awake early, dressed fast, and holding an identity card like a receipt.",
+          "scene": "From a halted three-wheeler at a Wellawatte lane mouth in early morning, two constables stand across the narrow entrance while a cluster of waiting men hold papers in their hands near the curb; at the right, a woman in a house dress stands at an iron gate speaking toward the uniforms, and above her the upstairs balcony of a small lodge or flat has towels hanging over the rail, with trilingual signboards and shuttered shopfronts along the lane behind.",
+          "points": [
+            {
+              "label": "the waiting men",
+              "line": "Most of the time it is short, but short can still cost you a morning. Thousands of Tamil men have been picked up in this city this year, and after one midnight round-up took more than a thousand of them, people came out onto the road about it."
+            },
+            {
+              "label": "the gate woman",
+              "line": "After enough complaints there are rules for a search now. If they take someone, the family is meant to be handed a paper that same day saying so, instead of standing at the gate guessing."
+            },
+            {
+              "label": "the upstairs balcony",
+              "line": "After the protests they talked about a proper way to register people arriving in Colombo. Half these lanes are lodgings and cousins' back rooms, and explaining that to a uniform gets old fast."
+            }
+          ]
+        },
+        "stop_05_bambalapitiya_wellawatte_c4": {
+          "narration": "When this road closes, a fare thinks in straight lines, but I can't. I cut east or west at the first open mouth and stitch the route together again.",
+          "scene": "From the driver's seat of a three-wheeler stopped on Galle Road, a police barricade blocks the road ahead while a blue bus sits trapped nose-first behind it; to the left an open sea-side lane breaks toward the railway and glimpses of surf, and to the right a narrow gap between parked vehicles leaves just enough room for a small trishaw to edge through toward an inland turn.",
+          "points": [
+            {
+              "label": "the sea lane",
+              "line": "They are building the sea road for exactly this trouble, four lanes beside the railway from Melbourne Avenue down to Ramakrishna Road, though today you use whatever piece of it is open."
+            },
+            {
+              "label": "the narrow gap",
+              "line": "Bigger vehicles wait for a proper diversion. We don't. Traffic police say fellows like me are a law unto ourselves, and that bad habit sometimes becomes useful when the road has gone stupid."
+            },
+            {
+              "label": "the blue bus",
+              "line": "If police block the front, I try Duplication Road inland or a west cut toward Station Road, then join Galle Road below it, if they're allowing anybody through at all."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Keep the sea on your left a little longer, and then we'll turn back toward the city's nerves, where rumor travels faster than any meter."
+    },
+    "stop_06_town_hall": {
+      "arrival": {
+        "line": "By Town Hall the road feels wider and tighter together, because the park opens opposite, and still every fare is talking polls, the blast, and this Y2K business.",
+        "scene": "From the edge of the Town Hall junction at driver height, the white domed Town Hall with its colonnade fills the left background. Across the road, the dark trees and grass of the park spread behind a low fence. In the middle ground, armed police stand beside waist-high metal barricades narrowing one lane while buses and cars nose around them. On the near right, election posters sag on a wall in the humid light.",
+        "points": [
+          {
+            "label": "white dome",
+            "line": "They went over the building afterwards and said it had taken no real damage, which is why it stands there looking calm, a little insolent even."
+          },
+          {
+            "label": "road barricade",
+            "line": "The morning after, this road was barricaded, soldiers and police standing on it, and men out on that lawn combing the grass and clearing up."
+          },
+          {
+            "label": "election posters",
+            "line": "Those posters are already soft in the damp, but this ground was the People's Alliance's final presidential rally on 18 December, which is why every scrap of paper here still feels a little loaded."
+          }
+        ]
+      },
+      "cards": {
+        "stop_06_town_hall_c1": {
+          "narration": "After the rally blast, nobody spoke like a speechmaker in my back seat; they asked who was hit, whether she'd gain sympathy, and how late the checkpoints would run.",
+          "scene": "From just behind the driver's shoulder inside a stopped three-wheeler, the black meter and a small radio sit under the windscreen. Through the open side, a short white railing borders the pavement near the Town Hall grounds, where two police officers watch the traffic. On the back seat, a folded newspaper rests beside an identity card and a cloth bag.",
+          "points": [
+            {
+              "label": "small radio",
+              "line": "Every fare in the back says the same thing. After such a thing the sympathy goes to her, and a race people thought was close is already decided."
+            },
+            {
+              "label": "white railing",
+              "line": "What people repeated was plain enough: around half past nine, as the president was leaving the rally, a woman in the crowd climbed onto a railing and blew herself up."
+            },
+            {
+              "label": "folded newspaper",
+              "line": "By the next day's papers, eleven were dead on this ground, the Colombo police chief among them, and three ministers were in hospital. I drove past in the morning and did not look long."
+            }
+          ]
+        },
+        "stop_06_town_hall_c2": {
+          "narration": "Three days after the bombing she was back in on 21 December, and straightaway the city changed subject, asking whether computers or bank balances would lose their heads.",
+          "scene": "From beside a parked three-wheeler at the Town Hall curb in late afternoon, the pale dome sits blurred beyond passing traffic. In the foreground, the open side of the three-wheeler shows its meter and dashboard. Across the road, a bank doorway glows under a fluorescent sign, and a bright millennium party poster curls on a lamp post nearby while a policeman waves vehicles through the junction.",
+          "points": [
+            {
+              "label": "bank doorway",
+              "line": "The banks say their machines are checked and ready. Even so, people are drawing money out early, in case a computer eats the balance at midnight. The banks call it a handful. The queue did not look like a handful."
+            },
+            {
+              "label": "party poster",
+              "line": "That hotel poster wants five thousand five hundred and fifty five rupees for the dance alone, and even at that price they are afraid the election trouble will empty the room before midnight."
+            },
+            {
+              "label": "meter dashboard",
+              "line": "Whatever the jokes, that night is work for us, and for the police and the doctors, and for the dozen fellows sitting up in a room in Colombo watching the power, the banks, the port and the hospitals."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Colombo from my seat: always moving, never quite free, every road asking for papers, patience, petrol, and one more small bargain. I'm Ranjith, and for next year I don't ask miracles, only fewer closures, enough hires after the owner's rent and fuel, and my two children carried into a better century than this one promised. If you're getting down, get down here. If you're going on, get in quick. Goodbye."
+    }
+  }
+}
