@@ -31,6 +31,7 @@ import { makeStopHotspots, type StopHotspots } from "./stages/hotspots.ts";
 import { applyWrittenScript, loadWritten, type WrittenScript } from "./stages/written.ts";
 import { emptyScript, planTour, toWrittenStop, writeStop } from "./stages/screenplay.ts";
 import { KNOWN_STEPS, makeCharacter, makeStopMedia, type CharacterSheet, type MediaStep, type StopMedia } from "./stages/media.ts";
+import { landmarkRefs, type LandmarkRef } from "./stages/landmarks.ts";
 import { applyPolish, polishStop, PolishedStop } from "./stages/polish.ts";
 import { companionMarkdown, researchCompanion, researchStop } from "./stages/research.ts";
 import { scriptStop } from "./stages/script.ts";
@@ -215,6 +216,17 @@ async function main(): Promise<void> {
   const character: CharacterSheet = await makeCharacter(recipe, companion, provider, args.quality, { greeting: !args.steps || args.steps.has("line") });
   await writeJson(path.join(work, `character.${provider.name}.${args.imageModel}.${args.quality}.json`), character);
 
+  // 4c. Photographs of the real buildings each stop names. Resolved before any
+  // picture is made, because a model told to draw a named landmark invents one:
+  // Colombo's World Trade Center came back as two rectangular glass slabs when
+  // the real towers are curved and horizontally banded.
+  const marksByStop = new Map<string, LandmarkRef[]>();
+  for (const stop of recipeFull.stops) {
+    if (!stop.landmarks?.length) continue;
+    log(`landmarks ${stop.id}`);
+    marksByStop.set(stop.id, await landmarkRefs({ recipe, stop, provider, ledger, workDir: work, log }));
+  }
+
   // 4b. Grounding polish: her lines rewritten against the actual stills, in the
   // narrator-host voice. Visuals stay cached; only words (and their audio and
   // faces) change. Vision needs real images, so the mock provider skips this.
@@ -227,6 +239,7 @@ async function main(): Promise<void> {
         const stills = await makeStopMedia(recipe, scripts[i], archives.find((a) => a.stopId === scripts[i].stopId), character, provider, args.quality, {
           talkingPortrait: false,
           steps: new Set(["hero", "cards"]),
+          landmarks: marksByStop.get(scripts[i].stopId),
         });
         pol = await polishStop(recipe, scripts[i], dossiers[i], companion, stills, llm, { stopIndex: i, stopCount: recipeFull.stops.length });
         await writeJson(f, pol);
@@ -250,7 +263,7 @@ async function main(): Promise<void> {
       }
     }
     log(`media ${script.stopId}`);
-    const m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait, steps: args.steps });
+    const m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait, steps: args.steps, landmarks: marksByStop.get(script.stopId) });
     await writeJson(f, m);
     media.push(m);
   }

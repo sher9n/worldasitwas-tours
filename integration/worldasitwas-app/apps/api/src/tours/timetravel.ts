@@ -152,6 +152,8 @@ export interface Companion {
   name: string;
   role: string;
   bio: string;
+  /** Three lines at most, written for the guide card. */
+  intro?: string;
   portrait: string;
   greeting: SpokenLine;
   voice: { provider: "openai-realtime"; voice: string };

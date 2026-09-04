@@ -23,8 +23,8 @@
     }
   },
   "style": {
-    "look": "Photographic realism as if a 35mm camera had stood in Colombo in 1999: hot tropical light with monsoon cloud, wet tar, red dust, jackfruit and rain trees. Red and black Bajaj three-wheelers, crowded private buses and red CTB buses, Japanese hatchbacks and Morris Minors kept alive, bicycles and handcarts. Concrete and cement-plaster buildings from the sixties and seventies with grilles and shutters, older colonial arcades in the Fort and Pettah, corrugated roofs, hand-painted shopfronts and cloth banners. Clothes of 1999 Colombo: sarongs and shirts, school uniforms in white, saris and shalwar kameez, office shirts with ties, soldiers in olive fatigues at sandbagged posts. Camera at eye level, 9:16 framing, natural warm colour, mild grain, no filter and no sepia.",
-    "avoid": "Nothing built or made after 1999. No Lotus Tower, no Port City reclamation, no Shangri-La, Altair, Cinnamon Life or any modern glass tower beyond the 1997 World Trade Centre twin towers and the Bank of Ceylon tower. No smartphones, no flat-screen televisions or monitors, no LED signs, digital billboards or modern illuminated advertising. No cars, buses or three-wheelers of a shape later than 1999. No modern uniforms or equipment. No legible Sinhala or Tamil lettering: signage must sit far off, at an angle, or softened by depth of field, because rendered script comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces, no images of the moment of a bombing, no bodies, no blood."
+    "look": "Photographic realism as if a 35mm camera had stood in Colombo in 1999: hot tropical light with monsoon cloud, jackfruit and rain trees. Roads are grey asphalt, patched and oil-stained, dark and reflective when wet; red laterite shows only on verges, side lanes and building dust, never as the colour of the tarmac itself. Red and black Bajaj three-wheelers, crowded private buses and red CTB buses, Japanese hatchbacks and Morris Minors kept alive, bicycles and handcarts. Concrete and cement-plaster buildings from the sixties and seventies with grilles and shutters, older colonial arcades in the Fort and Pettah, corrugated roofs, hand-painted shopfronts and cloth banners. Clothes of 1999 Colombo: sarongs and shirts, school uniforms in white, saris and shalwar kameez, office shirts with ties, soldiers in olive fatigues at sandbagged posts. Camera at eye level, 9:16 framing, natural warm colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or made after 1999. No Lotus Tower, no Port City reclamation, no Shangri-La, Altair, Cinnamon Life or any modern glass tower beyond the 1997 World Trade Centre twin towers and the Bank of Ceylon tower. No smartphones, no flat-screen televisions or monitors, no LED signs, digital billboards or modern illuminated advertising. No cars, buses or three-wheelers of a shape later than 1999. No modern uniforms or equipment. No legible Sinhala or Tamil lettering: signage must sit far off, at an angle, or softened by depth of field, because rendered script comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces, no images of the moment of a bombing, no bodies, no blood. No red or terracotta-coloured road surfaces."
   },
   "stops": [
     {
@@ -45,6 +45,11 @@
         "Colombo Fort World Trade Centre towers",
         "Colombo Fort street present day photograph",
         "Colombo Central Bank building Fort"
+      ],
+      "landmarks": [
+        "World Trade Center Colombo",
+        "Bank of Ceylon tower Colombo",
+        "Colombo Fort street"
       ]
     },
     {
@@ -65,6 +70,11 @@
         "Pettah market Colombo photograph",
         "Colombo Main Street Pettah",
         "Colombo bus stand Pettah"
+      ],
+      "landmarks": [
+        "Pettah Colombo Main Street",
+        "Jami Ul-Alfar Mosque Colombo",
+        "Colombo Fort railway station"
       ]
     },
     {
@@ -85,6 +95,11 @@
         "Galle Face Green Colombo photograph",
         "Galle Face Hotel Colombo",
         "Colombo seafront promenade evening"
+      ],
+      "landmarks": [
+        "Galle Face Green Colombo",
+        "Galle Face Hotel",
+        "Old Parliament Building Colombo"
       ]
     },
     {
@@ -105,6 +120,11 @@
         "Gangaramaya temple Colombo photograph",
         "Beira Lake Colombo Seema Malaka",
         "Slave Island Colombo street"
+      ],
+      "landmarks": [
+        "Gangaramaya Temple Colombo",
+        "Seema Malaka Colombo",
+        "Beira Lake Colombo"
       ]
     },
     {
@@ -125,6 +145,11 @@
         "Bambalapitiya Colombo coastal railway photograph",
         "Wellawatte Colombo Galle Road",
         "Colombo coast line train sea"
+      ],
+      "landmarks": [
+        "Bambalapitiya railway station",
+        "Galle Road Colombo",
+        "Wellawatte Colombo"
       ]
     },
     {
@@ -145,6 +170,11 @@
         "Colombo Town Hall building photograph",
         "Viharamahadevi Park Colombo",
         "Colombo city hall night"
+      ],
+      "landmarks": [
+        "Colombo Town Hall",
+        "Viharamahadevi Park Colombo",
+        "Colombo Municipal Council building"
       ]
     }
   ],

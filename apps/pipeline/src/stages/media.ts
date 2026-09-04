@@ -13,6 +13,7 @@ import type { Quality } from "../env.ts";
 import type { Asset, MediaProvider } from "../providers/types.ts";
 import type { CompanionDossier, StopScript } from "../shapes.ts";
 import type { StopArchive } from "./archive.ts";
+import { landmarkClause, type LandmarkRef } from "./landmarks.ts";
 import { trimBorder } from "../ffmpeg.ts";
 
 export type MediaStep = "hero" | "video" | "line" | "ambience" | "portrait" | "cards" | "cardmotion" | "narration" | "faces" | "transition";
@@ -101,7 +102,7 @@ export async function makeStopMedia(
   character: CharacterSheet,
   provider: MediaProvider,
   quality: Quality,
-  opts: { talkingPortrait: boolean; steps?: Set<MediaStep> },
+  opts: { talkingPortrait: boolean; steps?: Set<MediaStep>; landmarks?: LandmarkRef[] },
 ): Promise<StopMedia> {
   const d = DURATIONS[quality];
   const stage = `media:${script.stopId}`;
@@ -111,7 +112,17 @@ export async function makeStopMedia(
   const want = (s: MediaStep) => (opts.steps ?? new Set(ALL_STEPS)).has(s);
 
   // Arrival: hero still, then animate it, then her line, then the talking portrait.
-  const hero = want("hero") ? await provider.image({ prompt: styled(recipe, script.heroImagePrompt), aspect: "9:16", quality, stage, note: "hero still" }) : undefined;
+  // The skyline lives in the hero still, so this is where an invented building
+  // does the most damage. When the stop names real landmarks, the model is
+  // handed photographs of them rather than a description of them.
+  const marks = opts.landmarks ?? [];
+  const markClause = landmarkClause(marks, recipe.year);
+  const heroPrompt = `${styled(recipe, script.heroImagePrompt)}${markClause}`;
+  const hero = want("hero")
+    ? marks.length
+      ? await provider.imageWithRefs({ prompt: heroPrompt, refs: marks.map((m) => m.refUrl), aspect: "9:16", quality, stage, note: "hero still" })
+      : await provider.image({ prompt: heroPrompt, aspect: "9:16", quality, stage, note: "hero still" })
+    : undefined;
   const heroUrl = hero ? await urlOf(provider, hero) : undefined;
 
   const [livingScene, arrivalAudio, ambience] = await Promise.all([
@@ -156,8 +167,19 @@ export async function makeStopMedia(
           const mirror = (u: string, m?: string) => (provider.mirrorUrl ? provider.mirrorUrl(u, m) : Promise.resolve(u));
           if (card.kind === "image") {
             const prompt = styled(recipe, card.imagePrompt);
-            out.image = card.includesCompanion
-              ? await provider.imageWithRefs({ prompt: `${prompt} The flower seller in this scene must be the woman in the reference image, same face and dress.`, refs: [character.portraitUrl], aspect: "9:16", quality, stage, note: `image ${card.id}` })
+            // Not "the flower seller" and not "the woman": that was written for
+            // one walk in 1850 London and then said of every guide since.
+            const who = `The ${recipe.companion.role.toLowerCase()} in this scene must be the person in the reference photograph of ${recipe.companion.name}: same face, same clothes.`;
+            const refs = [...(card.includesCompanion ? [character.portraitUrl] : []), ...marks.map((m) => m.refUrl)];
+            out.image = refs.length
+              ? await provider.imageWithRefs({
+                  prompt: `${prompt}${card.includesCompanion ? ` ${who}` : ""}${markClause}`,
+                  refs,
+                  aspect: "9:16",
+                  quality,
+                  stage,
+                  note: `image ${card.id}`,
+                })
               : await provider.image({ prompt, aspect: "9:16", quality, stage, note: `image ${card.id}` });
           } else if (card.kind === "thenNow") {
             if (archive?.nowPhoto) {

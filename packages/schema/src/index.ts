@@ -477,6 +477,15 @@ export const RecipeStop = z.object({
   mustCover: z.array(z.string()).default([]),
   /** Search phrases for finding a present-day photograph and archive items. */
   archiveQueries: z.array(z.string()).default([]),
+  /**
+   * Real buildings visible at this stop, named so a photograph of each can be
+   * found and handed to the image model as a reference. Without one, a model
+   * asked for a named landmark draws a plausible invention: the World Trade
+   * Center in Colombo came out as two rectangular glass slabs when the real
+   * towers are curved and banded. Name only what actually stood in the tour's
+   * year.
+   */
+  landmarks: z.array(z.string()).default([]),
 });
 
 export const Recipe = z.object({
