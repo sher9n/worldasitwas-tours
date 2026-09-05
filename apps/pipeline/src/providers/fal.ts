@@ -70,7 +70,12 @@ export class FalProvider implements MediaProvider {
         const e = err as Error & { status?: number; body?: unknown };
         const detail = e.body ? JSON.stringify(e.body).slice(0, 400) : "";
         lastErr = new Error(`${endpoint} ${e.status ?? ""} ${e.message}${detail ? ": " + detail : ""}`.trim());
-        const transient = e.status === 429 || (e.status ?? 0) >= 500 || (e.status === 403 && /TOP_UP/.test(detail));
+        // A dropped connection carries no status at all, and without this it
+        // ended a forty minute run on its last stop: everything cached, one
+        // blip, start again. Anything with no status that reads like a network
+        // failure is worth the same four tries as a 500.
+        const blip = e.status === undefined && /fetch failed|ECONNRESET|ETIMEDOUT|EAI_AGAIN|socket hang up|network|timed? ?out/i.test(e.message ?? "");
+        const transient = blip || e.status === 429 || (e.status ?? 0) >= 500 || (e.status === 403 && /TOP_UP/.test(detail));
         if (transient && attempt < 3) {
           await new Promise((ok) => setTimeout(ok, 5000 * (attempt + 1)));
           continue;

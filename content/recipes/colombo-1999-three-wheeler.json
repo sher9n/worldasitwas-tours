@@ -24,7 +24,7 @@
   },
   "style": {
     "look": "Photographic realism as if a 35mm camera had stood in Colombo in 1999: hot tropical light with monsoon cloud, jackfruit and rain trees. Roads are grey asphalt, patched and oil-stained, dark and reflective when wet; red laterite shows only on verges, side lanes and building dust, never as the colour of the tarmac itself. Red and black Bajaj three-wheelers, crowded private buses and red CTB buses, Japanese hatchbacks and Morris Minors kept alive, bicycles and handcarts. Concrete and cement-plaster buildings from the sixties and seventies with grilles and shutters, older colonial arcades in the Fort and Pettah, corrugated roofs, hand-painted shopfronts and cloth banners. Clothes of 1999 Colombo: sarongs and shirts, school uniforms in white, saris and shalwar kameez, office shirts with ties, soldiers in olive fatigues at sandbagged posts. Camera at eye level, 9:16 framing, natural warm colour, mild grain, no filter and no sepia.",
-    "avoid": "Nothing built or made after 1999. No Lotus Tower, no Port City reclamation, no Shangri-La, Altair, Cinnamon Life or any modern glass tower beyond the 1997 World Trade Centre twin towers and the Bank of Ceylon tower. No smartphones, no flat-screen televisions or monitors, no LED signs, digital billboards or modern illuminated advertising. No cars, buses or three-wheelers of a shape later than 1999. No modern uniforms or equipment. No legible Sinhala or Tamil lettering: signage must sit far off, at an angle, or softened by depth of field, because rendered script comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces, no images of the moment of a bombing, no bodies, no blood. No red or terracotta-coloured road surfaces."
+    "avoid": "Nothing built or made after 1999. No Lotus Tower, no Port City reclamation, no Shangri-La, Altair, Cinnamon Life or any modern glass tower beyond the 1997 World Trade Centre twin towers and the Bank of Ceylon tower. No smartphones, no flat-screen televisions or monitors, no LED signs, digital billboards or modern illuminated advertising. No cars, buses or three-wheelers of a shape later than 1999. No modern uniforms or equipment. No legible Sinhala or Tamil lettering: signage must sit far off, at an angle, or softened by depth of field, because rendered script comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces, no images of the moment of a bombing, no bodies, no blood. No red or terracotta-coloured road surfaces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, a before-and-after, or two or three images stacked in the same frame."
   },
   "stops": [
     {
@@ -50,7 +50,8 @@
         "World Trade Center Colombo",
         "Bank of Ceylon tower Colombo",
         "Colombo Fort street"
-      ]
+      ],
+      "styleNote": ""
     },
     {
       "id": "stop_02_pettah",
@@ -75,7 +76,8 @@
         "Pettah Colombo Main Street",
         "Jami Ul-Alfar Mosque Colombo",
         "Colombo Fort railway station"
-      ]
+      ],
+      "styleNote": "Pettah is dense and low: two and three storey colonial shophouses and 1960s concrete blocks, awnings, handcarts, no towers over the street."
     },
     {
       "id": "stop_03_galle_face",
@@ -100,7 +102,8 @@
         "Galle Face Green Colombo",
         "Galle Face Hotel",
         "Old Parliament Building Colombo"
-      ]
+      ],
+      "styleNote": ""
     },
     {
       "id": "stop_04_beira_slave_island",
@@ -125,7 +128,8 @@
         "Gangaramaya Temple Colombo",
         "Seema Malaka Colombo",
         "Beira Lake Colombo"
-      ]
+      ],
+      "styleNote": "Slave Island is low-rise around the lake: two and three storey houses, temple and mosque roofs, warehouses. The Fort towers show only in the distance across the water."
     },
     {
       "id": "stop_05_bambalapitiya_wellawatte",
@@ -146,11 +150,8 @@
         "Wellawatte Colombo Galle Road",
         "Colombo coast line train sea"
       ],
-      "landmarks": [
-        "Bambalapitiya railway station",
-        "Galle Road Colombo",
-        "Wellawatte Colombo"
-      ]
+      "landmarks": [],
+      "styleNote": "Galle Road south of the Fort is low in 1999: two and three storey shophouses with shutters and signboards, the odd plain 1970s block of flats, coconut and rain trees, the coastal railway on the sea side behind a low wall. There are NO glass towers, no high-rise and no office towers anywhere along this road. If any tall building shows at all it is the Fort skyline far away to the north, small and hazy on the horizon."
     },
     {
       "id": "stop_06_town_hall",
@@ -175,7 +176,8 @@
         "Colombo Town Hall",
         "Viharamahadevi Park Colombo",
         "Colombo Municipal Council building"
-      ]
+      ],
+      "styleNote": ""
     }
   ],
   "seedSources": [

@@ -240,6 +240,7 @@ async function main(): Promise<void> {
           talkingPortrait: false,
           steps: new Set(["hero", "cards"]),
           landmarks: marksByStop.get(scripts[i].stopId),
+          styleNote: recipeFull.stops[i]?.styleNote,
         });
         pol = await polishStop(recipe, scripts[i], dossiers[i], companion, stills, llm, { stopIndex: i, stopCount: recipeFull.stops.length });
         await writeJson(f, pol);
@@ -263,7 +264,7 @@ async function main(): Promise<void> {
       }
     }
     log(`media ${script.stopId}`);
-    const m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait, steps: args.steps, landmarks: marksByStop.get(script.stopId) });
+    const m = await makeStopMedia(recipe, script, archives.find((a) => a.stopId === script.stopId), character, provider, args.quality, { talkingPortrait: args.portrait, steps: args.steps, landmarks: marksByStop.get(script.stopId), styleNote: recipeFull.stops.find((x) => x.id === script.stopId)?.styleNote });
     await writeJson(f, m);
     media.push(m);
   }
@@ -322,6 +323,28 @@ async function main(): Promise<void> {
   // at. Refusing here keeps the published walk as it was until the loop can
   // actually be built, which is what you want when the failure is a provider
   // outage rather than anything about this tour.
+  // A card that is meant to be a picture and has none is a blank screen in the
+  // middle of a walk. The image call fails softly (a 422 refusal is caught and
+  // warned), so without this the walk publishes with a hole in it and nobody
+  // notices until someone swipes onto it. A retry of the stop usually fixes it.
+  const blank = media.flatMap((m) => {
+    const script = scripts.find((sc) => sc.stopId === m.stopId);
+    return m.cards
+      .filter((c) => {
+        // Only what the media stage itself draws. An archive card's picture is a
+        // real photograph from Commons and arrives through the archive stage, so
+        // it is legitimately absent here.
+        const kind = script?.cards.find((sc) => sc.id === c.id)?.kind;
+        if (kind === "image") return !c.image;
+        if (kind === "thenNow") return !c.then;
+        return false;
+      })
+      .map((c) => c.id);
+  });
+  if (blank.length && provider.name === "fal") {
+    throw new Error(`no picture for ${blank.join(", ")}; refusing to publish a walk with a blank card (re-run with --only ${media.find((m) => m.cards.some((c) => blank.includes(c.id)))?.stopId})`);
+  }
+
   if (reelClips.length === 0 && provider.name === "fal") {
     throw new Error("no presence loop for the guide; refusing to publish a walk without one");
   }

@@ -55,8 +55,16 @@ const DURATIONS: Record<Quality, { hero: number; archive: number; sfx: number }>
   final: { hero: 8, archive: 5, sfx: 20 },
 };
 
-export function styled(recipe: Recipe, prompt: string): string {
-  return `${prompt.trim()} ${recipe.style.look} Avoid: ${recipe.style.avoid}`.trim();
+/**
+ * A frame is one photograph. Said first, because said last it is ignored: a
+ * scene describing a train doorway AND the shops beyond it came back as two
+ * panels stacked in one picture, with the instruction against exactly that
+ * sitting at the end of the avoid list where the model had stopped caring.
+ */
+const ONE_FRAME = "A single photograph of one continuous scene, shot in one exposure from one camera position. Not a split screen, not a diptych or triptych, not a collage, not a grid, no panels or borders inside the picture.";
+
+export function styled(recipe: Recipe, prompt: string, stopNote = ""): string {
+  return `${ONE_FRAME} ${prompt.trim()} ${recipe.style.look}${stopNote ? ` ${stopNote}` : ""} Avoid: ${recipe.style.avoid}`.trim();
 }
 
 async function urlOf(provider: MediaProvider, a: Asset): Promise<string> {
@@ -102,7 +110,7 @@ export async function makeStopMedia(
   character: CharacterSheet,
   provider: MediaProvider,
   quality: Quality,
-  opts: { talkingPortrait: boolean; steps?: Set<MediaStep>; landmarks?: LandmarkRef[] },
+  opts: { talkingPortrait: boolean; steps?: Set<MediaStep>; landmarks?: LandmarkRef[]; styleNote?: string },
 ): Promise<StopMedia> {
   const d = DURATIONS[quality];
   const stage = `media:${script.stopId}`;
@@ -116,8 +124,9 @@ export async function makeStopMedia(
   // does the most damage. When the stop names real landmarks, the model is
   // handed photographs of them rather than a description of them.
   const marks = opts.landmarks ?? [];
+  const stopNote = opts.styleNote ?? "";
   const markClause = landmarkClause(marks, recipe.year);
-  const heroPrompt = `${styled(recipe, script.heroImagePrompt)}${markClause}`;
+  const heroPrompt = `${styled(recipe, script.heroImagePrompt, stopNote)}${markClause}`;
   const hero = want("hero")
     ? marks.length
       ? await provider.imageWithRefs({ prompt: heroPrompt, refs: marks.map((m) => m.refUrl), aspect: "9:16", quality, stage, note: "hero still" })
@@ -166,7 +175,7 @@ export async function makeStopMedia(
         try {
           const mirror = (u: string, m?: string) => (provider.mirrorUrl ? provider.mirrorUrl(u, m) : Promise.resolve(u));
           if (card.kind === "image") {
-            const prompt = styled(recipe, card.imagePrompt);
+            const prompt = styled(recipe, card.imagePrompt, stopNote);
             // Not "the flower seller" and not "the woman": that was written for
             // one walk in 1850 London and then said of every guide since.
             const who = `The ${recipe.companion.role.toLowerCase()} in this scene must be the person in the reference photograph of ${recipe.companion.name}: same face, same clothes.`;

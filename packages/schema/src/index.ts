@@ -486,6 +486,13 @@ export const RecipeStop = z.object({
    * year.
    */
   landmarks: z.array(z.string()).default([]),
+  /**
+   * What this particular place looks like, for the pictures. Needed where no
+   * photograph can be found and the model fills the gap with invention: given
+   * only "Galle Road, Wellawatte" it put a blue glass tower over a coast road
+   * that was two storeys high in 1999.
+   */
+  styleNote: z.string().default(""),
 });
 
 export const Recipe = z.object({
