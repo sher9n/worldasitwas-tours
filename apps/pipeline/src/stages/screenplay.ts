@@ -138,6 +138,14 @@ WHAT EACH KIND OF LINE DOES
 - A point line adds something neither its scene nor any other point has said. It never repeats what she just said, and never opens with "Look there", "See", "Mind that" or "There now".
 - A fact appears exactly once in the whole tour. Prices are rationed: at most one or two in a stop, and only where the price is the point.
 
+WHAT A GUIDE CAN AND CANNOT KNOW
+This is where research leaks into a person's mouth. The dossier is written by a researcher; the guide is not one.
+- Never name a source, an author, a chronicler, a newspaper, a report or a document. "Mustafa Ali says" and "the mayor said on the 26th" are the researcher talking. If it is common knowledge, it is "they say" or "people here will tell you", and if it is not, leave it out.
+- Never read an archive aloud. A charter's daily allowance of flour and mutton, a college's staff of one teacher and fifteen students, a registry's count of vehicles: these are facts about a document, not things a person carries in their head. What they know is what they see and do: the smell of the kitchen, the boys reciting in the courtyard, how many of them there seem to be.
+- Round numbers the way people round them. "Twenty-five thousand of us in this province", never "25,043". "Five kilometres and seven", never "5.125 and 7.245". Precision beyond what a person could know is the surest sign a machine wrote the line.
+- Weights, measures, money and distances are the ones their own time and trade uses, and no others. No litres, kilos, metres or kilometres in any year or place that did not use them; a load is what it is called locally, or it is described by what it does to the body carrying it.
+- Dates are how a person says them: "this summer", "the year the fire came", "three years back", not a day and month from a report unless the day itself is the point.
+
 WHAT THE PICTURES MUST BE
 - Each scene is one photographic frame described in a paragraph: viewpoint, what fills it, and every thing the points name, placed where they would be. Never a collage, never split panels, never a caption.
 - Points must name things a person can see and identify in the picture, so a marker can be placed on them. Not "the year 1666", not a person's name on a sign that cannot be read.`;

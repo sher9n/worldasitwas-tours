@@ -1,0 +1,177 @@
+{
+  "id": "tour_istanbul_1616_water_carrier",
+  "city": "istanbul",
+  "cityName": "Istanbul",
+  "country": "TR",
+  "year": 1616,
+  "yearRange": [
+    1614,
+    1616
+  ],
+  "lang": "en",
+  "title": "The City's Thirst",
+  "theme": "Five stops across Istanbul in 1616 with Yusuf, who carries water for a living. The Sultan's new mosque on the Hippodrome is finished this year and the scaffolding is coming down; the city on its seven hills drinks from aqueducts a thousand years old and from the fountains great men build to be remembered by; and a man with a skin on his back climbs the hills all day so that other people do not have to.",
+  "companion": {
+    "name": "Yusuf",
+    "role": "Water carrier",
+    "brief": "Thirty-one, a saka: he carries water from the fountains and cisterns up the hills to houses, shops and workshops that have none, a leather skin on his back and a brass cup at his belt, paid by the trip. Came to the city as a boy from a village in Anatolia and lodges in a room above a bakehouse near the Süleymaniye. He knows every fountain in the city, which run sweet and which run dry in August, which gatekeeper will let him cut through a courtyard, and which houses pay on the day and which make him come back. Cheerful with customers, tired underneath it, and proud of a trade that is also a charity, because giving water is a good deed and a saka is never quite only a tradesman. He is a Muslim in a city of Greeks, Armenians, Jews and Franks, and carries water to all of them. He knows nothing after 1616.",
+    "voice": "alloy",
+    "narrationVoice": "ouo8WiFpmtatHR07JhXm",
+    "presence": {
+      "standing": "in a narrow cobbled lane with the water skin on his back and houses leaning over him",
+      "gesture": "shifts the strap on his shoulder and wipes his forehead with the back of his hand"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Ottoman Istanbul: timber houses of two and three storeys with jettied upper floors and latticed windows, stone mosques with lead domes and pencil minarets, khans and hamams of cut stone, cobbled lanes and steep stepped streets, plane trees and cypresses, the Golden Horn crowded with oared caiques and round-bellied sailing ships. Dress of the period: men in turbans and long kaftans over şalvar, sashes, soft boots; porters and workmen in short jackets and belted trousers; women outdoors in ferace and veil, indoors in entari; janissaries in tall white caps. Warm Mediterranean light, dust and woodsmoke, sea haze over the water. Camera at eye level, 9:16 framing, natural colour, mild grain, no filter and no sepia. Water everywhere in the frame where it belongs: street fountains with carved marble faces, brass cups on chains, jars and skins, wet stone.",
+    "avoid": "Nothing built or worn later than the year. No fez, no European suits, coats or hats, no crinolines. No Galata Bridge and no bridge of any kind across the Golden Horn or the Bosphorus. No Dolmabahçe Palace, no Ortaköy Mosque, no clock towers, no nineteenth century stone apartment blocks or embassies. No steamships, funnels, ferries or motor boats: every vessel is oared or under sail. No electricity, no wires, no lamps on posts, no modern paving, no cars. No modern Turkish flags or republic-era emblems. No printed signage and no legible Ottoman, Arabic or Latin lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_hippodrome",
+      "title": "Under the New Mosque",
+      "geo": {
+        "lat": 41.0055,
+        "lng": 28.9768,
+        "bearing": 45
+      },
+      "brief": "The Hippodrome with the Sultan's new mosque finished along one side, the ancient obelisk and the bronze serpent column standing where chariots once ran, and Hagia Sophia at the far end.",
+      "mustCover": [
+        "what the new mosque cost the quarter while it was built, and what it gives back",
+        "the obelisk and the serpent column, and what people say about them",
+        "where a water carrier fills up here and who buys from him"
+      ],
+      "archiveQueries": [
+        "Sultan Ahmed Mosque Istanbul",
+        "Hippodrome Constantinople obelisk",
+        "Hagia Sophia exterior"
+      ],
+      "landmarks": [
+        "Sultan Ahmed Mosque Istanbul",
+        "Hagia Sophia Istanbul",
+        "Obelisk of Theodosius Istanbul"
+      ],
+      "styleNote": ""
+    },
+    {
+      "id": "stop_02_bedesten",
+      "title": "The Covered Market",
+      "geo": {
+        "lat": 41.0106,
+        "lng": 28.968,
+        "bearing": 90
+      },
+      "brief": "The bedesten and the streets of the covered market: cloth, arms, jewels and books under stone vaults, each trade in its own lane, the guilds keeping order and prices.",
+      "mustCover": [
+        "how the trades are arranged street by street and why",
+        "what a thing costs and how a price is agreed",
+        "who a water carrier serves in a market with no well of its own"
+      ],
+      "archiveQueries": [
+        "Grand Bazaar Istanbul interior",
+        "Cemberlitas column Istanbul",
+        "Ottoman market Istanbul"
+      ],
+      "landmarks": [
+        "Grand Bazaar Istanbul",
+        "Column of Constantine Istanbul"
+      ],
+      "styleNote": "Vaulted stone market streets, low domes with small round skylights, shuttered stalls, no glass shopfronts."
+    },
+    {
+      "id": "stop_03_suleymaniye",
+      "title": "The Third Hill",
+      "geo": {
+        "lat": 41.0165,
+        "lng": 28.964,
+        "bearing": 225
+      },
+      "brief": "The Süleymaniye complex on its hill: the mosque, its schools, its hospital and its kitchen that feeds the poor every day, and the water that all of it runs on.",
+      "mustCover": [
+        "what the complex does besides pray: the kitchen, the school, the hospital",
+        "where the city's water comes from and how it reaches the hills",
+        "what it is like to climb these streets with a full skin"
+      ],
+      "archiveQueries": [
+        "Süleymaniye Mosque Istanbul",
+        "Valens Aqueduct Istanbul",
+        "Ottoman fountain Istanbul"
+      ],
+      "landmarks": [
+        "Süleymaniye Mosque Istanbul",
+        "Valens Aqueduct Istanbul"
+      ],
+      "styleNote": ""
+    },
+    {
+      "id": "stop_04_eminonu",
+      "title": "The Water's Edge",
+      "geo": {
+        "lat": 41.0175,
+        "lng": 28.9704,
+        "bearing": 315
+      },
+      "brief": "Eminönü on the Golden Horn: the landing stages thick with caiques, porters running loads off ships, the customs house, and the great mosque begun for a Valide Sultan standing half built and abandoned.",
+      "mustCover": [
+        "what comes off the ships and where it goes",
+        "the half built mosque and why the work stopped",
+        "the caiques, the boatmen and what a crossing costs"
+      ],
+      "archiveQueries": [
+        "Golden Horn Istanbul",
+        "Eminönü Istanbul",
+        "Rüstem Pasha Mosque Istanbul"
+      ],
+      "landmarks": [
+        "Golden Horn Istanbul",
+        "Rüstem Pasha Mosque Istanbul"
+      ],
+      "styleNote": "The Golden Horn is crowded with oared caiques and sailing ships; timber quays and warehouses; no bridge anywhere."
+    },
+    {
+      "id": "stop_05_galata",
+      "title": "Across the Water",
+      "geo": {
+        "lat": 41.0256,
+        "lng": 28.9744,
+        "bearing": 180
+      },
+      "brief": "Galata on the far shore under its Genoese tower: the quarter of foreigners and sailors, wine shops and warehouses, ships fitting out, a different set of rules on the other side of the water.",
+      "mustCover": [
+        "who lives in Galata and why it is not quite the same city",
+        "the tower, what it watches for and what it warns of",
+        "what he thinks of the place, plainly and without a sermon"
+      ],
+      "archiveQueries": [
+        "Galata Tower Istanbul",
+        "Galata Istanbul historic",
+        "Bosphorus caique"
+      ],
+      "landmarks": [
+        "Galata Tower Istanbul",
+        "Galata Istanbul"
+      ],
+      "styleNote": ""
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Evliya Çelebi, Book of Travels (Seyahatname)",
+      "url": "https://en.wikipedia.org/wiki/Seyahatn%C3%A2me",
+      "license": "reference",
+      "note": "Guilds, trades and street life of seventeenth century Istanbul, including the water carriers."
+    },
+    {
+      "title": "Sultan Ahmed Mosque",
+      "url": "https://en.wikipedia.org/wiki/Blue_Mosque,_Istanbul",
+      "license": "cc-by-sa",
+      "note": "Built 1609 to 1616: the mosque is brand new in this year."
+    },
+    {
+      "title": "Water supply of Constantinople",
+      "url": "https://en.wikipedia.org/wiki/Water_supply_of_Constantinople",
+      "license": "cc-by-sa",
+      "note": "Aqueducts, cisterns and the fountains a saka works from."
+    }
+  ]
+}

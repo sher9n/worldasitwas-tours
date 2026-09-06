@@ -283,6 +283,8 @@ export async function assemble(input: AssembleInput): Promise<{ tour: Tour; dir:
     id: recipe.id,
     version: new Date().toISOString().slice(0, 10) + "." + String(Math.floor(Date.now() / 1000) % 100000),
     city: recipe.city,
+    cityName: recipe.cityName,
+    country: recipe.country,
     year: recipe.year,
     yearRange: recipe.yearRange,
     lang: recipe.lang,

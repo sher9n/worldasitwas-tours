@@ -1,0 +1,176 @@
+{
+  "id": "tour_istanbul_1660_midwife",
+  "city": "istanbul",
+  "cityName": "Istanbul",
+  "country": "TR",
+  "year": 1660,
+  "yearRange": [
+    1658,
+    1660
+  ],
+  "lang": "en",
+  "title": "The Year the City Burned",
+  "theme": "Five stops across Istanbul in 1660 with Emine, who delivers the city's children. In July a fire ran for two days and nights through the timber quarters between the Golden Horn and the market and took a great part of the city with it. A midwife is let into every house in her quarter, rich or poor, Muslim or not, and this year she walks to births through streets that are not there any more.",
+  "companion": {
+    "name": "Emine",
+    "role": "Midwife",
+    "brief": "Forty-four, an ebe: she attends births in her quarter and the ones next to it, called out at any hour, paid in coin or cloth or a share of the sweets. Widowed, with a grown son at sea. Trained by her own mother-in-law and by twenty years of doing it. She knows which houses have money and which only look as though they do, which husbands are decent, which neighbours will come when called. She is in and out of Muslim, Greek, Armenian and Jewish houses alike, because a birth does not wait for anyone to agree about religion. Plain spoken, unshockable, kind without being soft, and very tired this year. She knows nothing after 1660: not what the Valide will finish building, not how long the war will run.",
+    "voice": "echo",
+    "narrationVoice": "WN6vSvkPbV9z2UoBJRYW",
+    "presence": {
+      "standing": "in the doorway of a timber house in a narrow lane, a cloth bundle under her arm",
+      "gesture": "shifts the bundle to her other arm and glances up the lane"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Ottoman Istanbul: timber houses of two and three storeys with jettied upper floors and latticed windows, stone mosques with lead domes and pencil minarets, khans and hamams of cut stone, cobbled lanes and steep stepped streets, plane trees and cypresses, the Golden Horn crowded with oared caiques and round-bellied sailing ships. Dress of the period: men in turbans and long kaftans over şalvar, sashes, soft boots; porters and workmen in short jackets and belted trousers; women outdoors in ferace and veil, indoors in entari; janissaries in tall white caps. Warm Mediterranean light, dust and woodsmoke, sea haze over the water. Camera at eye level, 9:16 framing, natural colour, mild grain, no filter and no sepia. Where the fire went there are burnt timbers, standing chimneys, ash trodden into mud, salvaged goods stacked in the open and families sheltering under awnings.",
+    "avoid": "Nothing built or worn later than the year. No fez, no European suits, coats or hats, no crinolines. No Galata Bridge and no bridge of any kind across the Golden Horn or the Bosphorus. No Dolmabahçe Palace, no Ortaköy Mosque, no clock towers, no nineteenth century stone apartment blocks or embassies. No steamships, funnels, ferries or motor boats: every vessel is oared or under sail. No electricity, no wires, no lamps on posts, no modern paving, no cars. No modern Turkish flags or republic-era emblems. No printed signage and no legible Ottoman, Arabic or Latin lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame. No scenes of anyone burning or injured, no bodies, no blood, no flames consuming a building: the fire has already passed and what is shown is the aftermath and the rebuilding. No birth scenes and nobody undressed."
+  },
+  "stops": [
+    {
+      "id": "stop_01_burnt_quarter",
+      "title": "What the Fire Left",
+      "geo": {
+        "lat": 41.0165,
+        "lng": 28.969,
+        "bearing": 45
+      },
+      "brief": "The burnt ground between the Golden Horn and the market: standing chimneys and charred posts where timber houses stood in July, families camped in the open, people digging for what survived.",
+      "mustCover": [
+        "how the fire moved and why timber quarters burn the way they do",
+        "what people are doing now: where they sleep, what they saved",
+        "how she got to a birth the night it burned, told plainly"
+      ],
+      "archiveQueries": [
+        "Istanbul fire Ottoman",
+        "Golden Horn Istanbul",
+        "Ottoman timber houses Istanbul"
+      ],
+      "landmarks": [
+        "Golden Horn Istanbul",
+        "Eminönü Istanbul"
+      ],
+      "styleNote": "Burnt ground: standing brick chimneys, blackened posts, ash and mud, salvaged bundles, awnings and tents. No fire and no flames; the fire is over."
+    },
+    {
+      "id": "stop_02_mahalle",
+      "title": "The Quarter and Its Fountain",
+      "geo": {
+        "lat": 41.0192,
+        "lng": 28.95,
+        "bearing": 135
+      },
+      "brief": "A neighbourhood that the fire missed: its little mosque, its fountain, its bakehouse, the lanes where every house knows every other, and the women's world that runs through them.",
+      "mustCover": [
+        "how a quarter looks after its own: who lends, who watches, who is spoken to",
+        "what a midwife is called for besides a birth",
+        "what a birth costs and how she is paid"
+      ],
+      "archiveQueries": [
+        "Ottoman street fountain Istanbul",
+        "Fatih Mosque Istanbul",
+        "Ottoman neighbourhood Istanbul"
+      ],
+      "landmarks": [
+        "Fatih Mosque Istanbul",
+        "Ottoman fountain Istanbul"
+      ],
+      "styleNote": ""
+    },
+    {
+      "id": "stop_03_hamam",
+      "title": "The Bath",
+      "geo": {
+        "lat": 41.0086,
+        "lng": 28.972,
+        "bearing": 270
+      },
+      "brief": "The women's hamam: the courtyard, the cool room and the steam beyond it, where a quarter's women meet, a bride is bathed before her wedding, and a midwife hears everything worth hearing.",
+      "mustCover": [
+        "what the bath is for besides washing",
+        "the bride's bath and what happens at it",
+        "what she learns here that she cannot learn anywhere else"
+      ],
+      "archiveQueries": [
+        "Ottoman hamam Istanbul",
+        "Haseki Hurrem Sultan Hamami",
+        "Turkish bath historic"
+      ],
+      "landmarks": [
+        "Haseki Hurrem Sultan Hamamı",
+        "Ottoman hamam Istanbul"
+      ],
+      "styleNote": "The cool room and courtyard only, with marble basins, wooden clogs, towels and robes: everyone is fully covered and nobody is undressed. Steam and marble, no nudity."
+    },
+    {
+      "id": "stop_04_yeni_cami",
+      "title": "The Mosque That Waited Sixty Years",
+      "geo": {
+        "lat": 41.0166,
+        "lng": 28.9706,
+        "bearing": 0
+      },
+      "brief": "The great half built mosque at Eminönü, abandoned for two generations, which the Valide Sultan has taken up again since the fire, and the new market of stone going up beside it to pay for it.",
+      "mustCover": [
+        "why the mosque stood unfinished for sixty years and what changed",
+        "what the new market will sell and who is paying for it",
+        "what the rebuilding means for people who lost their houses"
+      ],
+      "archiveQueries": [
+        "New Mosque Istanbul Eminönü",
+        "Spice Bazaar Istanbul",
+        "Ottoman construction Istanbul"
+      ],
+      "landmarks": [
+        "New Mosque Istanbul",
+        "Spice Bazaar Istanbul"
+      ],
+      "styleNote": "The mosque is UNFINISHED: bare stone walls and drums, timber scaffolding, stacked blocks and lime pits, workmen and oxen. Not a completed mosque."
+    },
+    {
+      "id": "stop_05_uskudar",
+      "title": "The Other Shore",
+      "geo": {
+        "lat": 41.0255,
+        "lng": 29.015,
+        "bearing": 270
+      },
+      "brief": "Üsküdar across the water, where the caravans from Asia end and the cemeteries climb the hill: the quiet side, looked at from a boat, at the end of a long year.",
+      "mustCover": [
+        "why people cross to be buried on that side",
+        "what she hopes for the children she has delivered this year",
+        "the crossing itself, the boat and the water at evening"
+      ],
+      "archiveQueries": [
+        "Üsküdar Istanbul historic",
+        "Mihrimah Sultan Mosque Üsküdar",
+        "Bosphorus caique"
+      ],
+      "landmarks": [
+        "Mihrimah Sultan Mosque Üsküdar",
+        "Üsküdar Istanbul"
+      ],
+      "styleNote": ""
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Great Fire of Istanbul, 1660",
+      "url": "https://en.wikipedia.org/wiki/1660_Great_Fire_of_Istanbul",
+      "license": "cc-by-sa",
+      "note": "The July 1660 fire, its extent and its aftermath."
+    },
+    {
+      "title": "New Mosque, Istanbul",
+      "url": "https://en.wikipedia.org/wiki/New_Mosque_(Istanbul)",
+      "license": "cc-by-sa",
+      "note": "Begun 1597, abandoned, restarted by Turhan Sultan after the 1660 fire, finished 1665."
+    },
+    {
+      "title": "Women in the Ottoman Empire",
+      "url": "https://en.wikipedia.org/wiki/Women_in_the_Ottoman_Empire",
+      "license": "cc-by-sa",
+      "note": "The world a midwife moves through: households, the hamam, the quarter."
+    }
+  ]
+}

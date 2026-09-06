@@ -251,6 +251,9 @@ export const Tour = z
     id: z.string().regex(/^tour_[a-z0-9_]+$/),
     version: z.string().min(1),
     city: z.string().regex(/^[a-z][a-z0-9-]*$/),
+    /** The city's display name and country, carried so a new city needs no code. */
+    cityName: z.string().optional(),
+    country: z.string().optional(),
     year: z.number().int(),
     yearRange: z.tuple([z.number().int(), z.number().int()]),
     lang: z.string().min(2).max(5).default("en"),
