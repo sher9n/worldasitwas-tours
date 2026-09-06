@@ -136,7 +136,15 @@ export class TourStore {
       byCity.set(tour.city, arr);
     }
     const cities = [...byCity.entries()].map(([id, list]) => {
-      const meta = CITY_META[id] ?? { name: id, country: "", anchor: list[0].stops[0].geo };
+      // A walk says what its city is called, so a new city needs no entry here:
+      // Istanbul arrived in the catalogue as "istanbul" beside "Rome", with no
+      // country. CITY_META survives for the curated map anchors.
+      const named = list.find((t) => t.cityName);
+      const meta = {
+        name: named?.cityName || CITY_META[id]?.name || id,
+        country: named?.country || CITY_META[id]?.country || "",
+        anchor: CITY_META[id]?.anchor ?? list[0].stops[0].geo,
+      };
       return {
         id,
         name: meta.name,
