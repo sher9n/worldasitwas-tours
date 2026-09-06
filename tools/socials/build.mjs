@@ -44,6 +44,15 @@ async function fp(file) {
 }
 const ff = (args) =>
   new Promise((ok, bad) => execFile("ffmpeg", ["-v", "error", "-y", ...args], (e) => (e ? bad(e) : ok())));
+// ImageMagick does the composites, because ffmpeg on this machine is built
+// without drawtext and the year labels are the whole point of a picture that
+// shows the same place twice.
+const mg = (args) =>
+  new Promise((ok, bad) => execFile("magick", args.map(String), (e, _o, err) => (e ? bad(new Error(err || String(e))) : ok())));
+// The player stamps the year in Cormorant Garamond; the composites stamp it in
+// the same place in the nearest serif this machine actually ships, so the
+// picture speaks the product's own language and the build needs no font file.
+const SERIF = "/System/Library/Fonts/Supplemental/Georgia.ttf";
 const exists = (f) => fs.access(f).then(() => true, () => false);
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -60,17 +69,25 @@ async function crop(src, dst, w, h) {
   await ff(["-i", src, "-vf", `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}`, "-q:v", "3", dst]);
 }
 
-/** A grid, for the posts that are about the whole set rather than one walk. */
+/** A grid, for the posts that are about the whole set rather than one walk.
+ *  A short last row is CENTRED on the ground colour rather than left ragged:
+ *  vstack refuses rows of different widths, so the twelve-walk grid broke the
+ *  build the day the thirteenth walk landed. */
 async function grid(sources, dst, cols, cell) {
-  const ins = sources.flatMap((s) => ["-i", s]);
-  const scaled = sources.map((_, i) => `[${i}:v]scale=${cell}:${cell}:force_original_aspect_ratio=increase,crop=${cell}:${cell}[c${i}]`);
   const rows = [];
-  for (let r = 0; r * cols < sources.length; r++) {
-    const cells = sources.slice(r * cols, r * cols + cols).map((_, i) => `[c${r * cols + i}]`).join("");
-    rows.push(`${cells}hstack=inputs=${Math.min(cols, sources.length - r * cols)}[r${r}]`);
+  for (let i = 0; i < sources.length; i += cols) rows.push(sources.slice(i, i + cols));
+  const width = cols * cell;
+  const args = ["-size", `${width}x${rows.length * cell}`, "xc:#100E0B"];
+  for (const [r, row] of rows.entries()) {
+    const pad = Math.round((width - row.length * cell) / 2);
+    for (const [c, src] of row.entries()) {
+      args.push("(", src, "-resize", `${cell}x${cell}^`, "-gravity", "center", "-extent", `${cell}x${cell}`, ")",
+                // back to none, or -composite reads the crop's gravity and
+                // measures the offset from that corner instead of the origin
+                "-gravity", "none", "-geometry", `+${pad + c * cell}+${r * cell}`, "-composite");
+    }
   }
-  const stack = rows.map((_, i) => `[r${i}]`).join("") + `vstack=inputs=${rows.length}`;
-  await ff([...ins, "-filter_complex", `${scaled.join(";")};${rows.join(";")};${stack}`, "-q:v", "3", dst]);
+  await mg([...args, "-quality", "88", dst]);
 }
 
 // ---------------------------------------------------------------- build media
@@ -108,9 +125,126 @@ for (const t of tours) {
   made.push(t.id);
 }
 
-// The whole cast, and the whole world, for the posts about the set.
+// The picture for the post about tapping the scene. shots.cjs grabs a walk
+// eight seconds in, before the tap points have finished appearing, so this one
+// is captured separately by tools/socials/shot-hotspots.cjs.
+{
+  const hot = path.join(SHOTS, "tour_istanbul_1616_water_carrier-hotspots.png");
+  if (await exists(hot)) await crop(hot, path.join(MEDIA, "shot-hotspots.jpg"), 1080, 1350);
+  else console.warn("no hotspots shot: node tools/socials/shot-hotspots.cjs tour_istanbul_1616_water_carrier");
+}
+
+// The whole cast, and one city per city, for the posts about the set.
 await grid(tours.map((t) => path.join(t.dir, "companion_portrait.jpg")), path.join(MEDIA, "montage-guides.jpg"), 4, 340);
-await grid(tours.slice(0, 6).map((t) => path.join(t.dir, "s01_hero.jpg")), path.join(MEDIA, "montage-cities.jpg"), 3, 420);
+{
+  // One hero per city, earliest year first: the label says cities, so it has
+  // to BE cities. Taking the first six walks gave three Colombos and two
+  // Istanbuls the moment the fifth city landed.
+  const seen = new Set();
+  const one = tours.filter((t) => !seen.has(t.city) && seen.add(t.city));
+  await grid(one.map((t) => path.join(t.dir, "s01_hero.jpg")), path.join(MEDIA, "montage-cities.jpg"), 3, 420);
+}
+
+// ------------------------------------------------------------- composites
+/**
+ * A composite is several of the walks' own frames in one picture, because some
+ * of what this product does only shows up when two of them are side by side:
+ * the same building unfinished in two different centuries, one city three
+ * times, the same corner then and now. Nothing is drawn that was not already
+ * in a walk; the only ink added is the year, stamped where the player stamps
+ * it, so a reader can tell which panel is which without the caption.
+ */
+const GAP = 4;
+function split(total, n) {
+  const each = Math.floor((total - GAP * (n - 1)) / n);
+  const sizes = Array(n).fill(each);
+  sizes[n - 1] = total - GAP * (n - 1) - each * (n - 1); // the remainder lands on the last panel
+  return sizes;
+}
+async function strip(items, dst, { W, H, dir }) {
+  const sizes = split(dir === "h" ? W : H, items.length);
+  const args = ["-size", `${W}x${H}`, "xc:#100E0B"];
+  let off = 0;
+  for (const [i, it] of items.entries()) {
+    const w = dir === "h" ? sizes[i] : W;
+    const h = dir === "h" ? H : sizes[i];
+    args.push("(", it.src, "-resize", `${w}x${h}^`, "-gravity", it.gravity ?? "center", "-extent", `${w}x${h}`);
+    if (it.label) {
+      const pt = Math.max(26, Math.round(Math.min(w, h) * 0.085));
+      const x = Math.round(pt * 0.62), y = Math.round(pt * 0.5);
+      args.push("-font", SERIF, "-pointsize", String(pt), "-gravity", "northeast",
+                "-fill", "rgba(16,14,11,0.5)", "-annotate", `+${x - 2}+${y + 2}`, it.label,
+                "-fill", "#EFE7D9", "-annotate", `+${x}+${y}`, it.label);
+    }
+    args.push(")", "-gravity", "none", "-geometry", dir === "h" ? `+${off}+0` : `+0+${off}`, "-composite");
+    off += sizes[i] + GAP;
+  }
+  await mg([...args, "-quality", "88", dst]);
+}
+
+const T = (id) => path.join(root, "content/tours", id);
+const ISTANBUL_1616 = T("tour_istanbul_1616_water_carrier");
+const ISTANBUL_1660 = T("tour_istanbul_1660_midwife");
+const COLOMBO_1999 = T("tour_colombo_1999_three_wheeler");
+
+// The Yeni Cami at Eminönü: a stalled shell in Yusuf's year, and rising again
+// in Emine's. Two walks, forty-four years apart, one building.
+await strip([
+  { src: `${ISTANBUL_1616}/s04_c2_then.jpg`, label: "1616" },
+  { src: `${ISTANBUL_1660}/s04_hero.jpg`, label: "1660", gravity: "west" },
+], path.join(MEDIA, "pair-yeni-cami.jpg"), { W: 1080, H: 1350, dir: "h" });
+
+// One city, three walks, three centuries.
+await strip([
+  { src: `${T("tour_colombo_1700_cinnamon")}/s01_hero.jpg`, label: "1700" },
+  { src: `${T("tour_colombo_1905_rickshaw")}/s01_hero.jpg`, label: "1905" },
+  { src: `${COLOMBO_1999}/s01_hero.jpg`, label: "1999" },
+], path.join(MEDIA, "trio-colombo.jpg"), { W: 1080, H: 1350, dir: "h" });
+
+// The same view twice: the walk's reconstruction, and a photograph of the spot
+// as it stands. The comparison is a card inside every walk.
+// The lane below the Süleymaniye, because of the four then-and-now pairs in
+// this walk it is the one where the photograph and the reconstruction are
+// unmistakably the same viewpoint. Side by side, not stacked: the subject is a
+// narrow lane and a letterbox band throws away the thing being compared.
+await strip([
+  { src: `${ISTANBUL_1616}/s03_c2_then.jpg`, label: "1616" },
+  { src: `${ISTANBUL_1616}/s03_c2_now.jpg`, label: "Today" },
+], path.join(MEDIA, "pair-then-now.jpg"), { W: 1080, H: 1350, dir: "h" });
+
+/** Rectangular cells, for a picture that is about six things at once. Unlike
+ *  grid() the cells are not square, because the walks' frames are tall and a
+ *  square cell of a tall frame is a keyhole. */
+async function mosaic(items, dst, { W, H, cols }) {
+  const rows = Math.ceil(items.length / cols);
+  const cw = split(W, cols), ch = split(H, rows);
+  const args = ["-size", `${W}x${H}`, "xc:#100E0B"];
+  for (const [i, it] of items.entries()) {
+    const c = i % cols, r = Math.floor(i / cols);
+    const x = cw.slice(0, c).reduce((a, b) => a + b + GAP, 0);
+    const y = ch.slice(0, r).reduce((a, b) => a + b + GAP, 0);
+    args.push("(", it.src, "-resize", `${cw[c]}x${ch[r]}^`, "-gravity", it.gravity ?? "center",
+              "-extent", `${cw[c]}x${ch[r]}`, ")", "-gravity", "none", "-geometry", `+${x}+${y}`, "-composite");
+  }
+  await mg([...args, "-quality", "88", dst]);
+}
+
+// Two frames that carry a post on their own: the road with no towers on it,
+// and the millennium-party banner three days after the bomb.
+await crop(`${COLOMBO_1999}/s05_hero.jpg`, path.join(MEDIA, "tour_colombo_1999_three_wheeler-galle-road.jpg"), 1080, 1350);
+await crop(`${COLOMBO_1999}/s06_c2_then.jpg`, path.join(MEDIA, "tour_colombo_1999_three_wheeler-millennium.jpg"), 1080, 1350);
+
+// Six of the walks at the moment the guide is working, rather than six faces:
+// a skin filled at a fountain, a hand on a handlebar, herbs, copper on a quay,
+// rickshaws waiting, a door in a quarter. Nobody in this picture is important.
+await mosaic([
+  { src: `${ISTANBUL_1616}/s01_c1.jpg`, gravity: "south" },
+  { src: `${COLOMBO_1999}/s01_c1.jpg`, gravity: "south" },
+  { src: `${T("tour_rome_1600_herb_seller")}/s01_c1.jpg`, gravity: "south" },
+  { src: `${T("tour_stockholm_1650_porter")}/s01_c1.jpg`, gravity: "south" },
+  { src: `${T("tour_colombo_1905_rickshaw")}/s01_c1.jpg` },
+  { src: `${ISTANBUL_1660}/s02_c1.jpg` },
+], path.join(MEDIA, "montage-trades.jpg"), { W: 1080, H: 1350, cols: 2 });
 
 
 // ----------------------------------------------------------------- build page
@@ -167,15 +301,37 @@ const copy = JSON.parse(await fs.readFile(path.join(here, "posts.json"), "utf8")
 
 const posts = [];
 
+/**
+ * What a brand post can ask for by name. A key either IS a built file or points
+ * at one of a NAMED walk's shots; it must never be a position in the tour list,
+ * which is sorted by city and year and therefore moves under you every time a
+ * walk is added. It moved twice: the post about asking Caterina a question in
+ * Rome had been showing a picture of Colombo since the day it was written.
+ */
+const PICTURES = {
+  "montage-guides.jpg": { src: "montage-guides.jpg", label: `All ${tours.length} guides` },
+  "montage-cities.jpg": { src: "montage-cities.jpg", label: "One walk per city" },
+  "montage-trades.jpg": { src: "montage-trades.jpg", label: "Six guides at work" },
+  "pair-yeni-cami.jpg": { src: "pair-yeni-cami.jpg", label: "Eminönü, 1616 and 1660" },
+  "trio-colombo.jpg": { src: "trio-colombo.jpg", label: "Colombo, 1700 / 1905 / 1999" },
+  "pair-then-now.jpg": { src: "pair-then-now.jpg", label: "The same view, 1616 and today" },
+  "shot-hotspots.jpg": { src: "shot-hotspots.jpg", label: "Tap points, in the walk" },
+  "shot-ask.jpg": { src: "tour_rome_1600_herb_seller-story.jpg", label: "In the walk" },
+  "shot-sources.jpg": { src: "tour_london_1850_flower_seller-portrait.jpg", label: "In the walk" },
+  "shot-galle-road.jpg": { src: "tour_colombo_1999_three_wheeler-galle-road.jpg", label: "Galle Road, 1999" },
+  "shot-millennium.jpg": { src: "tour_colombo_1999_three_wheeler-millennium.jpg", label: "Town Hall, December 1999" },
+};
+
 for (const p of copy.posts) {
   const media = [];
   // A film post carries its film and nothing else; picture posts list pictures.
   const want = p.media ?? [];
   if (p.video) media.push({ src: p.video, kind: "vid", poster: p.poster, label: "Vertical film, sound on" });
-  if (want.includes("montage-guides.jpg")) media.push({ src: "montage-guides.jpg", kind: "img", label: "All twelve guides" });
-  if (want.includes("montage-cities.jpg")) media.push({ src: "montage-cities.jpg", kind: "img", label: "Six of the cities" });
-  if (want.includes("shot-ask.jpg")) media.push({ src: `${tours[0].id}-story.jpg`, kind: "img", label: "In the walk" });
-  if (want.includes("shot-sources.jpg")) media.push({ src: `${tours[4].id}-portrait.jpg`, kind: "img", label: "In the walk" });
+  for (const key of want) {
+    const pic = PICTURES[key];
+    if (!pic) { console.error(`posts.json: ${p.id} asks for an unknown picture "${key}"`); process.exit(1); }
+    media.push({ ...pic, kind: "img" });
+  }
   posts.push({ ...p, media });
 }
 
@@ -283,6 +439,20 @@ for (const p of posts) {
   }
 }
 
+// A post whose picture was never built would otherwise fail at the fingerprint
+// with a bare ENOENT. Name every missing file at once instead, the way the
+// copy check does, so one run tells you everything that is wrong.
+{
+  const missing = [];
+  for (const p of posts)
+    for (const m of p.media)
+      if (!(await exists(path.join(MEDIA, m.src)))) missing.push(`${p.id}: ${m.src}`);
+  if (missing.length) {
+    console.error("media referenced but not built:\n  " + missing.join("\n  "));
+    process.exit(1);
+  }
+}
+
 // Every reference the page or the feed makes carries the content hash.
 for (const p of posts) {
   for (const m of p.media) {
@@ -330,6 +500,8 @@ const card = (p, i) => `
     </div>
   </details>
 </article>`;
+
+const films = posts.filter((p) => p.media.some((m) => m.kind === "vid")).length;
 
 const html = `<!doctype html>
 <html lang="en">
@@ -414,8 +586,8 @@ const html = `<!doctype html>
 
 <div class="how">
   <ol>
-    <li><b>Pick a post.</b> The first four are about the product; the rest are one per walk.</li>
-    <li><b>Take the media.</b> Pictures come in the shape each platform wants; the two films have sound, so post them with sound on.</li>
+    <li><b>Pick a post.</b> The first ${copy.posts.length} are about the product; the rest are one per walk.</li>
+    <li><b>Take the media.</b> Pictures come in the shape each platform wants; the ${films} films have sound, so post them with sound on.</li>
     <li><b>Copy the words.</b> Each platform has its own version, already the right length. The character count is next to the button.</li>
     <li><b>Link.</b> Send people to <b>app.worldasitwas.com</b>.</li>
     <li><b>Handing off instead?</b> Every post ends with <b>Hand this post to an agent</b>: one copyable block holding the whole job — the files to fetch, which platform gets which, the captions verbatim, and the rules. Paste it into Claude Code and it has everything.</li>
@@ -462,7 +634,7 @@ ${posts.map(card).join("")}
 </main>
 
 <footer>
-  Every picture here is a real screenshot of the product or one of its own reconstructions, and the two films are built from the walks' own scenes and voices; nothing is a mock-up.
+  Every picture here is a real screenshot of the product or one of its own reconstructions, and the ${films} films are built from the walks' own scenes and voices; nothing is a mock-up.
   Rebuild the pack after any change with <b>node tools/socials/build.mjs</b>.
 </footer>
 

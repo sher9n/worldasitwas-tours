@@ -1,7 +1,8 @@
 # Socials pack
 
-Sixteen posts, each with the words for four platforms and the picture or clip to
-attach, on one page a social media manager can work straight from.
+Every post, with the words for four platforms and the picture or clip to attach,
+on one page a social media manager can work straight from. Thirty of them as of
+the Istanbul and Colombo 1999 walks: fifteen about the product, one per walk.
 
     node tools/socials/build.mjs
 
@@ -21,13 +22,28 @@ Nothing here is a mock-up.
   the guide's own recorded voice. Screen recording was the obvious route and is
   the wrong one: the browser records no audio, and a narrated product with the
   narration stripped out is the one thing this must not be.
+- **Composites** (`pair-yeni-cami`, `trio-colombo`, `pair-then-now`,
+  `montage-trades`, the two montages) put several of the walks' own frames in
+  one picture, because some of what the product does only shows up when two
+  frames sit side by side: one building unfinished in two different centuries,
+  one city three times, the same lane then and now. The only ink added is the
+  year, stamped where the player stamps it. They need ImageMagick as well as
+  ffmpeg, and they draw the year in Georgia, which is the serif this machine
+  ships; ffmpeg here is built without `drawtext`.
 
 ## Rebuilding
 
     # 1. the app must be running (npm run api, npm run playground)
     node tools/socials/shots.cjs <tour_id>...     # screenshots
+    node tools/socials/shot-hotspots.cjs <tour_id> <stop_id>   # the tap points
     tools/social-clip.sh <tour_id>                # one clip
-    node tools/socials/build.mjs                  # crops, montages, the page
+    node tools/socials/build.mjs                  # crops, composites, the page
+
+`shots.cjs` grabs each walk eight seconds in, which is before the tap points
+have finished appearing, so the picture for the post about tapping is captured
+separately. Pass it a stop id: the player gates on taps and will not walk itself
+to a later stop, and the first scene is the one that walk's own post already
+uses.
 
 Working pictures live in `content/work/socials/` rather than in the published
 folder, so only what is actually served gets uploaded: 65 MB rather than 300.
@@ -42,7 +58,10 @@ The page counts characters and marks anything over the 280 limit on X.
 
 1. Add an entry to `posts.json` (a brand post in `posts`, a walk post in
    `tourPosts`). Optional `schedule` ("2026-09-03 09:00 IST") flows into the
-   agent brief; optional `platforms` narrows the copy columns.
+   agent brief; optional `platforms` narrows the copy columns. A brand post
+   names its pictures by key from the `PICTURES` table in `build.mjs`; a key is
+   either a built file or a NAMED walk's shot, never a position in the tour
+   list, which moves every time a walk is added.
 2. `node tools/socials/build.mjs` — the build REFUSES to produce the page if
    anything is missing (a caption, a hook, a media file), naming every problem.
    Nothing half-made can ship.
