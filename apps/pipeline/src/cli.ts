@@ -1,7 +1,7 @@
 /**
  * pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock]
  *                            [--image-model gpt-image-2|nano-banana-pro] [--steps hero,video,...]
- *                            [--no-portrait] [--fresh]
+ *                            [--portrait] [--fresh]
  *
  * Stages: research -> archive -> script -> character -> media -> assemble.
  * Research, archive picks and scripts are cached in content/work/<tourId>/ and
@@ -58,7 +58,7 @@ function parseArgs(argv: string[]): Args {
   // every picture's cache key. Defaulting to anything else means a re-run
   // quietly misses every cached image and rebuilds the walk with a different
   // face on the guide, which is expensive and wrong in the same breath.
-  const a: Args = { cmd, recipe, quality: env.quality, provider: env.mediaProvider, imageModel: "nano-banana-pro", portrait: true, fresh: false };
+  const a: Args = { cmd, recipe, quality: env.quality, provider: env.mediaProvider, imageModel: "nano-banana-pro", portrait: false, fresh: false };
   for (let i = 0; i < rest.length; i++) {
     const k = rest[i];
     if (k === "--stops") a.stops = Number(rest[++i]);
@@ -71,6 +71,11 @@ function parseArgs(argv: string[]): Args {
       a.steps = new Set(list);
     } else if (k === "--only") a.only = new Set(rest[++i].split(",").map((x) => x.trim()));
     else if (k === "--voice-provider") a.voiceProvider = rest[++i] as "eleven" | "openai";
+    // Off by default: the player shows the presence loop whenever a guide has
+    // one, and every guide does, so a per-stop talking portrait is generated,
+    // paid for and never played. On Colombo 1999 it was $44.54 of a $64 fal
+    // bill and 41MB of a 113MB walk, for video nothing displays.
+    else if (k === "--portrait") a.portrait = true;
     else if (k === "--no-portrait") a.portrait = false;
     else if (k === "--fresh") a.fresh = true;
     else throw new Error(`unknown argument ${k}`);
@@ -96,7 +101,7 @@ function log(msg: string): void {
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
   if (args.cmd !== "run" || !args.recipe) {
-    console.log("usage: pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--image-model gpt-image-2|nano-banana-pro] [--steps a,b] [--only stopId,stopId] [--no-portrait] [--fresh]");
+    console.log("usage: pipeline run <recipe.json> [--stops N] [--quality draft|final] [--provider fal|mock] [--image-model gpt-image-2|nano-banana-pro] [--steps a,b] [--only stopId,stopId] [--portrait] [--fresh]");
     process.exit(1);
   }
   const recipePath = path.isAbsolute(args.recipe) ? args.recipe : path.resolve(process.cwd(), args.recipe);
