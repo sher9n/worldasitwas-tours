@@ -75,7 +75,17 @@ export const STOP_DOSSIER_SCHEMA = {
 
 export const CompanionDossier = z.object({
   bio: z.string(),
-  intro: z.string(),
+  /**
+   * OPTIONAL ON READ, required of the model on write (it stays in the JSON
+   * schema's `required` list below). Twelve of the twenty-two walks have cached
+   * companion research from before this field existed, and demanding it here
+   * made every one of them impossible to re-run AT ALL: the dossier failed to
+   * parse before any stage started, so a then-and-now repair or a prompt change
+   * died with "intro: Required" and nothing else. assemble.ts already writes
+   * `intro ?? ""`, and the published Tour schema has it optional, so this parse
+   * was the only thing stricter than the contract it produces.
+   */
+  intro: z.string().optional(),
   speechNotes: z.string(),
   worldview: z.string(),
   knowledgeLimits: z.string(),

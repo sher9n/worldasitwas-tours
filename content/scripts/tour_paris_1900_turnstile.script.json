@@ -180,20 +180,7 @@
         "stop_03_the_moving_pavement_c1": {
           "narration": "This pavement runs in a great loop between Invalides and the Champ-de-Mars, and you reach it by stairs to a station because it rides above the ground.",
           "scene": "From a narrow access platform beside the Champ-de-Mars, the camera faces along the raised moving pavement on its iron and timber trestles, about first-floor height above the fair. At lower left a small ticket barrier and gate stand at the station mouth, and just beyond them a wooden stair climbs to the platform. Across the width of the viaduct run three side-by-side ways: a fixed strip nearest the rail, a narrower moving belt in the middle with two women stepping onto it, and the broader fast track at right carrying men in dark coats, straw hats, and parasol-holding women. Behind everything the Eiffel Tower's iron legs fill the sky, while far across the open Champ-de-Mars sit the long galleries, flags, and the distant front of the Palace of Electricity.",
-          "points": [
-            {
-              "label": "ticket barrier",
-              "line": "You don't wander onto the thing from the dust. You pass a little barrier like any ride, then climb, and that's when even bold people begin looking at their boots."
-            },
-            {
-              "label": "wooden stair",
-              "line": "It's up on a viaduct, about seven metres on average, so all along the circuit they serve it by stairs and little footbridges, nine chief stations in all."
-            },
-            {
-              "label": "middle belt",
-              "line": "The trick is these three lanes together: one stands still, one carries you at about four kilometres an hour, and the outer one goes near eight."
-            }
-          ]
+          "points": []
         },
         "stop_03_the_moving_pavement_c2": {
           "narration": "First time on, you take the slow belt, find your balance, then dare the quicker one, and all at once the fair slides past faster than walking.",

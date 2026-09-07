@@ -30,7 +30,16 @@ const openingWords = words(first);
 pass = ok("gives their name in the opening", openingWords.includes(name), first.slice(0, 60) + "...") && pass;
 const trade = words(m.companion.role).filter((w) => w.length > 3 && !STOP_WORDS.has(w));
 const saidTrade = trade.filter((t) => openingWords.includes(t) || openingWords.includes(t.replace(/s$/, "")));
-pass = ok("says what they do for a living", saidTrade.length > 0, `role words found: ${saidTrade.join(", ") || "none"} (role: ${m.companion.role})`) && pass;
+// The role in the manifest is English ("Baker"), but the guide names their
+// trade in their own word: "I'm a pistor", "I'm Yusuf, a saka", "an ebe".
+// Naming a trade counts, whatever language it is in, so a self-declaration of
+// the form "I am a <noun>" passes too, as long as the noun is not their name.
+const nameWords = new Set(words(m.companion.name));
+const declared = [...first.matchAll(/\bI(?:'m| am)\s+(?:an?|the)\s+([a-zà-ÿ]{3,})/gi)]
+  .map((x) => x[1].toLowerCase())
+  .filter((w) => !nameWords.has(w) && !STOP_WORDS.has(w));
+pass = ok("says what they do for a living", saidTrade.length > 0 || declared.length > 0,
+  `role words: ${saidTrade.join(", ") || "none"}; declared trade: ${declared.join(", ") || "none"} (role: ${m.companion.role})`) && pass;
 pass = ok("says what the walk is", /\b(walk|round|stops?)\b/i.test(first) && /\b(\d+|one|two|three|four|five|six|seven|eight)\b/i.test(first), first.slice(0, 90)) && pass;
 // 2. How to look and how to ask, explained once, and after the introduction.
 const lower = first.toLowerCase();
@@ -41,7 +50,10 @@ pass = ok("how to look and ask is explained, after they introduce themselves", a
 const invites = (JSON.stringify(m).match(/green (disc|button)/gi) || []).length;
 pass = ok("the interface is explained once in the whole tour", invites === 1, `${invites} mentions`) && pass;
 // 3. She closes the walk.
-pass = ok("says goodbye at the end", /thank you|bye\b|farewell|walking with me|good rest|god keep|good day to you|safe home|mind how you go/i.test(last), last.slice(-60)) && pass;
+// A guide says goodbye in THEIR words, which is the whole point of the product:
+// Yusuf ends "Go in health", Lucius ends "Uale, frater". An English-only list
+// fails those walks for doing exactly what they are supposed to do.
+pass = ok("says goodbye at the end", /thank you|bye\b|farewell|walking with me|good rest|god keep|good day to you|safe home|mind how you go|\buale\b|\bvale\b|adieu|addio|arrivederci|go in health|go well|keep well|peace (be )?(up)?on you|god be with you|god keep you|until next time|good ?night|rentrez bien|bonne (nuit|journ)|buona sera|god natt|hyvaa/i.test(last), last.slice(-60)) && pass;
 
 // 4. Nothing is told twice: gather every spoken line with its home.
 const lines = [];

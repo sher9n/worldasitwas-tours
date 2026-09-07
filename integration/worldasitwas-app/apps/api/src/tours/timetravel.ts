@@ -157,6 +157,9 @@ export interface Companion {
   portrait: string;
   greeting: SpokenLine;
   voice: { provider: "openai-realtime"; voice: string };
+  /** The voice the tour is recorded in. A live answer is spoken in it too, so a
+   *  question is answered by the same person who has been telling the story. */
+  narrationVoice: string;
   faceReel: VideoAsset[];
 }
 
@@ -185,6 +188,9 @@ export interface Tour {
   id: string;
   version: string;
   city: string;
+  /** The city's display name and country, carried so a new city needs no code. */
+  cityName?: string;
+  country?: string;
   year: number;
   yearRange: [number, number];
   lang: string;

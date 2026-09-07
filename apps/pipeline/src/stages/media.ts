@@ -83,7 +83,16 @@ const CARD_MOTION_PROMPT =
   "Bring this scene quietly to life for a few seconds: people shift their weight and walk slowly, horses step and nod, fabric, smoke and steam drift, reflections shimmer on wet stone. The camera is locked off. No new people or objects appear; nothing leaves the frame. Subtle, slow, documentary.";
 
 export async function makeCharacter(recipe: Recipe, companion: CompanionDossier, provider: MediaProvider, quality: Quality, opts: { greeting?: boolean } = {}): Promise<CharacterSheet> {
-  const prompt = `Photographic portrait, ${companion.portraitPrompt} ${recipe.style.look} Square framing, head and shoulders, looking at the camera, plain background of a soot-darkened brick wall. Avoid: ${recipe.style.avoid}`;
+  // A soot-darkened brick wall is a fine DEFAULT for a guide whose dossier does
+  // not say where they stand, and twelve of the twenty do not. It is wrong as an
+  // override: it competed with the guide's own stated setting and sometimes won,
+  // which put a 1621 Gothenburg digger against machine-made brick in a town
+  // built of timber and mud, in the circle the traveller looks at all walk. So
+  // it is only added when the dossier gives nothing better.
+  const backdrop = /\bSetting\s*:/i.test(companion.portraitPrompt)
+    ? "Keep the setting described above behind them, softly out of focus."
+    : "plain background of a soot-darkened brick wall.";
+  const prompt = `Photographic portrait, ${companion.portraitPrompt} ${recipe.style.look} Square framing, head and shoulders, looking at the camera, ${backdrop} Avoid: ${recipe.style.avoid}`;
   const portrait = await provider.image({ prompt, aspect: "1:1", quality, stage: "character", note: `portrait of ${recipe.companion.name}` });
   // The image model sometimes composes a tall photograph on a square canvas and
   // pads the sides with white. In a round frame that reads as a cut-out with
