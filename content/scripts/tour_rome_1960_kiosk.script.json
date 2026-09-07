@@ -1,0 +1,358 @@
+{
+  "tourId": "tour_rome_1960_kiosk",
+  "companion": "Rosa Ferrante",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_kiosk": {
+      "arrival": {
+        "line": "Morning, and welcome. I'm Rosa Ferrante, fifty-one, born here, and I keep the green newspaper kiosk by Barberini, selling the news before most people have even found their coffee.",
+        "scene": "From the pavement at the corner, a small green kiosk fills the right foreground, its hatch open with Rosa beside stacks of newspapers and a metal coin tray. In the middle of Piazza Barberini the Triton fountain rises amid circling buses, scooters, and a taxi. To the left stands the cinema entrance under its marquee, and behind the kiosk the uphill mouth of Via Veneto opens between stone façades.",
+        "points": [
+          {
+            "label": "green kiosk",
+            "line": "This is the proper angle for an edicola, right where the square pinches and Veneto begins, because even people pretending not to stop still slow their eyes across the front pages."
+          },
+          {
+            "label": "uphill street",
+            "line": "That climb is Via Veneto starting its little performance, and this square is where half the city changes direction, so waiters, chauffeurs, office men, and strays all wash past together."
+          },
+          {
+            "label": "cinema entrance",
+            "line": "The cinema has been here since thirty, which means this piazza was already practicing film faces and evening queues long before every fool started saying glamour as if he'd invented it."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_kiosk_c1": {
+          "narration": "I've kept this green box for years now, open before six, with eleven daily papers on the shelf and about four hundred opinions a day, wanted or not.",
+          "scene": "Seen from just behind the kiosk counter at dawn, Rosa's hands are cutting twine on damp newspaper bundles spread across the wooden ledge. A small delivery van is stopped at the curb on the left. Fresh dailies are fanned in a row, and a first customer in a work jacket waits with coins in hand while the fountain and a bar's espresso steam sit across the square.",
+          "points": [
+            {
+              "label": "delivery van",
+              "line": "The van comes before the sun has warmed the stone, and if he's late by ten minutes the whole morning skews, because regulars blame the kiosk first and the printer after."
+            },
+            {
+              "label": "paper bundles",
+              "line": "You cut the string, shake the damp fold loose, and square the stacks fast. Ink on the fingers, always. I set the big titles where both streams of traffic can catch them."
+            },
+            {
+              "label": "first customer",
+              "line": "The first buyer is usually a man going to work, and half the time he starts quarreling with a headline before he's paid. Romans don't wait for breakfast to form an opinion."
+            }
+          ]
+        },
+        "stop_01_the_kiosk_c2": {
+          "narration": "We'll do five stops, from my kiosk uphill, then to the torchlit finish, then out to the edge, because everybody passes here sometime. Tap something, or hold the green button and ask.",
+          "scene": "From the front of the kiosk in brighter morning light, four customers bunch at the counter: an older man in a suit lifts Il Messaggero from the center stack, a crisp man with a hat has Il Tempo tucked under his arm, a younger customer reaches for Il Giorno on the right, and a scooter courier grabs Corriere dello Sport from a lower pile. Rosa's metal coin tray sits between their hands, and behind them a city bus has its folding door open at the stop.",
+          "points": [
+            {
+              "label": "coin tray",
+              "line": "Forty lire for a daily, and the paying tells me as much as the buying. Exact change means habit, a pause over the purse means trouble, and two papers means a better week."
+            },
+            {
+              "label": "bus door",
+              "line": "A bus ride is fifty lire now, so plenty of people do the sum at my counter before they move on. Paper, ticket, coffee; one of them has to give."
+            },
+            {
+              "label": "paper stacks",
+              "line": "Papers fly in this country. By breakfast millions have one open already, and around here faster still, because Romans like news, argument, and being seen with both."
+            }
+          ]
+        },
+        "stop_01_the_kiosk_c4": {
+          "narration": "People tell on themselves here: Messaggero for Rome first, Tempo for stiff opinions, Giorno for brisk modern airs, and Corriere dello Sport for lads, drivers, and anyone late.",
+          "scene": "A wider later-morning view from beside the kiosk shows the Triton fountain in the center with a ring of taxis, Vespas, Lambrettas, and one crowded bus edging around it. At the lower right, a line of scooters leans uphill toward Via Veneto. Along the far side, apartment windows and hotel façades catch the light, and near the curb a small bus queue waits with shoppers and a workman still holding coins.",
+          "points": [
+            {
+              "label": "scooter line",
+              "line": "The extra money is real, don't let anybody tell you otherwise. More scooters, more men buying a second paper on Sunday, more people acting as if the city finally belongs to them."
+            },
+            {
+              "label": "apartment windows",
+              "line": "But houses haven't kept up, and people keep pouring in from elsewhere, from the middle and the south especially, so one polished street can sit on top of a hundred bad rooms."
+            },
+            {
+              "label": "bus queue",
+              "line": "The square is the middle, not the whole city. Follow that queue home and you'll find long rides, crowded flats, and on the edges patched places a family would rather not describe."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Annamo uphill now, because the same coins that stop at my counter climb into Veneto, where people spend more and work hard to look effortless."
+    },
+    "stop_02_via_veneto": {
+      "arrival": {
+        "line": "Up here the city puts on lipstick: hotels, cafés, traffic, slow walkers, and everybody watching everybody, Romans and foreigners together, as if the pavement were a stage.",
+        "scene": "A nighttime view from the pavement on Via Veneto looking uphill toward Porta Pinciana. White hotel façades rise on both sides; café tables crowd beneath awnings on the right; pink azalea tubs sit by the kerb; slow walkers fill the middle ground; waiters weave between chairs; chrome bumpers and headlights edge through slow traffic.",
+        "points": [
+          {
+            "label": "the white hotels",
+            "line": "This stretch runs from Barberini up to Porta Pinciana, and it was laid out as the show walk of the new Ludovisi quarter, all grand hotels, noble houses, and money on display."
+          },
+          {
+            "label": "the café tables",
+            "line": "The cafés aren't innocent either. A scene at one table pulls paying customers to the next, so espresso gets nursed for hours while everybody waits for somebody else to misbehave."
+          },
+          {
+            "label": "the azalea tubs",
+            "line": "Before that film made the street famous, Americans up here were already calling it the Beach, which tells you the game: not swimming, just strolling, showing yourself, and studying the other bathers fully dressed."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_via_veneto_c1": {
+          "narration": "Those boys with cameras aren't artists, lasci perdere. They idle, smoke, bark names, then fly on scooters for one kiss or one quarrel worth real money.",
+          "scene": "A closer frame by a lamppost at the kerb: three leather-jacketed photographers stand together under the light, one with a cigarette at his mouth and a camera hanging ready; a black Vespa is parked nose-out beside them; behind, a hotel doorway, a parked car, and an elegant couple arriving give them something to watch.",
+          "points": [
+            {
+              "label": "the lamppost men",
+              "line": "There's not an army of them, despite the fuss, just a small pack, maybe a couple of dozen, spread under lampposts and outside doors waiting for the first crack in somebody's good manners."
+            },
+            {
+              "label": "the black Vespa",
+              "line": "Feet do part of it, sure, but the scooter is the trick. They can be on this kerb, then out toward Fiumicino, catching a face before the suitcase even hits the porter."
+            },
+            {
+              "label": "the cigarette man",
+              "line": "A usable flash can bring two or three thousand lire, which is why I don't call them adventurers. Same trade as me, really: I sell gossip folded, they sell it exploded."
+            }
+          ]
+        },
+        "stop_02_via_veneto_c2": {
+          "narration": "Since February La dolce vita has sat over this street like a second awning, and now half the people come to live it and half to curse it.",
+          "scene": "Outside a bright café on Via Veneto, a glass case holds a film poster for La dolce vita beside evening papers; at a front table a posed couple sit half-turned toward the street; behind them the pale hotel front glows under lamps while passersby and a photographer hover at the edge.",
+          "points": [
+            {
+              "label": "the film poster",
+              "line": "After the picture came out, people started calling these pests paparazzi, from the photographer in it, and the name fits because they don't walk in, they buzz, sting, and vanish."
+            },
+            {
+              "label": "the posed couple",
+              "line": "Ask five Romans and you'll get six verdicts. Some swear the film told the truth about this hungry, bored night life; others call it a filthy lie and a shame to the city."
+            },
+            {
+              "label": "the hotel front",
+              "line": "Funny thing: plenty of the Via Veneto people think they know from the screen was rebuilt in the studios, because even real Rome apparently wasn't theatrical enough for the cinema."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Annamo, leave the café smoke. Rome's selling ancient stones as modern spectacle too, and the next place shows that trick in broad daylight."
+    },
+    "stop_03_the_ruins_as_venues": {
+      "arrival": {
+        "line": "Up on Veneto they sell Rome polished. Down here they sell it ancient and useful, which sounds grand until you see the carpentry, cables, and queues.",
+        "scene": "Standing on the north-eastern side of the Baths of Caracalla, the camera looks south through a temporary entry lane into the ruin. A paper sign is tied to a wooden rail at the front, with men and women in light summer clothes filing past it. Beyond them, timber gangways cross trampled earth toward pale gymnastic apparatus, while a high wall of red-brown brick with broken arches rises across the whole background under open blue sky.",
+        "points": [
+          {
+            "label": "high wall",
+            "line": "That wall still climbs more than thirty metres in places. They opened these baths in 216, and the job kept going after Caracalla was gone, which sounds ancient but feels very familiar around here."
+          },
+          {
+            "label": "paper sign",
+            "line": "That paper sign is the polite end of a long scheme. They'd been talking for years about putting Olympic sport into the monuments, here and Maxentius and the Appian Way, because plain stadiums don't sell postcards."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_the_ruins_as_venues_c1": {
+          "narration": "For these Games they didn't hide the old city. Gymnastics runs here at Caracalla, and the wrestling's set under the vaults of the Basilica of Maxentius.",
+          "scene": "From the north-eastern edge of the Baths of Caracalla, the camera looks south across the open ruin. In the middle sits a pale competition floor with a pommel horse and other gymnastic apparatus; to the left rise wooden spectator stands crowded with white shirts and dark jackets; to the right a cable bundle snakes past officials toward temporary lighting. Behind everything loom broken red-brown brick walls and arch lines, with open sky above.",
+          "points": [
+            {
+              "label": "pommel horse",
+              "line": "Not just one exhibition, capito. All the artistic gymnastics is here, from the fifth to the tenth of September, so this whole bath house lives on chalk, whistles, taut nerves, and people pretending not to stare."
+            },
+            {
+              "label": "cable bundle",
+              "line": "All that cable and timber is the trick of it. They wanted modern sport inside the Roman shell, but without biting the old brick, so the venue had to be built like careful camping."
+            }
+          ]
+        },
+        "stop_03_the_ruins_as_venues_c2": {
+          "narration": "At night it feels half stadium, half quarry: loudspeaker bouncing off brick, applause coming in waves, cigarette smoke under the lights, and everybody looking suddenly very small.",
+          "scene": "A night view from lower down inside the Baths shows the gymnastics floor glowing pale beneath floodlights. At the near left, a loudspeaker horn hangs from a pole above seated spectators; across the benches, a few small flags lift above heads and folded programmes; beyond them, a vast shadowed arch opens black inside and bright along its brick edges. Officials in white stand near the apparatus, and the temporary seating is full.",
+          "points": [
+            {
+              "label": "loudspeaker horn",
+              "line": "The voice from that horn never lands clean. It ricochets off the walls, and underneath you still catch whistles, a vendor outside, and that scooter-and-bus buzz from the road beyond."
+            },
+            {
+              "label": "small flags",
+              "line": "Those little flags aren't just for show. We're doing well this summer, third place at home with thirty-six medals, so even the complainers start standing straighter and talking as if every victory belonged to their own staircase."
+            },
+            {
+              "label": "shadowed arch",
+              "line": "When a shower passes, that dark arch breathes cold mineral damp, and for a minute the brick smells older than the crowd, older than the cigarettes, older than all this Olympic tidiness."
+            }
+          ]
+        },
+        "stop_03_the_ruins_as_venues_c4": {
+          "narration": "Ask Romans about the Olympics and you'll get pride first, complaint second: the world is watching us, yes, but the buses, roads, and rules keep shifting under our feet.",
+          "scene": "Outside the Baths, the camera faces a broad road curving past the ruin wall. On the left, a crowded special bus is pulling into the curb beside a bus queue with handbags and rolled newspapers. In the centre, a temporary traffic sign with a fresh arrow stands near a policeman directing cars. At the right edge, tram tracks glint in the road while scooters thread past under the long brick perimeter.",
+          "points": [
+            {
+              "label": "special bus",
+              "line": "People praised these Olympic buses because they actually came often, imagine that, and at once they added the sting: let's see if the service stays this good once the foreigners go home."
+            },
+            {
+              "label": "traffic sign",
+              "line": "The nuisance changes daily. One morning a street runs one way, by lunch a policeman is waving you elsewhere again, because the traffic rules keep being rewritten for Olympic traffic."
+            },
+            {
+              "label": "tram tracks",
+              "line": "Those tram tracks tell the other half. New underpasses and fast roads sound modern, sure, but a lot of the city is being rearranged around buses now, and plenty of us notice what's been pushed aside."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Annamo on. The boldest boast comes after dark, when they send the marathon through the old stones and make the city hold its breath."
+    },
+    "stop_04_the_marathon": {
+      "arrival": {
+        "line": "From those gymnasts and their neat boards, annamo to the hardest part: men running the city itself, with the heat still in the stones and night coming on.",
+        "scene": "From waist height at the finish barrier, the pale arch stands centered and still warm in the dusk, with the black wall of the Colosseum looming to the left behind it. Under the arch and across the foreground, the white shirts of officials and police crowd around ropes and timing gear, while photographers lean in with flashbulbs and spectators pack the curb.",
+        "points": [
+          {
+            "label": "the pale arch",
+            "line": "That arch was raised for Constantine's victory over Maxentius, copying the old triumph style on purpose, so even the finish line got dressed as an emperor for one Roman night."
+          },
+          {
+            "label": "the white shirts",
+            "line": "Half the place is stopwatches, whistles, and nerves. Officials, police, and photographers pack in so tight that the ancient stones start looking temporary, which is a Roman specialty for one night."
+          },
+          {
+            "label": "the black wall",
+            "line": "By evening the Colosseum is just a black hulk at the side, and that helps, because the crowd hears the leaders before it can really see them coming home again."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_the_marathon_c1": {
+          "narration": "They sent them off at half past five so the heat wouldn't cook them, and after dark the Appian was lit by soldiers holding torches.",
+          "scene": "A long view down the Appian Way at dusk, the road running away between dark trees and broken stone. Along both edges the torch line of soldiers stands at intervals, each flame making a separate bead of light, while the runners come toward the camera on the warm road with shadows stretching behind them.",
+          "points": [
+            {
+              "label": "the torch line",
+              "line": "It wasn't cinema trick light. About a thousand soldiers stood along the darker stretch, roughly ten paces apart, so the road burned forward in separate flames, a kind of human lamp line."
+            },
+            {
+              "label": "the runners",
+              "line": "Sixty-nine men started from the Campidoglio, from thirty-five countries, went by Caracalla and down the Appian, and whoever had anything left came back here to finish under the arch at night."
+            }
+          ]
+        },
+        "stop_04_the_marathon_c2": {
+          "narration": "Out of that wavering light came Abebe Bikila of Ethiopia, barefoot because the new shoes blistered him, and bare feet were simply the sounder bargain.",
+          "scene": "A tight three-quarter view of the leader under uneven torchlight, his dark vest clinging with sweat and his chest number bright against it. His bare feet are clear as they lift from the road, with another runner blurred farther back and a few spectators and soldiers lost in the dusk behind him.",
+          "points": [
+            {
+              "label": "the chest number",
+              "line": "He didn't just win. He came in faster than the marathon had ever been run before, and that's the sort of clean fact even a shouting crowd understands at once."
+            },
+            {
+              "label": "the dark vest",
+              "line": "He wasn't some lucky stray, either. He served in Emperor Haile Selassie's bodyguard, so what you see here is discipline, not a fairy tale somebody pinned on bare feet alone."
+            }
+          ]
+        },
+        "stop_04_the_marathon_c4": {
+          "narration": "Near Porta Capena he went by a stone the army had dragged from Ethiopia in thirty-seven, and after that this race felt bigger than sport.",
+          "scene": "At Porta Capena in the deepening evening, the tall stone rises on the right side of the frame beyond the curb. In the roadway the front runner has just edged clear, the curb faces press forward under police control, and the chaser is half a stride behind, all of them turned toward the finish.",
+          "points": [
+            {
+              "label": "the tall stone",
+              "line": "They call it the Axum stele. It came from Ethiopia and was brought here as a conquest trophy, planted by the Colonies ministry so Rome could admire what force had carried off."
+            },
+            {
+              "label": "front runner",
+              "line": "Right here at Porta Capena, about five hundred metres from the line, he finally shook off Rhadi Ben Abdesselam of Morocco. After that the finish was still far enough to hurt, but the verdict was made."
+            },
+            {
+              "label": "the curb faces",
+              "line": "Nobody announced any grand lesson, capito, but you didn't need one. An Ethiopian man passing a stone taken from Ethiopia, then winning in Rome, made the old conquest figure look suddenly foolish."
+            }
+          ]
+        }
+      },
+      "transitionOut": "And that's the trick of this summer: torches, arches, headlines, and then the long ride home, so annamo where the glow thins out."
+    },
+    "stop_05_the_borgata": {
+      "arrival": {
+        "line": "Mo come east with me, away from the torches, because this is the Rome that pays the bill: blocks on raw ground, long rides, children making do.",
+        "scene": "A roadside view across the Pietralata edge shows a bare open stretch of uneven dirt and scrub in the foreground, with a row of low older borgata houses at the left, taller four- and five-storey apartment blocks with pale raw plaster rising behind them, and empty ground with patched fencing and a few tomato plants running between the buildings.",
+        "points": [
+          {
+            "label": "low houses",
+            "line": "Those squat little houses are the older borgata, and Pietralata was made for people pushed out of the center when whole bits were knocked down for grand fascist figure. Fine idea, eh? Move the poor, keep the postcard."
+          },
+          {
+            "label": "new block",
+            "line": "The taller blocks are the newer answer, going up through these last years, and faster than the shops, drains, and schools below them, so the walls arrive first and the rest gets promised after."
+          },
+          {
+            "label": "empty ground",
+            "line": "And in between, all that bare ground. This side of Rome grows by patches: one finished stair, one muddy lot, one fence, then nothing for a stretch except dust and somebody's tomatoes."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_the_borgata_c1": {
+          "narration": "Some are Romans, sure, but plenty came in from the poorer south, from fields and small towns, betting the city might turn day labor into a future.",
+          "scene": "In a small shared courtyard between apartment blocks, a tied trunk sits by a doorway, a man stands beside it with a tin lunch pail and work clothes, and above him balcony washing hangs in bright strips between open windows.",
+          "points": [
+            {
+              "label": "tied trunk",
+              "line": "That tied trunk is half the story. Families keep arriving with country habits still on them, many from Puglia and Calabria, because poor land and thin work don't fill a pot for long."
+            },
+            {
+              "label": "lunch pail",
+              "line": "The tin lunch pail means building work more often than not, though you'll find porterage, council jobs, housework, market stalls, anything that pays steady enough to keep a child in shoes."
+            },
+            {
+              "label": "balcony washing",
+              "line": "Those sheets aren't just laundry, they're a count. Rome's been swallowing tens of thousands of newcomers each year, more now than after the war, and every new line means another family trying to stick."
+            }
+          ]
+        },
+        "stop_05_the_borgata_c2": {
+          "narration": "On paper this is one city, and one ticket gets you to the polished center, but the ride is long, crowded, dusty, and never quick.",
+          "scene": "A crowded eastern bus stop fills the frame: people stand in a tight queue beside a half-made road, a bus route board leans over them, and a dirt verge at the curb is already churned up and dusty where the bus pulls in.",
+          "points": [
+            {
+              "label": "route board",
+              "line": "Out east you're still tied to the center by surface rides, bus mostly, and a tram line hanging on toward Centocelle. Fine if you've got time and elbows; less fine if you've got children and shopping."
+            },
+            {
+              "label": "queue",
+              "line": "The queue tells the truth better than any mayor. Same fare as everybody else, same city on the map, yet one end gets café light and smooth paving and this end gets puddles, delays, and excuses."
+            },
+            {
+              "label": "dirt verge",
+              "line": "When the bus pulls off, the dust comes straight over your stockings, and that's the little daily insult here: houses full already, but pavements, lamps, drains, and proper corners still turning up late."
+            }
+          ]
+        },
+        "stop_05_the_borgata_c4": {
+          "narration": "What bites me is the children: they get bare lots instead of a square, and mothers spend all this growth turning mud, noise, and waiting into prospects.",
+          "scene": "A dirt lot between housing blocks serves as a play space, with a patched wooden football goal at one end, a school satchel hanging from a wire fence, and a shallow standpipe puddle shining in the dust near the children's feet.",
+          "points": [
+            {
+              "label": "patched goal",
+              "line": "A proper little square would do more good than all the speeches. Instead they make a goal from scrap wood, and farther out than this you've still got shacks by the aqueducts and worse mud than here."
+            },
+            {
+              "label": "school satchel",
+              "line": "That's the wager, that satchel. People come in from the country and put up with damp rooms, long rides, and odd jobs so the children might read better, dress better, and answer back less to bad luck."
+            },
+            {
+              "label": "standpipe puddle",
+              "line": "Water spilled from a standpipe makes that puddle, and I tell you plain, a city can hang torches on old stones all it likes; if homes stay makeshift, the figure is wrong."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Rome as I know it: torches, ruins, photographers, the barefoot winner, all true, all worth your time, and none of it enough by itself. A city is judged by what ordinary people can build for their children. For my own, I want steady work, a dry room, decent shoes, and a school not half a world away. I'm Rosa Ferrante. Take your paper, mind your money, and if you want to understand Rome, look once at the lit street and twice at the road home. Goodbye."
+    }
+  }
+}

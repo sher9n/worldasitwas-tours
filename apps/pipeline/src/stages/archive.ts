@@ -24,9 +24,33 @@ export async function pickArchive(recipe: Recipe, stop: RecipeStop, dossier: Sto
   const seen = new Set<string>();
   const candidates: CommonsCandidate[] = [];
   const queries = [dossier.nowPhotoQuery, ...stop.archiveQueries, `${stop.title} ${recipe.cityName}`];
+  /**
+   * Commons matches all the terms, so a precise query matches NOTHING. The
+   * researcher writes them like a photo brief ("Stora Hamnkanalen Norra
+   * Hamngatan Gothenburg eastward", "World Trade Center Colombo Echelon Square
+   * Janadhipathi Mawatha view from southwest") and both of those return zero
+   * results while the first two words plus the city return ten. A stop whose
+   * searches all miss gets no present-day photograph, and the script stage
+   * then plans an ordinary image card instead of a then-and-now: that is why
+   * Colombo 1999 shipped with four of six and Gothenburg 1745 with three of
+   * five. So a long query that finds nothing is retried, shorter, before
+   * giving up on it.
+   */
+  const search = async (q: string) => {
+    const hits = await searchCommons(q, ledger, 10);
+    if (hits.length) return hits;
+    const words = q.trim().split(/\s+/);
+    for (const n of [3, 2]) {
+      if (words.length <= n) break;
+      const short = `${words.slice(0, n).join(" ")} ${recipe.cityName}`;
+      const retry = await searchCommons(short, ledger, 10);
+      if (retry.length) return retry;
+    }
+    return [];
+  };
   for (const q of queries) {
     try {
-      for (const c of await searchCommons(q, ledger, 10)) {
+      for (const c of await search(q)) {
         if (seen.has(c.fileUrl)) continue;
         seen.add(c.fileUrl);
         candidates.push(c);

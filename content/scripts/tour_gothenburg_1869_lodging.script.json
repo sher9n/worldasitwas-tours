@@ -1,0 +1,366 @@
+{
+  "tourId": "tour_gothenburg_1869_lodging",
+  "companion": "Kristina Lund",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_lodging": {
+      "arrival": {
+        "line": "Morning to you. I'm Kristina Lund, and I keep a lodging house in a lane behind the harbour, taking in country families waiting here before the Hull boat sails.",
+        "scene": "The frame looks down a cramped cobbled lane toward a busier street. At the street mouth, carts and passers-by move along the wider road. On the right stands a low lodging-house doorway with a rope chest beside it, and on the cobbles lie bedding rolls and a shawl bundle near a woman in a kerchief holding a child. Beyond the corner rises the pale stone front of the customs house, with a strip of quay, masts, and grey river light behind it.",
+        "points": [
+          {
+            "label": "the street mouth",
+            "line": "That mouth of the lane opens onto Sillgatan, where people leaving are pulled toward the quay past offices, beer-shops, cafés, and shops selling what they think America will ask of them."
+          },
+          {
+            "label": "the pale stone house",
+            "line": "The pale stone house beyond is the new Customs House, built on ground that was water not long ago, so the harbour trade and the public offices sit elbow to elbow."
+          },
+          {
+            "label": "the bedding rolls",
+            "line": "These bedding rolls mark the country families out at once. We are plenty in town, but a stream of folk arriving with quilts and boxes still catches the eye here."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_lodging_c1": {
+          "narration": "I was born in this town, and I'm forty-one now, and I've kept the house since my husband died on the docks, so we'll make five stops through leaving.",
+          "scene": "Inside a low common room, the whitewashed walls are browned with smoke near the ceiling. A rope chest with handles of twisted cord and a chalked lid sits on the floor beside a folded blanket and a dark family Bible. Near a small iron stove, a pair of wet boots stand drying, and behind them lie tin mugs, a wooden bowl, and two children asleep on shawls over straw.",
+          "points": [
+            {
+              "label": "the rope chest",
+              "line": "Most arrive with less than they later claim: one chest, bedding, clothing, and a few useful things, because tables, chairs, and the bigger pieces were sold before they ever saw town."
+            },
+            {
+              "label": "the dark Bible",
+              "line": "That black book is often the family Bible, laid right at the bottom when the chest is packed, as if the house they sold might still weigh it down a little."
+            },
+            {
+              "label": "the wet boots",
+              "line": "Town shops do a brisk trade in last-minute sense: work boots, a sounder coat, sometimes a hammer or plane, bought here because a man wants to land looking employable at once."
+            }
+          ]
+        },
+        "stop_01_the_lodging_c2": {
+          "narration": "For years I've housed them on straw, so I know the wait, the prices, the papers, and which agents are straight; touch a thing, or hold the green button and ask.",
+          "scene": "At a scrubbed table by the window, Kristina sits with a pen, an inkwell, a ledger, and a small stack of folded tickets and papers tied with string. Behind her, a narrow stair climbs to the upstairs landing where blankets hang over the rail. Through the window, across the lane on the busier street, a little flag sticks out above a doorway beneath painted shop signs.",
+          "points": [
+            {
+              "label": "the folded tickets",
+              "line": "An honest agent takes your money once and writes plain. A rogue sells a ticket that doesn't go where he swore it would, and then the family comes back to me with no sleep in them."
+            },
+            {
+              "label": "the upstairs landing",
+              "line": "Crowding goes past common sense in these houses. I knew of one place up Sillgatan with eight rooms and more than a hundred emigrants crammed into it, so you can guess the air."
+            },
+            {
+              "label": "the little flag",
+              "line": "That larger street is the emigrants' road to the quay, and on sailing days the shipping offices show flags, so folk read the wind of business before they read the river."
+            }
+          ]
+        },
+        "stop_01_the_lodging_c4": {
+          "narration": "Around this harbour the question isn't hours but days, and if the wind or the booking goes wrong, you pay again for another night's floor.",
+          "scene": "In the same room at dusk, a family has settled in to wait. On the straw sleeping places lie two children under blankets, while beside them sits an iron coffee kettle with a water pail, a cooking pot, and stacked wooden dishes. At the wall, a man in a patched rough coat leans over a closed chest, and near the door a few coins rest on the table beside a stub of candle.",
+          "points": [
+            {
+              "label": "the sleeping places",
+              "line": "The boat usually goes once a week, often on Friday afternoon, so a family that comes early may be here three nights. Hotel reckoning is 25 öre a head, which makes 3 riksdaler 75 öre for five."
+            },
+            {
+              "label": "the iron kettle",
+              "line": "For the sea part they bring plain gear, not finery: a water pail, cooking pot, coffee kettle, dishes, and the tools for eating. The first boat only carries them to England, which means they must think ahead."
+            },
+            {
+              "label": "the patched coat",
+              "line": "People already name the last three years as if they were neighbours: the wet year, the dry year, and this hard year. After cold, then drought, a household comes here with its stores spent and its pride thinned."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once they've found a floor and counted their coins, the next business is the passage itself, and that's where sharp men begin."
+    },
+    "stop_02_the_agents": {
+      "arrival": {
+        "line": "So here the sea turns into paper: names copied, contracts made in pairs, and the police wanting a look before anybody's sent onwards.",
+        "scene": "From a standing height at the harbour end of a narrow cobbled street, the frame looks uphill between leaning facades. Painted shipping and lodging signs hang above several doors on both sides; beneath them, country families in dark coats sit on chests and grain-sacks beside a handcart. In an open office at left, a clerk bends over a large copied list on a high desk. Farther up, the street mouth narrows toward the inland end, and beyond the roofs behind us are quay sheds, masts, a steamer funnel, and water glinting through.",
+        "points": [
+          {
+            "label": "painted signs",
+            "line": "There are around ten general offices at work here now, and the street is lined besides with cheap beds, beer houses, and eating rooms, so a traveller is for sale at every step."
+          },
+          {
+            "label": "the copied list",
+            "line": "This year the agents have to hand in lists, so the police get each traveller's name, the English boat, and the office that handled the bargain. Paper remembers what mouths deny."
+          },
+          {
+            "label": "the street mouth",
+            "line": "From the railway end they come squeezing down this same narrow street to the old Customs quay, and all along it stand the offices that mean to sell them something, including the police room."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_the_agents_c1": {
+          "narration": "What they buy here isn't one voyage but three: two days to Hull, five or six hours across England, then ten to sixteen more to New York.",
+          "scene": "Inside a cramped ticket office, the camera faces a wooden counter where a clerk with pen raised points to a printed ticket form lying open beside an ink bottle. On the wall behind him hangs a rail timetable and a board with English place-names. Through the open doorway at right, a black steamer funnel and rigging rise above the quay. A shawled woman sits on a trunk near the counter while a man leans in to hear the names spelled out.",
+          "points": [
+            {
+              "label": "the ticket form",
+              "line": "A through-ticket lets one office sell the whole road at once under a company name, and the safer men print the terms twice so you keep one for the police."
+            },
+            {
+              "label": "the rail timetable",
+              "line": "That middle stretch is all land and hurry: about one hundred and forty miles from Hull to Liverpool, five or six hours by rail, usually through Leeds and Manchester first."
+            },
+            {
+              "label": "the steamer funnel",
+              "line": "If the bookings hold together, they may wait only a day or two in Liverpool, so the whole business to New York can be done in something like three weeks."
+            }
+          ]
+        },
+        "stop_02_the_agents_c2": {
+          "narration": "An adult through-ticket to New York is 144 riksdaler, and even a hard-working day labourer gives up a punishing share of a whole year's earnings for it.",
+          "scene": "At an office doorway on the street, a rough-handed farm man stands at a small counter while a woman beside him clutches a shawl and purse. A receipt slip lies under the clerk's fingers on the worn wood. Just beyond them, half in shadow by the doorframe, a whispering man bends toward another family, his hat low, while carts and chests crowd the cobbles behind.",
+          "points": [
+            {
+              "label": "rough hands",
+              "line": "A farm hand might get a little over a riksdaler in summer and less in winter, so the fare is still a hard bite. That's why kin in America send money or prepaid tickets."
+            },
+            {
+              "label": "receipt slip",
+              "line": "The better offices give a fixed fare in print, name the line, and hand back a receipt for the deposit. With that in your pocket, talk has less room to cheat."
+            },
+            {
+              "label": "the whispering man",
+              "line": "I've heard of offices that pay for referrals, even through the clergy, and others that advance passage against labour in America. If a bargain is whispered, it's usually crooked somewhere."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once the papers are right, the family still needs somewhere to wait with its boxes, and that's where my sort of house starts earning."
+    },
+    "stop_03_the_letters": {
+      "arrival": {
+        "line": "And after the papers are bought, another sort of paper starts the whole business earlier than that: a letter unfolded at a kitchen table, and suddenly the journey has a date.",
+        "scene": "From the middle of a damp cobbled street, low houses press close on both sides; on the right a lodging door stands open with shawled women and two children beside it, a man grips a sea-chest at the curb, a folded letter passes between rough hands in the foreground, and across from them a merchant doorway frames a clerk in a dark coat with ink-stained fingers while a cart noses downhill toward the harbour.",
+        "points": [
+          {
+            "label": "folded letter",
+            "line": "A letter doesn't stay private here. If one person in the room reads well, the rest listen, and by evening the whole house knows the route, the wages, and whether cousins will meet them."
+          },
+          {
+            "label": "lodging door",
+            "line": "A passage paid from America still doesn't buy the waiting in town. Bed, coffee, dried bread, and a roof till sailing all come out of the family's own pocket here."
+          },
+          {
+            "label": "merchant doorway",
+            "line": "This stretch isn't the quay yet. You have merchant rooms, cheap beds, little offices, and all the cart traffic pressing downhill together, which is why strangers collect here before they reach the water."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_the_letters_c1": {
+          "narration": "Most America letters aren't love talk at all. They're instructions read aloud to a whole room: which train, which town, what wages, who'll meet you.",
+          "scene": "Inside a dim ground-floor room off the street, a bearded man by the window holds an open letter at chest height, three shawled women and two boys listen close, a worn newspaper lies spread on the table below, and a rope-tied chest sits half under the bench beside a tin cup.",
+          "points": [
+            {
+              "label": "open letter",
+              "line": "Some write plain sense. Buy the through-ticket all the way, change where you're told, and kin will meet you at the far station if you send word on ahead first."
+            },
+            {
+              "label": "worn newspaper",
+              "line": "The papers print these letters too, and a cheerful line on good wages or easy land travels farther in print than it ever could by one family's mouth alone here."
+            },
+            {
+              "label": "rope-tied chest",
+              "line": "Minnesota gets named over and over for farm folk, because people say there's room, timber, and land fit for Scandinavians if you get there quick enough to take it up."
+            }
+          ]
+        },
+        "stop_03_the_letters_c2": {
+          "narration": "When money comes back as a prepaid ticket, the arguing stops. A family may still be hungry and frightened, but now they're packing for a named day.",
+          "scene": "A bare deal table fills the frame in a lodging room: a prepaid ticket lies unfolded beside a sheet covered in price figures, a woman's hand holds down the corner, behind her a man kneels over a half-packed chest, and at the edge of the room rolled bedding, a coffee pot, and a child in stockings wait by the wall.",
+          "points": [
+            {
+              "label": "prepaid ticket",
+              "line": "When a son or brother sends the passage back, that paper has more force than talk. It fixes the quarrel, settles the date, and gets the lid shut on the chest."
+            },
+            {
+              "label": "half-packed chest",
+              "line": "Once that ticket is in hand, nobody says someday. Bedding is rolled, a neighbour comes for the house key, and the children start hearing foreign place-names like errands already now."
+            },
+            {
+              "label": "price figures",
+              "line": "The best letters reckon everything in order: onward fares, day wages, bread, timber, seed, and what stock will cost, because hope travels better when the sums are written down plainly."
+            }
+          ]
+        },
+        "stop_03_the_letters_c4": {
+          "narration": "I don't call them liars. Wages may be better and kin do send for their own, but the bright letters skip the spending that begins at once.",
+          "scene": "In the blue evening outside a low house, a waiting family clusters on a bench beside their boxes; the mother turns a creased letter in her hands, and on the lid of a chest a loose page of price figures catches the last light while carts and pedestrians blur behind them on the street.",
+          "points": [
+            {
+              "label": "creased letter",
+              "line": "Some write everything bright because they've already drawn others after them, and it's a hard thing to confess hunger once your own people have copied your road as well now."
+            },
+            {
+              "label": "price figures",
+              "line": "Then come the sobering sums: about twelve dollars from Chicago to St. Paul, and a wagon or horses in Minnesota dear enough to cool hot talk at once for anybody."
+            },
+            {
+              "label": "waiting family",
+              "line": "No wonder the street keeps filling. What was thousands not long ago is tens of thousands now, and every fresh letter seems to pull another household after it down here now."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along toward the water now, because once the letter and ticket have done their work, all that's left is the waiting room and the quay."
+    },
+    "stop_04_the_town_that_stays": {
+      "arrival": {
+        "line": "Plenty come meaning to cross the ocean, and then stop here instead, because smoke, wages, and a room for Saturday night can pull harder than far-off promises.",
+        "scene": "From a standing height at the edge of Haga, the frame looks along a broad tree-lined street curving on the old defence line. To the left stand low wooden houses with sheds and washing lines, and beyond the roofs lie farther western roofs with smoke hanging over them and a few ship masts showing.",
+        "points": [
+          {
+            "label": "broad street",
+            "line": "That width wasn't made for comfort. It follows the old military line after the fortifications came down, and they laid out a long allée here, three thousand alnar of breathing room where guns once stood."
+          },
+          {
+            "label": "wooden houses",
+            "line": "Those timber houses tell their own tale. Years back they would not have let such building go up inside the moat, so poorer folk were pushed outward, and Haga filled with the sort who had to live where wood was allowed."
+          },
+          {
+            "label": "western roofs",
+            "line": "That farther spread of roofs counts as Gothenburg now, though it didn't a year ago. Majorna, Kungsladugård, Sandarna, even Slottsskogen were taken into town, so the place keeps growing under our feet whether we asked for it or not."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_the_town_that_stays_c1": {
+          "narration": "When I was a girl the town held tighter inside, and now the walls are gone, the broad line is open, and Haga is packed with working people.",
+          "scene": "The frame looks deeper into Haga: washing lines zigzag between close timber houses, a shared outside stair climbs one wall, and behind the roofs a dark plume of mill smoke rises. Farther off, beyond the lane, a tighter row of stone roofs inside the older town shows over the foreground houses.",
+          "points": [
+            {
+              "label": "washing lines",
+              "line": "Haga was working folk's ground before this hard year ever sent more people in. It swelled from about a thousand souls to three, then near ten thousand, once industry bit, and every yard here still feels built in a hurry."
+            },
+            {
+              "label": "mill smoke",
+              "line": "That smoke is newer than my childhood. The mechanical works started up when I was a young thing, and the cotton mill by Rosenlund followed after, so steam began hiring where carts and handwork used to suffice."
+            },
+            {
+              "label": "stone roofs",
+              "line": "Inside the moat they had pretty well filled every plot by the time I was grown, which is why the city men spent these last years planning how to spread it wider."
+            }
+          ]
+        },
+        "stop_04_the_town_that_stays_c2": {
+          "narration": "A man off the land can find quay work, carting, timber, smith's help, even factory labour, and women get washing, sewing, service, or a mill place.",
+          "scene": "In a muddy street near the waterside a heavy timber cart stands angled across the cobbles, a horse in the shafts and a man with one hand on the load. Behind them, tall mill windows catch the light, and in the foreground a woman carries a herring basket from market.",
+          "points": [
+            {
+              "label": "timber cart",
+              "line": "Men who stop can turn their hands to almost anything heavy: porterage, carting, canal work, timber, smith's help, odd jobs on the quay. Westward in Masthugget and Stigberget you'll find the thickest knot of sailors and dock hands."
+            },
+            {
+              "label": "mill windows",
+              "line": "A mill place is hard work and close air, but it is cash. Rosenlund had about five hundred hands some years back already, so country girls and widows ask after openings there the minute they hear of one."
+            },
+            {
+              "label": "herring basket",
+              "line": "On a farm a man may get about a hundred riksdaler cash for the year, a maid less than fifty. Here potatoes run three to four and a half the tunna, and herring forty-odd öre the tjog, so every day's pay matters."
+            }
+          ]
+        },
+        "stop_04_the_town_that_stays_c4": {
+          "narration": "Some never reach the steamer at all, because one week's cash, one low room, and a child fed in town can beat a ticket farther west.",
+          "scene": "A lower-floor dwelling fills the frame, its low doorway set almost at street level beneath a timber house. A tired family with bundles sits on the steps, and to the side a paper seller holds up a news sheet while passersby in work clothes move along the lane.",
+          "points": [
+            {
+              "label": "low doorway",
+              "line": "A family like this may have meant to sail and then stopped. This very autumn a sugar-factory hand named Anders Larsson, with his wife and children, was living in a lower-floor room here in town, already turned from farm folk into wage folk."
+            },
+            {
+              "label": "paper seller",
+              "line": "There's a workers' paper about now as well, all wages, thrift, and how hands might stand together a bit better. That tells you this town does not only ship people out; it teaches them town habits too."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on then, because staying has its price as well, and the quay shows what happens when a family pays it and still goes aboard."
+    },
+    "stop_05_the_quay": {
+      "arrival": {
+        "line": "And here it comes to the plain end of it: stone quay, checked names, boxes aboard, and one Hull boat taking a whole week's hopes downriver.",
+        "scene": "A single documentary-style photograph taken from the stone edge of Packhusplatsen, looking along the busy quay: in the foreground stand shawled families with children, bedding rolls, and rope-tied sea chests; beside them a black-coated agent leans toward a policeman holding a paper check and passenger sheets. To one side a handcart waits by the gangway of a green-hulled steamer at the quay, while behind the crowd rise the new Customs House, the warehouse block, the cell prison, and the navigation school on this freshly built riverfront.",
+        "points": [
+          {
+            "label": "the black-coated agent",
+            "line": "A slick fellow in a good coat may be earning on both ends of your journey. Rival companies will pay as much as fifteen riksdaler for each emigrant steered to the right provisions and berth."
+          },
+          {
+            "label": "the paper check",
+            "line": "Since this year the police want the names set down before sailing, with the English boat and the office that handled the bargain, so mouths can't wriggle free of paper quite so easily."
+          },
+          {
+            "label": "the shawled families",
+            "line": "They've not all turned restless at once for nothing. These last bad harvest years have pushed emigration hard, so hunger inland arrives here as bundles, children, and a box with rope round it."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_the_quay_c1": {
+          "narration": "Once she's clear of the river, the boat starts her side-to-side work, and folk who bragged on shore go quiet fast enough.",
+          "scene": "A photographic frame from on board or just beside the upper deck as the steamer moves away from Gothenburg: the crowded deck is packed with shawled women, men in caps, children gripping bundles, and a few passengers bent over the rail; near the center hangs a cluster of dented tin cups from cord and handstraps. Rising behind them is the green funnel blowing coal smoke aft, while gulls wheel above and the low city shore fades across choppy grey water.",
+          "points": [
+            {
+              "label": "the crowded deck",
+              "line": "Plenty stay up here, even in bad weather, because the saloon below is dark, close, and foul enough to turn a steady stomach quicker than the sea does for some folk."
+            },
+            {
+              "label": "the tin cups",
+              "line": "When food comes round, you're meant to take it in your own tin cup, which is why sensible women tie cups where a child can't drop them overboard in the crush."
+            },
+            {
+              "label": "the green funnel",
+              "line": "Most of these first-leg boats are Wilson boats now, and that's why one office here can promise the whole road onward, because the English side is already tied into the next ships."
+            }
+          ]
+        },
+        "stop_05_the_quay_c2": {
+          "narration": "Below is worse: bunks nailed along the forward space, dark air, mixed families, and no privacy worth naming once the hatch is shut.",
+          "scene": "Inside the forward passenger space below decks, the camera looks across rough boards and dim light from above: a steep ladder drops from the hatch, wall bunks line the timber sides, women, men, and children crowd together with boxes and bedding on the floor, and at the right edge a tethered beast stands near the hatch coaming. The low beams, shadowed boards, and cramped air make the whole place feel shut in.",
+          "points": [
+            {
+              "label": "the ladder",
+              "line": "I've never gone down a Hull boat ladder, and I don't mean to, but the weather-turned ones who come back tell it near enough alike that I believe them well enough."
+            },
+            {
+              "label": "the tethered beast",
+              "line": "I've heard of cattle tied near the hatch on these runs, so a poor passenger may sleep with beasts, baggage, and children all sharing the same bad air."
+            }
+          ]
+        },
+        "stop_05_the_quay_c4": {
+          "narration": "At leaving, nobody makes a grand thing of it; the names are checked, the gangway comes in, and then she slides off among barges and workboats.",
+          "scene": "A shore-side photograph taken at the moment of departure: at the gangway a clerk or policeman holds the checked list while luggage is being handed aboard, the steamer's stern already easing from the quay. Along the stone edge stand women on stone waving kerchiefs and hats, and at the rail a child at rail peers back over a sea chest as smoke trails from the funnel into the river traffic beyond.",
+          "points": [
+            {
+              "label": "the checked list",
+              "line": "This part's more orderly now than it was. The names are entered with the English ship and the selling office, and I've seen one Hull list already this very year."
+            },
+            {
+              "label": "the women on stone",
+              "line": "Those on shore wave longer than you might think, because the leaving and the staying don't part cleanly. A mother will keep her arm up after the boat's only another shape in traffic."
+            },
+            {
+              "label": "the child at rail",
+              "line": "What I hope is plain enough: that the children keep their footing, the boxes follow the names, and nobody at the far end owns them because of what was signed here."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Well, that's the sum of it. A city sends them off, and then somebody turns inland and clears the room after them. I'll go back to my lane now, shake out the straw, count what's been left, boil water again, and wait to see who comes back because weather failed or papers failed. I'm Kristina Lund. I hope their papers hold and their boxes follow. Goodbye now; another family will be knocking before long."
+    }
+  }
+}

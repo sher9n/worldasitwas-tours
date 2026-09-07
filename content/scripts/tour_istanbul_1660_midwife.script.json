@@ -1,0 +1,380 @@
+{
+  "tourId": "tour_istanbul_1660_midwife",
+  "companion": "Emine",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_burnt_quarter": {
+      "arrival": {
+        "line": "Peace on you, I'm Emine, forty-four, an ebe, which is to say I go where the pains begin, day or night, because babies don't wait.",
+        "scene": "A daylight view down the Tahtakale slope after the fire: open burnt rectangles where houses stood, soot-black posts and broken hearth walls jutting from ash, two bedding rolls under patched cloth stretched between salvaged boards in the foreground, a woman crouched by copper pans, a man dragging a beam, and the crowded waterfront moving beyond.",
+        "points": [
+          {
+            "label": "black posts",
+            "line": "That's how a timber quarter looks after hard wind and fire have done their work. Not neat ruin, just house-edges left behind: sill-beams, posts, oven mouths, a bit of wall, and ash where rooms used to stand."
+          },
+          {
+            "label": "bedding rolls",
+            "line": "People live out of what they carried. Bedding first, then pans, a cradle, a chest if four hands can lift it. Some sleep here under boards and patched cloth, and some have gone clear to the courtyards of Ayasofya or Sultanahmet for a corner."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_burnt_quarter_c1": {
+          "narration": "I'm widowed, and my mother-in-law taught me the work, then twenty years taught me the rest, so I know these lanes by knocked doors, not sermons.",
+          "scene": "A narrow timber lane at dusk during the burning, seen from shoulder height: Emine with a cloth tied over her mouth presses along a wall at left, sparks slant across the frame on hard wind, two men with fire hooks and axes wrench at a half-burnt shed, and a water carrier squeezes past.",
+          "points": [
+            {
+              "label": "mouth cloth",
+              "line": "That was me that night, though I wasn't stopping to pose for anyone. I wrapped my mouth with cloth, kept to the wall, and went on foot because carts jam a lane faster than fire clears it."
+            },
+            {
+              "label": "fire hooks",
+              "line": "Men took to the beams with hooks and axes, trying to tear away shutters, sheds, and anything dry before the flames reached it. Sensible work, if your hands were steady and your neighbour listened."
+            }
+          ]
+        },
+        "stop_01_burnt_quarter_c2": {
+          "narration": "I work this quarter and the next ones over, in Muslim, Greek, Armenian, and Jewish houses alike; we'll make five stops, so touch something, or press the green button and ask.",
+          "scene": "A morning frame on the burnt ground: a roofless staircase rises beside a blackened wall stub, a round stone well curb stands in a yard gone open, and under a patched awning a rolled mattress, basin, and kettle wait while two women sort smoke-dark cloth.",
+          "points": [
+            {
+              "label": "roofless stairs",
+              "line": "Most houses here weren't grand things. A few rooms, often just one floor over another, with upper rooms jutting above the lane, so once the roof caught, the street caught with it."
+            },
+            {
+              "label": "well curb",
+              "line": "A house might have its own privy, and maybe a well in the yard if the family had managed it, but a bathing room at home was uncommon, so most people still went out to the public baths."
+            },
+            {
+              "label": "rolled mattress",
+              "line": "Birth is done in a house, not in some special place set aside for it, and women like me are let through doors that stay shut to nearly every other stranger."
+            }
+          ]
+        },
+        "stop_01_burnt_quarter_c4": {
+          "narration": "This fire didn't nibble one house at a time; the wind drove it roof to roof for forty-nine hours, until the city seemed to burn in separate mouths.",
+          "scene": "A wide daytime frame from the scorched slope toward the shore: in front lies a scorched chest beside salvaged boards and ash, the market edge is busy with pack animals and reopened stalls among ruined plots, horn boats move on the water beyond, and an unfinished mosque shell stands heavy at the waterfront.",
+          "points": [
+            {
+              "label": "scorched chest",
+              "line": "People say it started on the afternoon of the twenty-fourth of July, near Ahi Çelebi between the waterside gates, in a chest-maker's shop, or a straw-seller's, because some fool smoked. A city can be ruined by a mouth and a spark."
+            },
+            {
+              "label": "market edge",
+              "line": "These streets were mixed tight with trade and with Jewish households, so when the fire ran through Tahtakale and Mahmutpaşa it took shops and kitchens together. It kept going uphill and southward too, and by the end about two-thirds of the city had gone."
+            },
+            {
+              "label": "horn boats",
+              "line": "Across the water at Galata we'd already had a bad burning three months earlier, so the summer was mean before this one even began. People had hardly mended one loss before they were carrying out the next."
+            },
+            {
+              "label": "unfinished mosque",
+              "line": "That great shell by the shore had sat idle for years, and now, after the fire, the valide has men on it again, with market building beside it. Ash clears space, and someone always knows how to use the space."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, let's leave this ash and go where news travels faster than flame, because a city lives or dies by who hears first."
+    },
+    "stop_02_mahalle": {
+      "arrival": {
+        "line": "Up here the fire likely spared the roofs, but smoke climbed fast, and frightened kin came knocking, so the fountain lip filled with water, news, and bargains.",
+        "scene": "A narrow uphill lane runs along the edge of the Fatih precinct under the old great mosque's dome and minaret in the distance. In the middle foreground stands a marble fountain face darkened by wet hands, with women and children gathered around it holding copper and earthenware water jugs. To the left, a baker stands by a wooden board stacked with round loaves outside a soot-marked bakehouse. On the right, timber houses crowd close, their upper rooms projecting above the street, with one latticed window open over a doorway and garden walls stepping away behind.",
+        "points": [
+          {
+            "label": "marble fountain",
+            "line": "By a fountain like this you learn everything without asking. Who's in labor, who has taken in a widowed sister, whose bedding is pawned, which house needs broth before night."
+          },
+          {
+            "label": "latticed window",
+            "line": "Those upper windows are half the quarter's eyes. An older woman leans there, another waits in a doorway below, and between them they know who's honest, who's short of money, and who's pretending not to be."
+          },
+          {
+            "label": "bread board",
+            "line": "The baker hears the lane before the imam does. Bread means credit, and credit means mercy, because a quarter remembers who paid late in winter and who sent loaves to a woman abed."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_mahalle_c1": {
+          "narration": "A mahalle isn't just houses side by side. It's people using the same mescid and bath, standing surety for one another, and minding who can still be helped.",
+          "scene": "The view opens across a small quarter below the great Fatih platform. A slim minaret rises above garden walls and red-tiled timber roofs. At street level, two women stand together on a doorstep beside a child and a broom, watching the lane. Farther down, the rounded lower roof of a bathhouse sits slightly below the street, with damp stone and a narrow passage leading past it toward small market stalls.",
+          "points": [
+            {
+              "label": "slim minaret",
+              "line": "In a Muslim quarter the imam sits at the middle of things, not because he owns the lane, but because news, quarrels, and help all pass near his door first."
+            },
+            {
+              "label": "doorstep pair",
+              "line": "A quarter can be kind, and it can also keep account. If a household falls short, neighbors lend a pan, a mat, a few coins, and later they expect the truth back."
+            },
+            {
+              "label": "low bath roof",
+              "line": "Women aren't shut like jars. We go to the bath, the fountain, the nearby market, and along those short roads we carry gossip, errands, and worry for half the lane."
+            }
+          ]
+        },
+        "stop_02_mahalle_c2": {
+          "narration": "I'm sent for before, during, and after the birth, because once you've seen enough women, people trust your hands where modesty and fear tangle together.",
+          "scene": "Inside a dim upstairs room, a mother lies propped on a mattress against folded bedding while a neighbor kneels by a brass basin on the floor. Near the mattress, a wrapped newborn rests in swaddling cloth. At the back, a curtain hangs across the doorway, with the shape of a man waiting outside in the passage. A small brazier, a jug of water, and clean cloths lie ready within reach.",
+          "points": [
+            {
+              "label": "wrapped baby",
+              "line": "I don't only catch the child. I wash it, tie and cut the cord, and give the little belly-name that sticks to a baby before any grander naming comes later."
+            },
+            {
+              "label": "brass basin",
+              "line": "Sometimes they call me when no child is in sight. A woman says she's with child, or says she's been wronged, and the house wants experienced female eyes before the matter goes further."
+            },
+            {
+              "label": "door curtain",
+              "line": "Afterward can be the harder work. A mother goes weak, milk won't come, bleeding won't stop, or the room fills with advice, so they fetch me to quiet it again."
+            }
+          ]
+        },
+        "stop_02_mahalle_c4": {
+          "narration": "My due is called ebe hakkı, and there's no single city price I can point to. One house pays in coin, another in cloth, sweets, broth, or gratitude.",
+          "scene": "At a house threshold in afternoon light, a folded length of plain cloth lies across Emine's arm while a woman's hand offers a few copper coins over a shallow tray. Beside them on a low stool sits a round loaf of bread wrapped in paper. Just inside the doorway are a covered bowl, a candle stub, and a small jug of oil, with the swept floor of the room visible behind.",
+          "points": [
+            {
+              "label": "folded cloth",
+              "line": "Most times the settlement follows the house. A decent length of cloth is welcome, because cloth turns into swaddling, shirts, towels, or something to trade when cash has run thin."
+            },
+            {
+              "label": "copper coins",
+              "line": "A house with money pays to show honor as much as thanks. Another presses a few akçe into my hand and promises the rest, and I tell them promises don't wash a baby."
+            },
+            {
+              "label": "bread round",
+              "line": "When bread is about three akçe the okka and flour about five, a poor room feels every mouth in it, so I don't sneer if payment comes warm from the oven."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, we'll leave the fountain and go where talk turns into women's work, because shelter is one thing and a woman in trouble another."
+    },
+    "stop_03_hamam": {
+      "arrival": {
+        "line": "After a fire, a bath matters twice over, because stone stands when timber doesn't, and a woman can step from ash into order.",
+        "scene": "From a narrow side lane, the view faces a soot-streaked bath wall and a low arched side doorway beneath a leaded dome. To the left lies a blackened empty lot with charred posts and one standing scrap of plaster wall. At the doorway, two women step in carrying bath bundles wrapped in striped cloth, while muddy ash shines under their sandals where water has been thrown.",
+        "points": [
+          {
+            "label": "side doorway",
+            "line": "Women's baths often open like this, off the side lane, not the grand front. It doesn't sound like much, but it decides how we move through the city, in pairs, in groups, and without asking leave of every staring man."
+          },
+          {
+            "label": "blackened lot",
+            "line": "This belt took the fire badly, from the market streets up toward Bayezid and on toward the Hippodrome, so a bath like this stands among absences as much as among houses."
+          },
+          {
+            "label": "striped bundle",
+            "line": "Even a poor woman comes with something tied up, because a bath means towels, a wrapping cloth, soap if she has it, and a little food if she means to sit."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_hamam_c1": {
+          "narration": "Inside, nobody comes only to wash. They sit, eat, trade talk, weigh quarrels, and by the time the towels are damp half the quarter is discussed.",
+          "scene": "Inside the changing hall, a high timber roof rises over benches and pegs hung with red-striped bath cloths. At right, a small coffee hearth hisses under copper pots. Near the exit, the keeper's drawer sits open beside a seated keeper. Women in wraps talk over opened bundles on the benches, while an older woman steadies a child beside a row of sandals.",
+          "points": [
+            {
+              "label": "coffee hearth",
+              "line": "Nobody hurries straight through unless she's very poor or very late. Women drink coffee or sherbet here, pick at sweets, and settle in for hours, which is why talk grows fat in this room."
+            },
+            {
+              "label": "keeper's drawer",
+              "line": "You pay as you leave, at the keeper's drawer. Plain washing is one akçe, more if you want extra hands on you, and the women who scrub still expect their own little thanks."
+            },
+            {
+              "label": "older woman and child",
+              "line": "That little one may be here for the fortieth-day bath, when mother and child come out into company again. By then everyone has advice, and half of it is trouble."
+            }
+          ]
+        },
+        "stop_03_hamam_c2": {
+          "narration": "The bath runs cool to warm to hot, and by the hot stone people forget to pretend, so I learn more here than at any threshold.",
+          "scene": "In the hot room, white steam blurs a ring of marble kurnas set against the wall, each with a tap and a copper bowl. A broad raised hot stone fills the middle under sweating domes. At left, a bath attendant bends with a bowl beside another bather, and near the front a woman balances on wooden clogs above the wet floor.",
+          "points": [
+            {
+              "label": "marble kurna",
+              "line": "You don't sink into a tub here. Water runs from the tap into the basin, then up again in bowls, and a woman washes herself by hand, bit by bit."
+            },
+            {
+              "label": "hot stone",
+              "line": "On that heated stone brides are inspected, mothers are rubbed, girls are measured with their eyes, and nobody needs to announce what is wrong; the body has done it already."
+            },
+            {
+              "label": "bath attendant",
+              "line": "A bath attendant serves half the quarter without belonging to any one house, which means she carries news across thresholds as neatly as she carries hot water in her bowl."
+            }
+          ]
+        },
+        "stop_03_hamam_c4": {
+          "narration": "When a bride takes the bath, washing isn't the point at all; the whole place turns witness, and every woman present measures the marriage.",
+          "scene": "The changing hall is taken over by a bridal party: a young woman sits on cushions in a red veil and pale bath robe, her right palm dark with fresh henna and held out. Beside her stands a bath attendant with a tray, and on the floor servants have opened a bath bundle showing towels, wrapping cloths, wooden clogs, a bowl, mirror, comb, soap, oils, and a scrub mitt. Incense smoke lifts between watching women.",
+          "points": [
+            {
+              "label": "red veil",
+              "line": "Sometimes a family closes the whole bath for a bride, so nobody else comes in. Then washing is only the excuse, and songs, judging eyes, gifts, and marriage talk do the real work."
+            },
+            {
+              "label": "open bath bundle",
+              "line": "A proper bundle for a day like this is half a room carried on shoulders: wrapping cloths, towels, clogs, bowl, mirror, comb, soap, oils, and the scrub mitt and more besides."
+            },
+            {
+              "label": "hennaed palm",
+              "line": "In the bride's right palm they press henna and a gold coin together. It's a small bright show of luck, and also a way of proving the marriage has hands behind it."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on now; leave the steam behind, because the next bit of this story sits in the glare, where loss had to be counted."
+    },
+    "stop_04_yeni_cami": {
+      "arrival": {
+        "line": "And here is the shell itself: the fire has done a prince's work, clearing timber lanes so this long-dead place can start earning again in stone.",
+        "scene": "From the waterward edge, the frame looks slightly upward at the half-finished mosque on its raised stone base, its old wall face soot-dark and patched with fresh scaffolds. In the foreground a waterlogged trench glistens beside lime heaps, brick stacks, and a cart tipped among ash and broken beams. To the right, shore rubble marks the vanished timber quarter, with labourers picking through it and the Horn just beyond.",
+        "points": [
+          {
+            "label": "waterlogged trench",
+            "line": "This ground sits low and salt-wet, so when they first dug here the pits filled like basins. They had to drive big piles down, bind them with lead, and only then trust the stones to stay put."
+          },
+          {
+            "label": "old wall face",
+            "line": "It was begun in Safiye Sultan's time, and when her son died and she lost her hold at court, the work went cold. They'd only brought it up to below the windows."
+          },
+          {
+            "label": "shore rubble",
+            "line": "Before the fire, this was a squeezed trading quarter by the customs and the port, with Jewish and Christian houses packed among the shops. People still say owners were paid double when the first ground was taken."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_yeni_cami_c1": {
+          "narration": "This wasn't delayed by rain or lazy hands. It stopped because the power behind it changed, and big works only breathe while somebody mighty keeps paying.",
+          "scene": "A closer frame catches the old masonry wall up to the blank line below its windows, with fresh scaffold poles lashed against it and masons perched on planks. At the left, a broad side platform lies cleared for new buildings, while hod-carriers climb the steps with baskets of mortar and cut stone.",
+          "points": [
+            {
+              "label": "new scaffolds",
+              "line": "Another valide wanted a grand shore place for her own mosque and its other buildings, and this half-made thing was sitting in the way, so she took hold of it instead."
+            },
+            {
+              "label": "side platform",
+              "line": "The plan has shifted with the patron. They aren't only finishing a prayer hall now; they're setting out rooms and buildings for rule, teaching, reading, water, burial, and trade all around it."
+            }
+          ]
+        },
+        "stop_04_yeni_cami_c2": {
+          "narration": "Beside the prayer, they're raising a market, and the valide pays now so rents can feed the mosque after, drawing trade back to this blackened shore.",
+          "scene": "Beside the mosque, a row of new arched shop bays rises in pale stone and brick, some only waist-high, some already roofed with timber centering. In front of them stand herb bundles, cotton bales, and rolled quilts on carts, while masons, traders, and a mule crowd the muddy passage between lime heaps and the sea wall. At one end, a wider arched gate stands open.",
+          "points": [
+            {
+              "label": "stone stalls",
+              "line": "They're building these stalls in stone and brick, not knocking up another light timber bazaar. After what we've just watched burn, even a fool can hear the sense in that."
+            },
+            {
+              "label": "herb bundles",
+              "line": "About half the shops are meant for herbalists, and the rest for cotton-sellers and quilt-makers. Even the gates are being shared out by trade, which tells you this market is planned to the last handful."
+            },
+            {
+              "label": "arched gate",
+              "line": "People are calling it the New Market, or the Valide's Market. The Egypt name comes later, once spices and Egyptian goods cling to it hard enough to stick in talk."
+            }
+          ]
+        },
+        "stop_04_yeni_cami_c4": {
+          "narration": "If your house burned, this work may give you wages, but it won't give you your old lane back, and that's the hard part.",
+          "scene": "In the foreground a woman with a bedding bundle waits beside two hauling men resting their shoulder poles on a broken curb. Beyond them lie bare plots of ash and stone where lanes once ran, and at the far edge a small timber frame is already going up beside heaps of salvaged beams, with the rebuilt mosque works looming behind.",
+          "points": [
+            {
+              "label": "bundle woman",
+              "line": "Some families won't come back to the very ground they lost. Plots are changing hands or changing their standing, and many Jewish households are being pushed off toward Balat and Hasköy while Muslims are settled here."
+            },
+            {
+              "label": "hauling men",
+              "line": "A burned-out man can earn by hauling, digging, or selling to these workers, and later by the crowd the market brings. That's help, yes, but it isn't the same as getting your room back."
+            },
+            {
+              "label": "timber frame",
+              "line": "Don't think all Istanbul will rise in stone now. For ordinary houses timber will keep coming back, because stone costs dear and the earth here likes to shake when it pleases."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, leave the masons to their shouting; stone can wait, because even after a fire, women still have to bring children through it."
+    },
+    "stop_05_uskudar": {
+      "arrival": {
+        "line": "By evening I like the water better than the streets. The boat pitches, the oars complain, and ahead the other shore rises dark with cypress and quiet.",
+        "scene": "From a seat just above the wet planks of a low wooden rowing boat, the frame looks forward over dark rippled water toward Üsküdar at evening. A bearded boatman braces at the stern with long oars, two cloaked women sit low in the middle, and ahead the shore shows a small timber landing, a few timber houses, a little domed roof, garden walls, and beyond them a broad black-green slope of cypresses climbing inland. Far across the strait, the western skyline lies dim and uneven, smoke-marked and broken against the fading light.",
+        "points": [
+          {
+            "label": "the boatman",
+            "line": "Most passengers take a light hired boat like this, a pereme, and the sensible men keep to their oars. A sudden wind can tip a boat fast, so they aren't meant to trust a sail when carrying people."
+          },
+          {
+            "label": "the cypress slope",
+            "line": "That dark rise is no little yard of graves. It is Karacaahmet, so large people speak of it almost as a quarter of its own, the Muslim burying ground spread out beyond the packed city."
+          },
+          {
+            "label": "the far shore",
+            "line": "Across there, men are measuring burnt plots and arguing over timber, and over here the ground waits for the dead. One shore bargains with loss, the other receives what cannot stay."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_uskudar_c1": {
+          "narration": "Common people cross here for burial because the great recognized grave grounds lie outside the packed city, and this shore holds one of the chief of them.",
+          "scene": "The frame stands on the Üsküdar shore at the mouth of an uphill lane. In the foreground, four men carry a covered bier on their shoulders. Just behind them the lane climbs between low timber shops and garden walls, and at its head the first tall cypresses thicken into a dark burial ground. A small cluster of women in cloaks keeps to one side of the road, while the water glints behind the landing.",
+          "points": [
+            {
+              "label": "the covered bier",
+              "line": "Within the walls, burial is not for ordinary households unless leave comes from the very top. For most of us, the dead are carried out to the great grounds beyond the crowded quarters, and that is simple fact, not sorrow alone."
+            },
+            {
+              "label": "the uphill lane",
+              "line": "The grave ground begins almost where the road lifts, up by Menzilhâne Yokuşu, so burial and departure sit shoulder to shoulder here. A man can be carried to earth on the same side where another loads for the road."
+            }
+          ]
+        },
+        "stop_05_uskudar_c2": {
+          "narration": "This side is for leaving as much as for burial; from the landing the road draws people inland, away from the water and away from the city.",
+          "scene": "The frame looks along a broad road beyond the market. On the right stands a square stone fountain with a shallow basin and men filling flasks; beside it a veiled woman embraces a traveler. To the left, two baggage mules wait with bundles slung over them, a drover holding their reins. Behind both, grave markers and dark cypress trunks run away on either side of the road as it heads inland.",
+          "points": [
+            {
+              "label": "the stone fountain",
+              "line": "They call that Ayrılık Çeşmesi, the Parting Fountain, because people are seen off there before a campaign or a long journey. It has stood a good while now, and it knows more last embraces than many imams do."
+            },
+            {
+              "label": "the baggage mules",
+              "line": "This is the road out toward Anatolia and farther on toward Damascus and the Holy Cities, so traders, soldiers, pilgrims, and beasts all pass the graves. The dead lie beside departure, which tells its own truth."
+            },
+            {
+              "label": "the embracing pair",
+              "line": "People reckon burial here carries some blessing from that road of parting, though who can weigh blessing in the hand. I only know families like to leave their dead where prayers and journeys are already passing."
+            }
+          ]
+        },
+        "stop_05_uskudar_c4": {
+          "narration": "I've carried children through this black year, and all I ask for them is plain: strong lungs, standing streets, and neighbors who open the door before smoke does.",
+          "scene": "From the waist-high side of a shared rowing boat at dusk, the frame takes in an older boatman at the stern, two cloaked women seated apart in the middle, and a third woman with a wrapped baby across her lap near the bow. Beside her sits a heap of empty wicker baskets, and in one passenger's fingers a small coin catches the light. Blue-black water slaps the planks, and the western shore behind them is low, dim, and smoke-stained.",
+          "points": [
+            {
+              "label": "the empty baskets",
+              "line": "Boats keep the city breathing all day. A market boat comes over in the morning loaded with produce, and by evening heads back with baskets emptied, errands done, and whatever passengers need carrying home."
+            },
+            {
+              "label": "the small coin",
+              "line": "If you go by shared boat, the crossing can cost half an akçe, which even a poor woman may scrape together. A private boat is another matter, and you take one only for haste, rank, or trouble."
+            },
+            {
+              "label": "the cloaked women",
+              "line": "Shared boats are not a heap of bodies anyhow. Women and young boys are not meant to ride mixed in with unrelated men, so even on the water the city keeps sorting us."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's my measure of this year. Fire took streets, rooms, and the names people used for turning corners, but it did not stop the old traffic, bodies coming into life and going out of it across these waters. I'm Emine, and I've carried more children than I care to count through this bad summer. God give the ones born this year strong breath and luck enough to know streets that stand. Goodbye."
+    }
+  }
+}

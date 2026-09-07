@@ -1,0 +1,169 @@
+{
+  "id": "tour_gothenburg_1621_digger",
+  "city": "gothenburg",
+  "cityName": "Gothenburg",
+  "country": "SE",
+  "year": 1621,
+  "yearRange": [
+    1619,
+    1624
+  ],
+  "lang": "en",
+  "title": "The City in the Marsh",
+  "theme": "Five stops across Gothenburg in 1621 with Anders, who digs it. The king has given a charter to a town that is not there yet: wet ground at the mouth of the Göta alv, staked out in a grid by Dutch engineers because Dutchmen know how to build on water, and dug by Swedish labourers who cannot understand a word their foremen say. This is Sweden's only door to the western sea, held between Danish Halland and Norwegian Bohuslan, and the whole country was taxed near to ruin to buy back the fortress that guards it.",
+  "companion": {
+    "name": "Anders Eriksson",
+    "role": "Digger",
+    "brief": "Twenty-six, a labourer on the new town works: he digs the canal cuts and the rampart ditches, drives alder piles into the mud, and barrows spoil, paid by the day and fed at the works. Came down from a farm in Vastergotland where the Alvsborg ransom took the last of his father's cattle and the family never recovered, so he came to the coast for wages. He works under Dutch foremen whose language he does not speak, and has learned about nine words of it, mostly instructions and one insult. He knows which ground holds and which swallows a barrow, which foreman pays on the day, where the drinking water is clean, and who among the Dutch will speak to a Swede as a man rather than as a spade. Dry, watchful, not bitter, and quietly proud that the thing he is making will outlast him. He knows nothing after 1621: not whether the town will hold, not what happens to the king, not that anyone will still be living here in four hundred years.",
+    "voice": "cedar",
+    "narrationVoice": "c5sAfPgkk3bY7V6oyekT",
+    "presence": {
+      "standing": "on churned wet ground beside a half-dug ditch with stacked alder piles behind him",
+      "gesture": "leans on the shaft of his spade and knocks caked mud off the blade against his boot"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood on a building site at the mouth of the Gota alv in 1621: flat wet ground, reed and sedge, brown standing water, churned mud, timber everywhere. The town is being MADE, not standing: surveyor's stakes and tarred cord marking streets across open marsh, open ditches, spoil heaps, barrows and planked runs, alder and pine piles stacked and being driven by hand ringers, lime pits, sawpits, timber cranes. Buildings where they exist at all are new and raw: low timber houses of one and two storeys with steep shingle or turf roofs, unpainted or tarred, a few half-built in stone. Work camp along the edges: turf huts, tents, cooking fires, a smithy. Dress of the 1620s: labourers in coarse wool jackets, knee breeches, felt or knitted caps, leather aprons, wooden or heavy leather shoes, legs wrapped against the wet; Dutch foremen and merchants better dressed in dark wool with white falling collars and broad hats; soldiers in buff coats and morions. Northern coastal light, low sun, grey and silver water, cold air, woodsmoke and fog off the river. Camera at eye level, 9:16 framing, natural muted colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or worn later than the year. This city is barely begun, so no finished stone town: no Kronhuset, no Christine Church or German Church, no cathedral, no Skansen Kronan or Skansen Lejonet, no Feskekorka, no Gustaf Adolf statue, no Borsen, no stone-faced canal quays with iron railings, no Poseidon fountain, no Lappstiftet or any glass building, no Alvsborg bridge or bridge of any kind across the river. No trams, rails, cars, cranes of steel, containers, shipping or harbour machinery. No electricity, wires, street lamps on posts, or modern paving. No chimneys of brick industry, no smokestacks. Ships are oared boats and small wooden sailing craft only: no steamers, no funnels, no ferries. No fez, no frock coats, no top hats, no crinolines, no clothing after about 1640. No printed signage and no legible Swedish, Dutch or Latin lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_the_stakes",
+      "title": "A Town Drawn on Wet Ground",
+      "geo": {
+        "lat": 57.7072,
+        "lng": 11.9673,
+        "bearing": 45
+      },
+      "brief": "Open marsh at the river mouth with the new town staked out across it in a grid: surveyor's cord, numbered plots, the line of the first streets marked on ground that is still water in places, and almost nothing standing yet.",
+      "mustCover": [
+        "what a charter actually is, and what the king has promised the people who come",
+        "why the plan is a grid with canals in it, and why Dutchmen were sent for",
+        "what it is like to be told to dig a street where there is currently a bog"
+      ],
+      "archiveQueries": [
+        "Gustaf Adolfs torg Gothenburg",
+        "Gothenburg city plan 1621 map",
+        "Gothenburg historic town plan Dutch"
+      ],
+      "landmarks": [],
+      "styleNote": "Open flat marsh and reed with standing water, crossed by lines of wooden stakes and cord marking a street grid. Barrows, planked walkways over mud, spoil heaps, a surveyor with a cross-staff. Only one or two raw timber buildings anywhere, and the rest is empty ground and sky. NOT a built town."
+    },
+    {
+      "id": "stop_02_the_canal",
+      "title": "The Great Ditch",
+      "geo": {
+        "lat": 57.7068,
+        "lng": 11.9645,
+        "bearing": 90
+      },
+      "brief": "The main harbour canal being cut straight through the middle of the site: gangs digging, alder piles driven along the sides to hold the banks, water fought back with bailing and simple pumps, and Dutch foremen directing work in a language the diggers do not have.",
+      "mustCover": [
+        "how you dig a canal in ground that fills with water as fast as you empty it, and how piles hold a bank",
+        "the Dutch method and why it is worth importing men to do it",
+        "what a day's work is worth here and how he is actually paid"
+      ],
+      "archiveQueries": [
+        "Stora Hamnkanalen Gothenburg",
+        "Gothenburg canal historic",
+        "Dutch canal digging 17th century"
+      ],
+      "landmarks": [],
+      "styleNote": "A long straight open cut in wet earth, half dug, water standing in the bottom. Rows of alder piles along the banks, a hand pile-driver with a rope and ring of men, wooden bailing scoops and a horse-driven pump, gangs with spades and barrows on planked runs. Raw earth and timber only, no stone quay facing and no railings."
+    },
+    {
+      "id": "stop_03_the_rampart",
+      "title": "Why the Town Is a Fort",
+      "geo": {
+        "lat": 57.7048,
+        "lng": 11.9705,
+        "bearing": 180
+      },
+      "brief": "The earth rampart and wet moat going up around the landward side, bastions of turf and timber, gun platforms, and the plain reason for all of it: the Danish border is a short ride south and the Norwegian one a short ride north.",
+      "mustCover": [
+        "how close the borders are and what that means for a town with no walls yet",
+        "how an earth rampart and a wet ditch are actually built, and why earth beats stone against guns",
+        "what the soldiers are like to work beside, and who is afraid of whom"
+      ],
+      "archiveQueries": [
+        "Kungsparken Gothenburg",
+        "Vallgraven Gothenburg",
+        "Gothenburg fortifications 17th century",
+        "Gothenburg ramparts moat historic map",
+        "earth bastion fortification 1600s"
+      ],
+      "landmarks": [],
+      "styleNote": "A raw earth rampart with turf revetment and timber facing, a wide wet ditch in front of it, angular bastion corners, gabions and fascines, a few iron guns on timber platforms. Labourers with barrows and turf spades, soldiers in buff coats. Bare new earth, no grass grown over, no stone masonry."
+    },
+    {
+      "id": "stop_04_the_quay",
+      "title": "Who Is Arriving",
+      "geo": {
+        "lat": 57.7112,
+        "lng": 11.9672,
+        "bearing": 315
+      },
+      "brief": "The river bank being made into a landing: small craft coming up the Gota alv with timber, lime, brick and people, Dutch and Scottish merchants stepping ashore into a town that is mostly mud, and families moved down from the older settlement upriver.",
+      "mustCover": [
+        "what comes up the river and what the town has to import to exist at all",
+        "who the newcomers are, where they came from and what languages are on the bank",
+        "what happened to the people who were moved here from the old town, told plainly"
+      ],
+      "archiveQueries": [
+        "Gota alv river Gothenburg",
+        "Gothenburg harbour historic",
+        "Nya Lodose Gamlestaden Gothenburg"
+      ],
+      "landmarks": [],
+      "styleNote": "A timber landing stage and raw river bank, not a stone quay. Small wooden sailing craft and rowed lighters, timber and lime barrels being landed, a crane of wooden beams. Behind it churned ground and a few raw timber houses. Wide grey river, low far shore, no bridge anywhere."
+    },
+    {
+      "id": "stop_05_alvsborg",
+      "title": "The Fortress the Country Paid For",
+      "geo": {
+        "lat": 57.6905,
+        "lng": 11.913,
+        "bearing": 270
+      },
+      "brief": "Downriver at the fortress guarding the river mouth, and the debt behind it: after the last war Sweden had to buy this place back from the Danes for a million riksdaler, raised by taxing the whole country for six years, and the new town upstream is what that money finally bought.",
+      "mustCover": [
+        "the ransom, what it cost an ordinary farm, and what his own family lost to it",
+        "what the fortress is for and what it watches the river for",
+        "what he hopes the town will be, said plainly and without a speech"
+      ],
+      "archiveQueries": [
+        "Gamla Alvsborg fortress Gothenburg",
+        "Alvsborg ransom",
+        "Gota alv river mouth Gothenburg"
+      ],
+      "landmarks": [],
+      "styleNote": "A low stone and earth coastal fortress on a rocky point at a wide river mouth, seen from the water or the shore: curtain walls, angular bastions, a few guns, a flag. Grey sea light, bare granite rocks and low scrub, small wooden boats. Weathered and workaday, not a picturesque ruin and not a restored monument."
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "History of Gothenburg",
+      "url": "https://en.wikipedia.org/wiki/History_of_Gothenburg",
+      "license": "cc-by-sa",
+      "note": "Founded 1621 by Gustavus Adolphus after earlier settlements on the lower Gota alv, including a Gothenburg on Hisingen burned by the Danes in 1611."
+    },
+    {
+      "title": "Timeline of Gothenburg",
+      "url": "https://en.wikipedia.org/wiki/Timeline_of_Gothenburg",
+      "license": "cc-by-sa",
+      "note": "Charter 1621, Dutch planners and settlers, the canal grid and the fortifications."
+    },
+    {
+      "title": "Alvsborg Ransom",
+      "url": "https://en.wikipedia.org/wiki/%C3%84lvsborg_Ransom",
+      "license": "cc-by-sa",
+      "note": "One million riksdaler paid to Denmark 1613 to 1619 to redeem Alvsborg: the tax that fell on every farm in Sweden."
+    },
+    {
+      "title": "Gothenburg",
+      "url": "https://en.wikipedia.org/wiki/Gothenburg",
+      "license": "cc-by-sa",
+      "note": "Dutch town planning, the canal layout, and Sweden's narrow corridor to the North Sea between Danish Halland and Norwegian Bohuslan."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "id": "tour_paris_1780_laundress",
+  "city": "paris",
+  "cityName": "Paris",
+  "country": "FR",
+  "year": 1780,
+  "yearRange": [1778, 1783],
+  "lang": "en",
+  "title": "The Year the Dead Came Through the Wall",
+  "theme": "Five stops across Paris in 1780 with Jeanne, who washes other people's linen on a boat in the Seine. Six hundred thousand people live here and the river is both the water supply and the drain. In May the ground of the Holy Innocents, raised two metres above the street by five centuries of burials, gave way into the cellar of the house next door, and the city has finally had to admit that it cannot go on burying its dead in the middle of the market. Nine years before everything changes, and nobody in this walk knows that.",
+  "companion": {
+    "name": "Jeanne Ricard",
+    "role": "Laundress",
+    "brief": "Thirty-three, a blanchisseuse on one of the wash boats moored off the point of the Ile de la Cite: she kneels at an open hatch over the river beating and rinsing other people's linen, twelve hours at a time, hands wrecked, paid by the bundle. Born in Paris in a room off the rue de Lappe, married to a joiner who is often out of work. She handles the shirts and sheets of magistrates, actresses, canons and shopkeepers, so she knows more about how this city lives than most of it would like, and she keeps almost all of it to herself, because a laundress who talks does not get the bundle next week. Sharp, funny, entirely unsentimental about the river she works in and drinks from. She knows nothing after 1780: not what happens to the King, not what the Estates General is, not that anyone will remember this decade for anything at all.",
+    "voice": "shimmer",
+    "narrationVoice": "rS7c1woNY04WT3UAS83Y",
+    "presence": {
+      "standing": "at the open hatch of a wooden wash boat with the river behind her and wet linen strung overhead",
+      "gesture": "wrings a twist of linen between reddened hands and pushes hair off her forehead with her wrist"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Paris in 1780: tall narrow houses of five and six storeys in plaster over timber and rubble stone, ochre and grey and dirty white, steep tiled and slate roofs, dormers, tall shuttered casements, painted trade signs hanging on iron brackets. Narrow crowded streets with no pavements, a gutter down the middle, mud and refuse, cobbles worn smooth. Oil lamps with reflectors slung on ropes across the streets. The Seine as a working river: wooden wash boats and mills moored in rows, barges of firewood and hay, watermen, sloping stone quays where horses drink and washing dries. Bridges still built over with houses and shops. Dress of about 1780 before the Revolution: working women in short jackets, petticoats, aprons, fichus and caps, sabots or worn buckled shoes; working men in breeches, waistcoats, coarse coats, tricornes and caps; the better sort in silk coats, powdered hair and hats. Grey-gold northern light, coal and wood smoke, river haze. Camera at eye level, 9:16 framing, natural muted colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or worn later than the year. NO REVOLUTION: this is 1780, nine years early, so no tricolour, no cockades, no red caps of liberty, no guillotine, no revolutionary slogans, no sans-culotte costume, no Bastille being stormed. No Eiffel Tower, no Sacre-Coeur, no Arc de Triomphe, no Opera Garnier, no Pantheon dome as finished, no Pont des Arts, no Tour Montparnasse or any glass or steel building. No Haussmann: no wide straight boulevards, no long uniform cream stone facades with iron balconies at the same height, no continuous pavements with kerbstones, no plane-tree avenues along embanked stone quays. No metro entrances, no gas lamps on posts, no electric light, no wires, no road markings, no cars, no bicycles, no bateaux-mouches or any powered boat. No crinolines, top hats, frock coats or nineteenth century dress. No printed signage and no legible French or Latin lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_the_wash_boat",
+      "title": "Working in the River",
+      "geo": { "lat": 48.857, "lng": 2.34, "bearing": 90 },
+      "brief": "The wash boats moored off the downstream point of the Ile de la Cite: long wooden hulls roofed over, hatches open to the water, rows of women kneeling at the river beating linen, and the Seine doing every job the city asks of it at once.",
+      "mustCover": [
+        "what the work actually is, hour by hour, and what it does to a pair of hands",
+        "what she is paid for a bundle and who her customers are",
+        "the river as water supply and drain in the same breath, said plainly and without disgust"
+      ],
+      "archiveQueries": ["Square du Vert-Galant Paris", "Pont Neuf Paris", "bateau lavoir Seine laundry boat"],
+      "landmarks": ["Pont Neuf Paris"],
+      "styleNote": "A long low wooden wash boat moored against a sloping stone bank, roofed with planks and tiles, open hatches at water level with women kneeling over the river, washing strung on lines above. The old stone arches of a bridge beyond, tall narrow houses on the bank. Working river, no powered craft, no embankment wall with railings."
+    },
+    {
+      "id": "stop_02_the_bridge_houses",
+      "title": "The Bridges Are Streets",
+      "geo": { "lat": 48.856, "lng": 2.348, "bearing": 270 },
+      "brief": "A bridge with houses and shops built the whole way along both sides, so that crossing the river feels like walking down an ordinary street and you cannot see the water at all until you reach a gap.",
+      "mustCover": [
+        "what it is like to cross a bridge you cannot see the river from",
+        "who lives and trades up there and why anyone would want to",
+        "the fact that people have started saying the houses should come down, and what she thinks of that"
+      ],
+      "archiveQueries": ["Pont Notre-Dame Paris", "Pont au Change Paris", "Hubert Robert demolition houses bridges Paris"],
+      "landmarks": ["Pont Notre-Dame Paris", "Conciergerie Paris"],
+      "styleNote": "A stone arch bridge completely built over on both sides with tall narrow houses and shopfronts, forming a covered street across the river with no view of the water except through one gap. Crowds, handcarts, hanging trade signs. This is NOT an open bridge with a parapet."
+    },
+    {
+      "id": "stop_03_les_halles",
+      "title": "What Everything Costs",
+      "geo": { "lat": 48.862, "lng": 2.345, "bearing": 45 },
+      "brief": "The central markets at their loudest: fish, butter, herbs, meat and bread, the women who run the stalls and are afraid of nobody, and prices that everyone in the city can recite because everyone in the city is watching them.",
+      "mustCover": [
+        "what bread costs this year and what that means against a day's wages",
+        "the market women, how they talk and what authority they actually have",
+        "how she shops, and what she does when the price moves"
+      ],
+      "archiveQueries": ["Les Halles Paris", "Saint-Eustache church Paris", "Paris market 18th century"],
+      "landmarks": ["Saint-Eustache Paris"],
+      "styleNote": "A crowded open market of timber stalls, awnings and trestles jammed against tall old houses and the flank of a big church. Baskets, barrels, hanging meat, herbs, fish on boards, handcarts and porters. Mud and straw underfoot, no glass, no iron and glass market halls, no modern paving."
+    },
+    {
+      "id": "stop_04_les_innocents",
+      "title": "The Ground Two Metres Too High",
+      "geo": { "lat": 48.8608, "lng": 2.3477, "bearing": 180 },
+      "brief": "The burial ground in the middle of the market district, where five hundred years of the city's dead have raised the earth well above the surrounding streets, and where at the end of May the wall of a mass grave gave way into a neighbouring cellar and the ground finally arrived in somebody's house.",
+      "mustCover": [
+        "why the ground is higher than the street, told as a fact about the city rather than a horror story",
+        "what happened at the end of May and how the quarter reacted, plainly and without spectacle",
+        "what is being said about closing it and where the dead are supposed to go instead"
+      ],
+      "archiveQueries": ["Fontaine des Innocents Paris", "Square des Innocents Paris", "Holy Innocents Cemetery Paris"],
+      "landmarks": ["Fontaine des Innocents Paris"],
+      "styleNote": "A walled burial ground hard against houses in a dense quarter, its earth visibly raised well above the street, charnel arcades along the walls with bones stacked under the roof, a stone fountain at the corner, market stalls and washing lines crowded right up to the wall. Daylight, ordinary people passing. No open graves and no bodies in frame, no gothic horror lighting."
+    },
+    {
+      "id": "stop_05_the_faubourg",
+      "title": "Where She Actually Lives",
+      "geo": { "lat": 48.8535, "lng": 2.3745, "bearing": 315 },
+      "brief": "East of the centre, the working quarter of joiners and cabinetmakers where she has a room: workshops open to the street, timber and glue and sawdust, courtyards full of trades, and a city that is crowded, expensive and, this year, quiet.",
+      "mustCover": [
+        "what her own room and street are like, concretely",
+        "the furniture trade around her, what her husband does and how steady it is",
+        "what people complain about at the end of the day, without any of them predicting anything"
+      ],
+      "archiveQueries": ["Faubourg Saint-Antoine Paris", "Rue de Lappe Paris", "Paris courtyard workshop historic"],
+      "landmarks": [],
+      "styleNote": "A narrow working street of tall plastered houses with open workshop fronts at ground level: joiners' benches, stacked timber, shavings, a courtyard through an arch with more workshops around it. Washing overhead, a gutter down the middle, children and handcarts. Evening light, oil lamp on a rope across the street."
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Holy Innocents' Cemetery",
+      "url": "https://en.wikipedia.org/wiki/Holy_Innocents%27_Cemetery",
+      "license": "cc-by-sa",
+      "note": "On 30 May 1780 a mass grave gave way into a neighbouring cellar; the cemetery was closed that year and the remains moved to the Catacombs from 1786."
+    },
+    {
+      "title": "Pont Notre-Dame",
+      "url": "https://en.wikipedia.org/wiki/Pont_Notre-Dame",
+      "license": "cc-by-sa",
+      "note": "Paris bridges still carried houses and shops in 1780; Louis XVI ordered them demolished only in September 1786."
+    },
+    {
+      "title": "Bateau-Lavoir",
+      "url": "https://en.wikipedia.org/wiki/Bateau-Lavoir",
+      "license": "cc-by-sa",
+      "note": "Wash boats moored at the downstream tip of the Ile de la Cite, with hatches opening directly onto the river."
+    },
+    {
+      "title": "Paris in the 18th century",
+      "url": "https://en.wikipedia.org/wiki/History_of_Paris",
+      "license": "cc-by-sa",
+      "note": "Population, water supply, street lighting, markets and working districts before the Revolution."
+    }
+  ]
+}

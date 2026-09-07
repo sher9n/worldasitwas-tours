@@ -106,10 +106,26 @@ for (const f of recipes) {
 }
 tours.sort((a, b) => a.city.localeCompare(b.city) || a.year - b.year);
 
+/**
+ * A RECIPE EXISTS BEFORE ITS WALK DOES. Everything below works off the walks
+ * that have actually been built, because the montages read each guide's
+ * portrait straight off disk and a recipe for a walk still in the pipeline has
+ * no portrait yet. Adding the seven Gothenburg, Paris and Rome recipes broke
+ * this build until the first of them finished; the pack must survive a recipe
+ * landing hours or days before its walk.
+ */
+const pending = [];
+const built = [];
+for (const t of tours) {
+  if (await exists(path.join(t.dir, "companion_portrait.jpg"))) built.push(t);
+  else pending.push(t.id);
+}
+if (pending.length) console.warn(`skipping ${pending.length} walk(s) with a recipe but no build yet: ${pending.join(", ")}`);
+
 const withV = async (src) => `${src}?v=${await fp(src)}`;
 
 const made = [];
-for (const t of tours) {
+for (const t of built) {
   // Captured at the aspect they ship in, interface visible, so every picture
   // is the product full-bleed: what the app actually looks like in the hand,
   // Hold to ask included. The square is the walk's own art, edge to edge.
@@ -135,13 +151,13 @@ for (const t of tours) {
 }
 
 // The whole cast, and one city per city, for the posts about the set.
-await grid(tours.map((t) => path.join(t.dir, "companion_portrait.jpg")), path.join(MEDIA, "montage-guides.jpg"), 4, 340);
+await grid(built.map((t) => path.join(t.dir, "companion_portrait.jpg")), path.join(MEDIA, "montage-guides.jpg"), 4, 340);
 {
   // One hero per city, earliest year first: the label says cities, so it has
   // to BE cities. Taking the first six walks gave three Colombos and two
   // Istanbuls the moment the fifth city landed.
   const seen = new Set();
-  const one = tours.filter((t) => !seen.has(t.city) && seen.add(t.city));
+  const one = built.filter((t) => !seen.has(t.city) && seen.add(t.city));
   await grid(one.map((t) => path.join(t.dir, "s01_hero.jpg")), path.join(MEDIA, "montage-cities.jpg"), 3, 420);
 }
 
@@ -309,7 +325,7 @@ const posts = [];
  * Rome had been showing a picture of Colombo since the day it was written.
  */
 const PICTURES = {
-  "montage-guides.jpg": { src: "montage-guides.jpg", label: `All ${tours.length} guides` },
+  "montage-guides.jpg": { src: "montage-guides.jpg", label: `All ${built.length} guides` },
   "montage-cities.jpg": { src: "montage-cities.jpg", label: "One walk per city" },
   "montage-trades.jpg": { src: "montage-trades.jpg", label: "Six guides at work" },
   "pair-yeni-cami.jpg": { src: "pair-yeni-cami.jpg", label: "Eminönü, 1616 and 1660" },
@@ -335,7 +351,7 @@ for (const p of copy.posts) {
   posts.push({ ...p, media });
 }
 
-for (const t of tours) {
+for (const t of built) {
   const c = copy.tourPosts[t.id];
   if (!c) continue;
   posts.push({

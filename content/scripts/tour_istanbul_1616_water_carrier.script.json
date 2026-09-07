@@ -1,0 +1,364 @@
+{
+  "tourId": "tour_istanbul_1616_water_carrier",
+  "companion": "Yusuf",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_hippodrome": {
+      "arrival": {
+        "line": "Peace on you—I'm Yusuf, a saka, and I earn my bread here, trip by trip, carrying water from fountains and cisterns to houses, shops, and workrooms that haven't any of their own.",
+        "scene": "From a standing height beside the pale outer wall of Sultan Ahmed Mosque, the frame opens down the long dirt strip of the Atmeydanı. At left, a grilled sebil window set in fresh-cut stone holds chained brass cups, and Yusuf stands nearby with a dark leather water-skin on his back. In the center distance rises the red granite obelisk, its carved sides lit by sun. Lower and nearer to the right, the dark bronze Serpent Column coils from worn earth. A few horses cross the open square, workmen strip scaffold poles along the mosque side, and far beyond the monuments the broad dome and half-domes of Aya Sofya fill the horizon.",
+        "points": [
+          {
+            "label": "water grille",
+            "line": "That grilled window is for a sebil, a charity-water place. Cups hang by chains so nobody walks off with them, and the sebilci keeps them filled for any thirsty soul with no payment asked."
+          },
+          {
+            "label": "red obelisk",
+            "line": "That red stone came from Egypt in an age nobody can count on their fingers, and the cut marks on it are their writing, still staring down on all our fuss."
+          },
+          {
+            "label": "bronze coils",
+            "line": "Those dark coils are said to keep snakes in order, though people still swear trouble started after a grand vizier struck it in a horse game, so who knows now."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_hippodrome_c1": {
+          "narration": "I came from a village in Anatolia as a boy, I've carried water ever since, and I know sweet spouts, August mouths, shortcuts, court gates, and slow payers from here to Galata.",
+          "scene": "A closer frame by the mosque-side fountain shows Yusuf crouched with one hand on a bulging leather skin under a running spout, his brass cup hanging at his belt. Beside him stand two waiting jars held by a house servant and a shop boy. Behind them, fresh pale masonry runs along the mosque wall, and workmen on ladders tug down scaffold poles while dust hangs in the sun.",
+          "points": [
+            {
+              "label": "leather skin",
+              "line": "Sweet water costs legs as much as akçe. I fill that skin at the mosque-side fountain, then take the climb bent like a mule, careful not to slosh away what someone upstairs is praying for."
+            },
+            {
+              "label": "waiting jars",
+              "line": "The ones waiting with jars are my people for the morning: house servants, shopkeepers, coffeehouse boys, craftsmen. Some need clean water for work, and some just don't fancy climbing for it themselves."
+            },
+            {
+              "label": "scaffold poles",
+              "line": "Don't let the fresh stone fool you. This place has lived with carts, hammering, dust, torn-down houses, and men shouting for years, and a spear can't be concealed in a sack."
+            }
+          ]
+        },
+        "stop_01_hippodrome_c2": {
+          "narration": "I sleep above a bakehouse near the Süleymaniye, and we'll make five stops to read Istanbul by water. Touch a thing and I'll speak; hold the green button and ask.",
+          "scene": "At the edge of the square, the frame turns toward a narrow side lane falling away between stone walls. A wooden courtyard gate stands half open on the left, and on the right a house doorway has a small stone basin set low beside it. Yusuf is in the foreground with his water-skin and brass cup, while two passers-by squeeze past toward the open meydan behind him.",
+          "points": [
+            {
+              "label": "courtyard gate",
+              "line": "That gate saves breath if the keeper's in a kindly mood. Between this square and Galata I know the sweet spouts, the August liars, the cut-through courts, and every door that pays late."
+            },
+            {
+              "label": "stone basin",
+              "line": "By that doorway is a little stone mouth for men like me. I pour into it from the skin and the water runs inside, so the house gets its share and I stay on the threshold."
+            }
+          ]
+        },
+        "stop_01_hippodrome_c4": {
+          "narration": "They call this the Atmeydanı, the old race-ground, and now the sultan's new mosque makes a grand show of it while paying some of its debt back in prayer, water, and charity.",
+          "scene": "The frame steps back for a wide view of the mosque front and the open Atmeydanı before it. Fresh stone glows white in the sun and a few scaffold poles still cling to one corner. At lower left, the dark mouth of an arcade entrance opens beneath the complex wall. Beyond the square, over the line of the old monuments, the great dome of Aya Sofya rises heavy and grey against the sky.",
+          "points": [
+            {
+              "label": "fresh stone",
+              "line": "She's finished enough for prayer this year, but don't trust the quiet face of her. Men are still fitting and furnishing bits of the whole foundation, and hammering carries farther than blessing."
+            },
+            {
+              "label": "arcade entrance",
+              "line": "What rises here isn't only a mosque. It grows rooms, shops, a school, little student rooms, a bath, soup, care for the sick, beds for travelers, and all of that means wages and bread nearby."
+            },
+            {
+              "label": "great dome",
+              "line": "And opposite, Aya Sofya's older great dome still stares back across the square, which is why this place never feels like one building alone here but a contest of ages."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, let's leave the sultan's fresh stone and go where water is less charitable and more of a bargain."
+    },
+    "stop_02_bedesten": {
+      "arrival": {
+        "line": "Now we've come where the city counts and cheats and sweats, because thirst doesn't stop at the market gate, and every trade here learns its place.",
+        "scene": "From standing height in a crowded bazaar lane, two brick-domed stone halls rise above dark wooden shopfronts and patched lean-to covers; between them porters bent under bales push through brokers, cloth apprentices with folded lengths, a man at a low bookstall near a gate, iron-fastened doors, scales and yard-measures by a stall, and Yusuf in the foreground with a wet leather water-skin on his back and a brass cup at his belt.",
+        "points": [
+          {
+            "label": "the domed hall",
+            "line": "Those domed strongrooms are the market's anchors. One is the old bedesten, where silk and jewellery sit behind thick walls and iron doors, and the other is Sandal, called for the cotton-and-silk cloth sold there."
+          },
+          {
+            "label": "the bookstall",
+            "line": "Books have their own little kingdom here as well. The sellers settled by the bedesten long before my time, and men still ask for the gate with the books when they don't know the lane."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_bedesten_c1": {
+          "narration": "You don't hunt this market by luck. You learn it by craft, because men selling the same thing bunch together, and buyers come straight to their lane.",
+          "scene": "At a busy junction between the two domed bedestens, straighter lanes cross under a mix of open sky, boards, and cloth awnings; to the left, westward, the lanes begin to twist more loosely between wooden shopfronts. Customers and apprentices thread through the middle where the straight lane meets the crossing street.",
+          "points": [
+            {
+              "label": "the straight lane",
+              "line": "Between the two bedestens the ways were laid out fairly straight, crossing one another almost square. Go west of the old hall, though, and the city remembers its older habit and starts bending where it pleases."
+            },
+            {
+              "label": "the crossing street",
+              "line": "This through-run is the great east-west spine, and the lane cutting it north to south is the other guide for a stranger. Ask by the trade on them, and somebody will set you right soon enough."
+            }
+          ]
+        },
+        "stop_02_bedesten_c2": {
+          "narration": "A price here has two fathers: the rule and the wrangle. Staples are fixed under watch, and finer goods may still climb or sink by bargaining.",
+          "scene": "In a narrow covered lane, a cloth merchant holds a red bolt across the counter while a customer fingers the edge; between them lie a balance scale, folded papers, and a wooden yard-measure. Just beyond, a broker leans toward two men at a stall mouth, and farther back a bundle of decorated arrows hangs beside darker bolts of silk.",
+          "points": [
+            {
+              "label": "the scale",
+              "line": "For bread and meat they don't just shrug and guess. Officials, guild heads, and men who know the trade sit over it, and then the crier carries the set price through the markets."
+            },
+            {
+              "label": "the broker",
+              "line": "Inside the bedesten a broker may stir an auction as easily as a bargain, and sometimes their hands are too friendly with one another. They hold a seller's goods low, resell them dearer, and split the bite between them."
+            },
+            {
+              "label": "the red cloth",
+              "line": "That red atlas isn't for a poor man's sleeve. A zira' of it can stand at two hundred akçe, so when a customer strokes the cloth, he's really feeling out his own purse."
+            }
+          ]
+        },
+        "stop_02_bedesten_c4": {
+          "narration": "And as for water, this market hasn't a well of its own to spare for trade, so a fountain's named sakas carry the thirst.",
+          "scene": "In a tight lane beside a guarded stall, Yusuf stands mid-pour, tipping water from his wet leather skin into a brass cup held by a seated scribe at a low desk; to the right a jeweller watches trays in his doorway, and to the left a porter rests bent under a bale near the lane mouth where daylight shows pack traffic beyond.",
+          "points": [
+            {
+              "label": "the jeweller",
+              "line": "Men like him are my market custom. Anyone guarding dear stock or a fixed place buys from us instead of leaving it: cloth sellers, jewellers, booksellers, brokers, scribes, guards, and the poor porter if he's got a coin."
+            },
+            {
+              "label": "the bent porter",
+              "line": "That fellow drinks and hauls in the same breath. Rates are set for carrying loads up from the waterfront into this Bezzazistan and Mercan quarter, which tells you half the market arrives here on someone's back."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on downhill now, because a market doesn't fill itself, and the water below carries in more than fish."
+    },
+    "stop_03_suleymaniye": {
+      "arrival": {
+        "line": "Up on the Third Hill, buried water does the long work for this whole terrace, and then men like me do the last cruel stretch.",
+        "scene": "From the broad terrace above the slope, lead domes and pencil minarets rise over stepped courts and outer walls; smoke lifts from kitchen chimneys on a lower roof, fountain basins shine in the sun, students cross a medrese court, servants carry bowls and firewood, and in the near foreground a saka stands half-turned with a dark wet water skin on his back and a brass cup at his belt, with Golden Horn haze beyond.",
+        "points": [
+          {
+            "label": "stepped domes",
+            "line": "From down below she looks like one great crown, but up here you feel the terraces, walls, courts, and stairs set one above another, all leaning over the Horn."
+          },
+          {
+            "label": "wet water skin",
+            "line": "That dark shine is honest work. Wet leather smells sharp in the sun, and when the skin knocks your spine on a climb, even charity starts to feel heavy."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_suleymaniye_c1": {
+          "narration": "People call it the mosque, and that's true enough, but the hill works all day at feeding, teaching, nursing, washing, and lodging besides prayer.",
+          "scene": "Seen from an arcade edge inside the complex, the left side holds low service roofs with two kitchen chimneys smoking above them, the middle opens onto a court where boys and older students pass beneath a lesson window and an arched portico, and on the right a hospital door stands open with an attendant, a seated patient, stacked bowls, and a servant carrying split firewood across the paving.",
+          "points": [
+            {
+              "label": "kitchen chimneys",
+              "line": "They boil for the poor, the staff, and the guests, and not with a dainty pot either. Rice, chickpeas, onions, cumin, salt, flour, wood by the load—the smell settles in your clothes."
+            },
+            {
+              "label": "lesson window",
+              "line": "One room teaches the Prophet's sayings, another boys their letters, and beside the sick they train future physicians too, which means this hill recites as much as it prays, all morning and afternoon."
+            },
+            {
+              "label": "hospital door",
+              "line": "They keep physicians, eye men, surgeons, an apothecary, washers, cooks, and orderlies in there, and the troubled in mind aren't turned away either. For God's sake, that's more mercy than many houses manage."
+            }
+          ]
+        },
+        "stop_03_suleymaniye_c2": {
+          "narration": "This hill drinks from far outside the walls and from older city works too, because Istanbul's thirst is old and no single line can master it.",
+          "scene": "From the terrace rim by a school wall, a square stone water box sits in the right foreground with pipe openings near its base; in the middle a public fountain basin splashes beneath several carved fountain mouths, and across the valley on the left the long stone arch of the aqueduct strides between the ridges behind roofs and cypress tops.",
+          "points": [
+            {
+              "label": "stone arch",
+              "line": "Those old arches carried water across the valley long before my time, and they're not dead scenery now either. This city still drinks through patched old works, cisterns, and newer repairs together."
+            },
+            {
+              "label": "water box",
+              "line": "By that school wall sits the water box, and from there the flow from Aypah and Çınar on the Halkalı side splits into clay pipes for fountains, latrines, kitchens, the hospital, and the lesson houses."
+            },
+            {
+              "label": "fountain mouths",
+              "line": "And that's only one gift. Another branch comes by Vefa from the Belgrade woods, and lines like these feed scores of other mouths in the city besides this hill."
+            }
+          ]
+        },
+        "stop_03_suleymaniye_c4": {
+          "narration": "Once the pipes have done their part, the last bit is mine, and a full kırba up these streets makes your chest argue with your legs.",
+          "scene": "On a steep cobbled lane climbing beside high masonry walls, a saka leans forward under a bulging dark leather water skin, his shoulders bent and one hand out for balance; a brass cup hangs at his belt, and at the top of the slope a servant waits in a doorway beside two tall water jars.",
+          "points": [
+            {
+              "label": "bent shoulders",
+              "line": "A full skin pulls backward all the way, so you learn to climb like a man arguing with gravity, short steps, no waste, and one hand ready if the stones turn treacherous."
+            },
+            {
+              "label": "brass cup",
+              "line": "That cup travels farther than I do some days. Muslim, Greek, Armenian, Jew, Frank—thirst makes short introductions, and a sip taken standing up is often the quickest peace in town."
+            },
+            {
+              "label": "waiting jars",
+              "line": "A grand foundation may have water within its own walls, and the lane beside it may still send for me, because pipes reach basins nicely enough but they don't climb private stairs."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come downhill with me now, because what these hills gather and divide ends by the water again, among boats, ropes, and shouting."
+    },
+    "stop_04_eminonu": {
+      "arrival": {
+        "line": "Down here is the city's throat, and it swallows all day: grain, wood, coal, gossip, strangers, and men like me waiting to learn which load becomes work.",
+        "scene": "From a low place on the Bahçekapı shore, the frame looks northwest along the Golden Horn. Tar-black timber staging and broad stone stairs meet choppy water full of caiques and broader cargo boats. At the left stands the customs shed with a clerk bent over a board; in the middle porters shoulder sacks, baskets, jars, rope coils, and short timber lengths toward lanes climbing into hans and market streets; at the right the unfinished bulk of a great mosque rises weather-stained above the quay.",
+        "points": [
+          {
+            "label": "the customs shed",
+            "line": "This is the chief water-side customs place, where the boats meet the officers first. Just behind their shed the hans and market lanes start swallowing every bundle before the spray has dried."
+          },
+          {
+            "label": "the stone stairs",
+            "line": "People here tie the place to the customs steward, the emin, because his landing is what matters. Say Emin's pier and everyone knows which bit of shore you mean at once."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_eminonu_c1": {
+          "narration": "Nothing rests here long. Grain, wood, coal, oil, fruit, all of it comes off the boats and straight inland to be weighed, priced, and sent on.",
+          "scene": "A cargo boat lies hard against the quay while men pass up black coal sacks, honey jars, fruit baskets, and stripped timber poles. In the foreground a bent porter turns into an uphill lane between warehouse doors; behind him more loads wait in heaps, and beyond the lane mouth covered market traffic thickens uphill.",
+          "points": [
+            {
+              "label": "the honey jars",
+              "line": "Even the piers tell on their cargo. One landing is for honey, another for wood, another for fruit and nuts, so half your directions here sound like a grocer's list."
+            },
+            {
+              "label": "the uphill lane",
+              "line": "Each sort goes to its own kapan, which is a counting-house market rolled together. Men there judge the quality, measure it fair if God wills, set the price, and send it onward."
+            },
+            {
+              "label": "the black coal sacks",
+              "line": "Food, fuel, and raw stuff come along this whole Horn-side edge, from farther up toward Unkapanı down to the point. If the boats slow, the bakers curse, the braziers cool, and everybody feels it."
+            }
+          ]
+        },
+        "stop_04_eminonu_c2": {
+          "narration": "And over all that noise sits the stalled mosque, started by the sultan's mother, then left stranded when her son died and they shut her away.",
+          "scene": "The frame looks upward from the quay at the unfinished mosque mass: high blank stone walls, a dark arch without doors, and rough masonry weathering above shops and piers. At the foot of the works lies a ragged strip of open ground with broken walls and foundation stumps; along the water a narrowed quay runs between the waterfront wall and the moored boats.",
+          "points": [
+            {
+              "label": "the broken walls",
+              "line": "They cleared a thick-set neighborhood to plant this, Jewish and Christian houses among the shops, and people have long memories when a foundation starts by turning them out of doors."
+            },
+            {
+              "label": "the waterfront wall",
+              "line": "Half-finished or not, it has already bitten a great piece out of the shore. Where the water once opened wide here, now stone shoulders in and makes the quay feel pinched."
+            }
+          ]
+        },
+        "stop_04_eminonu_c4": {
+          "narration": "If you've one akçe, you can squeeze into a shared crossing for Üsküdar, and if you've fifteen, a private pereme will carry you with your dignity.",
+          "scene": "At a crowded landing stage, three narrow peremes and a caique bob against tar-red piles while oarsmen brace with boat hooks. A waiting crowd of men and veiled women bunches on the planks with baskets and bundles; nearest the camera one especially narrow pereme rocks under seated passengers, and behind them the waterfront sheds and unfinished mosque shoulder over the shore.",
+          "points": [
+            {
+              "label": "the narrow pereme",
+              "line": "They watch these boats hard. When a pereme grows too long and skinny, packs in too many bodies, or trusts a sail too much, the next bad gust can send everybody to the bottom."
+            },
+            {
+              "label": "the waiting crowd",
+              "line": "It's never quiet at these stairs, because Galata folk still come over to shop and Üsküdar folk are always coming or going, so the boatmen hardly stop cursing for breath."
+            },
+            {
+              "label": "the oarsmen",
+              "line": "Boatmen guard their trade like jewellers guard scales. It's a guild with favour and rules behind it, which means an outsider doesn't just pick up an oar and join tomorrow."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, let's leave the tar and shouting, and I'll show you where this grand traffic ends: doorstep jars in a lane of mixed neighbours."
+    },
+    "stop_05_galata": {
+      "arrival": {
+        "line": "We've crossed the Horn now, and the city changes at once: less court face, more salt and tar, and every other man seems headed somewhere farther away.",
+        "scene": "From just above the wet landing stairs on the Galata shore, a narrow crossing boat noses in at the left while two porters guide a cask down a plank at center. To the right stands a low customs shed with men writing and checking bundles, behind it rows of storehouses, ropes, sailcloth, and masts packed along the quay. A cluster of broad oil casks sits in the foreground near coils of rope, and across the water the domes and minarets of the imperial city haze in the sun.",
+        "points": [
+          {
+            "label": "the crossing boat",
+            "line": "A shared caïque will bring you over for one akçe, which sounds light enough till you've spent the same coin crossing back and forth three times in a day for work."
+          },
+          {
+            "label": "the customs shed",
+            "line": "Goods land under official eyes here as well, and then they're off through Karaköy, Mumhane, and Azapkapı into storehouses, shops, and workshops so fast the spray hardly has time to dry on the planks."
+          },
+          {
+            "label": "the oil casks",
+            "line": "A lot of those casks have come from the islands and the western sea. Galata stores oil and wine by the heap, which tells you how much of this quarter lives by ships."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_galata_c1": {
+          "narration": "This shore belongs to the same padishah, of course, only it faces outward, so sailors, brokers, interpreters, Franks, and rogues all rub shoulders closer here.",
+          "scene": "The frame looks along Galata's lower quay, crowded from edge to edge: bright-clothed sailors, porters, women with baskets, turbaned Muslims, black-hatted Franks, Greeks, Armenians, and Jews jostle in a bright crowd around bales and scales. At right a stone church doorway stands open beneath a hanging lamp, and in the foreground two sealed bales rest beside a clerk and a broker arguing over them. Masts, ropes, and warehouse fronts close the background.",
+          "points": [
+            {
+              "label": "the bright crowd",
+              "line": "Plenty of Muslims live and work here too, don't mistake me, only Greeks, Armenians, Jews, and Franks show so strongly in the street that your ear changes tongue every few steps."
+            },
+            {
+              "label": "the church doorway",
+              "line": "Across Galata and up in Pera, men tied to western trade and embassies keep houses and chapels, so bargaining here often needs an interpreter before it needs a sweating porter."
+            },
+            {
+              "label": "the sealed bales",
+              "line": "If a bale is meant for western buyers, odds are good it breathes this air first. That's why folk say this side is the city's outward window, not its face."
+            }
+          ]
+        },
+        "stop_05_galata_c2": {
+          "narration": "Up above, that round tower keeps the long view for the old walls, and everybody below sleeps easier when someone is watching water and smoke.",
+          "scene": "From a lane at the foot of the hill, the shot climbs sharply upward. The round tower stands high against the sky at top center, joined to stretches of old stone wall that step down toward a wall gate on the left. Below, cramped roofs and masts fill the slope, and beyond the sea wall a single lateen-rigged sail shows on the Horn among smaller boats.",
+          "points": [
+            {
+              "label": "the round tower",
+              "line": "The old Franks had their own names for everything here, and people still say this tower once bore the Holy Cross in its name, which suits a lookout planted above churches and sea."
+            },
+            {
+              "label": "the wall gate",
+              "line": "Those walls remember when Galata answered to Genoese merchants, but after the conquest the sultan kept it under his own judge and police, and that old freedom was finished for good."
+            },
+            {
+              "label": "the far sail",
+              "line": "A high eye over the Horn is for more than smoke. Last year the Cossacks came bold into the strait, so now every strange sail gets measured twice before anyone laughs."
+            }
+          ]
+        },
+        "stop_05_galata_c4": {
+          "narration": "Climb a little and Galata tells the truth on itself: churches, mescids, hans, taverns, and workyards all jammed together, and tomorrow's pay leaking away tonight.",
+          "scene": "A steep Galata lane rises between stone walls and leaning timber fronts. At upper left, a brick minaret lifts above an older church-shaped building. On the right, a tavern door stands open with men inside, cups on a board and a spill of shadow onto the street. In the middle of the lane, two chained men and other labourers drag a heavy spar uphill past a smith's smoky yard while mixed passersby press to the sides.",
+          "points": [
+            {
+              "label": "the brick minaret",
+              "line": "That brick minaret marks the old church people now call the Arab mosque, because many Arabs from Andalusia and the western lands have settled on this side lately in numbers."
+            },
+            {
+              "label": "the tavern door",
+              "line": "Galata's bad name isn't pulled from thin air. Along this harbor front men can spend on drink, cards, and women faster than they earn, which is why careful households curse this shore."
+            },
+            {
+              "label": "the chained men",
+              "line": "Many of these hard-used men are tied to the state's works nearby, the arsenal and shipyard one way, the powder and cannon works the other, and some labour in irons."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Istanbul as I know it: old arches bringing water from far off, new pious foundations laying on fountains, market lanes selling by the rule and the wrangle, port stairs swallowing the world's cargo, and these mixed quarters still waiting for somebody to fill the cup upstairs. I'm Yusuf the saka. May your house never know August thirst, and if a water-carrier knocks at your door, pay him on the day. Go in health."
+    }
+  }
+}

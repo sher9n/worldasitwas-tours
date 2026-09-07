@@ -1,0 +1,372 @@
+{
+  "tourId": "tour_rome_120_baker",
+  "companion": "Lucius Nonius Rufus",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_bakery": {
+      "arrival": {
+        "line": "Lucius Nonius Rufus, salutem — I'm a pistor here on the Quirinal, with donkey mills and a brick oven, and this street knows my smoke before sunrise.",
+        "scene": "From the middle of a narrow street before dawn, the view faces a bakery on the Quirinal slope. A half-lifted shutter opens onto a dark shopfront at ground level, a fresh brick wall and pale plaster catch the first grey light beside it, and above the shop two upper windows stand open with a lamp-glow in cramped rented rooms. On the paving below sit a wicker basket, a broom, and a tied flour sack.",
+        "points": [
+          {
+            "label": "the brick wall",
+            "line": "All this brick and plaster is newer than it looks to you, because it went up with the big works on this slope, and half the quarter still smells of wet mortar in summer."
+          },
+          {
+            "label": "the upper windows",
+            "line": "That's how most of us live here: shop at the street, rented rooms above, and plenty of those rooms have no proper hearth, unless you count a smoky brazier and a prayer."
+          },
+          {
+            "label": "the half-lifted shutter",
+            "line": "When that shutter goes all the way up, selling starts, but the work started hours earlier, because Rome likes breakfast more than bakers like sleep in this quarter before dawn ever shows."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_bakery_c1": {
+          "narration": "I'm thirty-four now, and I've done this since I was a boy behind my grandfather's freedman shop, learning flour first and dignity later.",
+          "scene": "Inside the bakery by lamplight, a blindfolded donkey circles a tall hourglass-shaped lava-stone millstone set near the wall. A man on the far side tips wheat into the top opening, flour dust lies around the base, and a row of grain sacks stands stacked against the brick wall behind the animal.",
+          "points": [
+            {
+              "label": "the millstone",
+              "line": "It's two stones, not one: the lower sits fast, the upper turns on an iron pivot, grain goes in at the top, and flour spills out in a ring below."
+            },
+            {
+              "label": "the blindfolded donkey",
+              "line": "A big bakery mill stands taller than my shoulder, so a donkey does the turning, and they often blindfold the poor beast because circling the same wall all night would fret anything with eyes."
+            },
+            {
+              "label": "the grain sacks",
+              "line": "Those sacks came from the public horrea, and I haul them myself, brother, because one slack carrier or one slippery measure can steal bread before the stones even start turning."
+            }
+          ]
+        },
+        "stop_01_the_bakery_c2": {
+          "narration": "If you want to know how Rome eats, this walk has five stops and it's my road from warehouse to loaf; tap anything for more, or hold the green button and ask.",
+          "scene": "A single frame looks across the workroom to a wide lava-stone kneading basin where a baker leans his weight on a wooden bar fitted with short arms around a central iron pin. Above him hang sieve frames on pegs, a starter crock sits on a bench to the right, and beside it wait a water tub and a heap of flour.",
+          "points": [
+            {
+              "label": "the kneading basin",
+              "line": "That basin does the heavy kneading for us: dough goes in with water, and the wooden arms keep worrying it around the iron pin until it turns smooth instead of sulking."
+            },
+            {
+              "label": "the sieve frames",
+              "line": "After grinding, we bolt the flour through those frames, and what stays behind is bran, which makes coarser bread and more complaints, though complaints come free whatever I sell here."
+            },
+            {
+              "label": "the starter crock",
+              "line": "We keep yesterday alive in that crock, sour starter and no miracle, and that's what lifts today's dough, because bread trusts memory more than novelty in this room every night."
+            }
+          ]
+        },
+        "stop_01_the_bakery_c4": {
+          "narration": "By first light we've half a day behind us: flour bolted, dough worked, oven cleared, round loaves scored, and a plain loaf goes out here for two asses.",
+          "scene": "At the far end of the bakery, a domed brick oven on a raised podium glows from its open mouth while a baker pulls out round loaves scored into wedges with a long peel. Boards loaded with bread rest on the tiled working surface, and at the counter below a basket woman and a small errand boy stand as the waiting customers with coins and an empty cloth.",
+          "points": [
+            {
+              "label": "the oven mouth",
+              "line": "The furnace is a brick dome on a high body, so the heat stays where I need it and the man at the mouth roasts like a chestnut anyway there."
+            },
+            {
+              "label": "the round loaves",
+              "line": "We score loaves before baking so they break cleanly later, and some bakers mark them as well, because once bread leaves the peel every shop swears it made the best."
+            },
+            {
+              "label": "the waiting customers",
+              "line": "These are my people at dawn: tenants, shop hands, porters, widows, and boys sent down for somebody upstairs, because the state gives grain, not hot loaves, and plenty of rooms haven't a safe place to cook."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, then. Bread starts here, but it doesn't begin here, and if you want the city's belly, we go where the grain is counted."
+    },
+    "stop_02_the_warehouses": {
+      "arrival": {
+        "line": "So this is where that promise turns troublesome, because grain reaches Rome from far off, then every scoop, list, and locked doorway decides who actually eats.",
+        "scene": "A wide morning frame from the river edge looking into the Testaccio plain: in the left foreground stone quay steps drop beside round mooring rings set in the quay wall; the center is a busy lane between brick warehouse courts with sacks in doorways, clerks at tables, porters bent under loads, and guards at gates; along the right background runs a great long arched hall, and beyond it rises the red mound of broken amphora sherds.",
+        "points": [
+          {
+            "label": "quay steps",
+            "line": "This is the working riverfront now; the old cattle-market landing upstream couldn't manage Rome's appetite, so the quays run on nearly a mile with steps, ramps, and stone rings for the craft that feed us daily."
+          },
+          {
+            "label": "long hall",
+            "line": "These yards and courts fill the ground between the great long hall and the oil mound, enough warehouse to make a whole district of it down here by the river."
+          },
+          {
+            "label": "gate guards",
+            "line": "It isn't a lucky scramble either; the warehouse men are sorted into watches and work groups, so somebody is always counting, hauling, sealing, or shouting from dawn till dark here."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_the_warehouses_c1": {
+          "narration": "Some sacks are almost local by Roman standards, from Africa in two days if the sea behaves, and some have come from Alexandria for weeks.",
+          "scene": "A closer frame at the unloading side: a flat river barge lies against the quay, two men passing corded grain sacks up a plank, another porter carrying one toward a dark warehouse doorway, with dust hanging bright in the sun above the load.",
+          "points": [
+            {
+              "label": "flat river barge",
+              "line": "Sea ships don't come up to this quay; the grain is shifted at Ostia, and more and more at Portus, into these smaller caudicariae for the river run to Rome."
+            },
+            {
+              "label": "corded sacks",
+              "line": "Wheat usually travels in fibre sacks or something much like them, which means the bags rot and vanish, while oil jars leave their broken bones everywhere after unloading is done."
+            }
+          ]
+        },
+        "stop_02_the_warehouses_c2": {
+          "narration": "The grain dole isn't a charity pot; it's a citizen's right on a fixed list, and plenty who need bread stand outside it.",
+          "scene": "A distribution court seen straight on: a clerk sits at a table with open wax tablets, a line of waiting citizens stands before him, one man at the front holding out his hands, and a door guard with a staff watches the warehouse entrance behind.",
+          "points": [
+            {
+              "label": "wax tablets",
+              "line": "The list is fixed at about two hundred thousand names, they say, and if your claim isn't on a tablet somewhere, righteous hunger won't help you at this doorway today."
+            },
+            {
+              "label": "waiting citizen",
+              "line": "A man on the rolls reckons on five modii for the month, enough to matter very much and never enough to stop him thinking about next month or his children."
+            },
+            {
+              "label": "door guard",
+              "line": "Citizens get through this door; slaves and foreigners do not, and that's the hard truth of it however empty a belly may be on the paving outside come ration day."
+            }
+          ]
+        },
+        "stop_02_the_warehouses_c4": {
+          "narration": "Once the sacks are inside, trust stops there, because grain is issued by measure, and a shaved scoop steals from me before the stones touch it.",
+          "scene": "A tight working frame inside a warehouse court: beside an open sack, a bronze measure sits on a table while a grain measurer works with a wooden striker across the rim; next to him a clerk has a small coin stack by his wax tablet, and a door guard stands under the shadowed entrance.",
+          "points": [
+            {
+              "label": "bronze measure",
+              "line": "That's a mensor at work, and he fills a modius then strikes it level with the rutellum, and the proper bronze standard is there so nobody can plead confusion later."
+            },
+            {
+              "label": "coin stack",
+              "line": "Public wheat can go for about six and a third asses the modius, and a low market price might be twelve, so a lost handful is not small change here."
+            },
+            {
+              "label": "door guard",
+              "line": "Our emperor has had enough of false measures; if a man tampers with them, he pays double, and for worse cheating they can pack him off to an island besides."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, then. You've seen the tally; now let's follow one sack to the stones, because grain in a storeroom is only a promise."
+    },
+    "stop_03_the_river": {
+      "arrival": {
+        "line": "This bank is the Emporium, Rome's real river port now, and if the warehouse was the promise, this quay is the shove that turns cargo into supper.",
+        "scene": "From the edge of the left-bank quay, the frame looks along a long strip of pale travertine with broad travertine steps dropping to brown-green water. A tar-dark barge is moored below at a stone ring, porters bent under sacks cross the quay, and behind them stand tall warehouse fronts with open doors, a roofed upper gallery running along them, and one stretch of fresh plastered wall brighter than the older brick around it.",
+        "points": [
+          {
+            "label": "travertine steps",
+            "line": "All this stone lets a dozen jobs happen at once: moor, unload, weigh, shout, shove off again. Mud banks are for fishermen; a capital needs edges that can take a beating."
+          },
+          {
+            "label": "upper gallery",
+            "line": "Behind the quay they've built store rooms below and offices above, with a roofed passage tying the traffic together, so clerks stay dry and cargo keeps moving when weather turns mean."
+          },
+          {
+            "label": "fresh plaster wall",
+            "line": "That brighter wall farther back is newer work, and they're still adding to this quarter, because Rome never says, 'Enough store rooms, we've finished eating now,' not today, brother, anyway."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_the_river_c1": {
+          "narration": "What reaches us here has already changed boats once, because the really big freighters stay down at Portus; Ostia's mouth is troublesome and the river too awkward for their draught.",
+          "scene": "A smaller river barge lies against the quay, its bow rubbed pale and its deck heaped with sacks. A taut tow rope runs from the vessel out toward the bank where two oxen lean into the haul, while beside the gangplank a seated clerk scratches on wax tablets at a low table.",
+          "points": [
+            {
+              "label": "tow rope",
+              "line": "By these bends the current makes a fool of sail and oar, so barges are hauled from the bank, often by oxen, and from the harbour mouth to here it can be near three days' cursing."
+            },
+            {
+              "label": "wax tablets",
+              "line": "Down at Portus the loads are entered first, then either stacked in store or turned into river cargo, which means what arrives in Rome has already survived one tally, one delay, and somebody else's temper."
+            }
+          ]
+        },
+        "stop_03_the_river_c2": {
+          "narration": "Grain isn't alone on this water; oil, wine, garum, timber, even marble come nosing in together, and every useful thing leaves rubbish behind.",
+          "scene": "Beside the quay a barge sits low with round-bellied amphorae in wicker padding, while nearby men tip emptied jars onto a growing bank of red and buff sherds whitened with lime. Timber balks lie stacked beyond, a pair of marble drums rest near an open warehouse door, and the nearest broken jars show dark stains inside.",
+          "points": [
+            {
+              "label": "broken jars",
+              "line": "Oil jars get smashed on purpose and laid in ordered beds with lime between the layers, because stale oil clings in the clay, then the smell comes up and the vermin come after it."
+            },
+            {
+              "label": "red sherd bank",
+              "line": "Most of that heap is Spanish oil pottery, the thick southern stuff, and it's making a place of its own beside the port. Bank, not mountain, if you take my meaning."
+            }
+          ]
+        },
+        "stop_03_the_river_c4": {
+          "narration": "Nothing here moves by dockhands in a lump; every job has its men, from measurers to divers, and most are remembered at work better than anywhere else.",
+          "scene": "At the foot of the warehouse steps, two sack carriers stoop beneath a grain bag slung on a pole, an amphora carrier steadies jars behind them, a grain measurer stands by a standard vessel, a guard watches an open doorway, a skiff crewman braces his boat while a dripping diver climbs up, and a small wreath-carved plaque is fixed to the wall beside the door.",
+          "points": [
+            {
+              "label": "sack carriers",
+              "line": "I've seen a loading picture at Ostia where even the sack men are named: Geminius owning the vessel, Abascantus commanding it, Pharnaces over the job. That's how close this work keeps count of itself."
+            },
+            {
+              "label": "skiff crewman",
+              "line": "Plenty of the boatmen and little shipping masters are freedmen or their sons, same sort of rise as my family, which means the river answers to men old grandfathers would've had to salute."
+            },
+            {
+              "label": "wreath plaque",
+              "line": "The sack carriers club together for burial as carefully as for wages, and they've got their own cremation place besides, because a man who works in gangs hopes not to be burnt among strangers."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on then; cargo counted on the quay isn't dinner yet, and my trade begins where sacks leave these doors and start climbing streets."
+    },
+    "stop_04_the_forum": {
+      "arrival": {
+        "line": "Now we climb from river stink into marble glare, and don't be fooled by the polish, because this place works all day on debt, claims, and deliveries just like a wharf.",
+        "scene": "From the south edge of the Basilica Ulpia, the frame looks out over the bright marble square under midday sun. The sharp paving fills the foreground with hard white glare, crossed by men in white togas, clerks with document cases, and a flour-dusted tradesman in a cleaner tunic. Long porticoes run down both sides in bands of shade, their columns faced with coloured marble, and in the middle stands the horse statue, a gilt-bronze rider raised above the crowd. Far beyond, the tall column rises over the moving business of the forum.",
+        "points": [
+          {
+            "label": "the horse statue",
+            "line": "They've spent like conquerors here: imported marbles under your feet, gilding on roofs and trophies, Dacian captives in stone, and that bronze horseman planted in the middle so nobody forgets whose money did it."
+          },
+          {
+            "label": "the sharp paving",
+            "line": "Trajan built the whole forum in a rush of years, and the column's only been up seven. That's why men still bring first-time visitors here and talk as if the dust has hardly settled."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_the_forum_c1": {
+          "narration": "This basilica isn't for praying, it's for settling things, and if a debt, contract, or supply quarrel grows teeth, it ends under this roof.",
+          "scene": "At the edge of the basilica interior, the frame catches a dense working crowd under the high roof: the waiting pair stand near a column, one in a plain tunic, one in a toga, both watching the same opening where attendants call names. In the foreground a clerk holds a wax tablet and stylus beside a bench strewn with rolled documents. A lictor with bundled rods is pushing a narrow path clear while brokers, clients, and porters drift between strips of sun and shade.",
+          "points": [
+            {
+              "label": "the waiting pair",
+              "line": "That's the trick of a basilica: one man waits on a lawsuit, another on a cargo payment, and both stand under the same roof pretending patience while their stomachs and creditors count faster."
+            },
+            {
+              "label": "the wax tablet",
+              "line": "Those little boards carry more than sums. Petitions, promises, rent reckonings, witness notes, delivery tallies — half of Rome's memory is scratched in wax, rubbed flat, and written again before sunset."
+            }
+          ]
+        },
+        "stop_04_the_forum_c2": {
+          "narration": "And that tall column everyone still drags visitors toward, it isn't mostly fighting at all; it's camps, bridges, baggage, and the emperor turning up wherever credit's due.",
+          "scene": "The view tightens on the tall column from the forum floor. The spiral carving is clear enough to pick out little soldiers, baggage animals, a bridge, and repeated imperial figures as the scenes wind upward. At the foot of the shaft, the base writing sits above the doorway, with a knot of onlookers reading and pointing. On both sides stand the side buildings, their upper windows and colonnaded fronts framing the monument, and beyond them at the far end a scaffold rises over fresh stone.",
+          "points": [
+            {
+              "label": "the base writing",
+              "line": "The writing says this column stands to show how much hill they cut away for the works, and people repeat the measure proudly: a full hundred Roman feet of earth."
+            },
+            {
+              "label": "the side buildings",
+              "line": "Those buildings on either side hold Greek books on one hand and Latin on the other, and not just for show, because records are kept there as well as reading."
+            },
+            {
+              "label": "the scaffold",
+              "line": "Beyond the column, where you catch that scaffold and fresh stone, they're making a temple for the deified Trajan, so even this finished marvel is still growing at the far end."
+            }
+          ]
+        },
+        "stop_04_the_forum_c4": {
+          "narration": "I come here washed, with a cleaner tunic and a wax tablet, because marble doesn't make men kinder, but it does make them ask who sent you.",
+          "scene": "Under a shaded portico at the forum's edge, Lucius in a cleaner tunic stands with a wax tablet tucked in one hand, waiting his turn beside the other baker, another working man with flour on his cuff. Ahead of them the seated clerk leans over a small desk with scrolls and tablets, while a young attendant carrying the slim roll slips past between togaed patrons and petitioners.",
+          "points": [
+            {
+              "label": "the other baker",
+              "line": "We're a collegium, and that gives a man some weight. A baker can even boast of public contracting; there's a tomb in this city where one calls himself pistor and contractor, plain as brass."
+            },
+            {
+              "label": "the seated clerk",
+              "line": "If a supply quarrel grows big enough, it climbs toward the annona men, and they can put law behind shipping contracts and the private fellows who keep grain moving when everybody else is only shouting."
+            },
+            {
+              "label": "the slim roll",
+              "line": "That little book roll costs about four sesterces, so when one is tucked under a fine arm I mind my floury hands and keep my jokes for outside this doorway."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, then. Marble can stamp a contract, but it still can't chew, so let's go where all this counting turns into a meal."
+    },
+    "stop_05_the_insula": {
+      "arrival": {
+        "line": "And here's the bill Rome sends back: crowding, stairs, carried water, and sleep light as ash because half your danger starts underneath you.",
+        "scene": "From halfway up a sloping street, a tall brick-and-pale-stucco apartment block fills the frame, its ground-floor arcade opening onto busy shopfronts. A painted doorway with a narrow stair rises beside one shop, rows of windows stack upward above the arches, and a line of laundry hangs from the highest level. Baskets, amphorae, and a couple of tenants on the steps make the frontage feel full before you even count the people at the windows.",
+        "points": [
+          {
+            "label": "rows of windows",
+            "line": "A block this size can hold about four hundred people, which is a fine arrangement if you sell cups or lamp oil, and a poor one if somebody drops a coal at bedtime."
+          },
+          {
+            "label": "painted doorway",
+            "line": "It was built to earn, not to impress. You can read that in the shopfront below, the stair squeezed beside it, and the better plaster saved for the rooms that bring better rent."
+          },
+          {
+            "label": "upper laundry",
+            "line": "From dawn till dark those stairs never quite empty: boys with bread, women with jars, workmen with tools, and everybody cursing whoever chose the top room when the rent was settled."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_the_insula_c1": {
+          "narration": "Street level earns the rent, the floor above lives best, and the higher you climb the meaner it gets, which is why poor men know the most stairs.",
+          "scene": "A straight-on view of the insula frontage shows one deep shop arch at street level with goods inside, a low mezzanine slit just above it, a pair of broad windows on the main living floor, and smaller shuttered openings stacked higher toward the roof. The brick facade is neat but worn already, and the stair entrance disappears into shadow at one side.",
+          "points": [
+            {
+              "label": "shop arch",
+              "line": "Those arches earn before dawn and after dark. Shops and workrooms sit under them, and the fellow running a taberna often sleeps in the low mezzanine right above, close enough to hear his own shutter rattling."
+            },
+            {
+              "label": "broad window",
+              "line": "The best rooms aren't at the top at all. They're down on the main lower living floor, with broader windows, more light, and enough space that a family with money can pretend Rome isn't leaning on them."
+            },
+            {
+              "label": "upper shutters",
+              "line": "I'm not inventing the height for effect. A block of this sort still stands near the Capitoline with five storeys kept, which is proof enough that rent can climb as high as a man's breath."
+            }
+          ]
+        },
+        "stop_05_the_insula_c2": {
+          "narration": "Many rooms up there have no piped water, no bath, often no privy, so every drop is carried and plenty of supper is bought cooked.",
+          "scene": "Inside the stair entry, the frame looks upward through a dim shaft of steps. A tenant climbs with a heavy water jar hugged to the hip, a small brazier pan smokes beside an open doorway on the landing, and on the sill just inside sit an oil lamp and a plain plate. The upper steps vanish into deeper shadow where the cheaper rooms begin.",
+          "points": [
+            {
+              "label": "water jar",
+              "line": "Most upper tenants fetch every drop themselves, shoulder, stair, shoulder again. Once in a while somebody gets pipe water into rented rooms, and officials grumble at that, because comfort in one flat usually means shortage somewhere else."
+            },
+            {
+              "label": "brazier pan",
+              "line": "A lot of those rooms have no privy, no place to wash properly, and no clear kitchen either, so supper comes off a little charcoal pan or out of a stall with somebody else's smoke on it."
+            },
+            {
+              "label": "lamp and plate",
+              "line": "Cheap rent keeps its joke hidden. An oil lamp costs two asses and a plain plate one, so the highest room stays cheap only until you start buying the little things a bare room can't do without."
+            }
+          ]
+        },
+        "stop_05_the_insula_c4": {
+          "narration": "What frightens me here is smoke below or a wall starting to open, because fire climbs faster than feet and bad brick gives less warning than thunder.",
+          "scene": "At dusk, the camera stands in the street outside the insula stair. By the doorway sit a filled bucket and a pair of sandals ready to snatch on, while a long crack runs through the plaster above a shopfront and a timber prop braces the wall. Beyond the roofline at the back, a massive pale stone wall rises higher than the tenement, catching the last light.",
+          "points": [
+            {
+              "label": "bucket and sandals",
+              "line": "Up under the tiles you're the last warned and the last down, so I make my own people keep water filled, sandals ready, lamp pinched out, and the nearest stair fixed in memory."
+            },
+            {
+              "label": "cracked plaster",
+              "line": "The law expects water kept ready in upper rooms, and when that fails the fire-fighters come, freedmen with buckets, hooks, pumps, and enough shouting to wake a cemetery two streets over. Augustus even set street-front buildings at seventy feet."
+            },
+            {
+              "label": "stone wall",
+              "line": "That great stone wall behind the roofs is there to keep forum marble from the fire-prone quarter, and after the great fire they laid measured, broader streets, set colonnades, left open space, and cut heights to help flames run out of road."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So keep the whole thing together in your head: ship, river, quay, measure, warehouse, mill, oven, stair, rented room. Miss one convoy, shave one measure, start one fire in a stair, and a million mouths go anxious very quickly. I'm Lucius Nonius Rufus, pistor, and that's Rome to me: marble, law, river, warehouse, oven, tenement, one machine. Grain in, ash out, and if we do our work you call it ordinary. Uale, frater."
+    }
+  }
+}

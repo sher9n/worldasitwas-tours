@@ -1,0 +1,384 @@
+{
+  "tourId": "tour_gothenburg_1745_lighterman",
+  "companion": "Sven Hallberg",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_packhouse": {
+      "arrival": {
+        "line": "Morning to you. I'm Sven Hallberg, a lighterman here, and I earn my bread where deep-bellied ships stop short and smaller craft like mine take their cargo in.",
+        "scene": "From quay height beside the inner canal, the frame looks west along dark brackish water. A flat lighter sits low against rough timbers, its bow nudging the quay while two men steady it with boat hooks. Mid-frame a rope sling lowers a tea chest onto wet planks. To one side lie straw-wrapped porcelain bundles and a couple of casks. Behind them stand plain merchant houses with hoist beams and broad, shut warehouse doors at water level, their thresholds muddy from traffic.",
+        "points": [
+          {
+            "label": "the canal water",
+            "line": "This cut water is no natural creek. They dug it in my grandfather's time, and it still serves as the town's chief harbour, because trade likes straight banks better than pretty views."
+          },
+          {
+            "label": "the flat lighter",
+            "line": "Those flat craft are the real carts of Gothenburg. River freight comes over from bigger ships into lighters like mine, then into the canal, out to Majorna, or farther upriver as needed."
+          },
+          {
+            "label": "the warehouse doors",
+            "line": "This isn't some grand Company palace; this is the working edge where river craft meet the inner magazines, not a fine show frontage, and that's why the mud, doors and hooks matter more than carved stone."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_packhouse_c1": {
+          "narration": "I'm thirty-eight, and since boyhood after my father I've brought Company cargo from the fortress reach to town, rowing and warping it up here and getting paid by the load.",
+          "scene": "A closer frame at the landing stage shows the lighter hard against the quay. Foreground left, several square tea chests with black brush marks are stacked two high, damp and scuffed. Foreground right, long porcelain bundles wrapped in straw are heaped beside a tub, with bits of packing loose on the planks. Across the canal rise tall house fronts of timber and brick, their upper magazine doors and lifting tackle facing the water.",
+          "points": [
+            {
+              "label": "the tea chests",
+              "line": "Most of what comes back is tea, and a cargo like Götheborg's can run to well over two thousand Bohea chests, with hundreds more Congou and Souchong besides, before you even reckon the smaller sorts."
+            },
+            {
+              "label": "the straw bundles",
+              "line": "Porcelain is the other nuisance, because it is counted three ways at once: chests, tubs, and straw bundles, and one return can bring thousands of those bundles alone to the quay."
+            },
+            {
+              "label": "the house fronts",
+              "line": "These house fronts belong to men who trade as hard as they pray. This canal is lined with the town's principal merchants, because every profitable thing sooner or later comes by water."
+            }
+          ]
+        },
+        "stop_01_the_packhouse_c2": {
+          "narration": "I was on the water that twelfth of September when Götheborg struck, and in five stops I'll show you how. Touch the picture for more, or hold the green button and ask.",
+          "scene": "The camera stands almost level with a trestle table on the quay. At centre a tally clerk in a dark coat bends over a ledger while another man beside him repeats the count. To their left hangs a beam scale with a tea chest suspended just above the planks. Behind them a warehouse doorway stands closed with an iron padlock and seal cord, and labourers wait with hooks and slings near the threshold.",
+          "points": [
+            {
+              "label": "the tally clerk",
+              "line": "He calls the marks, number and sort, and another man repeats them back so nobody can forget what crossed the plank. Fair clerk, fair count; false clerk, empty belly for us."
+            },
+            {
+              "label": "the hanging scale",
+              "line": "Tea isn't truly sold till the chest has hung here, and the printed tare, the chest's own weight, is taken off, so buyers pay only for leaf reckoned by skålpund."
+            },
+            {
+              "label": "the padlock",
+              "line": "Once a load goes inside, the door is shut and sealed till sale. Everybody watches the locks, and everybody watches the clerks, because light tea will walk if a hand turns loose."
+            }
+          ]
+        },
+        "stop_01_the_packhouse_c4": {
+          "narration": "The town's money lands piecemeal: chests, tubs, bundles, bars and canisters, all shifted by wet hands before any gentleman touches it.",
+          "scene": "In a busy waterside frame, short dull metal bars are stacked in the foreground on a scrap of sailcloth, and behind them a bent chest carrier braces a tea chest against his shoulder as he walks up a plank from the lighter. Farther back, more tea chests stand roped in a sling above the boat, while the canal and quay edge shine wet under boot prints.",
+          "points": [
+            {
+              "label": "the metal bars",
+              "line": "Those bars are tutanego, zinc to most mouths, and heavy stuff like that rides low in the ship. Porcelain sits above, while tea and silk are kept higher and safer."
+            },
+            {
+              "label": "the chest carrier",
+              "line": "A hard day of back-work reckons about two daler coppermoney, so a man thinks twice before swaggering. A barrel of salt is around twenty-four, which tells you what tired shoulders are worth."
+            }
+          ]
+        }
+      },
+      "transitionOut": "From these locks and ledgers, let's go downriver, where the deep ships must wait and a clear day can still turn wicked."
+    },
+    "stop_02_the_lighters": {
+      "arrival": {
+        "line": "Here at Klippan the river is broad enough for the great ships, but not kind enough for town, so we finish the voyage by lighter, load after load.",
+        "scene": "The frame looks west along the broad brown river at Klippan. Two great East Indiamen ride at anchor midstream, their dark hulls high and their bare yards webbed with rigging. In the foreground a line of flat lighters pulls across the wash, one stacked with chests and another lying empty under the stern of the nearer ship. Straw, reed packing and splintered crate wood drift on the water, and far downriver the low stone fortress sits by the mouth.",
+        "points": [
+          {
+            "label": "the line of lighters",
+            "line": "That's the last stretch of the China trade. The grand ship waits where she still floats easy, and we nosing little boats fetch her guts to town one chest, tub or bundle at a time."
+          },
+          {
+            "label": "the dark hull",
+            "line": "Klippan has served as the deep harbour since before my father's day. Upstream the river shallows and twists, so a deep ship may look near home and still be no nearer landing."
+          },
+          {
+            "label": "the far fortress",
+            "line": "New Älvsborg keeps the mouth behind us, but forts don't help with draught. Stone can bar an enemy well enough; it can't lift an Indiaman over a bank of mud."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_the_lighters_c1": {
+          "narration": "The Indiamen lie out here because their deep bellies would ground before the town, and then men like me sling, row, warp, unload, and row back again.",
+          "scene": "From low in a boat, the frame looks up at the side of a huge Indiaman anchored in the river. A chest hangs in a rope sling halfway down her black hull, while below it a flat lighter lies pressed to the ship, three men bracing with oars and a wet line. Another lighter waits astern, and beyond the ship's bow the brown reach narrows toward the shallower town water.",
+          "points": [
+            {
+              "label": "the anchored hull",
+              "line": "Later men reckon any ship drawing much above six foot gets no farther than Såggrundet, and that sounds right to me. You feel this town's depth with your oar long before you measure it with a rule."
+            },
+            {
+              "label": "the hanging chest",
+              "line": "A load like that is Company gold till it slips. The sling jerks, the boat sheers off in the wash, somebody's boots fill, and then all our shouting is about saving goods before pay goes under."
+            },
+            {
+              "label": "the flat lighter",
+              "line": "We get paid by the load, not by how cold the water is or how many times we row back. On a busy return you work without rest or stopping till dark says enough."
+            }
+          ]
+        },
+        "stop_02_the_lighters_c2": {
+          "narration": "A China run isn't one straight pull: we send iron, timber, tar and rigging south for silver, and silver buys the cargo in Canton.",
+          "scene": "On the deck of a weathered cargo boat moored beside a returning Indiaman, iron bars lie stacked in the foreground beside tar barrels, coils of rope and a patched water cask. A salt-burnt sailor leans on the rail behind them, and farther back the larger ship's masts rise into a pale sky.",
+          "points": [
+            {
+              "label": "the iron bars",
+              "line": "Those bars and cordage are the beginning only. The ship runs south with iron, timber, tar, rope and rigging, and it is silver taken on in Cádiz that truly buys the China cargo."
+            },
+            {
+              "label": "the patched water cask",
+              "line": "On the last run they missed the southern monsoon, had to sit in Java five months, and came on short of food and water. Delay at sea is never just delay to the men aboard."
+            },
+            {
+              "label": "the salt-burnt sailor",
+              "line": "Götheborg left here in March two years back, reached Canton by the next summer, and sailed home again in January. Near one seaman in ten on such voyages never sees this river."
+            }
+          ]
+        },
+        "stop_02_the_lighters_c4": {
+          "narration": "After near two years they don't come ashore like heroes; they want bread, drink, dry ground, wages, and a bed that keeps still.",
+          "scene": "At a muddy landing beside the anchorage, a ship's boat has just come alongside rough planks. A young sailor jumps ashore with a sea chest on his shoulder, an older man sits slumped by an open biscuit sack, and under a small shed a ledger man waits with papers and a box, while other crewmen stare toward dry ground.",
+          "points": [
+            {
+              "label": "the young sailor",
+              "line": "They look used up, but most are young. The seamen on these China ships run not far from thirty on average, and the ship boys are still in their teens doing a grown man's labour."
+            },
+            {
+              "label": "the biscuit sack",
+              "line": "Common fare is dried fish, salted meat, peas, grain and hard biscuit, which sits badly enough after months of damp. Fresh stuff is scarce, drink turns foul, and men sicken long before land."
+            },
+            {
+              "label": "the ledger man",
+              "line": "A few come back with a little private trade to sell, and a few with nothing, but all of them are watching for pay. The last part of a man's wages becomes real only at home."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Easy now, because from this reach we'll follow one homecoming almost finished, and you'll see how wackert klart weather can still drown a ship."
+    },
+    "stop_03_the_wreck": {
+      "arrival": {
+        "line": "Home water can break a ship as neatly as any ocean, and that morning she came in with the fort ahead and not a soul expecting ruin.",
+        "scene": "From a low open working boat on brown-green water, the East Indiaman stands in from seaward beneath a pale morning sky, her full sails drawing easy. A small pilot boat rows up alongside her quarter, a faint drift of signal smoke hangs near the ship, and the low stone fort sits beyond on its rocky island, squat and grey against the river mouth.",
+        "points": [
+          {
+            "label": "pilot boat",
+            "line": "At nine in the morning she showed flag and fired a gun for a pilot, and Caspar Matthison came off to her. From then on she had local knowledge underfoot, which makes what followed harder to stomach."
+          },
+          {
+            "label": "stone fort",
+            "line": "That low work is Nya Älvsborg, old already in my time, all granite faces and awkward angles. It was raised over many years on its island, five-sided in the main, because this river mouth has always needed watching."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_the_wreck_c1": {
+          "narration": "In fair wind and clear sky, still outside the river mouth, she struck a rock every pilot knows, and her bow jumped up like live timber.",
+          "scene": "Seen close from another boat, Götheborg has just taken the hidden shoal and the whole front of her rides unnaturally high, with spray whitening at the stem while the stern settles deeper. A man stands at the rail near the waist where the pilot would be, and low across the water behind the lifted bow lies the fort.",
+          "points": [
+            {
+              "label": "raised bow",
+              "line": "She hit so hard the fore part came up about four and a half feet, which is enough to make every loose thing aboard lurch aft. The rock lies hidden only fourteen feet down, and pilots call it Knipla börö."
+            },
+            {
+              "label": "pilot at rail",
+              "line": "The strange part is not a storm or darkness, because there was none. In pilot water the ship is commonly left to the pilot's handling, so once he was aboard all eyes would have been on his marks and judgment."
+            },
+            {
+              "label": "fort behind",
+              "line": "This happened only a short pull from safety, on the ground they call Hunnebådan, just south of where the shoal mark stands later and not far west of the fort. That is what still turns a boatman's stomach."
+            }
+          ]
+        },
+        "stop_03_the_wreck_c2": {
+          "narration": "Guns called the river in, boats swarmed round, men pumped and carried out goods, and still the water climbed; nobody drowned there, though the voyage had killed thirty-five already.",
+          "scene": "The frame is crowded and noisy: Götheborg lies fast and slightly canted, with several small boats pressed alongside in choppy brown-green water. A pump gang strains at the brakes on deck, men wrestle a cable and anchor out through a stern cabin window, and a ship's boat already heavy with seamen and goods pulls away under hard rowing.",
+          "points": [
+            {
+              "label": "pump gang",
+              "line": "What beat us was time. The water inside rose from about twenty inches to thirty, then to five feet within a very few minutes, so pumping was honest labour but no cure once the bottom had opened."
+            },
+            {
+              "label": "cabin window",
+              "line": "They tried to warp her off, and for that they carried an anchor out through the cabin window, because you use any opening when a ship is dying under you. It did no good. By next morning she had ten feet within."
+            },
+            {
+              "label": "ship's boat",
+              "line": "Help came fast from Riddarhuset, from Admiralty men under Lars Bogman, and from half the river besides. When the town can hear your guns and see your tops, every spare boat turns useful at once."
+            }
+          ]
+        },
+        "stop_03_the_wreck_c4": {
+          "narration": "By next morning hope was gone, so we turned to saving goods, day and night without rest, stripping whatever the wreck would still surrender.",
+          "scene": "A day into the salvage, the wreck sits lower and darker in the water, her after part sagging awash and only rough mast stumps left above the deck. Beside her a lighter is stacked with wet tea chests, and at the far quarter the sunken stern shows where men keep working over the drowned hold.",
+          "points": [
+            {
+              "label": "mast stumps",
+              "line": "On the fourteenth they cut the masts away because men feared she would cant over and roll the work into the river. Once a wreck settles, tall spars are more danger than help, however fine they looked under sail."
+            },
+            {
+              "label": "wet tea chests",
+              "line": "If she'd come safe to town, the return was reckoned near two and a half million daler silvermynt, while a common sailor sees about two daler in a month. Then the wet tea was dried in baking ovens round the town, so even the air smelt expensive."
+            },
+            {
+              "label": "sunken stern",
+              "line": "Much of the heavy porcelain never came free, because those chests were stowed low under tea, filler cargo, broken timber and later mud. By the sixteenth the after-part was under, Bagge took over with diving gear, and in the end only about a third was saved, yet the voyage still paid."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once goods are ashore, river work turns back into counting, and up in town the wreck becomes locks, ledgers, and sale."
+    },
+    "stop_04_the_auction": {
+      "arrival": {
+        "line": "After all that wet saving, this is the dry part: at Lilla Torget the cargo turns into paper, and I stay where a hauling man belongs, outside the door.",
+        "scene": "We stand at the corner by Lilla Torget on a wet grey morning, facing a plain warehouse front beside the canal. A broad double door stands open at centre with tea chests, silk bundles and splintered crate boards just inside. To the left under the eaves a folio clerk works at a high desk. At the right edge a wigged buyer steps down onto shining cobbles while a porter bends under a chest behind him, and canal water glints past mooring posts in the background.",
+        "points": [
+          {
+            "label": "double door",
+            "line": "This corner is Company ground already. The property men call it the East India Company's warehouse house, which tells you what matters here: not show, just sealed doors between canal, quay and square."
+          },
+          {
+            "label": "wigged buyer",
+            "line": "The room draws every sort with credit behind him. Scots names, German names, Dutch names, our own too, and you can tell them by the clean shoes and servants carrying samples."
+          },
+          {
+            "label": "folio clerk",
+            "line": "The printed sale runs in a fixed order, which keeps the room from turning into a brawl: rules first, then tea, smaller wares, porcelain, silk and cloth, and private venture last."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_the_auction_c1": {
+          "narration": "From the doorway you can follow the shape of it: lots called, samples handled, bids nodded through, and tea only truly sold once the chest is weighed.",
+          "scene": "We are just outside the sale room, looking in past a crowd at a long table where a clerk stands with the catalogue and a buyer leans over with a memorandum. In the foreground a servant holds a sample tray with loose tea and a broken porcelain cup. At the left a tea chest hangs from a beam scale by rope slings, with weights on the floor beneath. On the right, tight silk bundles and a stack of small crates wait against the wall while two merchants in better coats watch the bidding.",
+          "points": [
+            {
+              "label": "beam scale",
+              "line": "A chest bought in the room still has one reckoning left. They hang it up, take off the printed tare, the chest's own weight, and the buyer pays by the skålpund for leaf alone."
+            },
+            {
+              "label": "sample tray",
+              "line": "Buyers don't bid blind if they can help it. A man sniffs the leaf, fingers the silk, taps the porcelain, and all the while he is judging what his own customers will pay elsewhere."
+            },
+            {
+              "label": "silk bundles",
+              "line": "Silk is trickier than tea now. The kingdom has set its face against Chinese silk for home use this very year, so plenty of what passes here is meant to travel on again."
+            }
+          ]
+        },
+        "stop_04_the_auction_c2": {
+          "narration": "The Company itself is a chartered bargain from the Crown: for fifteen years this town has the Swedish trade east of the Cape to itself.",
+          "scene": "The frame faces the warehouse steps from the square. Two men in wet coats wait by a post with empty handbarrows and rope slings. At centre a merchant in a dark coat and wig studies a folded memorandum while a servant holds the door for him. Beyond them a cart with tea chests stands by the canal edge, and another clerk in clean cuffs speaks quietly with a ship's officer carrying a small sealed bundle.",
+          "points": [
+            {
+              "label": "wet coats",
+              "line": "For us the East India trade means hire when a ship comes home, more waiting at doors, and wetter boots. It doesn't mean shares in the paper, or a stone house, or leaving the river behind."
+            },
+            {
+              "label": "folded memorandum",
+              "line": "The catalogue and conditions are printed, so men come in with figures ready and credit arranged; nobody here is rummaging on a whim, however much sniffing and tapping goes on."
+            },
+            {
+              "label": "sealed bundle",
+              "line": "Not every package here is the Company's alone. Officers and crew are allowed a little room for their own venture, so one return mixes grand capital with private nibbling together."
+            }
+          ]
+        },
+        "stop_04_the_auction_c4": {
+          "narration": "Even Götheborg's wreck doesn't stop the counting; before winter is out they sell saved tea, silk brocade and porcelain, and the river turns loss into money again.",
+          "scene": "A later day at the same warehouse, brighter and colder. In the foreground a blackened tea chest from the wreck sits open beside a basket of damp packing straw. At centre two tight bundles of silk brocade lie on trestles, and a porter carries a crate of porcelain bowls toward a side door. On the steps a small knot of well-dressed buyers speak together while, off to the left by the wall, a river man in rough clothes stands back with his cap in hand.",
+          "points": [
+            {
+              "label": "blackened chest",
+              "line": "They got enough out to make a proper sale of it. On the twenty-eighth of November they put up thirty tons of tea, eighty bundles of silk brocade, and sundry porcelain from the wreck."
+            },
+            {
+              "label": "buyers on steps",
+              "line": "The real gains settle with directors, investors, supercargoes and the great re-exporting merchants. A rowing man may carry the chests, but he doesn't sit in the ring where they divide the cream."
+            },
+            {
+              "label": "cap in hand",
+              "line": "An ordinary townsman doesn't walk in and buy himself a slice of the Company. Each voyage is gathered among men already standing close to the trade, and the rest of us wait for hire."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along to the water again, and I'll show you what this town keeps for itself after the merchants and clerks have had first pick."
+    },
+    "stop_05_the_town": {
+      "arrival": {
+        "line": "Come off the square with me and you'll feel the town change under your boots, because Company stone fronts end quickly and the wet wooden lanes begin.",
+        "scene": "From the corner of a canal street, the frame looks along dark water at left where cobbles run beside a piled quay and a short new stretch of stone wall. Tall merchant houses with shuttered stone fronts fill the near left and background. To the right, a narrow muddy lane slips inward between lower timber houses and sheds, with stacked firewood, a handcart, hanging laundry, and a shallow puddle catching the sky.",
+        "points": [
+          {
+            "label": "stone fronts",
+            "line": "The better streets are meant to show a hard face. Along the canal, men are expected to build in stone, or at least turn stone gables toward water and street where every buyer passes."
+          },
+          {
+            "label": "muddy lane",
+            "line": "Step in a few paces and the ground tells the truth. This town was laid out on wet meadow, won back by digging and filling, so damp keeps rising under yards and thresholds."
+          },
+          {
+            "label": "quay piles",
+            "line": "Those timbers at the edge do more work than they look. The cobbled street rides on a worked waterline, and only now are bits of proper stone canal wall beginning to appear."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_the_town_c1": {
+          "narration": "This place sits on won ground, so even in dry weather you've damp under the street and rot waiting where a beam, a sill or a piling goes slack.",
+          "scene": "The frame stands inside a tight inner lane: low timber houses press close on both sides, one with a plastered gable toward the passage. A rough plank path crosses puddled mud. At left sits a stacked woodpile beside a small shed and bake-oven roof. Laundry hangs between posts, and a narrow strip of dark water glints beyond the houses.",
+          "points": [
+            {
+              "label": "plastered gable",
+              "line": "A house needn't be stone through and through to dress itself up. You'll often see timber behind, with brick or plastered framing turned outward so the street gets the sober face."
+            },
+            {
+              "label": "woodpile",
+              "line": "What keeps a lane alive is all this yard work: fuel stacked dry if it can be managed, sheds for tools, ovens, privies, and little corners let cheap to whoever needs a bed."
+            },
+            {
+              "label": "plank path",
+              "line": "When the rain sits in here, a couple of boards can spare your boots, though not your ankles. Leave timbers untended in a place this wet and rot will eat them from below."
+            }
+          ]
+        },
+        "stop_05_the_town_c2": {
+          "narration": "Wet ground doesn't sweeten a flame. We all live close, so one stove, one bad chimney, one tar store can set a whole quarter running.",
+          "scene": "In a cramped yard at dusk, a filled water barrel stands by a timber doorway beside two wooden buckets. A ladder leans under the eaves, a long iron fire-hook hangs on pegs, and an axe rests on a chopping block. At the back, a tarred cask sits near a low shed and a chimney rises above the roofline.",
+          "points": [
+            {
+              "label": "water barrel",
+              "line": "The town is split into four fire quarters, each with its own officers, and they come round inspecting. A householder is meant to keep a filled barrel ready, not promise one after the sparks are loose."
+            },
+            {
+              "label": "fire-hook",
+              "line": "Ladders, hooks, axes and buckets are not for show. If your gear is missing when they inspect, the fine is ten mark, which stings harder than buying the tools once."
+            },
+            {
+              "label": "tarred cask",
+              "line": "They also nose about for trouble: pitch, tar, foul chimneys, anything that catches quick. Upset the fire barrel on purpose and you'll pay forty mark, so even fools think twice."
+            }
+          ]
+        },
+        "stop_05_the_town_c4": {
+          "narration": "After a day among cargo and counting, I don't ask for silk. I want a dry room, a sound stove, steady hire, and the children sleeping easy.",
+          "scene": "Evening in a narrow lane: a woman stands in a timber doorway with one child at her skirt and another seated on the step. Beside the door are a bucket, a fire-hook, and a covered water barrel. Low roofs crowd close above laundry lines; a small woodstack and handcart fill the yard, and between the houses a canal glimmers at the far end.",
+          "points": [
+            {
+              "label": "doorway woman",
+              "line": "What I pray for is ready money enough that, if the bell goes, she grabs the children and runs at once instead of standing there choosing what can be saved."
+            },
+            {
+              "label": "close roofs",
+              "line": "A roof can keep rain off and still frighten you. When houses stand this close, one bad night in a neighbour's loft can send a whole lane out into the dark."
+            },
+            {
+              "label": "bucket and hook",
+              "line": "You leave the gear where a hand finds it blind in the dark. No use keeping buckets handsome in a shed when smoke is already in the rafters and sparks are running."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's Gothenburg as I know it: stone where money wants showing, timber where working folk sleep, wet ground under both, and the Company turning far cargo into local bread. I'm Sven Hallberg, and after all the shouting, counting and hauling, a man comes home wishing for plain things: a dry room, sound children, steady work, and no ship on the bank. Safe home with you now, goodbye, and good oars."
+    }
+  }
+}

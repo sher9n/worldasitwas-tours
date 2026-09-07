@@ -1,0 +1,124 @@
+{
+  "id": "tour_paris_1900_turnstile",
+  "city": "paris",
+  "cityName": "Paris",
+  "country": "FR",
+  "year": 1900,
+  "yearRange": [1899, 1901],
+  "lang": "en",
+  "title": "Fifty Million People Through a Gate",
+  "theme": "Five stops across Paris in 1900 with Louise, who takes the tickets. The Exposition Universelle has taken over both banks of the Seine from April to November and something close to fifty million people will walk through its gates before it closes. It has left the city a Grand Palais, a Petit Palais, a bridge, a railway station on the quay, a moving pavement that carries you along without walking, and, opened in July while the fair was already running, a railway underneath the streets. She stands at a turnstile and watches the whole world file past her, then goes home under the ground.",
+  "companion": {
+    "name": "Louise Marchand",
+    "role": "Turnstile attendant",
+    "brief": "Twenty-six, one of the thousands the Exposition took on for the season: she works a turnstile at one of the entrances, tears and counts tickets, answers the same nine questions in French and bad English, and is on her feet from before opening until the crowds thin at night. Lives out east near the Porte de Vincennes with her mother and a younger brother, and since July she has come in on the new underground railway, which is the single most extraordinary thing that has ever happened to her and which she is careful not to be seen enjoying too much. She has learned to read a crowd: who is lost, who is about to faint, who is counting their money, which countries queue and which do not. Cheerful, quick, quietly proud of a city that has managed all this, and clear-eyed about what she is paid for it. She knows nothing after 1900: not what the century does next, not what happens to any of these countries, not that the fair comes down in the winter and most of it will not be missed.",
+    "voice": "coral",
+    "narrationVoice": "rS7c1woNY04WT3UAS83Y",
+    "presence": {
+      "standing": "at a wooden turnstile booth by an ornamental fair entrance with a crowd moving past behind her",
+      "gesture": "squares a fan of torn tickets against her palm and glances along the queue"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Paris in 1900: Haussmann stone streets of six storey cream limestone buildings with iron balconies and mansard roofs, wide boulevards, broad pavements with kerbs, plane trees, kiosks, advertising columns, cast iron street furniture. Horse traffic dominant: cabs, omnibuses, drays, with the occasional early motor car and bicycles among them. Overhead the beginnings of electricity: arc lamps, strung festoon lighting, wires. The Exposition itself extravagant and temporary: white and gilded plaster palaces in every style at once, domes, minarets, flags, ornamental gateways, fountains, crowds ten deep. Dress of 1900: women in long skirts to the ground, high collars, shirtwaists, elaborate wide hats, parasols; working women in plainer dark skirts, blouses and boaters or caps; men in three piece suits, bowlers, boaters and straw hats, workmen in blue smocks and caps. Bright summer light and warm electric light at night, coal smoke, dust. Camera at eye level, 9:16 framing, natural colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or worn later than the year. No Sacre-Coeur as a finished white basilica, no Tour Montparnasse, no Centre Pompidou, no La Defense, no glass or concrete towers of any kind, no modern airport or aircraft. No cars later than about 1905: no closed saloons, no modern buses, no traffic lights, no road markings, no zebra crossings, no parking meters, no street signage in modern typefaces. No modern Metro: trains, tiling, signage and maps must not look post-war, and no RATP logos. No First World War or after: no soldiers in horizon blue, no steel helmets, no 1920s dress, no flapper fashion, no bobbed hair, no cloche hats, no jazz age anything. No neon, no fluorescent light, no plastic. No printed signage and no legible French or English lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_the_gate",
+      "title": "Where She Stands All Day",
+      "geo": { "lat": 48.8638, "lng": 2.3135, "bearing": 225 },
+      "brief": "One of the Exposition's entrances at opening time: an enormous ornamental gateway, queues along the railings, turnstiles clicking, and a woman counting the world in one person at a time.",
+      "mustCover": [
+        "what a day at the turnstile is actually like, in numbers and in her feet",
+        "what a ticket costs and who can and cannot afford to come",
+        "the nine questions she is asked all day and how she has learned to read a crowd"
+      ],
+      "archiveQueries": ["Pont Alexandre III Paris", "Exposition Universelle 1900 entrance gate", "Paris 1900 exposition crowds"],
+      "landmarks": ["Pont Alexandre III Paris"],
+      "styleNote": "A grand temporary fair entrance of white and gilded plaster with domes, flagpoles and ornament, wooden turnstile booths and iron railings, dense crowds in 1900 dress queueing and passing through. Bright daylight, dust, flags. Nothing structural in glass or steel-and-glass modern style."
+    },
+    {
+      "id": "stop_02_the_new_stone",
+      "title": "The Buildings That Are Staying",
+      "geo": { "lat": 48.8662, "lng": 2.3125, "bearing": 45 },
+      "brief": "The permanent half of the fair: a vast glass-roofed exhibition palace, a smaller one facing it, and a single enormous flat bridge thrown over the Seine, all of it finished in time and all of it built to remain when the plaster comes down.",
+      "mustCover": [
+        "which parts of this are permanent and which will be demolished in the winter, and how everyone knows the difference",
+        "what the bridge was for and why it is as flat as it is",
+        "how quickly all of this was built and who built it"
+      ],
+      "archiveQueries": ["Grand Palais Paris", "Petit Palais Paris", "Pont Alexandre III Paris"],
+      "landmarks": ["Grand Palais Paris", "Petit Palais Paris"],
+      "styleNote": "A monumental Beaux-Arts stone exhibition palace with a great arched glass and iron roof and bronze horses on the corners, a smaller domed palace opposite, and a single wide flat ornamental bridge with gilded columns crossing the river. Crowds, horse cabs, plane trees. Summer daylight. No modern vehicles."
+    },
+    {
+      "id": "stop_03_the_moving_pavement",
+      "title": "The Pavement That Moves",
+      "geo": { "lat": 48.858, "lng": 2.298, "bearing": 90 },
+      "brief": "The electric moving walkway running on a raised track above the fairground, carrying people around the site at a walking pace or better without their walking, and the electricity that is the real exhibit everywhere here.",
+      "mustCover": [
+        "what the moving pavement is, how you get on and off it, and what it feels like the first time",
+        "electricity as the thing the whole fair is really showing off, in what she can point at",
+        "the Eiffel Tower now eleven years old, and what people say about it now they are used to it"
+      ],
+      "archiveQueries": ["Eiffel Tower Paris", "Champ de Mars Paris", "moving walkway Exposition Universelle 1900"],
+      "landmarks": ["Eiffel Tower Paris"],
+      "styleNote": "A raised wooden trestle walkway on legs above a crowded fairground, with a moving platform carrying standing passengers in 1900 dress holding rails, plaster pavilions and domes on either side and a large iron tower in the distance. Daylight, flags, crowds below. No modern escalator or travelator styling."
+    },
+    {
+      "id": "stop_04_the_metro",
+      "title": "The Railway Under the Street",
+      "geo": { "lat": 48.8532, "lng": 2.3692, "bearing": 180 },
+      "brief": "The underground railway opened in July while the fair was already running: an iron and glass entrance at the pavement edge, stairs down into tiled light, and a train that crosses the whole city in a quarter of the time anything above ground can manage.",
+      "mustCover": [
+        "what the journey is actually like: the entrance, the stairs, the platform, the carriage",
+        "what it costs and how it changes what an ordinary worker can do with a day",
+        "what older people in her family say about going under the ground, said kindly"
+      ],
+      "archiveQueries": ["Place de la Bastille Paris", "Paris Metro entrance Guimard", "Paris metro 1900 station"],
+      "landmarks": ["Place de la Bastille Paris"],
+      "styleNote": "A cast iron and glass art nouveau station entrance at the edge of a wide 1900 boulevard pavement, curling green ironwork and amber glass, steps going down. Horse cabs and omnibuses on the street behind, people in 1900 dress at the entrance. Underground: white tiled vault, wooden carriages, gaslight or early electric bulbs. Nothing post-war: no modern trains, tiling, maps or signage."
+    },
+    {
+      "id": "stop_05_going_home",
+      "title": "The Lights Go On",
+      "geo": { "lat": 48.8484, "lng": 2.3958, "bearing": 315 },
+      "brief": "The end of a shift, the fair lit up behind her, and the ordinary eastern quarter where she actually lives: workshops, courtyards, a room shared with her mother and brother, and a city that will be perfectly ordinary again by December.",
+      "mustCover": [
+        "the fair lit at night, described from a distance rather than from inside it",
+        "what her own street and room are like, concretely, against what she has been standing in all day",
+        "what she hopes the new century will be, said plainly and without any prediction"
+      ],
+      "archiveQueries": ["Porte de Vincennes Paris", "Cours de Vincennes Paris", "Paris working class street 1900"],
+      "landmarks": [],
+      "styleNote": "An ordinary eastern Paris street at dusk: plainer five and six storey stone and rendered buildings, shopfronts with shutters coming down, a horse cart, gas and early electric lamps, workshops through an archway. Warm lit windows, cool blue evening, distant glow of an illuminated fair on the skyline. No modern vehicles or lighting."
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Exposition Universelle (1900)",
+      "url": "https://en.wikipedia.org/wiki/Exposition_Universelle_(1900)",
+      "license": "cc-by-sa",
+      "note": "Ran 14 April to 12 November 1900; roughly 50 million visitors; the moving walkway, the palaces and the electricity."
+    },
+    {
+      "title": "Paris Metro Line 1",
+      "url": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro_Line_1",
+      "license": "cc-by-sa",
+      "note": "Opened 19 July 1900, during the Exposition, Porte Maillot to Porte de Vincennes."
+    },
+    {
+      "title": "Grand Palais",
+      "url": "https://en.wikipedia.org/wiki/Grand_Palais",
+      "license": "cc-by-sa",
+      "note": "Built for the 1900 Exposition with the Petit Palais and the Pont Alexandre III, and kept when the temporary pavilions came down."
+    },
+    {
+      "title": "Hector Guimard",
+      "url": "https://en.wikipedia.org/wiki/Hector_Guimard",
+      "license": "cc-by-sa",
+      "note": "The cast iron art nouveau Metro entrances designed for the new underground railway."
+    }
+  ]
+}

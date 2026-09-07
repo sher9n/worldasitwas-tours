@@ -1,0 +1,178 @@
+{
+  "id": "tour_gothenburg_1869_lodging",
+  "city": "gothenburg",
+  "cityName": "Gothenburg",
+  "country": "SE",
+  "year": 1869,
+  "yearRange": [
+    1867,
+    1871
+  ],
+  "lang": "en",
+  "title": "The Severe Year",
+  "theme": "Five stops across Gothenburg in 1869 with Kristina, who keeps a lodging house by the harbour. Three bad harvests have emptied the inland parishes: 1867 was the wet year when the grain rotted, 1868 the dry year when the fields burned, and 1869 is the one people are calling the severe year, of sickness and children begging at doors. The country is leaving. It leaves through this town, on the Hull steamers, and she is where families sleep while they wait for the boat.",
+  "companion": {
+    "name": "Kristina Lund",
+    "role": "Lodging house keeper",
+    "brief": "Forty-one, widowed, keeps a lodging house in a lane behind the harbour where emigrant families sleep on straw mattresses while they wait for the Hull steamer, sometimes two nights and sometimes eight if the weather is wrong. She feeds them, boils their water, minds their boxes, writes letters for the ones who cannot, and knows which agent is honest and which sells a ticket that does not go where he says it goes. Born in the town; her own husband died on the docks and she took the house on rather than lose it. She is not sentimental about any of it and she is not hard either. She has watched several thousand people leave and has never once been on a ship. She knows nothing after 1869: not how many more will go, not whether any of them arrive, not whether the ones who write from Minnesota are telling the truth.",
+    "voice": "coral",
+    "narrationVoice": "oVXQ3H21hRI9OtM4YH5K",
+    "presence": {
+      "standing": "in the doorway of a narrow lodging house with a lamp behind her and boxes stacked in the passage",
+      "gesture": "folds her arms into her shawl and looks down the lane towards the harbour"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Gothenburg in 1869: a mid nineteenth century northern port city, canals with stone quays and iron railings, plastered stone houses of three and four storeys in ochre and grey with tiled roofs, and behind them dense districts of tarred wooden houses with outside stairs and yards. Cobbled streets, gas lamps on posts, horse carts and drays, a horse omnibus. The harbour full of working shipping: iron-hulled and wooden steamers with tall thin funnels and masts, sailing barques and schooners, lighters, timber and barrels, rope and coal. Emigrant traffic everywhere it belongs: painted wooden emigrant chests roped shut, bundles, families sitting on their boxes, women in headscarves and shawls, men in coarse jackets and caps, children in clogs. Dress of the 1860s: working women in dark skirts, aprons, shawls and headscarves; men in wool jackets, waistcoats, caps and boots; clerks and agents in frock coats and top hats. Cold grey northern light, coal smoke, wet cobbles, sea fog. Camera at eye level, 9:16 framing, natural muted colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or worn later than the year. No Feskekorka, which is not built until 1874. No Poseidon fountain, no Masthuggskyrkan, no Lappstiftet or any glass or concrete building, no Alvsborg bridge or any modern bridge, no Liseberg, no Amerikaskjulet or twentieth century emigrant terminal, no red brick harbour sheds of the 1900s. No electric trams, no cars, no buses, no bicycles of the modern safety type, no aircraft. No electric lighting, no overhead wires, no neon, no modern paving or road markings. No steel container cranes or any twentieth century harbour machinery. No clothing after about 1890: no cloche hats, no 1900s uniforms, no modern coats or footwear. No printed signage and no legible Swedish or English lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_the_lodging",
+      "title": "Where They Sleep Before They Go",
+      "geo": {
+        "lat": 57.7105,
+        "lng": 11.9615,
+        "bearing": 135
+      },
+      "brief": "Her own lane behind the harbour: a narrow lodging house full of families waiting for a boat, straw mattresses on the floor, roped emigrant chests stacked in the passage, and people who have already sold everything they own standing in a town they have never seen before.",
+      "mustCover": [
+        "what a family actually arrives with, and what is in the chest",
+        "how long people wait, what that costs them, and what she charges",
+        "why they are going, told through the last three harvests rather than as a lecture"
+      ],
+      "archiveQueries": [
+        "Postgatan Gothenburg",
+        "Nordstaden Gothenburg",
+        "Gothenburg emigrants 1869",
+        "Swedish emigrant chest",
+        "Gothenburg old wooden houses 19th century"
+      ],
+      "landmarks": [],
+      "styleNote": "A narrow cobbled lane of tarred and painted wooden houses with outside wooden stairs, shuttered windows and a lamp over a doorway. Roped and painted wooden emigrant chests, bundles and baskets stacked in a passage. Families in headscarves, shawls, coarse jackets and clogs sitting on their boxes. Grey damp light, no gas lamp poles in the lane itself."
+    },
+    {
+      "id": "stop_02_the_agents",
+      "title": "The Men Who Sell the Ocean",
+      "geo": {
+        "lat": 57.7092,
+        "lng": 11.9672,
+        "bearing": 45
+      },
+      "brief": "The emigration agents' offices near the harbour, where the whole journey is bought at one counter: steamer to Hull, train across England, ship out of Liverpool, and a card with the name of a place in America on it that most of them cannot pronounce.",
+      "mustCover": [
+        "what the whole route actually is, in order, and how long each leg takes",
+        "what a ticket costs against what a farm labourer earns, and who lends the money",
+        "how she tells an honest agent from a dishonest one, with a concrete example"
+      ],
+      "archiveQueries": [
+        "Swedish emigration agent office 19th century",
+        "Gothenburg Borsen exchange building",
+        "Gustaf Adolfs torg Gothenburg 19th century"
+      ],
+      "landmarks": [
+        "Borsen Gothenburg",
+        "Gustaf Adolfs torg Gothenburg"
+      ],
+      "styleNote": "A mid 19th century city square and street of plastered stone buildings with tall shuttered windows, gas lamps on posts, cobbles, horse carts. Emigrant families with chests and bundles waiting outside an office door among better dressed men in frock coats and top hats. Grey daylight, coal smoke."
+    },
+    {
+      "id": "stop_03_the_letters",
+      "title": "The Letters from America",
+      "geo": {
+        "lat": 57.7078,
+        "lng": 11.9705,
+        "bearing": 315
+      },
+      "brief": "The other half of why anyone goes: letters coming back from Minnesota and Illinois, read aloud in kitchens across the country, sometimes with a prepaid ticket folded inside, and the picture of America they build in the heads of people who have never left their parish.",
+      "mustCover": [
+        "what the letters say, and what she suspects they leave out",
+        "the prepaid ticket sent home by someone already there, and what it does to a family",
+        "what she thinks is true and untrue about the America people describe, said without a sermon"
+      ],
+      "archiveQueries": [
+        "Swedish America letters emigration",
+        "Gothenburg post office 19th century",
+        "Gothenburg cathedral Domkyrkan"
+      ],
+      "landmarks": [
+        "Gothenburg Cathedral Domkyrkan"
+      ],
+      "styleNote": "A plain 19th century interior or street doorway: whitewashed or panelled walls, a lamp, a wooden table, a woman reading a folded letter aloud to seated listeners in working dress. Or a stone city street with a post office door and people gathered. Warm lamplight against cold daylight, no electric fittings."
+    },
+    {
+      "id": "stop_04_the_town_that_stays",
+      "title": "The Ones Who Stay",
+      "geo": {
+        "lat": 57.6992,
+        "lng": 11.9548,
+        "bearing": 225
+      },
+      "brief": "The working districts of a city that is filling up even as the country empties: mills and workshops along the water, new factory chimneys, crowded wooden housing, and country people who got as far as Gothenburg, found work, and stopped there.",
+      "mustCover": [
+        "what work there is here for someone off a failed farm, and what it pays",
+        "how the town has changed in her lifetime, in things she can point at",
+        "why some people stop here instead of crossing, told through somebody specific"
+      ],
+      "archiveQueries": [
+        "Haga Gothenburg",
+        "Haga Gothenburg 19th century",
+        "Gothenburg factory 1860s",
+        "Gothenburg working class housing historic"
+      ],
+      "landmarks": [
+        "Skansen Kronan Gothenburg"
+      ],
+      "styleNote": "A working district of dense two storey wooden houses with steep roofs and yards, washing lines, water pumps, muddy cobbled streets, children in clogs. Behind them brick industrial buildings with tall chimneys and smoke. Grey coal-smoke light, no electric wires or lamps."
+    },
+    {
+      "id": "stop_05_the_quay",
+      "title": "The Hull Boat",
+      "geo": {
+        "lat": 57.7122,
+        "lng": 11.9648,
+        "bearing": 0
+      },
+      "brief": "The harbour on a sailing day: an iron steamer at the quay for the two day crossing to England, chests swung aboard in nets, a crowd of families going down the gangway, and the people on the stone who are not going anywhere.",
+      "mustCover": [
+        "what the crossing to Hull is actually like, and what it is like below decks",
+        "what happens on the quay at the moment of leaving, described plainly",
+        "what she does after the boat has gone, and what she hopes for them"
+      ],
+      "archiveQueries": [
+        "Packhuskajen Gothenburg",
+        "Gothenburg harbour 19th century steamer",
+        "Wilson Line Hull emigrant steamer",
+        "Packhuskajen Gothenburg historic"
+      ],
+      "landmarks": [],
+      "styleNote": "A stone harbour quay with an iron-hulled steamer alongside: a single tall thin funnel, masts and rigging, a gangway down to the quay. Crowds of emigrant families with roped wooden chests, cargo nets swinging boxes aboard, sailing ships and lighters beyond. Cold grey light, coal smoke, wet stone. No modern vessel, no container crane, no bridge."
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Swedish famine of 1867-1869",
+      "url": "https://en.wikipedia.org/wiki/Swedish_famine_of_1867%E2%80%931869",
+      "license": "cc-by-sa",
+      "note": "The wet year, the dry year and the severe year: the last famine in Sweden and the push behind the 1868 to 1869 emigration peak."
+    },
+    {
+      "title": "Swedish emigration to the United States",
+      "url": "https://en.wikipedia.org/wiki/Swedish_emigration_to_the_United_States",
+      "license": "cc-by-sa",
+      "note": "Roughly 54,000 emigrated in 1868 and 1869; the America letters and prepaid tickets; the Homestead Act as a pull."
+    },
+    {
+      "title": "Thomas Wilson Sons and Co (Wilson Line)",
+      "url": "https://en.wikipedia.org/wiki/Thomas_Wilson_Sons_%26_Co.",
+      "license": "cc-by-sa",
+      "note": "The Hull based line that carried Scandinavian emigrants from Gothenburg to Hull, roughly a two day crossing, then rail to Liverpool."
+    },
+    {
+      "title": "History of Gothenburg",
+      "url": "https://en.wikipedia.org/wiki/History_of_Gothenburg",
+      "license": "cc-by-sa",
+      "note": "The nineteenth century city: fortifications long gone, industry along the river, and the harbour that handled the emigration."
+    }
+  ]
+}

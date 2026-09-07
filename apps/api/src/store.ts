@@ -25,6 +25,8 @@ const CITY_META: Record<string, { name: string; country: string; anchor: { lat: 
   stockholm: { name: "Stockholm", country: "SE", anchor: { lat: 59.3251, lng: 18.0711 } },
   rome: { name: "Rome", country: "IT", anchor: { lat: 41.8986, lng: 12.4769 } },
   colombo: { name: "Colombo", country: "LK", anchor: { lat: 6.9337, lng: 79.8425 } },
+  gothenburg: { name: "Gothenburg", country: "SE", anchor: { lat: 57.7072, lng: 11.9673 } },
+  paris: { name: "Paris", country: "FR", anchor: { lat: 48.8566, lng: 2.3522 } },
 };
 
 /**

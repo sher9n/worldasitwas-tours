@@ -1,0 +1,368 @@
+{
+  "tourId": "tour_paris_1780_laundress",
+  "companion": "Jeanne Ricard",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_wash_boat": {
+      "arrival": {
+        "line": "Morning to you. I'm Jeanne Ricard, and I wash Paris linen on a boat off this point, with my knees in the Seine and my arms in other people's dirt all day.",
+        "scene": "From the stony point at the western tip of the island, the Seine opens left and right under a grey morning sky. Three low-roofed wash boats bump at their moorings below, white linen slapping at side hatches; above them bridge carts roll across the Pont Neuf, and along the river edge behind, a row of jutting houses pushes out over the water.",
+        "points": [
+          {
+            "label": "wash boats",
+            "line": "There are about eighty of these washing hulks on the Seine now, rocking at their moorings, and each one means women bent over hatches from first light till the bundles run out."
+          },
+          {
+            "label": "bridge carts",
+            "line": "The bridge never shuts up, and that's useful. You learn to shout your count over wheels, bells, rope, and current, or half your washing gets misheard before noon and blamed on you."
+          },
+          {
+            "label": "jutting houses",
+            "line": "Those houses still shove themselves out above the water here, along the old riverside street, because Paris never knows when to stop crowding the Seine for room and trade either."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_wash_boat_c1": {
+          "narration": "I'm thirty-three, Paris born, and I've done this river round for nine years; my husband's a joiner and often idle, and in five stops I'll show you Paris crowding itself.",
+          "scene": "Inside a low wash boat, the view is close behind Jeanne kneeling at an open side hatch where green river light flashes on a white sheet. A wooden battoir lies on the wet plank beside a scrub brush, a warm bundle of linen sags against the hull, and her split hands grip the cloth over the dark water.",
+          "points": [
+            {
+              "label": "wooden battoir",
+              "line": "The hardest part comes after the lessive. Linen goes through ash-lye first, then it reaches us still warm, and we soap, brush or beat it, rinse it, and rinse it again."
+            },
+            {
+              "label": "warm bundle",
+              "line": "The day has a stupid rhythm to it: before full light the bundles are counted, by noon the first pieces are wrung and hung, and then you bend straight back to the next lot."
+            },
+            {
+              "label": "split hands",
+              "line": "Cold water, wet wood, soap, and alkali work on you all year, so the skin turns white and puffy first, then rough, then it opens at the knuckles and burns after supper."
+            }
+          ]
+        },
+        "stop_01_the_wash_boat_c2": {
+          "narration": "I handle magistrates, actresses, canons, shopkeepers, servants, whores, and worse, and keep quiet about it. Touch what you fancy, and hold the green button if you want to ask me something.",
+          "scene": "On the quay at first light, Jeanne stands beside a wicker basket and a cloth-wrapped counted bundle while she checks pieces against her fingers. A frayed collar hangs over the top of the pile, and farther off by the water a lone shirt man in a coat scrubs a single shirt on the stones in the pale sun.",
+          "points": [
+            {
+              "label": "counted bundle",
+              "line": "I'm paid by the bundle, not by the hour, which means every handover is counting, arguing, and someone swearing a cuff went missing or a sheet tore in my hands."
+            },
+            {
+              "label": "frayed collar",
+              "line": "A poor clerk's shirt comes back often, sometimes every fifteen days, and hard washing tells on it; after a few rough turns under brush and battoir, the cloth gives up."
+            },
+            {
+              "label": "lone shirt man",
+              "line": "On hot Sundays, before sunrise, you'll catch men down here washing their one shirt or one handkerchief themselves, then waiting in a coat for the sun to dry it off."
+            }
+          ]
+        },
+        "stop_01_the_wash_boat_c4": {
+          "narration": "Don't call the Seine pretty. Paris drinks from it, hauls its food on it, and tips its dirty water back into it, all in one breath.",
+          "scene": "From the tip of the island, two water pails stand on the stone edge in the right foreground while a gutter spout trickles into the Seine below. Midstream a heavy hay barge noses past, and to the left a small boatman skiff edges toward a woman soaping linen at the wash-bank under the bridge.",
+          "points": [
+            {
+              "label": "water pails",
+              "line": "Those pails may be headed straight to a room upstairs, and the public fountains take this same river too, so what serves for washing serves for drinking soon enough as well."
+            },
+            {
+              "label": "hay barge",
+              "line": "That barge matters more than any fine view. The river carries about two-thirds of Paris on its back, with provisions, fuel, fodder, and building stuff all jammed together."
+            },
+            {
+              "label": "boatman skiff",
+              "line": "A woman soaping linen at the edge with a boatman edging in beside her is nothing rare here; it's common enough that anyone in Paris would know the sight at once."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, then. Clean linen leaves this water and goes inland, because once Paris has washed itself, it still has to feed a crowded center."
+    },
+    "stop_02_the_bridge_houses": {
+      "arrival": {
+        "line": "Now we've climbed onto Pont Notre-Dame, and if I didn't know better I'd swear this was any cramped street, because the river's gone and trade has swallowed it.",
+        "scene": "A street-level view straight along the middle of the Pont Notre-Dame, hemmed in by two continuous rows of tall attached houses on both sides, their ground floors opened as shops with shutters, signs, and goods hanging out, while upper windows lean over the paved way. Foot traffic fills the narrow corridor. One narrow doorway gap on the right opens just enough to show a sliver of damp light and dark water beyond.",
+        "points": [
+          {
+            "label": "the house rows",
+            "line": "Those two house rows run the whole bridge, front to front, and they'll stay a while yet; nobody pulls them down till six years from now, so for the moment this crossing is still half street, half building, and no use as a prospect."
+          },
+          {
+            "label": "the doorway gap",
+            "line": "You get the Seine in scraps here. A doorway opens, damp light slips through, you smell wet stone and refuse, and then the houses shut the river up again like a door in your face."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_the_bridge_houses_c1": {
+          "narration": "What you're crossing isn't a lookout, it's a choke point. So few bridges serve Paris that island, bridge, quay, cart and foot all squeeze through here.",
+          "scene": "A mid-bridge view crowded with movement: a porter bent under a bulky load pushes through the center, a handcart jams one side of the paving, a priest and market women edge past the shopfronts, and beyond a low opening between buildings you glimpse the dark water under an arch.",
+          "points": [
+            {
+              "label": "the porter",
+              "line": "A man under that kind of load can't step aside neatly, which means everybody bends around him at once, and the whole bridge snarls. One bad halt here can waste half a delivery round and raise language fit to curdle milk."
+            },
+            {
+              "label": "the arch water",
+              "line": "Even with all this racket above, boats are still moving under the arches, dull and muffled, carrying what the city eats and burns. That's Paris for you: one path overhead for feet, another below for cargo, both jammed."
+            }
+          ]
+        },
+        "stop_02_the_bridge_houses_c2": {
+          "narration": "People want rooms here because the shop below earns. A bridge frontage in this crush is money all day, and the upper rooms ride on top of it.",
+          "scene": "A closer view of one stretch of bridge houses: on the left, a shop window gleams with silverware and small bright metal goods; on the right, a hanging painted holy family sign marks a bookseller's door with papers in the window; above, an upstairs casement stands open over the street, with laundry and a face at the sash.",
+          "points": [
+            {
+              "label": "the silver window",
+              "line": "On this bridge you're among near sixty dealers, and plenty deal in bright metal. The orfèvres like a crossing such as this because folk with purses must pass them whether they're shopping or only hurrying home."
+            },
+            {
+              "label": "the holy family sign",
+              "line": "That holy family sign belongs to the bookseller Lesclapart, and he sells printed bits as well as books. If you want the Almanach pittoresque from this bridge, he'll take thirty-six sols off you without blushing."
+            },
+            {
+              "label": "the upstairs casement",
+              "line": "What pays is the door at street level; the bed over it comes second, and it's usually too full of clerks, kin, or apprentices, all stacked above the goods because nobody lets a passing crowd go to waste."
+            }
+          ]
+        },
+        "stop_02_the_bridge_houses_c4": {
+          "narration": "Now they're saying the houses should come down for air and safety, and I can't call that foolish, though every fallen frontage means somebody's room or trade gone.",
+          "scene": "Seen from near one end of the bridge, the houses rise close on both sides and lean slightly inward, making the paved passage below look darker and tighter. An upper storey juts over the line of the shopfront beneath it, and above the roofs only a thin strip of pale sky shows.",
+          "points": [
+            {
+              "label": "the overhang",
+              "line": "Some owners have pushed extra height onto these houses over time, rules or no rules, because a shop on this route is worth wringing hard. Fine for rent day, not so comforting when you feel all that weight above your hat."
+            },
+            {
+              "label": "the strip of sky",
+              "line": "Plenty of people have started cursing these rows as ugly narrow blockages, and I see their point. They steal the river, they hold stale air between the walls, and in summer the whole passage can feel breathed out already."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, keep close. This bridge throws us straight into the crush where buying, filth, food, and burial all knock shoulders."
+    },
+    "stop_03_les_halles": {
+      "arrival": {
+        "line": "Off the bridge and into the Halles, and here's Paris with its mouth open: stalls, mud, shouting, and the cemetery wall pressed hard against dinner.",
+        "scene": "At eye level in a narrow market lane beside the Saints-Innocents cemetery, the raised stone cemetery wall runs along the right, dark and damp. At the far left corner, half buried in a house front, the carved corner fountain spills into a trough. Low stall roofs jut overhead with dripping eaves. Under them sit baskets of eggs, yellow butter pats, bruised herbs, and fruit on wet boards. Mud, straw, and gutter water shine on the ground while the nose of a cart and a horse shoulder force into the lane beyond.",
+        "points": [
+          {
+            "label": "corner fountain",
+            "line": "That fountain isn't standing proud in a square, not here. It's built into the corner house beside rue Saint-Denis, with stalls and sheds crowding it so hard a thirsty soul nearly misses the thing."
+          },
+          {
+            "label": "dripping eaves",
+            "line": "When it rains, the eaves drip straight into eggs, butter, herbs and fruit, and while you're naming your price a cart can shave your hip clean off. Nobody comes here for comfort."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_les_halles_c1": {
+          "narration": "About six hundred thousand mouths lean on these lanes, which is why the Halles never gets to yawn, blink, or miss a cart.",
+          "scene": "A crowded fish row at the Halles fills the frame. In the foreground a broad-armed fishwife leans over a tub, one wet hand raised as she shouts a price; beside her stand silvered fish on boards. Behind her a cart horse and wheel jam the lane, with baskets and peasants pressed aside. To the left, flower baskets and trays of fruit brighten the muck for a moment. More market roofs, hanging signs, and a crush of buyers close the space in on every side.",
+          "points": [
+            {
+              "label": "fishwife's arm",
+              "line": "Those women don't merely shout well. They stand together like a trade of their own, and here they can hold a price by the throat because every buyer knows supper sits in their tubs."
+            },
+            {
+              "label": "cart horse",
+              "line": "All this depends on arrival. Miss a day of carts and boats and the price jumps at once; miss three, and the city starts asking ugly questions with its belly."
+            },
+            {
+              "label": "flower baskets",
+              "line": "At daybreak in spring or summer, these flower and fruit rows can look almost fine, which is a joke the mud tells by noon when the stems droop and the flies arrive."
+            }
+          ]
+        },
+        "stop_03_les_halles_c2": {
+          "narration": "A father on eighteen or twenty sous can't stand bread above two the pound, and that's before he's bought salt, wood, or anything to go with it.",
+          "scene": "The frame looks across a bread and provisions stall. Front left, a steward or household buyer holds a large wicker basket already half full. Just behind him a servant woman has her apron spread for purchases. At the counter lie pale loaves and darker round loaves, the dark loaf nearest the viewer. Off to the right, on a lower board, a few sea-fish slabs glisten dull beside scraps of straw, while poorer shoppers wait with small coins in hand.",
+          "points": [
+            {
+              "label": "large basket",
+              "line": "First comes the master's man with a basket fit for a christening, then servants with aprons spread, and only after that do small rooms like ours peck at what's left, paying dearer for broken choice."
+            },
+            {
+              "label": "dark loaf",
+              "line": "Bread has ranks like people do: white for purses, bis-blanc in the middle, and pain bis for the poor, darker and heavier, with extra bran worked in when times go mean."
+            },
+            {
+              "label": "fish slabs",
+              "line": "Sea fish is dear enough to mock you, and half the time it's tired before it reaches Paris. The best fresh pieces are spoken for higher up, so common buyers nose among what remains."
+            }
+          ]
+        },
+        "stop_03_les_halles_c4": {
+          "narration": "This year a pound of bread can run to five sous two deniers, so I buy that first and let the rest of supper shift if it must.",
+          "scene": "Later in the day, the crowd has thinned. In the foreground Jeanne's open palm holds a few small coins over a board with leftover food. To the left sit egg baskets with a few cracked shells. Center frame, soft butter pats rest on damp leaves atop a tray. Behind them are a broken round loaf, a handful of wilted herbs, and cheap small fish, while tired sellers sit beneath low roofs and the muddy lane runs off between emptying stalls.",
+          "points": [
+            {
+              "label": "open palm",
+              "line": "I come after the first taking, with coins warm in my fist. If eggs climb, I leave them. If butter swells, I scrape by without it. You bend the supper to the price, not the price to you."
+            },
+            {
+              "label": "egg baskets",
+              "line": "This is where the everyday belly gets sorted: vegetables, eggs, butter, fruit, all the little things without which a room can't keep house, laid out in heaps and counted down to the last sou."
+            },
+            {
+              "label": "butter pats",
+              "line": "Those butter pats have walked farther than they look. Country women, children, and farm servants bring them in from places round Paris, so by market time they're soft, handled, and bargained half to death."
+            }
+          ]
+        }
+      },
+      "transitionOut": "And while all this buying, dripping, haggling goes on, that wall beside us is already starting to give, so come a little closer."
+    },
+    "stop_04_les_innocents": {
+      "arrival": {
+        "line": "Here's the Innocents, and notice first not the crosses but the step up: they've kept burying in the middle of the market so long the ground stands above the street.",
+        "scene": "A street-level view from the north side of the Saints-Innocents ground looking south across a cemetery enclosure raised above the surrounding paving. In the foreground, a dark bank of earth rises behind an old stone wall. Beyond it stand the church and the arcaded charniers. Under one arcade sits an arcade bench beside a small writing table where a public writer bends over paper. Around the base of the wall and along the lane, market baskets, aproned buyers, porters, handbarrows, and carts squeeze through the muddy Halles traffic.",
+        "points": [
+          {
+            "label": "the dark bank",
+            "line": "They don't commonly dig neat little plots here, one by one. They open great shared pits, fill them till they're done, cover them, then start again elsewhere, and a single one can take an astonishing crowd."
+          },
+          {
+            "label": "the arcade bench",
+            "line": "Under those arches you'll find public writers with pens scratching beside the bones. A plain letter costs 4 sous, a better one 6, and if you want fine airs they'll charge more for them."
+          },
+          {
+            "label": "the stone wall",
+            "line": "This ground is older than anybody's family story. When they dig into it, very old stone coffins come up, which tells you Paris was laying people here before our quarter looked anything like this."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_les_innocents_c1": {
+          "narration": "By now this is the biggest cemetery in Paris, and they've packed so many generations into the food quarter that nobody round here can call the crowding accidental.",
+          "scene": "A wider frame of the Halles edge with the raised cemetery enclosure running across the middle ground and the church wall prominent to one side. The charniers stand beneath their arches with people passing under them. In the foreground, market baskets are set down beside women in aprons, while a porter threads between them and a cart wheel grinds past. The cemetery, church, and market all press into the same narrow working lane.",
+          "points": [
+            {
+              "label": "the church wall",
+              "line": "People say near every Paris family has kin under this soil, and I'd believe it. They've been putting the city in here for centuries, and folk who count such things reckon the buried run to about two million."
+            },
+            {
+              "label": "the market baskets",
+              "line": "What maddens people isn't only death, it's the placing. Buyers brush this wall on the way to greens and butter, and the church sits inside the same crush as cookshops, carts, and dung."
+            }
+          ]
+        },
+        "stop_04_les_innocents_c2": {
+          "narration": "Late in May the wall over rue de la Lingerie gave way into a cellar next door, and then nobody could pretend this crowding was only ugly.",
+          "scene": "A closer view from the neighboring lane shows the cemetery boundary where the broken wall has opened above a house cellar. In the lower foreground is a cellar door at street level, with broken masonry and spilled dark earth beside it. A knot of arguing neighbors stands just beyond, half blocking the passage, while market women, a porter, and a handbarrow edge around them in the cramped street.",
+          "points": [
+            {
+              "label": "the cellar door",
+              "line": "The trouble isn't screams, it's the cellar air. People living against this wall say it turns foul enough to sicken you, spoil food, and send customers off quicker than a kicked dog."
+            },
+            {
+              "label": "the arguing neighbors",
+              "line": "Ask along the lane and you'll get two reckonings of the day, one earlier in May and one at the month's end, which is how market talk goes when everybody remembers the stink better than the calendar."
+            },
+            {
+              "label": "the broken wall",
+              "line": "Nobody made a legend of it. Neighbours complained, men came to inspect, and the quarter kept at the magistrates because a wall that empties into your cellar is not a matter for patience."
+            }
+          ]
+        },
+        "stop_04_les_innocents_c4": {
+          "narration": "Now the talk is plain: stop filling this ground, and send the new dead elsewhere, because the Halles has no room left to swallow them.",
+          "scene": "A street-corner view along the cemetery edge shows a street gate set into the wall, with the raised enclosure and church behind it. In the foreground a loaded barrow pushes through a lane crowded by baskets, aprons, and a passing cart. Under the charniers a few clerks still work, while the market traffic presses past the burial ground as if nothing in Paris could ever be moved apart from anything else.",
+          "points": [
+            {
+              "label": "the street gate",
+              "line": "This talk isn't new at all. For years the high folk have been saying burials belong outside the built streets, because even they can smell that old parish ground and tight housing make bad neighbours."
+            },
+            {
+              "label": "the loaded barrow",
+              "line": "In practice some poor and hospital dead are already going south, toward grounds by Clamart and Sainte-Catherine, which means farther hauling, less crowding here, and no neat answer for everybody else."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on, we'll leave the dead to their wall and follow what still passes them, because Paris never keeps one business in its place."
+    },
+    "stop_05_the_faubourg": {
+      "arrival": {
+        "line": "From that broken cemetery wall to my own doorway isn't far in meaning, because here too Paris packs trade, debt, marriage, and sleep into the same narrow boards.",
+        "scene": "From standing height in the middle of Rue du Faubourg-Saint-Antoine, the road runs away northwest between plain houses broken by open shopfronts, a carriage entry, and narrow doors. At left an open workshop shows a joiner bent over a bench beside planks, clamps, a warming glue-pot, and pale shavings. Chair frames lean in a row against the wall near stacked timber. At right, a woman sits at a small table in the doorway with coins and a notebook, and behind her a dark stair mouth climbs to rented rooms above while a cart waits in the courtyard beyond.",
+        "points": [
+          {
+            "label": "open workshop",
+            "line": "This quarter's a liberty, which means a man can set up here without first buying his way through the guilds. A room, a bench, a few tools, and he may call himself started, though started isn't the same as secure."
+          },
+          {
+            "label": "chair frames",
+            "line": "Funny trade, this one: half the quarter planes and polishes, and plenty of the quarter owns almost none of it. The better pieces go out to buyers with space for them, while we step around the shavings at home."
+          },
+          {
+            "label": "woman with coins",
+            "line": "A shop like this leans on the woman as much as the saw. She keeps the cash, answers the door, haggles, sends messages, and stops the whole concern flying apart when credit turns sulky."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_the_faubourg_c1": {
+          "narration": "This road runs the whole faubourg, with Charonne and Charenton branching off it, and nearly every open door smells of wood, glue, dust, and someone's chance at rent.",
+          "scene": "From a courtyard entrance just off the road, a country cart stands half loaded with rough chairs and a small table. Straight ahead, under a wide open doorway, a workman bends over a bench with a plane, unfinished pieces stacked beside him. Above, an upper window stands open onto a first-floor room where workbenches crowd the space, with timber, tools, and shavings packed to the wall.",
+          "points": [
+            {
+              "label": "country cart",
+              "line": "That cart's the trade as much as the benches are. Country buyers take most of the furniture sold here, and they're often fobbed off with the rougher stuff while finer work slips elsewhere for better money."
+            },
+            {
+              "label": "upper window benches",
+              "line": "Don't think every maker has a grand shop below. I've seen rooms upstairs crammed with benches, four of them in one first-floor space, and little else besides tools, dust, and a man's hope of the next order."
+            },
+            {
+              "label": "workman at bench",
+              "line": "Most small makers here don't choose their fancies. They take whatever commission a larger master sends along, plain or fine, and if they start refusing work they'll soon be refusing supper too."
+            }
+          ]
+        },
+        "stop_05_the_faubourg_c2": {
+          "narration": "My room's up one of those dark stairs, near enough the workshop that the plane keeps talking through supper, and wood dust settles where your spoon ought to.",
+          "scene": "Inside a cramped rented chamber lit by one small window, a straw bed without curtains fills the back wall. Beside it sit a table, two stools, a small chest, and two pails by the door. On the floor near the hearth, a cooking pot, bowl, and pan rest too close to a chamber pot. A pair of wooden clogs lies on the worn boards, with wood dust caught along the edges.",
+          "points": [
+            {
+              "label": "small chest",
+              "line": "A room like ours owns very little, which is why every piece must do two jobs. The chest stores linen and serves as seat, the table eats, mends, counts, and sometimes gets leaned on for sleep."
+            },
+            {
+              "label": "cooking pot",
+              "line": "A poor room doesn't sort its life neatly. The bare wall gets the bed at one side, the pot at another, and cooking things end up knocking against the night-pail like quarrelsome cousins."
+            },
+            {
+              "label": "wooden clogs",
+              "line": "You hear clogs on the stair, not neat shoes, and the children in these houses are often half dressed and piled together at night because space costs money every hour it stands empty."
+            }
+          ]
+        },
+        "stop_05_the_faubourg_c4": {
+          "narration": "My man's trade is close at hand here, but steady only when orders hold, so by nightfall the street's full of rent, credit, late pay, and bad wine.",
+          "scene": "At dusk in a narrow courtyard off the faubourg road, a man with a joiner's tool bag stands near the carriage entry while a woman with a rent ledger and loose coins argues from a doorway. Behind them, neighbours lean from windows over a stair, a cabaret door glows at the far side, and a few tired workers drift toward it through sawdust and rutted mud.",
+          "points": [
+            {
+              "label": "tool bag",
+              "line": "Twenty sous makes a day fit only just to stand on, and there are days a man here doesn't see even that if commissions fail or the master keeps him waiting."
+            },
+            {
+              "label": "rent ledger",
+              "line": "Thirty or forty livres a year keeps an attic over you, if you can keep pace, and plenty can't, so they get turned out and drag their poor sticks of furniture from one refuge to the next."
+            },
+            {
+              "label": "cabaret door",
+              "line": "And when they want forgetfulness, not wisdom, they go off on Sundays for bad wine, foul air, and dancing till the dust climbs high enough to hide their bare feet."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's my Paris: the same river carrying drink, dirt, food, and washing, the same streets selling supper, beds, timber, and graves till something gives and everybody smells it. They may send the dead farther off now, and good. The rest of us still crowd on, because tomorrow puts me back on the river before full light, counting bundles against rent and bread. I'm Jeanne Ricard. Goodbye to you."
+    }
+  }
+}

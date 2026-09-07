@@ -1,0 +1,380 @@
+{
+  "tourId": "tour_gothenburg_1621_digger",
+  "companion": "Anders Eriksson",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_stakes": {
+      "arrival": {
+        "line": "Good day to you. I'm Anders Eriksson, twenty-six, a digger on the town works, cutting canal earth, ditch and rampart, pile holes, and barrowing spoil where this marsh is meant for streets.",
+        "scene": "The frame looks northeast across low marsh ground under a bright, windy sky. In the foreground lie boot-printed black mud and a heap of slick blue-grey clay. Across the middle run rows of rough timber stakes with taut measuring cords stretched between them over sedge, rushes, and puddles. A tilted cart stands near a waiting horse, scattered labourers work among the lines, and at the top of the frame a strip of river water shows with a low far shore beyond.",
+        "points": [
+          {
+            "label": "stake row",
+            "line": "Those stakes are ahead of the houses. Bad weather has held the measuring back this summer, and only three plots with four houses on them are built yet, though the town is already granted."
+          },
+          {
+            "label": "puddled ground",
+            "line": "It seems foolish ground for a town until you think on war. Wet land helps keep the ditch and moat full, and a dry wall with an empty ditch is no defence at all."
+          },
+          {
+            "label": "far shore",
+            "line": "This is not the first Gothenburg they meant to have. There was another on Hisingen before, and the Danes destroyed it ten years ago, so now they begin again here."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_stakes_c1": {
+          "narration": "I've been here since the harbour digging began, under Dutch foremen whose tongue I scarcely know, and in five stops I'll show you how they set paper lines over a bog.",
+          "scene": "The camera stands on a raw bank beside a fresh canal excavation. In the foreground men in rolled sleeves work with wooden shovels in a slick trench where water has seeped back in. At left a horse walks in a circle, turning a timber pump-frame. On the firmer bank to the right stands a Dutch foreman in a broad hat with a staff, and the long straight cut runs away behind him toward more stakes and open marsh.",
+          "points": [
+            {
+              "label": "horse pump",
+              "line": "That horse is doing no fine parade. It turns the pump, because water runs back into every fresh cut, and hundreds of soldiers with wooden shovels have had to open this first canal by hard handwork."
+            },
+            {
+              "label": "Dutch foreman",
+              "line": "Men say the Dutch are the best hands for this sort of misery, and I won't quarrel with it. They know drainage, walls, and how to set timber and earth on clay that will not bear."
+            },
+            {
+              "label": "long cut",
+              "line": "They began with the harbour canal first, then the rampart earth and ditch, and only after that came measuring for plots. A town like this is made backwards from the way a child would draw it."
+            }
+          ]
+        },
+        "stop_01_the_stakes_c2": {
+          "narration": "I left Västergötland when the Älvsborg levy ruined my father's farm; I've dug ditch and rampart, driven alder piles, and barrowed spoil. Touch anything here, or hold the green button and ask.",
+          "scene": "The view is slightly raised over a set of rectangular building plots staked out beside a straight narrow water cut. In the foreground stand several numbered pegs in wet grass and black clay. Midframe, a strip of waterside ground lies closest to the cut, with one or two small timber house frames beginning there. To the right, three men gather at a rough table with papers, dressed differently enough to mark them as coming from different towns.",
+          "points": [
+            {
+              "label": "numbered pegs",
+              "line": "Those pegs mark more than ground. The plots are sorted by what may be built there—all timber, all stone, or timber with stone gables—and then given out by numbered lots."
+            },
+            {
+              "label": "waterside plots",
+              "line": "The keenest buyers want the water edge, especially for timber houses with stone gables, because they can have a good waterside face without paying for a whole house of stone."
+            },
+            {
+              "label": "men at the table",
+              "line": "On the council bench, if matters go as promised, it won't be Swedes alone. They mean presidents and councillors from Swedes, Dutch, Germans, and Scots, which tells you what sort of trading town is wanted."
+            }
+          ]
+        },
+        "stop_01_the_stakes_c4": {
+          "narration": "The king has given the place town rights already, which means rules, duties, and promises for settlers, and now we're told to cut straight streets and canals through bog.",
+          "scene": "On a slightly drier patch beside the works, a clerk or officer stands by a trestle table. In his hand is a sealed paper; on the table lies a folded town plan weighted with a stone. Beside him leans a broad-hatted merchant listening. Behind them, workers in the black mud cut a straight ditch between rows of stakes, with open marsh and puddled ground stretching away.",
+          "points": [
+            {
+              "label": "sealed paper",
+              "line": "That paper is the king's grant, dated the fourth of June this year. It says how the town is to be governed, and what rights and duties the people here are meant to live under."
+            },
+            {
+              "label": "folded plan",
+              "line": "The drawing runs in straight lines because they mean a right-angled town with canals for its bones: a main harbour cut, square blocks, open places kept back, and the whole thing tied to the walls."
+            },
+            {
+              "label": "broad hat",
+              "line": "Men coming from the Dutch towns have been promised a sweetener for the risk: sixteen years free of taxes and customs. Paper can promise lightly enough. We'll see what the mud lets them keep."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Paper is easy and mud is not, so come to the cut itself, and I'll show you what a canal costs in backs and boots."
+    },
+    "stop_02_the_canal": {
+      "arrival": {
+        "line": "Paper lines are easy enough. Here is the hard part: a straight cut in wet ground, and every spadeful taken out must be kept from washing back.",
+        "scene": "A single wide view looks east along a straight muddy trench cut through marsh ground. Black and blue clay lies in spoil heaps on both sides, with reed stubble and puddles shining everywhere. Men in shirts and caps stand calf-deep at the near bank with wooden shovels and buckets, and farther off a rough timber edge of pale stripped piles and planking runs along one side of the cut. A dark wet sheen lies on the trench bottom, and beyond it low churned ground fades into mist.",
+        "points": [
+          {
+            "label": "straight trench",
+            "line": "They did not win the harbour at the first try. By Kvarnberget the clay gave way to rock too soon, so the basin would not take the depth they wanted."
+          },
+          {
+            "label": "plank bank",
+            "line": "What you see on the edge now is timber, not stone. Wood can be cut, hauled, and driven fast, and on this ground fast often matters more than fine looks."
+          },
+          {
+            "label": "water sheen",
+            "line": "That wet shine is the real master here. Leave the cut too long without bailing and the bottom goes soft, the sides creep, and yesterday's labour turns back to mire."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_the_canal_c1": {
+          "narration": "If this cut will hold, then streets can follow, because the water has somewhere to go instead of standing under every boot and wall.",
+          "scene": "A nearer view from the bank shows reed stubble poking through churned mud at the left foreground, a black glossy clay face freshly cut at center, and three shovel men knee-deep in the trench passing up heavy scoops of mud. Behind them lie low spoil heaps and a narrow path where barrows have sunk their tracks, with standing water bright in every footprint.",
+          "points": [
+            {
+              "label": "reed stubble",
+              "line": "The reeds tell plain truth. Where they stand thick the ground is wet beneath even if the skin seems crusted, and a loaded barrow will teach you the rest."
+            },
+            {
+              "label": "shovel men",
+              "line": "They broke harbour ground two autumns ago, and since last summer this new cut has had the best of our backs. Paper can grant a town before the ground will take it."
+            },
+            {
+              "label": "black clay face",
+              "line": "If the clay shines like that, I don't trust a wheel on it. A man steps light, tips his load short, and comes back for the rest."
+            }
+          ]
+        },
+        "stop_02_the_canal_c2": {
+          "narration": "Here is what the Dutch know. Mud left to itself slides, so they pin it with timber first and only then trust it with quay and road.",
+          "scene": "The frame is tight on one canal bank: a row of pale stripped timber piles stands upright along the water, with rough planks fixed across them to make a straight face. Fresh clay is heaped behind the planking, and at the right a broad-hatted man in a dark coat points with a stick while two muddy labourers steady a heavy wooden ram.",
+          "points": [
+            {
+              "label": "stripped piles",
+              "line": "Those piles go down until you lose them from sight, then planks are fixed along them. So the cut keeps a hard face, and the made ground behind does not slide back in."
+            },
+            {
+              "label": "broad hat man",
+              "line": "That fellow is one of the Dutch masters. Men are fetched over sea for this because they know how to turn wet land into quays, drains, and building ground without asking miracles of it."
+            },
+            {
+              "label": "wooden ram",
+              "line": "A pile is no use half set. The ram must bring it down hard and true, and that is no work for soft hands or a weak breakfast."
+            }
+          ]
+        },
+        "stop_02_the_canal_c4": {
+          "narration": "A day's worth and a day's pay are not the same here, because coin comes broken, late, or mixed with things a man cannot save.",
+          "scene": "Beside a rough shed a clerk sits at a board with a small chest open before him. In the foreground a labourer holds a few coins in his muddy palm; by his leg stands a small cask, and a tied grain sack leans against the bench while other workmen wait in a loose line.",
+          "points": [
+            {
+              "label": "coins in palm",
+              "line": "For a common man in summer they reckon about eight öre for the day, when they reckon straight. You earn every bit twice over here, once with the shovel and once at settling time."
+            },
+            {
+              "label": "small cask",
+              "line": "Coin is not the whole tale. A man may be fed at the works, given drink, or told the rest stands to his credit, which sounds fatter than it fills a purse."
+            },
+            {
+              "label": "grain sack",
+              "line": "Wheat stands dear. A tunna goes for three daler, so when some fool talks as if day wages make a rich man, I let him buy the bread."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on a little. From the water cut we'll go toward the wall earth, because this town is dug for trade, and also for fighting."
+    },
+    "stop_03_the_rampart": {
+      "arrival": {
+        "line": "Here the town shows what was meant from the first: not market or church yet, but bank, ditch, and watch, because a place this open must fort itself first.",
+        "scene": "From a standing viewpoint on the raw south edge of the works, the foreground is churned yellow-brown clay and black peat with puddled ditch water caught in spade marks and reed stubble. Across the middle runs a half-dug ditch. Behind it rises a low, uneven earthen bank patched with bundles of cut turf, wattling, and timber. Two watchmen stand apart on the crest with pike and matchlock, while labourers, a cart sunk deep at one wheel, sharpened stakes, and a little smoke from a fire sit under a flat grey sky.",
+        "points": [
+          {
+            "label": "the turf bundles",
+            "line": "Fresh earth won't stand by itself on muck like this, so they face the soft places with turf, wattling, and timber. It looks rough because it is rough, and rough done early can save a whole bank later."
+          },
+          {
+            "label": "the watchmen",
+            "line": "Those fellows work with their eyes, not their spades. One stares south, one north, and if trouble shows first it's their shame before anyone else's, so they watch harder than they talk."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_the_rampart_c1": {
+          "narration": "South is Halland under the Danish king, north is Bohuslän under him too, and this strip here is Sweden's only road to the western sea.",
+          "scene": "From higher on the new bank, the frame looks outward over open marsh. A rutted south road runs away through brown grass and puddles on the right. To the left, beyond the works and a fringe of reeds, a pale strip of northward water gleams under the sky. The raw ditch edge and scattered stakes lie below, and there are no houses thick enough to hide how exposed the place is.",
+          "points": [
+            {
+              "label": "the northward water",
+              "line": "Up that way, by Kungälv, Bohus sits over the river and takes toll from Swedish shipping. A boat may float on our water all the same, and still another king puts out his hand for payment."
+            },
+            {
+              "label": "the south road",
+              "line": "Down toward Kungsbacka Halland begins, so the south side is no far tale told on paper. It's close enough that every cart road feels like a question: trader coming, or raiders, or tax men."
+            }
+          ]
+        },
+        "stop_03_the_rampart_c2": {
+          "narration": "We build it plain: cut the ditch, throw the spoil inward, ram it to a low broad bank, and shape the angles, because packed earth takes cannon better than stone.",
+          "scene": "Close beside the earthworks, men of the ditch gang stand shin-deep in a cut of black peat and yellow clay, digging and loading barrows and a drag-rope sledge. The new angled corner of the rampart juts into the frame at center, low, broad, and newly rammed, with turf laid in patches on its face. On the near ground to one side lies a stack of sharpened stakes bound with rope, waiting to be driven.",
+          "points": [
+            {
+              "label": "the ditch gang",
+              "line": "Men below cut clay and black peat, then the spoil goes up by barrow and rope. Other men tramp it and ram it tight, because loose earth is only tomorrow's collapse."
+            },
+            {
+              "label": "the angled corner",
+              "line": "That sharp turn is the Low Country fashion they set here. The land side is to have five such points, so guns can fire along the ditch and not leave a dead patch for attackers."
+            },
+            {
+              "label": "the sharpened stakes",
+              "line": "Toward the river they trust water and timber more than a bank like this. Those stakes are for palisades in the water, because not every side of a town wants the same answer."
+            }
+          ]
+        },
+        "stop_03_the_rampart_c4": {
+          "narration": "Soldiers are mixed in with us from the first, because somebody must watch while the town is still mud and promise, and folk fear a raid more than wet boots.",
+          "scene": "Along the top of the earthen bank, a knot of watch soldiers stands near the ditch with pikes, muskets, powder flasks, and lengths of slow match. One bored musketeer leans on his weapon in the foreground. A foreman a little below him points with a staff toward labourers hauling clay, and farther along the line more men dig, barrow, and curse among smoke, wet timber, and trampled turf.",
+          "points": [
+            {
+              "label": "the watch soldiers",
+              "line": "They say eight and forty soldiers from Sävedal are set to keep watch here, so the townsmen needn't lose their own time to guard duty. That suits the traders well enough, and us too, if the men stay awake."
+            },
+            {
+              "label": "the foreman",
+              "line": "He shouts in his own tongue, sometimes in Low German, and we answer as we can. I've learned enough to keep my back paid and my ears open, which is better than learning the words after a blow."
+            },
+            {
+              "label": "the bored musketeer",
+              "line": "A man with powder and match can look brave while he yawns, but he fears surprise, bad weather, and an officer's anger more than he fears me. I only carry clay. He carries blame."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on a little. Once the bank is set and the watch posted, then men start asking where a shop, loft, and hearth may stand."
+    },
+    "stop_04_the_quay": {
+      "arrival": {
+        "line": "Here the town meets the river properly, and you can tell what kind of place is being made, because boats bring not just goods but the people to use them.",
+        "scene": "From a little height on the raw bank, the broad grey river fills the left half of the frame and low land lies beyond it. Along the near edge runs the pile line, a ragged row of driven stakes with brushwood caught between them. Midframe sits the brick heap beside sacks of lime and deep cart ruts in wet clay. To the right, small barges nose into the mud below stacks of long timber, with a few fresh wooden sheds, open plots, and puddles behind.",
+        "points": [
+          {
+            "label": "the pile line",
+            "line": "We were setting this edge last year already, before the charter was sealed, because no merchant will trust a riverbank that walks away under his boots. Pay first, boasting after."
+          },
+          {
+            "label": "the brick heap",
+            "line": "Those bricks may have crossed the sea as dead ballast under a ship's feet, and once they're landed they become dear building stuff. Folk do burn brick here now, but many still trust the Dutch sort more."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_the_quay_c1": {
+          "narration": "Most craft that nose in here bring what keeps us alive—timber, lime, brick, tools, beasts, whole households—because this town cannot stand a week on its own ground.",
+          "scene": "A flat barge lies against the soft bank while two men pass up the lime sacks and a chest. Beside them the tethered goat stands among bedding, a kettle, and bundled tools. Behind the unloading, long timbers are stacked high, and at the right a neat iron bundle waits near the water for the next outward boat.",
+          "points": [
+            {
+              "label": "the lime sacks",
+              "line": "Lime comes dear and dusty, but without it you get poor mortar, bad chimneys, and ovens that crack. A marsh town cannot build itself out of wet timber alone, however much wood the river brings."
+            },
+            {
+              "label": "the tethered goat",
+              "line": "Some arrivals are half cargo and half household. A family comes with beasts, tools, bedding, and whatever else wasn't worth leaving behind, because you can't eat a town charter and you can't milk a promise."
+            },
+            {
+              "label": "the iron bundle",
+              "line": "When men speak of westward trade here, it is mostly iron and timber they mean. Heavy goods travel honest, and they made the river road before this new town ever learned its own name."
+            }
+          ]
+        },
+        "stop_04_the_quay_c2": {
+          "narration": "Stand here a little and you'll hear Swedish, Dutch, German, and Scots or English crossing over one another till no answer comes back in the same words.",
+          "scene": "On a churned strip above the quay, the Dutch master in a broad hat points with a measuring rod while Swedish labourers shoulder planks past him. Behind them, the wooden chapel stands on slightly raised ground near a clerk and a black-cloaked man in talk. At the right edge, the dark-hat trader in a long coat stands by bales and a sea chest, speaking across the mud to two other men.",
+          "points": [
+            {
+              "label": "the Dutch master",
+              "line": "Some of these Dutch came from Amsterdam by bargain with the crown, not by mere wandering. They are not only engineers either, but merchant settlers, which means this town is being recruited as much as built."
+            },
+            {
+              "label": "the wooden chapel",
+              "line": "That little chapel was bought from the old town and brought down here for the first congregation. They give us German church and school, not Dutch, because many Dutch folk can manage German well enough."
+            },
+            {
+              "label": "the dark-hat trader",
+              "line": "Scots are in among the first comers too, and they are no strangers to this coast. Before our marsh was measured, men of theirs were already carrying iron and timber through these western waters."
+            }
+          ]
+        },
+        "stop_04_the_quay_c4": {
+          "narration": "Many of these carts are not fortune hunters. They're settled people starting over in mud, with beds and kettles on the axles, because the crown is pulling trade downriver.",
+          "scene": "A wagon sunk deep in ruts takes up the foreground, the loaded cart piled with a bed frame, a chest, bundled tools, a kettle, and the painted board lashed on top. A woman and boy walk beside it while a man steadies a cow by the cow rope. Behind them stretch open plots, puddles, and a few new wooden houses, with another cart waiting farther back.",
+          "points": [
+            {
+              "label": "the loaded cart",
+              "line": "Most folk settling here are not coming from far kingdoms at all. They are from Nya Lödöse upriver, because trade is being drawn down to this bank and men follow where buying and selling are allowed."
+            },
+            {
+              "label": "the painted board",
+              "line": "A shop board tied on a wagon is plain enough news. These are not wanderers with packs. They are burgesses and householders, trying to lift a settled life out by the roots and plant it again in clay."
+            },
+            {
+              "label": "the cow rope",
+              "line": "Nobody leaves a standing town for this sort of ground out of sheer liking. Some come because they must, some drag their feet, and some hold back as long as any privilege still clings to the old place."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come on from the bank. Boats can feed a town, but men still need plots, walls, and a doorway that doesn't sink by morning."
+    },
+    "stop_05_alvsborg": {
+      "arrival": {
+        "line": "And here is the reckoning of it, plain enough: that rock keeps the river, and the realm paid a million riksdaler to have it back.",
+        "scene": "From a muddy track on the south bank, the frame looks slightly up at the fortress on the high rock, its patched brick-and-stone wall running across the rise. A sentry stands small on the parapet. To the right the broad grey river opens westward toward low sea light, with one small sail and a rowing boat on the water, and wet ground with ruts and scrub fills the foreground.",
+        "points": [
+          {
+            "label": "the high rock",
+            "line": "They put it on the rock for a reason. From there a man sees the river space, the muddy flats, and the roads inland, and trouble rarely asks leave before it shows itself."
+          },
+          {
+            "label": "the patched wall",
+            "line": "It was timber first, so old men say, and later they packed it with brick and granite. Even so the Danes took it in the last war, which is proof enough that walls alone don't save you."
+          },
+          {
+            "label": "the westward water",
+            "line": "Westward is the sea opening, low and mean to look at, but everything hangs on it. Shut that water with hostile sails, and all our digging upstream begins to look foolish."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_alvsborg_c1": {
+          "narration": "A peasant's house paid for six years straight, twelve riksdaler at the least, and more if there were grown hands in it; my father's cattle went, and that broke us.",
+          "scene": "At the foot of the rock, a rough landing lies in mud beside dark water. In the foreground sit stacked grain sacks under a wet cloth, a short pile of bar iron beside them, and a young drover holding a horse by the rein. A low boat noses the bank behind, while the fortress wall rises above the whole landing.",
+          "points": [
+            {
+              "label": "the grain sacks",
+              "line": "Not all of it went in coin. Grain could be reckoned in place of silver, and once grain leaves a farm the table knows it before the tax man ever thanks you."
+            },
+            {
+              "label": "the bar iron",
+              "line": "Copper and bar iron went the same road when coin was short. A levy like that drags metal out of hills and bread out of barns, and both are harder won than a clerk's mark."
+            },
+            {
+              "label": "the young drover",
+              "line": "Servants counted too, so a house did not hide behind one man's name. When levy men came, they looked at mouths, hands, beasts, and what metal a place could yield."
+            }
+          ]
+        },
+        "stop_05_alvsborg_c2": {
+          "narration": "From this height they watch both ways. If enemy sails close the mouth, we're shut from the western sea; if merchant craft pass in, the new town may live.",
+          "scene": "The frame is taken from the fortress height, looking west along the broad river. A sentry stands by a patched gun port on the left wall, the shore below drops away at his feet, and an inbound boat with a single square sail comes up the channel toward the camera. Beyond it the low opening to the western sea sits under a pale sky.",
+          "points": [
+            {
+              "label": "the shore below",
+              "line": "They did not keep only the walls. The ground about here stayed in pledge till the money was done, which means folk worked and traded under a loss they could point at."
+            },
+            {
+              "label": "the inbound boat",
+              "line": "A merchant sail is not peace, but it is purpose. If craft can come in safe, the town upstream has buyers, tools, lime, and men instead of empty banks."
+            },
+            {
+              "label": "the patched gun port",
+              "line": "Guns matter, but a fort cannot live on powder. It needs boats with meal, timber, pitch, and men, the same as the new town does, so trade and defence pull on one rope here."
+            }
+          ]
+        },
+        "stop_05_alvsborg_c4": {
+          "narration": "I don't ask fine wonders. If the banks hold and the watch holds, then ships can come to Swedish quays, and this mud may earn back what farms lost.",
+          "scene": "From the lower slope east of the fortress, the frame looks upriver. The wet bank in front is cut raw and dark, a packhorse stands on the track with its head down, and a small upriver sail works along the channel beyond. Left of frame the fortress wall climbs the rock, and two labourers with spades wait by a timber sled.",
+          "points": [
+            {
+              "label": "the packhorse",
+              "line": "When our cattle went, the farm lost more than meat. We lost pulling, milk, dung for the fields, calves for later, and after that every season started behind before a seed was sown."
+            },
+            {
+              "label": "the upriver sail",
+              "line": "That sort of boat is what I hope for, plain as that: goods going in, goods coming out, and wages paid honest because there is trade enough to keep men wanted."
+            },
+            {
+              "label": "the wet bank",
+              "line": "All this straight work upstream rests on rotten footing unless we bind it and drain it. A town here is not given by charter; it has to be forced, spadeful by spadeful."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that is the sum of our walk. This town is a gate, and the country has paid for the key already, in silver, grain, metal, beasts, and six hard years. I'm Anders Eriksson, and I am one of the men trying to make that payment stand fast in mud. If the banks hold and the watch holds, there may be a town here worth the trouble. Go carefully now, and goodbye."
+    }
+  }
+}

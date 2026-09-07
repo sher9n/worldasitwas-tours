@@ -1,0 +1,392 @@
+{
+  "tourId": "tour_paris_1900_turnstile",
+  "companion": "Louise Marchand",
+  "note": "Written by the screenplay stage, then spoken verbatim.",
+  "stops": {
+    "stop_01_the_gate": {
+      "arrival": {
+        "line": "Morning to you, I'm Louise Marchand, and I'm one of the girls at the turnstiles here, taking tickets at the Exposition and keeping people moving when they all want in at once.",
+        "scene": "A wide photographic view from just outside the entrance at the head of avenue Alexandre III. Louise stands half-turned in the opening of a little wooden ticket booth on a brick base, one hand lifted toward the queue. In front of her, hats and bonnets bunch behind barriers that comb the crowd into narrow files. Across the middle runs the curved iron grille of the gate, with a uniformed policeman beside a narrow pedestrian slit and a broader side carriage gate to the right. Beyond the bars the straight avenue opens between clipped beds and chestnut trees toward Pont Alexandre III, gilded figures, and the distant gold dome of the Invalides.",
+        "points": [
+          {
+            "label": "the curved grille",
+            "line": "This is the Porte des Champs-Élysées, one of René Binet's gates, bent almost into a half-circle so the crowd turns neatly toward the avenue instead of piling straight ahead here."
+          },
+          {
+            "label": "the side gate",
+            "line": "Those side openings are for official carriages, and each one is flanked by paired ticket booths, so the paying public and the people on business don't grind against each other."
+          },
+          {
+            "label": "the chestnut trees",
+            "line": "They've had to meddle with the chestnuts all along here. When they remade the ground near the new bridge, hundreds were left standing and more than a hundred were lifted and moved."
+          }
+        ]
+      },
+      "cards": {
+        "stop_01_the_gate_c1": {
+          "narration": "I'm twenty-six, I've done this all season, and since July I've come in from Vincennes on the new Métro, then torn tickets and answered the same questions till dark.",
+          "scene": "A tighter view taken from the queue, straight at Louise's booth. Louise fills the left side, sleeves neat, fingers holding a printed entrance ticket above a little wooden shelf scattered with coins and a counting stub book. Behind her shoulder rises the fir booth on its brick base. At the centre a uniformed policeman stands by the narrow gap between booth and railing, and to the right the queue presses shoulder to shoulder, with the toes of Louise's dark work shoes visible below the counter.",
+          "points": [
+            {
+              "label": "the little booth",
+              "line": "You'd laugh at how small the box is. It's fir boards on a brick foot, not much wider than a bed, and the passages beside us are so narrow people come through almost shoulder first."
+            },
+            {
+              "label": "the ticket",
+              "line": "That ticket says one franc, plain as bread. A man in Paris may make about six francs in a day, a woman about three and a bit, so the very same outing lands differently in the purse."
+            },
+            {
+              "label": "my shoes",
+              "line": "My feet know the hours better than any clock. The public one-franc rush runs from ten till six, but the queue starts earlier, and after six there's always somebody with the wrong ticket or a lost sister."
+            }
+          ]
+        },
+        "stop_01_the_gate_c2": {
+          "narration": "We've five stops, following the road the crowd takes from this gate; I watch them sort here, then use that road home. Touch something, or hold the green button and ask.",
+          "scene": "A mid-distance photograph from just inside the barrier line, looking back across the entrance. Louise is visible in one booth at left, but the frame centres on the waiting crowd: a couple in city clothes studying a folded guidebook, three men together with cards already in hand, a compact worker delegation in similar hats near the middle, and two foreign visitors stopped short with a handbook open. At the far right, a man gestures toward a sign for the Métropolitain while a policeman keeps the passage clear.",
+          "points": [
+            {
+              "label": "the folded guidebook",
+              "line": "Half my day is directions. Is this where you buy, is this the way for the bridge and Invalides, Grand Palais or Petit Palais from here, and which turn gets them to the Rue des Nations."
+            },
+            {
+              "label": "the Métro sign",
+              "line": "The rest comes in the same breath: where's the moving pavement, where's the Palais de l'Électricité, may the carriage pass, where's the Métropolitain, and will this pass, this card, this odd ticket do."
+            },
+            {
+              "label": "the men with cards",
+              "line": "You learn a crowd by pace and clothes. The men with cards in hand are usually officials or concession people and don't waste words; the ones counting coins ask more, delegations stick together, and foreigners stop to reckon before they spend."
+            }
+          ]
+        },
+        "stop_01_the_gate_c4": {
+          "narration": "From ten till six the cheap public entrance runs, and my whole job is to keep money, feet, and hesitation from tangling into one stuck knot.",
+          "scene": "A close photograph at the counter edge. Louise's hand is open over the wooden shelf with mixed coins in the palm; beside it lies a tied strip of admission cards and, apart from them, a stiff coloured pass. Beyond the counter a man in a modest jacket checks the money in his purse while another visitor, better dressed, waits behind him. The booth window frame, a sliver of railing, and the blur of moving hats show the line still feeding forward.",
+          "points": [
+            {
+              "label": "coins in palm",
+              "line": "I judge a franc against what people usually spend. It buys more than a ride on the omnibus but less than taking a fiacre across Paris, so the gate is above daily going about and below private comfort."
+            },
+            {
+              "label": "the tied cards",
+              "line": "People who mean to come back buy a little book of twenty entries, which saves the daily fumbling and tells me at once they're regulars, not visitors trying to swallow the whole place before supper."
+            },
+            {
+              "label": "the coloured pass",
+              "line": "Not everybody pays at my window. Officers, workmen, exhibitors, officials, and some artisans or workers coming for education have free or reduced entry, and you can feel the difference between a pleasure outing and a visit justified like business."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Once I've got them through, the fair still has to carry them onward, so come along and we'll follow the stream inside."
+    },
+    "stop_02_the_new_stone": {
+      "arrival": {
+        "line": "Once you're past my turnstile, this is what Paris wants you to understand at once: some of the fair is scenery, and some of it is moving in for good.",
+        "scene": "From the middle of the new avenue, the Grand Palais fills the left side with a pale stone façade, deep colonnade shadows, and a high glass roof; the Petit Palais sits lower on the right with its domed porch. Straight ahead, the low bridge crosses the Seine toward the distant dome of the Invalides. Near the right foreground stands a bright pavilion with painted ornament and flags, while carriages, walkers, fresh kerbs, and clean stone make the whole place look newly finished.",
+        "points": [
+          {
+            "label": "big stone front",
+            "line": "That heavy front isn't fair make-believe at all. These two palaces were put up to outlive the season and replace the old Palais de l'Industrie, which had to give way for this whole straight approach."
+          },
+          {
+            "label": "bright pavilion",
+            "line": "The temporary buildings show their manners at once: more paint, more trick, thinner bodies underneath. Plenty are timber frames, and even the grander ones often wear a skin dressed up to pass for cut stone."
+          },
+          {
+            "label": "low bridge",
+            "line": "From the Champs-Élysées side they laid it all out as one long look: these two palaces, then the bridge, then the Invalides dome beyond as you arrive from the gate."
+          }
+        ]
+      },
+      "cards": {
+        "stop_02_the_new_stone_c1": {
+          "narration": "You can judge the future by the surface here: weight, finish, and expense on one side, bright theatre on the other, and Paris means you to notice.",
+          "scene": "A closer frame faces the Petit Palais on the right, its domed porch and sculpted stone entrance bright in the sun, while across the avenue the Grand Palais rises with iron and glass above a massive façade. In the foreground, beside bunting and a lamppost, a painted annex with lively ornament and thinner walls looks lighter and cheaper than either palace.",
+          "points": [
+            {
+              "label": "domed porch",
+              "line": "During the fair this little palace holds the retrospective of French art, room after room, and they've already promised it to the City as an art museum once the crowds go home."
+            },
+            {
+              "label": "glass roof",
+              "line": "The bigger palace has work waiting beyond the season: salons, competitions, horse shows, the sort of great public gatherings that need a roof like a station and manners like a monument."
+            },
+            {
+              "label": "painted annex",
+              "line": "Anything dressed like that, all ornament and hurry, is marked for the winter clear-out. They'll take down the river and Invalides palaces too, greenhouse parts aside, and the lesser pavilions with them."
+            }
+          ]
+        },
+        "stop_02_the_new_stone_c2": {
+          "narration": "That bridge solves a plain Paris nuisance: too long without a crossing here, and it keeps so low the whole view can still run straight through.",
+          "scene": "Standing at the head of the bridge, the frame looks along the broad roadway as it runs flat over the Seine. Beneath the deck the steel bridge arch is visible in side view, and at the bridge-head a tunnel opening mouths into the masonry for traffic along the embankment. River water, lamps, passing boats, and the distant Invalides dome keep the long axis clear.",
+          "points": [
+            {
+              "label": "broad roadway",
+              "line": "This avenue is the bridge continued straight onward, thirty-three metres wide, broad enough for ceremony and traffic together, running cleanly toward the middle of the Invalides esplanade itself from here."
+            },
+            {
+              "label": "bridge arch",
+              "line": "They've left just over eight metres between ordinary water and the crown of the arch, which gives the river traffic room enough without turning the crossing into a hill here."
+            },
+            {
+              "label": "tunnel opening",
+              "line": "Those tunnel mouths are for embankment traffic, so carts and carriages keep along the river and don't choke the bridge ends when the fair empties out above in swarms daily."
+            }
+          ]
+        },
+        "stop_02_the_new_stone_c4": {
+          "narration": "What impresses me isn't old grandeur, it's how fresh it all is; three years back this was disturbance, and men were still hammering while visitors began arriving.",
+          "scene": "Beside the Grand Palais, a work area still clings to the finished monument: a little locomotive with wagonnets sits on temporary rails in the foreground, stacked timber piles lie nearby, and men on scaffolding work against fresh stone under the iron ribs and glass of the nave. A gantry crane rises behind them, with dust, tools, and puddled wash-water making the place feel newly built rather than settled.",
+          "points": [
+            {
+              "label": "little locomotive",
+              "line": "The site ran like a factory yard. Little steam engines hauled wagonnets from the river port day and night, and a great steam crane took the loads up where men's backs couldn't."
+            },
+            {
+              "label": "timber piles",
+              "line": "Under the big nave the ground turned traitor, soft as bad pudding, so they had to drive about three thousand four hundred oak piles, each one longer than a room is wide."
+            },
+            {
+              "label": "men on scaffolding",
+              "line": "A place like this takes hundreds of men, and at foundation time more still. The building strike bit these works as well, which tells you monuments don't rise outside ordinary labour."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come a little farther with me, because stone and steel are only half the trick; next you'll see how they keep all these bodies moving."
+    },
+    "stop_03_the_moving_pavement": {
+      "arrival": {
+        "line": "Past the bridge, the fair stops asking you to admire and starts asking you to balance, because here they sell motion itself and charge extra for the lesson.",
+        "scene": "From a narrow access platform beside the Champ-de-Mars, the camera faces along the raised moving pavement on its iron and timber trestles, about first-floor height above the fair. At lower left a small ticket barrier and gate stand at the station mouth, and just beyond them a wooden stair climbs to the platform. Across the width of the viaduct run three side-by-side ways: a fixed strip nearest the rail, a narrower moving belt in the middle with two women stepping onto it, and the broader fast track at right carrying men in dark coats, straw hats, and parasol-holding women. Behind everything the Eiffel Tower's iron legs fill the sky, while far across the open Champ-de-Mars sit the long galleries, flags, and the distant front of the Palace of Electricity.",
+        "points": [
+          {
+            "label": "ticket barrier",
+            "line": "You don't wander onto the thing from the dust. You pass a little barrier like any ride, then climb, and that's when even bold people begin looking at their boots."
+          },
+          {
+            "label": "wooden stair",
+            "line": "It's up on a viaduct, about seven metres on average, so all along the circuit they serve it by stairs and little footbridges, nine chief stations in all."
+          },
+          {
+            "label": "middle belt",
+            "line": "The trick is these three lanes together: one stands still, one carries you at about four kilometres an hour, and the outer one goes near eight."
+          }
+        ]
+      },
+      "cards": {
+        "stop_03_the_moving_pavement_c1": {
+          "narration": "This pavement runs in a great loop between Invalides and the Champ-de-Mars, and you reach it by stairs to a station because it rides above the ground.",
+          "scene": "From a narrow access platform beside the Champ-de-Mars, the camera faces along the raised moving pavement on its iron and timber trestles, about first-floor height above the fair. At lower left a small ticket barrier and gate stand at the station mouth, and just beyond them a wooden stair climbs to the platform. Across the width of the viaduct run three side-by-side ways: a fixed strip nearest the rail, a narrower moving belt in the middle with two women stepping onto it, and the broader fast track at right carrying men in dark coats, straw hats, and parasol-holding women. Behind everything the Eiffel Tower's iron legs fill the sky, while far across the open Champ-de-Mars sit the long galleries, flags, and the distant front of the Palace of Electricity.",
+          "points": [
+            {
+              "label": "ticket barrier",
+              "line": "You don't wander onto the thing from the dust. You pass a little barrier like any ride, then climb, and that's when even bold people begin looking at their boots."
+            },
+            {
+              "label": "wooden stair",
+              "line": "It's up on a viaduct, about seven metres on average, so all along the circuit they serve it by stairs and little footbridges, nine chief stations in all."
+            },
+            {
+              "label": "middle belt",
+              "line": "The trick is these three lanes together: one stands still, one carries you at about four kilometres an hour, and the outer one goes near eight."
+            }
+          ]
+        },
+        "stop_03_the_moving_pavement_c2": {
+          "narration": "First time on, you take the slow belt, find your balance, then dare the quicker one, and all at once the fair slides past faster than walking.",
+          "scene": "The frame is taken from the platform itself, close enough to feel the timber underfoot. At center a young woman in a pale skirt reaches from the slower middle belt toward the broader fast track while a man behind her steadies his hat and another grins at her wobble. An attendant in dark uniform stands on the fixed strip to the left, ready to help. Beyond the viaduct's railing, lower on the fairground, a small electric railway car clatters past on its single track in the opposite direction. Under the tower's ironwork spread watered paths, patches of grass, strolling visitors, and lines of galleries with flags.",
+          "points": [
+            {
+              "label": "stepping woman",
+              "line": "Getting on is one trick and getting off is the same trick backward. You leave the quick way for the slow one, steady yourself, then step onto the still boards without trying to be proud."
+            },
+            {
+              "label": "electric car",
+              "line": "Beside it runs the little electric railway on single track, going the other way round. That's cheaper at twenty-five centimes; this pavement asks fifty, so you choose comfort or bragging rights."
+            },
+            {
+              "label": "uniformed attendant",
+              "line": "Half the amusement is watching newcomers. Somebody always oversteps, somebody laughs, and in three minutes the same frightened soul is riding along as if Paris had trained them since birth."
+            }
+          ]
+        },
+        "stop_03_the_moving_pavement_c4": {
+          "narration": "What they're really showing off, though, is electricity, because it pulls this pavement, lights the palaces, lifts people skyward, and at night turns the whole fair theatrical.",
+          "scene": "From the raised pavement, the camera looks south-west across the wide Champ-de-Mars in daylight. At right the Eiffel Tower rises immense, its iron lattice cutting the sky. Across the open ground at center stands the ornate front of the Palace of Electricity, and before it the broad basin and jets of the Château d'Eau catch the light. Farther left at the south end two giant brick chimneys pour black smoke upward above lower roofs. Along the edges run national pavilions, long exhibition galleries, rows of flags, and crowds moving on watered paths below.",
+          "points": [
+            {
+              "label": "brick chimneys",
+              "line": "By day those chimneys persuade me more than any fountain. They belch black smoke, which is ugly enough, and that ugliness proves how much force they're harnessing for all this cleverness."
+            },
+            {
+              "label": "palace front",
+              "line": "That grand front and its water basin are the fair's public boast. In daylight it's all pipes and promise, and after dark the current turns it into pure showing off."
+            },
+            {
+              "label": "the tower",
+              "line": "The Tower's eleven years old now, so Paris doesn't gape the way it did in '89. People still climb it, meet under it, complain about it, and most admit it's the clou all the same."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now; after all this carrying and shining, I'll show you where the fair has to feed, rest, and sort the bodies it's moving."
+    },
+    "stop_04_the_metro": {
+      "arrival": {
+        "line": "And once you've paid to be carried for sport, come here and pay less to get home quicker than a horse ever could.",
+        "scene": "From the Place de la Bastille, the July Column rises in the background. Across the middle of the frame, the fresh ironwork of the Métro crosses the Bassin de l'Arsenal to an open platform, where a short train of lit wooden cars stands above the water. Along the basin, the newly made quay edge looks broad and straight. On the stone access steps and landing, men in dark coats and straw hats and women in summer hats wait with cream and pink paper tickets in gloved hands beside bright new railings and raw masonry.",
+        "points": [
+          {
+            "label": "the iron bridge",
+            "line": "Bastille is the odd bit on this stretch, because the line climbs into daylight over the water, and this is the only finished stop where you wait outside."
+          },
+          {
+            "label": "the basin edge",
+            "line": "They had to bite a good strip out of the basin to fit that crossing in, which is why the edge looks newly made and a touch too straight."
+          },
+          {
+            "label": "the paper tickets",
+            "line": "These little cream and pink bits are still a novelty; the line only opened in July, and not all of it at once, so staff and passengers are learning together."
+          }
+        ]
+      },
+      "cards": {
+        "stop_04_the_metro_c1": {
+          "narration": "Away from this bit of daylight, you step off the pavement, pay, go down one stair and another, and suddenly Paris is all white walls, lamps, and echo.",
+          "scene": "From a footbridge inside an underground station, the view looks down over twin tracks to two side platforms lined in glossy white glazed tiles. At one end a broad stair rises toward the ticket hall below the street; in the middle, passengers cross the footbridge; and beside a waiting train, the platform edge sits close to the carriage floor so people with parcels and children can step across quickly.",
+          "points": [
+            {
+              "label": "white tiles",
+              "line": "Those white glazed tiles aren't put there to make poetry. They catch the weak light, brighten the place, and make people feel the station's cleaner than a black brick tunnel would."
+            },
+            {
+              "label": "the footbridge",
+              "line": "You buy in the hall below the street, then take the nearer stair or cross that bridge for the far side, which keeps two streams from tangling themselves up."
+            },
+            {
+              "label": "the platform edge",
+              "line": "The platform sits almost level with the carriage floor, so children, parcels, old knees, everybody gets on quicker, and a whole short train can be emptied and filled briskly."
+            }
+          ]
+        },
+        "stop_04_the_metro_c2": {
+          "narration": "Inside, class shows at once: leather if you've paid more, wooden slats if you haven't, and the doors slide separately so we're off again almost before you've settled.",
+          "scene": "Inside a stopped Métro carriage, the view runs diagonally through an open partition: in the nearer compartment a padded red-brown leather bench lines one side, and beyond it another compartment shows plain varnished wooden slats. A sliding door stands open at the platform, and above, a row of ceiling lamps with corner lanterns throws electric light on hats, sleeves, and polished wood.",
+          "points": [
+            {
+              "label": "the leather bench",
+              "line": "If you can spare 25 centimes, you get the padded leather, and plenty do. I stay in second at 15, because soft seats are lovely and supper matters more."
+            },
+            {
+              "label": "the wooden slats",
+              "line": "You can go from Vincennes clear to Maillot in about half an hour, though most of us don't. It's the short run that matters, outskirts into the centre and home again."
+            },
+            {
+              "label": "the sliding door",
+              "line": "Each carriage has its own way in and its own way out, with electric lamps overhead, so the stop is all business and scarcely more than a breath."
+            }
+          ]
+        },
+        "stop_04_the_metro_c4": {
+          "narration": "For me it's the day that changes: I can work, call on somebody, and still get home, though my mother says keep your scarf on and don't trust underground air.",
+          "scene": "At a station entrance in the evening, a stone stair mouth drops into cool shadow below street level. A young working woman has just climbed up, a small paper ticket still in one hand, while beside the railing an older woman in a dark dress and scarf leans in to speak to her. Behind them other riders emerge into the warm street, and the black opening of the stair stays visible between the railings.",
+          "points": [
+            {
+              "label": "the scarf",
+              "line": "My mother doesn't forbid it, not at all; she only says keep your throat covered, because the jump from hot street to cool tunnel gives older people a real worry."
+            },
+            {
+              "label": "the dark stair",
+              "line": "They were right to tell us not to be careless at first. It's electricity, not a horse omnibus, and until you've learnt its manners you mind your hands and step."
+            },
+            {
+              "label": "the paper ticket",
+              "line": "Fifteen centimes in second is small enough that I can use it, but not so small I forget it, and that little scrap gives me back whole hours."
+            }
+          ]
+        }
+      },
+      "transitionOut": "Come along now; after the tunnels and tickets, I'll show you what all this rushing and sorting is making of Paris above ground."
+    },
+    "stop_05_going_home": {
+      "arrival": {
+        "line": "And then I come up at Nation, and the fair's no longer a place around me, only a white glow over roofs in the west.",
+        "scene": "A nighttime view from the eastern edge of the Place de la Nation, looking across the broad round paving toward the center and then west into Paris. Curving tram tracks cross patched stones in the foreground. Dalou's bronze Republic stands high on its pedestal in the middle distance. Beyond it, the roofs are a dark low band, and above them the western sky holds a pale electric glow.",
+        "points": [
+          {
+            "label": "western glow",
+            "line": "That pale patch means they're still taking people while I'm heading home. The public goes in from eight, the Paris ticket windows shut about half past ten, and by eleven they're meant to have the grounds cleared."
+          },
+          {
+            "label": "bronze Republic",
+            "line": "She's fresh as a new coin, that Republic. They set her here only last November, and already she looks as if she'd been supervising east-Paris traffic forever, hooves, trams, arguments and all."
+          },
+          {
+            "label": "patched paving",
+            "line": "This round place looks settled now, but it was a works not long ago. They'd begun on the station here before last winter was two years past, so half the ground has only just stopped being dug."
+          }
+        ]
+      },
+      "cards": {
+        "stop_05_going_home_c1": {
+          "narration": "Out here by Nation, with tram lamps and hooves on the paving, I can tell the fair's still working, because the western sky stays pale till closing.",
+          "scene": "A tighter night view angled west from near the curb: dark rooflines and chimney pots stretch across the lower frame, while a pale brightening hangs low in the sky beyond them. At street level a passing carriage shows one glowing carriage lamp, and the avenue stones catch a little reflected light from the road.",
+          "points": [
+            {
+              "label": "western sky",
+              "line": "They boast that the Electricity Palace alone has four thousand two hundred bulbs, and I believe it when the clouds above the Seine go milk-white and the whole west end seems polished."
+            },
+            {
+              "label": "carriage lamp",
+              "line": "Anybody rolling home under glass in a victoria isn't reckoning supper the way I do. That's an evening for people who arrive seated and leave the same way, with clean gloves."
+            },
+            {
+              "label": "roofline",
+              "line": "From here I don't pick out pavilions at all. It's just the bit of Paris I spent the day feeding, bright beyond the roofs and still drawing people as if it had lungs."
+            }
+          ]
+        },
+        "stop_05_going_home_c2": {
+          "narration": "Turn off the round place and it's my Paris again: coach gates, workshop windows, washing over a yard, and rooms that face a courtyard, not a monument.",
+          "scene": "A narrow Bel-Air street at night, seen straight on between two- and three-storey house fronts. One older plastered facade stands beside a newer block. A lit workshop window glows at ground level. A wide wooden yard gate opens into darkness under a coach entrance, and above it a laundry line hangs across the inner yard with a small dim lamp beyond.",
+          "points": [
+            {
+              "label": "old house fronts",
+              "line": "Out here the quarter doesn't hold one style for long. This bit used to be Saint-Mandé land, and you still get newer blocks elbowing older faubourg houses and little passages."
+            },
+            {
+              "label": "workshop window",
+              "line": "The day's not finished when the fair closes. You smell glue, sawdust, hot iron sometimes, and you remember this end of Paris earns its living indoors and close together too."
+            },
+            {
+              "label": "yard gate",
+              "line": "Most of our houses are low ones, two or three floors maybe, and the real life of them is behind the street, round a yard where the washing and quarrels both hang."
+            }
+          ]
+        },
+        "stop_05_going_home_c4": {
+          "narration": "Up our stair it comes back to counting: bread, rent, my mother's soup, and whether these new lights and quick trains will spare working people some time.",
+          "scene": "Inside a modest courtyard-facing room at night: a small table holds a round bread loaf beside bowls and a soup pot, a narrow bed stands against one wall, a little cabinet sits near it, and a single window looks onto a dark yard wall. On the table an oil lamp burns with a small steady flame, catching the stale dust in the air.",
+          "points": [
+            {
+              "label": "bread loaf",
+              "line": "That's the true arithmetic of the quarter: bread runs about thirty-five centimes the kilo, and a modest room with a little cabinet may cost a hundred to a hundred fifty francs a year."
+            },
+            {
+              "label": "courtyard window",
+              "line": "After standing in floodlit avenues, I come back to damp stone, a yard wall, and stale dust from a room shut up all day. It's small, but it's ours for the night."
+            },
+            {
+              "label": "lamp flame",
+              "line": "What I ask of all this cleverness is simple: cheaper light, quicker going, less time thrown away. If new things do that for ordinary people, then good, let them stay."
+            }
+          ]
+        }
+      },
+      "transitionOut": "So that's what I take from all this, once the lights are behind me. Not the grand names, only time saved, coins counted right, and a city easier to cross if you've got ordinary boots and ordinary wages. I'm Louise Marchand, and I don't ask the new century for miracles, only that it be less tiring, less dear, and a bit more open to people who work. Good night to you, and rentrez bien."
+    }
+  }
+}

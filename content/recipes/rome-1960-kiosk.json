@@ -1,0 +1,130 @@
+{
+  "id": "tour_rome_1960_kiosk",
+  "city": "rome",
+  "cityName": "Rome",
+  "country": "IT",
+  "year": 1960,
+  "yearRange": [1959, 1962],
+  "lang": "en",
+  "title": "The Summer of the Torches",
+  "theme": "Five stops across Rome in 1960 with Rosa, who sells the newspapers. The country is in the middle of a boom nobody expected, there are scooters everywhere and a film in February taught the world a new word for the photographers who chase actresses down the Via Veneto. In August and September the Olympic Games come, and rather than build everything new the city holds them partly inside its own ruins: gymnastics under the vaults of an imperial bath house, wrestling in a basilica seventeen centuries old. On the evening of the tenth of September the marathon runs out along the old Appian Way by torchlight, and the man who wins it is running barefoot.",
+  "companion": {
+    "name": "Rosa Ferrante",
+    "role": "Newspaper kiosk keeper",
+    "brief": "Fifty-one, runs a green newspaper kiosk on a busy square: she opens before six, sells eleven daily papers and every magazine, takes the money, gives the change, and hears the opinion of roughly four hundred people a day whether she wants it or not. Born in Rome, widowed, one son who works at a garage and one daughter married in Milan. She reads the front pages upside down all day and can tell you which paper is lying about what. She knows who is having an affair on this square, which waiters are decent, which of the photographers who hang about the cafes up the hill will pay a boy to tip them off, and exactly how much a family here has and has not got, because she watches what they buy. Warm, extremely direct, allergic to grandeur. She knows nothing after 1960: not what the decade does, not what happens to the boom, not that anyone will still be talking about a barefoot man in sixty years.",
+    "voice": "shimmer",
+    "narrationVoice": "gfKKsLN1k0oYYN9n2dXX",
+    "presence": {
+      "standing": "in the hatch of a green newspaper kiosk with magazines pegged up all around her",
+      "gesture": "squares a stack of folded papers on the counter and tucks coins into her apron pocket"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a 35mm camera had stood in Rome in 1960: ochre, terracotta and umber plastered buildings of four and five storeys with green wooden shutters, roof terraces and aerials, narrow cobbled streets in sampietrini and wide sunlit squares with baroque fountains. Traffic of exactly this moment: Vespa and Lambretta scooters everywhere, Fiat 500 and 600, Alfas, boxy buses and trams, three-wheeled Ape vans, the odd horse cart. Street life: green metal newspaper kiosks hung with magazines, cafe tables on the pavement, striped awnings, hand-painted shop signs, hanging washing, cats. Ancient stone standing in the middle of it all as ordinary furniture: brick and travertine ruins with grass and umbrella pines, floodlit at night for the Games. Dress of 1960: women in belted summer dresses, cardigans and headscarves, sunglasses, older women in black; men in light suits, open-necked shirts, workmen in blue overalls; priests and nuns; athletes in simple cotton vests and shorts. Hot Mediterranean light, dust, exhaust, warm evening lamplight. Camera at eye level, 9:16 framing, natural colour of colour film of the era, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or worn later than the year. No mobile phones, smartphones, screens, laptops, cash machines, euros, modern plastic packaging, wheelie bins, LED or neon of modern type, satellite dishes, solar panels, air conditioning units, modern road markings, plastic bollards or modern traffic lights. No cars later than about 1962: no hatchbacks, no modern buses, no scooters with modern styling, no helmets. No modern advertising, no chain shopfronts, no modern branded logos, no graffiti of the modern spray-can kind. No modern athletic clothing: no synthetic running kit, no modern trainers, no sponsor logos, no numbered bibs of modern design. No post-1970 architecture, no glass towers, no modern stadium of the contemporary kind. No clothing after about 1965: no flares, no punk, no modern casual wear, no printed t-shirts. No printed signage and no legible Italian or English lettering: text on kiosks, papers and shopfronts must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_the_kiosk",
+      "title": "Eleven Papers and Four Hundred Opinions",
+      "geo": { "lat": 41.9036, "lng": 12.4886, "bearing": 45 },
+      "brief": "Her kiosk on a busy square early in the morning: the bundles dropped off, the magazines pegged up, scooters going past in both directions, and a city that reads a great deal and argues about all of it.",
+      "mustCover": [
+        "what her actual morning is, from the delivery van to the first customers",
+        "which papers people buy and what that tells her about them, said without naming politics as a lecture",
+        "what things cost this year and what the boom has and has not done for a street like hers"
+      ],
+      "archiveQueries": ["Piazza Barberini Rome", "Rome newspaper kiosk 1960", "Fontana del Tritone Rome"],
+      "landmarks": ["Piazza Barberini Rome"],
+      "styleNote": "A green painted metal newspaper kiosk on a sunlit Roman square, magazines and papers pegged and clipped all over its front, a woman in the serving hatch. Baroque fountain, ochre buildings with green shutters, Vespas and small Fiats, early morning light and long shadows. Nothing modern anywhere in frame."
+    },
+    {
+      "id": "stop_02_via_veneto",
+      "title": "The Street with the Photographers",
+      "geo": { "lat": 41.907, "lng": 12.49, "bearing": 315 },
+      "brief": "The curving hill street of grand hotels and pavement cafes where film people sit to be seen, and the young men with cameras and scooters who wait on the kerb for them, a trade that a film released in February has just made famous and given a name to.",
+      "mustCover": [
+        "what actually happens on this street in the evening, described from the pavement",
+        "the photographers: how they work, what they earn and what she thinks of them",
+        "the film everyone has seen this year and what Romans themselves say about it"
+      ],
+      "archiveQueries": ["Via Veneto Rome", "Via Veneto 1960 cafe", "Rome paparazzi 1960"],
+      "landmarks": ["Via Veneto Rome"],
+      "styleNote": "A wide curving tree-lined street on a hill, grand hotel facades, pavement cafes with wicker chairs, round tables and striped awnings, warm evening light. Well dressed people at the tables, young men with 35mm cameras and Vespas at the kerb. 1960 cars only. Warm lamplight, no neon of modern kind."
+    },
+    {
+      "id": "stop_03_the_ruins_as_venues",
+      "title": "The Games Inside the Ruins",
+      "geo": { "lat": 41.879, "lng": 12.4924, "bearing": 180 },
+      "brief": "An imperial bath house seventeen centuries old, floodlit and full of people, being used as a sports arena: brick vaults above, seating and matting below, and a city that has decided its ruins are the right place to hold a modern festival rather than an obstacle to one.",
+      "mustCover": [
+        "which events are being held in which ancient buildings, concretely",
+        "what it looks and sounds like inside a floodlit ruin full of spectators",
+        "what ordinary Romans think about the Games taking over the city, both the pride and the complaining"
+      ],
+      "archiveQueries": ["Baths of Caracalla Rome", "1960 Summer Olympics Rome venues", "Basilica of Maxentius Rome"],
+      "landmarks": ["Baths of Caracalla Rome"],
+      "styleNote": "The enormous brick walls and vaults of a ruined Roman bath house at night, floodlit from below, with temporary tiered seating, matting and an arena floor set up inside, crowds in 1960 summer dress. Warm floodlight against dark sky, umbrella pines in silhouette. Nothing modern: no LED, no modern stadium fittings, no sponsor boards."
+    },
+    {
+      "id": "stop_04_the_marathon",
+      "title": "The Tenth of September",
+      "geo": { "lat": 41.8898, "lng": 12.4906, "bearing": 270 },
+      "brief": "The marathon run in the evening to escape the heat, out along the old Appian Way and back, lit by soldiers holding torches because it will finish after dark, and won on the cobbles by a man from Ethiopia running with nothing on his feet.",
+      "mustCover": [
+        "why the race was run at that hour and how the course was actually lit",
+        "the winner, that he ran barefoot and why, told simply and with respect rather than as a curiosity",
+        "the stone he passed on the way, where it came from, and what it meant that he passed it"
+      ],
+      "archiveQueries": ["Arch of Constantine Rome", "Appian Way Rome", "Obelisk of Axum Rome Porta Capena"],
+      "landmarks": ["Arch of Constantine Rome", "Colosseum Rome"],
+      "styleNote": "A Roman street at night lit by soldiers holding burning torches along both kerbs, a lone runner in a simple cotton vest and shorts on old cobbles, an enormous ancient triumphal arch floodlit ahead with crowds behind barriers. Warm torchlight and floodlight, deep night sky. Nothing modern: no modern kit, no sponsor boards, no electric race lighting."
+    },
+    {
+      "id": "stop_05_the_borgata",
+      "title": "The Rome Nobody Photographs",
+      "geo": { "lat": 41.9105, "lng": 12.548, "bearing": 90 },
+      "brief": "Out past the ring of the old city to the districts the boom built in a hurry: bare new apartment blocks on open ground, unmade roads, families in from the south, and the Rome that the people serving coffee on the Via Veneto go home to.",
+      "mustCover": [
+        "what these outer districts look like and who has moved into them and from where",
+        "the distance, in time and money, between here and the streets the visitors see",
+        "what she wants for her own children, said plainly at the end"
+      ],
+      "archiveQueries": ["Rome borgata 1960 housing", "Tiburtino Rome", "Roman suburb apartment block 1960s"],
+      "landmarks": [],
+      "styleNote": "Plain new apartment blocks of five or six storeys on open ground at the city edge, render and exposed concrete, washing on balconies, unmade roads, weeds and dust, a bus stop, children playing, a small bar at the corner. Hot flat afternoon light. 1960 cars and scooters only, no modern buildings or vehicles."
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "1960 Summer Olympics",
+      "url": "https://en.wikipedia.org/wiki/1960_Summer_Olympics",
+      "license": "cc-by-sa",
+      "note": "Held 25 August to 11 September 1960, using the Baths of Caracalla and the Basilica of Maxentius as venues."
+    },
+    {
+      "title": "Abebe Bikila",
+      "url": "https://en.wikipedia.org/wiki/Abebe_Bikila",
+      "license": "cc-by-sa",
+      "note": "Won the marathon barefoot on 10 September 1960 in 2:15:16.2, a world best, finishing at the Arch of Constantine; the course was lit by soldiers with torches."
+    },
+    {
+      "title": "Obelisk of Axum",
+      "url": "https://en.wikipedia.org/wiki/Obelisk_of_Axum",
+      "license": "cc-by-sa",
+      "note": "Taken from Ethiopia by Italian troops in 1937 and standing at Porta Capena in 1960, on the marathon route; returned to Ethiopia in 2005."
+    },
+    {
+      "title": "La Dolce Vita",
+      "url": "https://en.wikipedia.org/wiki/La_Dolce_Vita",
+      "license": "cc-by-sa",
+      "note": "Released February 1960; the character Paparazzo gave the press photographers of the Via Veneto their name."
+    },
+    {
+      "title": "Italian economic miracle",
+      "url": "https://en.wikipedia.org/wiki/Italian_economic_miracle",
+      "license": "cc-by-sa",
+      "note": "The boom years, internal migration from the south, and the hurried outer housing districts of Rome."
+    }
+  ]
+}

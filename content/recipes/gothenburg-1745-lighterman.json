@@ -1,0 +1,178 @@
+{
+  "id": "tour_gothenburg_1745_lighterman",
+  "city": "gothenburg",
+  "cityName": "Gothenburg",
+  "country": "SE",
+  "year": 1745,
+  "yearRange": [
+    1743,
+    1747
+  ],
+  "lang": "en",
+  "title": "The Ship That Sank in Sight of Home",
+  "theme": "Five stops across Gothenburg in 1745 with Sven, who rows cargo. The Swedish East India Company has made this small wet town the richest door in the kingdom: ships go out to Canton with iron and silver and come back after two years with tea, porcelain and silk, and the auction that follows draws buyers from half of Europe. On the twelfth of September the Ostindiefararen Gotheborg, home from her third voyage and almost at her own quay, runs onto a known rock within sight of the town and goes down in shallow water while people watch from the shore.",
+  "companion": {
+    "name": "Sven Hallberg",
+    "role": "Lighterman",
+    "brief": "Thirty-eight, a lighterman: the big Indiamen draw too much water to come up to the town, so they lie downriver and men like him row and warp the cargo up in flat lighters, chest by chest, paid by the load. Born in the town, his father did the same work, and he has hands like boot leather to prove it. He knows every bank, rock and slack tide between the fortress and the quays, which tally clerk counts fairly, which mate will let a man warm himself aboard, and roughly what a chest of tea is worth against what he is paid to carry it. Friendly on the water and careful on land, because the Company is the biggest thing in his life and he has no wish to be noticed by it. He was on the water on the twelfth of September and saw her strike. He knows nothing after 1745: not what is salvaged, not what the Company becomes, not that anyone will ever raise what is down there.",
+    "voice": "verse",
+    "narrationVoice": "c5sAfPgkk3bY7V6oyekT",
+    "presence": {
+      "standing": "in the stern of a flat wooden lighter tied at a quay with tea chests stacked behind him",
+      "gesture": "coils a wet rope over his forearm and glances downriver at the weather"
+    }
+  },
+  "style": {
+    "look": "Photographic realism as if a camera had stood in Gothenburg in the 1740s: a small northern port town of canals and quays, three and four storey houses of plastered stone and painted timber with steep tiled roofs, a stone-lined harbour canal running through the middle with bridges over it, warehouses and packhouses with hoist beams and shutters, cobbles and timber wharves. The river wide and grey-green, crowded with working craft: flat lighters, rowed boats, small sloops, and out in the deeper water big East Indiamen at anchor with high sterns and three masts. Cargo everywhere it belongs: chests of tea roped and stencilled, straw-packed crates of porcelain, bales of silk, coils of rope, barrels, scales and tally boards. Dress of the 1740s: labourers and boatmen in coarse jackets, waistcoats, knee breeches, wool stockings, knitted caps or battered tricornes, leather aprons; merchants and Company men in long coats, waistcoats, tricornes and white stockings, some in wigs; women in gowns with aprons, caps and shawls. Cold northern light, low sun, sea fog and coal and woodsmoke. Camera at eye level, 9:16 framing, natural muted colour, mild grain, no filter and no sepia.",
+    "avoid": "Nothing built or worn later than the year. No Ostindiska huset or East India House building, which is not built until after 1750. No Feskekorka, no Poseidon fountain, no Gustaf Adolf statue, no Borsen, no Skansen Kronan interpreted as a modern museum, no nineteenth century warehouses in red brick, no Lappstiftet or any glass building, no Alvsborg bridge or bridge across the river mouth. No steamships, funnels, ferries, tugs or motor craft of any kind: every vessel is oared or under sail. No steel cranes, containers, forklifts or modern harbour machinery. No trams, rails, cars, bicycles. No electricity, wires, street lamps on posts, or modern paving. No top hats, frock coats, crinolines, uniforms or clothing after about 1780. No printed signage and no legible Swedish, Dutch, Chinese or Latin lettering: script must sit far off, at an angle or softened by depth of field, because rendered lettering comes out as nonsense to anyone who reads it. No text overlays, no watermarks, no crowds of identical faces. Every picture is ONE single photograph of ONE continuous scene: never a split screen, a diptych or triptych, a collage, a grid, or two images stacked in the same frame."
+  },
+  "stops": [
+    {
+      "id": "stop_01_the_packhouse",
+      "title": "Where the Tea Comes Ashore",
+      "geo": {
+        "lat": 57.7068,
+        "lng": 11.964,
+        "bearing": 90
+      },
+      "brief": "The harbour canal and the Company's packhouses: chests coming out of lighters on rope slings, tally clerks counting, tea and porcelain and silk moving from the water into locked stores under the eye of men who write everything down.",
+      "mustCover": [
+        "what actually comes back from Canton, and in what quantity, told through what he carries",
+        "how a cargo is counted, weighed and locked up, and who is watching whom",
+        "what a lighterman is paid for a load and what that buys in this town"
+      ],
+      "archiveQueries": [
+        "Stora Hamnkanalen Gothenburg",
+        "Kronhuset Gothenburg",
+        "Swedish East India Company tea chest"
+      ],
+      "landmarks": [
+        "Kronhuset Gothenburg"
+      ],
+      "styleNote": "A stone-lined harbour canal in a small 18th century town, timber and stone quays, plastered houses with tiled roofs, warehouses with hoist beams and open shutters. Flat lighters tied alongside, rope slings and simple hoists lifting roped chests, straw-packed crates, clerks with tally boards. No steel machinery, no big ships in the canal itself."
+    },
+    {
+      "id": "stop_02_the_lighters",
+      "title": "The Ships Cannot Come In",
+      "geo": {
+        "lat": 57.6975,
+        "lng": 11.9345,
+        "bearing": 270
+      },
+      "brief": "Out on the river where the East Indiamen lie at anchor because they draw too much water for the town quays, and the whole cargo of a two year voyage has to be moved ashore a boatload at a time.",
+      "mustCover": [
+        "why the big ships anchor out here and what that means for the men who unload them",
+        "what a voyage to Canton actually involves: how long out, how long back, who does not come home",
+        "what the crews are like coming ashore after two years, said plainly"
+      ],
+      "archiveQueries": [
+        "Gota alv Gothenburg",
+        "Swedish East India Company ship Gotheborg",
+        "East Indiaman 18th century ship",
+        "Gota alv river Gothenburg historic"
+      ],
+      "landmarks": [],
+      "styleNote": "Wide grey-green river seen low from a small boat. A large three-masted wooden East Indiaman at anchor with high decorated stern, sails furled, boats alongside. Flat lighters being rowed and warped with roped cargo. Low wooded and rocky shores, no bridge anywhere, no modern vessel of any kind."
+    },
+    {
+      "id": "stop_03_the_wreck",
+      "title": "The Twelfth of September",
+      "geo": {
+        "lat": 57.687,
+        "lng": 11.8895,
+        "bearing": 225
+      },
+      "brief": "The shoal off the fortress at the river mouth where the Gotheborg, home from Canton after two and a half years and almost at her own quay, ran onto a rock every pilot knew about and settled in shallow water while the town watched from the shore. Every man aboard got off alive; about a hundred tons of porcelain and a fortune in tea and silk did not.",
+      "mustCover": [
+        "what happened that day, told as he saw it from the water, plainly and without drama",
+        "that nobody drowned, and how strange a disaster it is that costs no lives and a fortune",
+        "the strangeness of it: a known rock, fair weather, a pilot aboard, and home in sight",
+        "what was salvaged in the weeks after and what stayed on the bottom"
+      ],
+      "archiveQueries": [
+        "Nya Alvsborg fortress Gothenburg",
+        "Gotheborg East Indiaman wreck 1745",
+        "Gota alv river mouth Gothenburg"
+      ],
+      "landmarks": [
+        "Nya Alvsborg fortress Gothenburg"
+      ],
+      "styleNote": "A wide river mouth with a low stone island fortress, grey water, bare granite skerries and rocky shores. A large wooden sailing ship aground and heeled in shallow water with masts still standing and boats around her, people watching from rocks and small craft. Daylight, calm weather, not a storm and not a dramatic sinking."
+    },
+    {
+      "id": "stop_04_the_auction",
+      "title": "The Sale",
+      "geo": {
+        "lat": 57.708,
+        "lng": 11.966,
+        "bearing": 45
+      },
+      "brief": "The Company auction, where a returned cargo is turned into money in a few days: buyers down from Stockholm and over from Holland, England and Germany, tea sold by the chest and porcelain by the crate, and a town that lives on the difference.",
+      "mustCover": [
+        "how the auction works and who comes to it, seen from outside the room",
+        "what the Company is, who is allowed to own a share of it, and where the profit goes",
+        "what all this money has and has not changed for people like him"
+      ],
+      "archiveQueries": [
+        "Kronhuset Gothenburg",
+        "Swedish East India Company auction Gothenburg",
+        "Chinese export porcelain 18th century",
+        "Gothenburg merchant house 18th century"
+      ],
+      "landmarks": [
+        "Kronhuset Gothenburg"
+      ],
+      "styleNote": "A busy 18th century town square and merchant street: plastered stone and painted timber houses, tiled roofs, cobbles, carts and porters with crates and chests, well dressed merchants in long coats and tricornes among working people. Crates of straw-packed porcelain and roped tea chests being moved and stacked. No modern shopfronts, no glass windows of plate glass, no signage."
+    },
+    {
+      "id": "stop_05_the_town",
+      "title": "Two Towns in One",
+      "geo": {
+        "lat": 57.7052,
+        "lng": 11.9695,
+        "bearing": 135
+      },
+      "brief": "The town the trade has built and the town underneath it: new stone houses for the Company men along the canals, and behind them the crowded wooden lanes where the people who carry everything actually live, in a place that burns regularly and knows it.",
+      "mustCover": [
+        "the difference between the stone streets and the wooden lanes, told without a sermon",
+        "fire: why a timber town on a wet plain is still afraid of it, and what everyone is expected to do",
+        "what he wants for his own family, said plainly at the end of a long day"
+      ],
+      "archiveQueries": [
+        "Gothenburg old town 18th century",
+        "Gothenburg wooden houses historic",
+        "Christinae kyrka German Church Gothenburg"
+      ],
+      "landmarks": [
+        "Christinae kyrka Gothenburg"
+      ],
+      "styleNote": "Two textures in one street: solid plastered stone houses of three storeys with tiled roofs and shuttered windows along a canal, and behind them narrow crowded lanes of tarred and painted timber houses with steep roofs, outside stairs, washing, wood stacks and water barrels. Cobbles and mud. Evening light, smoke from chimneys."
+    }
+  ],
+  "seedSources": [
+    {
+      "title": "Swedish East India Company",
+      "url": "https://en.wikipedia.org/wiki/Swedish_East_India_Company",
+      "license": "cc-by-sa",
+      "note": "Founded 1731 in Gothenburg, the Canton trade, the auctions, and what the voyages carried."
+    },
+    {
+      "title": "Gotheborg (ship)",
+      "url": "https://en.wikipedia.org/wiki/G%C3%B6theborg_(ship)",
+      "license": "cc-by-sa",
+      "note": "Wrecked 12 September 1745 on Hunnebadan at the mouth of the Gota alv, returning from her third Canton voyage, within sight of the harbour."
+    },
+    {
+      "title": "New Alvsborg",
+      "url": "https://en.wikipedia.org/wiki/New_%C3%84lvsborg",
+      "license": "cc-by-sa",
+      "note": "The island fortress of 1653 guarding the river mouth, standing in this year."
+    },
+    {
+      "title": "History of Gothenburg",
+      "url": "https://en.wikipedia.org/wiki/History_of_Gothenburg",
+      "license": "cc-by-sa",
+      "note": "The eighteenth century town, the canals, the timber lanes and the fires."
+    }
+  ]
+}
